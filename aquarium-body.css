@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+body {
+  /* リセット: ブラウザのデフォルト余白を削除 */
+  margin: 0;
+  padding: 0;
+
+  /* フォント設定: 日本語と英語が見やすい標準的なフォントスタック */
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+
+  /* テーマ適用: 変数ファイルで定義された色を使用 */
+  background-color: var(--aqprimary-bg);
+  color: var(--aq-text-main);
+
+  /* レイアウト: 画面いっぱいに広げる */
+  min-height: 100vh;
+  line-height: 1.6;
+
+  /* テキストのレンダリング最適化 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
