@@ -1,0 +1,42 @@
+:root {
+  --aquarium-base-s: 15%;
+  --aquarium-item-s: 20%;
+  --aquarium-ui-s: 38%;
+
+  --aquarium-base-l: 24%;
+  --aquarium-sub-l: 12%;
+  --aquarium-line-l: 24%;
+
+  /* --- プライマリカラー --- */
+  --aquarium-primary-h: 220;
+  /* ベースカラー */
+  --primary-bg: hsl(var(--aquarium-primary-h), var(--aquarium-base-s), var(--aquarium-base-l));
+  --primary-bg-sub: hsl(var(--aquarium-primary-h), var(--aquarium-base-s), var(--aquarium-sub-l));
+  --primary-bg-line: hsl(var(--aquarium-primary-h), var(--aquarium-base-s), var(--aquarium-line-l));
+  /* コンテンツカラー */
+  --primary-item: hsl(var(--aquarium-primary-h), var(--aquarium-item-s), var(--aquarium-base-l));
+  --primary-item-sub: hsl(var(--aquarium-primary-h), var(--aquarium-item-s), var(--aquarium-sub-l));
+  --primary-item-line: hsl(var(--aquarium-primary-h), var(--aquarium-item-s), var(--aquarium-line-l));
+
+  /* --- セカンダリカラー --- */
+  --aquarium-secondary-h: 242;
+  /* ベースカラー */
+  --secondary-bg: hsl(var(--aquarium-secondary-h), var(--aquarium-base-s), var(--aquarium-base-l));
+  --secondary-bg-sub: hsl(var(--aquarium-secondary-h), var(--aquarium-base-s), var(--aquarium-sub-l));
+  --secondary-bg-line: hsl(var(--aquarium-secondary-h), var(--aquarium-base-s), var(--aquarium-line-l));
+  /* コンテンツカラー */
+  --secondary-item: hsl(var(--aquarium-secondary-h), var(--aquarium-item-s), var(--aquarium-base-l));
+  --secondary-item-sub: hsl(var(--aquarium-secondary-h), var(--aquarium-item-s), var(--aquarium-sub-l));
+  --secondary-item-line: hsl(var(--aquarium-secondary-h), var(--aquarium-item-s), var(--aquarium-line-l));
+
+  /* --- アクセントカラー --- */
+  --aquarium-accent-h: 228;
+  /* ベースカラー */
+  --accent-bg: hsl(var(--aquarium-accent-h), var(--aquarium-base-s), var(--aquarium-base-l));
+  --accent-bg-sub: hsl(var(--aquarium-accent-h), var(--aquarium-base-s), var(--aquarium-sub-l));
+  --accent-bg-line: hsl(var(--aquarium-accent-h), var(--aquarium-base-s), var(--aquarium-line-l));
+  /* コンテンツカラー */
+  --accent-item: hsl(var(--aquarium-accent-h), var(--aquarium-item-s), var(--aquarium-base-l));
+  --accent-item-sub: hsl(var(--aquarium-accent-h), var(--aquarium-item-s), var(--aquarium-sub-l));
+  --accent-item-line: hsl(var(--aquarium-accent-h), var(--aquarium-item-s), var(--aquarium-line-l));
+}

@@ -1,0 +1,9 @@
+/* 基本要素 */
+
+.item {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+}
