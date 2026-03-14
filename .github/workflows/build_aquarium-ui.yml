@@ -1,4 +1,4 @@
-name: aquarium-uiをビルド
+name: aquarium-ui.cssをビルド
 on:
   push:
     branches: [main]
