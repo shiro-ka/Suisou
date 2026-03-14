@@ -1,0 +1,24 @@
+name: Copy to build branch
+
+on:
+  push:
+    branches: [main]
+    paths: ['aquarium-ui/**']
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: aquarium-uiをbuildブランチにコピー
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout build
+          git checkout main -- aquarium-ui/
+          git add aquarium-ui/
+          git commit -m "sync: update from main" || echo "変更なし"
+          git push origin build
