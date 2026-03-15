@@ -41,6 +41,7 @@ jobs:
         run: |
           git stash
           git checkout main
+          git pull origin main
           git checkout build -- akuarium-ui.css
           git add akuarium-ui.css
           git commit -m "akuarium-ui.cssをmainブランチに送ったよ"
