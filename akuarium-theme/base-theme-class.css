@@ -1,6 +1,6 @@
 /* ベーステーマカラーのクラス (基本的にbody用) */
 
-.blackish * {
+.blackish, .blackish * {
   --theme-bg: var(--blackish-bg);
   --theme-item-bg: var(--blackish-item-bg);
   --theme-item-bd: var(--blackish-item-bd);

@@ -1,6 +1,6 @@
 :root {
   /* 汎用数値 */
-  --item-bd-l: 81;
+  --item-bd-l: 81%;
 
 
 
@@ -11,11 +11,11 @@
   --blackish-h: 222;
 
     /* 背景 */
-    --blackish-bg: hsl(var(--blackish-h), 26, 14);
+    --blackish-bg: hsl(var(--blackish-h) 26% 14%);
     
     /* アイテム */
-    --blackish-item-bg: hsl(var(--blackish-h), 26, 25);
-    --blackish-item-bd: hsl(var(--blackish-h), 26, var(--item-bd-l));
+    --blackish-item-bg: hsl(var(--blackish-h) 26% 25%);
+    --blackish-item-bd: hsl(var(--blackish-h) 26% var(--item-bd-l));
 
 
 
@@ -34,10 +34,10 @@
   --hadal-h: 220;
 
     /* 背景 */
-    --hadal-bg: hsl(var(--hadal-h), 26, 14);
+    --hadal-bg: hsl(var(--hadal-h) 26% 14%);
     
     /* アイテム */
-    --hadal-item-bg: hsl(var(--hadal-h), 26, 25);
-    --hadal-item-bd: hsl(var(--hadal-h), 26, var(--item-bd-l));
+    --hadal-item-bg: hsl(var(--hadal-h) 26% 25%);
+    --hadal-item-bd: hsl(var(--hadal-h) 26% var(--item-bd-l));
 
 }
