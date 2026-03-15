@@ -34,6 +34,7 @@ jobs:
 
       - name: mainにaquarium-ui.cssをプッシュ
         run: |
+          git stash
           git checkout main
           git checkout build -- aquarium-ui.css
           git add aquarium-ui.css
