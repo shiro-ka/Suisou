@@ -32,6 +32,11 @@ jobs:
       - run: npm install lightningcss-cli
       - run: npx lightningcss --bundle aquarium-ui/index.css -o aquarium-ui.css
 
+      - name: ビルド結果をbuildブランチにコミット
+        run: |
+          git add aquarium-ui.css
+          git commit -m "build: generate aquarium-ui.css" || echo "変更なし"
+
       - name: mainにaquarium-ui.cssをプッシュ
         run: |
           git stash
