@@ -1,0 +1,7 @@
+/* ベーステーマカラーのクラス (あんま使わない？) */
+
+.blackish-bg {background-color: var(--blackish-bg);}
+.blackish-item-bg {background-color: var(--blackish-item-bg);}
+.blackish-item-bd {background-color: var(--blackish-item-bd);}
+
+.hadal-bg {background-color: var(--hadal-bg);}

@@ -41,7 +41,3 @@
     --hadal-item-bd: hsl(var(--hadal-h), 26, var(--item-bd-l));
 
 }
-
-.blackish-bg {background-color: var(--blackish-bg);}
-
-.hadal-bg {background-color: var(--hadal-bg);}
