@@ -30,7 +30,7 @@ jobs:
 
       # Lightning CSSでビルド
       - run: npm install lightningcss-cli
-      - run: npx lightningcss --bundle aquarium-ui/index.css -o aquarium-ui.css
+      - run: npx lightningcss --bundle --minify --targets '>= 0.25%' aquarium-ui/index.css -o aquarium-ui.css
 
       - name: ビルド結果をbuildブランチにコミット
         run: |
