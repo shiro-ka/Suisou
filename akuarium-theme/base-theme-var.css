@@ -8,7 +8,7 @@
     Blackish
   ε>{ c ') .+:* */
 
-  --blackish: 222;
+  --blackish-h: 222;
 
     /* 背景 */
     --blackish-bg: hsl(var(--blackish-h), 26, 14);

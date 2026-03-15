@@ -1,4 +1,13 @@
-/* ベーステーマカラーのクラス (あんま使わない？) */
+/* ベーステーマカラーのクラス (基本的にbody用) */
+
+.blackish * {
+  --theme-bg: var(--blackish-bg);
+  --theme-item-bg: var(--blackish-item-bg);
+  --theme-item-bd: var(--blackish-item-bd);
+}
+
+
+/* 個別クラス */
 
 .blackish-bg {background-color: var(--blackish-bg);}
 .blackish-item-bg {background-color: var(--blackish-item-bg);}

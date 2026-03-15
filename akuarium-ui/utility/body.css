@@ -13,10 +13,3 @@ body {
 body * {
   box-sizing: border-box;
 }
-
-/* テーマカラーを適用 */
-.blackish * {
-  --theme-bg: var(--blackish-bg);
-  --theme-item-bg: var(--blackish-item-bg);
-  --theme-item-bd: var(--blackish-item-bd);
-}
