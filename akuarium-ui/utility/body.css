@@ -1,0 +1,21 @@
+/* .+:* ε>{ c ')
+    body
+ε>{ c ') .+:* */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  min-height: 100dvh;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+/* テーマカラーを適用 */
+.blackish * {
+  --theme-bg: var(--blackish-bg);
+  --theme-item-bg: var(--blackish-item-bg);
+  --theme-item-bd: var(--blackish-item-bd);
+}

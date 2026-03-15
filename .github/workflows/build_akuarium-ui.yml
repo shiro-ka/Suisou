@@ -1,0 +1,47 @@
+name: akuarium-ui.cssをビルド
+on:
+  push:
+    branches: [main]
+    paths: ['akuarium-ui/**']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: akuarium-uiフォルダをbuildブランチにコピー
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout build
+          git checkout main -- akuarium-ui/
+          git add akuarium-ui/
+          git commit -m "sync: update from main" || echo "変更なし"
+
+      # Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      # Lightning CSSでビルド
+      - run: npm install lightningcss-cli
+      - run: npx lightningcss --bundle --minify --targets '>= 0.25%' akuarium-ui/index.css -o akuarium-ui.css
+
+      - name: ビルドしたakuarium-ui.cssをbuildブランチにコミット
+        run: |
+          git add akuarium-ui.css
+          git commit -m "akuarium-ui.cssをビルドしたよ" || echo "変更なし"
+
+      - name: mainにakuarium-ui.cssをプッシュ
+        run: |
+          git stash
+          git checkout main
+          git checkout build -- akuarium-ui.css
+          git add akuarium-ui.css
+          git commit -m "akuarium-ui.cssをmainブランチに送ったよ"
+          git push origin main
