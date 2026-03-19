@@ -1,12 +1,20 @@
-@import "./components/container.css";
-@import "./components/header.css";
-@import "./components/heading.css";
-@import "./components/item.css";
+/* .+:* ε>{ c')
+    import
+ε>{ c') .+:* */
 
 /* layout */
 @import "./layout/footer.css";
 @import "./layout/header.css";
 @import "./layout/main.css";
+
+/* components */
+@import "./components/conainer.css";
+@import "./components/item.css";
+
+/* text */
+@import "./text/heading.css";
+
+/* utility */
 @import "./utility/body.css";
 @import "./utility/height.css";
 @import "./utility/user-select.css";
