@@ -3,7 +3,7 @@
 ε>{ c') .+:* */
 
 /* ヘッダーコンテナ */
-.header {
+header .header {
   display: flex;
   width: 100%;
   height: fit-content;

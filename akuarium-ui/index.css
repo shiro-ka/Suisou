@@ -2,7 +2,11 @@
 @import "./components/header.css";
 @import "./components/heading.css";
 @import "./components/item.css";
+
+/* layout */
 @import "./layout/footer.css";
+@import "./layout/header.css";
+@import "./layout/main.css";
 @import "./utility/body.css";
 @import "./utility/height.css";
 @import "./utility/user-select.css";
