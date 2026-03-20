@@ -2,10 +2,13 @@
     import
 ε>{ c') .+:* */
 
+@import "./body.css";
+
 /* layout */
 @import "./layout/footer.css";
 @import "./layout/header.css";
 @import "./layout/main.css";
+@import "./layout/wrapper.css";
 
 /* components */
 @import "./components/conainer.css";
@@ -15,6 +18,5 @@
 @import "./text/heading.css";
 
 /* utility */
-@import "./utility/body.css";
 @import "./utility/height.css";
 @import "./utility/user-select.css";

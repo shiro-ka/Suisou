@@ -1,0 +1,10 @@
+/* .+:* ε>{ c')
+  body直下ラッパー
+ε>{ c') .+:* */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100dvh;
+  min-height: 100dvh;
+}

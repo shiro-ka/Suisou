@@ -4,7 +4,5 @@
 
 main, .main {
   display: flex;
-  width: 100%;
-  height: fit-content;
   flex: 1;
 }
