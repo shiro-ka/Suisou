@@ -1,14 +1,16 @@
 /* .+:* ε>{ c')
-    import
+		import
 ε>{ c') .+:* */
 
 @import "./body.css";
 
 /* layout */
-@import "./layout/footer.css";
 @import "./layout/header.css";
 @import "./layout/main.css";
 @import "./layout/wrapper.css";
+@import "./layout/footer.css";
+@import "./layout/container.css";
+@import "./layout/items.css";
 
 /* components */
 @import "./components/conainer.css";
