@@ -20,4 +20,5 @@
 
 /* utility */
 @import "./utility/height.css";
+@import "./utility/font-size.css";
 @import "./utility/user-select.css";
