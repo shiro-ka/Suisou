@@ -44,5 +44,5 @@ jobs:
           git pull origin main
           git checkout build -- akuarium-theme.css
           git add akuarium-theme.css
-          git commit -m "akuarium-theme.cssをmainブランチに送ったよ"
+          git commit -m "Actions:akuarium-theme.css"
           git push origin main
