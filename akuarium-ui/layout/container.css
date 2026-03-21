@@ -5,19 +5,22 @@
 /* コンテナ汎用 */
 .container, .container-70, .container-75, .container-80, .container-85, .container-90, .container-95 {
   display: flex;
+  height: fit-content;
   padding: 0;
   margin: 0 auto;
   align-items: center;
 }
 
-/* モバイルコンテナ幅 */
-@media (width <= 768px) {
-  .container, .container-70, .container-75, .container-80, .container-85, .container-90, .container-95 {
-    width: 100%;
-  }
+.container, .container-lg, .container-xl, .container-xx {
+  width: 100%;
 }
 
 /* %幅コンテナ */
+@media (width <= 768px) {
+  .container-70, .container-75, .container-80, .container-85, .container-90, .container-95 {
+    width: 100%;
+  }
+}
 @media (width > 768px) {
   .container    {width: 100%;}
   .container-95 {width: 95%;}
@@ -26,4 +29,12 @@
   .container-80 {width: 80%;}
   .container-75 {width: 75%;}
   .container-70 {width: 70%;}
+}
+
+/* px幅コンテナ */
+@media (width > 768px) {
+  .container-md {max-width: 768px;}
+  .container-lg {max-width: 1024px;}
+  .container-xl {max-width: 1280px;}
+  .container-xx {max-width: 1536px;}
 }

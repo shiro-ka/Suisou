@@ -11,14 +11,14 @@
   --blackish-h: 222;
 
     /* 背景 */
-    --blackish-bg: hsl(var(--blackish-h) 26% 14%);
+    --blackish-bg: hsl(var(--blackish-h) 14% 8%);
     
-    /* アイテム */
-    --blackish-item-bg: hsl(var(--blackish-h) 26% 25%);
-    --blackish-item-bd: hsl(var(--blackish-h) 26% var(--item-bd-l));
+    /* ボックス */
+    --blackish-box-bg: hsl(var(--blackish-h) 26% 25%);
+    --blackish-box-bd: hsl(var(--blackish-h) 26% var(--item-bd-l));
 
     /* 文字色 */
-    --blackish-fg: hsl(var(--blackish-h) 26% 85%);
+    --blackish-fg: hsl(var(--blackish-h) 36% 82%);
 
 
 
@@ -40,7 +40,7 @@
     --hadal-bg: hsl(var(--hadal-h) 26% 14%);
     
     /* アイテム */
-    --hadal-item-bg: hsl(var(--hadal-h) 26% 25%);
-    --hadal-item-bd: hsl(var(--hadal-h) 26% var(--item-bd-l));
+    --hadal-box-bg: hsl(var(--hadal-h) 26% 25%);
+    --hadal-box-bd: hsl(var(--hadal-h) 26% var(--item-bd-l));
 
 }

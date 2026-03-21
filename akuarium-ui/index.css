@@ -11,9 +11,7 @@
 @import "./layout/footer.css";
 @import "./layout/container.css";
 @import "./layout/items.css";
-
-/* components */
-@import "./components/item.css";
+@import "./layout/box.css";
 
 /* text */
 @import "./text/heading.css";
