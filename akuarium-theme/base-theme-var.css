@@ -17,6 +17,9 @@
     --blackish-item-bg: hsl(var(--blackish-h) 26% 25%);
     --blackish-item-bd: hsl(var(--blackish-h) 26% var(--item-bd-l));
 
+    /* 文字色 */
+    --blackish-fg: hsl(var(--blackish-h) 26% 85%);
+
 
 
   /* .+:* ε>{ c ')

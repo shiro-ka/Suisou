@@ -8,13 +8,9 @@ header .header {
   width: 100%;
   height: fit-content;
   margin: 0;
-  padding: 0;
+  padding: 16px 0;
   flex-direction: row;
   background-color: transparent;
-}
-
-.header * {
-  color: white;
 }
 
 .header-title {
