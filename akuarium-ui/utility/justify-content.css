@@ -1,0 +1,6 @@
+.is-justify-start {justify-content: flex-start;}
+.is-justify-end {justify-content: flex-end;}
+.is-justify-center {justify-content: center;}
+.is-justify-between {justify-content: space-between;}
+.is-justify-around {justify-content: space-around;}
+.is-justify-evenly {justify-content: space-evenly;}

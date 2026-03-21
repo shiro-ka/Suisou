@@ -8,7 +8,7 @@ header .header {
   width: 100%;
   height: fit-content;
   margin: 0;
-  padding: 16px 0;
+  padding: 16px 32px;
   flex-direction: row;
   background-color: transparent;
 }

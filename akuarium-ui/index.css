@@ -19,6 +19,7 @@
 @import "./text/heading.css";
 
 /* utility */
-@import "./utility/height.css";
 @import "./utility/font-size.css";
+@import "./utility/height.css";
+@import "./utility/justify-content.css";
 @import "./utility/user-select.css";
