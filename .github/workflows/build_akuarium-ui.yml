@@ -35,7 +35,7 @@ jobs:
       - name: ビルドしたakuarium-ui.cssをbuildブランチにコミット
         run: |
           git add akuarium-ui.css
-          git commit -m "akuarium-ui.cssをビルドしたよ" || echo "変更なし"
+          git diff --cached --quiet && echo "変更なし" || git commit -m "akuarium-ui.cssをビルドしたよ"
 
       - name: mainにakuarium-ui.cssをプッシュ
         run: |
@@ -44,5 +44,5 @@ jobs:
           git pull origin main
           git checkout build -- akuarium-ui.css
           git add akuarium-ui.css
-          git commit -m "Actions:akuarium-ui.css"
+          git diff --cached --quiet && echo "変更なし" || git commit -m "Actions:akuarium-ui.css"
           git push origin main
