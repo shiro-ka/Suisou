@@ -7,7 +7,7 @@
   ε>{ c ') .+:* */
   --blackish-h: 222;
     /* 背景 */
-    --blackish-bg: hsl(var(--blackish-h) 14% 22%);
+    --blackish-bg: hsl(var(--blackish-h) 16% 12%);
     /* ボックス */
     --blackish-box-bg: hsl(var(--blackish-h) 14% 8%);
     --blackish-box-bd: hsl(var(--blackish-h) 26% var(--item-bd-l));
