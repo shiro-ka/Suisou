@@ -10,7 +10,7 @@
     --blackish-bg: hsl(var(--blackish-h) 16% 12%);
     /* ボックス */
     --blackish-box-bg: hsl(var(--blackish-h) 14% 8%);
-    --blackish-box-bd: hsl(var(--blackish-h) 26% var(--item-bd-l));
+    --blackish-box-bd: hsla(var(--blackish-h) 30% 72% / 0.5);
     /* 文字色 */
     --blackish-fg: hsl(var(--blackish-h) 36% 82%);
 
