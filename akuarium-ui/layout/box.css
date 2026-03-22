@@ -10,7 +10,7 @@
   gap: 8px;
 }
 
-.box-col, .box-row {border: 1px solid var(--theme-item-bd);}
+.box-col, .box-row {border: 1px solid var(--theme-box-bd);}
 .pbox-col, .pbox-row {border: 1px solid var(--primary);}
 .sbox-col, .sbox-row {border: 1px solid var(--secondary-tp);}
 
