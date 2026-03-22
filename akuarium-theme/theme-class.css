@@ -5,6 +5,8 @@
   --theme-item-bg: var(--blackish-item-bg);
   --theme-item-bd: var(--blackish-item-bd);
   --theme-fg: var(--blackish-fg);
+  --theme-box-bg: var(--blackish-box-bg);
+  --theme-box-bd: var(--blackish-box-bd);
 }
 
 

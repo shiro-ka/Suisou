@@ -2,15 +2,18 @@
       box
 ε>{ c') .+:* */
 
-/* >> 通常ボックス << */
-
-.box {
+.box-col, .box-row, .pbox-col, .pbox-row, .sbox-col, .sbox-row {
   display: flex;
-  width: 100%;
-  height: fit-content;
-  margin: 0;
-  padding: 0;
+  background-color: var(--theme-box-bg);
+  border-radius: 8px;
+  padding: 8px;
+  gap: 8px;
 }
 
+.box-col, .box-row {border: 1px solid var(--theme-item-bd);}
+.pbox-col, .pbox-row {border: 1px solid var(--primary);}
+.sbox-col, .sbox-row {border: 1px solid var(--secondary-tp);}
 
+.box-col, .pbox-col, .sbox-col {flex-direction: column;}
+.box-row, .pbox-row, .sbox-row {flex-direction: row;}
 

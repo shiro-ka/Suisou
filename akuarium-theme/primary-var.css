@@ -1,0 +1,14 @@
+:root {
+
+  /* .+:* ε>{ c ')
+    jellyghoti
+  ε>{ c ') .+:* */
+  --jellyghoti-h: 196;
+    /* >> プライマリ << */
+      /*  */
+      --jellyghoti: hsl(var(--jellyghoti-h) 82% 72%);
+    /* >> セカンダリ << */
+      /*  */
+      --jellyghoti-sub: hsl(var(--jellyghoti-h) 82% 48%);
+      --jellyghoti-tp: hsl(var(--jellyghoti-h) 82% 48% / 0.5);
+}

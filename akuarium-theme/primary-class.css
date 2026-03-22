@@ -1,0 +1,7 @@
+/* プライマリ,セカンダリカラーのクラス (基本的にbody用) */
+
+.jellyghoti, .jellyghoti * {
+  --primary: var(--jellyghoti);
+  --secondary: var(--jellyghoti-sub);
+  --secondary-tp: var(--jellyghoti-tp);
+}
