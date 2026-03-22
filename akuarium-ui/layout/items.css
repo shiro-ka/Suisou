@@ -1,18 +1,12 @@
-/* .+:* ε>{ c ')
-	アイテムコンテナ
-ε>{ c ') .+:* */
+/* .+:* ε>{ c')
+  アイテムコンテナ
+ε>{ c') .+:* */
 
-/* 横並び */
-.items-r {
-	display: flex;
-	align-items: center;
-	gap: 24px;
+.items-col, .items-row {
+  display: flex;
+  padding: 0px;
+  gap: 8px;
 }
 
-/* 縦並び */
-.items-c {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 24px;
-}
+.items-col {flex-direction: column;}
+.items-row {flex-direction: row;}
