@@ -5,8 +5,8 @@
 .box-col, .box-row, .pbox-col, .pbox-row, .sbox-col, .sbox-row {
   display: flex;
   background-color: var(--theme-box-bg);
-  border-radius: 8px;
-  padding: 8px;
+  border-radius: 24px;
+  padding: 24px;
   gap: 8px;
 }
 
@@ -16,4 +16,3 @@
 
 .box-col, .pbox-col, .sbox-col {flex-direction: column;}
 .box-row, .pbox-row, .sbox-row {flex-direction: row;}
-

@@ -2,21 +2,15 @@
   /* 汎用数値 */
   --item-bd-l: 81%;
 
-
-
   /* .+:* ε>{ c ')
     Blackish
   ε>{ c ') .+:* */
-
   --blackish-h: 222;
-
     /* 背景 */
-    --blackish-bg: hsl(var(--blackish-h) 14% 8%);
-    
+    --blackish-bg: hsl(var(--blackish-h) 14% 22%);
     /* ボックス */
-    --blackish-box-bg: hsl(var(--blackish-h) 26% 25%);
+    --blackish-box-bg: hsl(var(--blackish-h) 14% 8%);
     --blackish-box-bd: hsl(var(--blackish-h) 26% var(--item-bd-l));
-
     /* 文字色 */
     --blackish-fg: hsl(var(--blackish-h) 36% 82%);
 

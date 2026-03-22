@@ -3,11 +3,14 @@
 ε>{ c') .+:* */
 
 /* コンテナ汎用 */
-.container, .container-70, .container-75, .container-80, .container-85, .container-90, .container-95 {
+.container,
+.container-70, .container-75, .container-80, .container-85, .container-90, .container-95,
+.container-md, .container-lg, .container-xl, .container-xx {
   display: flex;
   height: fit-content;
   padding: 0;
   margin: 0 auto;
+  flex-direction: column;
   align-items: center;
 }
 
