@@ -16,5 +16,16 @@
 .h-5r {height: 5rem;}
 .h-6r {height: 6rem;}
 
+.h-100dv {height: 100dvh;}
+.h-90dv  {height: 90dvh;}
+.h-80dv  {height: 80dvh;}
+.h-70dv  {height: 70dvh;}
+.h-60dv  {height: 60dvh;}
+.h-50dv  {height: 50dvh;}
+.h-40dv  {height: 40dvh;}
+.h-30dv  {height: 30dvh;}
+.h-20dv  {height: 20dvh;}
+.h-10dv  {height: 10dvh;}
+
 .h-full {height: 100%;}
 .h-unset {height: unset;}
