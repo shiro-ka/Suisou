@@ -1,0 +1,329 @@
+#!/usr/bin/env python3
+"""
+palette solver — 正準実装（single source of truth）
+
+このファイルだけが色を決める。生成物:
+  palette.data.js  … 提出書 index.html が読む確定値
+  spec-tables.md   … 仕様書 §6/§7/§8/§11 に差し込む表
+
+手で書いた表を仕様書に置かない。ドリフトの原因はそれだった。
+
+使い方:
+  python3 solve.py          # 生成して差分を表示
+  python3 solve.py --check  # 生成せず検証だけ（破綻があれば exit 1）
+"""
+import json, math, sys, os
+
+# ============================================================ OKLCH core
+def to_srgb(L, C, H):
+    a = C * math.cos(math.radians(H)); b = C * math.sin(math.radians(H))
+    l_ = L + 0.3963377774*a + 0.2158037573*b
+    m_ = L - 0.1055613458*a - 0.0638541728*b
+    s_ = L - 0.0894841775*a - 1.2914855480*b
+    l, m, s = l_**3, m_**3, s_**3
+    return (+4.0767416621*l - 3.3077115913*m + 0.2309699292*s,
+            -1.2684380046*l + 2.6097574011*m - 0.3413193965*s,
+            -0.0041960863*l - 0.7034186147*m + 1.7076147010*s)
+
+def in_gamut(L, C, H):
+    return all(-1e-4 <= c <= 1+1e-4 for c in to_srgb(L, C, H))
+
+def _enc(c):
+    c = min(max(c, 0), 1)
+    return 12.92*c if c <= 0.0031308 else 1.055*c**(1/2.4) - 0.055
+
+def hexof(L, C, H):
+    return "#" + "".join("%02x" % round(_enc(c)*255) for c in to_srgb(L, C, H))
+
+def lum(L, C, H):
+    r, g, b = [min(max(c, 0), 1) for c in to_srgb(L, C, H)]
+    return 0.2126*r + 0.7152*g + 0.0722*b
+
+def contrast(x, y):
+    a, b = lum(*x), lum(*y)
+    if a < b: a, b = b, a
+    return (a + 0.05) / (b + 0.05)
+
+_MC = {}
+def maxC(L, H):
+    k = (round(L, 4), round(H, 2))
+    if k in _MC: return _MC[k]
+    lo, hi = 0.0, 0.5
+    for _ in range(48):
+        m = (lo + hi) / 2
+        if in_gamut(L, m, H): lo = m
+        else: hi = m
+    _MC[k] = lo
+    return lo
+
+def _lab(L, C, H):
+    return (L, C*math.cos(math.radians(H)), C*math.sin(math.radians(H)))
+
+def dE(c1, c2):
+    a, b = _lab(*c1), _lab(*c2)
+    return math.sqrt(sum((x-y)**2 for x, y in zip(a, b)))
+
+def hue_dist(a, b):
+    d = abs(a - b) % 360
+    return min(d, 360 - d)
+
+# ============================================================ 定義（人が決めるもの）
+LADDERS = {
+    # dark … 通常のダーク
+    "dark": {"bg":.15, "panel":.22, "input":.28, "floating":.34, "tint":.36,
+             "line-weak":.44, "line-strong":.61, "text-disabled":.62,
+             "accent":.74, "text-sub":.78, "text-main":.94},
+    # dim … ライト志向のユーザーに投げる明るめの階段。極性は反転しない。
+    #        bg を L30 より上げると本文 4.5:1 を満たす L が色域外に出る。
+    "dim":  {"bg":.26, "panel":.33, "input":.39, "floating":.45, "tint":.47,
+             "line-weak":.55, "line-strong":.73, "text-disabled":.74,
+             "accent":.80, "text-sub":.90, "text-main":.955},
+}
+SEM_HUE = {"error": 22, "warning": 90, "success": 155}
+SEM_L = {
+    "dark": {"error":.73, "warning":.82, "success":.76},
+    "dim":  {"error":.85, "warning":.85, "success":.83},
+}
+THEMES = [
+    {"name":"grey",     "ladder":"dark", "h":286, "cs":0.006, "ar":0.85},
+    {"name":"slate",    "ladder":"dark", "h":265, "cs":0.018, "ar":0.65},
+    {"name":"nord-ish", "ladder":"dark", "h":272, "cs":0.030, "ar":0.60},
+    {"name":"dim",      "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},
+]
+ACCENTS = [("orange",55),("lime",122),("teal",188),("cyan",212),("blue",255),
+           ("indigo",282),("purple",308),("magenta",332),("pink",355)]
+
+# 制約のしきい値
+FLOOR = {"hover":0.03, "selected":0.055, "semantic":0.055, "textSub":0.08}
+SEM_OFFSET = 0.15      # 意味色はアクセントより常にこれだけ強い（経験値）
+ACTIVE_DL  = -0.03
+SCRIM_ALPHA = 0.72
+SURFACES = ["panel", "input", "floating"]
+JND = 0.02
+
+PAIRS = [  # (ink, surface, 必要比, 用途)
+    ("line-weak","floating",1.5,"装飾罫"),
+    ("line-strong","floating",3.0,"入力枠 1.4.11"),
+    ("line-strong","input",3.0,"入力枠 1.4.11"),
+    ("text-sub","floating",4.5,"本文"),
+    ("text-main","floating",4.5,"本文"),
+    ("accent","floating",3.0,"UI 部品"),
+    ("accent","panel",3.0,"UI 部品"),
+    ("accent-active","floating",3.0,"UI 部品(押下)"),
+    ("on-accent","accent",4.5,"ボタン内文字"),
+    ("text-main","selected-surface",4.5,"選択行の文字"),
+    ("text-main","hover-surface",4.5,"hover 行の文字"),
+    ("error","floating",4.5,"状態文言"),
+    ("warning","floating",4.5,"状態文言"),
+    ("success","floating",4.5,"状態文言"),
+    ("text-main","error-surface",4.5,"バナーの文字"),
+    ("error","error-surface",3.0,"バナーの枠"),
+]
+
+# ============================================================ 導出
+def resolve_text_main(t):
+    """目標 L から下げて、色域に入る最大 L を返す"""
+    L = LADDERS[t["ladder"]]["text-main"]
+    while L > 0.80 and not in_gamut(L, t["cs"], t["h"]):
+        L -= 0.005
+    return round(L, 3)
+
+def resolve_tint(t, h, floor):
+    """載りうる全面に対して ΔE >= floor を満たす最小 C。解が無ければ None"""
+    D = LADDERS[t["ladder"]]
+    L, ceil = D["tint"], maxC(D["tint"], h)
+    worst = lambda C: min(dE((L, C, h), (D[s], t["cs"], t["h"])) for s in SURFACES)
+    if worst(ceil) < floor: return None
+    lo, hi = 0.0, ceil
+    for _ in range(48):
+        m = (lo + hi) / 2
+        if worst(m) < floor: lo = m
+        else: hi = m
+    return hi
+
+def sem_ratio(ar):
+    return min(0.95, ar + SEM_OFFSET)
+
+def tokens(t, acc_name, acc_h):
+    D = LADDERS[t["ladder"]]
+    o = {}
+    for k in ["bg","panel","input","floating","line-weak","line-strong","text-disabled","text-sub"]:
+        o[k] = (D[k], t["cs"], t["h"])
+    o["text-main"] = (resolve_text_main(t), t["cs"], t["h"])
+    o["scrim"]     = (0.08, t["cs"], t["h"])
+    o["accent"]        = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
+    o["accent-active"] = (D["accent"]+ACTIVE_DL, maxC(D["accent"]+ACTIVE_DL, acc_h) * t["ar"], acc_h)
+    o["focus-ring"]    = o["accent"]
+    o["on-accent"]     = o["bg"]
+    hv  = resolve_tint(t, acc_h, FLOOR["hover"])
+    sel = resolve_tint(t, acc_h, FLOOR["selected"])
+    o["hover-surface"]    = None if hv  is None else (D["tint"], hv,  acc_h)
+    o["selected-surface"] = None if sel is None else (D["tint"], sel, acc_h)
+    sr = sem_ratio(t["ar"])
+    for n, h in SEM_HUE.items():
+        L = SEM_L[t["ladder"]][n]
+        o[n] = (L, maxC(L, h) * sr, h)
+        st = resolve_tint(t, h, FLOOR["selected"])
+        o[n+"-surface"] = None if st is None else (D["tint"], st, h)
+    return o
+
+# ============================================================ 制約チェック
+def accent_issues(t, acc_name, acc_h):
+    k = tokens(t, acc_name, acc_h)
+    bad = []
+    if k["hover-surface"] is None:    bad.append("hover 下地の解なし")
+    if k["selected-surface"] is None: bad.append("選択下地の解なし")
+    for st in ("accent", "accent-active"):
+        if not in_gamut(*k[st]): bad.append(f"{st} が色域外")
+        if contrast(k[st], k["floating"]) < 3.0:
+            bad.append(f"{st} のコントラスト不足 {contrast(k[st], k['floating']):.2f}:1")
+        d = dE(k[st], k["text-sub"])
+        if d < FLOOR["textSub"]: bad.append(f"{st} が text-sub と近い ΔE {d:.3f}")
+    near = min(((dE(k["accent"], k[n]), n) for n in SEM_HUE))
+    if near[0] < FLOOR["semantic"]: bad.append(f"{near[1]} と近い ΔE {near[0]:.3f}")
+    if k["hover-surface"] and k["selected-surface"]:
+        if abs(k["selected-surface"][1] - k["hover-surface"][1]) < JND:
+            bad.append("hover と選択が近すぎ")
+    return bad
+
+def pair_results(t, acc_name, acc_h):
+    k = tokens(t, acc_name, acc_h)
+    rows = []
+    for a, b, need, note in PAIRS:
+        if k.get(a) is None or k.get(b) is None:
+            rows.append({"a":a,"b":b,"need":need,"note":note,"value":None,"pass":False})
+            continue
+        v = contrast(k[a], k[b])
+        rows.append({"a":a,"b":b,"need":need,"note":note,"value":round(v,2),"pass":v>=need})
+    return rows
+
+def gamut_failures(t, acc_name, acc_h):
+    return [n for n, v in tokens(t, acc_name, acc_h).items() if v and not in_gamut(*v)]
+
+# ============================================================ 解いて JSON に
+def solve():
+    out = {
+        "version": "1.3",
+        "floors": FLOOR, "semOffset": SEM_OFFSET, "activeDL": ACTIVE_DL,
+        "scrimAlpha": SCRIM_ALPHA, "jnd": JND,
+        "ladders": LADDERS, "semHue": SEM_HUE, "semL": SEM_L,
+        "accentHues": {n: h for n, h in ACCENTS},
+        "pairs": [{"a":a,"b":b,"need":n,"note":note} for a,b,n,note in PAIRS],
+        "themes": [], "failures": [],
+    }
+    for t in THEMES:
+        entry = {"name":t["name"], "ladder":t["ladder"], "h":t["h"], "cs":t["cs"],
+                 "ar":t["ar"], "semRatio": round(sem_ratio(t["ar"]),3),
+                 "textMainL": resolve_text_main(t), "accents": {}}
+        for an, ah in ACCENTS:
+            bad = accent_issues(t, an, ah)
+            tk = tokens(t, an, ah)
+            entry["accents"][an] = {
+                "hue": ah, "available": not bad, "issues": bad,
+                "tokens": {n: (None if v is None else
+                              {"L":round(v[0],4),"C":round(v[1],4),"H":v[2],"hex":hexof(*v)})
+                           for n, v in tk.items()},
+                "pairs": pair_results(t, an, ah),
+            }
+            for g in gamut_failures(t, an, ah):
+                out["failures"].append(f"{t['name']}/{an}: {g} が色域外")
+            for r in pair_results(t, an, ah):
+                if not r["pass"] and not bad:   # 使用可能な組み合わせだけ構造的破綻として数える
+                    out["failures"].append(
+                        f"{t['name']}/{an}: {r['a']} on {r['b']} "
+                        f"{r['value']}:1 < {r['need']}")
+        out["themes"].append(entry)
+    # 色相カテゴリのリスク（ΔE では測れないもの）
+    out["hueCategoryRisk"] = [
+        {"accent":an, "semantic":sn, "deg":round(hue_dist(ah, sh))}
+        for an, ah in ACCENTS for sn, sh in SEM_HUE.items() if hue_dist(ah, sh) < 40
+    ]
+    return out
+
+# ============================================================ 生成
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+def write_js(data):
+    p = os.path.join(HERE, "palette.data.js")
+    with open(p, "w", encoding="utf-8") as f:
+        f.write("/* GENERATED by solve.py — 手で編集しない */\n")
+        f.write("const PALETTE = ")
+        json.dump(data, f, ensure_ascii=False, indent=1)
+        f.write(";\n")
+    return p
+
+def write_tables(data):
+    """仕様書に差し込む表。手書きの表を仕様書から消すための生成物。"""
+    L = []
+    L.append("<!-- GENERATED by tools/palette/solve.py — 手で編集しない -->\n")
+    L.append("### L 階段（2系統）\n")
+    keys = ["bg","panel","input","floating","tint","line-weak","line-strong",
+            "text-disabled","accent","text-sub","text-main"]
+    L.append("| | dark | dim |\n|---|---|---|")
+    for k in keys:
+        L.append(f"| {k} | {LADDERS['dark'][k]*100:.0f} | {LADDERS['dim'][k]*100:.0f} |")
+    L.append("")
+    L.append("### テーマ\n")
+    L.append("| テーマ | 階段 | H | 面C | 強さ | 意味色倍率 | text-main | 使えるアクセント |")
+    L.append("|---|---|---|---|---|---|---|---|")
+    for t in data["themes"]:
+        ok = [a for a, v in t["accents"].items() if v["available"]]
+        L.append(f"| `{t['name']}` | {t['ladder']} | {t['h']} | {t['cs']} | ×{t['ar']} | "
+                 f"×{t['semRatio']} | L{t['textMainL']*100:.1f} | **{len(ok)}/{len(ACCENTS)}** |")
+    L.append("")
+    L.append("### アクセント可用性\n")
+    for t in data["themes"]:
+        ok = [a for a, v in t["accents"].items() if v["available"]]
+        ng = [(a, v["issues"][0]) for a, v in t["accents"].items() if not v["available"]]
+        L.append(f"- **{t['name']}** … {', '.join(ok)}")
+        if ng:
+            L.append(f"  - 除外: " + " / ".join(f"{a}（{r}）" for a, r in ng))
+    L.append("")
+    L.append("### コントラスト検証（全テーマ × 使用可能アクセント中の最悪値）\n")
+    worst = {}
+    for t in data["themes"]:
+        for an, av in t["accents"].items():
+            if not av["available"]: continue
+            for r in av["pairs"]:
+                key = (r["a"], r["b"])
+                if r["value"] is None: continue
+                if key not in worst or r["value"] < worst[key][0]:
+                    worst[key] = (r["value"], r["need"], t["name"], an, r["note"])
+    L.append("| ペア | 最悪値 | 必要 | 最悪ケース | 用途 |")
+    L.append("|---|---|---|---|---|")
+    for (a, b), (v, need, tn, an, note) in sorted(worst.items(), key=lambda x: x[1][0]/x[1][1]):
+        mark = "" if v >= need else " ⚠"
+        L.append(f"| `{a}` on `{b}` | {v:.2f}:1{mark} | {need} | {tn}/{an} | {note} |")
+    L.append("")
+    L.append("### 色相カテゴリのリスク（ΔE では測れない）\n")
+    L.append("| アクセント | 意味色 | 色相差 |")
+    L.append("|---|---|---|")
+    for r in sorted(data["hueCategoryRisk"], key=lambda x: x["deg"]):
+        L.append(f"| `{r['accent']}` | `{r['semantic']}` | {r['deg']}度 |")
+    L.append("")
+    L.append("<!-- /GENERATED -->")
+    p = os.path.join(HERE, "spec-tables.md")
+    with open(p, "w", encoding="utf-8") as f:
+        f.write("\n".join(L) + "\n")
+    return p
+
+if __name__ == "__main__":
+    data = solve()
+    check_only = "--check" in sys.argv
+    n_ok = sum(1 for t in data["themes"] for v in t["accents"].values() if v["available"])
+    n_all = len(data["themes"]) * len(ACCENTS)
+    print(f"themes {len(data['themes'])} / accent combos {n_ok}/{n_all} available")
+    if data["failures"]:
+        print(f"*** {len(data['failures'])} structural failures ***")
+        for f_ in data["failures"][:20]: print("  " + f_)
+    else:
+        print("structural failures: 0")
+    for t in data["themes"]:
+        ng = [a for a, v in t["accents"].items() if not v["available"]]
+        print(f"  {t['name']:9s} text-main L{t['textMainL']*100:.1f}  "
+              f"available {len(ACCENTS)-len(ng)}/{len(ACCENTS)}"
+              + (f"  drop: {', '.join(ng)}" if ng else ""))
+    if check_only:
+        sys.exit(1 if data["failures"] else 0)
+    print("wrote:", write_js(data))
+    print("wrote:", write_tables(data))
