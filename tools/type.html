@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>type scale — 比較</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b0e; --panel:#1a1a1d; --input:#28282c; --floating:#37373b;
+  --line-weak:#525256; --line-strong:#838387;
+  --text-disabled:#86868a; --text-sub:#b7b7bb; --text-main:#ebebef;
+  --accent:#f48d3c; --sel:#513625;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+body{margin:0;padding:24px;background:var(--bg);color:var(--text-main);
+  font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN",system-ui,sans-serif;line-height:1.5;}
+h1.pg{font-size:18px;margin:0 0 4px}
+.lead{color:var(--text-sub);font-size:13px;margin:0 0 20px;max-width:78ch}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;align-items:start}
+.card{border:1px solid var(--line-weak);border-radius:12px;padding:16px;background:var(--panel)}
+.tag{font-size:12px;color:var(--accent);letter-spacing:.05em}
+.sizes{font-size:11px;color:var(--text-disabled);font-variant-numeric:tabular-nums;margin:2px 0 12px}
+.sub{font-size:10px;color:var(--text-disabled);letter-spacing:.08em;margin:14px 0 6px;
+  border-top:1px solid var(--line-weak);padding-top:10px}
+.ui{background:var(--floating);border:1px solid var(--line-strong);border-radius:10px;padding:12px}
+.row{padding:3px 8px;border-radius:6px}
+.row.sel{background:var(--sel);border-left:2px solid var(--accent)}
+.btn{border:1px solid var(--accent);color:var(--accent);background:transparent;border-radius:8px;padding:4px 12px;font-family:inherit}
+.doc{background:var(--bg);border:1px solid var(--line-weak);border-radius:10px;padding:14px}
+.doc .hd{margin:10px 0 3px}
+.doc .hd:first-child{margin-top:0}
+.doc p{margin:0 0 8px;color:var(--text-sub)}
+.doc .deep{border-left:2px solid var(--line-weak);padding-left:9px}
+.mark{color:var(--text-disabled);font-size:10px;margin-left:6px;font-weight:400}
+table{border-collapse:collapse;font-size:12px;margin-top:26px;width:100%}
+td,th{padding:4px 10px 4px 0;text-align:left;color:var(--text-sub);font-weight:400}
+th{color:var(--text-disabled);border-bottom:1px solid var(--line-weak);font-size:11px}
+td.v{text-align:right;font-variant-numeric:tabular-nums}
+.note{border:1px solid var(--line-weak);border-radius:10px;padding:12px 14px;margin-top:22px;font-size:12px;color:var(--text-sub);max-width:84ch;line-height:1.8}
+</style>
+</head>
+<body>
+<h1 class="pg">タイポスケール比較 — 1.125 / 1.15 / 1.175 / 1.2</h1>
+<p class="lead">スケールは1つ。<b>UI はアンカー 14px、長文はその1段上</b>から取り出します（＝分けていない）。<br>
+h4 は本文と同じサイズ、h5/h6 は本文以下にして、太さと左罫線で階層を作ります（HTML デフォルトと同じ構造）。<br>
+行間は UI 1.5 / 長文 1.75。色は grey + orange、書体は Zen Maru Gothic。</p>
+<div class="cols" id="app"></div>
+<div id="tables"></div>
+
+<script>
+const BASE=14;
+const RATIOS=[
+  {r:1.125,name:'1.125',note:'長2度 9:8'},
+  {r:1.15, name:'1.15', note:'—'},
+  {r:1.175,name:'1.175',note:'—'},
+  {r:1.2,  name:'1.2',  note:'短3度 6:5'},
+];
+const steps=r=>[-1,0,1,2,3,4,5].map(i=>Math.round(BASE*Math.pow(r,i)));
+// index: 0=-1段 1=14 2 3 4 5 6
+
+let out='';
+for(const s of RATIOS){
+  const px=steps(s.r);
+  const UI={small:px[0], body:px[1], h3:px[1], h2:px[2], h1:px[3]};
+  const DOC={small:px[1], h6:px[1], body:px[2], h5:px[2], h4:px[2], h3:px[3], h2:px[4], h1:px[5]};
+  out+=`<div class="card">
+    <div class="tag">${s.name}　<span style="color:var(--text-disabled)">${s.note}</span></div>
+    <div class="sizes">${px.join(' / ')} px</div>
+
+    <div class="sub">UI（アンカー ${UI.body}px・行間 1.5）</div>
+    <div class="ui" style="line-height:1.5">
+      <div style="font-size:${UI.h1}px;font-weight:700;margin-bottom:3px">デッキを作成<span class="mark">h1 ${UI.h1}/700</span></div>
+      <div style="font-size:${UI.body}px;color:var(--text-sub);margin-bottom:9px">ルリグとメインを組み立てます<span class="mark">p ${UI.body}/400</span></div>
+      <div style="font-size:${UI.h2}px;font-weight:600;margin-bottom:3px">メインデッキ<span class="mark">h2 ${UI.h2}/600</span></div>
+      <div style="font-size:${UI.h3}px;font-weight:600;margin-bottom:2px">スペル<span class="mark">h3 ${UI.h3}/600</span></div>
+      <div class="row" style="font-size:${UI.body}px;color:var(--text-sub)">羅原姫 アステカ</div>
+      <div class="row sel" style="font-size:${UI.body}px">コードアート ＷＲ</div>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:9px">
+        <button class="btn" style="font-size:${UI.body}px">追加</button>
+        <span style="font-size:${UI.small}px;color:var(--text-disabled)">40 / 40 枚<span class="mark">small ${UI.small}</span></span>
+      </div>
+    </div>
+
+    <div class="sub">長文（アンカー ${DOC.body}px・行間 1.75）</div>
+    <div class="doc" style="line-height:1.75">
+      <div class="hd" style="font-size:${DOC.h1}px;font-weight:700">特定商取引法に基づく表記<span class="mark">h1 ${DOC.h1}/700</span></div>
+      <p style="font-size:${DOC.body}px">本ページは法令に基づく表示です。</p>
+      <div class="hd" style="font-size:${DOC.h2}px;font-weight:700">販売条件<span class="mark">h2 ${DOC.h2}/700</span></div>
+      <p style="font-size:${DOC.body}px">商品の引渡し時期および支払方法について定めます。</p>
+      <div class="hd" style="font-size:${DOC.h3}px;font-weight:600">支払方法<span class="mark">h3 ${DOC.h3}/600</span></div>
+      <p style="font-size:${DOC.body}px">クレジットカード、銀行振込に対応します。</p>
+      <div class="hd" style="font-size:${DOC.h4}px;font-weight:600">クレジットカード<span class="mark">h4 ${DOC.h4}/600 ＝本文と同サイズ</span></div>
+      <p style="font-size:${DOC.body}px">主要ブランドが利用できます。</p>
+      <div class="deep">
+        <div class="hd" style="font-size:${DOC.h5}px;font-weight:500">分割払いについて<span class="mark">h5 ${DOC.h5}/500 ＋罫線</span></div>
+        <p style="font-size:${DOC.body}px">手数料は各社の規定によります。</p>
+        <div class="deep">
+          <div class="hd" style="font-size:${DOC.h6}px;font-weight:600">注意事項<span class="mark">h6 ${DOC.h6}/600 ＋罫線</span></div>
+          <p style="font-size:${DOC.small}px">詳細は各カード会社にご確認ください。</p>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+document.getElementById('app').innerHTML=out;
+
+let t=`<table><tr><th>比率</th><th>スケール（px）</th><th>UI 本文</th><th>UI h1</th><th>長文 本文</th><th>長文 h1</th><th>丸め誤差</th></tr>`;
+for(const s of RATIOS){
+  const raw=[-1,0,1,2,3,4,5].map(i=>BASE*Math.pow(s.r,i));
+  const px=raw.map(v=>Math.round(v));
+  const err=Math.max(...raw.map((v,i)=>Math.abs(px[i]-v)));
+  t+=`<tr><td>${s.name}</td><td>${px.join(' / ')}</td><td class="v">${px[1]}</td><td class="v">${px[3]}</td>
+      <td class="v">${px[2]}</td><td class="v">${px[5]}</td><td class="v">±${err.toFixed(2)}</td></tr>`;
+}
+t+=`</table>`;
+t+=`<div class="note"><b>見るときの勘所</b><br>
+・<b>UI 側はどれもほぼ同じに見えるはず</b>。14 と 12 が主役で、差が出るのは h1（${RATIOS.map(s=>steps(s.r)[3]).join(' / ')}px）だけ。<br>
+・<b>差が出るのは長文側</b>。h1 が ${RATIOS.map(s=>steps(s.r)[5]).join(' / ')}px と開きます。1.125 は見出しが本文に埋もれ、1.2 は記事らしくなる。<br>
+・<b>h4〜h6 はサイズを増やさずに済んでいます</b>。h4＝本文と同サイズ＋太さ、h5/h6＝太さ＋左罫線。HTML のデフォルト（h4 が本文と同じ、h5/h6 が本文以下）と同じ構造。<br>
+・wixdex の実測は 14px 87回 / 12px 35回 / 18px 12回 / 30px 5回 / 24px 4回 / 20px 4回。<b>UI 側の実測は 14・12 に集中</b>していて、比率の選択はほぼ効きません。<br><br>
+<b>つまりこの選択は「長文の見出しをどれくらい大きくするか」だけの判断</b>です。</div>`;
+document.getElementById('tables').innerHTML=t;
+</script>
+</body>
+</html>
