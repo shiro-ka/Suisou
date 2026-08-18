@@ -6,7 +6,7 @@
 |---|---|---|
 | bg | 15 | 26 |
 | panel | 22 | 33 |
-| input | 28 | 39 |
+| item | 28 | 39 |
 | floating | 34 | 45 |
 | tint | 36 | 47 |
 | line-weak | 44 | 55 |
@@ -45,7 +45,7 @@
 | `accent-active` on `floating` | 3.40:1 | 3.0 | shoal/magenta | UI 部品(押下) |
 | `text-sub` on `floating` | 5.52:1 | 4.5 | shoal/orange | 本文 |
 | `accent` on `floating` | 3.81:1 | 3.0 | shoal/magenta | UI 部品 |
-| `line-strong` on `input` | 3.85:1 | 3.0 | hadal/orange | 入力枠 1.4.11 |
+| `line-strong` on `item` | 3.85:1 | 3.0 | hadal/orange | 入力枠 1.4.11 |
 | `text-main` on `selected-surface` | 5.82:1 | 4.5 | shoal/teal | 選択行の文字 |
 | `text-main` on `error-surface` | 6.10:1 | 4.5 | shoal/orange | バナーの文字 |
 | `error` on `error-surface` | 4.30:1 | 3.0 | shoal/orange | バナーの枠 |
