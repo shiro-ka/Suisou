@@ -123,6 +123,26 @@ akuarium-ui/      layout（header/main/footer/container/box/items/wrapper）
 
 ---
 
+## 作例から出た「足りない部品」
+
+作例は解説を置かず「そのもの」を見せる場所にした。組めなかった部分は
+`pages/styles.css` の「作例」節に `.demo-*` として隔離してあり、
+**そこに溜まったものがそのまま不足の一覧になる**。推測で部品を作らずに済む。
+
+チャット（2026-08-18）で出たもの:
+
+| 仮に書いたもの | 本来あるべき部品 |
+|---|---|
+| `.demo-avatar` | **Avatar** … 円形・寸法・頭文字の代替表示 |
+| `.demo-msg` | **Row** … hover する行。★保留中の selected の判断材料はここ |
+| `.demo-input` | **Field** … 入力欄。`item` の面に載る |
+| `.demo-code` | 行内コード。`prose` に含まれそう |
+| チャンネル一覧のボタン | `data-suisou-btn="block"` が中央寄せのままなので、左寄せに `style` の直書きが要った。`block` の既定を左寄せにするか、寄せ方の値を足すか |
+
+外枠（`.demo-app` / `.demo-rail` など）は作例そのものの都合なので部品にしない。
+
+---
+
 ## 次の工事
 
 1. **`solve.py --check` を CI に入れる**（GitHub Actions）。破綻が混入した瞬間に落ちる。既存の workflow が2本あるので、そこに足す形
