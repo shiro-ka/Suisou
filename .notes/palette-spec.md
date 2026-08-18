@@ -272,7 +272,7 @@ disabled : --color-text-disabled。本文には使わない
 「L 階段は1回決めたら動かさない」は v1.1 で撤回済み。
 
 1. あたしが `tools/palette/solve.py` の定義を直す
-2. `python3 solve.py` を走らせる（`palette.data.js` と `spec-tables.md` が再生成される）
+2. `python3 solve.py` を走らせる（`pages/palette.css` / `pages/suisou.data.js` / `spec-tables.md` が再生成される）
 3. しろさまが提出書（`index.html`）を開いて実物を見る
 4. 「紫もうちょい明るく」のような指示 → あたしが数値に翻訳して 1 に戻る
 
@@ -324,12 +324,18 @@ disabled : --color-text-disabled。本文には使わない
 ## §15 生成の仕組み（真実の源泉は1つ）
 
 ```
-tools/palette/
-  solve.py         ← ★正準実装。色を決めるのはここだけ
-  palette.data.js  ← 生成物。提出書が読む確定値（全テーマ × 全アクセント）
-  spec-tables.md   ← 生成物。本仕様書の数値表はすべてここにある
-  index.html       ← 提出書。palette.data.js を読んで表示するだけで、計算しない
+tools/
+  solve.py             ← ★正準実装。色を決めるのはここだけ
+  spec-tables.md       ← 生成物。本仕様書の数値表と検証結果はすべてここにある
+  lint_css.py          ← 手書き側に色が混入していないか検査する
+pages/
+  palette.css          ← 生成物。CSS 変数（色 + 色コードの文字列）
+  suisou.data.js       ← 生成物。テーマ/アクセント/可用性の構造。色は持たない
+  index.html / suisou.css / app.js  ← 手書き。var(--suisou-*) しか参照しない
 ```
+
+★**2026-08-18、提出書（`palette.data.js` + `index.html`）は撤去した。** 表示はプレビューサイトが
+担い、検証結果は `spec-tables.md` が持つため、役割が重複していた。
 
 - **`solve.py` を直して `python3 solve.py` を走らせる**。それ以外の場所で色を定義しない
 - `python3 solve.py --check` は生成せず検証だけ行い、破綻があれば exit 1（CI に入れられる）

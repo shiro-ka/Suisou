@@ -22,7 +22,7 @@
 色の値をどこにも手で書かない。CSS にも仕様書にも書かない。
 
 ```
-python3 tools/solve.py          # 生成（palette.data.js と spec-tables.md）
+python3 tools/solve.py          # 生成（palette.css / suisou.data.js / spec-tables.md）
 python3 tools/solve.py --check  # 検証のみ。破綻があれば exit 1
 ```
 

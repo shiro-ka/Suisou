@@ -14,7 +14,7 @@ UI だけでなく、ブログや規約のような長文コンテンツも適�
 **色を決めるのは `tools/solve.py` だけ。** CSS にも仕様書にも色の値を手で書きません。
 
 ```sh
-python3 tools/solve.py          # 生成（palette.data.js と spec-tables.md）
+python3 tools/solve.py          # 生成（palette.css / suisou.data.js / spec-tables.md）
 python3 tools/solve.py --check  # 検証のみ。破綻があれば exit 1
 ```
 
@@ -30,8 +30,7 @@ pages/  index.html / suisou.css / app.js … プレビューサイト（手書�
         palette.css / suisou.data.js … 生成物（手で編集しない）
 tools/  solve.py … 色の唯一の決定者
         lint_css.py … 手書き側に色が混入していないか検査する
-        palette.data.js / spec-tables.md … 生成物
-        index.html … 旧パレットビューア（Contrast ページへ移行中）
+        spec-tables.md … 生成物。数値の表と検証結果はここにある
 ```
 
 ## 方針
