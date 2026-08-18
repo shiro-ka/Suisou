@@ -1,0 +1,41 @@
+/* Suisou — レイアウト。ここだけ class を使う。
+
+     data-suisou-*   部品 ＝ ブランド。見た目の決定
+     class           ユーティリティ ＝ 置き方
+
+   Tailwind と同名にならないよう suisou- を付ける。
+   .flex や .gap-2 のような一般名は squat しない。
+
+   ★アトミックには作らない。実測で繰り返されていたのは flex 単体ではなく
+   「横並び・中央揃え・すきま」という塊だった（Mado で 10回, wixdex の flex 110回）。
+   塊のまま名前を付ける。Tailwind の再実装は追いかけない。
+
+   ★増やす基準: 3回書いたら足す。先回りしない。
+   Akuarium が container-70/75/80/85/90/95 を用意して大半が使われなかった轍を踏まない。 */
+
+.suisou-stack,
+.suisou-row {
+  display: flex;
+  gap: var(--gap, var(--suisou-space-2));
+}
+.suisou-stack { flex-direction: column; }
+.suisou-row   { align-items: center; }
+
+.suisou-wrap { flex-wrap: wrap; }
+
+/* 余った幅を取る。min-width: 0 が無いと中身がはみ出して親ごと伸びる */
+.suisou-fill { flex: 1 1 auto; min-width: 0; }
+
+.suisou-center { display: grid; place-items: center; }
+
+.suisou-container {
+  width: 100%;
+  max-width: var(--w, 1024px);
+  margin-inline: auto;
+}
+
+/* すきま。stack / row に重ねて使う */
+.suisou-gap-1 { --gap: var(--suisou-space-1); }
+.suisou-gap-2 { --gap: var(--suisou-space-2); }
+.suisou-gap-3 { --gap: var(--suisou-space-3); }
+.suisou-gap-4 { --gap: var(--suisou-space-4); }
