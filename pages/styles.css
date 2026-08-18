@@ -92,6 +92,14 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   color: var(--suisou-text-sub);
 }
 
+.nav-group {
+  font-size: var(--suisou-size-12);
+  line-height: var(--suisou-lh-12);
+  color: var(--suisou-text-disabled);
+  padding: var(--suisou-space-2) var(--suisou-space-2) var(--suisou-space-1);
+}
+.nav-group:not(:first-child) { margin-top: var(--suisou-space-2); }
+
 .nav-item {
   font: inherit;
   text-align: left;
@@ -212,4 +220,67 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   :root { --sidebar-w: 240px; }
   .t-row { grid-template-columns: 64px 1fr; }
   .t-meta { grid-column: 2; }
+}
+
+
+/* ══ 作例 ══════════════════════════════════════════
+   Suisou の部品だけで組めなかった部分をここに置く。
+   溜まったものがそのまま「まだ無い部品」の一覧になる。 */
+
+.demo-app {            /* 作例の外枠。実アプリの画面に見立てる */
+  display: flex;
+  height: 520px;
+  border: 1px solid var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+  overflow: hidden;
+  background: var(--suisou-bg);
+}
+.demo-rail {           /* チャンネル一覧 */
+  flex: none; width: 200px;
+  border-right: 1px solid var(--suisou-line-weak);
+  overflow-y: auto;
+  padding: var(--suisou-space-2);
+}
+.demo-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+.demo-log  { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: var(--suisou-space-3); }
+.demo-head, .demo-composer {
+  flex: none; padding: var(--suisou-space-2) var(--suisou-space-3);
+}
+.demo-head { border-bottom: 1px solid var(--suisou-line-weak); }
+.demo-composer { border-top: 1px solid var(--suisou-line-weak); }
+
+/* ★まだ部品が無いもの */
+.muted { color: var(--suisou-text-sub); }
+
+.demo-avatar {         /* → Avatar 部品が要る */
+  flex: none; width: 36px; height: 36px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-item);
+  border: 1px solid var(--suisou-line-weak);
+  display: grid; place-items: center;
+  font-size: var(--suisou-size-12);
+  color: var(--suisou-text-sub);
+}
+.demo-msg {            /* → Row 部品が要る（hover する行） */
+  display: flex; gap: var(--suisou-space-2);
+  padding: var(--suisou-space-1) var(--suisou-space-2);
+  border-radius: var(--suisou-radius);
+}
+.demo-msg:hover { background: var(--suisou-hover-surface); }
+.demo-input {          /* → Field 部品が要る */
+  width: 100%; font: inherit;
+  font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14);
+  padding: var(--suisou-space-1) var(--suisou-space-2);
+  border-radius: var(--suisou-radius);
+  background: var(--suisou-item);
+  color: var(--suisou-text-main);
+  border: 1px solid var(--suisou-line-strong);
+}
+.demo-input::placeholder { color: var(--suisou-text-disabled); }
+.demo-input:focus-visible { outline: var(--suisou-focus); outline-offset: 1px; }
+.demo-code {           /* → 行内コードの扱いが未定 */
+  font-family: var(--suisou-mono); font-size: var(--suisou-size-12);
+  background: var(--suisou-item);
+  border: 1px solid var(--suisou-line-weak);
+  border-radius: 4px; padding: 0 4px;
 }
