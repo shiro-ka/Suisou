@@ -1,9 +1,0 @@
-/* .+:* ε>{ c')
-    メイン
-ε>{ c') .+:* */
-
-main, .main {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-}
