@@ -1,0 +1,35 @@
+/* Suisou — Panel
+
+     <div data-suisou-panel>面 + 罫（既定）</div>
+     <div data-suisou-panel="bare">罫なし</div>
+     <div data-suisou-panel="outline">面なし。罫だけ</div>
+
+   平らな容れ物だけを引き受ける。影は持たない。
+   浮くもの（モーダル・ポップアップ）は別部品にする ―― そうしないと
+   面の階段の panel(L22) と部品名 panel が指すものがずれる。
+
+   既定を「面 + 罫」にしたのは仕様から。「影は実際に浮くものだけ。面の分離は
+   border が担保する」。実測でも Mado が 46箇所でこの形だった。
+
+   中身の並べ方は持たない。置き方は class（ui/layout.css）の担当。
+     <div data-suisou-panel class="suisou-stack suisou-gap-3"> */
+
+[data-suisou-panel] {
+  box-sizing: border-box;
+  background: var(--suisou-panel);
+  border: 1px solid var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+  padding: var(--suisou-space-3);
+}
+
+/* 罫なし。面だけで区切る。wixdex が 37箇所で使っていた形 */
+[data-suisou-panel~="bare"] { border-color: transparent; }
+
+/* 面なし。囲うだけで階層を1段も増やさない */
+[data-suisou-panel~="outline"] { background: transparent; }
+
+/* 中に入れ子にするとき、内側は1段上の面に載せる。
+   仕様の「モーダル内の入力欄がモーダルより明るくなる」順序を守るため */
+[data-suisou-panel] > [data-suisou-panel] { background: var(--suisou-input); }
+[data-suisou-panel] > [data-suisou-panel~="bare"],
+[data-suisou-panel] > [data-suisou-panel~="outline"] { background: transparent; }

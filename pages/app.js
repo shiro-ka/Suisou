@@ -18,6 +18,7 @@ const PAGES = {
   palette:    { label: 'Palette',    enhance: enhancePalette },
   typography: { label: 'Typography', enhance: enhanceTypography },
   button:     { label: 'Button' },
+  panel:      { label: 'Panel' },
 };
 
 /* ── Palette の並び。トークンの意味づけであって、値は持たない ── */
