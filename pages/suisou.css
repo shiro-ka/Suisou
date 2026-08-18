@@ -148,9 +148,10 @@ body {
   color: var(--suisou-text-main);
 }
 
-/* ══ Palette ページ ════════════════════════════════ */
+/* ══ ページ共通 ════════════════════════════════════ */
 
-.page { display: grid; gap: var(--gap-lg); align-content: start; }
+.page { display: none; gap: var(--gap-lg); align-content: start; }
+.page.is-current { display: grid; }
 .page h1 { margin: 0; font-size: var(--size-h1); line-height: var(--lh-h1); font-weight: 700; }
 .page h2 { margin: 0; font-size: var(--size-h2); line-height: var(--lh-h2); font-weight: 600; }
 .note { margin: 0; font-size: var(--size-small); line-height: var(--lh-small); color: var(--suisou-text-sub); }
@@ -199,6 +200,47 @@ body {
 .token-hex  { font-family: var(--mono); font-size: var(--size-small); color: var(--suisou-text-sub); }
 .token.is-missing .token-name { color: var(--suisou-text-disabled); }
 
+/* ══ Typography ページ ═════════════════════════════
+   px の値を持つのはここだけ。docs/type-spec.md が根拠で、
+   画面に出す数値は JS が computed 値を読んで表示する。
+   「表に書いた値」ではなく「実際に効いている値」が出る。 */
+
+/* サイズスケール … §3。14 以外はすべて4の倍数 */
+.t-s12 { --fs: 12px; --lh: 16px; }
+.t-s14 { --fs: 14px; --lh: 20px; }
+.t-s16 { --fs: 16px; --lh: 24px; }
+.t-s20 { --fs: 20px; --lh: 28px; }
+.t-s24 { --fs: 24px; --lh: 32px; }
+.t-s28 { --fs: 28px; --lh: 32px; }
+.t-s32 { --fs: 32px; --lh: 36px; }
+
+.t-sample { font-size: var(--fs); line-height: var(--lh); }
+/* §6「長文は UI に +4px するだけ」。表ではなく規則として持つ */
+.t-sample.is-doc { line-height: calc(var(--lh) + 4px); }
+
+.t-w400 { font-weight: 400; }
+.t-w500 { font-weight: 500; }
+.t-w600 { font-weight: 600; }
+.t-w700 { font-weight: 700; }
+
+/* §5。h5/h6 はサイズを増やさず、ウェイトと左罫線で階層を作る */
+.t-rule  { border-left: 3px solid var(--suisou-line-strong); padding-left: var(--gap); }
+.t-rule2 { border-left: 3px solid var(--suisou-line-weak);   padding-left: var(--gap); }
+
+.t-row {
+  display: grid;
+  grid-template-columns: 88px 1fr auto;
+  align-items: baseline;
+  gap: var(--gap);
+  padding: 4px var(--gap);
+  border-radius: var(--radius);
+}
+.t-row:hover { background: var(--suisou-hover-surface); }
+.t-key  { font-family: var(--mono); font-size: var(--size-small); color: var(--suisou-text-sub); }
+.t-meta { font-family: var(--mono); font-size: var(--size-small); color: var(--suisou-text-sub); white-space: nowrap; }
+
 @media (width <= 720px) {
   :root { --sidebar-w: 240px; }
+  .t-row { grid-template-columns: 64px 1fr; }
+  .t-meta { grid-column: 2; }
 }

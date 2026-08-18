@@ -27,10 +27,13 @@ CI（`.github/workflows/check_palette.yml`）が、構造的破綻と、生成�
 
 ```
 docs/   handoff.md … 引き継ぎ
-        palette-spec.md / type-spec.md … 設計の散文
+        palette-spec.md / type-spec.md … 設計の散文と判断の理由
+pages/  index.html / suisou.css / app.js … プレビューサイト（手書き）
+        palette.css / suisou.data.js … 生成物（手で編集しない）
 tools/  solve.py … 色の唯一の決定者
-        palette.data.js / spec-tables.md … 生成物（手で編集しない）
-        index.html / type.html … 素の HTML で書いた確認用ビューア
+        lint_css.py … 手書き側に色が混入していないか検査する
+        palette.data.js / spec-tables.md … 生成物
+        index.html / type.html … 旧ビューア（プレビューへの移行中）
 ```
 
 ## 方針
