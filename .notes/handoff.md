@@ -1,7 +1,7 @@
 # Suisou 引き継ぎ資料
 
 > 2026-08-17 に設計を固め、2026-08-18 に `~/dev/Suisou` へ移した。
-> **このファイルはそのまま `~/dev/Suisou/docs/handoff.md` にコピーして使う。**
+> **このファイルはそのまま `~/dev/Suisou/.notes/handoff.md` にコピーして使う。**
 > 判断の経緯は ccmemory 側（`log/2026-08-17.md` / `lore/suisou-design-system.md`）に残してある。
 
 ---
@@ -26,7 +26,7 @@ python3 tools/solve.py          # 生成（palette.data.js と spec-tables.md）
 python3 tools/solve.py --check  # 検証のみ。破綻があれば exit 1
 ```
 
-数値の表は `tools/spec-tables.md`（生成物）にある。**`docs/palette-spec.md` は散文と判断の理由だけを持ち、表を持たない。**
+数値の表は `tools/spec-tables.md`（生成物）にある。**`.notes/palette-spec.md` は散文と判断の理由だけを持ち、表を持たない。**
 
 理由: 設計中、「ツール(JS) / Python / 仕様書の表」の3つが同じ数値を主張して同期が手作業だった結果、**色域チェック漏れ・トークン数の誤記・検証ペアの欠落**という3つのバグを出した。真実の源泉は1つにする。
 
@@ -61,8 +61,8 @@ python3 tools/solve.py --check  # 検証のみ。破綻があれば exit 1
 
 ## 決まっていること
 
-- **色** … 4テーマ × 9アクセント。36通り中33が使用可、構造的破綻0件。詳細は `docs/palette-spec.md`
-- **タイポ** … サイズ `12/14/16/20/24/28/32`、行間は4の倍数の2系統、ウェイト4段。詳細は `docs/type-spec.md`
+- **色** … 4テーマ × 9アクセント。36通り中33が使用可、構造的破綻0件。詳細は `.notes/palette-spec.md`
+- **タイポ** … サイズ `12/14/16/20/24/28/32`、行間は4の倍数の2系統、ウェイト4段。詳細は `.notes/type-spec.md`
 - **線形デザイン** … 塗らない（CTA すらアウトライン）。美学であると同時に、テーマ切替を技術的に成立させている柱
 - **影は「実際に浮くもの」だけ**（モーダル・ポップアップ）。面の分離は border が担保する
 - **ダーク専用**。純粋なライトテーマは作らない。ライト志向のユーザーには `dim` 系統（明るめの階段）を投げる
@@ -134,7 +134,7 @@ akuarium-ui/      layout（header/main/footer/container/box/items/wrapper）
 
 ## 参照先の注意
 
-`docs/palette-spec.md` の冒頭が、まだ ccmemory 側のパスを参照している。以下は **Suisou には無い**。
+`.notes/palette-spec.md` の冒頭が、まだ ccmemory 側のパスを参照している。以下は **Suisou には無い**。
 
 ```
 reference/color-system-oklch.md   … OKLCH 調査の一次記録
