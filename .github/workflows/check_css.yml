@@ -1,0 +1,28 @@
+name: 手書きCSSを検査
+
+# 掟1 の残る穴を塞ぐ。solve.py 側は check_palette.yml が見ているが、
+# 手で書く site/*.css と site/*.html には色を書けてしまう。
+# 生成物（site/palette.css）だけが色を持ってよい。
+
+on:
+  push:
+    paths:
+      - 'site/**'
+      - 'tools/lint_css.py'
+      - '.github/workflows/check_css.yml'
+  pull_request:
+    paths:
+      - 'site/**'
+      - 'tools/lint_css.py'
+      - '.github/workflows/check_css.yml'
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 tools/lint_css.py
