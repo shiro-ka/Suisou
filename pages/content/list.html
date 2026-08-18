@@ -1,0 +1,117 @@
+<!-- 作例: 一覧と詳細（master-detail）。解説は置かない ―― 「そのもの」を見せる場所。
+
+     構成は Suisou の思想に従う:
+       地べた（bg）に直接置くのはヘッダだけ。そのヘッダは Suisou 側の
+       トップバーが担うので、作例は panel を並べるところから始まる。
+       モノは panel に入れる。1枚にまとめず、領域ごとに1枚ずつ。 -->
+<div class="demo-app">
+  <div class="suisou-row suisou-gap-2 suisou-fill" style="align-items: stretch">
+
+    <div class="suisou-stack suisou-gap-2" style="width: 340px; flex: none">
+
+      <!-- 絞り込み。1枚の panel -->
+      <div data-suisou-panel class="suisou-stack suisou-gap-2" style="padding: var(--suisou-space-2)">
+        <div class="suisou-row suisou-gap-2">
+          <input class="demo-input suisou-fill" placeholder="カード名で検索">
+          <button data-suisou-btn="icon" type="button" aria-label="検索"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg></button>
+        </div>
+        <div class="suisou-row suisou-gap-2">
+          <div data-suisou-btn-group>
+            <button data-suisou-btn="on" type="button">すべて</button>
+            <button data-suisou-btn type="button">シグニ</button>
+            <button data-suisou-btn type="button">スペル</button>
+            <button data-suisou-btn type="button">ルリグ</button>
+          </div>
+          <button data-suisou-btn="icon" type="button" aria-label="並び替え"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l4 -4l4 4m-4 -4v14" /><path d="M21 15l-4 4l-4 -4m4 4v-14" /></svg></button>
+        </div>
+      </div>
+
+      <!-- 一覧。1枚の panel -->
+      <div data-suisou-panel class="suisou-stack suisou-gap-1 suisou-fill suisou-scroll"
+           role="listbox" aria-label="カード一覧" style="padding: var(--suisou-space-2)">
+        <div class="demo-row" role="option" aria-selected="true">
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <span data-suisou-text="s14 w600">深海の使者</span>
+            <span data-suisou-text="s12 w400" class="muted">レベル 3</span>
+          </div>
+          <span class="demo-tag">シグニ</span>
+        </div>
+        <div class="demo-row" role="option" aria-selected="false">
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <span data-suisou-text="s14 w600">珊瑚の守り手</span>
+            <span data-suisou-text="s12 w400" class="muted">レベル 2</span>
+          </div>
+          <span class="demo-tag">シグニ</span>
+        </div>
+        <div class="demo-row" role="option" aria-selected="false">
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <span data-suisou-text="s14 w600">潮流の呼び声</span>
+            <span data-suisou-text="s12 w400" class="muted">コスト 1</span>
+          </div>
+          <span class="demo-tag">スペル</span>
+        </div>
+        <div class="demo-row" role="option" aria-selected="false">
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <span data-suisou-text="s14 w600">海淵より来たるもの</span>
+            <span data-suisou-text="s12 w400" class="muted">レベル 4</span>
+          </div>
+          <span class="demo-tag">ルリグ</span>
+        </div>
+        <div class="demo-row" role="option" aria-selected="false">
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <span data-suisou-text="s14 w600">巡礼のクラゲ</span>
+            <span data-suisou-text="s12 w400" class="muted">レベル 1</span>
+          </div>
+          <span class="demo-tag">シグニ</span>
+        </div>
+        <div class="demo-row" role="option" aria-selected="false">
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <span data-suisou-text="s14 w600">凪の刻</span>
+            <span data-suisou-text="s12 w400" class="muted">コスト 2</span>
+          </div>
+          <span class="demo-tag">スペル</span>
+        </div>
+        <div class="demo-row" role="option" aria-selected="false">
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <span data-suisou-text="s14 w600">峡湾の番人</span>
+            <span data-suisou-text="s12 w400" class="muted">レベル 4</span>
+          </div>
+          <span class="demo-tag">シグニ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 詳細。1枚の panel -->
+    <div data-suisou-panel class="suisou-stack suisou-gap-3 suisou-fill suisou-scroll">
+      <div class="suisou-row suisou-gap-2">
+        <div class="suisou-stack suisou-gap-1 suisou-fill">
+          <span data-suisou-text="s20 w700">深海の使者</span>
+          <span data-suisou-text="s12 w400" class="muted">SUI-001 / 水獣</span>
+        </div>
+        <button data-suisou-btn="icon" type="button" aria-label="お気に入り"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg></button>
+        <button data-suisou-btn="icon" type="button" aria-label="共有"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M18 6m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M18 18m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M8.7 10.7l6.6 -3.4" /><path d="M8.7 13.3l6.6 3.4" /></svg></button>
+      </div>
+
+      <dl class="demo-defs">
+        <dt>種類</dt><dd>シグニ</dd>
+        <dt>レベル</dt><dd>3</dd>
+        <dt>パワー</dt><dd>10000</dd>
+        <dt>限定</dt><dd>なし</dd>
+      </dl>
+
+      <div data-suisou-panel class="suisou-stack suisou-gap-2">
+        <span data-suisou-text="s14 w600">テキスト</span>
+        <span data-suisou-text="s14 w400 doc">
+          【出】このシグニがバトルエリアに出たとき、あなたのデッキの上から3枚を見る。
+          その中から〈水獣〉のシグニ1枚を手札に加え、残りをデッキの下に置く。
+        </span>
+      </div>
+
+      <div class="suisou-row suisou-gap-2">
+        <button data-suisou-btn="outline" type="button">デッキに追加</button>
+        <button data-suisou-btn type="button">収録を見る</button>
+      </div>
+    </div>
+
+  </div>
+</div>
