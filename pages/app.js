@@ -214,9 +214,17 @@ function render() {
   load(current ?? location.hash.slice(1) ?? 'palette');
 }
 
-document.querySelector('.theme-switch').addEventListener('click', cycleTheme);
-document.querySelector('.menu-close').addEventListener('click', () => app.classList.add('is-menu-closed'));
-document.querySelector('.menu-open').addEventListener('click', () => app.classList.remove('is-menu-closed'));
+/* 要素が無くても落ちないようにする。ここで例外を投げると以降の描画が
+   全部止まって画面が空になる（実際にクラス名の取りこぼしで起きた）。 */
+function on(selector, event, handler) {
+  const node = document.querySelector(selector);
+  if (!node) { console.warn(`${selector} が見つからない`); return; }
+  node.addEventListener(event, handler);
+}
+
+on('.theme-switch', 'click', cycleTheme);
+on('.menu-close', 'click', () => app.classList.add('is-menu-closed'));
+on('.menu-open', 'click', () => app.classList.remove('is-menu-closed'));
 addEventListener('hashchange', () => load(location.hash.slice(1)));
 
 renderNav();
