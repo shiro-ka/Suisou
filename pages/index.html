@@ -24,8 +24,9 @@
     </header>
 
     <div class="preview-body">
-      <!-- ページごとの中身。いまは Palette だけ。中身は app.js が組み立てる -->
+      <!-- ページごとの中身。app.js が組み立てて、現在のものだけ表示する -->
       <section class="page page-palette"></section>
+      <section class="page page-typography"></section>
     </div>
   </main>
 
@@ -37,7 +38,8 @@
     </div>
 
     <nav class="sidebar-nav">
-      <button class="nav-item is-current" type="button" data-page="palette">Palette</button>
+      <button class="nav-item" type="button" data-page="palette">Palette</button>
+      <button class="nav-item" type="button" data-page="typography">Typography</button>
     </nav>
   </aside>
 

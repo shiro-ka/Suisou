@@ -15,7 +15,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, os.pardir))
 
 GENERATED = {"palette.css", "suisou.data.js"}    # 生成物。検査しない
-TARGET_DIRS = ["site"]
+TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
 COLOR = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:oklch|oklab|lab|lch|rgba?|hsla?|color)\s*\(", re.I)
@@ -41,7 +41,7 @@ def strip_comments(text, path):
 
 
 def main():
-    palette = os.path.join(ROOT, "site", "palette.css")
+    palette = os.path.join(ROOT, "pages", "palette.css")
     if not os.path.exists(palette):
         print("palette.css が無い。先に python3 tools/solve.py を実行すること。")
         return 1
