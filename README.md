@@ -18,7 +18,7 @@ python3 tools/solve.py          # 生成（palette.data.js と spec-tables.md）
 python3 tools/solve.py --check  # 検証のみ。破綻があれば exit 1
 ```
 
-数値の表は生成物である `tools/spec-tables.md` が持ちます。`docs/palette-spec.md` は散文と判断の理由だけを持ち、表を持ちません。
+数値の表は生成物である `tools/spec-tables.md` が持ちます。`.notes/palette-spec.md` は散文と判断の理由だけを持ち、表を持ちません。
 真実の源泉を1つにしないと、ツール・仕様書・実装が同じ数値を主張して同期が手作業になります。
 
 CI（`.github/workflows/check_palette.yml`）が、構造的破綻と、生成物が `solve.py` の出力と一致することを検証します。
@@ -26,8 +26,6 @@ CI（`.github/workflows/check_palette.yml`）が、構造的破綻と、生成�
 ## 構成
 
 ```
-docs/   handoff.md … 引き継ぎ
-        palette-spec.md / type-spec.md … 設計の散文と判断の理由
 pages/  index.html / suisou.css / app.js … プレビューサイト（手書き）
         palette.css / suisou.data.js … 生成物（手で編集しない）
 tools/  solve.py … 色の唯一の決定者

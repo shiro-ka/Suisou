@@ -18,7 +18,7 @@ const GROUPS = [
 ];
 
 /* ── Typography の構造。どの役割がどの段か、であって px ではない ──
-   px は suisou.css の .t-s* が持つ。根拠は docs/type-spec.md §3〜§6。 */
+   px は suisou.css の .t-s* が持つ。根拠は .notes/type-spec.md §3〜§6。 */
 const SCALE = [12, 14, 16, 20, 24, 28, 32];
 const WEIGHTS = [400, 500, 600, 700];
 // [役割, サイズの段, ウェイト, 追加クラス]
@@ -143,7 +143,7 @@ function renderTypography() {
   page.append(el('h1', null, 'Typography'));
   page.append(el('p', 'note',
     '右端の数値は「サイズ / 行間 / ウェイト」で、CSS に書いた表ではなく '
-    + '実際に効いている computed 値を読んで出している。根拠は docs/type-spec.md。'));
+    + '実際に効いている computed 値を読んで出している。'));
 
   // サイズスケール（UI と長文の2系統を並べる）
   const scale = el('div');
