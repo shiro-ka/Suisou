@@ -1,63 +1,121 @@
 /* Suisou — Button
 
-   線形デザイン。CTA すら塗らない。
-   これは美学であると同時に、テーマ切替を技術的に成立させている柱でもある
-   （塗ると面の色との組み合わせが爆発する）。
+     <button data-suisou-btn>基本</button>
+     <button data-suisou-btn="outline">CTA</button>
+     <button data-suisou-btn="danger icon">削除</button>
+
+   値は空白区切り。~= で拾うので、いくつ並べても属性は1つ。
+
+   基本形を「罫なし」にしたのは実測から。wixdex の <button> 84個のうち
+   26個がアイコンのみで、単独では最大の塊だった。しかも hover 後の文字色が
+   gray-300 と white で割れ、背景の有無も揃っていなかった。ここを既定にする。
 
    hover で面の明度は動かさない。hover-surface を敷く。
    .notes/palette-spec.md の実測: 明度を上げる方式だと accent の hover(L79) が
    text-sub(L78) と 1.00:1 になり、線が消える。 */
 
-.suisou-btn {
+[data-suisou-btn] {
+  box-sizing: border-box;
   font-family: inherit;
   font-size: var(--suisou-size-14);
   line-height: var(--suisou-lh-14);
-  padding: var(--suisou-space-1) var(--suisou-space-3);
+  padding: var(--suisou-space-1) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
 
   background: transparent;
-  color: var(--suisou-accent);
-  border: 1px solid var(--suisou-accent);
+  color: var(--suisou-text-sub);
+  border: 1px solid transparent;      /* 罫なしでも高さを揃えるため枠は持つ */
 
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--suisou-space-2);
 }
 
-.suisou-btn:hover  { background: var(--suisou-hover-surface); }
-.suisou-btn:active {
-  background: var(--suisou-selected-surface);
+[data-suisou-btn]:hover {
+  background: var(--suisou-hover-surface);
+  color: var(--suisou-text-main);
+}
+[data-suisou-btn]:active { background: var(--suisou-selected-surface); }
+[data-suisou-btn]:focus-visible { outline: var(--suisou-focus); outline-offset: 2px; }
+
+/* ── 強さ ───────────────────────────────── */
+
+/* CTA。塗らずアウトラインで立てる */
+[data-suisou-btn~="outline"] {
+  color: var(--suisou-accent);
+  border-color: var(--suisou-accent);
+  padding-inline: var(--suisou-space-3);
+}
+[data-suisou-btn~="outline"]:hover { color: var(--suisou-accent); }
+[data-suisou-btn~="outline"]:active {
   color: var(--suisou-accent-active);
   border-color: var(--suisou-accent-active);
 }
 
-/* 目立たせない方。色を持たず罫だけで立つ */
-.suisou-btn.is-plain {
-  color: var(--suisou-text-sub);
+/* 色を持たず罫だけで立つ */
+[data-suisou-btn~="plain"] {
   border-color: var(--suisou-line-strong);
+  padding-inline: var(--suisou-space-3);
 }
-.suisou-btn.is-plain:hover  { color: var(--suisou-text-main); }
-.suisou-btn.is-plain:active { color: var(--suisou-text-main); border-color: var(--suisou-line-strong); }
-
-/* 罫を持たない方。列の中に並べるとき用 */
-.suisou-btn.is-bare { border-color: transparent; }
 
 /* ★破壊的操作。仕様書に「意味色は状態を持たない（hover / active しない）。
-   destructive なボタンは v1.2 のスコープ外」とあり、error の hover/active 色が
-   定義されていない。ここでは色を動かさず、下地だけで反応させている。
-   solve.py に error-active を足すかどうかは未決。 */
-.suisou-btn.is-danger {
+   destructive なボタンは v1.2 のスコープ外」とあり、error の押下色が
+   solve.py に無い。色は動かさず下地だけで反応させている。 */
+[data-suisou-btn~="danger"] {
   color: var(--suisou-error);
   border-color: var(--suisou-error);
+  padding-inline: var(--suisou-space-3);
 }
-.suisou-btn.is-danger:hover  { background: var(--suisou-error-surface); }
-.suisou-btn.is-danger:active { background: var(--suisou-error-surface); }
+[data-suisou-btn~="danger"]:hover  { color: var(--suisou-error); background: var(--suisou-error-surface); }
+[data-suisou-btn~="danger"]:active { background: var(--suisou-error-surface); }
 
-.suisou-btn:disabled,
-.suisou-btn[aria-disabled="true"] {
+/* 押しっぱなしの状態（フィルタのトグルなど）。
+   wixdex の filterToggle が bg-zinc-500/30 でやっていたもの */
+[data-suisou-btn~="on"] {
+  background: var(--suisou-selected-surface);
+  color: var(--suisou-text-main);
+}
+
+/* ── 形 ─────────────────────────────────── */
+
+/* 正方形。アイコン専用 */
+[data-suisou-btn~="icon"] {
+  padding: 0;
+  aspect-ratio: 1;
+  min-width: 32px;
+}
+
+[data-suisou-btn~="block"] { display: flex; width: 100%; }
+
+/* ── 無効 ───────────────────────────────── */
+
+[data-suisou-btn][disabled],
+[data-suisou-btn][aria-disabled="true"] {
   color: var(--suisou-text-disabled);
-  border-color: var(--suisou-line-weak);
+  border-color: transparent;
   background: transparent;
   cursor: default;
+}
+[data-suisou-btn~="outline"][disabled],
+[data-suisou-btn~="plain"][disabled],
+[data-suisou-btn~="danger"][disabled] { border-color: var(--suisou-line-weak); }
+
+/* ── 連結 ───────────────────────────────────
+   wixdex の検索欄がこの形。親が罫と角丸を持ち、overflow で子を切る。
+   子側に角丸を持たせないので、何個並んでも破綻しない。 */
+
+[data-suisou-btn-group] {
+  display: inline-flex;
+  border: 1px solid var(--suisou-line-strong);
+  border-radius: var(--suisou-radius);
+  overflow: hidden;
+}
+[data-suisou-btn-group] > [data-suisou-btn] {
+  border-radius: 0;
+  border-color: transparent;
+}
+[data-suisou-btn-group] > [data-suisou-btn] + [data-suisou-btn] {
+  border-left-color: var(--suisou-line-weak);
 }
