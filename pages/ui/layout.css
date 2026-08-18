@@ -21,6 +21,13 @@
 .suisou-stack { flex-direction: column; }
 .suisou-row   { align-items: center; }
 
+/* 画面を割る。子は列として高さいっぱいに伸びる。
+   .suisou-row（中央寄せ）とは目的が違うので名前を分けた ―― 実測で row の
+   13箇所中12箇所は中央寄せが正しく、割るための1箇所だけが打ち消していた。
+   Bulma の .columns / Bootstrap の .row に当たるもの。世の中のフレームワークも
+   「レイアウト用」と「ツールバー用」を別の名前にしている（Bulma は .columns と .level）。 */
+.suisou-cols { display: flex; gap: var(--gap, var(--suisou-space-2)); align-items: stretch; }
+
 .suisou-wrap { flex-wrap: wrap; }
 
 /* 余った幅・高さを取る。min-width / min-height が無いと中身がはみ出して親ごと伸びる。
