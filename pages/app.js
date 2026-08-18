@@ -17,7 +17,7 @@ const slot = (name, scope = document) => scope.querySelector(`[data-slot="${name
 const PAGES = {
   palette:    { label: 'Palette',    enhance: enhancePalette },
   typography: { label: 'Typography', enhance: enhanceTypography },
-  components: { label: 'Components' },
+  button:     { label: 'Button' },
 };
 
 /* ── Palette の並び。トークンの意味づけであって、値は持たない ── */
