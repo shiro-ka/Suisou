@@ -31,7 +31,7 @@ pages/  index.html / suisou.css / app.js … プレビューサイト（手書�
 tools/  solve.py … 色の唯一の決定者
         lint_css.py … 手書き側に色が混入していないか検査する
         palette.data.js / spec-tables.md … 生成物
-        index.html / type.html … 旧ビューア（プレビューへの移行中）
+        index.html … 旧パレットビューア（Contrast ページへ移行中）
 ```
 
 ## 方針
