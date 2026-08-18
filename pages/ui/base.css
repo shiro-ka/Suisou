@@ -4,11 +4,13 @@
    ★このシステムの約束:
 
      data-suisou-surface="…"  面 ＝ 階段の段。閉じた集合なので値で選ぶ
+     data-suisou-layout="…"   並び ＝ Suisou の間合い。すきまは焼き込んである
      data-suisou-<部品>       部品 ＝ ブランド。増えるので属性そのものが名前
-     class                    ユーティリティ ＝ 置き方（ui/layout.css だけが持つ）
+     class                    現場のもの。Suisou は中核で一切使わない
+                              （helpers.css は任意。他にユーティリティが無いときだけ）
      aria-* / disabled        状態。自分で発明せず標準を借りる
 
-       <div data-suisou-surface="panel" data-suisou-media class="suisou-gap-3">
+       <div data-suisou-surface="panel" data-suisou-media class="gap-3">
        <button data-suisou-btn="outline icon" aria-pressed="true">
 
      形が違えば層が違う。面は値で切り替わり、部品は属性が増える。

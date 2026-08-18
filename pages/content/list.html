@@ -7,14 +7,14 @@
        1枚にまとめず、領域ごとに1枚ずつ。 -->
 <div class="demo-app">
 
-  <header class="suisou-stack suisou-gap-2" style="padding: 0 var(--suisou-space-1)">
-    <div class="suisou-row suisou-gap-1">
+  <header data-suisou-layout="stack" style="padding: 0 var(--suisou-space-1)">
+    <div data-suisou-layout="row" class="gap-1">
       <span data-suisou-text="s16 w400" class="muted">shiro-ka</span>
       <span data-suisou-text="s16 w400" class="muted">/</span>
       <span data-suisou-text="s16 w700">Suisou</span>
       <span class="demo-tag">Public</span>
     </div>
-    <div class="suisou-row suisou-wrap suisou-gap-1">
+    <div data-suisou-layout="row wrap" class="gap-1">
       <button data-suisou-btn type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg><span>Code</span></button>
       <button data-suisou-btn="on" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg><span>Issues</span><span class="demo-tag">8</span></button>
       <button data-suisou-btn type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 8v8" /><path d="M11 6h5a2 2 0 0 1 2 2v8" /><path d="M14 9l-3 -3l3 -3" /></svg><span>Pull requests</span><span class="demo-tag">2</span></button>
@@ -23,10 +23,10 @@
     </div>
   </header>
 
-  <div data-suisou-surface="panel" class="suisou-row suisou-wrap suisou-gap-2" style="padding: var(--suisou-space-2)">
+  <div data-suisou-layout="row wrap" data-suisou-surface="panel" style="padding: var(--suisou-space-2)">
     <button data-suisou-btn="plain" type="button">Filters<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg></button>
-    <div class="suisou-row suisou-gap-2 suisou-fill" style="min-width: 220px">
-      <input class="demo-input suisou-fill" value="is:issue is:open" aria-label="課題を検索">
+    <div data-suisou-layout="row fill" style="min-width: 220px">
+      <input data-suisou-layout="fill" class="demo-input" value="is:issue is:open" aria-label="課題を検索">
       <button data-suisou-btn="icon" type="button" aria-label="検索"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg></button>
     </div>
     <button data-suisou-btn="plain" type="button">Labels</button>
@@ -34,13 +34,13 @@
     <button data-suisou-btn="outline" type="button">New issue</button>
   </div>
 
-  <div data-suisou-surface="panel" class="suisou-stack suisou-fill suisou-scroll" style="padding: 0">
+  <div data-suisou-layout="stack fill scroll" data-suisou-surface="panel" style="padding: 0">
     <div class="demo-list-head">
       <input class="demo-check" type="checkbox" aria-label="すべて選択">
       <span data-suisou-text="s12 w600">8 Open</span>
       <span class="muted">12 Closed</span>
-      <span class="suisou-fill"></span>
-      <span class="suisou-row suisou-gap-3 muted">
+      <span data-suisou-layout="fill"></span>
+      <span data-suisou-layout="row" class="muted gap-3">
         <span>Author</span><span>Label</span><span>Projects</span><span>Assignee</span><span>Sort</span>
       </span>
     </div>

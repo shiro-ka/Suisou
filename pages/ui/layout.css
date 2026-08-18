@@ -1,53 +1,40 @@
-/* Suisou — レイアウト。ここだけ class を使う。
+/* Suisou — Layout
 
-     data-suisou-*   部品 ＝ ブランド。見た目の決定
-     class           ユーティリティ ＝ 置き方
+     <div data-suisou-layout="cols">画面を割る。子は高さいっぱい</div>
+     <div data-suisou-layout="stack">縦に積む</div>
+     <div data-suisou-layout="row">横に並べて縦中央に寄せる</div>
 
-   Tailwind と同名にならないよう suisou- を付ける。
-   .flex や .gap-2 のような一般名は squat しない。
+   ★すきまは焼き込む。Suisou のレイアウトは既定で space-2（8px）で並ぶ。
+     これが「Suisou の間合い」で、毎回選ぶものではない。
+     現場が変えたくなったら helpers.css の .gap-* を重ねる。
 
-   ★アトミックには作らない。実測で繰り返されていたのは flex 単体ではなく
-   「横並び・中央揃え・すきま」という塊だった（Mado で 10回, wixdex の flex 110回）。
-   塊のまま名前を付ける。Tailwind の再実装は追いかけない。
+   ★汎用の名前を占領しない。並びは属性の中の語なので、.cols や .fill という
+     クラスを世界から奪わない。接頭辞は属性名に1回だけ出る。 */
 
-   ★増やす基準: 3回書いたら足す。先回りしない。
-   Akuarium が container-70/75/80/85/90/95 を用意して大半が使われなかった轍を踏まない。 */
-
-.suisou-stack,
-.suisou-row {
+[data-suisou-layout] {
   display: flex;
-  gap: var(--gap, var(--suisou-space-2));
+  gap: var(--suisou-space-2);
 }
-.suisou-stack { flex-direction: column; }
-.suisou-row   { align-items: center; }
 
-/* 画面を割る。子は列として高さいっぱいに伸びる。
-   .suisou-row（中央寄せ）とは目的が違うので名前を分けた ―― 実測で row の
-   13箇所中12箇所は中央寄せが正しく、割るための1箇所だけが打ち消していた。
-   Bulma の .columns / Bootstrap の .row に当たるもの。世の中のフレームワークも
-   「レイアウト用」と「ツールバー用」を別の名前にしている（Bulma は .columns と .level）。 */
-.suisou-cols { display: flex; gap: var(--gap, var(--suisou-space-2)); align-items: stretch; }
+/* 並べ方。1つ選ぶ */
+[data-suisou-layout~="stack"] { flex-direction: column; }
+[data-suisou-layout~="row"]   { align-items: center; }
+[data-suisou-layout~="cols"]  { align-items: stretch; }
 
-.suisou-wrap { flex-wrap: wrap; }
+/* 中央に置く。flex ではなく grid */
+[data-suisou-layout~="center"] { display: grid; place-items: center; }
 
-/* 余った幅・高さを取る。min-width / min-height が無いと中身がはみ出して親ごと伸びる。
-   縦積みでも横並びでも効くよう両方に 0 を入れる。 */
-.suisou-fill { flex: 1 1 auto; min-width: 0; min-height: 0; }
+/* ふるまい。重ねて使う */
+[data-suisou-layout~="wrap"]   { flex-wrap: wrap; }
+[data-suisou-layout~="scroll"] { overflow: auto; }
 
-/* はみ出したらスクロールする。3箇所で書いたので足した
-   （プレビューの本文 / サイドバーのリスト / 作例のログ） */
-.suisou-scroll { overflow: auto; }
+/* 余った幅・高さを取る。min-* が無いと中身がはみ出して親ごと伸びる。
+   縦積みでも横並びでも効くよう両方に 0 を入れてある */
+[data-suisou-layout~="fill"] { flex: 1 1 auto; min-width: 0; min-height: 0; }
 
-.suisou-center { display: grid; place-items: center; }
-
-.suisou-container {
+/* 本文の幅を絞って中央に寄せる */
+[data-suisou-layout~="container"] {
   width: 100%;
-  max-width: var(--w, 1024px);
+  max-width: var(--suisou-measure, 1024px);
   margin-inline: auto;
 }
-
-/* すきま。stack / row に重ねて使う */
-.suisou-gap-1 { --gap: var(--suisou-space-1); }
-.suisou-gap-2 { --gap: var(--suisou-space-2); }
-.suisou-gap-3 { --gap: var(--suisou-space-3); }
-.suisou-gap-4 { --gap: var(--suisou-space-4); }

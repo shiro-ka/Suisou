@@ -42,6 +42,7 @@ jobs:
           mkdir -p _site
           cp pages/index.html       _site/index.html
           cp pages/styles.css       _site/styles.css
+          cp pages/helpers.css      _site/helpers.css     # 任意のヘルパー
           cp pages/app.js           _site/app.js
           cp -r pages/ui            _site/ui              # Suisou の部品（1ファイルずつ）
           cp -r pages/content       _site/content         # 差し替わるページの中身

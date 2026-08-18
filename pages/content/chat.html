@@ -8,10 +8,10 @@
 <div class="demo-app">
 
 
-  <div class="suisou-cols suisou-gap-2 suisou-fill">
+  <div data-suisou-layout="cols fill">
 
     <!-- チャンネル一覧。1枚の panel -->
-    <nav data-suisou-surface="panel" class="suisou-stack suisou-gap-1 suisou-scroll" style="width: 200px; flex: none">
+    <nav data-suisou-layout="stack scroll" data-suisou-surface="panel" class="gap-1" style="width: 200px; flex: none">
       <div data-suisou-text="s12 w600" class="muted">テキストチャンネル</div>
       <button data-suisou-btn="block on" type="button" style="justify-content:flex-start">#general</button>
       <button data-suisou-btn="block" type="button" style="justify-content:flex-start">#random</button>
@@ -19,16 +19,16 @@
       <button data-suisou-btn="block" type="button" style="justify-content:flex-start">#suisou</button>
     </nav>
 
-    <div class="suisou-stack suisou-gap-2 suisou-fill">
+    <div data-suisou-layout="stack fill">
 
       <!-- チャンネルのヘッダ。これも1枚の panel -->
-      <header data-suisou-surface="panel" class="suisou-row suisou-gap-2" style="padding: var(--suisou-space-2) var(--suisou-space-3)">
-        <span data-suisou-text="s16 w700" class="suisou-fill">#general</span>
+      <header data-suisou-layout="row" data-suisou-surface="panel" style="padding: var(--suisou-space-2) var(--suisou-space-3)">
+        <span data-suisou-layout="fill" data-suisou-text="s16 w700">#general</span>
         <span data-suisou-text="s12 w400" class="muted">4 人がオンライン</span>
       </header>
 
       <!-- ログ。1枚の panel -->
-      <div data-suisou-surface="panel" class="suisou-stack suisou-gap-1 suisou-fill suisou-scroll">
+      <div data-suisou-layout="stack fill scroll" data-suisou-surface="panel" class="gap-1">
       <div class="demo-msg" data-suisou-media>
         <div data-suisou-media-icon data-suisou-avatar>し</div>
         <div data-suisou-media-content>
@@ -67,8 +67,8 @@
       </div>
 
       <!-- 入力欄。これも1枚の panel -->
-      <div data-suisou-surface="panel" class="suisou-row suisou-gap-2" style="padding: var(--suisou-space-2)">
-        <input class="demo-input suisou-fill" placeholder="#general へメッセージを送信">
+      <div data-suisou-layout="row" data-suisou-surface="panel" style="padding: var(--suisou-space-2)">
+        <input data-suisou-layout="fill" class="demo-input" placeholder="#general へメッセージを送信">
         <button data-suisou-btn="icon" type="button" aria-label="送信"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14l11 -11" /><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></svg></button>
       </div>
 
