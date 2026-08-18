@@ -214,8 +214,8 @@ function render() {
 }
 
 document.querySelector('.theme-switch').addEventListener('click', cycleTheme);
-document.querySelector('.sidebar-close').addEventListener('click', () => app.classList.add('is-closed'));
-document.querySelector('.topbar-open').addEventListener('click', () => app.classList.remove('is-closed'));
+document.querySelector('.menu-close').addEventListener('click', () => app.classList.add('is-menu-closed'));
+document.querySelector('.menu-open').addEventListener('click', () => app.classList.remove('is-menu-closed'));
 addEventListener('hashchange', () => load(location.hash.slice(1)));
 
 renderNav();

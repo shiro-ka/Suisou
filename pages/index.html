@@ -32,7 +32,7 @@
   <main class="preview">
     <header class="topbar">
       <span class="brand">Suisou</span>
-      <button data-suisou-btn="icon" class="topbar-open" type="button" aria-label="サイドバーを開く">
+      <button data-suisou-btn="icon" class="topbar-open" type="button" aria-label="コンテンツメニューを開く">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M15 4v16" /><path d="M10 10l-2 2l2 2" /></svg>
       </button>
     </header>
@@ -41,16 +41,16 @@
     <div class="preview-body" data-slot="page"></div>
   </main>
 
-  <aside class="sidebar">
-    <div class="sidebar-head">
-      <button data-suisou-btn="icon" class="sidebar-close" type="button" aria-label="サイドバーを閉じる">
+  <aside class="menu">
+    <div class="menu-head">
+      <button data-suisou-btn="icon" class="menu-close" type="button" aria-label="コンテンツメニューを閉じる">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M15 4v16" /><path d="M9 10l2 2l-2 2" /></svg>
       </button>
       <button class="theme-switch" type="button"></button>
     </div>
 
     <!-- 項目は app.js が PAGES から作る。ページを足すのは content/ に1枚置くだけ -->
-    <nav class="sidebar-nav" data-slot="nav"></nav>
+    <nav class="menu-nav" data-slot="nav"></nav>
   </aside>
 
 </div>
