@@ -13,263 +13,37 @@
 </head>
 
 <body>
-<div class="wrap">
 
-<header>
-  <h1>Suisou</h1>
-  <p class="lede">水槽。水・海・魚をモチーフにしたデザイン体系。</p>
-  <p class="lede">
-    このページは JavaScript を1行も使っていません。色は
-    <code>site/palette.css</code>（<code>tools/solve.py</code> の生成物）が持つ
-    CSS 変数だけで、テーマの切り替えは <code>data-suisou-theme</code> と
-    <code>data-suisou-accent</code> の2属性で行っています。
-    入れ子にできるので、4テーマを同時に並べられます。
-  </p>
-  <p class="lede">
-    <small>ビューア … <a href="palette.html">パレット</a> / <a href="type.html">タイポグラフィ</a></small>
-  </p>
-</header>
+<div class="app">
 
-<!-- ==================== hadal ==================== -->
-<article class="theme" data-suisou-theme="hadal" data-suisou-accent="jelly">
-  <div class="theme-head">
-    <h2>hadal</h2><span class="tag">jelly</span>
-    <small>超深海層 — 階段 dark / H 286 / 面C 0.006 — 9/9 使用可</small>
-  </div>
+  <!-- 左 … プレビュー。ヘッダだけ固定で、中身が独立してスクロールする -->
+  <main class="preview">
+    <header class="topbar">
+      <span class="brand">Suisou</span>
+      <button class="btn-plain topbar-open" type="button">サイドバー</button>
+    </header>
 
-  <div class="col">
-    <h4>面</h4>
-    <div class="row">
-      <div class="swatch" style="--c: var(--suisou-bg)"><small>bg</small></div>
-      <div class="swatch" style="--c: var(--suisou-panel)"><small>panel</small></div>
-      <div class="swatch" style="--c: var(--suisou-input)"><small>input</small></div>
-      <div class="swatch" style="--c: var(--suisou-floating)"><small>floating</small></div>
+    <div class="preview-body">
+      <!-- ページごとの中身。いまは Palette だけ。中身は app.js が組み立てる -->
+      <section class="page page-palette"></section>
     </div>
-  </div>
+  </main>
 
-  <div class="col">
-    <h4>文字と罫</h4>
-    <div class="row">
-      <span style="--c: var(--suisou-text-main)" class="ink">text-main 本文</span>
-      <span style="--c: var(--suisou-text-sub)" class="ink">text-sub 補助</span>
-      <span style="--c: var(--suisou-text-disabled)" class="ink">text-disabled 無効</span>
-      <span style="--c: var(--suisou-line-strong)" class="ink">line-strong</span>
-      <span style="--c: var(--suisou-line-weak)" class="ink">line-weak</span>
+  <!-- 右 … サイドバー。上2つが固定で、リストだけスクロールする -->
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <button class="btn-plain sidebar-close" type="button">閉じる</button>
+      <button class="theme-switch" type="button"></button>
     </div>
-  </div>
 
-  <div class="col">
-    <h4>アクセント（このテーマで使える9色）</h4>
-    <div class="row">
-      <span class="chip" data-suisou-theme="hadal" data-suisou-accent="orange"  style="--c: var(--suisou-accent)">orange</span>
-      <span class="chip" data-suisou-theme="hadal" data-suisou-accent="turtle"    style="--c: var(--suisou-accent)">turtle</span>
-      <span class="chip" data-suisou-theme="hadal" data-suisou-accent="teal"    style="--c: var(--suisou-accent)">teal</span>
-      <span class="chip" data-suisou-theme="hadal" data-suisou-accent="jelly"    style="--c: var(--suisou-accent)">jelly</span>
-      <span class="chip" data-suisou-theme="hadal" data-suisou-accent="blue"    style="--c: var(--suisou-accent)">blue</span>
-      <span class="chip" data-suisou-theme="hadal" data-suisou-accent="indigo"  style="--c: var(--suisou-accent)">indigo</span>
-      <span class="chip" data-suisou-theme="hadal" data-suisou-accent="coral"  style="--c: var(--suisou-accent)">coral</span>
-      <span class="chip" data-suisou-theme="hadal" data-suisou-accent="magenta" style="--c: var(--suisou-accent)">magenta</span>
-      <span class="chip" data-suisou-theme="hadal" data-suisou-accent="pink"    style="--c: var(--suisou-accent)">pink</span>
-    </div>
-  </div>
-
-  <div class="col">
-    <h4>部品</h4>
-    <div class="row">
-      <button class="btn">アウトラインのボタン</button>
-      <input class="field" placeholder="入力欄">
-      <div class="floating">実際に浮くものだけ影を持つ</div>
-    </div>
-    <div class="col">
-      <div class="list-row selected">選択行 — selected-surface</div>
-      <div class="list-row hover">hover 行 — hover-surface</div>
-    </div>
-  </div>
-
-  <div class="col">
-    <h4>意味色</h4>
-    <div class="banner" style="--bg: var(--suisou-error-surface);   --bd: var(--suisou-error)">error … 保存に失敗しました</div>
-    <div class="banner" style="--bg: var(--suisou-warning-surface); --bd: var(--suisou-warning)">warning … 未保存の変更があります</div>
-    <div class="banner" style="--bg: var(--suisou-success-surface); --bd: var(--suisou-success)">success … 保存しました</div>
-  </div>
-</article>
-
-<!-- ==================== trench ==================== -->
-<article class="theme" data-suisou-theme="trench" data-suisou-accent="jelly">
-  <div class="theme-head">
-    <h2>trench</h2><span class="tag">jelly</span>
-    <small>海溝 — 階段 dark / H 265 / 面C 0.018 — 9/9 使用可</small>
-  </div>
-
-  <div class="col">
-    <h4>面</h4>
-    <div class="row">
-      <div class="swatch" style="--c: var(--suisou-bg)"><small>bg</small></div>
-      <div class="swatch" style="--c: var(--suisou-panel)"><small>panel</small></div>
-      <div class="swatch" style="--c: var(--suisou-input)"><small>input</small></div>
-      <div class="swatch" style="--c: var(--suisou-floating)"><small>floating</small></div>
-    </div>
-  </div>
-
-  <div class="col">
-    <h4>アクセント（9/9）</h4>
-    <div class="row">
-      <span class="chip" data-suisou-theme="trench" data-suisou-accent="orange"  style="--c: var(--suisou-accent)">orange</span>
-      <span class="chip" data-suisou-theme="trench" data-suisou-accent="turtle"    style="--c: var(--suisou-accent)">turtle</span>
-      <span class="chip" data-suisou-theme="trench" data-suisou-accent="teal"    style="--c: var(--suisou-accent)">teal</span>
-      <span class="chip" data-suisou-theme="trench" data-suisou-accent="jelly"    style="--c: var(--suisou-accent)">jelly</span>
-      <span class="chip" data-suisou-theme="trench" data-suisou-accent="blue"    style="--c: var(--suisou-accent)">blue</span>
-      <span class="chip" data-suisou-theme="trench" data-suisou-accent="indigo"  style="--c: var(--suisou-accent)">indigo</span>
-      <span class="chip" data-suisou-theme="trench" data-suisou-accent="coral"  style="--c: var(--suisou-accent)">coral</span>
-      <span class="chip" data-suisou-theme="trench" data-suisou-accent="magenta" style="--c: var(--suisou-accent)">magenta</span>
-      <span class="chip" data-suisou-theme="trench" data-suisou-accent="pink"    style="--c: var(--suisou-accent)">pink</span>
-    </div>
-  </div>
-
-  <div class="col">
-    <h4>部品</h4>
-    <div class="row">
-      <button class="btn">アウトラインのボタン</button>
-      <input class="field" placeholder="入力欄">
-      <div class="floating">浮くもの</div>
-    </div>
-    <div class="col">
-      <div class="list-row selected">選択行</div>
-      <div class="list-row hover">hover 行</div>
-    </div>
-  </div>
-
-  <div class="col">
-    <h4>意味色</h4>
-    <div class="banner" style="--bg: var(--suisou-error-surface);   --bd: var(--suisou-error)">error</div>
-    <div class="banner" style="--bg: var(--suisou-warning-surface); --bd: var(--suisou-warning)">warning</div>
-    <div class="banner" style="--bg: var(--suisou-success-surface); --bd: var(--suisou-success)">success</div>
-  </div>
-</article>
-
-<!-- ==================== fjord ==================== -->
-<article class="theme" data-suisou-theme="fjord" data-suisou-accent="teal">
-  <div class="theme-head">
-    <h2>fjord</h2><span class="tag">teal</span>
-    <small>峡湾 — 階段 dark / H 272 / 面C 0.030 — 6/9 使用可</small>
-  </div>
-
-  <div class="col">
-    <h4>面</h4>
-    <div class="row">
-      <div class="swatch" style="--c: var(--suisou-bg)"><small>bg</small></div>
-      <div class="swatch" style="--c: var(--suisou-panel)"><small>panel</small></div>
-      <div class="swatch" style="--c: var(--suisou-input)"><small>input</small></div>
-      <div class="swatch" style="--c: var(--suisou-floating)"><small>floating</small></div>
-    </div>
-  </div>
-
-  <div class="col">
-    <h4>アクセント（6/9）</h4>
-    <div class="row">
-      <span class="chip" data-suisou-theme="fjord" data-suisou-accent="orange"  style="--c: var(--suisou-accent)">orange</span>
-      <span class="chip" data-suisou-theme="fjord" data-suisou-accent="turtle"    style="--c: var(--suisou-accent)">turtle</span>
-      <span class="chip" data-suisou-theme="fjord" data-suisou-accent="teal"    style="--c: var(--suisou-accent)">teal</span>
-      <span class="chip" data-suisou-theme="fjord" data-suisou-accent="coral"  style="--c: var(--suisou-accent)">coral</span>
-      <span class="chip" data-suisou-theme="fjord" data-suisou-accent="magenta" style="--c: var(--suisou-accent)">magenta</span>
-      <span class="chip" data-suisou-theme="fjord" data-suisou-accent="pink"    style="--c: var(--suisou-accent)">pink</span>
-    </div>
-    <small>
-      jelly / blue / indigo は出していません。この面色（H 272 / C 0.030）だと
-      accent が text-sub に近づきすぎて（ΔE 0.067〜0.079）区別できなくなるためです。
-    </small>
-  </div>
-
-  <div class="col">
-    <h4>部品</h4>
-    <div class="row">
-      <button class="btn">アウトラインのボタン</button>
-      <input class="field" placeholder="入力欄">
-      <div class="floating">浮くもの</div>
-    </div>
-    <div class="col">
-      <div class="list-row selected">選択行</div>
-      <div class="list-row hover">hover 行</div>
-    </div>
-  </div>
-
-  <div class="col">
-    <h4>意味色</h4>
-    <div class="banner" style="--bg: var(--suisou-error-surface);   --bd: var(--suisou-error)">error</div>
-    <div class="banner" style="--bg: var(--suisou-warning-surface); --bd: var(--suisou-warning)">warning</div>
-    <div class="banner" style="--bg: var(--suisou-success-surface); --bd: var(--suisou-success)">success</div>
-  </div>
-</article>
-
-<!-- ==================== shoal ==================== -->
-<article class="theme" data-suisou-theme="shoal" data-suisou-accent="jelly">
-  <div class="theme-head">
-    <h2>shoal</h2><span class="tag">jelly</span>
-    <small>浅瀬 — 階段 dim / H 265 / 面C 0.020 — 9/9 使用可</small>
-  </div>
-
-  <p class="lede">
-    ライト志向のユーザーに投げる明るめの階段です。極性は反転しません
-    （純粋なライトテーマは作らない）。
-  </p>
-
-  <div class="col">
-    <h4>面</h4>
-    <div class="row">
-      <div class="swatch" style="--c: var(--suisou-bg)"><small>bg</small></div>
-      <div class="swatch" style="--c: var(--suisou-panel)"><small>panel</small></div>
-      <div class="swatch" style="--c: var(--suisou-input)"><small>input</small></div>
-      <div class="swatch" style="--c: var(--suisou-floating)"><small>floating</small></div>
-    </div>
-  </div>
-
-  <div class="col">
-    <h4>アクセント（9/9）</h4>
-    <div class="row">
-      <span class="chip" data-suisou-theme="shoal" data-suisou-accent="orange"  style="--c: var(--suisou-accent)">orange</span>
-      <span class="chip" data-suisou-theme="shoal" data-suisou-accent="turtle"    style="--c: var(--suisou-accent)">turtle</span>
-      <span class="chip" data-suisou-theme="shoal" data-suisou-accent="teal"    style="--c: var(--suisou-accent)">teal</span>
-      <span class="chip" data-suisou-theme="shoal" data-suisou-accent="jelly"    style="--c: var(--suisou-accent)">jelly</span>
-      <span class="chip" data-suisou-theme="shoal" data-suisou-accent="blue"    style="--c: var(--suisou-accent)">blue</span>
-      <span class="chip" data-suisou-theme="shoal" data-suisou-accent="indigo"  style="--c: var(--suisou-accent)">indigo</span>
-      <span class="chip" data-suisou-theme="shoal" data-suisou-accent="coral"  style="--c: var(--suisou-accent)">coral</span>
-      <span class="chip" data-suisou-theme="shoal" data-suisou-accent="magenta" style="--c: var(--suisou-accent)">magenta</span>
-      <span class="chip" data-suisou-theme="shoal" data-suisou-accent="pink"    style="--c: var(--suisou-accent)">pink</span>
-    </div>
-  </div>
-
-  <div class="col">
-    <h4>部品</h4>
-    <div class="row">
-      <button class="btn">アウトラインのボタン</button>
-      <input class="field" placeholder="入力欄">
-      <div class="floating">浮くもの</div>
-    </div>
-    <div class="col">
-      <div class="list-row selected">選択行</div>
-      <div class="list-row hover">hover 行</div>
-    </div>
-  </div>
-
-  <div class="col">
-    <h4>意味色</h4>
-    <div class="banner" style="--bg: var(--suisou-error-surface);   --bd: var(--suisou-error)">error</div>
-    <div class="banner" style="--bg: var(--suisou-warning-surface); --bd: var(--suisou-warning)">warning</div>
-    <div class="banner" style="--bg: var(--suisou-success-surface); --bd: var(--suisou-success)">success</div>
-  </div>
-</article>
-
-<footer>
-  <small>
-    テーマ名は水域で確定しました。深いほど光が届かず、面の色が薄くなります。
-    <code>hadal</code> は前身の Akuarium から引き継いだ名前、
-    <code>fjord</code> は Nord カラースキーム由来（旧 <code>nord-ish</code>）です。
-    <strong>アクセント名（<code>orange</code> 〜 <code>pink</code>）はまだ仮</strong>で、
-    海の生き物にする方針です。 —
-    <a href="https://github.com/shiro-ka/Suisou">GitHub</a>
-  </small>
-</footer>
+    <nav class="sidebar-nav">
+      <button class="nav-item is-current" type="button" data-page="palette">Palette</button>
+    </nav>
+  </aside>
 
 </div>
+
+<script src="suisou.data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

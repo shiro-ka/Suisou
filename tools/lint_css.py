@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""手書き CSS/HTML が掟1を破っていないか検査する。
+"""手書き CSS/HTML/JS が掟1を破っていないか検査する。
 
   1. 色の値が直接書かれていないか（#rrggbb / oklch() / rgb() / hsl() …）
   2. 参照している --suisou-* が palette.css に実在するか
@@ -14,9 +14,9 @@ import os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, os.pardir))
 
-GENERATED = {"palette.css"}                      # 唯一色を持ってよいファイル
+GENERATED = {"palette.css", "suisou.data.js"}    # 生成物。検査しない
 TARGET_DIRS = ["site"]
-TARGET_EXT = (".css", ".html")
+TARGET_EXT = (".css", ".html", ".js")
 
 COLOR = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:oklch|oklab|lab|lch|rgba?|hsla?|color)\s*\(", re.I)
 COMMENT_CSS = re.compile(r"/\*.*?\*/", re.S)

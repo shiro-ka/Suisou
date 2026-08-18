@@ -87,13 +87,15 @@ SEM_L = {
 # テーマ名は水域。深いほど光が届かず、面の色が薄くなる。
 # 階段の名前（dark / dim）とは別物。shoal が dim 階段を使うだけで、名前は衝突しない。
 THEMES = [
-    {"name":"hadal",  "ladder":"dark", "h":286, "cs":0.006, "ar":0.85},  # 超深海層。ほぼ無彩色
-    {"name":"trench", "ladder":"dark", "h":265, "cs":0.018, "ar":0.65},  # 海溝
-    {"name":"fjord",  "ladder":"dark", "h":272, "cs":0.030, "ar":0.60},  # 峡湾。最も色づく（旧 nord-ish）
-    {"name":"shoal",  "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},  # 浅瀬。唯一明るい階段
+    {"name":"hadal",  "jp":"超深海層", "ladder":"dark", "h":286, "cs":0.006, "ar":0.85},  # ほぼ無彩色
+    {"name":"trench", "jp":"海溝",     "ladder":"dark", "h":265, "cs":0.018, "ar":0.65},
+    {"name":"fjord",  "jp":"峡湾",     "ladder":"dark", "h":272, "cs":0.030, "ar":0.60},  # 最も色づく（旧 nord-ish）
+    {"name":"shoal",  "jp":"浅瀬",     "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},  # 唯一明るい階段
 ]
 ACCENTS = [("orange",55),("turtle",122),("teal",188),("jelly",212),("blue",255),
            ("indigo",282),("coral",308),("magenta",332),("pink",355)]
+# 確定した名前だけ和名を持つ。空文字は仮名（まだ生き物になっていない）。
+ACCENT_JP = {"turtle":"ウミガメ", "jelly":"クラゲ", "coral":"サンゴ"}
 
 # 制約のしきい値
 FLOOR = {"hover":0.03, "selected":0.055, "semantic":0.055, "textSub":0.08}
@@ -214,7 +216,7 @@ def solve():
         "themes": [], "failures": [],
     }
     for t in THEMES:
-        entry = {"name":t["name"], "ladder":t["ladder"], "h":t["h"], "cs":t["cs"],
+        entry = {"name":t["name"], "jp":t["jp"], "ladder":t["ladder"], "h":t["h"], "cs":t["cs"],
                  "ar":t["ar"], "semRatio": round(sem_ratio(t["ar"]),3),
                  "textMainL": resolve_text_main(t), "accents": {}}
         for an, ah in ACCENTS:
@@ -267,14 +269,20 @@ def css_color(v, alpha=None):
     return f"oklch({L*100:.2f}% {C:.4f} {H}{a})"
 
 def css_block(selector, names, tk, indent=""):
+    """色と、その色コードを文字列として持つ変数を並べて出す。
+
+    CSS は変数の値を文字として表示できない。かといって色コードを手で書けば
+    掟1違反になる。ここで両方を出しておき、表示側は -hex を読むだけにする。
+    """
     L = [f"{indent}{selector} {{"]
     for n in names:
-        v = tk[n]
-        if v is None:                       # 解が無かったトークンは出さない
+        d = tk[n]
+        if d is None:                       # 解が無かったトークンは出さない
             L.append(f"{indent}  /* --suisou-{n}: 解なし */")
             continue
         alpha = SCRIM_ALPHA if n == "scrim" else None
-        L.append(f"{indent}  --suisou-{n}: {css_color(v, alpha)};")
+        L.append(f"{indent}  --suisou-{n}: {css_color((d['L'], d['C'], d['H']), alpha)};")
+        L.append(f'{indent}  --suisou-{n}-hex: "{d["hex"]}";')
     L.append(f"{indent}}}")
     return L
 
@@ -298,16 +306,13 @@ def write_css(data):
     themes = {t["name"]: t for t in data["themes"]}
     dt = themes[DEFAULT_THEME]
     dtk = dt["accents"][DEFAULT_ACCENT]["tokens"]
-    tup = lambda d: None if d is None else (d["L"], d["C"], d["H"])
-    conv = lambda tokens: {n: tup(v) for n, v in tokens.items()}
-
     L.append(f"/* 属性が無いときの既定 … {DEFAULT_THEME} / {DEFAULT_ACCENT} */")
-    L += css_block(":root", THEME_TOKENS + ACCENT_TOKENS, conv(dtk))
+    L += css_block(":root", THEME_TOKENS + ACCENT_TOKENS, dtk)
     L.append("")
 
     L.append("/* ── テーマ層 ───────────────────────────── */")
     for t in data["themes"]:
-        any_tokens = conv(next(iter(t["accents"].values()))["tokens"])
+        any_tokens = next(iter(t["accents"].values()))["tokens"]
         L.append("")
         L += css_block(f'[data-suisou-theme="{t["name"]}"]', THEME_TOKENS, any_tokens)
     L.append("")
@@ -321,7 +326,7 @@ def write_css(data):
                 skipped.append(f"{t['name']}/{an}: {a['issues'][0]}")
                 continue
             sel = f'[data-suisou-theme="{t["name"]}"][data-suisou-accent="{an}"]'
-            L += css_block(sel, ACCENT_TOKENS, conv(a["tokens"]))
+            L += css_block(sel, ACCENT_TOKENS, a["tokens"])
     L.append("")
     L.append("/* 出していない組み合わせ（制約を満たさないので使えない）:")
     for s in skipped:
@@ -335,6 +340,32 @@ def write_css(data):
     p = os.path.normpath(p)
     with open(p, "w", encoding="utf-8") as f:
         f.write("\n".join(L) + "\n")
+    return p
+
+def write_site_data(data):
+    """サイトの切替 UI が読む構造データ。色は持たない（色は palette.css の担当）。
+
+    可用性をここに出すのは、テーマを切り替えたときに使えないアクセントへ
+    落ちるのを防ぐため。CSS 側は存在しない組に無反応なので、静かに既定色へ
+    戻ってしまう。それを UI 側で避けられるようにする。
+    """
+    out = {
+        "themes": [{"name": t["name"], "jp": t["jp"], "ladder": t["ladder"],
+                    "h": t["h"], "cs": t["cs"],
+                    "available": [a for a, v in t["accents"].items() if v["available"]]}
+                   for t in data["themes"]],
+        "accents": [{"name": n, "jp": ACCENT_JP.get(n, ""), "hue": h} for n, h in ACCENTS],
+        "themeTokens": THEME_TOKENS,
+        "accentTokens": ACCENT_TOKENS,
+        "default": {"theme": DEFAULT_THEME, "accent": DEFAULT_ACCENT},
+    }
+    p = os.path.normpath(os.path.join(HERE, os.pardir, "site", "suisou.data.js"))
+    os.makedirs(os.path.dirname(p), exist_ok=True)
+    with open(p, "w", encoding="utf-8") as f:
+        f.write("/* GENERATED by solve.py — 手で編集しない */\n")
+        f.write("const SUISOU = ")
+        json.dump(out, f, ensure_ascii=False, indent=1)
+        f.write(";\n")
     return p
 
 def write_js(data):
@@ -422,3 +453,4 @@ if __name__ == "__main__":
     print("wrote:", write_js(data))
     print("wrote:", write_tables(data))
     print("wrote:", write_css(data))
+    print("wrote:", write_site_data(data))
