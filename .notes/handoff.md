@@ -133,8 +133,8 @@ akuarium-ui/      layout（header/main/footer/container/box/items/wrapper）
 
 | 仮に書いたもの | 本来あるべき部品 |
 |---|---|
-| `.demo-avatar` | **Avatar** … 円形・寸法・頭文字の代替表示 |
-| `.demo-msg` | **Row** … hover する行。★保留中の selected の判断材料はここ |
+| ~~`.demo-avatar`~~ | ★**Avatar として実装済み**（2026-08-18） |
+| `.demo-msg` | **Row** … hover する行。中身は Media に移した。★保留中の selected の判断材料はここ |
 | `.demo-input` | **Field** … 入力欄。`item` の面に載る |
 | `.demo-code` | 行内コード。`prose` に含まれそう |
 | チャンネル一覧のボタン | `data-suisou-btn="block"` が中央寄せのままなので、左寄せに `style` の直書きが要った。`block` の既定を左寄せにするか、寄せ方の値を足すか |

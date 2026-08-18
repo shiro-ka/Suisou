@@ -253,17 +253,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 }
 
 /* ★まだ部品が無いもの */
-.demo-avatar {         /* → Avatar 部品が要る */
-  flex: none; width: 32px; height: 32px;
-  border-radius: var(--suisou-radius-pill);
-  background: var(--suisou-item);
-  border: 1px solid var(--suisou-line-weak);
-  display: grid; place-items: center;
-  font-size: var(--suisou-size-12);
-  color: var(--suisou-text-sub);
-}
-.demo-msg {            /* → Row 部品が要る（hover する行） */
-  display: flex; gap: var(--suisou-space-2);
+.demo-msg {            /* → Row 部品が要る。中身は Media が持つようになった */
   padding: var(--suisou-space-1) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
 }

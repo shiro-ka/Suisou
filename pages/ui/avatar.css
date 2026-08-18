@@ -1,0 +1,29 @@
+/* Suisou — Avatar
+
+     <div data-suisou-avatar>し</div>
+     <img data-suisou-avatar src="..." alt="">
+
+   画像が無いときは頭文字を出す。円形は「人・主体」を指す約束で、
+   モノを指す角丸とは区別する。
+
+   寸法はここが持つ。使う側に w-8 h-8 を毎回書かせない。 */
+
+[data-suisou-avatar] {
+  flex: none;
+  box-sizing: border-box;
+  width: var(--suisou-avatar, 32px);
+  height: var(--suisou-avatar, 32px);
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-item);
+  border: 1px solid var(--suisou-line-weak);
+  color: var(--suisou-text-sub);
+  font-size: var(--suisou-size-12);
+  line-height: var(--suisou-lh-12);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+[data-suisou-avatar~="small"] { --suisou-avatar: 24px; }
+[data-suisou-avatar~="large"] { --suisou-avatar: 48px; font-size: var(--suisou-size-16); }
