@@ -1,26 +1,40 @@
 <!-- 作例: チャット。解説は置かない ―― 「そのもの」を見せる場所。
+
+     構成は Suisou の思想に従う:
+       地べた（bg）に直接置くのはヘッダの要素だけ。
+       モノは panel に入れる。1枚にまとめず、領域ごとに1枚ずつ。
      組めなかった部分は styles.css の「作例」節に隔離してある。 -->
 <div class="demo-app">
-  <nav class="demo-rail suisou-stack suisou-gap-1">
-    <div data-suisou-text="s12 w600" class="muted">テキストチャンネル</div>
+
+  <!-- ヘッダ。地べたに直置き。panel に入れない -->
+  <header class="suisou-row suisou-gap-2" style="padding: 0 var(--suisou-space-1)">
+    <button data-suisou-btn="icon" type="button" aria-label="メニュー"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l16 0" /><path d="M4 12l16 0" /><path d="M4 18l16 0" /></svg></button>
+    <span data-suisou-text="s16 w700" class="suisou-fill">Aquarium</span>
+    <button data-suisou-btn="icon" type="button" aria-label="ピン留め"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg></button>
+    <button data-suisou-btn="icon" type="button" aria-label="メンバー"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg></button>
+  </header>
+
+  <div class="suisou-row suisou-gap-2 suisou-fill" style="align-items: stretch">
+
+    <!-- チャンネル一覧。1枚の panel -->
+    <nav data-suisou-panel class="suisou-stack suisou-gap-1 suisou-scroll" style="width: 200px; flex: none">
+      <div data-suisou-text="s12 w600" class="muted">テキストチャンネル</div>
       <button data-suisou-btn="block on" type="button" style="justify-content:flex-start">#general</button>
       <button data-suisou-btn="block" type="button" style="justify-content:flex-start">#random</button>
       <button data-suisou-btn="block" type="button" style="justify-content:flex-start">#wixoss</button>
       <button data-suisou-btn="block" type="button" style="justify-content:flex-start">#suisou</button>
-  </nav>
+    </nav>
 
-  <div class="demo-main">
-    <header class="demo-head suisou-row">
-      <span data-suisou-text="s16 w700" class="suisou-fill">#general</span>
-      <button data-suisou-btn="icon" type="button" aria-label="ピン留め">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
-      </button>
-      <button data-suisou-btn="icon" type="button" aria-label="メンバー">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg>
-      </button>
-    </header>
+    <div class="suisou-stack suisou-gap-2 suisou-fill">
 
-    <div class="demo-log suisou-stack suisou-gap-1">
+      <!-- チャンネルのヘッダ。これも1枚の panel -->
+      <header data-suisou-panel class="suisou-row suisou-gap-2" style="padding: var(--suisou-space-2) var(--suisou-space-3)">
+        <span data-suisou-text="s16 w700" class="suisou-fill">#general</span>
+        <span data-suisou-text="s12 w400" class="muted">4 人がオンライン</span>
+      </header>
+
+      <!-- ログ。1枚の panel -->
+      <div data-suisou-panel class="suisou-stack suisou-gap-1 suisou-fill suisou-scroll">
       <div class="demo-msg">
         <div class="demo-avatar">し</div>
         <div class="suisou-stack suisou-gap-1 suisou-fill">
@@ -71,11 +85,14 @@
           <div data-suisou-text="s14 w400">属性でいこう。やっぱ見た目尖ってるしキレイだわ</div>
         </div>
       </div>
-    </div>
+      </div>
 
-    <div class="demo-composer suisou-row suisou-gap-2">
-      <input class="demo-input suisou-fill" placeholder="#general へメッセージを送信">
-      <button data-suisou-btn="outline" type="button">送信</button>
+      <!-- 入力欄。これも1枚の panel -->
+      <div data-suisou-panel class="suisou-row suisou-gap-2" style="padding: var(--suisou-space-2)">
+        <input class="demo-input suisou-fill" placeholder="#general へメッセージを送信">
+        <button data-suisou-btn="icon" type="button" aria-label="送信"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14l11 -11" /><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></svg></button>
+      </div>
+
     </div>
   </div>
 </div>
