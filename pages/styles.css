@@ -3,7 +3,7 @@
    こちらは class だけを使う ＝ 属性か class かがそのまま
    「配る / 配らない」の境界になっていて、取り合いも起きない。 */
 
-:root { --sidebar-w: 296px; }
+:root { --menu-w: 296px; }
 
 /* ページ全体のリセット。配り物ではないのでここが持つ。
    ui/ 側は要素セレクタを使わない（適用先に漏れるため）。 */
@@ -43,25 +43,34 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 /* 作例は余白もスクロールも外して、そのものを全面に敷く */
 .preview-body.is-bleed { padding: 0; overflow: hidden; }
 
-/* サイドバーは浮かせない。区切り線だけ。bg は共通 */
-.sidebar {
+/* ══ コンテンツメニュー ════════════════════════════
+   テーマスイッチとページ一覧を持つ、このサイトの操作盤。
+   作例の中に出てくるサイドバーと紛らわしいので「コンテンツメニュー」と呼ぶ。
+
+   ★ここは Suisou のデザインをあえて崩している（意図的。揃えないこと）。
+     Suisou 本来なら「モノは panel に入れる」だが、ここは panel を使わず
+     bg に直置きし、区切りを線で引いている。揃えてしまうと作例と溶け合って、
+     どこからが作例か分からなくなる。この崩しは作例を「そのもの」として
+     見せるための縁取りでもある。 */
+
+.menu {
   flex: none;
-  width: var(--sidebar-w);
+  width: var(--menu-w);
   display: flex;
   flex-direction: column;
   border-left: 1px solid var(--suisou-line-weak);
 }
 
-.sidebar-head {
+.menu-head {
   flex: none;
   display: grid;
   gap: var(--suisou-space-2);
   padding: var(--suisou-space-3);
 }
 
-.sidebar-close { justify-self: end; }   /* 右寄せ。ボタンではなくレイアウトの仕事 */
+.menu-close { justify-self: end; }   /* 右寄せ。ボタンではなくレイアウトの仕事 */
 
-.sidebar-nav {
+.menu-nav {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
@@ -71,8 +80,8 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   align-content: start;
 }
 
-.app:not(.is-closed) .topbar-open { display: none; }
-.app.is-closed .sidebar { display: none; }
+.app:not(.is-menu-closed) .menu-open { display: none; }
+.app.is-menu-closed .menu { display: none; }
 
 /* ══ サイドバーの操作子 ════════════════════════════ */
 
@@ -220,7 +229,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 }
 
 @media (width <= 720px) {
-  :root { --sidebar-w: 240px; }
+  :root { --menu-w: 240px; }
   .t-row { grid-template-columns: 64px 1fr; }
   .t-meta { grid-column: 2; }
 }
