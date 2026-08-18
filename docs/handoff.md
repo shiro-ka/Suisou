@@ -75,7 +75,10 @@ python3 tools/solve.py --check  # 検証のみ。破綻があれば exit 1
 
 **確定しているのは `Suisou`（システム名）だけ。**
 
-- **テーマ名** … 水域の英語にする方針（淡水・深海など）。現在コード上の `grey / slate / nord-ish / dim` は**仮名**
+- ~~**テーマ名**~~ … ★**確定（2026-08-18）**。水域にした。深いほど光が届かず面の色が薄くなる順で
+  `hadal`（超深海層）/ `trench`（海溝）/ `fjord`（峡湾）/ `shoal`（浅瀬）。
+  `hadal` は Akuarium から継承。`fjord` は旧 `nord-ish` で、Nord 由来を残したまま水域名にした。
+  これで階段名 `dim` とテーマ名の衝突も解消した
 - **アクセント名** … 海の生き物にする方針（coral / turtle など）。現在の `orange / lime / teal / cyan / blue / indigo / purple / magenta / pink` も**仮名**
 
 ★このリポジトリには前身の **Akuarium** が入っており、**既に命名体系がある**。

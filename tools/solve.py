@@ -84,11 +84,13 @@ SEM_L = {
     "dark": {"error":.73, "warning":.82, "success":.76},
     "dim":  {"error":.85, "warning":.85, "success":.83},
 }
+# テーマ名は水域。深いほど光が届かず、面の色が薄くなる。
+# 階段の名前（dark / dim）とは別物。shoal が dim 階段を使うだけで、名前は衝突しない。
 THEMES = [
-    {"name":"grey",     "ladder":"dark", "h":286, "cs":0.006, "ar":0.85},
-    {"name":"slate",    "ladder":"dark", "h":265, "cs":0.018, "ar":0.65},
-    {"name":"nord-ish", "ladder":"dark", "h":272, "cs":0.030, "ar":0.60},
-    {"name":"dim",      "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},
+    {"name":"hadal",  "ladder":"dark", "h":286, "cs":0.006, "ar":0.85},  # 超深海層。ほぼ無彩色
+    {"name":"trench", "ladder":"dark", "h":265, "cs":0.018, "ar":0.65},  # 海溝
+    {"name":"fjord",  "ladder":"dark", "h":272, "cs":0.030, "ar":0.60},  # 峡湾。最も色づく（旧 nord-ish）
+    {"name":"shoal",  "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},  # 浅瀬。唯一明るい階段
 ]
 ACCENTS = [("orange",55),("lime",122),("teal",188),("cyan",212),("blue",255),
            ("indigo",282),("purple",308),("magenta",332),("pink",355)]
@@ -256,7 +258,7 @@ ACCENT_TOKENS = ["accent", "accent-active", "focus-ring",
                  "hover-surface", "selected-surface"]
 
 # 属性が無いときの既定。色ではなく「どれを既定に見せるか」の選択なので、ここに置く。
-DEFAULT_THEME  = "grey"
+DEFAULT_THEME  = "hadal"
 DEFAULT_ACCENT = "cyan"
 
 def css_color(v, alpha=None):
@@ -283,7 +285,7 @@ def write_css(data):
     L.append("/*")
     L.append("  使い方:")
     L.append("")
-    L.append('    <html data-suisou-theme="grey" data-suisou-accent="cyan">')
+    L.append(f'    <html data-suisou-theme="{DEFAULT_THEME}" data-suisou-accent="{DEFAULT_ACCENT}">')
     L.append("")
     L.append("  テーマとアクセントは必ず同じ要素に書くこと。")
     L.append("  アクセントの値はテーマごとに違う（面との ΔE で C を解いているため）ので、")
