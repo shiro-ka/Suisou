@@ -1,0 +1,73 @@
+<!-- Panel。全部静的 -->
+<section class="page">
+  <h1>Panel</h1>
+  <p class="note">
+    平らな容れ物。影は持たない —— 影は「実際に浮くもの」だけのもので、
+    面の分離は border が担保する。浮くもの（モーダル・ポップアップ）は
+    別部品にするので、面の階段の <code>panel</code> と部品名が1対1で対応する。
+  </p>
+
+  <div class="group">
+    <h2>3つの形</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-panel</span>
+      <div data-suisou-panel>面 + 罫。既定</div>
+      <div data-suisou-panel="bare">罫なし。面だけで区切る</div>
+      <div data-suisou-panel="outline">面なし。罫だけで囲う</div>
+    </div>
+    <table class="spec">
+      <tr><th>値</th><th>面</th><th>罫</th><th>実測</th></tr>
+      <tr><td>（なし）</td><td><code>panel</code></td><td><code>line-weak</code></td>
+          <td>Mado で 46箇所。Suisou の既定</td></tr>
+      <tr><td><code>bare</code></td><td><code>panel</code></td><td>なし</td>
+          <td>wixdex で 37箇所</td></tr>
+      <tr><td><code>outline</code></td><td>なし</td><td><code>line-weak</code></td>
+          <td>2つ合わせて 1箇所。階層を増やさず囲いたいとき</td></tr>
+    </table>
+  </div>
+
+  <div class="group">
+    <h2>入れ子</h2>
+    <p class="note">
+      内側は自動で1段上の面（<code>input</code>）に載る。仕様の
+      「モーダル内の入力欄がモーダルより明るくなる」順序を守るため。
+      <code>bare</code> と <code>outline</code> は面を持たないので影響しない。
+    </p>
+    <div class="demo">
+      <span class="demo-label">入れ子にすると内側が明るくなる</span>
+      <div data-suisou-panel class="suisou-stack suisou-gap-2">
+        外側
+        <div data-suisou-panel>内側。1段明るい</div>
+        <div data-suisou-panel="outline">内側（outline）。面を持たない</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>中身の並べ方は持たない</h2>
+    <p class="note">
+      Panel が持つのは見た目だけ。並べ方は <code>class</code> のユーティリティが担当する。
+      territory を分けているので、適用先が Tailwind でも取り合いにならない。
+    </p>
+    <div class="demo">
+      <span class="demo-label">&lt;div data-suisou-panel class="suisou-stack suisou-gap-3"&gt;</span>
+      <div data-suisou-panel class="suisou-stack suisou-gap-3">
+        <div>縦に積む</div>
+        <div class="suisou-row suisou-gap-2">
+          <button data-suisou-btn="outline" type="button">保存</button>
+          <button data-suisou-btn type="button">取り消し</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table class="spec">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>余白の段</td><td>16px 固定。実測は 8〜20px でばらついていたので、必要になったら足す</td></tr>
+      <tr><td>命名</td><td><code>panel</code> は面の階段の名前と同じ。浮くものを別部品にすることで衝突を避けている</td></tr>
+      <tr><td>入れ子の深さ</td><td>2段目までしか面が上がらない。3段以上は未対応</td></tr>
+    </table>
+  </div>
+</section>
