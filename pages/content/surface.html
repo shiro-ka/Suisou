@@ -52,7 +52,7 @@
     </p>
     <div class="demo">
       <span class="demo-label">panel の中に item</span>
-      <div data-suisou-surface="panel" class="suisou-stack suisou-gap-2">
+      <div data-suisou-layout="stack" data-suisou-surface="panel">
         外側 — panel
         <div data-suisou-surface="item">内側 — item。1段手前</div>
         <div data-suisou-surface="none">内側 — outline。面を持たない</div>
@@ -67,10 +67,10 @@
       territory を分けているので、適用先が Tailwind でも取り合いにならない。
     </p>
     <div class="demo">
-      <span class="demo-label">&lt;div data-suisou-surface="panel" class="suisou-stack suisou-gap-3"&gt;</span>
-      <div data-suisou-surface="panel" class="suisou-stack suisou-gap-3">
+      <span class="demo-label">&lt;div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-3"&gt;</span>
+      <div data-suisou-layout="stack" data-suisou-surface="panel" class="gap-3">
         <div>縦に積む</div>
-        <div class="suisou-row suisou-gap-2">
+        <div data-suisou-layout="row">
           <button data-suisou-btn="outline" type="button">保存</button>
           <button data-suisou-btn type="button">取り消し</button>
         </div>

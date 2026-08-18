@@ -1,0 +1,32 @@
+/* Suisou — ヘルパー（任意）
+
+   接頭辞を付けない調整用のクラス。汎用の名前を占領するので、
+   ★他にユーティリティの仕組みが無いときだけ読み込む。
+   Tailwind と併用しているプロジェクトでは入れないこと（.gap-4 などが衝突する）。
+
+   中核（ui/*.css）はこれに依存しない。入れなくても部品は完全に動く。
+
+   Bulma も同じ構成で、中核とは別にヘルパーを持っている。 */
+
+.gap-0 { gap: 0; }
+.gap-1 { gap: var(--suisou-space-1); }
+.gap-2 { gap: var(--suisou-space-2); }
+.gap-3 { gap: var(--suisou-space-3); }
+.gap-4 { gap: var(--suisou-space-4); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--suisou-space-1); }
+.p-2 { padding: var(--suisou-space-2); }
+.p-3 { padding: var(--suisou-space-3); }
+.p-4 { padding: var(--suisou-space-4); }
+
+.px-2 { padding-inline: var(--suisou-space-2); }
+.px-3 { padding-inline: var(--suisou-space-3); }
+.py-2 { padding-block: var(--suisou-space-2); }
+.py-3 { padding-block: var(--suisou-space-3); }
+
+.m-0  { margin: 0; }
+.mb-2 { margin-bottom: var(--suisou-space-2); }
+.mb-3 { margin-bottom: var(--suisou-space-3); }
+.mt-2 { margin-top: var(--suisou-space-2); }
+.mt-3 { margin-top: var(--suisou-space-3); }
