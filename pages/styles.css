@@ -301,8 +301,10 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 }
 
 /* 分類のしるし → Tag / Badge 部品が要る */
+.demo-tag > svg { width: 14px; height: 14px; }
 .demo-tag {
   flex: none;
+  display: inline-flex; align-items: center; gap: var(--suisou-space-1);
   font-size: var(--suisou-size-12); line-height: var(--suisou-lh-12);
   padding: 0 var(--suisou-space-2);
   border-radius: var(--suisou-radius-pill);
