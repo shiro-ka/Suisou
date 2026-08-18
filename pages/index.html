@@ -22,9 +22,12 @@
 
 <body data-suisou-root>
 
+<!--
+  ここは骨格だけ。切り替わる中身は content/*.html にあり、app.js が差し替える。
+  固定されているもの（トップバーとサイドバー）だけがこのファイルに残る。
+-->
 <div class="app">
 
-  <!-- 左 … プレビュー。ヘッダだけ固定で、中身が独立してスクロールする -->
   <main class="preview">
     <header class="topbar">
       <span class="brand">Suisou</span>
@@ -33,92 +36,10 @@
       </button>
     </header>
 
-    <div class="preview-body">
-      <!-- Palette と Typography は app.js が組み立てる（computed 値を読むため） -->
-      <section class="page page-palette"></section>
-      <section class="page page-typography"></section>
-
-      <!-- Components は素の HTML。JS は要らない -->
-      <section class="page page-components">
-        <h1>Components</h1>
-        <p class="note">
-          Suisou のものは <code>data-suisou-*</code> 属性で、class は一切使わない。
-          class は適用先のもの ―― territory が分かれるので、Tailwind と混ぜても
-          取り合いにならない。値は空白区切りで、<code>~=</code> で拾っている。
-        </p>
-
-        <div class="group">
-          <h2>Button</h2>
-          <p class="note">
-            塗らない。CTA すらアウトライン。hover で面の明度は動かさず
-            <code>hover-surface</code> を敷く。
-            基本形が「罫なし」なのは実測から ―― wixdex の <code>&lt;button&gt;</code> 84個のうち
-            26個がアイコンのみで、単独では最大の塊だった。
-          </p>
-
-          <div class="demo">
-            <span class="demo-label">data-suisou-btn</span>
-            <div class="suisou-row suisou-wrap">
-              <button data-suisou-btn type="button">基本</button>
-              <button data-suisou-btn="outline" type="button">CTA</button>
-              <button data-suisou-btn="plain" type="button">目立たせない</button>
-              <button data-suisou-btn="danger" type="button">破壊的</button>
-              <button data-suisou-btn="on" type="button">押しっぱなし</button>
-            </div>
-          </div>
-
-          <div class="demo">
-            <span class="demo-label">data-suisou-btn="… icon"</span>
-            <div class="suisou-row suisou-wrap">
-              <button data-suisou-btn="icon" type="button">＋</button>
-              <button data-suisou-btn="outline icon" type="button">→</button>
-              <button data-suisou-btn="danger icon" type="button">×</button>
-              <button data-suisou-btn="on icon" type="button">★</button>
-            </div>
-            <p class="note">値を並べれば掛かる。属性は1つのまま。</p>
-          </div>
-
-          <div class="demo">
-            <span class="demo-label">data-suisou-btn-group（連結）</span>
-            <div class="suisou-row suisou-wrap">
-              <div data-suisou-btn-group>
-                <button data-suisou-btn="on" type="button">すべて</button>
-                <button data-suisou-btn type="button">所持</button>
-                <button data-suisou-btn type="button">未所持</button>
-                <button data-suisou-btn="icon" type="button">▾</button>
-              </div>
-            </div>
-            <p class="note">
-              親が罫と角丸を持ち、<code>overflow</code> で子を切る。子は角丸を持たないので
-              何個並んでも破綻しない。wixdex の検索欄がこの作りだった。
-            </p>
-          </div>
-
-          <div class="demo">
-            <span class="demo-label">無効</span>
-            <div class="suisou-row suisou-wrap">
-              <button data-suisou-btn type="button" disabled>基本</button>
-              <button data-suisou-btn="outline" type="button" disabled>CTA</button>
-              <button data-suisou-btn="danger" type="button" disabled>破壊的</button>
-            </div>
-          </div>
-
-          <div class="demo">
-            <span class="demo-label">data-suisou-btn="… block"</span>
-            <button data-suisou-btn="outline block" type="button">幅いっぱい</button>
-          </div>
-
-          <p class="note">
-            ★<code>danger</code> の hover と active は色を動かしていない。仕様書に
-            「意味色は状態を持たない。destructive なボタンは v1.2 のスコープ外」とあり、
-            <code>error</code> の押下色が solve.py に無いため。下地だけで反応させている。
-          </p>
-        </div>
-      </section>
-    </div>
+    <!-- ここに content/*.html が入る -->
+    <div class="preview-body" data-slot="page"></div>
   </main>
 
-  <!-- 右 … サイドバー。上2つが固定で、リストだけスクロールする -->
   <aside class="sidebar">
     <div class="sidebar-head">
       <button data-suisou-btn="icon" class="sidebar-close" type="button" aria-label="サイドバーを閉じる">
@@ -127,11 +48,8 @@
       <button class="theme-switch" type="button"></button>
     </div>
 
-    <nav class="sidebar-nav">
-      <button class="nav-item" type="button" data-page="palette">Palette</button>
-      <button class="nav-item" type="button" data-page="typography">Typography</button>
-      <button class="nav-item" type="button" data-page="components">Components</button>
-    </nav>
+    <!-- 項目は app.js が PAGES から作る。ページを足すのは content/ に1枚置くだけ -->
+    <nav class="sidebar-nav" data-slot="nav"></nav>
   </aside>
 
 </div>

@@ -103,15 +103,14 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   cursor: pointer;
 }
 .nav-item:hover { background: var(--suisou-hover-surface); color: var(--suisou-text-main); }
-.nav-item.is-current {
+.nav-item[aria-current="page"] {
   background: var(--suisou-selected-surface);
   color: var(--suisou-text-main);
 }
 
 /* ══ ページ ════════════════════════════════════════ */
 
-.page { display: none; gap: var(--suisou-space-4); align-content: start; }
-.page.is-current { display: grid; }
+.page { display: grid; gap: var(--suisou-space-4); align-content: start; }
 .page h1 { margin: 0; font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); font-weight: 700; }
 .page h2 { margin: 0; font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 600; }
 .page h3 { margin: 0; font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 600; }
@@ -142,7 +141,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   cursor: pointer;
 }
 .accent-chip:hover { background: var(--suisou-hover-surface); }
-.accent-chip.is-current { background: var(--suisou-selected-surface); }
+.accent-chip[aria-pressed="true"] { background: var(--suisou-selected-surface); }
 .accent-chip:disabled {
   color: var(--suisou-text-disabled);
   border-color: var(--suisou-line-weak);

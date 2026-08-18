@@ -1,0 +1,91 @@
+<!-- Components。全部静的。JS は要らない -->
+<section class="page">
+  <h1>Components</h1>
+  <p class="note">
+    Suisou のものは <code>data-suisou-*</code> 属性。class は使わない ―― class は
+    適用先のもので、ユーティリティ（<code>ui/layout.css</code>）だけが例外。
+    状態は <code>aria-*</code> と <code>disabled</code> を借りる。値は空白区切りで
+    <code>~=</code> が拾う。
+  </p>
+
+  <div class="group">
+    <h2>Button</h2>
+    <p class="note">
+      塗らない。CTA すらアウトライン。hover で面の明度は動かさず
+      <code>hover-surface</code> を敷く。基本形が「罫なし」なのは実測から ――
+      wixdex の <code>&lt;button&gt;</code> 84個のうち 26個がアイコンのみで、
+      単独では最大の塊だった。
+    </p>
+
+    <div class="demo">
+      <span class="demo-label">data-suisou-btn</span>
+      <div class="suisou-row suisou-wrap">
+        <button data-suisou-btn type="button">基本</button>
+        <button data-suisou-btn="outline" type="button">CTA</button>
+        <button data-suisou-btn="plain" type="button">目立たせない</button>
+        <button data-suisou-btn="danger" type="button">破壊的</button>
+        <button data-suisou-btn="on" type="button">押しっぱなし</button>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="demo-label">data-suisou-btn="… icon"</span>
+      <div class="suisou-row suisou-wrap">
+        <button data-suisou-btn="icon" type="button" aria-label="追加">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
+        </button>
+        <button data-suisou-btn="outline icon" type="button" aria-label="次へ">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>
+        </button>
+        <button data-suisou-btn="danger icon" type="button" aria-label="削除">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+        </button>
+        <button data-suisou-btn="on icon" type="button" aria-label="お気に入り" aria-pressed="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg>
+        </button>
+      </div>
+      <p class="note">
+        値を並べれば掛かる。属性は1つのまま。アイコンの寸法は部品が持つので、
+        使う側は書かない。<code>currentColor</code> なので色も継承される。
+      </p>
+    </div>
+
+    <div class="demo">
+      <span class="demo-label">data-suisou-btn-group（連結）</span>
+      <div class="suisou-row suisou-wrap">
+        <div data-suisou-btn-group>
+          <button data-suisou-btn="on" type="button">すべて</button>
+          <button data-suisou-btn type="button">所持</button>
+          <button data-suisou-btn type="button">未所持</button>
+          <button data-suisou-btn="icon" type="button" aria-label="絞り込み">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg>
+          </button>
+        </div>
+      </div>
+      <p class="note">
+        親が罫と角丸を持ち、<code>overflow</code> で子を切る。子は角丸を持たないので
+        何個並んでも破綻しない。wixdex の検索欄がこの作りだった。
+      </p>
+    </div>
+
+    <div class="demo">
+      <span class="demo-label">無効</span>
+      <div class="suisou-row suisou-wrap">
+        <button data-suisou-btn type="button" disabled>基本</button>
+        <button data-suisou-btn="outline" type="button" disabled>CTA</button>
+        <button data-suisou-btn="danger" type="button" disabled>破壊的</button>
+      </div>
+    </div>
+
+    <div class="demo">
+      <span class="demo-label">data-suisou-btn="… block"</span>
+      <button data-suisou-btn="outline block" type="button">幅いっぱい</button>
+    </div>
+
+    <p class="note">
+      ★<code>danger</code> の hover と active は色を動かしていない。仕様書に
+      「意味色は状態を持たない。destructive なボタンは v1.2 のスコープ外」とあり、
+      <code>error</code> の押下色が solve.py に無いため。下地だけで反応させている。
+    </p>
+  </div>
+</section>
