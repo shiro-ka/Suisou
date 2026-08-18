@@ -118,6 +118,8 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     ("on-accent","accent",4.5,"ボタン内文字"),
     ("text-main","selected-surface",4.5,"選択行の文字"),
     ("text-main","hover-surface",4.5,"hover 行の文字"),
+    ("line-weak","hover-surface",1.5,"hover 行の装飾罫"),
+    ("line-strong","hover-surface",3.0,"hover 行の入力枠 1.4.11"),
     ("error","floating",4.5,"状態文言"),
     ("warning","floating",4.5,"状態文言"),
     ("success","floating",4.5,"状態文言"),
@@ -131,6 +133,24 @@ def resolve_text_main(t):
     L = LADDERS[t["ladder"]]["text-main"]
     while L > 0.80 and not in_gamut(L, t["cs"], t["h"]):
         L -= 0.005
+    return round(L, 3)
+
+def resolve_hover(t):
+    """hover 下地。面の色相のまま暗い側へ下げ、全面と ΔE >= フロアになる最大の L。
+
+    アクセントの色相を使わない = アクセントに依存しない。テーマ層のトークンになるので、
+    アクセントを足しても hover は解き直しにならない。
+
+    明るい側に下げない理由は実測。明るくすると hover した面の上で line-weak が
+    1.34:1 / line-strong が 2.74:1 まで落ちる（必要値 1.5 / 3.0）。
+    暗い側なら載るインクのコントラストはむしろ上がる。
+    """
+    D = LADDERS[t["ladder"]]
+    faces = ["bg"] + SURFACES
+    L = D["tint"]
+    while L > 0.02 and min(dE((L, t["cs"], t["h"]), (D[s], t["cs"], t["h"]))
+                           for s in faces) < FLOOR["hover"]:
+        L -= 0.001
     return round(L, 3)
 
 def resolve_tint(t, h, floor):
@@ -160,9 +180,8 @@ def tokens(t, acc_name, acc_h):
     o["accent-active"] = (D["accent"]+ACTIVE_DL, maxC(D["accent"]+ACTIVE_DL, acc_h) * t["ar"], acc_h)
     o["focus-ring"]    = o["accent"]
     o["on-accent"]     = o["bg"]
-    hv  = resolve_tint(t, acc_h, FLOOR["hover"])
+    o["hover-surface"] = (resolve_hover(t), t["cs"], t["h"])   # 中立。アクセントに依存しない
     sel = resolve_tint(t, acc_h, FLOOR["selected"])
-    o["hover-surface"]    = None if hv  is None else (D["tint"], hv,  acc_h)
     o["selected-surface"] = None if sel is None else (D["tint"], sel, acc_h)
     sr = sem_ratio(t["ar"])
     for n, h in SEM_HUE.items():
@@ -187,7 +206,8 @@ def accent_issues(t, acc_name, acc_h):
     near = min(((dE(k["accent"], k[n]), n) for n in SEM_HUE))
     if near[0] < FLOOR["semantic"]: bad.append(f"{near[1]} と近い ΔE {near[0]:.3f}")
     if k["hover-surface"] and k["selected-surface"]:
-        if abs(k["selected-surface"][1] - k["hover-surface"][1]) < JND:
+        # hover は中立、選択はアクセント色。色相が違うので彩度差では測れない
+        if dE(k["selected-surface"], k["hover-surface"]) < JND:
             bad.append("hover と選択が近すぎ")
     return bad
 
@@ -252,13 +272,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 #   テーマ層   … 全アクセントで同値。面・文字・意味色
 #   アクセント層 … アクセントで変わる。かつテーマをまたぐと値も変わるので、
 #                 テーマとの組でしか定義できない（複合セレクタになる理由）
-THEME_TOKENS = ["bg", "panel", "input", "floating",
+THEME_TOKENS = ["bg", "panel", "input", "floating", "hover-surface",
                 "line-weak", "line-strong", "text-disabled", "text-sub", "text-main",
                 "on-accent", "scrim",
                 "error", "warning", "success",
                 "error-surface", "warning-surface", "success-surface"]
-ACCENT_TOKENS = ["accent", "accent-active", "focus-ring",
-                 "hover-surface", "selected-surface"]
+ACCENT_TOKENS = ["accent", "accent-active", "focus-ring", "selected-surface"]
 
 # 属性が無いときの既定。色ではなく「どれを既定に見せるか」の選択なので、ここに置く。
 DEFAULT_THEME  = "hadal"

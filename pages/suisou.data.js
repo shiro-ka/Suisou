@@ -123,6 +123,7 @@ const SUISOU = {
   "panel",
   "input",
   "floating",
+  "hover-surface",
   "line-weak",
   "line-strong",
   "text-disabled",
@@ -141,7 +142,6 @@ const SUISOU = {
   "accent",
   "accent-active",
   "focus-ring",
-  "hover-surface",
   "selected-surface"
  ],
  "default": {

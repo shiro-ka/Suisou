@@ -47,12 +47,14 @@
 | `accent` on `floating` | 3.81:1 | 3.0 | shoal/magenta | UI 部品 |
 | `line-strong` on `input` | 3.85:1 | 3.0 | hadal/orange | 入力枠 1.4.11 |
 | `text-main` on `selected-surface` | 5.82:1 | 4.5 | shoal/teal | 選択行の文字 |
-| `text-main` on `hover-surface` | 5.92:1 | 4.5 | shoal/jelly | hover 行の文字 |
 | `text-main` on `error-surface` | 6.10:1 | 4.5 | shoal/orange | バナーの文字 |
 | `error` on `error-surface` | 4.30:1 | 3.0 | shoal/orange | バナーの枠 |
 | `text-main` on `floating` | 6.53:1 | 4.5 | shoal/orange | 本文 |
+| `line-weak` on `hover-surface` | 2.37:1 | 1.5 | fjord/orange | hover 行の装飾罫 |
+| `line-strong` on `hover-surface` | 4.87:1 | 3.0 | hadal/orange | hover 行の入力枠 1.4.11 |
 | `on-accent` on `accent` | 7.72:1 | 4.5 | hadal/magenta | ボタン内文字 |
 | `accent` on `panel` | 6.25:1 | 3.0 | shoal/magenta | UI 部品 |
+| `text-main` on `hover-surface` | 11.97:1 | 4.5 | shoal/orange | hover 行の文字 |
 
 ### 色相カテゴリのリスク（ΔE では測れない）
 
