@@ -1,0 +1,106 @@
+<!-- 作例: チャット。既存の部品だけで組む -->
+<section class="page">
+  <h1>作例 — チャット</h1>
+  <p class="note">
+    Discord のような3ペイン構成。<strong>新しい部品は足していない</strong> ——
+    Panel・Button・タイポ・ユーティリティだけで組んでいる。
+    組めなかった部分は <code>styles.css</code> の「作例」節に隔離してあり、
+    そこに溜まったものがそのまま「まだ無い部品」の一覧になる。
+  </p>
+
+  <div class="demo-app">
+    <nav class="demo-rail suisou-stack suisou-gap-1">
+      <div data-suisou-text="s12 w600" class="muted">テキストチャンネル</div>
+        <button data-suisou-btn="block on" type="button" style="justify-content:flex-start">#general</button>
+        <button data-suisou-btn="block" type="button" style="justify-content:flex-start">#random</button>
+        <button data-suisou-btn="block" type="button" style="justify-content:flex-start">#wixoss</button>
+        <button data-suisou-btn="block" type="button" style="justify-content:flex-start">#suisou</button>
+    </nav>
+
+    <div class="demo-main">
+      <header class="demo-head suisou-row">
+        <span data-suisou-text="s16 w700" class="suisou-fill">#general</span>
+        <button data-suisou-btn="icon" type="button" aria-label="ピン留め">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4.5l-4 4l-4 1.5l-1.5 1.5l7 7l1.5 -1.5l1.5 -4l4 -4" /><path d="M9 15l-4.5 4.5" /><path d="M14.5 4l5.5 5.5" /></svg>
+        </button>
+        <button data-suisou-btn="icon" type="button" aria-label="メンバー">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg>
+        </button>
+      </header>
+
+      <div class="demo-log suisou-stack suisou-gap-1">
+        <div class="demo-msg">
+          <div class="demo-avatar">し</div>
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <div class="suisou-row suisou-gap-2">
+              <span data-suisou-text="s14 w600">しろか</span>
+              <span data-suisou-text="s12 w400" class="muted">09:12</span>
+            </div>
+            <div data-suisou-text="s14 w400">テーマ名を水域にした。hadal / trench / fjord / shoal</div>
+          </div>
+        </div>
+        <div class="demo-msg">
+          <div class="demo-avatar">あ</div>
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <div class="suisou-row suisou-gap-2">
+              <span data-suisou-text="s14 w600">相棒</span>
+              <span data-suisou-text="s12 w400" class="muted">09:13</span>
+            </div>
+            <div data-suisou-text="s14 w400">値は変えていません。33/36 使用可・破綻0件のままです</div>
+          </div>
+        </div>
+        <div class="demo-msg">
+          <div class="demo-avatar">し</div>
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <div class="suisou-row suisou-gap-2">
+              <span data-suisou-text="s14 w600">しろか</span>
+              <span data-suisou-text="s12 w400" class="muted">09:20</span>
+            </div>
+            <div data-suisou-text="s14 w400">hover の色ってどう決まってる？</div>
+          </div>
+        </div>
+        <div class="demo-msg">
+          <div class="demo-avatar">あ</div>
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <div class="suisou-row suisou-gap-2">
+              <span data-suisou-text="s14 w600">相棒</span>
+              <span data-suisou-text="s12 w400" class="muted">09:21</span>
+            </div>
+            <div data-suisou-text="s14 w400">明るさは動かさず、面の色相のまま暗い側へ下げています。<span class="demo-code">FLOOR["hover"]</span> = 0.03 を満たす最大の L です</div>
+          </div>
+        </div>
+        <div class="demo-msg">
+          <div class="demo-avatar">し</div>
+          <div class="suisou-stack suisou-gap-1 suisou-fill">
+            <div class="suisou-row suisou-gap-2">
+              <span data-suisou-text="s14 w600">しろか</span>
+              <span data-suisou-text="s12 w400" class="muted">09:40</span>
+            </div>
+            <div data-suisou-text="s14 w400">属性でいこう。やっぱ見た目尖ってるしキレイだわ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-composer suisou-row suisou-gap-2">
+        <input class="demo-input suisou-fill" placeholder="#general へメッセージを送信">
+        <button data-suisou-btn="outline" type="button">送信</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>組んでみて足りなかったもの</h2>
+    <table class="spec">
+      <tr><th>仮に書いたもの</th><th>本来あるべき部品</th></tr>
+      <tr><td><code>.demo-avatar</code></td><td><strong>Avatar</strong> — 円形・寸法・頭文字の代替表示</td></tr>
+      <tr><td><code>.demo-msg</code>（hover する行）</td><td><strong>Row</strong> — hover / selected。★selected の扱いが未決なのはここ</td></tr>
+      <tr><td><code>.demo-input</code></td><td><strong>Field</strong> — 入力欄。<code>item</code> の面に載る</td></tr>
+      <tr><td><code>.demo-code</code></td><td>行内コード。<code>prose</code> の一部になりそう</td></tr>
+      <tr><td>チャンネル一覧のボタン</td><td>左寄せが <code>style</code> の直書きになった。Button に寄せ方の値が要るかもしれない</td></tr>
+    </table>
+    <p class="note">
+      外枠（<code>.demo-app</code> / <code>.demo-rail</code> など）は作例そのものの都合なので、
+      部品にはしない。
+    </p>
+  </div>
+</section>
