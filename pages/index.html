@@ -8,8 +8,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- 生成物 … 色 -->
 <link rel="stylesheet" href="palette.css">
-<link rel="stylesheet" href="suisou.css">
+<!-- Suisou の部品。@import ではなく link で並べる（並列に落ちる） -->
+<link rel="stylesheet" href="ui/base.css">
+<link rel="stylesheet" href="ui/type.css">
+<link rel="stylesheet" href="ui/button.css">
+<!-- このサイトだけのもの -->
+<link rel="stylesheet" href="preview.css">
 </head>
 
 <body>
@@ -20,26 +27,74 @@
   <main class="preview">
     <header class="topbar">
       <span class="brand">Suisou</span>
-      <button class="btn-plain topbar-open" type="button">サイドバー</button>
+      <button class="suisou-btn is-plain topbar-open" type="button">サイドバー</button>
     </header>
 
     <div class="preview-body">
-      <!-- ページごとの中身。app.js が組み立てて、現在のものだけ表示する -->
+      <!-- Palette と Typography は app.js が組み立てる（computed 値を読むため） -->
       <section class="page page-palette"></section>
       <section class="page page-typography"></section>
+
+      <!-- Components は素の HTML。JS は要らない -->
+      <section class="page page-components">
+        <h1>Components</h1>
+        <p class="note">
+          部品は <code>pages/ui/</code> に1ファイルずつ置いている。
+          クラスが <code>.suisou-</code> で始まるものが Suisou の部品で、
+          始まらないものはこのサイトだけのもの。
+        </p>
+
+        <div class="group">
+          <h2>Button</h2>
+          <p class="note">
+            塗らない。CTA すらアウトライン。hover で面の明度は動かさず
+            <code>hover-surface</code> を敷く。
+          </p>
+
+          <div class="demo">
+            <span class="demo-label">.suisou-btn</span>
+            <div class="row">
+              <button class="suisou-btn" type="button">アクセント</button>
+              <button class="suisou-btn is-plain" type="button">目立たせない</button>
+              <button class="suisou-btn is-bare" type="button">罫なし</button>
+              <button class="suisou-btn is-danger" type="button">破壊的</button>
+            </div>
+          </div>
+
+          <div class="demo">
+            <span class="demo-label">状態</span>
+            <div class="row">
+              <button class="suisou-btn" type="button">通常</button>
+              <button class="suisou-btn" type="button" disabled>無効</button>
+              <button class="suisou-btn is-plain" type="button" disabled>無効（目立たせない）</button>
+            </div>
+            <p class="note">
+              hover / active / focus は実際に触って確認する。focus の輪は
+              <code>ui/base.css</code> が全部品まとめて持っている。
+            </p>
+          </div>
+
+          <p class="note">
+            ★<code>is-danger</code> の hover と active は色を動かしていない。仕様書に
+            「意味色は状態を持たない。destructive なボタンは v1.2 のスコープ外」とあり、
+            <code>error</code> の押下色が solve.py に無いため。下地だけで反応させている。
+          </p>
+        </div>
+      </section>
     </div>
   </main>
 
   <!-- 右 … サイドバー。上2つが固定で、リストだけスクロールする -->
   <aside class="sidebar">
     <div class="sidebar-head">
-      <button class="btn-plain sidebar-close" type="button">閉じる</button>
+      <button class="suisou-btn is-plain sidebar-close" type="button">閉じる</button>
       <button class="theme-switch" type="button"></button>
     </div>
 
     <nav class="sidebar-nav">
       <button class="nav-item" type="button" data-page="palette">Palette</button>
       <button class="nav-item" type="button" data-page="typography">Typography</button>
+      <button class="nav-item" type="button" data-page="components">Components</button>
     </nav>
   </aside>
 
