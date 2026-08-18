@@ -40,6 +40,15 @@
 [data-suisou-btn]:active { background: var(--suisou-selected-surface); }
 [data-suisou-btn]:focus-visible { outline: var(--suisou-focus); outline-offset: 2px; }
 
+/* アイコンの寸法は部品が持つ。使う側に毎回書かせない
+   （wixdex では w-5 h-5 を各所で手書きしていた）。
+   色は currentColor で継承されるので、text-sub → text-main が自動で効く。 */
+[data-suisou-btn] > svg {
+  width: var(--suisou-icon);
+  height: var(--suisou-icon);
+  flex-shrink: 0;
+}
+
 /* ── 強さ ───────────────────────────────── */
 
 /* CTA。塗らずアウトラインで立てる */

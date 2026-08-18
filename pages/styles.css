@@ -56,6 +56,8 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   border-bottom: 1px solid var(--suisou-line-weak);
 }
 
+.sidebar-close { justify-self: end; }   /* 右寄せ。ボタンではなくレイアウトの仕事 */
+
 .sidebar-nav {
   flex: 1 1 auto;
   min-height: 0;
