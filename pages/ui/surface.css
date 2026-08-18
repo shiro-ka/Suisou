@@ -3,7 +3,13 @@
      <div data-suisou-surface="panel">面 + 罫。いちばん普通の容れ物</div>
      <div data-suisou-surface="item">1段手前。入力欄や入れ子の容れ物</div>
      <div data-suisou-surface="panel bare">罫なし</div>
-     <div data-suisou-surface="outline">面なし。罫だけ</div>
+     <div data-suisou-surface="none">面を持たない。罫だけで囲う</div>
+
+   ★値は「段」が必須で1つ、「装飾」が任意。
+       段    panel / item / floating / none   どの面に載るか
+       装飾  bare                             罫を消す
+     段を書かずに装飾だけ書いても意味が通らない（面だと宣言しておいて
+     どの段か言っていない）。tools/lint_css.py が検査する。
 
    ★面は「閉じた集合」なので値で選ぶ。部品（media / btn / avatar …）は
      これから増えるので属性そのものが名前になる。形が違えば層が違うと分かる。
@@ -27,12 +33,10 @@
   padding: var(--suisou-space-3);
 }
 
-/* 階段のどの段に載るか */
+/* 段 … どの面に載るか。必ず1つ書く */
 [data-suisou-surface~="panel"] { background: var(--suisou-panel); }
 [data-suisou-surface~="item"]  { background: var(--suisou-item); }
+[data-suisou-surface~="none"]  { background: transparent; }   /* 段を上げず、罫だけで囲う */
 
-/* 罫なし。面だけで区切る */
-[data-suisou-surface~="bare"] { border-color: transparent; }
-
-/* 面なし。囲うだけで階層を1段も増やさない */
-[data-suisou-surface~="outline"] { background: transparent; }
+/* 装飾 … 任意 */
+[data-suisou-surface~="bare"] { border-color: transparent; }  /* 罫を消す */
