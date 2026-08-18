@@ -23,8 +23,13 @@
 
 .suisou-wrap { flex-wrap: wrap; }
 
-/* 余った幅を取る。min-width: 0 が無いと中身がはみ出して親ごと伸びる */
-.suisou-fill { flex: 1 1 auto; min-width: 0; }
+/* 余った幅・高さを取る。min-width / min-height が無いと中身がはみ出して親ごと伸びる。
+   縦積みでも横並びでも効くよう両方に 0 を入れる。 */
+.suisou-fill { flex: 1 1 auto; min-width: 0; min-height: 0; }
+
+/* はみ出したらスクロールする。3箇所で書いたので足した
+   （プレビューの本文 / サイドバーのリスト / 作例のログ） */
+.suisou-scroll { overflow: auto; }
 
 .suisou-center { display: grid; place-items: center; }
 

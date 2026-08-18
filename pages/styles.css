@@ -227,33 +227,24 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 
 /* ══ 作例 ══════════════════════════════════════════
    Suisou の部品だけで組めなかった部分をここに置く。
-   溜まったものがそのまま「まだ無い部品」の一覧になる。 */
+   溜まったものがそのまま「まだ無い部品」の一覧になる。
 
-.demo-app {            /* 作例の外枠。実アプリの画面そのものとして敷く */
+   ★構成そのものは Suisou の思想に従う:
+     地べた（bg）に直接置くのはヘッダの要素だけ。
+     モノは panel に入れる。まとめず、領域ごとに1枚ずつ。 */
+
+.demo-app {
   display: flex;
+  flex-direction: column;
   height: 100%;
-  overflow: hidden;
+  gap: var(--suisou-space-2);
+  padding: var(--suisou-space-2);
   background: var(--suisou-bg);
 }
-.demo-rail {           /* チャンネル一覧 */
-  flex: none; width: 200px;
-  border-right: 1px solid var(--suisou-line-weak);
-  overflow-y: auto;
-  padding: var(--suisou-space-2);
-}
-.demo-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
-.demo-log  { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: var(--suisou-space-3); }
-.demo-head, .demo-composer {
-  flex: none; padding: var(--suisou-space-2) var(--suisou-space-3);
-}
-.demo-head { border-bottom: 1px solid var(--suisou-line-weak); }
-.demo-composer { border-top: 1px solid var(--suisou-line-weak); }
 
 /* ★まだ部品が無いもの */
-.muted { color: var(--suisou-text-sub); }
-
 .demo-avatar {         /* → Avatar 部品が要る */
-  flex: none; width: 36px; height: 36px;
+  flex: none; width: 32px; height: 32px;
   border-radius: var(--suisou-radius-pill);
   background: var(--suisou-item);
   border: 1px solid var(--suisou-line-weak);
@@ -267,7 +258,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   border-radius: var(--suisou-radius);
 }
 .demo-msg:hover { background: var(--suisou-hover-surface); }
-.demo-input {          /* → Field 部品が要る */
+.demo-input {          /* → Field 部品が要る。item の面に載る */
   width: 100%; font: inherit;
   font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14);
   padding: var(--suisou-space-1) var(--suisou-space-2);
@@ -278,9 +269,11 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 }
 .demo-input::placeholder { color: var(--suisou-text-disabled); }
 .demo-input:focus-visible { outline: var(--suisou-focus); outline-offset: 1px; }
-.demo-code {           /* → 行内コードの扱いが未定 */
+.demo-code {           /* → 行内コードの扱いが未定。prose の一部になりそう */
   font-family: var(--suisou-mono); font-size: var(--suisou-size-12);
   background: var(--suisou-item);
   border: 1px solid var(--suisou-line-weak);
   border-radius: 4px; padding: 0 4px;
 }
+
+.muted { color: var(--suisou-text-sub); }
