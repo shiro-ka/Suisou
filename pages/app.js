@@ -19,7 +19,7 @@ const PAGES = {
   typography: { group: '土台', label: 'Typography', enhance: enhanceTypography },
   button:     { group: '部品', label: 'Button' },
   panel:      { group: '部品', label: 'Panel' },
-  chat:       { group: '作例', label: 'チャット' },
+  chat:       { group: '作例', label: 'チャット', bleed: true },
 };
 
 /* ── Palette の並び。トークンの意味づけであって、値は持たない ── */
@@ -167,6 +167,8 @@ async function load(name) {
     }
   }
   box.innerHTML = cache[name];
+  // 作例は「そのもの」を見せる。解説も余白も挟まない
+  box.classList.toggle('is-bleed', !!PAGES[name].bleed);
   box.scrollTop = 0;
   current = name;
   PAGES[name].enhance?.(box);

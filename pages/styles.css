@@ -38,6 +38,8 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   overflow-y: auto;
   padding: var(--suisou-space-3);
 }
+/* 作例は余白もスクロールも外して、そのものを全面に敷く */
+.preview-body.is-bleed { padding: 0; overflow: hidden; }
 
 /* サイドバーは浮かせない。区切り線だけ。bg は共通 */
 .sidebar {
@@ -227,11 +229,9 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
    Suisou の部品だけで組めなかった部分をここに置く。
    溜まったものがそのまま「まだ無い部品」の一覧になる。 */
 
-.demo-app {            /* 作例の外枠。実アプリの画面に見立てる */
+.demo-app {            /* 作例の外枠。実アプリの画面そのものとして敷く */
   display: flex;
-  height: 520px;
-  border: 1px solid var(--suisou-line-weak);
-  border-radius: var(--suisou-radius);
+  height: 100%;
   overflow: hidden;
   background: var(--suisou-bg);
 }
