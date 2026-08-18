@@ -23,10 +23,22 @@ python3 tools/solve.py --check  # 検証のみ。破綻があれば exit 1
 
 CI（`.github/workflows/check_palette.yml`）が、構造的破綻と、生成物が `solve.py` の出力と一致することを検証します。
 
+## 手元で見る
+
+ページの中身は `pages/content/*.html` にあり、`fetch` で差し替えます。
+`file://` だと弾かれるので、簡易サーバ経由で開いてください。
+
+```sh
+python3 -m http.server -d pages 8000   # http://localhost:8000
+```
+
 ## 構成
 
 ```
-pages/  index.html / suisou.css / app.js … プレビューサイト（手書き）
+pages/  index.html … 骨格だけ。トップバーとサイドバー
+        content/*.html … 差し替わるページの中身
+        ui/*.css … Suisou の部品。data-suisou-* 属性で当たる
+        styles.css / app.js … このサイトだけのもの
         palette.css / suisou.data.js … 生成物（手で編集しない）
 tools/  solve.py … 色の唯一の決定者
         lint_css.py … 手書き側に色が混入していないか検査する

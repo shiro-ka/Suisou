@@ -1,0 +1,13 @@
+<!-- Palette。data-slot の中身だけ app.js が埋める（値は computed から読むため） -->
+<section class="page">
+  <h1>Palette</h1>
+  <p class="note" data-slot="summary"></p>
+
+  <div class="group">
+    <h2>アクセント</h2>
+    <div class="accent-row" data-slot="accents"></div>
+    <p class="note" data-slot="accent-note"></p>
+  </div>
+
+  <div data-slot="tokens" class="suisou-stack suisou-gap-4"></div>
+</section>

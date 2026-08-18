@@ -44,6 +44,7 @@ jobs:
           cp pages/styles.css       _site/styles.css
           cp pages/app.js           _site/app.js
           cp -r pages/ui            _site/ui              # Suisou の部品（1ファイルずつ）
+          cp -r pages/content       _site/content         # 差し替わるページの中身
           cp pages/palette.css      _site/palette.css     # solve.py の生成物
           cp pages/suisou.data.js   _site/suisou.data.js  # solve.py の生成物（構造のみ）
 
