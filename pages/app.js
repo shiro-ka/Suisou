@@ -15,10 +15,11 @@ const app = document.querySelector('.app');
 const slot = (name, scope = document) => scope.querySelector(`[data-slot="${name}"]`);
 
 const PAGES = {
-  palette:    { label: 'Palette',    enhance: enhancePalette },
-  typography: { label: 'Typography', enhance: enhanceTypography },
-  button:     { label: 'Button' },
-  panel:      { label: 'Panel' },
+  palette:    { group: '土台', label: 'Palette',    enhance: enhancePalette },
+  typography: { group: '土台', label: 'Typography', enhance: enhanceTypography },
+  button:     { group: '部品', label: 'Button' },
+  panel:      { group: '部品', label: 'Panel' },
+  chat:       { group: '作例', label: 'チャット' },
 };
 
 /* ── Palette の並び。トークンの意味づけであって、値は持たない ── */
@@ -177,7 +178,9 @@ async function load(name) {
 function renderNav() {
   const nav = slot('nav');
   nav.replaceChildren();
+  let seen = null;
   for (const [name, p] of Object.entries(PAGES)) {
+    if (p.group !== seen) { nav.append(el('div', 'nav-group', p.group)); seen = p.group; }
     const b = el('button', 'nav-item', p.label);
     b.type = 'button';
     b.dataset.page = name;
