@@ -123,7 +123,6 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 }
 
 .group { display: grid; gap: var(--suisou-space-2); }
-.row   { display: flex; flex-wrap: wrap; gap: var(--suisou-space-2); align-items: center; }
 
 /* ══ Palette ページ ════════════════════════════════ */
 
