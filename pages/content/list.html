@@ -7,7 +7,6 @@
        1枚にまとめず、領域ごとに1枚ずつ。 -->
 <div class="demo-app">
 
-  <!-- リポジトリのヘッダ。地べたに直置き -->
   <header class="suisou-stack suisou-gap-2" style="padding: 0 var(--suisou-space-1)">
     <div class="suisou-row suisou-gap-1">
       <span data-suisou-text="s16 w400" class="muted">shiro-ka</span>
@@ -17,14 +16,13 @@
     </div>
     <div class="suisou-row suisou-wrap suisou-gap-1">
       <button data-suisou-btn type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8l-4 4l4 4" /><path d="M17 8l4 4l-4 4" /><path d="M14 4l-4 16" /></svg><span>Code</span></button>
-      <button data-suisou-btn="on" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg><span>Issues</span> <span class="demo-tag">8</span></button>
-      <button data-suisou-btn type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 8v8" /><path d="M11 6h5a2 2 0 0 1 2 2v8" /><path d="M14 9l-3 -3l3 -3" /></svg><span>Pull requests</span> <span class="demo-tag">2</span></button>
+      <button data-suisou-btn="on" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg><span>Issues</span><span class="demo-tag">8</span></button>
+      <button data-suisou-btn type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M6 8v8" /><path d="M11 6h5a2 2 0 0 1 2 2v8" /><path d="M14 9l-3 -3l3 -3" /></svg><span>Pull requests</span><span class="demo-tag">2</span></button>
       <button data-suisou-btn type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4v16l13 -8z" /></svg><span>Actions</span></button>
       <button data-suisou-btn type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path d="M3 6l0 13" /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg><span>Wiki</span></button>
     </div>
   </header>
 
-  <!-- ツールバー -->
   <div data-suisou-panel class="suisou-row suisou-wrap suisou-gap-2" style="padding: var(--suisou-space-2)">
     <button data-suisou-btn="plain" type="button">Filters<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg></button>
     <div class="suisou-row suisou-gap-2 suisou-fill" style="min-width: 220px">
@@ -36,124 +34,95 @@
     <button data-suisou-btn="outline" type="button">New issue</button>
   </div>
 
-  <!-- 一覧 -->
   <div data-suisou-panel class="suisou-stack suisou-fill suisou-scroll" style="padding: 0">
     <div class="demo-list-head">
       <input class="demo-check" type="checkbox" aria-label="すべて選択">
-      <span class="suisou-row suisou-gap-1"><span data-suisou-text="s12 w600">8 Open</span></span>
-      <span class="suisou-row suisou-gap-1 muted">12 Closed</span>
+      <span data-suisou-text="s12 w600">8 Open</span>
+      <span class="muted">12 Closed</span>
       <span class="suisou-fill"></span>
       <span class="suisou-row suisou-gap-3 muted">
         <span>Author</span><span>Label</span><span>Projects</span><span>Assignee</span><span>Sort</span>
       </span>
     </div>
-        <div class="demo-row" aria-selected="true">
+        <div class="demo-row" data-suisou-media aria-selected="true">
           <input class="demo-check" type="checkbox" aria-label="選択" checked>
-          <svg style="--c: var(--suisou-success)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
-          <div class="suisou-stack suisou-gap-1 suisou-fill">
-            <div class="suisou-row suisou-wrap suisou-gap-2">
-              <span data-suisou-text="s14 w600">選択下地をアクセント色のままにするか中立にするか</span>
-              <span class="demo-tag demo-label" style="--c: var(--suisou-accent)">設計</span>
-            </div>
-            <span data-suisou-text="s12 w400" class="muted">#12 opened 3 days ago by shiro-ka</span>
+          <span data-suisou-media-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state" style="--c: var(--suisou-success)"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>選択下地をアクセント色のままにするか中立にするか</span><span class="demo-tag demo-label" style="--c: var(--suisou-accent)">設計</span></header>
+            <span class="demo-meta">#12 opened 3 days ago by shiro-ka</span>
           </div>
-          <span class="demo-tag" style="border-color: transparent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>4</span>
+          <span data-suisou-media-tail class="demo-tag demo-plain"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>4</span>
         </div>
-        <div class="demo-row" aria-selected="false">
+        <div class="demo-row" data-suisou-media aria-selected="false">
           <input class="demo-check" type="checkbox" aria-label="選択">
-          <svg style="--c: var(--suisou-success)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
-          <div class="suisou-stack suisou-gap-1 suisou-fill">
-            <div class="suisou-row suisou-wrap suisou-gap-2">
-              <span data-suisou-text="s14 w600">panel の余白に段を足す</span>
-              <span class="demo-tag demo-label" style="--c: var(--suisou-accent)">部品</span><span class="demo-tag demo-label" style="--c: var(--suisou-success)">実測あり</span>
-            </div>
-            <span data-suisou-text="s12 w400" class="muted">#11 opened 3 days ago by shiro-ka</span>
+          <span data-suisou-media-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state" style="--c: var(--suisou-success)"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>panel の余白に段を足す</span><span class="demo-tag demo-label" style="--c: var(--suisou-accent)">部品</span><span class="demo-tag demo-label" style="--c: var(--suisou-success)">実測あり</span></header>
+            <span class="demo-meta">#11 opened 3 days ago by shiro-ka</span>
           </div>
-          <span class="demo-tag" style="border-color: transparent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>1</span>
+          <span data-suisou-media-tail class="demo-tag demo-plain"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>1</span>
         </div>
-        <div class="demo-row" aria-selected="false">
+        <div class="demo-row" data-suisou-media aria-selected="false">
           <input class="demo-check" type="checkbox" aria-label="選択">
-          <svg style="--c: var(--suisou-success)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
-          <div class="suisou-stack suisou-gap-1 suisou-fill">
-            <div class="suisou-row suisou-wrap suisou-gap-2">
-              <span data-suisou-text="s14 w600">block ボタンの既定を左寄せにする</span>
-              <span class="demo-tag demo-label" style="--c: var(--suisou-accent)">部品</span><span class="demo-tag demo-label" style="--c: var(--suisou-success)">実測あり</span>
-            </div>
-            <span data-suisou-text="s12 w400" class="muted">#10 opened 3 days ago by shiro-ka</span>
+          <span data-suisou-media-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state" style="--c: var(--suisou-success)"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>block ボタンの既定を左寄せにする</span><span class="demo-tag demo-label" style="--c: var(--suisou-accent)">部品</span><span class="demo-tag demo-label" style="--c: var(--suisou-success)">実測あり</span></header>
+            <span class="demo-meta">#10 opened 3 days ago by shiro-ka</span>
           </div>
-          <span class="demo-tag" style="border-color: transparent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>2</span>
+          <span data-suisou-media-tail class="demo-tag demo-plain"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>2</span>
         </div>
-        <div class="demo-row" aria-selected="false">
+        <div class="demo-row" data-suisou-media aria-selected="false">
           <input class="demo-check" type="checkbox" aria-label="選択">
-          <svg style="--c: var(--suisou-success)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
-          <div class="suisou-stack suisou-gap-1 suisou-fill">
-            <div class="suisou-row suisou-wrap suisou-gap-2">
-              <span data-suisou-text="s14 w600">on-accent の去就を決める</span>
-              <span class="demo-tag demo-label" style="--c: var(--suisou-accent)">色</span>
-            </div>
-            <span data-suisou-text="s12 w400" class="muted">#9 opened 4 days ago by shiro-ka</span>
+          <span data-suisou-media-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state" style="--c: var(--suisou-success)"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>on-accent の去就を決める</span><span class="demo-tag demo-label" style="--c: var(--suisou-accent)">色</span></header>
+            <span class="demo-meta">#9 opened 4 days ago by shiro-ka</span>
           </div>
-          
         </div>
-        <div class="demo-row" aria-selected="false">
+        <div class="demo-row" data-suisou-media aria-selected="false">
           <input class="demo-check" type="checkbox" aria-label="選択">
-          <svg style="--c: var(--suisou-success)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
-          <div class="suisou-stack suisou-gap-1 suisou-fill">
-            <div class="suisou-row suisou-wrap suisou-gap-2">
-              <span data-suisou-text="s14 w600">CVD シミュレーションを通した ΔE で検証する</span>
-              <span class="demo-tag demo-label" style="--c: var(--suisou-accent)">色</span><span class="demo-tag demo-label" style="--c: var(--suisou-warning)">要調査</span>
-            </div>
-            <span data-suisou-text="s12 w400" class="muted">#8 opened 4 days ago by shiro-ka</span>
+          <span data-suisou-media-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state" style="--c: var(--suisou-success)"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>CVD シミュレーションを通した ΔE で検証する</span><span class="demo-tag demo-label" style="--c: var(--suisou-accent)">色</span><span class="demo-tag demo-label" style="--c: var(--suisou-warning)">要調査</span></header>
+            <span class="demo-meta">#8 opened 4 days ago by shiro-ka</span>
           </div>
-          <span class="demo-tag" style="border-color: transparent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>3</span>
+          <span data-suisou-media-tail class="demo-tag demo-plain"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>3</span>
         </div>
-        <div class="demo-row" aria-selected="false">
+        <div class="demo-row" data-suisou-media aria-selected="false">
           <input class="demo-check" type="checkbox" aria-label="選択">
-          <svg style="--c: var(--suisou-success)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
-          <div class="suisou-stack suisou-gap-1 suisou-fill">
-            <div class="suisou-row suisou-wrap suisou-gap-2">
-              <span data-suisou-text="s14 w600">アイコンボタンの当たり判定を 44px にするか</span>
-              <span class="demo-tag demo-label" style="--c: var(--suisou-accent)">部品</span>
-            </div>
-            <span data-suisou-text="s12 w400" class="muted">#7 opened 4 days ago by shiro-ka</span>
+          <span data-suisou-media-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state" style="--c: var(--suisou-success)"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>アイコンボタンの当たり判定を 44px にするか</span><span class="demo-tag demo-label" style="--c: var(--suisou-accent)">部品</span></header>
+            <span class="demo-meta">#7 opened 4 days ago by shiro-ka</span>
           </div>
-          <span class="demo-tag" style="border-color: transparent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>1</span>
+          <span data-suisou-media-tail class="demo-tag demo-plain"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>1</span>
         </div>
-        <div class="demo-row" aria-selected="false">
+        <div class="demo-row" data-suisou-media aria-selected="false">
           <input class="demo-check" type="checkbox" aria-label="選択">
-          <svg style="--c: var(--suisou-success)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
-          <div class="suisou-stack suisou-gap-1 suisou-fill">
-            <div class="suisou-row suisou-wrap suisou-gap-2">
-              <span data-suisou-text="s14 w600">アクセント名の残り6色を決める</span>
-              <span class="demo-tag demo-label" style="--c: var(--suisou-accent)">命名</span>
-            </div>
-            <span data-suisou-text="s12 w400" class="muted">#6 opened 4 days ago by shiro-ka</span>
+          <span data-suisou-media-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state" style="--c: var(--suisou-success)"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>アクセント名の残り6色を決める</span><span class="demo-tag demo-label" style="--c: var(--suisou-accent)">命名</span></header>
+            <span class="demo-meta">#6 opened 4 days ago by shiro-ka</span>
           </div>
-          <span class="demo-tag" style="border-color: transparent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>6</span>
+          <span data-suisou-media-tail class="demo-tag demo-plain"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>6</span>
         </div>
-        <div class="demo-row" aria-selected="false">
+        <div class="demo-row" data-suisou-media aria-selected="false">
           <input class="demo-check" type="checkbox" aria-label="選択">
-          <svg style="--c: var(--suisou-success)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
-          <div class="suisou-stack suisou-gap-1 suisou-fill">
-            <div class="suisou-row suisou-wrap suisou-gap-2">
-              <span data-suisou-text="s14 w600">selected-surface に載る罫が検査されていない</span>
-              <span class="demo-tag demo-label" style="--c: var(--suisou-accent)">色</span><span class="demo-tag demo-label" style="--c: var(--suisou-error)">不具合</span>
-            </div>
-            <span data-suisou-text="s12 w400" class="muted">#5 opened 4 days ago by shiro-ka</span>
+          <span data-suisou-media-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state" style="--c: var(--suisou-success)"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>selected-surface に載る罫が検査されていない</span><span class="demo-tag demo-label" style="--c: var(--suisou-accent)">色</span><span class="demo-tag demo-label" style="--c: var(--suisou-error)">不具合</span></header>
+            <span class="demo-meta">#5 opened 4 days ago by shiro-ka</span>
           </div>
-          <span class="demo-tag" style="border-color: transparent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>2</span>
+          <span data-suisou-media-tail class="demo-tag demo-plain"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>2</span>
         </div>
-        <div class="demo-row" aria-selected="false">
+        <div class="demo-row" data-suisou-media aria-selected="false">
           <input class="demo-check" type="checkbox" aria-label="選択">
-          <svg style="--c: var(--suisou-text-sub)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>
-          <div class="suisou-stack suisou-gap-1 suisou-fill">
-            <div class="suisou-row suisou-wrap suisou-gap-2">
-              <span data-suisou-text="s14 w600">面の input を item に改名する</span>
-              <span class="demo-tag demo-label" style="--c: var(--suisou-accent)">命名</span>
-            </div>
-            <span data-suisou-text="s12 w400" class="muted">#4 by shiro-ka was closed 4 days ago</span>
+          <span data-suisou-media-icon><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="demo-state" style="--c: var(--suisou-text-sub)"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>面の input を item に改名する</span><span class="demo-tag demo-label" style="--c: var(--suisou-accent)">命名</span></header>
+            <span class="demo-meta">#4 by shiro-ka was closed 4 days ago</span>
           </div>
-          <span class="demo-tag" style="border-color: transparent"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>3</span>
+          <span data-suisou-media-tail class="demo-tag demo-plain"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>3</span>
         </div>
   </div>
 </div>
