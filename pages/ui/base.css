@@ -33,6 +33,7 @@
   --suisou-space-2: 8px;
   --suisou-space-3: 16px;
   --suisou-space-4: 24px;
+  --suisou-icon: 20px;          /* アイコンの一辺。4の倍数 */
   --suisou-radius: 8px;
   --suisou-radius-pill: 999px;
 
