@@ -1,0 +1,127 @@
+<!-- Button。全部静的。JS は要らない -->
+<section class="page">
+  <h1>Button</h1>
+  <p class="note">
+    塗らない。CTA すらアウトライン。hover で面の明度は動かさず <code>hover-surface</code> を敷く。
+    基本形が「罫なし」なのは実測から —— wixdex の <code>&lt;button&gt;</code> 84個のうち
+    26個がアイコンのみで、単独では最大の塊だった。しかも hover 後の文字色が
+    <code>gray-300</code> と <code>white</code> に割れ、背景の有無も揃っていなかった。
+  </p>
+
+  <div class="group">
+    <h2>使い方</h2>
+    <p class="note">
+      値は空白区切り。<code>~=</code> で拾うので、いくつ並べても属性は1つのまま。
+      置き方は <code>class</code>（ユーティリティ）、状態は <code>disabled</code> や
+      <code>aria-*</code> を借りる。
+    </p>
+    <div class="demo">
+      <span class="demo-label">&lt;button data-suisou-btn="danger icon" aria-label="削除"&gt;</span>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>強さ</h2>
+    <div class="demo">
+      <div class="suisou-row suisou-wrap">
+        <button data-suisou-btn type="button">基本</button>
+        <button data-suisou-btn="outline" type="button">CTA</button>
+        <button data-suisou-btn="plain" type="button">目立たせない</button>
+        <button data-suisou-btn="danger" type="button">破壊的</button>
+      </div>
+    </div>
+    <table class="spec">
+      <tr><th>値</th><th>見た目</th><th>hover</th><th>active</th></tr>
+      <tr><td>（なし）</td><td>罫なし・背景なし・<code>text-sub</code></td>
+          <td><code>hover-surface</code> + <code>text-main</code></td><td><code>selected-surface</code></td></tr>
+      <tr><td><code>outline</code></td><td><code>accent</code> の枠と文字。左右余白が広い</td>
+          <td>下地のみ</td><td><code>accent-active</code></td></tr>
+      <tr><td><code>plain</code></td><td><code>line-strong</code> の枠。文字は <code>text-sub</code></td>
+          <td>下地 + <code>text-main</code></td><td>下地</td></tr>
+      <tr><td><code>danger</code></td><td><code>error</code> の枠と文字</td>
+          <td><code>error-surface</code></td><td><code>error-surface</code></td></tr>
+    </table>
+    <p class="note">
+      ★<code>danger</code> の hover と active は色を動かしていない。仕様書に
+      「意味色は状態を持たない。destructive なボタンは v1.2 のスコープ外」とあり、
+      <code>error</code> の押下色が solve.py に無いため。下地だけで反応させている。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>状態</h2>
+    <div class="demo">
+      <div class="suisou-row suisou-wrap">
+        <button data-suisou-btn="on" type="button">押しっぱなし</button>
+        <button data-suisou-btn type="button" disabled>無効</button>
+        <button data-suisou-btn="outline" type="button" disabled>無効（CTA）</button>
+        <button data-suisou-btn="danger" type="button" disabled>無効（破壊的）</button>
+      </div>
+    </div>
+    <p class="note">
+      無効は <code>disabled</code> か <code>aria-disabled="true"</code> のどちらでも効く。
+      ★<code>on</code> は <code>aria-pressed</code> に寄せるべきか未決。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>形</h2>
+    <div class="demo">
+      <span class="demo-label">icon … 正方形。padding 0 / aspect-ratio 1 / min-width 32px</span>
+      <div class="suisou-row suisou-wrap">
+        <button data-suisou-btn="icon" type="button" aria-label="追加"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg></button>
+        <button data-suisou-btn="outline icon" type="button" aria-label="次へ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg></button>
+        <button data-suisou-btn="danger icon" type="button" aria-label="削除"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg></button>
+        <button data-suisou-btn="on icon" type="button" aria-label="お気に入り"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg></button>
+      </div>
+    </div>
+    <div class="demo">
+      <span class="demo-label">block … 幅いっぱい</span>
+      <button data-suisou-btn="outline block" type="button">保存する</button>
+    </div>
+    <p class="note">
+      ★当たり判定は 32px。タッチ目標の推奨は 44px なので、モバイルを踏むなら要検討。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>アイコン</h2>
+    <p class="note">
+      寸法は部品が持つ（<code>--suisou-icon</code> = 20px）ので、使う側は書かない。
+      wixdex では <code>w-5 h-5</code> を各所で手書きしていた。
+      SVG が <code>stroke="currentColor"</code> なら色も自動で追随するので、
+      <code>text-sub → text-main</code> の変化がそのまま効く。
+      アイコンだけのボタンには <code>aria-label</code> が要る。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>連結</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-btn-group</span>
+      <div class="suisou-row suisou-wrap">
+        <div data-suisou-btn-group>
+          <button data-suisou-btn="on" type="button">すべて</button>
+          <button data-suisou-btn type="button">所持</button>
+          <button data-suisou-btn type="button">未所持</button>
+          <button data-suisou-btn="icon" type="button" aria-label="絞り込み"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg></button>
+        </div>
+      </div>
+    </div>
+    <p class="note">
+      親が罫と角丸を持ち、<code>overflow</code> で子を切る。子は角丸を持たないので
+      何個並んでも破綻しない。wixdex の検索欄がこの作りだった。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table class="spec">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>サイズ段</td><td>1サイズのみ。wixdex の実測ではほぼ一択だったので増やしていない</td></tr>
+      <tr><td><code>on</code> の表現</td><td><code>aria-pressed</code> に寄せるか未決</td></tr>
+      <tr><td>当たり判定</td><td>32px。モバイルなら 44px 検討</td></tr>
+      <tr><td><code>danger</code> の押下色</td><td>solver に <code>error</code> の active が無い</td></tr>
+    </table>
+  </div>
+</section>
