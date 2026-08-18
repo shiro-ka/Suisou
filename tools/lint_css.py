@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""手書き CSS/HTML/JS が掟1を破っていないか検査する。
+"""手書き CSS/HTML/JS が掟を破っていないか検査する。
 
   1. 色の値が直接書かれていないか（#rrggbb / oklch() / rgb() / hsl() …）
   2. 参照している --suisou-* が palette.css に実在するか
+  3. data-suisou-surface が「段」をちょうど1つ持っているか
 
 生成物（palette.css）は検査対象から外す。あれだけが色を持ってよい。
 
@@ -17,6 +18,9 @@ ROOT = os.path.normpath(os.path.join(HERE, os.pardir))
 GENERATED = {"palette.css", "suisou.data.js"}    # 生成物。検査しない
 TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
+
+# 面の段。必ず1つ書く。装飾（bare）だけでは「どの段か」を言っていない
+SURFACE_STEPS = {"panel", "item", "floating", "none"}
 
 COLOR = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:oklch|oklab|lab|lch|rgba?|hsla?|color)\s*\(", re.I)
 COMMENT_CSS = re.compile(r"/\*.*?\*/", re.S)
@@ -74,6 +78,16 @@ def main():
         for name in sorted(set(re.findall(r"var\((--suisou-[a-z0-9-]+)\)", body))):
             if name not in defined:
                 problems.append(f"{rel}: 未定義の変数 … {name}")
+
+        if path.endswith(".html"):
+            for i, line in enumerate(body.splitlines(), 1):
+                for m in re.finditer(r'data-suisou-surface(?:="([^"]*)")?', line):
+                    steps = SURFACE_STEPS & set((m.group(1) or "").split())
+                    if len(steps) != 1:
+                        got = m.group(1) if m.group(1) is not None else "（値なし）"
+                        problems.append(
+                            f"{rel}:{i}: surface の段が {len(steps)} 個 … \"{got}\" "
+                            f"（{' / '.join(sorted(SURFACE_STEPS))} から1つ書く）")
 
     print(f"検査 {checked} ファイル / --suisou-* の定義 {len(defined)} 種")
     if problems:

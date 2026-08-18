@@ -15,19 +15,30 @@
       <span class="demo-label">data-suisou-surface="panel"</span>
       <div data-suisou-surface="panel">面 + 罫。既定</div>
       <div data-suisou-surface="panel bare">罫なし。面だけで区切る</div>
-      <div data-suisou-surface="outline">面なし。罫だけで囲う</div>
+      <div data-suisou-surface="none">段を上げず、罫だけで囲う</div>
     </div>
     <table class="spec">
-      <tr><th>値</th><th>面</th><th>罫</th><th>使う場面</th></tr>
-      <tr><td><code>panel</code></td><td><code>--suisou-panel</code></td><td><code>line-weak</code></td>
+      <tr><th>段（必須・1つ）</th><th>面</th><th>使う場面</th></tr>
+      <tr><td><code>panel</code></td><td><code>--suisou-panel</code></td>
           <td>いちばん普通の容れ物。Mado の実測で 46箇所</td></tr>
-      <tr><td><code>item</code></td><td><code>--suisou-item</code></td><td><code>line-weak</code></td>
+      <tr><td><code>item</code></td><td><code>--suisou-item</code></td>
           <td>1段手前。入力欄、入れ子の容れ物、タグ</td></tr>
-      <tr><td><code>bare</code></td><td>そのまま</td><td>なし</td>
-          <td>罫なしで面だけ。wixdex の実測で 37箇所</td></tr>
-      <tr><td><code>outline</code></td><td>なし</td><td><code>line-weak</code></td>
-          <td>階層を増やさず囲う。実測では 1箇所</td></tr>
+      <tr><td><code>floating</code></td><td><code>--suisou-floating</code></td>
+          <td>未実装。唯一影を持つ面になる</td></tr>
+      <tr><td><code>none</code></td><td>持たない</td>
+          <td>段を上げず罫だけで囲う。実測では 1箇所</td></tr>
     </table>
+    <table class="spec">
+      <tr><th>装飾（任意）</th><th>効果</th><th>使う場面</th></tr>
+      <tr><td><code>bare</code></td><td>罫を消す</td>
+          <td>面だけで区切る。wixdex の実測で 37箇所</td></tr>
+    </table>
+    <p class="note">
+      値は空白区切りで重ねる（<code>"panel bare"</code>）。
+      <strong>段を書かずに装飾だけ書いても意味が通らない</strong> ——
+      面だと宣言しておいてどの段か言っていないため。
+      <code>tools/lint_css.py</code> が段をちょうど1つ持っているか検査する。
+    </p>
     <p class="note">値は空白区切りで重ねられる（<code>"panel bare"</code>）。</p>
   </div>
 
@@ -44,7 +55,7 @@
       <div data-suisou-surface="panel" class="suisou-stack suisou-gap-2">
         外側 — panel
         <div data-suisou-surface="item">内側 — item。1段手前</div>
-        <div data-suisou-surface="outline">内側 — outline。面を持たない</div>
+        <div data-suisou-surface="none">内側 — outline。面を持たない</div>
       </div>
     </div>
   </div>
