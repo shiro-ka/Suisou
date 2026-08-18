@@ -10,7 +10,7 @@
 > テーマ名 `dim` と階段名 `dim` の衝突もこれで解消した。
 >
 > **v1.3 の変更**: ★**L 階段が2系統になった**（`dark` = bg L15 / `dim` = bg L26）。しろさまの「純粋なライトテーマは作らないが、ライトモードユーザーには明るめの青グレーを投げる」という判断による。詳細は §2 P1 と §6。dim は破綻 0件・アクセント9色すべて使用可。
-> 提出書: `tools/palette/index.html`（スライダー無し。値は制約から解いたもの）
+> 表示: プレビューサイト `pages/`（提出書 `tools/palette/index.html` は 2026-08-18 に撤去）。値は制約から解いたもの）
 > 一次記録: `reference/color-system-oklch.md` / 経緯: `log/2026-08-17.md` / wixdex 実測: `reference/wixdex-ui-audit.md`
 >
 > ★数値はすべて実測・実計算値。再現手順は §14。
@@ -155,7 +155,7 @@ HSL では「明るさを揃えたまま色相だけ変える」ができない�
 
 **v1.3 で階段が2系統になった。系統内では共通、系統をまたぐと別。**
 
-★**数値の表は `tools/palette/spec-tables.md`（生成物）を参照**。この仕様書には表を持たない（§15）。
+★**数値の表は `tools/spec-tables.md`（生成物）を参照**。この仕様書には表を持たない（§15）。
 
 **dim は「ライト志向のユーザーに投げる明るめの階段」**（P1）。極性は反転しない。
 
@@ -172,7 +172,7 @@ HSL では「明るさを揃えたまま色相だけ変える」ができない�
 
 ## §7 テーマ
 
-★**テーマの値と使えるアクセントの一覧は `tools/palette/spec-tables.md`（生成物）を参照**。
+★**テーマの値と使えるアクセントの一覧は `tools/spec-tables.md`（生成物）を参照**。
 
 **面C が上がるとアクセント強さを下げる理由**: Nord を OKLCH に変換した実測が根拠。Nord は全色が C ≤ 0.121 に収まりトーンが統一されており、そこに Tailwind の `orange-500`（C 0.213）を置くと1色だけ別世界に見える。`zinc` は C≈0.01 でトーン制約が存在しないので鮮烈なアクセントが成立する。
 
@@ -259,7 +259,7 @@ disabled : --color-text-disabled。本文には使わない
 
 **全テーマ × 使用可能アクセント × 状態（base / active）で、以下の全ペアが基準を満たす。構造的破綻 0件。**
 
-★**検証ペアの一覧と最悪値は `tools/palette/spec-tables.md`（生成物）を参照**。ペアの定義は `solve.py` の `PAIRS` が正。
+★**検証ペアの一覧と最悪値は `tools/spec-tables.md`（生成物）を参照**。ペアの定義は `solve.py` の `PAIRS` が正。
 
 **要件外**: `text-disabled` on `floating` = 3.23:1（WCAG 1.4.3 の除外規定）
 
@@ -271,7 +271,7 @@ disabled : --color-text-disabled。本文には使わない
 
 「L 階段は1回決めたら動かさない」は v1.1 で撤回済み。
 
-1. あたしが `tools/palette/solve.py` の定義を直す
+1. あたしが `tools/solve.py` の定義を直す
 2. `python3 solve.py` を走らせる（`pages/palette.css` / `pages/suisou.data.js` / `spec-tables.md` が再生成される）
 3. しろさまが提出書（`index.html`）を開いて実物を見る
 4. 「紫もうちょい明るく」のような指示 → あたしが数値に翻訳して 1 に戻る
@@ -347,7 +347,7 @@ pages/
 
 ## §14 再現方法
 
-提出書 `tools/palette/index.html` に全実装（JS）。同等の Python 実装は `reference/color-system-oklch.md` 末尾。検算済み（白 → L=100%/C=0、`#808080` → L=60%/C=0、黒 → L=0%）。
+旧提出書に全実装（JS）があったが撤去済み。現行は `tools/solve.py` の Python 実装は `reference/color-system-oklch.md` 末尾。検算済み（白 → L=100%/C=0、`#808080` → L=60%/C=0、黒 → L=0%）。
 
 ```
 lin(L,C,H)     OKLCH → linear sRGB
