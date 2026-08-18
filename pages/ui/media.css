@@ -1,0 +1,56 @@
+/* Suisou — Media
+
+     <div data-suisou-media>
+       <div data-suisou-avatar>し</div>
+       <div>
+         <header><span>しろか</span><span>09:12</span></header>
+         <p>本文</p>
+       </div>
+     </div>
+
+   先頭に固定幅のもの、右に可変の本文。2010 年に OOCSS で提唱された
+   メディアオブジェクトの形で、Bootstrap も Bulma も media と呼んでいた。
+   チャットの発言・コメント・通知・検索結果と、繰り返し出てくる。
+
+   箱ではないので面も罫も持たない。載せる場所は panel の担当。
+
+   中の見出しと本文は要素セレクタで整える。:where() で詳細度を 0 にして
+   あるので、適用先はいつでも上書きできる。この部品の中だけに効くので、
+   適用先の <header> や <p> に漏れることはない。 */
+
+[data-suisou-media] {
+  display: flex;
+  gap: var(--suisou-space-2);
+  align-items: flex-start;
+}
+
+/* 本体は最後に置く。余った幅を取る */
+[data-suisou-media] > :last-child { flex: 1 1 auto; min-width: 0; }
+
+/* 名前と時刻の行 */
+[data-suisou-media] :where(header) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--suisou-space-2);
+}
+[data-suisou-media] :where(header) > :first-child {
+  font-size: var(--suisou-size-14);
+  line-height: var(--suisou-lh-14);
+  font-weight: 600;
+}
+[data-suisou-media] :where(header) > :not(:first-child) {
+  font-size: var(--suisou-size-12);
+  line-height: var(--suisou-lh-12);
+  color: var(--suisou-text-sub);
+}
+
+[data-suisou-media] :where(p) {
+  margin: 0;
+  font-size: var(--suisou-size-14);
+  line-height: var(--suisou-lh-14);
+}
+[data-suisou-media] :where(p) + :where(p) { margin-top: var(--suisou-space-1); }
+
+/* 末尾に何か置くとき（コメント数など）は縮ませない */
+[data-suisou-media~="has-tail"] > :last-child { flex: none; }
