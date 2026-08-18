@@ -3,12 +3,15 @@
 
    ★このシステムの約束:
 
-     data-suisou-*   部品 ＝ ブランド。見た目の決定
-     class           ユーティリティ ＝ 置き方（ui/layout.css だけが持つ）
-     aria-* / disabled  状態。自分で発明せず標準を借りる
+     data-suisou-surface="…"  面 ＝ 階段の段。閉じた集合なので値で選ぶ
+     data-suisou-<部品>       部品 ＝ ブランド。増えるので属性そのものが名前
+     class                    ユーティリティ ＝ 置き方（ui/layout.css だけが持つ）
+     aria-* / disabled        状態。自分で発明せず標準を借りる
 
-       <div data-suisou-panel class="suisou-stack suisou-gap-3">
+       <div data-suisou-surface="panel" data-suisou-media class="suisou-gap-3">
        <button data-suisou-btn="outline icon" aria-pressed="true">
+
+     形が違えば層が違う。面は値で切り替わり、部品は属性が増える。
 
      値は空白区切り。~= で拾うので、いくつ並べても属性は1つ。
      適用先が Tailwind でも、部品は class を使わないので取り合いにならない。

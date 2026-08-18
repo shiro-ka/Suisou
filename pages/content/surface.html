@@ -1,0 +1,79 @@
+<!-- Panel。全部静的 -->
+<section class="page">
+  <h1>Surface</h1>
+  <p class="note">
+    面。値で選ぶ —— 面は階段（<code>bg &lt; panel &lt; item &lt; floating</code>）という
+    閉じた集合なので、属性は1つで値を切り替える。部品（<code>media</code> や
+    <code>btn</code>）はこれから増えるので属性そのものが名前になる。
+    <strong>形が違えば層が違うと分かる。</strong>
+    平らな容れ物だけを引き受け、影は持たない。浮くものは <code>floating</code> として後で足す。
+  </p>
+
+  <div class="group">
+    <h2>値</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-surface="panel"</span>
+      <div data-suisou-surface="panel">面 + 罫。既定</div>
+      <div data-suisou-surface="panel bare">罫なし。面だけで区切る</div>
+      <div data-suisou-surface="outline">面なし。罫だけで囲う</div>
+    </div>
+    <table class="spec">
+      <tr><th>値</th><th>面</th><th>罫</th><th>使う場面</th></tr>
+      <tr><td><code>panel</code></td><td><code>--suisou-panel</code></td><td><code>line-weak</code></td>
+          <td>いちばん普通の容れ物。Mado の実測で 46箇所</td></tr>
+      <tr><td><code>item</code></td><td><code>--suisou-item</code></td><td><code>line-weak</code></td>
+          <td>1段手前。入力欄、入れ子の容れ物、タグ</td></tr>
+      <tr><td><code>bare</code></td><td>そのまま</td><td>なし</td>
+          <td>罫なしで面だけ。wixdex の実測で 37箇所</td></tr>
+      <tr><td><code>outline</code></td><td>なし</td><td><code>line-weak</code></td>
+          <td>階層を増やさず囲う。実測では 1箇所</td></tr>
+    </table>
+    <p class="note">値は空白区切りで重ねられる（<code>"panel bare"</code>）。</p>
+  </div>
+
+  <div class="group">
+    <h2>入れ子</h2>
+    <p class="note">
+      内側は明示的に1段手前（<code>item</code>）を指定する。自動では上げない ——
+      値で書いてあるものを裏で書き換えられると読めなくなるため。
+      仕様の「モーダル内の入力欄がモーダルより明るくなる」順序は、階段の順に
+      値を選べば守れる。
+    </p>
+    <div class="demo">
+      <span class="demo-label">panel の中に item</span>
+      <div data-suisou-surface="panel" class="suisou-stack suisou-gap-2">
+        外側 — panel
+        <div data-suisou-surface="item">内側 — item。1段手前</div>
+        <div data-suisou-surface="outline">内側 — outline。面を持たない</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>中身の並べ方は持たない</h2>
+    <p class="note">
+      Panel が持つのは見た目だけ。並べ方は <code>class</code> のユーティリティが担当する。
+      territory を分けているので、適用先が Tailwind でも取り合いにならない。
+    </p>
+    <div class="demo">
+      <span class="demo-label">&lt;div data-suisou-surface="panel" class="suisou-stack suisou-gap-3"&gt;</span>
+      <div data-suisou-surface="panel" class="suisou-stack suisou-gap-3">
+        <div>縦に積む</div>
+        <div class="suisou-row suisou-gap-2">
+          <button data-suisou-btn="outline" type="button">保存</button>
+          <button data-suisou-btn type="button">取り消し</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table class="spec">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>余白の段</td><td>16px 固定。実測は 8〜20px でばらついていたので、必要になったら足す</td></tr>
+      <tr><td>命名</td><td>解決済み。面は値、部品は属性名という形の違いで層を分けた</td></tr>
+      <tr><td><code>floating</code></td><td>未実装。唯一影を持つ面になる</td></tr>
+    </table>
+  </div>
+</section>
