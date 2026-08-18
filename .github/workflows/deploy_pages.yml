@@ -40,9 +40,11 @@ jobs:
       - name: 配信するものを組み立てる
         run: |
           mkdir -p _site
-          cp site/index.html       _site/index.html      # 素の HTML/CSS のプレビュー（JS 無し）
+          cp site/index.html       _site/index.html
           cp site/suisou.css       _site/suisou.css
+          cp site/app.js           _site/app.js
           cp site/palette.css      _site/palette.css     # solve.py の生成物
+          cp site/suisou.data.js   _site/suisou.data.js  # solve.py の生成物（構造のみ）
           cp tools/index.html      _site/palette.html    # JS のパレットビューア
           cp tools/type.html       _site/type.html
           cp tools/palette.data.js _site/palette.data.js
