@@ -17,8 +17,8 @@ const slot = (name, scope = document) => scope.querySelector(`[data-slot="${name
 const PAGES = {
   palette:    { group: '土台', label: 'Palette',    enhance: enhancePalette },
   typography: { group: '土台', label: 'Typography', enhance: enhanceTypography },
+  surface:    { group: '土台', label: 'Surface' },
   button:     { group: '部品', label: 'Button' },
-  panel:      { group: '部品', label: 'Panel' },
   chat:       { group: '作例', label: 'チャット', bleed: true },
   list:       { group: '作例', label: '課題一覧', bleed: true },
 };

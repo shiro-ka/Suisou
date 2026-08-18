@@ -1,0 +1,38 @@
+/* Suisou — Surface（面）
+
+     <div data-suisou-surface="panel">面 + 罫。いちばん普通の容れ物</div>
+     <div data-suisou-surface="item">1段手前。入力欄や入れ子の容れ物</div>
+     <div data-suisou-surface="panel bare">罫なし</div>
+     <div data-suisou-surface="outline">面なし。罫だけ</div>
+
+   ★面は「閉じた集合」なので値で選ぶ。部品（media / btn / avatar …）は
+     これから増えるので属性そのものが名前になる。形が違えば層が違うと分かる。
+
+       data-suisou-surface="panel"   面 … 値で選ぶ
+       data-suisou-media             部品 … 属性が名前
+
+   値は面の階段（bg < panel < item < floating）とそのまま対応する。
+   surface="item" は --suisou-item を使う。覚えることが減る。
+
+   平らな容れ物だけを引き受ける。影は持たない ―― 影は「実際に浮くもの」だけの
+   もので、面の分離は border が担保する。浮くものは floating として後で足す。
+
+   中身の並べ方は持たない。並びは部品（media）とユーティリティの担当なので、
+   同じ要素に同居できる:  <div data-suisou-surface="panel" data-suisou-media> */
+
+[data-suisou-surface] {
+  box-sizing: border-box;
+  border: 1px solid var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+  padding: var(--suisou-space-3);
+}
+
+/* 階段のどの段に載るか */
+[data-suisou-surface~="panel"] { background: var(--suisou-panel); }
+[data-suisou-surface~="item"]  { background: var(--suisou-item); }
+
+/* 罫なし。面だけで区切る */
+[data-suisou-surface~="bare"] { border-color: transparent; }
+
+/* 面なし。囲うだけで階層を1段も増やさない */
+[data-suisou-surface~="outline"] { background: transparent; }
