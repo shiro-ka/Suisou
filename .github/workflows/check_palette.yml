@@ -1,0 +1,43 @@
+name: パレットを検証
+
+# 掟1「色を決めるのは tools/solve.py だけ」を強制する。
+#   1. 構造的破綻（色域外・コントラスト不足・ΔE フロア割れ）が無いこと
+#   2. 生成物が solve.py の出力と一致すること = 手で編集されていないこと
+# 2 が無いと、solve.py を直して再生成し忘れた差分をすり抜ける。
+
+on:
+  push:
+    paths:
+      - 'tools/solve.py'
+      - 'tools/palette.data.js'
+      - 'tools/spec-tables.md'
+      - '.github/workflows/check_palette.yml'
+  pull_request:
+    paths:
+      - 'tools/solve.py'
+      - 'tools/palette.data.js'
+      - 'tools/spec-tables.md'
+      - '.github/workflows/check_palette.yml'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+        # solve.py は標準ライブラリだけで動くので依存のインストールは無い
+
+      - name: 構造的破綻が無いか
+        run: python3 tools/solve.py --check
+
+      - name: 生成物が solve.py の出力と一致するか
+        run: |
+          python3 tools/solve.py
+          if ! git diff --exit-code --stat -- tools/palette.data.js tools/spec-tables.md; then
+            echo "::error::生成物が solve.py の出力とずれている。python3 tools/solve.py を実行してコミットし直すこと。"
+            exit 1
+          fi
