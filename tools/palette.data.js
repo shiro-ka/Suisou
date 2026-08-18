@@ -58,12 +58,12 @@ const PALETTE = {
  },
  "accentHues": {
   "orange": 55,
-  "lime": 122,
+  "turtle": 122,
   "teal": 188,
-  "cyan": 212,
+  "jelly": 212,
   "blue": 255,
   "indigo": 282,
-  "purple": 308,
+  "coral": 308,
   "magenta": 332,
   "pink": 355
  },
@@ -444,7 +444,7 @@ const PALETTE = {
       }
      ]
     },
-    "lime": {
+    "turtle": {
      "hue": 122,
      "available": true,
      "issues": [],
@@ -982,7 +982,7 @@ const PALETTE = {
       }
      ]
     },
-    "cyan": {
+    "jelly": {
      "hue": 212,
      "available": true,
      "issues": [],
@@ -1789,7 +1789,7 @@ const PALETTE = {
       }
      ]
     },
-    "purple": {
+    "coral": {
      "hue": 308,
      "available": true,
      "issues": [],
@@ -2876,7 +2876,7 @@ const PALETTE = {
       }
      ]
     },
-    "lime": {
+    "turtle": {
      "hue": 122,
      "available": true,
      "issues": [],
@@ -3414,7 +3414,7 @@ const PALETTE = {
       }
      ]
     },
-    "cyan": {
+    "jelly": {
      "hue": 212,
      "available": true,
      "issues": [],
@@ -4221,7 +4221,7 @@ const PALETTE = {
       }
      ]
     },
-    "purple": {
+    "coral": {
      "hue": 308,
      "available": true,
      "issues": [],
@@ -5308,7 +5308,7 @@ const PALETTE = {
       }
      ]
     },
-    "lime": {
+    "turtle": {
      "hue": 122,
      "available": true,
      "issues": [],
@@ -5846,7 +5846,7 @@ const PALETTE = {
       }
      ]
     },
-    "cyan": {
+    "jelly": {
      "hue": 212,
      "available": false,
      "issues": [
@@ -6659,7 +6659,7 @@ const PALETTE = {
       }
      ]
     },
-    "purple": {
+    "coral": {
      "hue": 308,
      "available": true,
      "issues": [],
@@ -7746,7 +7746,7 @@ const PALETTE = {
       }
      ]
     },
-    "lime": {
+    "turtle": {
      "hue": 122,
      "available": true,
      "issues": [],
@@ -8284,7 +8284,7 @@ const PALETTE = {
       }
      ]
     },
-    "cyan": {
+    "jelly": {
      "hue": 212,
      "available": true,
      "issues": [],
@@ -9091,7 +9091,7 @@ const PALETTE = {
       }
      ]
     },
-    "purple": {
+    "coral": {
      "hue": 308,
      "available": true,
      "issues": [],
@@ -9914,12 +9914,12 @@ const PALETTE = {
    "deg": 35
   },
   {
-   "accent": "lime",
+   "accent": "turtle",
    "semantic": "warning",
    "deg": 32
   },
   {
-   "accent": "lime",
+   "accent": "turtle",
    "semantic": "success",
    "deg": 33
   },
