@@ -79,7 +79,9 @@ python3 tools/solve.py --check  # 検証のみ。破綻があれば exit 1
   `hadal`（超深海層）/ `trench`（海溝）/ `fjord`（峡湾）/ `shoal`（浅瀬）。
   `hadal` は Akuarium から継承。`fjord` は旧 `nord-ish` で、Nord 由来を残したまま水域名にした。
   これで階段名 `dim` とテーマ名の衝突も解消した
-- **アクセント名** … 海の生き物にする方針（coral / turtle など）。現在の `orange / lime / teal / cyan / blue / indigo / purple / magenta / pink` も**仮名**
+- **アクセント名** … 海の生き物にする方針。★**一部確定（2026-08-18）**:
+  `lime → turtle`（ウミガメ）/ `cyan → jelly`（クラゲ）/ `purple → coral`（サンゴ）。
+  残る `orange / teal / blue / indigo / magenta / pink` は**まだ仮名**
 
 ★このリポジトリには前身の **Akuarium** が入っており、**既に命名体系がある**。
 
@@ -125,7 +127,7 @@ akuarium-ui/      layout（header/main/footer/container/box/items/wrapper）
 
 1. **`solve.py --check` を CI に入れる**（GitHub Actions）。破綻が混入した瞬間に落ちる。既存の workflow が2本あるので、そこに足す形
 2. **APCA の advisory 並走** … WCAG 2 と判定が割れたペアだけを実機確認リストとして出す。`line-weak`(1.51:1) と `error`(4.59:1) が真っ先に載るはず
-3. **CVD シミュレーション** … Oklab の ΔE は色覚特性をモデル化していない。2型色覚では `lime`/`teal` と `success`、`orange`/`pink` と `error` が危険側に寄る。**しろさまの実物判定はこの穴を埋めない**
+3. **CVD シミュレーション** … Oklab の ΔE は色覚特性をモデル化していない。2型色覚では `turtle`/`teal` と `success`、`orange`/`pink` と `error` が危険側に寄る。**しろさまの実物判定はこの穴を埋めない**
 4. **wixdex への適用** … 現状 gray と zinc が二重化し色クラスが69種類ある。これを20トークンに畳む
 
 ---

@@ -92,8 +92,8 @@ THEMES = [
     {"name":"fjord",  "ladder":"dark", "h":272, "cs":0.030, "ar":0.60},  # 峡湾。最も色づく（旧 nord-ish）
     {"name":"shoal",  "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},  # 浅瀬。唯一明るい階段
 ]
-ACCENTS = [("orange",55),("lime",122),("teal",188),("cyan",212),("blue",255),
-           ("indigo",282),("purple",308),("magenta",332),("pink",355)]
+ACCENTS = [("orange",55),("turtle",122),("teal",188),("jelly",212),("blue",255),
+           ("indigo",282),("coral",308),("magenta",332),("pink",355)]
 
 # 制約のしきい値
 FLOOR = {"hover":0.03, "selected":0.055, "semantic":0.055, "textSub":0.08}
@@ -259,7 +259,7 @@ ACCENT_TOKENS = ["accent", "accent-active", "focus-ring",
 
 # 属性が無いときの既定。色ではなく「どれを既定に見せるか」の選択なので、ここに置く。
 DEFAULT_THEME  = "hadal"
-DEFAULT_ACCENT = "cyan"
+DEFAULT_ACCENT = "jelly"
 
 def css_color(v, alpha=None):
     L, C, H = v
