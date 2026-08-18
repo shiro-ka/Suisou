@@ -1,7 +1,7 @@
 # タイポグラフィ設計仕様書 v1.0
 
 > 2026-08-17 策定。色の仕様（`reference/palette-spec.md`）と対になる、**文字まわり**の仕様。
-> 比較ツール: `tools/palette/type.html`
+> 比較ツール: プレビューサイトの Typography ページ（`pages/`）。旧 `tools/type.html` は 2026-08-18 に撤去した
 > 経緯: `log/2026-08-17.md`
 
 ---
