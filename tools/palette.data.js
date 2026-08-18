@@ -167,7 +167,7 @@ const PALETTE = {
  ],
  "themes": [
   {
-   "name": "grey",
+   "name": "hadal",
    "ladder": "dark",
    "h": 286,
    "cs": 0.006,
@@ -2599,7 +2599,7 @@ const PALETTE = {
    }
   },
   {
-   "name": "slate",
+   "name": "trench",
    "ladder": "dark",
    "h": 265,
    "cs": 0.018,
@@ -5031,7 +5031,7 @@ const PALETTE = {
    }
   },
   {
-   "name": "nord-ish",
+   "name": "fjord",
    "ladder": "dark",
    "h": 272,
    "cs": 0.03,
@@ -7469,7 +7469,7 @@ const PALETTE = {
    }
   },
   {
-   "name": "dim",
+   "name": "shoal",
    "ladder": "dim",
    "h": 265,
    "cs": 0.02,
