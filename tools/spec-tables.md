@@ -27,11 +27,11 @@
 
 ### アクセント可用性
 
-- **hadal** … orange, lime, teal, cyan, blue, indigo, purple, magenta, pink
-- **trench** … orange, lime, teal, cyan, blue, indigo, purple, magenta, pink
-- **fjord** … orange, lime, teal, purple, magenta, pink
-  - 除外: cyan（accent が text-sub と近い ΔE 0.079） / blue（accent が text-sub と近い ΔE 0.067） / indigo（accent が text-sub と近い ΔE 0.067）
-- **shoal** … orange, lime, teal, cyan, blue, indigo, purple, magenta, pink
+- **hadal** … orange, turtle, teal, jelly, blue, indigo, coral, magenta, pink
+- **trench** … orange, turtle, teal, jelly, blue, indigo, coral, magenta, pink
+- **fjord** … orange, turtle, teal, coral, magenta, pink
+  - 除外: jelly（accent が text-sub と近い ΔE 0.079） / blue（accent が text-sub と近い ΔE 0.067） / indigo（accent が text-sub と近い ΔE 0.067）
+- **shoal** … orange, turtle, teal, jelly, blue, indigo, coral, magenta, pink
 
 ### コントラスト検証（全テーマ × 使用可能アクセント中の最悪値）
 
@@ -47,7 +47,7 @@
 | `accent` on `floating` | 3.81:1 | 3.0 | shoal/magenta | UI 部品 |
 | `line-strong` on `input` | 3.85:1 | 3.0 | hadal/orange | 入力枠 1.4.11 |
 | `text-main` on `selected-surface` | 5.82:1 | 4.5 | shoal/teal | 選択行の文字 |
-| `text-main` on `hover-surface` | 5.92:1 | 4.5 | shoal/cyan | hover 行の文字 |
+| `text-main` on `hover-surface` | 5.92:1 | 4.5 | shoal/jelly | hover 行の文字 |
 | `text-main` on `error-surface` | 6.10:1 | 4.5 | shoal/orange | バナーの文字 |
 | `error` on `error-surface` | 4.30:1 | 3.0 | shoal/orange | バナーの枠 |
 | `text-main` on `floating` | 6.53:1 | 4.5 | shoal/orange | 本文 |
@@ -59,9 +59,9 @@
 | アクセント | 意味色 | 色相差 |
 |---|---|---|
 | `pink` | `error` | 27度 |
-| `lime` | `warning` | 32度 |
+| `turtle` | `warning` | 32度 |
 | `orange` | `error` | 33度 |
-| `lime` | `success` | 33度 |
+| `turtle` | `success` | 33度 |
 | `teal` | `success` | 33度 |
 | `orange` | `warning` | 35度 |
 

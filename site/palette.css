@@ -2,7 +2,7 @@
 /*
   使い方:
 
-    <html data-suisou-theme="hadal" data-suisou-accent="cyan">
+    <html data-suisou-theme="hadal" data-suisou-accent="jelly">
 
   テーマとアクセントは必ず同じ要素に書くこと。
   アクセントの値はテーマごとに違う（面との ΔE で C を解いているため）ので、
@@ -11,7 +11,7 @@
   入れ子にすれば領域ごとに別テーマにできる。プレビューはこれで並べている。
 */
 
-/* 属性が無いときの既定 … hadal / cyan */
+/* 属性が無いときの既定 … hadal / jelly */
 :root {
   --suisou-bg: oklch(15.00% 0.0060 286);
   --suisou-panel: oklch(22.00% 0.0060 286);
@@ -128,7 +128,7 @@
   --suisou-hover-surface: oklch(36.00% 0.0181 55);
   --suisou-selected-surface: oklch(36.00% 0.0472 55);
 }
-[data-suisou-theme="hadal"][data-suisou-accent="lime"] {
+[data-suisou-theme="hadal"][data-suisou-accent="turtle"] {
   --suisou-accent: oklch(74.00% 0.1526 122);
   --suisou-accent-active: oklch(71.00% 0.1464 122);
   --suisou-focus-ring: oklch(74.00% 0.1526 122);
@@ -142,7 +142,7 @@
   --suisou-hover-surface: oklch(36.00% 0.0207 188);
   --suisou-selected-surface: oklch(36.00% 0.0501 188);
 }
-[data-suisou-theme="hadal"][data-suisou-accent="cyan"] {
+[data-suisou-theme="hadal"][data-suisou-accent="jelly"] {
   --suisou-accent: oklch(74.00% 0.1096 212);
   --suisou-accent-active: oklch(71.00% 0.1052 212);
   --suisou-focus-ring: oklch(74.00% 0.1096 212);
@@ -163,7 +163,7 @@
   --suisou-hover-surface: oklch(36.00% 0.0283 282);
   --suisou-selected-surface: oklch(36.00% 0.0572 282);
 }
-[data-suisou-theme="hadal"][data-suisou-accent="purple"] {
+[data-suisou-theme="hadal"][data-suisou-accent="coral"] {
   --suisou-accent: oklch(74.00% 0.1495 308);
   --suisou-accent-active: oklch(71.00% 0.1689 308);
   --suisou-focus-ring: oklch(74.00% 0.1495 308);
@@ -192,7 +192,7 @@
   --suisou-hover-surface: oklch(36.00% 0.0049 55);
   --suisou-selected-surface: oklch(36.00% 0.0348 55);
 }
-[data-suisou-theme="trench"][data-suisou-accent="lime"] {
+[data-suisou-theme="trench"][data-suisou-accent="turtle"] {
   --suisou-accent: oklch(74.00% 0.1167 122);
   --suisou-accent-active: oklch(71.00% 0.1120 122);
   --suisou-focus-ring: oklch(74.00% 0.1167 122);
@@ -206,7 +206,7 @@
   --suisou-hover-surface: oklch(36.00% 0.0179 188);
   --suisou-selected-surface: oklch(36.00% 0.0522 188);
 }
-[data-suisou-theme="trench"][data-suisou-accent="cyan"] {
+[data-suisou-theme="trench"][data-suisou-accent="jelly"] {
   --suisou-accent: oklch(74.00% 0.0838 212);
   --suisou-accent-active: oklch(71.00% 0.0804 212);
   --suisou-focus-ring: oklch(74.00% 0.0838 212);
@@ -227,7 +227,7 @@
   --suisou-hover-surface: oklch(36.00% 0.0389 282);
   --suisou-selected-surface: oklch(36.00% 0.0682 282);
 }
-[data-suisou-theme="trench"][data-suisou-accent="purple"] {
+[data-suisou-theme="trench"][data-suisou-accent="coral"] {
   --suisou-accent: oklch(74.00% 0.1143 308);
   --suisou-accent-active: oklch(71.00% 0.1292 308);
   --suisou-focus-ring: oklch(74.00% 0.1143 308);
@@ -256,7 +256,7 @@
   --suisou-hover-surface: oklch(36.00% 0.0000 55);
   --suisou-selected-surface: oklch(36.00% 0.0240 55);
 }
-[data-suisou-theme="fjord"][data-suisou-accent="lime"] {
+[data-suisou-theme="fjord"][data-suisou-accent="turtle"] {
   --suisou-accent: oklch(74.00% 0.1077 122);
   --suisou-accent-active: oklch(71.00% 0.1034 122);
   --suisou-focus-ring: oklch(74.00% 0.1077 122);
@@ -270,7 +270,7 @@
   --suisou-hover-surface: oklch(36.00% 0.0000 188);
   --suisou-selected-surface: oklch(36.00% 0.0448 188);
 }
-[data-suisou-theme="fjord"][data-suisou-accent="purple"] {
+[data-suisou-theme="fjord"][data-suisou-accent="coral"] {
   --suisou-accent: oklch(74.00% 0.1055 308);
   --suisou-accent-active: oklch(71.00% 0.1193 308);
   --suisou-focus-ring: oklch(74.00% 0.1055 308);
@@ -299,7 +299,7 @@
   --suisou-hover-surface: oklch(47.00% 0.0027 55);
   --suisou-selected-surface: oklch(47.00% 0.0329 55);
 }
-[data-suisou-theme="shoal"][data-suisou-accent="lime"] {
+[data-suisou-theme="shoal"][data-suisou-accent="turtle"] {
   --suisou-accent: oklch(80.00% 0.1165 122);
   --suisou-accent-active: oklch(77.00% 0.1121 122);
   --suisou-focus-ring: oklch(80.00% 0.1165 122);
@@ -313,7 +313,7 @@
   --suisou-hover-surface: oklch(47.00% 0.0155 188);
   --suisou-selected-surface: oklch(47.00% 0.0519 188);
 }
-[data-suisou-theme="shoal"][data-suisou-accent="cyan"] {
+[data-suisou-theme="shoal"][data-suisou-accent="jelly"] {
   --suisou-accent: oklch(80.00% 0.0837 212);
   --suisou-accent-active: oklch(77.00% 0.0805 212);
   --suisou-focus-ring: oklch(80.00% 0.0837 212);
@@ -334,7 +334,7 @@
   --suisou-hover-surface: oklch(47.00% 0.0407 282);
   --suisou-selected-surface: oklch(47.00% 0.0700 282);
 }
-[data-suisou-theme="shoal"][data-suisou-accent="purple"] {
+[data-suisou-theme="shoal"][data-suisou-accent="coral"] {
   --suisou-accent: oklch(80.00% 0.0791 308);
   --suisou-accent-active: oklch(77.00% 0.0922 308);
   --suisou-focus-ring: oklch(80.00% 0.0791 308);
@@ -357,7 +357,7 @@
 }
 
 /* 出していない組み合わせ（制約を満たさないので使えない）:
-     fjord/cyan: accent が text-sub と近い ΔE 0.079
+     fjord/jelly: accent が text-sub と近い ΔE 0.079
      fjord/blue: accent が text-sub と近い ΔE 0.067
      fjord/indigo: accent が text-sub と近い ΔE 0.067
    これらを指定しても CSS は無反応で、:root の既定アクセントが残る。
