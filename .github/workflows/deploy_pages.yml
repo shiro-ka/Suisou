@@ -1,0 +1,52 @@
+name: サイトを配信
+
+# ブランチを経由せず、artifact を直接 Pages に渡す。
+# 生成物をリポジトリにコミットしないので、同期のズレが構造的に起きない。
+#
+# 前提: Settings > Pages > Source が「GitHub Actions」になっていること。
+#       「Deploy from a branch」のままだと、この workflow は成功しても配信に反映されない。
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write     # Pages への OIDC 認証に必要
+
+concurrency:          # 連続 push でデプロイが競合しないようにする
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: パレットを生成する
+        # 配信するのは常に solve.py の出力。コミット済みの生成物には依存しない。
+        run: python3 tools/solve.py
+
+      - name: 配信するものを組み立てる
+        run: |
+          mkdir -p _site
+          cp tools/index.html      _site/index.html
+          cp tools/type.html       _site/type.html
+          cp tools/palette.data.js _site/palette.data.js
+
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v5
