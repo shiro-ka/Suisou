@@ -12,6 +12,9 @@ html, body { height: 100%; }
 body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールしない */
 
 /* ══ 骨格 ══════════════════════════════════════════
+   トップバーは Suisou の「地べたのヘッダ」そのもの。
+   面も罫も持たず bg に直置きする ―― モノは panel に入るので、
+   ヘッダだけが地べたに残る。区切りは線ではなく空きが担う。
    プレビューとサイドバーは別々にスクロールする。
    flex の子に min-height/min-width: 0 を入れないと、
    中身がはみ出して親ごと伸びてしまう。 */
@@ -26,8 +29,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   align-items: center;
   justify-content: space-between;
   gap: var(--suisou-space-2);
-  padding: var(--suisou-space-2) var(--suisou-space-3);
-  border-bottom: 1px solid var(--suisou-line-weak);
+  padding: var(--suisou-space-3);
 }
 
 .brand { font-size: var(--suisou-size-16); font-weight: 700; }
@@ -54,8 +56,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   flex: none;
   display: grid;
   gap: var(--suisou-space-2);
-  padding: var(--suisou-space-2) var(--suisou-space-3);
-  border-bottom: 1px solid var(--suisou-line-weak);
+  padding: var(--suisou-space-3);
 }
 
 .sidebar-close { justify-self: end; }   /* 右寄せ。ボタンではなくレイアウトの仕事 */
@@ -238,7 +239,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   flex-direction: column;
   height: 100%;
   gap: var(--suisou-space-2);
-  padding: var(--suisou-space-2);
+  padding: 0 var(--suisou-space-3) var(--suisou-space-3);   /* 上はトップバーの余白が続く */
   background: var(--suisou-bg);
 }
 
