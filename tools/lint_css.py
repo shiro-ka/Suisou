@@ -23,14 +23,19 @@ COMMENT_CSS = re.compile(r"/\*.*?\*/", re.S)
 COMMENT_HTML = re.compile(r"<!--.*?-->", re.S)
 
 
+def walk(d):
+    """pages/ 配下を再帰的に見る。部品は pages/ui/ に1ファイルずつ置いてある。"""
+    base = os.path.join(ROOT, d)
+    for dirpath, _, names in os.walk(base):
+        for name in sorted(names):
+            if name.endswith(TARGET_EXT):
+                yield os.path.join(dirpath, name)
+
 def targets():
     for d in TARGET_DIRS:
-        base = os.path.join(ROOT, d)
-        if not os.path.isdir(base):
-            continue
-        for name in sorted(os.listdir(base)):
-            if name.endswith(TARGET_EXT) and name not in GENERATED:
-                yield os.path.join(base, name)
+        for p in walk(d):
+            if os.path.basename(p) not in GENERATED:
+                yield p
 
 
 def strip_comments(text, path):
@@ -45,8 +50,13 @@ def main():
     if not os.path.exists(palette):
         print("palette.css が無い。先に python3 tools/solve.py を実行すること。")
         return 1
-    with open(palette, encoding="utf-8") as f:
-        defined = set(re.findall(r"--suisou-[a-z-]+(?=\s*:)", f.read()))
+    # 定義は palette.css（色）と手書きの CSS（余白・タイポ）の両方にある。
+    # 未定義参照を拾うのが目的なので、両方を集める。
+    defined = set()
+    for p in walk("pages"):
+        if p.endswith(".css"):
+            with open(p, encoding="utf-8") as f:
+                defined |= set(re.findall(r"--suisou-[a-z0-9-]+(?=\s*:)", f.read()))
 
     problems = []
     checked = 0
@@ -61,11 +71,11 @@ def main():
             for hit in COLOR.findall(line):
                 problems.append(f"{rel}:{i}: 色の直書き … {hit.strip()}")
 
-        for name in sorted(set(re.findall(r"var\((--suisou-[a-z-]+)\)", body))):
+        for name in sorted(set(re.findall(r"var\((--suisou-[a-z0-9-]+)\)", body))):
             if name not in defined:
                 problems.append(f"{rel}: 未定義の変数 … {name}")
 
-    print(f"検査 {checked} ファイル / palette.css の定義 {len(defined)} 種")
+    print(f"検査 {checked} ファイル / --suisou-* の定義 {len(defined)} 種")
     if problems:
         print(f"*** {len(problems)} 件の違反 ***")
         for p in problems:

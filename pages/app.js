@@ -1,5 +1,5 @@
 /* 手書き。色も px も値としては持たない。
-   色は palette.css、タイポの px は suisou.css、
+   色は palette.css、タイポの px は ui/type.css、
    テーマ・アクセントの構造は suisou.data.js（生成物）。
    ここがやるのは「どれを選んでいるか」と「効いている値を読んで並べる」だけ。 */
 
@@ -18,7 +18,7 @@ const GROUPS = [
 ];
 
 /* ── Typography の構造。どの役割がどの段か、であって px ではない ──
-   px は suisou.css の .t-s* が持つ。根拠は .notes/type-spec.md §3〜§6。 */
+   px は ui/type.css の .suisou-s* が持つ。根拠は .notes/type-spec.md §3〜§6。 */
 const SCALE = [12, 14, 16, 20, 24, 28, 32];
 const WEIGHTS = [400, 500, 600, 700];
 // [役割, サイズの段, ウェイト, 追加クラス]
@@ -28,7 +28,7 @@ const ROLES_UI = [
 ];
 const ROLES_DOC = [
   ['h1', 28, 700], ['h2', 24, 700], ['h3', 20, 600], ['h4', 16, 600],
-  ['h5', 16, 500, 't-rule'], ['h6', 14, 600, 't-rule2'],
+  ['h5', 16, 500, 'suisou-rule'], ['h6', 14, 600, 'suisou-rule is-weak'],
   ['p', 16, 400], ['small', 14, 400],
 ];
 
@@ -148,14 +148,14 @@ function renderTypography() {
   // サイズスケール（UI と長文の2系統を並べる）
   const scale = el('div');
   for (const s of SCALE) {
-    scale.append(typeRow(`${s}px UI`, `t-sample t-s${s} t-w400`));
+    scale.append(typeRow(`${s}px UI`, `suisou-text suisou-s${s} suisou-w400`));
   }
   page.append(group('サイズスケール — UI（アンカー 14px）', scale,
     el('p', 'note', '14 以外はすべて4の倍数。等比スケールは採らない（§3）。')));
 
   const scaleDoc = el('div');
   for (const s of SCALE) {
-    scaleDoc.append(typeRow(`${s}px 長文`, `t-sample is-doc t-s${s} t-w400`));
+    scaleDoc.append(typeRow(`${s}px 長文`, `suisou-text is-doc suisou-s${s} suisou-w400`));
   }
   page.append(group('サイズスケール — 長文（アンカー 16px）', scaleDoc,
     el('p', 'note', '行間は UI に +4px するだけ。表ではなく規則として持っている（§6）。')));
@@ -163,7 +163,7 @@ function renderTypography() {
   // ウェイト
   const w = el('div');
   for (const n of WEIGHTS) {
-    w.append(typeRow(String(n), `t-sample t-s16 t-w${n}`));
+    w.append(typeRow(String(n), `suisou-text suisou-s16 suisou-w${n}`));
   }
   page.append(group('ウェイト', w,
     el('p', 'note', '階層はサイズだけで作らない。実測で最頻出の見出しは「14px + 600」だった（§4）。')));
@@ -171,13 +171,13 @@ function renderTypography() {
   // 役割
   const ui = el('div');
   for (const [name, size, weight, extra] of ROLES_UI) {
-    ui.append(typeRow(name, `t-sample t-s${size} t-w${weight}${extra ? ' ' + extra : ''}`));
+    ui.append(typeRow(name, `suisou-text suisou-s${size} suisou-w${weight}${extra ? ' ' + extra : ''}`));
   }
   page.append(group('役割 — UI', ui));
 
   const doc = el('div');
   for (const [name, size, weight, extra] of ROLES_DOC) {
-    doc.append(typeRow(name, `t-sample is-doc t-s${size} t-w${weight}${extra ? ' ' + extra : ''}`,
+    doc.append(typeRow(name, `suisou-text is-doc suisou-s${size} suisou-w${weight}${extra ? ' ' + extra : ''}`,
       extra ? '左罫線' : ''));
   }
   page.append(group('役割 — 長文', doc,
