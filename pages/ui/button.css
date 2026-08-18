@@ -1,0 +1,63 @@
+/* Suisou — Button
+
+   線形デザイン。CTA すら塗らない。
+   これは美学であると同時に、テーマ切替を技術的に成立させている柱でもある
+   （塗ると面の色との組み合わせが爆発する）。
+
+   hover で面の明度は動かさない。hover-surface を敷く。
+   .notes/palette-spec.md の実測: 明度を上げる方式だと accent の hover(L79) が
+   text-sub(L78) と 1.00:1 になり、線が消える。 */
+
+.suisou-btn {
+  font-family: inherit;
+  font-size: var(--suisou-size-14);
+  line-height: var(--suisou-lh-14);
+  padding: var(--suisou-space-1) var(--suisou-space-3);
+  border-radius: var(--suisou-radius);
+
+  background: transparent;
+  color: var(--suisou-accent);
+  border: 1px solid var(--suisou-accent);
+
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--suisou-space-2);
+}
+
+.suisou-btn:hover  { background: var(--suisou-hover-surface); }
+.suisou-btn:active {
+  background: var(--suisou-selected-surface);
+  color: var(--suisou-accent-active);
+  border-color: var(--suisou-accent-active);
+}
+
+/* 目立たせない方。色を持たず罫だけで立つ */
+.suisou-btn.is-plain {
+  color: var(--suisou-text-sub);
+  border-color: var(--suisou-line-strong);
+}
+.suisou-btn.is-plain:hover  { color: var(--suisou-text-main); }
+.suisou-btn.is-plain:active { color: var(--suisou-text-main); border-color: var(--suisou-line-strong); }
+
+/* 罫を持たない方。列の中に並べるとき用 */
+.suisou-btn.is-bare { border-color: transparent; }
+
+/* ★破壊的操作。仕様書に「意味色は状態を持たない（hover / active しない）。
+   destructive なボタンは v1.2 のスコープ外」とあり、error の hover/active 色が
+   定義されていない。ここでは色を動かさず、下地だけで反応させている。
+   solve.py に error-active を足すかどうかは未決。 */
+.suisou-btn.is-danger {
+  color: var(--suisou-error);
+  border-color: var(--suisou-error);
+}
+.suisou-btn.is-danger:hover  { background: var(--suisou-error-surface); }
+.suisou-btn.is-danger:active { background: var(--suisou-error-surface); }
+
+.suisou-btn:disabled,
+.suisou-btn[aria-disabled="true"] {
+  color: var(--suisou-text-disabled);
+  border-color: var(--suisou-line-weak);
+  background: transparent;
+  cursor: default;
+}

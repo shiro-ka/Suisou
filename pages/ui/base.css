@@ -1,0 +1,47 @@
+/* Suisou — 土台。トークンと最小限のリセット。
+   色の値は持たない。palette.css（solve.py の生成物）の var(--suisou-*) だけを参照する。
+
+   命名の約束:
+     .suisou-* / --suisou-*  … Suisou のもの。将来そのまま配る
+     接頭辞なし               … このプレビューサイトだけのもの（preview.css）
+*/
+
+:root {
+  /* タイポ … .notes/type-spec.md §3 §6 */
+  --suisou-size-12: 12px;  --suisou-lh-12: 16px;
+  --suisou-size-14: 14px;  --suisou-lh-14: 20px;
+  --suisou-size-16: 16px;  --suisou-lh-16: 24px;
+  --suisou-size-20: 20px;  --suisou-lh-20: 28px;
+  --suisou-size-24: 24px;  --suisou-lh-24: 32px;
+  --suisou-size-28: 28px;  --suisou-lh-28: 32px;
+  --suisou-size-32: 32px;  --suisou-lh-32: 36px;
+
+  /* ★未確定。余白・角丸はまだ決めていない（handoff の「保留」）。
+     UI アンカーの実測 8px を基準に仮置きしている。実物を見て決める。 */
+  --suisou-space-1: 4px;
+  --suisou-space-2: 8px;
+  --suisou-space-3: 16px;
+  --suisou-space-4: 24px;
+  --suisou-radius: 8px;
+  --suisou-radius-pill: 999px;
+
+  --suisou-font: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  --suisou-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--suisou-font);
+  font-size: var(--suisou-size-14);
+  line-height: var(--suisou-lh-14);
+  background: var(--suisou-bg);
+  color: var(--suisou-text-main);
+}
+
+/* 焦点の輪は全部品で同じにする。個別に書かない */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--suisou-focus-ring);
+  outline-offset: 2px;
+}
