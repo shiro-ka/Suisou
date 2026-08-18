@@ -139,7 +139,24 @@ akuarium-ui/      layout（header/main/footer/container/box/items/wrapper）
 | `.demo-code` | 行内コード。`prose` に含まれそう |
 | チャンネル一覧のボタン | `data-suisou-btn="block"` が中央寄せのままなので、左寄せに `style` の直書きが要った。`block` の既定を左寄せにするか、寄せ方の値を足すか |
 
-外枠（`.demo-app` / `.demo-rail` など）は作例そのものの都合なので部品にしない。
+一覧と詳細（2026-08-18）で追加で出たもの:
+
+| 仮に書いたもの | 本来あるべき部品 |
+|---|---|
+| `.demo-row` | **Row** … hover / selected。選択は `selected-surface` + 左に `accent` の 2px。★保留中の判断はここで見る |
+| `.demo-tag` | **Tag / Badge** … 分類のしるし |
+| `.demo-defs` | 定義の並び（`dl`）。`prose` に含めるか部品にするか未定 |
+
+`style` の直書きも溜まってきた。要求が出そろった順に:
+
+| 直書き | 回数 | 足すべきもの |
+|---|---|---|
+| `justify-content: flex-start` | 4 | `block` ボタンの既定を左寄せにする |
+| `padding: …` | 5 | panel の余白の段（`tight` など） |
+| `width: …px; flex: none` | 2 | 幅の指定。ユーティリティか `style` のままか |
+| `align-items: stretch` | 2 | `suisou-row` の伸ばし方 |
+
+外枠（`.demo-app`）は作例そのものの都合なので部品にしない。
 
 ---
 

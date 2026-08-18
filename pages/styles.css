@@ -286,4 +286,33 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   border-radius: 4px; padding: 0 4px;
 }
 
+/* 一覧の行 → Row 部品が要る。★保留中の selected の判断材料はここ */
+.demo-row {
+  display: flex; gap: var(--suisou-space-2); align-items: center;
+  padding: var(--suisou-space-2);
+  border-radius: var(--suisou-radius);
+  border-left: 2px solid transparent;
+  cursor: pointer;
+}
+.demo-row:hover { background: var(--suisou-hover-surface); }
+.demo-row[aria-selected="true"] {
+  background: var(--suisou-selected-surface);
+  border-left-color: var(--suisou-accent);
+}
+
+/* 分類のしるし → Tag / Badge 部品が要る */
+.demo-tag {
+  flex: none;
+  font-size: var(--suisou-size-12); line-height: var(--suisou-lh-12);
+  padding: 0 var(--suisou-space-2);
+  border-radius: var(--suisou-radius-pill);
+  border: 1px solid var(--suisou-line-weak);
+  color: var(--suisou-text-sub);
+}
+
+/* 定義の並び → Description list の扱いが未定 */
+.demo-defs { display: grid; grid-template-columns: auto 1fr; gap: var(--suisou-space-1) var(--suisou-space-3); }
+.demo-defs dt { color: var(--suisou-text-sub); font-size: var(--suisou-size-12); line-height: var(--suisou-lh-20); }
+.demo-defs dd { margin: 0; font-size: var(--suisou-size-14); line-height: var(--suisou-lh-20); }
+
 .muted { color: var(--suisou-text-sub); }
