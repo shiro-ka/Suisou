@@ -45,8 +45,6 @@ jobs:
           cp pages/app.js           _site/app.js
           cp pages/palette.css      _site/palette.css     # solve.py の生成物
           cp pages/suisou.data.js   _site/suisou.data.js  # solve.py の生成物（構造のみ）
-          cp tools/index.html      _site/palette.html    # JS のパレットビューア
-          cp tools/palette.data.js _site/palette.data.js
 
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5

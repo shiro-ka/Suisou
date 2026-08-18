@@ -9,14 +9,12 @@ on:
   push:
     paths:
       - 'tools/solve.py'
-      - 'tools/palette.data.js'
       - 'tools/spec-tables.md'
       - 'pages/palette.css'
       - '.github/workflows/check_palette.yml'
   pull_request:
     paths:
       - 'tools/solve.py'
-      - 'tools/palette.data.js'
       - 'tools/spec-tables.md'
       - 'pages/palette.css'
       - '.github/workflows/check_palette.yml'
@@ -39,7 +37,7 @@ jobs:
       - name: 生成物が solve.py の出力と一致するか
         run: |
           python3 tools/solve.py
-          if ! git diff --exit-code --stat -- tools/palette.data.js tools/spec-tables.md pages/palette.css; then
+          if ! git diff --exit-code --stat -- tools/spec-tables.md pages/palette.css pages/suisou.data.js; then
             echo "::error::生成物が solve.py の出力とずれている。python3 tools/solve.py を実行してコミットし直すこと。"
             exit 1
           fi
