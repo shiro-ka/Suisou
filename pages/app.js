@@ -20,7 +20,7 @@ const PAGES = {
   button:     { group: '部品', label: 'Button' },
   panel:      { group: '部品', label: 'Panel' },
   chat:       { group: '作例', label: 'チャット', bleed: true },
-  list:       { group: '作例', label: '一覧と詳細', bleed: true },
+  list:       { group: '作例', label: '課題一覧', bleed: true },
 };
 
 /* ── Palette の並び。トークンの意味づけであって、値は持たない ── */
