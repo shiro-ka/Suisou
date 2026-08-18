@@ -41,7 +41,7 @@ jobs:
         run: |
           mkdir -p _site
           cp pages/index.html       _site/index.html
-          cp pages/preview.css      _site/preview.css
+          cp pages/styles.css       _site/styles.css
           cp pages/app.js           _site/app.js
           cp -r pages/ui            _site/ui              # Suisou の部品（1ファイルずつ）
           cp pages/palette.css      _site/palette.css     # solve.py の生成物
