@@ -30,6 +30,6 @@
 
 /* 中に入れ子にするとき、内側は1段上の面に載せる。
    仕様の「モーダル内の入力欄がモーダルより明るくなる」順序を守るため */
-[data-suisou-panel] > [data-suisou-panel] { background: var(--suisou-input); }
+[data-suisou-panel] > [data-suisou-panel] { background: var(--suisou-item); }
 [data-suisou-panel] > [data-suisou-panel~="bare"],
 [data-suisou-panel] > [data-suisou-panel~="outline"] { background: transparent; }

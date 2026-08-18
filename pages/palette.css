@@ -17,8 +17,8 @@
   --suisou-bg-hex: "#0b0b0e";
   --suisou-panel: oklch(22.00% 0.0060 286);
   --suisou-panel-hex: "#1a1a1d";
-  --suisou-input: oklch(28.00% 0.0060 286);
-  --suisou-input-hex: "#28282c";
+  --suisou-item: oklch(28.00% 0.0060 286);
+  --suisou-item-hex: "#28282c";
   --suisou-floating: oklch(34.00% 0.0060 286);
   --suisou-floating-hex: "#37373b";
   --suisou-hover-surface: oklch(19.00% 0.0060 286);
@@ -66,8 +66,8 @@
   --suisou-bg-hex: "#0b0b0e";
   --suisou-panel: oklch(22.00% 0.0060 286);
   --suisou-panel-hex: "#1a1a1d";
-  --suisou-input: oklch(28.00% 0.0060 286);
-  --suisou-input-hex: "#28282c";
+  --suisou-item: oklch(28.00% 0.0060 286);
+  --suisou-item-hex: "#28282c";
   --suisou-floating: oklch(34.00% 0.0060 286);
   --suisou-floating-hex: "#37373b";
   --suisou-hover-surface: oklch(19.00% 0.0060 286);
@@ -105,8 +105,8 @@
   --suisou-bg-hex: "#080b13";
   --suisou-panel: oklch(22.00% 0.0180 265);
   --suisou-panel-hex: "#161b23";
-  --suisou-input: oklch(28.00% 0.0180 265);
-  --suisou-input-hex: "#242932";
+  --suisou-item: oklch(28.00% 0.0180 265);
+  --suisou-item-hex: "#242932";
   --suisou-floating: oklch(34.00% 0.0180 265);
   --suisou-floating-hex: "#333842";
   --suisou-hover-surface: oklch(19.00% 0.0180 265);
@@ -144,8 +144,8 @@
   --suisou-bg-hex: "#070a18";
   --suisou-panel: oklch(22.00% 0.0300 272);
   --suisou-panel-hex: "#161a29";
-  --suisou-input: oklch(28.00% 0.0300 272);
-  --suisou-input-hex: "#242838";
+  --suisou-item: oklch(28.00% 0.0300 272);
+  --suisou-item-hex: "#242838";
   --suisou-floating: oklch(34.00% 0.0300 272);
   --suisou-floating-hex: "#323748";
   --suisou-hover-surface: oklch(19.00% 0.0300 272);
@@ -183,8 +183,8 @@
   --suisou-bg-hex: "#1f242e";
   --suisou-panel: oklch(33.00% 0.0200 265);
   --suisou-panel-hex: "#303540";
-  --suisou-input: oklch(39.00% 0.0200 265);
-  --suisou-input-hex: "#404550";
+  --suisou-item: oklch(39.00% 0.0200 265);
+  --suisou-item-hex: "#404550";
   --suisou-floating: oklch(45.00% 0.0200 265);
   --suisou-floating-hex: "#505561";
   --suisou-hover-surface: oklch(30.00% 0.0200 265);

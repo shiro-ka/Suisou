@@ -23,7 +23,7 @@ const PAGES = {
 
 /* ── Palette の並び。トークンの意味づけであって、値は持たない ── */
 const GROUPS = [
-  { title: '面と文字', tokens: ['bg', 'panel', 'input', 'floating',
+  { title: '面と文字', tokens: ['bg', 'panel', 'item', 'floating',
                                 'line-weak', 'line-strong',
                                 'text-disabled', 'text-sub', 'text-main'] },
   { title: 'アクセント', tokens: SUISOU.accentTokens },

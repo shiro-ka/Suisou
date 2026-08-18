@@ -121,7 +121,7 @@ const SUISOU = {
  "themeTokens": [
   "bg",
   "panel",
-  "input",
+  "item",
   "floating",
   "hover-surface",
   "line-weak",
