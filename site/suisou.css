@@ -1,0 +1,159 @@
+/* 手書き。色の値は1つも書かない。
+   色は palette.css（solve.py の生成物）が持つ var(--suisou-*) だけを参照する。
+   ここに oklch() や #rrggbb が現れたら掟1違反。 */
+
+:root {
+  /* タイポ … docs/type-spec.md §3 §6（長文アンカー 16px） */
+  --size-small: 14px;  --lh-small: 20px;
+  --size-body:  16px;  --lh-body:  28px;
+  --size-h6:    14px;  --lh-h6:    24px;
+  --size-h5:    16px;  --lh-h5:    28px;
+  --size-h4:    16px;  --lh-h4:    28px;
+  --size-h3:    20px;  --lh-h3:    32px;
+  --size-h2:    24px;  --lh-h2:    36px;
+  --size-h1:    28px;  --lh-h1:    36px;
+
+  /* ★未確定。handoff の「保留」にある通り、余白・角丸はまだ決まっていない。
+     実測値（UI 8px / 長文 20px）を仮で置いている。 */
+  --gap-ui:   8px;
+  --gap-text: 20px;
+  --radius:   12px;
+
+  --font: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: var(--gap-text);
+  font-family: var(--font);
+  font-size: var(--size-body);
+  line-height: var(--lh-body);
+  background: var(--suisou-bg);
+  color: var(--suisou-text-main);
+}
+
+.wrap { max-width: 1024px; margin: 0 auto; }
+
+h1, h2, h3, h4 { margin: 0; }
+h1 { font-size: var(--size-h1); line-height: var(--lh-h1); font-weight: 700; }
+h2 { font-size: var(--size-h2); line-height: var(--lh-h2); font-weight: 700; }
+h3 { font-size: var(--size-h3); line-height: var(--lh-h3); font-weight: 600; }
+h4 { font-size: var(--size-h4); line-height: var(--lh-h4); font-weight: 600; }
+p  { margin: 0; }
+small { font-size: var(--size-small); line-height: var(--lh-small); color: var(--suisou-text-sub); }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--size-small); }
+
+.lede { color: var(--suisou-text-sub); margin-top: var(--gap-ui); }
+
+/* ── テーマの板 ───────────────────────────── */
+/* 面の分離は border が担保する。影は実際に浮くものだけに使う。 */
+
+.theme {
+  background: var(--suisou-panel);
+  border: 1px solid var(--suisou-line-weak);
+  border-radius: var(--radius);
+  padding: var(--gap-text);
+  margin-top: var(--gap-text);
+  display: grid;
+  gap: var(--gap-text);
+}
+
+.theme-head { display: flex; align-items: baseline; gap: var(--gap-ui); flex-wrap: wrap; }
+.theme-head .tag {
+  font-size: var(--size-small);
+  color: var(--suisou-accent);
+  border: 1px solid var(--suisou-accent);
+  border-radius: 999px;
+  padding: 0 var(--gap-ui);
+}
+
+.row { display: flex; flex-wrap: wrap; gap: var(--gap-ui); }
+.col { display: grid; gap: var(--gap-ui); }
+
+/* ── 見本 ─────────────────────────────────── */
+
+/* 色は style="--c: var(--suisou-…)" で1つずつ差し込む。
+   トークンごとにクラスを作らずに済み、CSS 側に色名が増えない。 */
+.swatch {
+  background: var(--c);
+  border: 1px solid var(--suisou-line-weak);
+  border-radius: var(--radius);
+  width: 96px; height: 56px;
+  display: grid; align-content: end;
+  padding: 4px 6px;
+}
+.swatch small { color: var(--suisou-text-sub); font-size: 12px; line-height: 16px; }
+
+.chip {
+  color: var(--c);
+  border: 1px solid var(--c);
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: var(--size-small);
+  line-height: var(--lh-small);
+}
+
+.ink { color: var(--c); }
+
+/* ── 部品（線形デザイン。塗らない） ─────────── */
+
+.btn {
+  font-family: inherit;
+  font-size: var(--size-small);
+  line-height: var(--lh-small);
+  padding: 4px 16px;
+  border-radius: var(--radius);
+  background: transparent;                    /* CTA すら塗らない */
+  color: var(--suisou-accent);
+  border: 1px solid var(--suisou-accent);
+  cursor: pointer;
+}
+.btn:hover  { background: var(--suisou-hover-surface); }
+.btn:active { color: var(--suisou-accent-active); border-color: var(--suisou-accent-active); }
+.btn:focus-visible { outline: 2px solid var(--suisou-focus-ring); outline-offset: 2px; }
+
+.field {
+  font-family: inherit;
+  font-size: var(--size-small);
+  line-height: var(--lh-small);
+  padding: 4px 12px;
+  border-radius: var(--radius);
+  background: var(--suisou-input);
+  color: var(--suisou-text-main);
+  border: 1px solid var(--suisou-line-strong);
+}
+.field::placeholder { color: var(--suisou-text-disabled); }
+.field:focus-visible { outline: 2px solid var(--suisou-focus-ring); outline-offset: 1px; }
+
+.banner {
+  background: var(--bg);
+  border: 1px solid var(--bd);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  padding: var(--gap-ui) var(--gap-text);
+  font-size: var(--size-small);
+  line-height: var(--lh-small);
+}
+
+.selected { background: var(--suisou-selected-surface); }
+.hover    { background: var(--suisou-hover-surface); }
+.list-row {
+  padding: 4px var(--gap-ui);
+  border-radius: var(--radius);
+  font-size: var(--size-small);
+  line-height: var(--lh-small);
+}
+
+/* 実際に浮くものだけ影を持つ */
+.floating {
+  background: var(--suisou-floating);
+  border: 1px solid var(--suisou-line-weak);
+  border-radius: var(--radius);
+  padding: var(--gap-ui) var(--gap-text);
+  box-shadow: 0 8px 24px var(--suisou-scrim);
+}
+
+footer { margin-top: var(--gap-text); }
+footer a { color: var(--suisou-accent); }
