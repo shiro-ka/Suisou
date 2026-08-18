@@ -1,9 +1,15 @@
 /* Suisou — 土台。トークンと最小限のリセット。
    色の値は持たない。palette.css（solve.py の生成物）の var(--suisou-*) だけを参照する。
 
-   命名の約束:
-     .suisou-* / --suisou-*  … Suisou のもの。将来そのまま配る
-     接頭辞なし               … このプレビューサイトだけのもの（styles.css）
+   ★このシステムの約束:
+     Suisou のものは data-suisou-* 属性。class は一切使わない。
+     class は適用先のもの。取り合いにならないので Tailwind とも喧嘩しない。
+
+       <div  data-suisou-panel class="flex-1">     属性=Suisou / class=適用先
+       <button data-suisou-btn="outline icon">     値は空白区切り。~= で拾う
+
+   要素セレクタ（button { … } など）は使わない。適用先の全ボタンに漏れるため。
+   focus の輪も各部品ファイルが持ち、1ファイル単位で配れる状態を保つ。
 */
 
 :root {
@@ -27,21 +33,16 @@
 
   --suisou-font: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   --suisou-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* 焦点の輪。各部品が同じものを使う */
+  --suisou-focus: 2px solid var(--suisou-focus-ring);
 }
 
-*, *::before, *::after { box-sizing: border-box; }
-
-body {
-  margin: 0;
+/* 面。ページ全体に敷く場合だけ付ける */
+[data-suisou-root] {
   font-family: var(--suisou-font);
   font-size: var(--suisou-size-14);
   line-height: var(--suisou-lh-14);
   background: var(--suisou-bg);
   color: var(--suisou-text-main);
-}
-
-/* 焦点の輪は全部品で同じにする。個別に書かない */
-:where(a, button, input, select, textarea, [tabindex]):focus-visible {
-  outline: 2px solid var(--suisou-focus-ring);
-  outline-offset: 2px;
 }

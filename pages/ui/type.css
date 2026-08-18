@@ -1,30 +1,37 @@
 /* Suisou — タイポグラフィ。根拠は .notes/type-spec.md
 
+     <p data-suisou-text="s16 w400">本文</p>
+     <h5 data-suisou-text="s16 w500 rule">左罫線つき見出し</h5>
+     <p data-suisou-text="s16 w400 doc">長文（行間 +4px）</p>
+
    px を持つのはこのファイルだけ。app.js は「どの段か」しか持たず、
    画面に出す数値は computed 値を読んで表示する。 */
 
-/* サイズの段 … §3。14 以外はすべて4の倍数。等比スケールは採らない */
-.suisou-s12 { --fs: var(--suisou-size-12); --lh: var(--suisou-lh-12); }
-.suisou-s14 { --fs: var(--suisou-size-14); --lh: var(--suisou-lh-14); }
-.suisou-s16 { --fs: var(--suisou-size-16); --lh: var(--suisou-lh-16); }
-.suisou-s20 { --fs: var(--suisou-size-20); --lh: var(--suisou-lh-20); }
-.suisou-s24 { --fs: var(--suisou-size-24); --lh: var(--suisou-lh-24); }
-.suisou-s28 { --fs: var(--suisou-size-28); --lh: var(--suisou-lh-28); }
-.suisou-s32 { --fs: var(--suisou-size-32); --lh: var(--suisou-lh-32); }
+[data-suisou-text] { font-size: var(--fs); line-height: var(--lh); }
 
-.suisou-text { font-size: var(--fs); line-height: var(--lh); }
+/* サイズの段 … §3。14 以外はすべて4の倍数。等比スケールは採らない */
+[data-suisou-text~="s12"] { --fs: var(--suisou-size-12); --lh: var(--suisou-lh-12); }
+[data-suisou-text~="s14"] { --fs: var(--suisou-size-14); --lh: var(--suisou-lh-14); }
+[data-suisou-text~="s16"] { --fs: var(--suisou-size-16); --lh: var(--suisou-lh-16); }
+[data-suisou-text~="s20"] { --fs: var(--suisou-size-20); --lh: var(--suisou-lh-20); }
+[data-suisou-text~="s24"] { --fs: var(--suisou-size-24); --lh: var(--suisou-lh-24); }
+[data-suisou-text~="s28"] { --fs: var(--suisou-size-28); --lh: var(--suisou-lh-28); }
+[data-suisou-text~="s32"] { --fs: var(--suisou-size-32); --lh: var(--suisou-lh-32); }
 
 /* §6「長文は UI に +4px するだけ」。7行の対応表ではなく規則として持つ */
-.suisou-text.is-doc { line-height: calc(var(--lh) + 4px); }
+[data-suisou-text~="doc"] { line-height: calc(var(--lh) + 4px); }
 
-.suisou-w400 { font-weight: 400; }
-.suisou-w500 { font-weight: 500; }
-.suisou-w600 { font-weight: 600; }
-.suisou-w700 { font-weight: 700; }
+[data-suisou-text~="w400"] { font-weight: 400; }
+[data-suisou-text~="w500"] { font-weight: 500; }
+[data-suisou-text~="w600"] { font-weight: 600; }
+[data-suisou-text~="w700"] { font-weight: 700; }
 
 /* §5。h5/h6 はサイズを増やさず、ウェイトと左罫線で階層を作る */
-.suisou-rule {
+[data-suisou-text~="rule"] {
   border-left: 3px solid var(--suisou-line-strong);
   padding-left: var(--suisou-space-2);
 }
-.suisou-rule.is-weak { border-left-color: var(--suisou-line-weak); }
+[data-suisou-text~="rule-weak"] {
+  border-left: 3px solid var(--suisou-line-weak);
+  padding-left: var(--suisou-space-2);
+}

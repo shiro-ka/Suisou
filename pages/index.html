@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body data-suisou-root>
 
 <div class="app">
 
@@ -27,7 +27,7 @@
   <main class="preview">
     <header class="topbar">
       <span class="brand">Suisou</span>
-      <button class="suisou-btn is-plain topbar-open" type="button">サイドバー</button>
+      <button data-suisou-btn="plain" class="topbar-open" type="button">サイドバー</button>
     </header>
 
     <div class="preview-body">
@@ -39,9 +39,9 @@
       <section class="page page-components">
         <h1>Components</h1>
         <p class="note">
-          部品は <code>pages/ui/</code> に1ファイルずつ置いている。
-          クラスが <code>.suisou-</code> で始まるものが Suisou の部品で、
-          始まらないものはこのサイトだけのもの。
+          Suisou のものは <code>data-suisou-*</code> 属性で、class は一切使わない。
+          class は適用先のもの ―― territory が分かれるので、Tailwind と混ぜても
+          取り合いにならない。値は空白区切りで、<code>~=</code> で拾っている。
         </p>
 
         <div class="group">
@@ -49,33 +49,64 @@
           <p class="note">
             塗らない。CTA すらアウトライン。hover で面の明度は動かさず
             <code>hover-surface</code> を敷く。
+            基本形が「罫なし」なのは実測から ―― wixdex の <code>&lt;button&gt;</code> 84個のうち
+            26個がアイコンのみで、単独では最大の塊だった。
           </p>
 
           <div class="demo">
-            <span class="demo-label">.suisou-btn</span>
+            <span class="demo-label">data-suisou-btn</span>
             <div class="row">
-              <button class="suisou-btn" type="button">アクセント</button>
-              <button class="suisou-btn is-plain" type="button">目立たせない</button>
-              <button class="suisou-btn is-bare" type="button">罫なし</button>
-              <button class="suisou-btn is-danger" type="button">破壊的</button>
+              <button data-suisou-btn type="button">基本</button>
+              <button data-suisou-btn="outline" type="button">CTA</button>
+              <button data-suisou-btn="plain" type="button">目立たせない</button>
+              <button data-suisou-btn="danger" type="button">破壊的</button>
+              <button data-suisou-btn="on" type="button">押しっぱなし</button>
             </div>
           </div>
 
           <div class="demo">
-            <span class="demo-label">状態</span>
+            <span class="demo-label">data-suisou-btn="… icon"</span>
             <div class="row">
-              <button class="suisou-btn" type="button">通常</button>
-              <button class="suisou-btn" type="button" disabled>無効</button>
-              <button class="suisou-btn is-plain" type="button" disabled>無効（目立たせない）</button>
+              <button data-suisou-btn="icon" type="button">＋</button>
+              <button data-suisou-btn="outline icon" type="button">→</button>
+              <button data-suisou-btn="danger icon" type="button">×</button>
+              <button data-suisou-btn="on icon" type="button">★</button>
+            </div>
+            <p class="note">値を並べれば掛かる。属性は1つのまま。</p>
+          </div>
+
+          <div class="demo">
+            <span class="demo-label">data-suisou-btn-group（連結）</span>
+            <div class="row">
+              <div data-suisou-btn-group>
+                <button data-suisou-btn="on" type="button">すべて</button>
+                <button data-suisou-btn type="button">所持</button>
+                <button data-suisou-btn type="button">未所持</button>
+                <button data-suisou-btn="icon" type="button">▾</button>
+              </div>
             </div>
             <p class="note">
-              hover / active / focus は実際に触って確認する。focus の輪は
-              <code>ui/base.css</code> が全部品まとめて持っている。
+              親が罫と角丸を持ち、<code>overflow</code> で子を切る。子は角丸を持たないので
+              何個並んでも破綻しない。wixdex の検索欄がこの作りだった。
             </p>
           </div>
 
+          <div class="demo">
+            <span class="demo-label">無効</span>
+            <div class="row">
+              <button data-suisou-btn type="button" disabled>基本</button>
+              <button data-suisou-btn="outline" type="button" disabled>CTA</button>
+              <button data-suisou-btn="danger" type="button" disabled>破壊的</button>
+            </div>
+          </div>
+
+          <div class="demo">
+            <span class="demo-label">data-suisou-btn="… block"</span>
+            <button data-suisou-btn="outline block" type="button">幅いっぱい</button>
+          </div>
+
           <p class="note">
-            ★<code>is-danger</code> の hover と active は色を動かしていない。仕様書に
+            ★<code>danger</code> の hover と active は色を動かしていない。仕様書に
             「意味色は状態を持たない。destructive なボタンは v1.2 のスコープ外」とあり、
             <code>error</code> の押下色が solve.py に無いため。下地だけで反応させている。
           </p>
@@ -87,7 +118,7 @@
   <!-- 右 … サイドバー。上2つが固定で、リストだけスクロールする -->
   <aside class="sidebar">
     <div class="sidebar-head">
-      <button class="suisou-btn is-plain sidebar-close" type="button">閉じる</button>
+      <button data-suisou-btn="plain" class="sidebar-close" type="button">閉じる</button>
       <button class="theme-switch" type="button"></button>
     </div>
 
