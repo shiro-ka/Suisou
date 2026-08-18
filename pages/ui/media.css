@@ -13,7 +13,7 @@
    チャットの発言・コメント・通知・検索結果と、繰り返し出てくる。
 
    ★面は持たない。触るのは並び方だけなので、面の部品と同じ要素に同居できる。
-     <div data-suisou-panel data-suisou-media>   ← 入れ子にしない
+     <div data-suisou-surface="panel" data-suisou-media>   ← 入れ子にしない
    panel を作って中に media を入れる、という段を踏まなくていい。
 
    ★中身は位置ではなく名前で当てる（-icon / -content / -tail）。
