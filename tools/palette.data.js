@@ -168,6 +168,7 @@ const PALETTE = {
  "themes": [
   {
    "name": "hadal",
+   "jp": "超深海層",
    "ladder": "dark",
    "h": 286,
    "cs": 0.006,
@@ -2600,6 +2601,7 @@ const PALETTE = {
   },
   {
    "name": "trench",
+   "jp": "海溝",
    "ladder": "dark",
    "h": 265,
    "cs": 0.018,
@@ -5032,6 +5034,7 @@ const PALETTE = {
   },
   {
    "name": "fjord",
+   "jp": "峡湾",
    "ladder": "dark",
    "h": 272,
    "cs": 0.03,
@@ -7470,6 +7473,7 @@ const PALETTE = {
   },
   {
    "name": "shoal",
+   "jp": "浅瀬",
    "ladder": "dim",
    "h": 265,
    "cs": 0.02,

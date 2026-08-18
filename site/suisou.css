@@ -1,32 +1,34 @@
 /* 手書き。色の値は1つも書かない。
    色は palette.css（solve.py の生成物）が持つ var(--suisou-*) だけを参照する。
-   ここに oklch() や #rrggbb が現れたら掟1違反。 */
+   ここに oklch() や #rrggbb が現れたら掟1違反。tools/lint_css.py が落とす。 */
 
 :root {
-  /* タイポ … docs/type-spec.md §3 §6（長文アンカー 16px） */
-  --size-small: 14px;  --lh-small: 20px;
-  --size-body:  16px;  --lh-body:  28px;
-  --size-h6:    14px;  --lh-h6:    24px;
-  --size-h5:    16px;  --lh-h5:    28px;
-  --size-h4:    16px;  --lh-h4:    28px;
-  --size-h3:    20px;  --lh-h3:    32px;
-  --size-h2:    24px;  --lh-h2:    36px;
-  --size-h1:    28px;  --lh-h1:    36px;
+  /* タイポ … docs/type-spec.md §3 §6 */
+  --size-small: 12px;  --lh-small: 16px;
+  --size-body:  14px;  --lh-body:  20px;
+  --size-h3:    14px;  --lh-h3:    20px;
+  --size-h2:    16px;  --lh-h2:    24px;
+  --size-h1:    20px;  --lh-h1:    28px;
 
-  /* ★未確定。handoff の「保留」にある通り、余白・角丸はまだ決まっていない。
-     実測値（UI 8px / 長文 20px）を仮で置いている。 */
-  --gap-ui:   8px;
-  --gap-text: 20px;
-  --radius:   12px;
+  /* ★未確定。余白・角丸はまだ決まっていない（handoff の「保留」）。
+     UI アンカーの実測 8px を基準に仮置きしている。 */
+  --gap:      8px;
+  --gap-lg:   16px;
+  --pad:      16px;
+  --radius:   8px;
+  --sidebar-w: 296px;
 
   --font: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
 
+html, body { height: 100%; }
+
 body {
   margin: 0;
-  padding: var(--gap-text);
+  overflow: hidden;                 /* ページ全体はスクロールしない */
   font-family: var(--font);
   font-size: var(--size-body);
   line-height: var(--lh-body);
@@ -34,126 +36,169 @@ body {
   color: var(--suisou-text-main);
 }
 
-.wrap { max-width: 1024px; margin: 0 auto; }
+/* ══ 骨格 ══════════════════════════════════════════
+   プレビューとサイドバーは別々にスクロールする。
+   flex の子に min-height/min-width: 0 を入れないと、
+   中身がはみ出して親ごと伸びてしまう。 */
 
-h1, h2, h3, h4 { margin: 0; }
-h1 { font-size: var(--size-h1); line-height: var(--lh-h1); font-weight: 700; }
-h2 { font-size: var(--size-h2); line-height: var(--lh-h2); font-weight: 700; }
-h3 { font-size: var(--size-h3); line-height: var(--lh-h3); font-weight: 600; }
-h4 { font-size: var(--size-h4); line-height: var(--lh-h4); font-weight: 600; }
-p  { margin: 0; }
-small { font-size: var(--size-small); line-height: var(--lh-small); color: var(--suisou-text-sub); }
-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: var(--size-small); }
+.app { display: flex; height: 100dvh; }
 
-.lede { color: var(--suisou-text-sub); margin-top: var(--gap-ui); }
+.preview {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
 
-/* ── テーマの板 ───────────────────────────── */
-/* 面の分離は border が担保する。影は実際に浮くものだけに使う。 */
+.topbar {
+  flex: none;                       /* 固定 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding: var(--gap) var(--pad);
+  border-bottom: 1px solid var(--suisou-line-weak);
+}
 
-.theme {
-  background: var(--suisou-panel);
-  border: 1px solid var(--suisou-line-weak);
-  border-radius: var(--radius);
-  padding: var(--gap-text);
-  margin-top: var(--gap-text);
+.brand { font-size: var(--size-h2); font-weight: 700; }
+
+.preview-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;                 /* ここだけスクロール */
+  padding: var(--pad);
+}
+
+/* サイドバーは浮かせない。区切り線だけ。bg は共通 */
+.sidebar {
+  flex: none;
+  width: var(--sidebar-w);
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--suisou-line-weak);
+}
+
+.sidebar-head {
+  flex: none;                       /* 固定 */
   display: grid;
-  gap: var(--gap-text);
+  gap: var(--gap);
+  padding: var(--gap) var(--pad);
+  border-bottom: 1px solid var(--suisou-line-weak);
 }
 
-.theme-head { display: flex; align-items: baseline; gap: var(--gap-ui); flex-wrap: wrap; }
-.theme-head .tag {
-  font-size: var(--size-small);
-  color: var(--suisou-accent);
-  border: 1px solid var(--suisou-accent);
-  border-radius: 999px;
-  padding: 0 var(--gap-ui);
+.sidebar-nav {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;                 /* ここだけスクロール */
+  padding: var(--gap);
+  display: grid;
+  gap: 2px;
+  align-content: start;
 }
 
-.row { display: flex; flex-wrap: wrap; gap: var(--gap-ui); }
-.col { display: grid; gap: var(--gap-ui); }
+/* サイドバーを閉じている間だけ、開くボタンが出る */
+.app:not(.is-closed) .topbar-open { display: none; }
+.app.is-closed .sidebar { display: none; }
 
-/* ── 見本 ─────────────────────────────────── */
+/* ══ 部品 ══════════════════════════════════════════
+   線形デザイン。塗らない。 */
 
-/* 色は style="--c: var(--suisou-…)" で1つずつ差し込む。
-   トークンごとにクラスを作らずに済み、CSS 側に色名が増えない。 */
-.swatch {
-  background: var(--c);
-  border: 1px solid var(--suisou-line-weak);
+.btn-plain {
+  font: inherit;
+  padding: 2px var(--gap);
+  border: 1px solid var(--suisou-line-strong);
   border-radius: var(--radius);
-  width: 96px; height: 56px;
-  display: grid; align-content: end;
-  padding: 4px 6px;
-}
-.swatch small { color: var(--suisou-text-sub); font-size: 12px; line-height: 16px; }
-
-.chip {
-  color: var(--c);
-  border: 1px solid var(--c);
-  border-radius: 999px;
-  padding: 2px 12px;
-  font-size: var(--size-small);
-  line-height: var(--lh-small);
-}
-
-.ink { color: var(--c); }
-
-/* ── 部品（線形デザイン。塗らない） ─────────── */
-
-.btn {
-  font-family: inherit;
-  font-size: var(--size-small);
-  line-height: var(--lh-small);
-  padding: 4px 16px;
-  border-radius: var(--radius);
-  background: transparent;                    /* CTA すら塗らない */
-  color: var(--suisou-accent);
-  border: 1px solid var(--suisou-accent);
+  background: transparent;
+  color: var(--suisou-text-sub);
   cursor: pointer;
 }
-.btn:hover  { background: var(--suisou-hover-surface); }
-.btn:active { color: var(--suisou-accent-active); border-color: var(--suisou-accent-active); }
-.btn:focus-visible { outline: 2px solid var(--suisou-focus-ring); outline-offset: 2px; }
+.btn-plain:hover { background: var(--suisou-hover-surface); color: var(--suisou-text-main); }
+.btn-plain:focus-visible { outline: 2px solid var(--suisou-focus-ring); outline-offset: 2px; }
 
-.field {
-  font-family: inherit;
-  font-size: var(--size-small);
-  line-height: var(--lh-small);
-  padding: 4px 12px;
+.theme-switch {
+  font: inherit;
+  text-align: left;
+  padding: var(--gap);
+  border: 1px solid var(--suisou-accent);
   border-radius: var(--radius);
-  background: var(--suisou-input);
+  background: transparent;
+  color: var(--suisou-accent);
+  cursor: pointer;
+  display: grid;
+  gap: 2px;
+}
+.theme-switch:hover { background: var(--suisou-hover-surface); }
+.theme-switch:focus-visible { outline: 2px solid var(--suisou-focus-ring); outline-offset: 2px; }
+.theme-switch .sub { font-size: var(--size-small); line-height: var(--lh-small); color: var(--suisou-text-sub); }
+
+.nav-item {
+  font: inherit;
+  text-align: left;
+  padding: var(--gap);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--suisou-text-sub);
+  cursor: pointer;
+}
+.nav-item:hover { background: var(--suisou-hover-surface); color: var(--suisou-text-main); }
+.nav-item:focus-visible { outline: 2px solid var(--suisou-focus-ring); outline-offset: 2px; }
+.nav-item.is-current {
+  background: var(--suisou-selected-surface);
   color: var(--suisou-text-main);
-  border: 1px solid var(--suisou-line-strong);
 }
-.field::placeholder { color: var(--suisou-text-disabled); }
-.field:focus-visible { outline: 2px solid var(--suisou-focus-ring); outline-offset: 1px; }
 
-.banner {
-  background: var(--bg);
-  border: 1px solid var(--bd);
-  border-left-width: 4px;
-  border-radius: var(--radius);
-  padding: var(--gap-ui) var(--gap-text);
+/* ══ Palette ページ ════════════════════════════════ */
+
+.page { display: grid; gap: var(--gap-lg); align-content: start; }
+.page h1 { margin: 0; font-size: var(--size-h1); line-height: var(--lh-h1); font-weight: 700; }
+.page h2 { margin: 0; font-size: var(--size-h2); line-height: var(--lh-h2); font-weight: 600; }
+.note { margin: 0; font-size: var(--size-small); line-height: var(--lh-small); color: var(--suisou-text-sub); }
+
+.group { display: grid; gap: var(--gap); }
+
+.accent-row { display: flex; flex-wrap: wrap; gap: var(--gap); }
+
+.accent-chip {
+  font: inherit;
   font-size: var(--size-small);
   line-height: var(--lh-small);
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--c);
+  border: 1px solid var(--c);
+  cursor: pointer;
 }
+.accent-chip:hover { background: var(--suisou-hover-surface); }
+.accent-chip:focus-visible { outline: 2px solid var(--suisou-focus-ring); outline-offset: 2px; }
+.accent-chip.is-current { background: var(--suisou-selected-surface); }
+.accent-chip:disabled { color: var(--suisou-text-disabled); border-color: var(--suisou-line-weak); cursor: default; }
 
-.selected { background: var(--suisou-selected-surface); }
-.hover    { background: var(--suisou-hover-surface); }
-.list-row {
-  padding: 4px var(--gap-ui);
+/* トークン1件。見本 + 名前 + 色コード */
+.tokens { display: grid; gap: 2px; }
+
+.token {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: var(--gap);
+  padding: 4px var(--gap);
   border-radius: var(--radius);
-  font-size: var(--size-small);
-  line-height: var(--lh-small);
 }
+.token:hover { background: var(--suisou-hover-surface); }
 
-/* 実際に浮くものだけ影を持つ */
-.floating {
-  background: var(--suisou-floating);
+.token-chip {
+  height: 24px;
+  background: var(--c);
   border: 1px solid var(--suisou-line-weak);
-  border-radius: var(--radius);
-  padding: var(--gap-ui) var(--gap-text);
-  box-shadow: 0 8px 24px var(--suisou-scrim);
+  border-radius: 4px;
 }
 
-footer { margin-top: var(--gap-text); }
-footer a { color: var(--suisou-accent); }
+.token-name { font-family: var(--mono); font-size: var(--size-small); }
+.token-hex  { font-family: var(--mono); font-size: var(--size-small); color: var(--suisou-text-sub); }
+.token.is-missing .token-name { color: var(--suisou-text-disabled); }
+
+@media (width <= 720px) {
+  :root { --sidebar-w: 240px; }
+}

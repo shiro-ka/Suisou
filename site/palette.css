@@ -14,346 +14,601 @@
 /* 属性が無いときの既定 … hadal / jelly */
 :root {
   --suisou-bg: oklch(15.00% 0.0060 286);
+  --suisou-bg-hex: "#0b0b0e";
   --suisou-panel: oklch(22.00% 0.0060 286);
+  --suisou-panel-hex: "#1a1a1d";
   --suisou-input: oklch(28.00% 0.0060 286);
+  --suisou-input-hex: "#28282c";
   --suisou-floating: oklch(34.00% 0.0060 286);
+  --suisou-floating-hex: "#37373b";
   --suisou-line-weak: oklch(44.00% 0.0060 286);
+  --suisou-line-weak-hex: "#525256";
   --suisou-line-strong: oklch(61.00% 0.0060 286);
+  --suisou-line-strong-hex: "#838387";
   --suisou-text-disabled: oklch(62.00% 0.0060 286);
+  --suisou-text-disabled-hex: "#86868a";
   --suisou-text-sub: oklch(78.00% 0.0060 286);
+  --suisou-text-sub-hex: "#b7b7bb";
   --suisou-text-main: oklch(94.00% 0.0060 286);
+  --suisou-text-main-hex: "#ebebef";
   --suisou-on-accent: oklch(15.00% 0.0060 286);
+  --suisou-on-accent-hex: "#0b0b0e";
   --suisou-scrim: oklch(8.00% 0.0060 286 / 0.72);
+  --suisou-scrim-hex: "#020203";
   --suisou-error: oklch(73.00% 0.1580 22);
+  --suisou-error-hex: "#fb7a7a";
   --suisou-warning: oklch(82.00% 0.1592 90);
+  --suisou-warning-hex: "#ecbe26";
   --suisou-success: oklch(76.00% 0.1785 155);
+  --suisou-success-hex: "#27d17d";
   --suisou-error-surface: oklch(36.00% 0.0503 22);
+  --suisou-error-surface-hex: "#553231";
   --suisou-warning-surface: oklch(36.00% 0.0454 90);
+  --suisou-warning-surface-hex: "#463c20";
   --suisou-success-surface: oklch(36.00% 0.0471 155);
+  --suisou-success-surface-hex: "#284532";
   --suisou-accent: oklch(74.00% 0.1096 212);
+  --suisou-accent-hex: "#43bdd3";
   --suisou-accent-active: oklch(71.00% 0.1052 212);
+  --suisou-accent-active-hex: "#3fb3c8";
   --suisou-focus-ring: oklch(74.00% 0.1096 212);
+  --suisou-focus-ring-hex: "#43bdd3";
   --suisou-hover-surface: oklch(36.00% 0.0233 212);
+  --suisou-hover-surface-hex: "#2f4144";
   --suisou-selected-surface: oklch(36.00% 0.0526 212);
+  --suisou-selected-surface-hex: "#14444d";
 }
 
 /* ── テーマ層 ───────────────────────────── */
 
 [data-suisou-theme="hadal"] {
   --suisou-bg: oklch(15.00% 0.0060 286);
+  --suisou-bg-hex: "#0b0b0e";
   --suisou-panel: oklch(22.00% 0.0060 286);
+  --suisou-panel-hex: "#1a1a1d";
   --suisou-input: oklch(28.00% 0.0060 286);
+  --suisou-input-hex: "#28282c";
   --suisou-floating: oklch(34.00% 0.0060 286);
+  --suisou-floating-hex: "#37373b";
   --suisou-line-weak: oklch(44.00% 0.0060 286);
+  --suisou-line-weak-hex: "#525256";
   --suisou-line-strong: oklch(61.00% 0.0060 286);
+  --suisou-line-strong-hex: "#838387";
   --suisou-text-disabled: oklch(62.00% 0.0060 286);
+  --suisou-text-disabled-hex: "#86868a";
   --suisou-text-sub: oklch(78.00% 0.0060 286);
+  --suisou-text-sub-hex: "#b7b7bb";
   --suisou-text-main: oklch(94.00% 0.0060 286);
+  --suisou-text-main-hex: "#ebebef";
   --suisou-on-accent: oklch(15.00% 0.0060 286);
+  --suisou-on-accent-hex: "#0b0b0e";
   --suisou-scrim: oklch(8.00% 0.0060 286 / 0.72);
+  --suisou-scrim-hex: "#020203";
   --suisou-error: oklch(73.00% 0.1580 22);
+  --suisou-error-hex: "#fb7a7a";
   --suisou-warning: oklch(82.00% 0.1592 90);
+  --suisou-warning-hex: "#ecbe26";
   --suisou-success: oklch(76.00% 0.1785 155);
+  --suisou-success-hex: "#27d17d";
   --suisou-error-surface: oklch(36.00% 0.0503 22);
+  --suisou-error-surface-hex: "#553231";
   --suisou-warning-surface: oklch(36.00% 0.0454 90);
+  --suisou-warning-surface-hex: "#463c20";
   --suisou-success-surface: oklch(36.00% 0.0471 155);
+  --suisou-success-surface-hex: "#284532";
 }
 
 [data-suisou-theme="trench"] {
   --suisou-bg: oklch(15.00% 0.0180 265);
+  --suisou-bg-hex: "#080b13";
   --suisou-panel: oklch(22.00% 0.0180 265);
+  --suisou-panel-hex: "#161b23";
   --suisou-input: oklch(28.00% 0.0180 265);
+  --suisou-input-hex: "#242932";
   --suisou-floating: oklch(34.00% 0.0180 265);
+  --suisou-floating-hex: "#333842";
   --suisou-line-weak: oklch(44.00% 0.0180 265);
+  --suisou-line-weak-hex: "#4e535d";
   --suisou-line-strong: oklch(61.00% 0.0180 265);
+  --suisou-line-strong-hex: "#7e838e";
   --suisou-text-disabled: oklch(62.00% 0.0180 265);
+  --suisou-text-disabled-hex: "#818691";
   --suisou-text-sub: oklch(78.00% 0.0180 265);
+  --suisou-text-sub-hex: "#b2b7c3";
   --suisou-text-main: oklch(94.00% 0.0180 265);
+  --suisou-text-main-hex: "#e5ebf8";
   --suisou-on-accent: oklch(15.00% 0.0180 265);
+  --suisou-on-accent-hex: "#080b13";
   --suisou-scrim: oklch(8.00% 0.0180 265 / 0.72);
+  --suisou-scrim-hex: "#010205";
   --suisou-error: oklch(73.00% 0.1331 22);
+  --suisou-error-hex: "#f08381";
   --suisou-warning: oklch(82.00% 0.1341 90);
+  --suisou-warning-hex: "#e6c052";
   --suisou-success: oklch(76.00% 0.1503 155);
+  --suisou-success-hex: "#52cd86";
   --suisou-error-surface: oklch(36.00% 0.0405 22);
+  --suisou-error-surface-hex: "#503533";
   --suisou-warning-surface: oklch(36.00% 0.0333 90);
+  --suisou-warning-surface-hex: "#443d29";
   --suisou-success-surface: oklch(36.00% 0.0422 155);
+  --suisou-success-surface-hex: "#2b4433";
 }
 
 [data-suisou-theme="fjord"] {
   --suisou-bg: oklch(15.00% 0.0300 272);
+  --suisou-bg-hex: "#070a18";
   --suisou-panel: oklch(22.00% 0.0300 272);
+  --suisou-panel-hex: "#161a29";
   --suisou-input: oklch(28.00% 0.0300 272);
+  --suisou-input-hex: "#242838";
   --suisou-floating: oklch(34.00% 0.0300 272);
+  --suisou-floating-hex: "#323748";
   --suisou-line-weak: oklch(44.00% 0.0300 272);
+  --suisou-line-weak-hex: "#4c5264";
   --suisou-line-strong: oklch(61.00% 0.0300 272);
+  --suisou-line-strong-hex: "#7d8296";
   --suisou-text-disabled: oklch(62.00% 0.0300 272);
+  --suisou-text-disabled-hex: "#808599";
   --suisou-text-sub: oklch(78.00% 0.0300 272);
+  --suisou-text-sub-hex: "#b0b7cb";
   --suisou-text-main: oklch(93.50% 0.0300 272);
+  --suisou-text-main-hex: "#e2e9fe";
   --suisou-on-accent: oklch(15.00% 0.0300 272);
+  --suisou-on-accent-hex: "#070a18";
   --suisou-scrim: oklch(8.00% 0.0300 272 / 0.72);
+  --suisou-scrim-hex: "#010108";
   --suisou-error: oklch(73.00% 0.1248 22);
+  --suisou-error-hex: "#ec8684";
   --suisou-warning: oklch(82.00% 0.1257 90);
+  --suisou-warning-hex: "#e4c05c";
   --suisou-success: oklch(76.00% 0.1409 155);
+  --suisou-success-hex: "#5bcb89";
   --suisou-error-surface: oklch(36.00% 0.0325 22);
+  --suisou-error-surface-hex: "#4d3635";
   --suisou-warning-surface: oklch(36.00% 0.0212 90);
+  --suisou-warning-surface-hex: "#413d31";
   --suisou-success-surface: oklch(36.00% 0.0301 155);
+  --suisou-success-surface-hex: "#314236";
 }
 
 [data-suisou-theme="shoal"] {
   --suisou-bg: oklch(26.00% 0.0200 265);
+  --suisou-bg-hex: "#1f242e";
   --suisou-panel: oklch(33.00% 0.0200 265);
+  --suisou-panel-hex: "#303540";
   --suisou-input: oklch(39.00% 0.0200 265);
+  --suisou-input-hex: "#404550";
   --suisou-floating: oklch(45.00% 0.0200 265);
+  --suisou-floating-hex: "#505561";
   --suisou-line-weak: oklch(55.00% 0.0200 265);
+  --suisou-line-weak-hex: "#6c727e";
   --suisou-line-strong: oklch(73.00% 0.0200 265);
+  --suisou-line-strong-hex: "#a2a8b5";
   --suisou-text-disabled: oklch(74.00% 0.0200 265);
+  --suisou-text-disabled-hex: "#a5abb8";
   --suisou-text-sub: oklch(90.00% 0.0200 265);
+  --suisou-text-sub-hex: "#d7deec";
   --suisou-text-main: oklch(95.50% 0.0200 265);
+  --suisou-text-main-hex: "#eaf0fe";
   --suisou-on-accent: oklch(26.00% 0.0200 265);
+  --suisou-on-accent-hex: "#1f242e";
   --suisou-scrim: oklch(8.00% 0.0200 265 / 0.72);
+  --suisou-scrim-hex: "#010205";
   --suisou-error: oklch(85.00% 0.0612 22);
+  --suisou-error-hex: "#f4bfbc";
   --suisou-warning: oklch(85.00% 0.1303 90);
+  --suisou-warning-hex: "#efca61";
   --suisou-success: oklch(83.00% 0.1539 155);
+  --suisou-success-hex: "#67e49a";
   --suisou-error-surface: oklch(47.00% 0.0390 22);
+  --suisou-error-surface-hex: "#6f5251";
   --suisou-warning-surface: oklch(47.00% 0.0313 90);
+  --suisou-warning-surface-hex: "#625a47";
   --suisou-success-surface: oklch(47.00% 0.0408 155);
+  --suisou-success-surface-hex: "#496251";
 }
 
 /* ── アクセント層（テーマとの組でしか決まらない） ── */
 
 [data-suisou-theme="hadal"][data-suisou-accent="orange"] {
   --suisou-accent: oklch(74.00% 0.1549 55);
+  --suisou-accent-hex: "#f48d3c";
   --suisou-accent-active: oklch(71.00% 0.1495 55);
+  --suisou-accent-active-hex: "#e78538";
   --suisou-focus-ring: oklch(74.00% 0.1549 55);
+  --suisou-focus-ring-hex: "#f48d3c";
   --suisou-hover-surface: oklch(36.00% 0.0181 55);
+  --suisou-hover-surface-hex: "#453b34";
   --suisou-selected-surface: oklch(36.00% 0.0472 55);
+  --suisou-selected-surface-hex: "#513625";
 }
 [data-suisou-theme="hadal"][data-suisou-accent="turtle"] {
   --suisou-accent: oklch(74.00% 0.1526 122);
+  --suisou-accent-hex: "#9bb93d";
   --suisou-accent-active: oklch(71.00% 0.1464 122);
+  --suisou-accent-active-hex: "#92af39";
   --suisou-focus-ring: oklch(74.00% 0.1526 122);
+  --suisou-focus-ring-hex: "#9bb93d";
   --suisou-hover-surface: oklch(36.00% 0.0165 122);
+  --suisou-hover-surface-hex: "#3b3f35";
   --suisou-selected-surface: oklch(36.00% 0.0454 122);
+  --suisou-selected-surface-hex: "#394126";
 }
 [data-suisou-theme="hadal"][data-suisou-accent="teal"] {
   --suisou-accent: oklch(74.00% 0.1094 188);
+  --suisou-accent-hex: "#44c1b8";
   --suisou-accent-active: oklch(71.00% 0.1050 188);
+  --suisou-accent-active-hex: "#40b6ae";
   --suisou-focus-ring: oklch(74.00% 0.1094 188);
+  --suisou-focus-ring-hex: "#44c1b8";
   --suisou-hover-surface: oklch(36.00% 0.0207 188);
+  --suisou-hover-surface-hex: "#31413f";
   --suisou-selected-surface: oklch(36.00% 0.0501 188);
+  --suisou-selected-surface-hex: "#184642";
 }
 [data-suisou-theme="hadal"][data-suisou-accent="jelly"] {
   --suisou-accent: oklch(74.00% 0.1096 212);
+  --suisou-accent-hex: "#43bdd3";
   --suisou-accent-active: oklch(71.00% 0.1052 212);
+  --suisou-accent-active-hex: "#3fb3c8";
   --suisou-focus-ring: oklch(74.00% 0.1096 212);
+  --suisou-focus-ring-hex: "#43bdd3";
   --suisou-hover-surface: oklch(36.00% 0.0233 212);
+  --suisou-hover-surface-hex: "#2f4144";
   --suisou-selected-surface: oklch(36.00% 0.0526 212);
+  --suisou-selected-surface-hex: "#14444d";
 }
 [data-suisou-theme="hadal"][data-suisou-accent="blue"] {
   --suisou-accent: oklch(74.00% 0.1159 255);
+  --suisou-accent-hex: "#78aef3";
   --suisou-accent-active: oklch(71.00% 0.1308 255);
+  --suisou-accent-active-hex: "#67a4f1";
   --suisou-focus-ring: oklch(74.00% 0.1159 255);
+  --suisou-focus-ring-hex: "#78aef3";
   --suisou-hover-surface: oklch(36.00% 0.0273 255);
+  --suisou-hover-surface-hex: "#343e4b";
   --suisou-selected-surface: oklch(36.00% 0.0563 255);
+  --suisou-selected-surface-hex: "#283e5a";
 }
 [data-suisou-theme="hadal"][data-suisou-accent="indigo"] {
   --suisou-accent: oklch(74.00% 0.1171 282);
+  --suisou-accent-hex: "#9fa1f3";
   --suisou-accent-active: oklch(71.00% 0.1322 282);
+  --suisou-accent-active-hex: "#9596f1";
   --suisou-focus-ring: oklch(74.00% 0.1171 282);
+  --suisou-focus-ring-hex: "#9fa1f3";
   --suisou-hover-surface: oklch(36.00% 0.0283 282);
+  --suisou-hover-surface-hex: "#3a3b4c";
   --suisou-selected-surface: oklch(36.00% 0.0572 282);
+  --suisou-selected-surface-hex: "#38395a";
 }
 [data-suisou-theme="hadal"][data-suisou-accent="coral"] {
   --suisou-accent: oklch(74.00% 0.1495 308);
+  --suisou-accent-hex: "#c58ff3";
   --suisou-accent-active: oklch(71.00% 0.1689 308);
+  --suisou-accent-active-hex: "#bf81f2";
   --suisou-focus-ring: oklch(74.00% 0.1495 308);
+  --suisou-focus-ring-hex: "#c58ff3";
   --suisou-hover-surface: oklch(36.00% 0.0278 308);
+  --suisou-hover-surface-hex: "#413949";
   --suisou-selected-surface: oklch(36.00% 0.0567 308);
+  --suisou-selected-surface-hex: "#453554";
 }
 [data-suisou-theme="hadal"][data-suisou-accent="magenta"] {
   --suisou-accent: oklch(74.00% 0.2122 332);
+  --suisou-accent-hex: "#f46fe5";
   --suisou-accent-active: oklch(71.00% 0.2451 332);
+  --suisou-accent-active-hex: "#f355e3";
   --suisou-focus-ring: oklch(74.00% 0.2122 332);
+  --suisou-focus-ring-hex: "#f46fe5";
   --suisou-hover-surface: oklch(36.00% 0.0261 332);
+  --suisou-hover-surface-hex: "#463843";
   --suisou-selected-surface: oklch(36.00% 0.0552 332);
+  --suisou-selected-surface-hex: "#4e324a";
 }
 [data-suisou-theme="hadal"][data-suisou-accent="pink"] {
   --suisou-accent: oklch(74.00% 0.1535 355);
+  --suisou-accent-hex: "#f47eb0";
   --suisou-accent-active: oklch(71.00% 0.1775 355);
+  --suisou-accent-active-hex: "#f36ba7";
   --suisou-focus-ring: oklch(74.00% 0.1535 355);
+  --suisou-focus-ring-hex: "#f47eb0";
   --suisou-hover-surface: oklch(36.00% 0.0238 355);
+  --suisou-hover-surface-hex: "#48383e";
   --suisou-selected-surface: oklch(36.00% 0.0531 355);
+  --suisou-selected-surface-hex: "#53313e";
 }
 
 [data-suisou-theme="trench"][data-suisou-accent="orange"] {
   --suisou-accent: oklch(74.00% 0.1184 55);
+  --suisou-accent-hex: "#e4965e";
   --suisou-accent-active: oklch(71.00% 0.1143 55);
+  --suisou-accent-active-hex: "#d88d58";
   --suisou-focus-ring: oklch(74.00% 0.1184 55);
+  --suisou-focus-ring-hex: "#e4965e";
   --suisou-hover-surface: oklch(36.00% 0.0049 55);
+  --suisou-hover-surface-hex: "#3f3c3b";
   --suisou-selected-surface: oklch(36.00% 0.0348 55);
+  --suisou-selected-surface-hex: "#4c382c";
 }
 [data-suisou-theme="trench"][data-suisou-accent="turtle"] {
   --suisou-accent: oklch(74.00% 0.1167 122);
+  --suisou-accent-hex: "#9eb65f";
   --suisou-accent-active: oklch(71.00% 0.1120 122);
+  --suisou-accent-active-hex: "#96ad5a";
   --suisou-focus-ring: oklch(74.00% 0.1167 122);
+  --suisou-focus-ring-hex: "#9eb65f";
   --suisou-hover-surface: oklch(36.00% 0.0052 122);
+  --suisou-hover-surface-hex: "#3d3e3b";
   --suisou-selected-surface: oklch(36.00% 0.0357 122);
+  --suisou-selected-surface-hex: "#3a402b";
 }
 [data-suisou-theme="trench"][data-suisou-accent="teal"] {
   --suisou-accent: oklch(74.00% 0.0837 188);
+  --suisou-accent-hex: "#67bcb5";
   --suisou-accent-active: oklch(71.00% 0.0803 188);
+  --suisou-accent-active-hex: "#61b2ab";
   --suisou-focus-ring: oklch(74.00% 0.0837 188);
+  --suisou-focus-ring-hex: "#67bcb5";
   --suisou-hover-surface: oklch(36.00% 0.0179 188);
+  --suisou-hover-surface-hex: "#33403f";
   --suisou-selected-surface: oklch(36.00% 0.0522 188);
+  --suisou-selected-surface-hex: "#154642";
 }
 [data-suisou-theme="trench"][data-suisou-accent="jelly"] {
   --suisou-accent: oklch(74.00% 0.0838 212);
+  --suisou-accent-hex: "#67b9ca";
   --suisou-accent-active: oklch(71.00% 0.0804 212);
+  --suisou-accent-active-hex: "#61afbf";
   --suisou-focus-ring: oklch(74.00% 0.0838 212);
+  --suisou-focus-ring-hex: "#67b9ca";
   --suisou-hover-surface: oklch(36.00% 0.0280 212);
+  --suisou-hover-surface-hex: "#2c4146";
   --suisou-selected-surface: oklch(36.00% 0.0600 212);
+  --suisou-selected-surface-hex: "#06454f";
 }
 [data-suisou-theme="trench"][data-suisou-accent="blue"] {
   --suisou-accent: oklch(74.00% 0.0886 255);
+  --suisou-accent-hex: "#85aee2";
   --suisou-accent-active: oklch(71.00% 0.1000 255);
+  --suisou-accent-active-hex: "#76a4df";
   --suisou-focus-ring: oklch(74.00% 0.0886 255);
+  --suisou-focus-ring-hex: "#85aee2";
   --suisou-hover-surface: oklch(36.00% 0.0399 255);
+  --suisou-hover-surface-hex: "#2f3e52";
   --suisou-selected-surface: oklch(36.00% 0.0689 255);
+  --suisou-selected-surface-hex: "#233e61";
 }
 [data-suisou-theme="trench"][data-suisou-accent="indigo"] {
   --suisou-accent: oklch(74.00% 0.0896 282);
+  --suisou-accent-hex: "#a1a4e2";
   --suisou-accent-active: oklch(71.00% 0.1011 282);
+  --suisou-accent-active-hex: "#979adf";
   --suisou-focus-ring: oklch(74.00% 0.0896 282);
+  --suisou-focus-ring-hex: "#a1a4e2";
   --suisou-hover-surface: oklch(36.00% 0.0389 282);
+  --suisou-hover-surface-hex: "#3a3b51";
   --suisou-selected-surface: oklch(36.00% 0.0682 282);
+  --suisou-selected-surface-hex: "#383860";
 }
 [data-suisou-theme="trench"][data-suisou-accent="coral"] {
   --suisou-accent: oklch(74.00% 0.1143 308);
+  --suisou-accent-hex: "#bf97e2";
   --suisou-accent-active: oklch(71.00% 0.1292 308);
+  --suisou-accent-active-hex: "#b88adf";
   --suisou-focus-ring: oklch(74.00% 0.1143 308);
+  --suisou-focus-ring-hex: "#bf97e2";
   --suisou-hover-surface: oklch(36.00% 0.0319 308);
+  --suisou-hover-surface-hex: "#42394a";
   --suisou-selected-surface: oklch(36.00% 0.0629 308);
+  --suisou-selected-surface-hex: "#463457";
 }
 [data-suisou-theme="trench"][data-suisou-accent="magenta"] {
   --suisou-accent: oklch(74.00% 0.1623 332);
+  --suisou-accent-hex: "#e581d8";
   --suisou-accent-active: oklch(71.00% 0.1874 332);
+  --suisou-accent-active-hex: "#e26fd5";
   --suisou-focus-ring: oklch(74.00% 0.1623 332);
+  --suisou-focus-ring-hex: "#e581d8";
   --suisou-hover-surface: oklch(36.00% 0.0220 332);
+  --suisou-hover-surface-hex: "#443942";
   --suisou-selected-surface: oklch(36.00% 0.0555 332);
+  --suisou-selected-surface-hex: "#4e324a";
 }
 [data-suisou-theme="trench"][data-suisou-accent="pink"] {
   --suisou-accent: oklch(74.00% 0.1174 355);
+  --suisou-accent-hex: "#e58bae";
   --suisou-accent-active: oklch(71.00% 0.1357 355);
+  --suisou-accent-active-hex: "#e27ba6";
   --suisou-focus-ring: oklch(74.00% 0.1174 355);
+  --suisou-focus-ring-hex: "#e58bae";
   --suisou-hover-surface: oklch(36.00% 0.0133 355);
+  --suisou-hover-surface-hex: "#433a3d";
   --suisou-selected-surface: oklch(36.00% 0.0480 355);
+  --suisou-selected-surface-hex: "#51323e";
 }
 
 [data-suisou-theme="fjord"][data-suisou-accent="orange"] {
   --suisou-accent: oklch(74.00% 0.1093 55);
+  --suisou-accent-hex: "#e09865";
   --suisou-accent-active: oklch(71.00% 0.1055 55);
+  --suisou-accent-active-hex: "#d48f5f";
   --suisou-focus-ring: oklch(74.00% 0.1093 55);
+  --suisou-focus-ring-hex: "#e09865";
   --suisou-hover-surface: oklch(36.00% 0.0000 55);
+  --suisou-hover-surface-hex: "#3d3d3d";
   --suisou-selected-surface: oklch(36.00% 0.0240 55);
+  --suisou-selected-surface-hex: "#473a31";
 }
 [data-suisou-theme="fjord"][data-suisou-accent="turtle"] {
   --suisou-accent: oklch(74.00% 0.1077 122);
+  --suisou-accent-hex: "#9fb666";
   --suisou-accent-active: oklch(71.00% 0.1034 122);
+  --suisou-accent-active-hex: "#97ac61";
   --suisou-focus-ring: oklch(74.00% 0.1077 122);
+  --suisou-focus-ring-hex: "#9fb666";
   --suisou-hover-surface: oklch(36.00% 0.0000 122);
+  --suisou-hover-surface-hex: "#3d3d3d";
   --suisou-selected-surface: oklch(36.00% 0.0230 122);
+  --suisou-selected-surface-hex: "#3b3f32";
 }
 [data-suisou-theme="fjord"][data-suisou-accent="teal"] {
   --suisou-accent: oklch(74.00% 0.0772 188);
+  --suisou-accent-hex: "#6ebbb4";
   --suisou-accent-active: oklch(71.00% 0.0741 188);
+  --suisou-accent-active-hex: "#68b1aa";
   --suisou-focus-ring: oklch(74.00% 0.0772 188);
+  --suisou-focus-ring-hex: "#6ebbb4";
   --suisou-hover-surface: oklch(36.00% 0.0000 188);
+  --suisou-hover-surface-hex: "#3d3d3d";
   --suisou-selected-surface: oklch(36.00% 0.0448 188);
+  --suisou-selected-surface-hex: "#1e4541";
 }
 [data-suisou-theme="fjord"][data-suisou-accent="coral"] {
   --suisou-accent: oklch(74.00% 0.1055 308);
+  --suisou-accent-hex: "#bd99de";
   --suisou-accent-active: oklch(71.00% 0.1193 308);
+  --suisou-accent-active-hex: "#b68ddb";
   --suisou-focus-ring: oklch(74.00% 0.1055 308);
+  --suisou-focus-ring-hex: "#bd99de";
   --suisou-hover-surface: oklch(36.00% 0.0380 308);
+  --suisou-hover-surface-hex: "#43384d";
   --suisou-selected-surface: oklch(36.00% 0.0724 308);
+  --suisou-selected-surface-hex: "#48325a";
 }
 [data-suisou-theme="fjord"][data-suisou-accent="magenta"] {
   --suisou-accent: oklch(74.00% 0.1498 332);
+  --suisou-accent-hex: "#e185d4";
   --suisou-accent-active: oklch(71.00% 0.1730 332);
+  --suisou-accent-active-hex: "#de74d1";
   --suisou-focus-ring: oklch(74.00% 0.1498 332);
+  --suisou-focus-ring-hex: "#e185d4";
   --suisou-hover-surface: oklch(36.00% 0.0000 332);
+  --suisou-hover-surface-hex: "#3d3d3d";
   --suisou-selected-surface: oklch(36.00% 0.0592 332);
+  --suisou-selected-surface-hex: "#4f314b";
 }
 [data-suisou-theme="fjord"][data-suisou-accent="pink"] {
   --suisou-accent: oklch(74.00% 0.1084 355);
+  --suisou-accent-hex: "#e18eae";
   --suisou-accent-active: oklch(71.00% 0.1253 355);
+  --suisou-accent-active-hex: "#de7fa5";
   --suisou-focus-ring: oklch(74.00% 0.1084 355);
+  --suisou-focus-ring-hex: "#e18eae";
   --suisou-hover-surface: oklch(36.00% 0.0000 355);
+  --suisou-hover-surface-hex: "#3d3d3d";
   --suisou-selected-surface: oklch(36.00% 0.0453 355);
+  --suisou-selected-surface-hex: "#50333e";
 }
 
 [data-suisou-theme="shoal"][data-suisou-accent="orange"] {
   --suisou-accent: oklch(80.00% 0.0797 55);
+  --suisou-accent-hex: "#e7b18d";
   --suisou-accent-active: oklch(77.00% 0.0941 55);
+  --suisou-accent-active-hex: "#e3a47a";
   --suisou-focus-ring: oklch(80.00% 0.0797 55);
+  --suisou-focus-ring-hex: "#e7b18d";
   --suisou-hover-surface: oklch(47.00% 0.0027 55);
+  --suisou-hover-surface-hex: "#5c5a59";
   --suisou-selected-surface: oklch(47.00% 0.0329 55);
+  --suisou-selected-surface-hex: "#6a5649";
 }
 [data-suisou-theme="shoal"][data-suisou-accent="turtle"] {
   --suisou-accent: oklch(80.00% 0.1165 122);
+  --suisou-accent-hex: "#b1ca72";
   --suisou-accent-active: oklch(77.00% 0.1121 122);
+  --suisou-accent-active-hex: "#a8c06c";
   --suisou-focus-ring: oklch(80.00% 0.1165 122);
+  --suisou-focus-ring-hex: "#b1ca72";
   --suisou-hover-surface: oklch(47.00% 0.0029 122);
+  --suisou-hover-surface-hex: "#5a5b59";
   --suisou-selected-surface: oklch(47.00% 0.0338 122);
+  --suisou-selected-surface-hex: "#575e49";
 }
 [data-suisou-theme="shoal"][data-suisou-accent="teal"] {
   --suisou-accent: oklch(80.00% 0.0835 188);
+  --suisou-accent-hex: "#7bcfc8";
   --suisou-accent-active: oklch(77.00% 0.0804 188);
+  --suisou-accent-active-hex: "#74c5be";
   --suisou-focus-ring: oklch(80.00% 0.0835 188);
+  --suisou-focus-ring-hex: "#7bcfc8";
   --suisou-hover-surface: oklch(47.00% 0.0155 188);
+  --suisou-hover-surface-hex: "#515e5c";
   --suisou-selected-surface: oklch(47.00% 0.0519 188);
+  --suisou-selected-surface-hex: "#366460";
 }
 [data-suisou-theme="shoal"][data-suisou-accent="jelly"] {
   --suisou-accent: oklch(80.00% 0.0837 212);
+  --suisou-accent-hex: "#7accdd";
   --suisou-accent-active: oklch(77.00% 0.0805 212);
+  --suisou-accent-active-hex: "#74c2d2";
   --suisou-focus-ring: oklch(80.00% 0.0837 212);
+  --suisou-focus-ring-hex: "#7accdd";
   --suisou-hover-surface: oklch(47.00% 0.0277 212);
+  --suisou-hover-surface-hex: "#495f64";
   --suisou-selected-surface: oklch(47.00% 0.0607 212);
+  --suisou-selected-surface-hex: "#2c646f";
 }
 [data-suisou-theme="shoal"][data-suisou-accent="blue"] {
   --suisou-accent: oklch(80.00% 0.0615 255);
+  --suisou-accent-hex: "#a4c0e5";
   --suisou-accent-active: oklch(77.00% 0.0716 255);
+  --suisou-accent-active-hex: "#96b7e2";
   --suisou-focus-ring: oklch(80.00% 0.0615 255);
+  --suisou-focus-ring-hex: "#a4c0e5";
   --suisou-hover-surface: oklch(47.00% 0.0418 255);
+  --suisou-hover-surface-hex: "#4b5c72";
   --suisou-selected-surface: oklch(47.00% 0.0708 255);
+  --suisou-selected-surface-hex: "#3f5c82";
 }
 [data-suisou-theme="shoal"][data-suisou-accent="indigo"] {
   --suisou-accent: oklch(80.00% 0.0621 282);
+  --suisou-accent-hex: "#b7bae5";
   --suisou-accent-active: oklch(77.00% 0.0723 282);
+  --suisou-accent-active-hex: "#acafe2";
   --suisou-focus-ring: oklch(80.00% 0.0621 282);
+  --suisou-focus-ring-hex: "#b7bae5";
   --suisou-hover-surface: oklch(47.00% 0.0407 282);
+  --suisou-hover-surface-hex: "#575872";
   --suisou-selected-surface: oklch(47.00% 0.0700 282);
+  --suisou-selected-surface-hex: "#545681";
 }
 [data-suisou-theme="shoal"][data-suisou-accent="coral"] {
   --suisou-accent: oklch(80.00% 0.0791 308);
+  --suisou-accent-hex: "#ccb1e6";
   --suisou-accent-active: oklch(77.00% 0.0922 308);
+  --suisou-accent-active-hex: "#c4a5e2";
   --suisou-focus-ring: oklch(80.00% 0.0791 308);
+  --suisou-focus-ring-hex: "#ccb1e6";
   --suisou-hover-surface: oklch(47.00% 0.0323 308);
+  --suisou-hover-surface-hex: "#605669";
   --suisou-selected-surface: oklch(47.00% 0.0640 308);
+  --suisou-selected-surface-hex: "#655177";
 }
 [data-suisou-theme="shoal"][data-suisou-accent="magenta"] {
   --suisou-accent: oklch(80.00% 0.1079 332);
+  --suisou-accent-hex: "#e7a4dd";
   --suisou-accent-active: oklch(77.00% 0.1281 332);
+  --suisou-accent-active-hex: "#e495d8";
   --suisou-focus-ring: oklch(80.00% 0.1079 332);
+  --suisou-focus-ring-hex: "#e7a4dd";
   --suisou-hover-surface: oklch(47.00% 0.0205 332);
+  --suisou-hover-surface-hex: "#625760";
   --suisou-selected-surface: oklch(47.00% 0.0556 332);
+  --suisou-selected-surface-hex: "#6e4f69";
 }
 [data-suisou-theme="shoal"][data-suisou-accent="pink"] {
   --suisou-accent: oklch(80.00% 0.0779 355);
+  --suisou-accent-hex: "#e7a9c0";
   --suisou-accent-active: oklch(77.00% 0.0926 355);
+  --suisou-accent-active-hex: "#e49cb7";
   --suisou-focus-ring: oklch(80.00% 0.0779 355);
+  --suisou-focus-ring-hex: "#e7a9c0";
   --suisou-hover-surface: oklch(47.00% 0.0100 355);
+  --suisou-hover-surface-hex: "#60595b";
   --suisou-selected-surface: oklch(47.00% 0.0472 355);
+  --suisou-selected-surface-hex: "#71505c";
 }
 
 /* 出していない組み合わせ（制約を満たさないので使えない）:
