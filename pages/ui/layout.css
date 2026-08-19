@@ -1,38 +1,51 @@
 /* Suisou — Layout
 
-     <div data-suisou-layout="cols">画面を割る。子は高さいっぱい</div>
      <div data-suisou-layout="stack">縦に積む</div>
      <div data-suisou-layout="row">横に並べて縦中央に寄せる</div>
+     <div data-suisou-layout="row stretch">画面を割る。子は高さいっぱい</div>
 
    ★すきまは焼き込む。Suisou のレイアウトは既定で space-2（8px）で並ぶ。
      これが「Suisou の間合い」で、毎回選ぶものではない。
      現場が変えたくなったら helpers.css の .gap-* を重ねる。
 
-   ★汎用の名前を占領しない。並びは属性の中の語なので、.cols や .fill という
-     クラスを世界から奪わない。接頭辞は属性名に1回だけ出る。 */
+   ★汎用の名前を占領しない。並びは属性の中の語なので、.row や .grow という
+     クラスを世界から奪わない。接頭辞は属性名に1回だけ出る。
+
+   ★モード（stack / row / center）は1つだけ書く。tools/lint_css.py が検査する。
+     center は grid に切り替わるので、flex 前提の語と混ぜても黙って効かない。 */
 
 [data-suisou-layout] {
   display: flex;
   gap: var(--suisou-space-2);
 }
 
-/* 並べ方。1つ選ぶ */
-[data-suisou-layout~="stack"] { flex-direction: column; }
-[data-suisou-layout~="row"]   { align-items: center; }
-[data-suisou-layout~="cols"]  { align-items: stretch; }
+/* ── モード。1つだけ選ぶ ───────────────────── */
+
+[data-suisou-layout~="stack"]  { flex-direction: column; }
+[data-suisou-layout~="row"]    { align-items: center; }
 
 /* 中央に置く。flex ではなく grid */
 [data-suisou-layout~="center"] { display: grid; place-items: center; }
 
-/* ふるまい。重ねて使う */
-[data-suisou-layout~="wrap"]   { flex-wrap: wrap; }
+/* ── ふるまい。重ねて使う ───────────────────
+   モードより後に置く。row の center を stretch が上書きできる順序にしてある */
+
+/* 子を交差軸いっぱいに伸ばす。flex の初期値がこれなので、単体で書いても
+   何も変わらない。row の center を打ち消すためだけに在る（"row stretch"）。
+   以前は cols という名前だったが、横向きなのに columns と読め、
+   しかも単体では何もしない値だったのでやめた。 */
+[data-suisou-layout~="stretch"] { align-items: stretch; }
+
+[data-suisou-layout~="wrap"] { flex-wrap: wrap; }
+
 /* あふれたらここで受ける。scrollbar-gutter でバーの分の溝を常に確保しておく ――
    中身が増えてバーが出た瞬間に横幅が縮むのを止める。継承しないので個別に持つ */
 [data-suisou-layout~="scroll"] { overflow: auto; scrollbar-gutter: stable; }
 
 /* 余った幅・高さを取る。min-* が無いと中身がはみ出して親ごと伸びる。
-   縦積みでも横並びでも効くよう両方に 0 を入れてある */
-[data-suisou-layout~="fill"] { flex: 1 1 auto; min-width: 0; min-height: 0; }
+   縦積みでも横並びでも効くよう両方に 0 を入れてある。
+   名前は flex-grow から。「塗る」と読める fill は Suisou では使わない */
+[data-suisou-layout~="grow"] { flex: 1 1 auto; min-width: 0; min-height: 0; }
 
 /* 本文の幅を絞って中央に寄せる */
 [data-suisou-layout~="container"] {
