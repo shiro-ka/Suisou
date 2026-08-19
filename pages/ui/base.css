@@ -61,8 +61,7 @@
      出揃ったので ::-webkit-scrollbar は書かない（あちらは標準化されたことがない）。
      どちらも継承するプロパティなので、根で1回書けば全部の入れ物に届く。
      溝は透明にして、線1本だけを見せる ―― 面ではなく線で区切る扱いに合わせる。
-     幅が飛ばないようにする scrollbar-gutter は継承しないので、
-     実際にスクロールする側（ui/layout.css の "scroll"）が持つ。 */
+     幅の予約（scrollbar-gutter）はしない。理由は ui/layout.css の "scroll" に書いた。 */
   scrollbar-width: thin;
   scrollbar-color: var(--suisou-line-strong) transparent;
 }
