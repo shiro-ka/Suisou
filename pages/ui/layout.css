@@ -19,6 +19,16 @@
   gap: var(--suisou-space-2);
 }
 
+/* ★子は既定で動かない（flex: none）。伸び縮みするものにだけ grow と書く。
+
+   flex の既定は 0 1 auto ＝「伸びないが縮む」で、これが驚きの元になる。
+   width を書いても守られないし、stack scroll の中身がスクロールせず潰れる。
+   「言われたことしかしない」を既定にして、動くものは名指しさせる。
+
+   :where() で詳細度を 0 にしてあるので、grow も現場の class も必ず勝つ。
+   要素セレクタは使わない約束だが、これは layout の内側に閉じているので例外。 */
+:where([data-suisou-layout]) > * { flex: none; }
+
 /* ── モード。1つだけ選ぶ ───────────────────── */
 
 [data-suisou-layout~="stack"]  { flex-direction: column; }
@@ -46,8 +56,9 @@
      バーが出るときだけ 10px 動く方がまだ普通に見えた。動きを取る。 */
 [data-suisou-layout~="scroll"] { overflow: auto; }
 
-/* 余った幅・高さを取る。min-* が無いと中身がはみ出して親ごと伸びる。
-   縦積みでも横並びでも効くよう両方に 0 を入れてある。
+/* 余った幅・高さを取る。既定が flex: none なので、伸びるものと縮むものは
+   すべてこれを書く（＝ flex の中で動く要素は目で数えられる）。
+   min-* が無いと中身がはみ出して親ごと伸びるので両方に 0 を入れてある。
    名前は flex-grow から。「塗る」と読める fill は Suisou では使わない */
 [data-suisou-layout~="grow"] { flex: 1 1 auto; min-width: 0; min-height: 0; }
 
