@@ -38,7 +38,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  scrollbar-gutter: stable;   /* 長いページと短いページで横幅が飛ばないように */
+  scrollbar-gutter: stable both-edges;   /* 横幅が飛ばず、左右の余白も食い違わない */
   padding: var(--suisou-space-3);
 }
 /* 作例は余白もスクロールも外して、そのものを全面に敷く */
@@ -75,7 +75,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable both-edges;
   padding: var(--suisou-space-2);
   display: grid;
   gap: 2px;
