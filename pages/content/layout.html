@@ -119,7 +119,7 @@
           <td>余りを取る。<code>min-*</code> が無いと中身がはみ出して親ごと伸びる</td></tr>
       <tr><td><code>wrap</code></td><td><code>flex-wrap: wrap</code></td>
           <td>タグやチップの列</td></tr>
-      <tr><td><code>scroll</code></td><td><code>overflow: auto; scrollbar-gutter: stable</code></td>
+      <tr><td><code>scroll</code></td><td><code>overflow: auto; scrollbar-gutter: stable both-edges</code></td>
           <td>領域の中だけスクロールさせる。<code>grow</code> と組で使う</td></tr>
       <tr><td><code>container</code></td><td><code>max-width: 1024px; margin-inline: auto</code></td>
           <td>本文の幅を絞って中央に寄せる。<code>--suisou-measure</code> で変えられる</td></tr>
@@ -133,8 +133,11 @@
   <div class="group">
     <h2>スクロールバー</h2>
     <p class="note">
-      <code>scroll</code> は溝（<code>scrollbar-gutter: stable</code>）を常に確保する ——
-      中身が増えてバーが出た瞬間に横幅が縮むのを止めるため。
+      <code>scroll</code> は溝（<code>scrollbar-gutter: stable both-edges</code>）を
+      左右どちらにも常に確保する —— 中身が増えてバーが出た瞬間に横幅が縮むのを止めるため。
+      <strong><code>both-edges</code> なのは、右にしか溝を空けないと
+      バーが無いときに左右の余白が食い違って見えるから。</strong>
+      両側に空けておけば、バーの有無にかかわらず中身は常に真ん中にいる。
       色と太さは根（<code>data-suisou-root</code>）が持ち、継承で全部に届く。
       つまみは <code>line-strong</code>、溝は透明。<strong>線1本だけが見える</strong>。
       標準の <code>scrollbar-width</code> / <code>scrollbar-color</code> だけを使い、
