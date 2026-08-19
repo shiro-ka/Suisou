@@ -18,6 +18,7 @@ const PAGES = {
   palette:    { group: '土台', label: 'Palette',    enhance: enhancePalette },
   typography: { group: '土台', label: 'Typography', enhance: enhanceTypography },
   surface:    { group: '土台', label: 'Surface' },
+  layout:     { group: '土台', label: 'Layout' },
   button:     { group: '部品', label: 'Button' },
   chat:       { group: '作例', label: 'チャット', bleed: true },
   list:       { group: '作例', label: '課題一覧', bleed: true },

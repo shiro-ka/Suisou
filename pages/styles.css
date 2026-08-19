@@ -38,6 +38,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
+  scrollbar-gutter: stable;   /* 長いページと短いページで横幅が飛ばないように */
   padding: var(--suisou-space-3);
 }
 /* 作例は余白もスクロールも外して、そのものを全面に敷く */
@@ -74,6 +75,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
+  scrollbar-gutter: stable;
   padding: var(--suisou-space-2);
   display: grid;
   gap: 2px;
@@ -227,6 +229,16 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   line-height: var(--suisou-lh-12);
   color: var(--suisou-text-sub);
 }
+
+/* Layout ページの見本。並びを見せるための足場であって、部品の予定ではない。
+   surface を使うと余白 16px で demo が巨大になるので、小さい箱を用意している。 */
+.demo-box {
+  padding: var(--suisou-space-1) var(--suisou-space-2);
+  border: 1px solid var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+  background: var(--suisou-item);
+}
+.demo-frame { height: 160px; }
 
 @media (width <= 720px) {
   :root { --menu-w: 240px; }
