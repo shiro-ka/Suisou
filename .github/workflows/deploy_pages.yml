@@ -5,6 +5,11 @@ name: サイトを配信
 #
 # 前提: Settings > Pages > Source が「GitHub Actions」になっていること。
 #       「Deploy from a branch」のままだと、この workflow は成功しても配信に反映されない。
+#
+# ★build と deploy を分けてある。artifact は「実行」単位ではなく「試行」単位で
+#   積まれるので、1ジョブだと Re-run するたびに github-pages という名前の artifact が
+#   増え、deploy-pages が「同じ名前が3個ある」と言って落ちる。分けておけば
+#   失敗した deploy だけを Re-run でき、そのとき artifact は積まれない。
 
 on:
   push:
@@ -21,15 +26,12 @@ concurrency:          # 連続 push でデプロイが競合しないように�
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -53,5 +55,13 @@ jobs:
       - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
       - id: deploy
         uses: actions/deploy-pages@v5
