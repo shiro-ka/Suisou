@@ -39,8 +39,12 @@
 [data-suisou-layout~="wrap"] { flex-wrap: wrap; }
 
 /* あふれたらここで受ける。scrollbar-gutter でバーの分の溝を常に確保しておく ――
-   中身が増えてバーが出た瞬間に横幅が縮むのを止める。継承しないので個別に持つ */
-[data-suisou-layout~="scroll"] { overflow: auto; scrollbar-gutter: stable; }
+   中身が増えてバーが出た瞬間に横幅が縮むのを止める。継承しないので個別に持つ。
+
+   both-edges にしてあるのは、stable だと溝が右にしか空かず、
+   バーが出ていないときに左右の余白が食い違って見えるため。
+   両側に空ければ、バーの有無にかかわらず中身は常に真ん中にいる。 */
+[data-suisou-layout~="scroll"] { overflow: auto; scrollbar-gutter: stable both-edges; }
 
 /* 余った幅・高さを取る。min-* が無いと中身がはみ出して親ごと伸びる。
    縦積みでも横並びでも効くよう両方に 0 を入れてある。
