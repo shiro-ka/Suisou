@@ -1,0 +1,224 @@
+<!-- Layout。全部静的 -->
+<section class="page">
+  <h1>Layout</h1>
+  <p class="note">
+    並び。属性を付けた時点で <code>display: flex</code> と
+    <code>gap: 8px</code>（<code>space-2</code>）が入る。
+    <strong>すきまは焼き込んである</strong> —— Suisou の間合いは毎回選ぶものではない。
+    値は空白区切りで重ねるので、属性はいくつ語を並べても1つ。
+    <code>cols</code> や <code>fill</code> という汎用の名前を class として
+    世界から奪わないために、並びは属性の中の語にしてある。
+  </p>
+
+  <div class="group">
+    <h2>既定</h2>
+    <p class="note">値を1つも書かなくても flex と gap は効く。</p>
+    <div class="demo">
+      <span class="demo-label">data-suisou-layout</span>
+      <div data-suisou-layout>
+        <div class="demo-box">あ</div>
+        <div class="demo-box">い</div>
+        <div class="demo-box">う</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>並べ方 —— 1つ選ぶ</h2>
+    <div class="demo">
+      <span class="demo-label">stack —— 縦に積む</span>
+      <div data-suisou-layout="stack">
+        <div class="demo-box">あ</div>
+        <div class="demo-box">い</div>
+      </div>
+      <span class="demo-label">row —— 横に並べて縦中央</span>
+      <div data-suisou-layout="row">
+        <div class="demo-box">あ</div>
+        <div class="demo-box">い</div>
+      </div>
+      <span class="demo-label">center —— grid で中央に置く</span>
+      <div data-suisou-layout="center" class="demo-frame">
+        <div class="demo-box">中央</div>
+      </div>
+    </div>
+    <table class="spec">
+      <tr><th>値</th><th>CSS</th><th>使う場面</th></tr>
+      <tr><td><code>stack</code></td><td><code>flex-direction: column</code></td>
+          <td>縦に積む。いちばん多い</td></tr>
+      <tr><td><code>row</code></td><td><code>align-items: center</code></td>
+          <td>横並び。ボタン列、アイコンと文字</td></tr>
+      <tr><td><code>cols</code></td><td><code>align-items: stretch</code></td>
+          <td>画面を縦に割る。サイドバーと本体</td></tr>
+      <tr><td><code>center</code></td><td><code>display: grid; place-items: center</code></td>
+          <td>1つのものを真ん中に。flex ではなく grid</td></tr>
+    </table>
+  </div>
+
+  <div class="group">
+    <h2>row と cols の違いは子の高さだけ</h2>
+    <p class="note">
+      どちらも横並び。<code>row</code> は子を縦中央に置き、
+      <code>cols</code> は子を親の高さいっぱいに伸ばす。
+      面（<code>panel</code>）を並べたときに差が出る。
+    </p>
+    <div class="demo">
+      <span class="demo-label">row —— 高さは中身なり</span>
+      <div data-suisou-layout="row">
+        <div data-suisou-surface="panel">短い</div>
+        <div data-suisou-surface="panel">長い<br>2行<br>3行</div>
+      </div>
+      <span class="demo-label">cols —— 高さが揃う</span>
+      <div data-suisou-layout="cols">
+        <div data-suisou-surface="panel">短い</div>
+        <div data-suisou-surface="panel">長い<br>2行<br>3行</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>ふるまい —— 重ねて使う</h2>
+    <div class="demo">
+      <span class="demo-label">fill —— 余った幅を取る（右の箱だけ）</span>
+      <div data-suisou-layout="row">
+        <div class="demo-box">固定</div>
+        <div class="demo-box" data-suisou-layout="fill">fill</div>
+      </div>
+      <span class="demo-label">wrap —— 入らなければ折り返す</span>
+      <div data-suisou-layout="row wrap">
+        <div class="demo-box">あいうえお</div>
+        <div class="demo-box">かきくけこ</div>
+        <div class="demo-box">さしすせそ</div>
+        <div class="demo-box">たちつてと</div>
+        <div class="demo-box">なにぬねの</div>
+        <div class="demo-box">はひふへほ</div>
+        <div class="demo-box">まみむめも</div>
+      </div>
+      <span class="demo-label">scroll —— あふれたらその中でスクロールする</span>
+      <div data-suisou-layout="stack scroll" class="demo-frame">
+        <div class="demo-box">1</div>
+        <div class="demo-box">2</div>
+        <div class="demo-box">3</div>
+        <div class="demo-box">4</div>
+        <div class="demo-box">5</div>
+        <div class="demo-box">6</div>
+        <div class="demo-box">7</div>
+        <div class="demo-box">8</div>
+      </div>
+    </div>
+    <table class="spec">
+      <tr><th>値</th><th>CSS</th><th>使う場面</th></tr>
+      <tr><td><code>fill</code></td><td><code>flex: 1 1 auto; min-width: 0; min-height: 0</code></td>
+          <td>余りを取る。<code>min-*</code> が無いと中身がはみ出して親ごと伸びる</td></tr>
+      <tr><td><code>wrap</code></td><td><code>flex-wrap: wrap</code></td>
+          <td>タグやチップの列</td></tr>
+      <tr><td><code>scroll</code></td><td><code>overflow: auto</code></td>
+          <td>領域の中だけスクロールさせる。<code>fill</code> と組で使う</td></tr>
+      <tr><td><code>container</code></td><td><code>max-width: 1024px; margin-inline: auto</code></td>
+          <td>本文の幅を絞って中央に寄せる。<code>--suisou-measure</code> で変えられる</td></tr>
+    </table>
+  </div>
+
+  <div class="group">
+    <h2>スクロールバー</h2>
+    <p class="note">
+      <code>scroll</code> は溝（<code>scrollbar-gutter: stable</code>）を常に確保する ——
+      中身が増えてバーが出た瞬間に横幅が縮むのを止めるため。
+      色と太さは根（<code>data-suisou-root</code>）が持ち、継承で全部に届く。
+      つまみは <code>line-strong</code>、溝は透明。<strong>線1本だけが見える</strong>。
+      標準の <code>scrollbar-width</code> / <code>scrollbar-color</code> だけを使い、
+      <code>::-webkit-scrollbar</code> は書かない —— あちらは標準化されたことがなく、
+      同じことが標準側でできるようになった。
+    </p>
+    <div class="demo">
+      <span class="demo-label">中身が少ない —— バーは出ないが溝は空いている</span>
+      <div data-suisou-layout="stack scroll" data-suisou-surface="panel" class="demo-frame">
+        <div class="demo-box">1</div>
+        <div class="demo-box">2</div>
+      </div>
+      <span class="demo-label">中身が多い —— バーが出ても幅は動かない</span>
+      <div data-suisou-layout="stack scroll" data-suisou-surface="panel" class="demo-frame">
+        <div class="demo-box">1</div>
+        <div class="demo-box">2</div>
+        <div class="demo-box">3</div>
+        <div class="demo-box">4</div>
+        <div class="demo-box">5</div>
+        <div class="demo-box">6</div>
+        <div class="demo-box">7</div>
+        <div class="demo-box">8</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>骨格を組む</h2>
+    <p class="note">
+      <code>cols</code> で割り、片方に <code>fill</code>、中身に <code>scroll</code>。
+      作例の2枚（チャット・課題一覧）はどちらもこの形をしている。
+      面は <code>surface</code> 属性が持つので、同じ要素に両方書ける ——
+      当たる CSS プロパティが重ならないため、入れ子にする必要がない。
+    </p>
+    <div class="demo">
+      <span class="demo-label">&lt;div data-suisou-layout="cols fill"&gt;</span>
+      <div data-suisou-layout="cols" class="demo-frame">
+        <div data-suisou-surface="panel" data-suisou-layout="stack scroll" style="width: 120px">
+          <div class="demo-box">一覧</div>
+          <div class="demo-box">一覧</div>
+          <div class="demo-box">一覧</div>
+          <div class="demo-box">一覧</div>
+          <div class="demo-box">一覧</div>
+        </div>
+        <div data-suisou-layout="stack fill">
+          <div data-suisou-surface="panel">ヘッダ</div>
+          <div data-suisou-surface="panel" data-suisou-layout="fill">本体</div>
+          <div data-suisou-surface="panel">入力</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>すきまを変える</h2>
+    <p class="note">
+      既定は <code>space-2</code>（8px）。これが Suisou の間合いなので、
+      揃えるだけなら何も書かない。現場が変えたいときは
+      <code>helpers.css</code> の <code>.gap-*</code> を重ねる ——
+      <strong>汎用のユーティリティは接頭辞を持たない</strong>。
+      Tailwind など他のユーティリティが既にあるなら helpers.css は読み込まず、
+      そちらの <code>gap-4</code> がそのまま効く。
+    </p>
+    <div class="demo">
+      <span class="demo-label">data-suisou-layout="row"（既定 8px）</span>
+      <div data-suisou-layout="row">
+        <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
+      </div>
+      <span class="demo-label">data-suisou-layout="row" class="gap-4"</span>
+      <div data-suisou-layout="row" class="gap-4">
+        <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
+      </div>
+      <span class="demo-label">data-suisou-layout="row" class="gap-0"</span>
+      <div data-suisou-layout="row" class="gap-0">
+        <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table class="spec">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>寄せ（<code>justify-content</code>）</td>
+          <td>持っていない。作例で <code>style="justify-content: flex-start"</code> を
+              手書きしている箇所がある。<code>start</code> / <code>end</code> /
+              <code>between</code> を足すか未定</td></tr>
+      <tr><td>画面幅で変わる並び</td>
+          <td>持っていない。wixdex は <code>md:flex-row</code> /
+              <code>hidden lg:flex</code> を使っている。Tailwind を置き換えるなら避けて通れない</td></tr>
+      <tr><td>格子（grid）</td>
+          <td><code>center</code> だけが grid。列数を持つ格子は無い。
+              3回書いてから足す</td></tr>
+      <tr><td><code>container</code> の幅</td>
+          <td>1024px 仮置き。<code>--suisou-measure</code> で上書きできるが、
+              段として決めていない</td></tr>
+    </table>
+  </div>
+</section>
