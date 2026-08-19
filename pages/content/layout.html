@@ -15,6 +15,13 @@
     <p class="note">
       値を1つも書かなくても flex と gap は効く。向きは横、子は高さいっぱいに伸びる
       —— flex の初期値そのままなので、<strong>ここに名前は要らない</strong>。
+      <br><br>
+      ただし<strong>子は既定で動かない</strong>（<code>flex: none</code>）。
+      flex 本来の既定は <code>0 1 auto</code> ＝「伸びないが縮む」で、これが驚きの元になる ——
+      <code>width: 200px</code> と書いても守られないし、<code>stack scroll</code> の中身が
+      スクロールせずに潰れる。Suisou は「言われたことしかしない」を既定にして、
+      <strong>動くものには <code>grow</code> と名指しさせる</strong>。
+      おかげで flex の中で動く要素は目で数えられる。
     </p>
     <div class="demo">
       <span class="demo-label">data-suisou-layout</span>
@@ -116,7 +123,9 @@
       <tr><td><code>stretch</code></td><td><code>align-items: stretch</code></td>
           <td><code>row</code> の縦中央を打ち消す。単体では何も変わらない（flex の初期値）</td></tr>
       <tr><td><code>grow</code></td><td><code>flex: 1 1 auto; min-width: 0; min-height: 0</code></td>
-          <td>余りを取る。<code>min-*</code> が無いと中身がはみ出して親ごと伸びる</td></tr>
+          <td>余りを取る。既定が <code>flex: none</code> なので、
+              <strong>伸びるものも縮むものもこれを書く</strong>。
+              <code>min-*</code> が無いと中身がはみ出して親ごと伸びる</td></tr>
       <tr><td><code>wrap</code></td><td><code>flex-wrap: wrap</code></td>
           <td>タグやチップの列</td></tr>
       <tr><td><code>scroll</code></td><td><code>overflow: auto</code></td>
