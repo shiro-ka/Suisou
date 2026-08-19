@@ -6,13 +6,16 @@
     <code>gap: 8px</code>（<code>space-2</code>）が入る。
     <strong>すきまは焼き込んである</strong> —— Suisou の間合いは毎回選ぶものではない。
     値は空白区切りで重ねるので、属性はいくつ語を並べても1つ。
-    <code>cols</code> や <code>fill</code> という汎用の名前を class として
+    <code>row</code> や <code>grow</code> という汎用の名前を class として
     世界から奪わないために、並びは属性の中の語にしてある。
   </p>
 
   <div class="group">
     <h2>既定</h2>
-    <p class="note">値を1つも書かなくても flex と gap は効く。</p>
+    <p class="note">
+      値を1つも書かなくても flex と gap は効く。向きは横、子は高さいっぱいに伸びる
+      —— flex の初期値そのままなので、<strong>ここに名前は要らない</strong>。
+    </p>
     <div class="demo">
       <span class="demo-label">data-suisou-layout</span>
       <div data-suisou-layout>
@@ -24,7 +27,12 @@
   </div>
 
   <div class="group">
-    <h2>並べ方 —— 1つ選ぶ</h2>
+    <h2>モード —— 1つだけ書く</h2>
+    <p class="note">
+      2つ書くと片方が黙って死ぬ。とくに <code>center</code> は grid に切り替わるので、
+      flex 前提の <code>stack</code> と混ぜると指定した向きが何も起きないまま通る。
+      <code>tools/lint_css.py</code> が同時指定を検査する。
+    </p>
     <div class="demo">
       <span class="demo-label">stack —— 縦に積む</span>
       <div data-suisou-layout="stack">
@@ -47,19 +55,17 @@
           <td>縦に積む。いちばん多い</td></tr>
       <tr><td><code>row</code></td><td><code>align-items: center</code></td>
           <td>横並び。ボタン列、アイコンと文字</td></tr>
-      <tr><td><code>cols</code></td><td><code>align-items: stretch</code></td>
-          <td>画面を縦に割る。サイドバーと本体</td></tr>
       <tr><td><code>center</code></td><td><code>display: grid; place-items: center</code></td>
           <td>1つのものを真ん中に。flex ではなく grid</td></tr>
     </table>
   </div>
 
   <div class="group">
-    <h2>row と cols の違いは子の高さだけ</h2>
+    <h2>row と row stretch の違いは子の高さだけ</h2>
     <p class="note">
-      どちらも横並び。<code>row</code> は子を縦中央に置き、
-      <code>cols</code> は子を親の高さいっぱいに伸ばす。
-      面（<code>panel</code>）を並べたときに差が出る。
+      <code>row</code> は子を縦中央に置く。ボタンやアイコンを並べるならこれで合う。
+      面（<code>panel</code>）を並べて画面を割るときだけ、
+      <code>stretch</code> を足して縦中央を打ち消す。
     </p>
     <div class="demo">
       <span class="demo-label">row —— 高さは中身なり</span>
@@ -67,8 +73,8 @@
         <div data-suisou-surface="panel">短い</div>
         <div data-suisou-surface="panel">長い<br>2行<br>3行</div>
       </div>
-      <span class="demo-label">cols —— 高さが揃う</span>
-      <div data-suisou-layout="cols">
+      <span class="demo-label">row stretch —— 高さが揃う</span>
+      <div data-suisou-layout="row stretch">
         <div data-suisou-surface="panel">短い</div>
         <div data-suisou-surface="panel">長い<br>2行<br>3行</div>
       </div>
@@ -78,10 +84,10 @@
   <div class="group">
     <h2>ふるまい —— 重ねて使う</h2>
     <div class="demo">
-      <span class="demo-label">fill —— 余った幅を取る（右の箱だけ）</span>
+      <span class="demo-label">grow —— 余った幅を取る（右の箱だけ）</span>
       <div data-suisou-layout="row">
         <div class="demo-box">固定</div>
-        <div class="demo-box" data-suisou-layout="fill">fill</div>
+        <div class="demo-box" data-suisou-layout="grow">grow</div>
       </div>
       <span class="demo-label">wrap —— 入らなければ折り返す</span>
       <div data-suisou-layout="row wrap">
@@ -107,15 +113,21 @@
     </div>
     <table class="spec">
       <tr><th>値</th><th>CSS</th><th>使う場面</th></tr>
-      <tr><td><code>fill</code></td><td><code>flex: 1 1 auto; min-width: 0; min-height: 0</code></td>
+      <tr><td><code>stretch</code></td><td><code>align-items: stretch</code></td>
+          <td><code>row</code> の縦中央を打ち消す。単体では何も変わらない（flex の初期値）</td></tr>
+      <tr><td><code>grow</code></td><td><code>flex: 1 1 auto; min-width: 0; min-height: 0</code></td>
           <td>余りを取る。<code>min-*</code> が無いと中身がはみ出して親ごと伸びる</td></tr>
       <tr><td><code>wrap</code></td><td><code>flex-wrap: wrap</code></td>
           <td>タグやチップの列</td></tr>
-      <tr><td><code>scroll</code></td><td><code>overflow: auto</code></td>
-          <td>領域の中だけスクロールさせる。<code>fill</code> と組で使う</td></tr>
+      <tr><td><code>scroll</code></td><td><code>overflow: auto; scrollbar-gutter: stable</code></td>
+          <td>領域の中だけスクロールさせる。<code>grow</code> と組で使う</td></tr>
       <tr><td><code>container</code></td><td><code>max-width: 1024px; margin-inline: auto</code></td>
           <td>本文の幅を絞って中央に寄せる。<code>--suisou-measure</code> で変えられる</td></tr>
     </table>
+    <p class="note">
+      <code>grow</code> は <code>flex-grow</code> から取った。
+      <strong>Suisou では「塗る」ことをしないので、<code>fill</code> という語は使わない。</strong>
+    </p>
   </div>
 
   <div class="group">
@@ -152,14 +164,14 @@
   <div class="group">
     <h2>骨格を組む</h2>
     <p class="note">
-      <code>cols</code> で割り、片方に <code>fill</code>、中身に <code>scroll</code>。
+      <code>row stretch</code> で割り、片方に <code>grow</code>、中身に <code>scroll</code>。
       作例の2枚（チャット・課題一覧）はどちらもこの形をしている。
       面は <code>surface</code> 属性が持つので、同じ要素に両方書ける ——
       当たる CSS プロパティが重ならないため、入れ子にする必要がない。
     </p>
     <div class="demo">
-      <span class="demo-label">&lt;div data-suisou-layout="cols fill"&gt;</span>
-      <div data-suisou-layout="cols" class="demo-frame">
+      <span class="demo-label">&lt;div data-suisou-layout="row stretch grow"&gt;</span>
+      <div data-suisou-layout="row stretch" class="demo-frame">
         <div data-suisou-surface="panel" data-suisou-layout="stack scroll" style="width: 120px">
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
@@ -167,9 +179,9 @@
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
         </div>
-        <div data-suisou-layout="stack fill">
+        <div data-suisou-layout="stack grow">
           <div data-suisou-surface="panel">ヘッダ</div>
-          <div data-suisou-surface="panel" data-suisou-layout="fill">本体</div>
+          <div data-suisou-surface="panel" data-suisou-layout="grow">本体</div>
           <div data-suisou-surface="panel">入力</div>
         </div>
       </div>
