@@ -196,6 +196,46 @@ akuarium-ui/      layout（header/main/footer/container/box/items/wrapper）
 
 ---
 
+## 実物の参照先（Suisou の外にあるもの）
+
+デザイン思想の下敷きになっている、しろかさんの既存プロジェクト。
+どちらもこのリポジトリの外にあるので、読むなら明示的に取りに行くこと。
+
+| | 場所 | 何の実例か |
+|---|---|---|
+| wixdex | `~/dev/wixdex` | **アプリ型**。画面が固定高で、中が巻物 |
+| pickker | `github.com/shiro-ka/pickker`（手元に無い） | **文書型**。ページ全体が動く |
+
+★ **Mado は参考にしない。**「まだ私の手が入っていないのでデザイン思想の参考にはしないでください」
+
+### 文書型（pickker）で分かったこと
+
+Blogger 用の Pico CSS テーマ。`src/style.css` 133行。
+
+- **本文はページが動く。脇は箱の中で動く。** 目次（`max-height: 100dvh`）、タグのポップオーバー、
+  モバイルのドロワーの3箇所が内部スクロール。「ページが動く／動かない」の二択ではなく混在する
+- **スクロールバーの指定は133行中ゼロ。** 文書型では何も要らない
+- **ライトテーマと、画面幅で変わるルート文字サイズは Suisou の比較対象にしない。**
+  前者は「配布する Blogger テーマ」という制約から、後者は Pico の設計（16→21px の段階）から来ている
+
+### 一貫していたもの（wixdex ∩ pickker）
+
+別々に、なんとなく作られたのに揃っていた。線形デザインを柱に置いた根拠になる。
+
+- **丸ゴシック**。wixdex は `Zen Maru Gothic`（Suisou と同一）、pickker は `M PLUS Rounded 1c`
+- **塗りが薄い。** wixdex で最頻の面は `bg-zinc-600/10`（不透明度10%）が17回。
+  pickker は Pico の塗りを `background: none` で剥がしている。**足す／剥がすと逆から来て同じ場所に着いている**
+- **ボタンは罫なし・透明・弱い文字色・hover で面が出る**
+- **タグはピル。** wixdex `rounded-full` 9回、pickker `border-radius: 999px`
+
+揃っている項目のほとんどが「**やらないこと**」で、足す側の合意は丸ゴシックとピルくらい。
+好みとして安定していたのは避け方の方だった。
+
+（左罫の見出しは pickker だけ。wixdex の `border-l` は2回で様式になっていないので、
+Suisou の `data-suisou-text~="rule"` は pickker 側の発明）
+
+---
+
 ## 参照先の注意
 
 `.notes/palette-spec.md` の冒頭が、まだ ccmemory 側のパスを参照している。以下は **Suisou には無い**。
