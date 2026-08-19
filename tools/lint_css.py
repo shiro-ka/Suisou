@@ -4,6 +4,7 @@
   1. 色の値が直接書かれていないか（#rrggbb / oklch() / rgb() / hsl() …）
   2. 参照している --suisou-* が palette.css に実在するか
   3. data-suisou-surface が「段」をちょうど1つ持っているか
+  4. data-suisou-layout の「モード」が2つ以上書かれていないか
 
 生成物（palette.css）は検査対象から外す。あれだけが色を持ってよい。
 
@@ -21,6 +22,11 @@ TARGET_EXT = (".css", ".html", ".js")
 
 # 面の段。必ず1つ書く。装飾（bare）だけでは「どの段か」を言っていない
 SURFACE_STEPS = {"panel", "item", "floating", "none"}
+
+# 並びのモード。書かなくてよい（既定は横並び）が、2つ書くと片方が黙って死ぬ。
+# とくに center は grid に切り替わるので、flex 前提の stack / row と混ざると
+# 指定したはずの向きが何も起きないまま通ってしまう。
+LAYOUT_MODES = {"stack", "row", "center"}
 
 COLOR = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:oklch|oklab|lab|lch|rgba?|hsla?|color)\s*\(", re.I)
 COMMENT_CSS = re.compile(r"/\*.*?\*/", re.S)
@@ -88,6 +94,13 @@ def main():
                         problems.append(
                             f"{rel}:{i}: surface の段が {len(steps)} 個 … \"{got}\" "
                             f"（{' / '.join(sorted(SURFACE_STEPS))} から1つ書く）")
+
+                for m in re.finditer(r'data-suisou-layout(?:="([^"]*)")?', line):
+                    modes = LAYOUT_MODES & set((m.group(1) or "").split())
+                    if len(modes) > 1:
+                        problems.append(
+                            f"{rel}:{i}: layout のモードが {len(modes)} 個 … "
+                            f"\"{m.group(1)}\" （{' / '.join(sorted(modes))} は同時に書けない）")
 
     print(f"検査 {checked} ファイル / --suisou-* の定義 {len(defined)} 種")
     if problems:
