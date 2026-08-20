@@ -300,7 +300,10 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 
 /* ══ ★一時的：prose の見出しの罫 比較 ════════
    判断が済んだら、この節と content/prose.html の比較の節をまとめて消す。
-   A（実装済み）は素の [data-suisou-prose] なので、ここには B 以降だけ書く。 */
+   A（実装済み）は素の [data-suisou-prose] なので、ここには B 以降だけ書く。
+
+   ★帯は ::before で描いている。border-left では箱ごと丸まってしまうため。
+     絶対配置なので箱が動かず、入れ物の余白にも依存しない。 */
 
 /* B … pickker のまま。アクセント色・二重の罫・6px・字下げ */
 .prose-b :where(h2) {
@@ -313,52 +316,92 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   padding-left: var(--suisou-space-2);
 }
 
-/* C … 下罫だけ。左端は揃う。GitHub の README がこの形 */
+/* C … 下罫だけ。左端は揃う（GitHub の README がこの形） */
 .prose-c :where(h2) {
   border-bottom: 1px solid var(--suisou-line-weak);
   padding-bottom: var(--suisou-space-1);
 }
 
-/* D … 上罫。「ここから次の節」を示す。見出しは前の話題の終わりではなく
-       次の内容の頭なので、線を上に置く方が意味が正確 */
+/* D … 上罫。「ここから次の節」を示す */
 .prose-d :where(h2) {
   border-top: 1px solid var(--suisou-line-weak);
   padding-top: var(--suisou-space-3);
 }
 
-/* E … 左罫をぶら下げる。::before なので丸められる（border では箱ごと丸まる）。
-       箱が動かないので入れ物の余白にも依存しない。3px */
-.prose-e :where(h2) { position: relative; }
-.prose-e :where(h2)::before {
-  content: "";
-  position: absolute;
-  left: calc(-1 * (3px + var(--suisou-space-2)));
-  top: 0.2em; bottom: 0.2em;
-  width: 3px;
-  border-radius: var(--suisou-radius-pill);
-  background: var(--suisou-line-strong);
-}
+/* ★F / G … 全段を通した案。帯の太さと色で階層を補強する。
+   h1 は帯なし（記事タイトルは1つしかないので区別が要らない）。
+   h6 も帯なし（いちばん下は 14px という大きさ自体がしるし）。 */
 
-/* F … 同じだが 6px。丸みがはっきり出る。上下も少し詰めてカプセルにする */
-.prose-f :where(h2) { position: relative; }
+/* prose-f */
+.prose-f :where(h2, h3, h4, h5) { position: relative; }
+/* h5 / h6 の字下げする左罫は外す ―― 帯と二重になるため */
+.prose-f :where(h5, h6) { border-left: 0; padding-left: 0; }
 .prose-f :where(h2)::before {
-  content: "";
-  position: absolute;
+  content: ""; position: absolute;
   left: calc(-1 * (6px + var(--suisou-space-2)));
   top: 0.25em; bottom: 0.25em;
   width: 6px;
   border-radius: var(--suisou-radius-pill);
   background: var(--suisou-line-strong);
 }
+.prose-f :where(h3)::before {
+  content: ""; position: absolute;
+  left: calc(-1 * (3px + var(--suisou-space-2)));
+  top: 0.25em; bottom: 0.25em;
+  width: 3px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-line-strong);
+}
+.prose-f :where(h4)::before {
+  content: ""; position: absolute;
+  left: calc(-1 * (3px + var(--suisou-space-2)));
+  top: 0.25em; bottom: 0.25em;
+  width: 3px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-line-weak);
+}
+.prose-f :where(h5)::before {
+  content: ""; position: absolute;
+  left: calc(-1 * (1px + var(--suisou-space-2)));
+  top: 0.25em; bottom: 0.25em;
+  width: 1px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-line-weak);
+}
 
-/* G … F のアクセント色版。B がやりたかったことの、Suisou 作法での再実装 */
-.prose-g :where(h2) { position: relative; }
+/* prose-g */
+.prose-g :where(h2, h3, h4, h5) { position: relative; }
+/* h5 / h6 の字下げする左罫は外す ―― 帯と二重になるため */
+.prose-g :where(h5, h6) { border-left: 0; padding-left: 0; }
 .prose-g :where(h2)::before {
-  content: "";
-  position: absolute;
+  content: ""; position: absolute;
   left: calc(-1 * (6px + var(--suisou-space-2)));
   top: 0.25em; bottom: 0.25em;
   width: 6px;
   border-radius: var(--suisou-radius-pill);
   background: var(--suisou-accent);
+}
+.prose-g :where(h3)::before {
+  content: ""; position: absolute;
+  left: calc(-1 * (3px + var(--suisou-space-2)));
+  top: 0.25em; bottom: 0.25em;
+  width: 3px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-accent);
+}
+.prose-g :where(h4)::before {
+  content: ""; position: absolute;
+  left: calc(-1 * (3px + var(--suisou-space-2)));
+  top: 0.25em; bottom: 0.25em;
+  width: 3px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-line-weak);
+}
+.prose-g :where(h5)::before {
+  content: ""; position: absolute;
+  left: calc(-1 * (1px + var(--suisou-space-2)));
+  top: 0.25em; bottom: 0.25em;
+  width: 1px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-line-weak);
 }

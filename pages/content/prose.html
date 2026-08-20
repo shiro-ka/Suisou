@@ -126,14 +126,16 @@
           <td>Suisou のアクセントは<strong>「操作できるもの」の色</strong>
               （ボタン・リンク・焦点の輪）。押せない見出しが同じ強さで主張する</td></tr>
       <tr><td>左罫と下罫が二重</td>
-          <td>同じ仕事を2本でやっている。白いグロウを却下したときと同じ形</td></tr>
+          <td>同じ仕事を2本でやっている</td></tr>
       <tr><td>6px という太さ</td>
-          <td>Suisou の線は <strong>1px（面）と 3px（<code>text="rule"</code>）</strong>だけ</td></tr>
+          <td>Suisou の罫は 1px と 3px だけ。ただし <code>::before</code> で描く帯は
+              罫ではなく<strong>図形</strong>なので、この縛りの外にある</td></tr>
       <tr><td>見出しだけ字下げされる</td>
           <td><strong>中身の左端が揃わない。</strong>
-              <code>surface</code> の <code>tight</code> で横を動かさないと決めた理屈と同じ。
               pickker は <code>margin-left: -.5rem</code> で誤魔化している</td></tr>
     </table>
+
+    <h3>まず h2 だけで方向を見る</h3>
     <div class="demo">
       <span class="demo-label">A —— 罫なし（いまの実装）。サイズとウェイトだけ</span>
       <div data-suisou-prose data-suisou-surface="panel">
@@ -142,14 +144,14 @@
         <h2>段の決まり方</h2>
         <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
       </div>
-      <span class="demo-label">B —— pickker のまま。左罫6px アクセント色 ＋ 下罫</span>
+      <span class="demo-label">B —— pickker のまま</span>
       <div data-suisou-prose data-suisou-surface="panel" class="prose-b">
         <h2>面の階段</h2>
         <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
         <h2>段の決まり方</h2>
         <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
       </div>
-      <span class="demo-label">C —— 下罫だけ。左端は揃う（GitHub の README がこの形）</span>
+      <span class="demo-label">C —— 下罫だけ。左端は揃う</span>
       <div data-suisou-prose data-suisou-surface="panel" class="prose-c">
         <h2>面の階段</h2>
         <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
@@ -163,43 +165,70 @@
         <h2>段の決まり方</h2>
         <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
       </div>
-      <span class="demo-label">E —— ぶら下げ ＋ 丸め。3px（::before）</span>
-      <div data-suisou-prose data-suisou-surface="panel" class="prose-e">
-        <h2>面の階段</h2>
-        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
-        <h2>段の決まり方</h2>
-        <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
-      </div>
-      <span class="demo-label">F —— 同じで 6px。丸みがはっきり出る</span>
+    </div>
+
+    <h3>★帯を採るなら、全段の設計が要る</h3>
+    <p class="note">
+      h2 だけ見て決められない。<strong>h1〜h6 まで通した形</strong>で見る。
+      <br><br>
+      <code>h1</code> は帯なし ——
+      <strong>記事のタイトルは1つしかないので、しるしで区別する必要がない</strong>。
+      <code>h6</code> も帯なし —— <strong>14px という大きさ自体がしるし</strong>になる。
+      <br>
+      ★<code>h5</code> / <code>h6</code> の<strong>字下げする左罫は外してある</strong>。
+      帯と二重になるため。<code>type-spec</code> があれを置いたのは
+      「段が7つしかないので下2段を罫で区別する」ためだったが、
+      <strong>帯が階層を担うなら役目が重なる</strong>。
+    </p>
+    <table data-suisou-table="tight">
+      <tr><th>段</th><th>大きさ / ウェイト</th><th>帯</th></tr>
+      <tr><td><code>h1</code></td><td>28 / 700</td><td>なし</td></tr>
+      <tr><td><code>h2</code></td><td>24 / 700</td><td><strong>6px</strong> 濃い</td></tr>
+      <tr><td><code>h3</code></td><td>20 / 600</td><td>3px 濃い</td></tr>
+      <tr><td><code>h4</code></td><td>16 / 600</td><td>3px 薄い</td></tr>
+      <tr><td><code>h5</code></td><td>16 / 500</td><td>1px 薄い</td></tr>
+      <tr><td><code>h6</code></td><td>14 / 600</td><td>なし</td></tr>
+    </table>
+    <div class="demo">
+      <span class="demo-label">F —— 帯は line-strong（無彩色）</span>
       <div data-suisou-prose data-suisou-surface="panel" class="prose-f">
+        <h1>Suisou のつくり</h1>
+        <p>記事のタイトル。1つしかないので、しるしで区別する必要がない。</p>
         <h2>面の階段</h2>
-        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
-        <h2>段の決まり方</h2>
+        <p>bg &lt; panel &lt; item &lt; overlay の4段。地べたに置くのはヘッダの要素だけ。</p>
+        <h3>段の決まり方</h3>
         <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
+        <h4>選択の下地</h4>
+        <p>アクセント色と中立の2つを出して、現場が選ぶ。</p>
+        <h5>ここから下はほぼ使わない</h5>
+        <p>大きさは h4 と同じで、ウェイトだけ落ちる。</p>
+        <h6>いちばん下</h6>
+        <p>14px。大きさ自体がしるしになるので、帯は持たない。</p>
       </div>
-      <span class="demo-label">G —— F のアクセント色版</span>
+      <span class="demo-label">G —— 帯は accent</span>
       <div data-suisou-prose data-suisou-surface="panel" class="prose-g">
+        <h1>Suisou のつくり</h1>
+        <p>記事のタイトル。1つしかないので、しるしで区別する必要がない。</p>
         <h2>面の階段</h2>
-        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
-        <h2>段の決まり方</h2>
+        <p>bg &lt; panel &lt; item &lt; overlay の4段。地べたに置くのはヘッダの要素だけ。</p>
+        <h3>段の決まり方</h3>
         <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
+        <h4>選択の下地</h4>
+        <p>アクセント色と中立の2つを出して、現場が選ぶ。</p>
+        <h5>ここから下はほぼ使わない</h5>
+        <p>大きさは h4 と同じで、ウェイトだけ落ちる。</p>
+        <h6>いちばん下</h6>
+        <p>14px。大きさ自体がしるしになるので、帯は持たない。</p>
       </div>
     </div>
     <p class="note">
-      C は<strong>静かで確実</strong>だが、見慣れた形でもある。
-      D は<strong>意味が正確</strong> —— 見出しは前の話題の終わりではなく
-      <strong>次の内容の頭</strong>なので、線を上に置く方が筋が通る。
-      リズムの「見出しの前を広く」とも噛み合う。
-      E / F / G は<strong>罫を丸めてある</strong>。
-      <code>border-left</code> では<strong>箱ごと丸まってしまう</strong>ので、
-      <code>::before</code> の絶対配置で描いている ——
-      おかげで<strong>箱が動かず、入れ物の余白にも依存しない</strong>。
-      <br>
-      3px（E）だと丸みはほぼ効かない。<strong>6px（F / G）で初めてカプセルに見える</strong>。
+      ★<strong>帯は階層を「担う」必要はない。</strong>
+      主役はサイズとウェイトで、帯はそれを補強するだけ。
+      だから <code>h3</code> と <code>h4</code> が同じ 3px でも、
+      20px と 16px の差が先に効くので迷わない。
       <br><br>
-      G は B がやりたかったことの、Suisou 作法での再実装。
-      二重の罫をやめ、字下げをやめ、丸めた。
-      <strong>残る論点は「静的な見出しにアクセント色を使うか」だけ</strong>になる。
+      <strong>残る論点は F と G の差 —— 静的な見出しにアクセント色を使うか</strong>。
+      G はテーマ切替で見出しの色が動く（Palette で色を変えてから戻ると分かる）。
     </p>
   </div>
 
