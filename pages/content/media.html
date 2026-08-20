@@ -1,0 +1,125 @@
+<!-- Media。全部静的 -->
+<section class="page">
+  <h1>Media</h1>
+  <p class="note">
+    先頭に固定幅のもの、右に可変の本文。2010年に OOCSS で提唱された形で、
+    Bootstrap も Bulma も <code>media</code> と呼んでいた。
+    <strong>チャットの発言・コメント・通知・検索結果</strong>と繰り返し出てくる。
+    作例では14箇所に使っている。
+  </p>
+
+  <div class="group">
+    <h2>3つの区画</h2>
+    <p class="note">
+      中身は<strong>位置ではなく名前で当てる</strong>ので、並び順を変えても壊れない。
+      <code>-icon</code> と <code>-tail</code> は縮まず、
+      <code>-content</code> が余りを取る。
+    </p>
+    <div class="demo">
+      <span class="demo-label">icon + content + tail</span>
+      <div data-suisou-surface="panel" data-suisou-media>
+        <div data-suisou-media-icon data-suisou-avatar>し</div>
+        <div data-suisou-media-content>
+          <header><span>しろか</span><span>09:12</span></header>
+          <p>テーマ名を水域にした。hadal / trench / fjord / shoal</p>
+        </div>
+        <span data-suisou-media-tail data-suisou-tag="bare"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>4</span>
+      </div>
+      <span class="demo-label">tail は無くてもいい</span>
+      <div data-suisou-surface="panel" data-suisou-media>
+        <div data-suisou-media-icon data-suisou-avatar>あ</div>
+        <div data-suisou-media-content>
+          <header><span>相棒</span><span>09:13</span></header>
+          <p>値は変えていません。33/36 使用可・破綻0件のままです</p>
+        </div>
+      </div>
+    </div>
+    <table class="spec">
+      <tr><th>区画</th><th>ふるまい</th><th>入れるもの</th></tr>
+      <tr><td><code>data-suisou-media-icon</code></td><td>縮まない</td>
+          <td>Avatar、Icon、チェックボックス</td></tr>
+      <tr><td><code>data-suisou-media-content</code></td>
+          <td><strong>余りを取る</strong>（<code>min-width: 0</code> つき）</td>
+          <td><code>&lt;header&gt;</code> と <code>&lt;p&gt;</code></td></tr>
+      <tr><td><code>data-suisou-media-tail</code></td><td>縮まない</td>
+          <td>件数、時刻、操作</td></tr>
+    </table>
+  </div>
+
+  <div class="group">
+    <h2>中の header と p は整えてある</h2>
+    <p class="note">
+      <code>-content</code> の中の <code>&lt;header&gt;</code> と
+      <code>&lt;p&gt;</code> にだけ、要素で直接当てている。
+      <strong><code>:where()</code> で詳細度を 0 にしてあり、しかも
+      <code>-content</code> の内側にしか効かない</strong>ので、
+      適用先の <code>&lt;header&gt;</code> には漏れない。
+    </p>
+    <table class="spec">
+      <tr><th>要素</th><th>扱い</th></tr>
+      <tr><td><code>header</code></td><td>横並び・折り返す・ベースライン揃え</td></tr>
+      <tr><td><code>header</code> の1つ目</td><td>14px / 600。名前や題</td></tr>
+      <tr><td><code>header</code> の2つ目以降</td><td>12px / <code>text-sub</code>。時刻や補足</td></tr>
+      <tr><td><code>p</code></td><td>14px、<code>margin: 0</code></td></tr>
+    </table>
+    <p class="note">
+      これは <code>base.css</code> の「要素セレクタは使わない」を小さく破っている場所。
+      <strong>破っていい範囲を属性の内側に限る</strong>という形で、
+      長文用の <code>prose</code> も同じ手を使うことになる。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>面を持たない</h2>
+    <p class="note">
+      触るのは並び方だけなので、<strong>面の部品と同じ要素に同居できる</strong>。
+      panel を作って中に media を入れる、という段を踏まなくていい。
+    </p>
+    <div class="demo">
+      <span class="demo-label">&lt;div data-suisou-surface="panel" data-suisou-row data-suisou-media&gt;</span>
+      <div data-suisou-surface="panel bleed" data-suisou-layout="stack">
+        <div data-suisou-row="ruled" data-suisou-media>
+          <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>選択下地をアクセント色のままにするか</span><span data-suisou-tag="accent">設計</span></header>
+            <span class="demo-meta">#12 opened 3 days ago</span>
+          </div>
+        </div>
+        <div data-suisou-row="ruled" data-suisou-media>
+          <span data-suisou-media-icon><svg data-suisou-icon="small sub" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>面の input を item に改名する</span><span data-suisou-tag="success">済</span></header>
+            <span class="demo-meta">#4 closed 2 days ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>縦に積む</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-media="stack"</span>
+      <div data-suisou-surface="panel" data-suisou-media="stack">
+        <div data-suisou-media-icon><svg data-suisou-icon="warning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4" /><path d="M12 17h.01" /><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" /></svg></div>
+        <div data-suisou-media-content>
+          <header><span>先頭を上に置きたいとき</span></header>
+          <p>通知の一覧など、横並びだと本文が細くなりすぎる場面で使う</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table class="spec">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>画面幅で積む</td>
+          <td><code>stack</code> は手で切り替える。狭いときに自動で積む仕組みは
+              持っていない（レスポンシブ全体の未決と同じ）</td></tr>
+      <tr><td>本文の <code>p</code> 以外</td>
+          <td><code>ul</code> や <code>blockquote</code> を入れると素のまま。
+              <code>prose</code> と役割が重なるので、そちらと一緒に決める</td></tr>
+    </table>
+  </div>
+</section>
