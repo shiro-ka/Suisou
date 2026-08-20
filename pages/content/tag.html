@@ -1,0 +1,106 @@
+<!-- Tag。全部静的 -->
+<section class="page">
+  <h1>Tag</h1>
+  <p class="note">
+    分類のしるし。<strong>押せるものではない</strong> —— 押せるなら Button。
+    作例で24箇所に出ていて、未実装の部品では最多だった。
+    線形デザインどおり塗らず、罫と文字色だけで色を持つ。
+  </p>
+
+  <div class="group">
+    <h2>色 —— 1つ選ぶ</h2>
+    <p class="note">
+      <strong>色は閉じた集合。</strong><code>solve.py</code> が出す意味色を
+      そのまま値にしてある。以前は作例側で
+      <code>style="--c: var(--suisou-accent)"</code> と書かせていたが、
+      それだと任意の色を差し込める穴になる。掟1 は「色を決めるのは
+      <code>solve.py</code> だけ」なので、<strong>選べる色も Suisou が持つ</strong>。
+    </p>
+    <div class="demo">
+      <span class="demo-label">data-suisou-tag</span>
+      <div data-suisou-layout="row wrap">
+        <span data-suisou-tag>中立（既定）</span>
+        <span data-suisou-tag="accent">accent</span>
+        <span data-suisou-tag="success">success</span>
+        <span data-suisou-tag="warning">warning</span>
+        <span data-suisou-tag="error">error</span>
+      </div>
+    </div>
+    <table class="spec">
+      <tr><th>値</th><th>罫と文字</th><th>使う場面</th></tr>
+      <tr><td>（書かない）</td><td><code>line-weak</code> / <code>text-sub</code></td>
+          <td>ただの分類。<code>Public</code>、件数</td></tr>
+      <tr><td><code>accent</code></td><td><code>--suisou-accent</code></td>
+          <td>目を引かせたい分類</td></tr>
+      <tr><td><code>success</code></td><td><code>--suisou-success</code></td>
+          <td>完了・確認済み</td></tr>
+      <tr><td><code>warning</code></td><td><code>--suisou-warning</code></td>
+          <td>注意</td></tr>
+      <tr><td><code>error</code></td><td><code>--suisou-error</code></td>
+          <td>失敗・破壊的</td></tr>
+    </table>
+  </div>
+
+  <div class="group">
+    <h2>装飾</h2>
+    <div class="demo">
+      <span class="demo-label">bare —— 罫を消す</span>
+      <div data-suisou-layout="row wrap">
+        <span data-suisou-tag>罫あり</span>
+        <span data-suisou-tag="bare">罫なし</span>
+        <span data-suisou-tag="accent bare">accent bare</span>
+      </div>
+    </div>
+    <p class="note">
+      <code>bare</code> は <code>surface</code> と同じ語・同じ意味
+      （<strong>罫だけ消して余白は残す</strong>）。
+      値の名前は部品をまたいで揃えてある。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>アイコンを入れる</h2>
+    <div class="demo">
+      <span class="demo-label">&lt;svg&gt; は部品が寸法を持つ</span>
+      <div data-suisou-layout="row wrap">
+        <span data-suisou-tag><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>4</span>
+        <span data-suisou-tag="success"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5l10 -10" /></svg>通過</span>
+        <span data-suisou-tag="bare"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>12</span>
+      </div>
+    </div>
+    <p class="note">
+      色は <code>currentColor</code> で継承されるので、値を変えれば線も一緒に変わる。
+      寸法は <code>--suisou-icon-small</code>（16px）。
+      ボタン用の <code>--suisou-icon</code>（20px）は 12px の文字の隣には大きすぎたので、
+      <strong>4の倍数を保ったまま段を1つ増やした</strong>。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>Button の中に入れる</h2>
+    <div class="demo">
+      <span class="demo-label">件数のしるし</span>
+      <div data-suisou-layout="row wrap">
+        <button data-suisou-btn="on" type="button"><span>Issues</span><span data-suisou-tag>8</span></button>
+        <button data-suisou-btn type="button"><span>Pull requests</span><span data-suisou-tag>2</span></button>
+        <button data-suisou-btn="plain" type="button"><span>Labels</span><span data-suisou-tag="accent">3</span></button>
+      </div>
+    </div>
+    <p class="note">
+      Button が <code>gap</code> を持っているので、並べるだけで間合いが揃う。
+      Tag 側は何も知らなくていい。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table class="spec">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>塗る版</td><td>持たない。線形デザインで塗らないと決めているため。
+          GitHub のラベルは塗っているので、寄せたくなったときに再検討する</td></tr>
+      <tr><td>押せる Tag</td><td>持たない。押せるなら Button。
+          絞り込みの解除（×つき）が要るようになったら考える</td></tr>
+      <tr><td>大きさの段</td><td>12px 固定。作例では1種類しか要らなかった</td></tr>
+    </table>
+  </div>
+</section>

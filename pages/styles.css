@@ -297,13 +297,7 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 /* GitHub は選択（チェック）した行の面が変わる。★保留中の判断はここで見る */
 .demo-row[aria-selected="true"] { background: var(--suisou-selected-surface); }
 
-/* 分類のしるし → Tag / Badge 部品が要る */
-.demo-tag > svg { width: 14px; height: 14px; }
-.demo-plain { border-color: transparent; }
 .demo-meta { font-size: var(--suisou-size-12); line-height: var(--suisou-lh-12); color: var(--suisou-text-sub); }
-
-/* GitHub のラベル。意味色を借りて色分けする */
-.demo-label { border-color: var(--c); color: var(--c); }
 
 /* 課題の状態アイコン（開いている / 閉じた） */
 .demo-state { flex: none; width: 16px; height: 16px; color: var(--c); }
@@ -320,15 +314,6 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 .demo-check {
   flex: none; width: 14px; height: 14px; margin: 0;
   accent-color: var(--suisou-accent);
-}
-.demo-tag {
-  flex: none;
-  display: inline-flex; align-items: center; gap: var(--suisou-space-1);
-  font-size: var(--suisou-size-12); line-height: var(--suisou-lh-12);
-  padding: 0 var(--suisou-space-2);
-  border-radius: var(--suisou-radius-pill);
-  border: 1px solid var(--suisou-line-weak);
-  color: var(--suisou-text-sub);
 }
 
 /* 定義の並び → Description list の扱いが未定 */

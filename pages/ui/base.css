@@ -39,6 +39,7 @@
   --suisou-space-3: 16px;
   --suisou-space-4: 24px;
   --suisou-icon: 20px;          /* アイコンの一辺。4の倍数 */
+  --suisou-icon-small: 16px;    /* 12px の文字の隣に置く用（Tag など） */
   --suisou-radius: 8px;
   --suisou-radius-pill: 999px;
 
