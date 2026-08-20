@@ -53,6 +53,8 @@
 | `text-sub` on `overlay` | 5.52:1 | 4.5 | shoal/orange | 本文 |
 | `accent` on `overlay` | 3.81:1 | 3.0 | shoal/magenta | UI 部品 |
 | `line-strong` on `item` | 3.85:1 | 3.0 | hadal/orange | 入力枠 1.4.11 |
+| `error-active` on `overlay` | 4.06:1 | 3.0 | hadal/orange | danger ボタン(押下) |
+| `error-active` on `error-surface` | 4.31:1 | 3.0 | hadal/orange | danger ボタン(押下) |
 | `text-main` on `overlay` | 6.53:1 | 4.5 | shoal/orange | 本文 |
 | `text-main` on `selected-surface` | 6.62:1 | 4.5 | shoal/teal | 選択行の文字 |
 | `text-main` on `selected-neutral` | 6.82:1 | 4.5 | shoal/orange | 選択行(中立)の文字 |
