@@ -62,6 +62,44 @@
      formmethod="dialog" で完結する。 */
 [data-suisou-surface~="overlay"]::backdrop { background: var(--suisou-scrim); }
 
+/* 出入りをふわっとさせる。★[popover] / <dialog> のときだけに絞ってある ――
+   overlay の面を静的な箱として使うこともあるので、無条件に opacity: 0 を
+   置くと消えてしまう。
+
+   display と overlay を allow-discrete で繋ぎ、@starting-style で
+   「開く直前の姿」を与えるのが、JS なしで出入りを animate する定石。
+   未対応のブラウザでは単に animate しないだけで、壊れない。 */
+:where([popover], dialog)[data-suisou-surface~="overlay"] {
+  opacity: 0;
+  transition: opacity var(--suisou-motion) var(--suisou-ease),
+              display var(--suisou-motion) allow-discrete,
+              overlay var(--suisou-motion) allow-discrete;
+}
+:where([popover], dialog)[data-suisou-surface~="overlay"]:where(:popover-open, [open]) {
+  opacity: 1;
+}
+@starting-style {
+  :where([popover], dialog)[data-suisou-surface~="overlay"]:where(:popover-open, [open]) {
+    opacity: 0;
+  }
+}
+
+/* 膜も一緒に。中身より少し速く消えると、閉じたことが先に伝わる */
+:where([popover], dialog)[data-suisou-surface~="overlay"]::backdrop {
+  opacity: 0;
+  transition: opacity var(--suisou-motion-fast) var(--suisou-ease),
+              display var(--suisou-motion-fast) allow-discrete,
+              overlay var(--suisou-motion-fast) allow-discrete;
+}
+:where([popover], dialog)[data-suisou-surface~="overlay"]:where(:popover-open, [open])::backdrop {
+  opacity: 1;
+}
+@starting-style {
+  :where([popover], dialog)[data-suisou-surface~="overlay"]:where(:popover-open, [open])::backdrop {
+    opacity: 0;
+  }
+}
+
 /* 装飾 … 任意 */
 [data-suisou-surface~="bare"] { border-color: transparent; }  /* 罫を消す */
 

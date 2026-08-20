@@ -25,6 +25,7 @@
 [data-suisou-row] {
   padding: var(--suisou-space-1) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
+  transition: background-color var(--suisou-motion-fast) var(--suisou-ease);
 }
 
 [data-suisou-row]:hover { background: var(--suisou-hover-surface); }

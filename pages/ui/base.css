@@ -67,6 +67,25 @@
 
   /* 焦点の輪。各部品が同じものを使う */
   --suisou-focus: 2px solid var(--suisou-focus-ring);
+
+  /* ★モーション。段は2つだけ。
+
+     決め方は「動く距離が大きいほど長くする」。Suisou は面を塗らず罫で示すので
+     **位置が動く要素がほとんど無く**、色だけが変わる。だから速い方でいい。
+
+       fast  120ms  色だけ動くもの（hover / 選択 / 押下 / 罫）
+       通常  200ms  現れる・消えるもの（overlay / scrim）
+
+     120ms は Carbon の fast-02（110）と Bootstrap の既定（150）の間。
+     動いたと気づかせず、切り替わりの角だけ取る。
+
+     イージングは ease-out 系。ユーザーが起こした動きは始まりを速くすると
+     「押した瞬間に反応した」感じになる。
+
+     ★焦点の輪は動かさない。キーボード操作では即座に出てほしいため。 */
+  --suisou-motion-fast: 120ms;
+  --suisou-motion: 200ms;
+  --suisou-ease: cubic-bezier(0.2, 0, 0, 1);
 }
 
 /* 面。ページ全体に敷く場合だけ付ける */
@@ -101,6 +120,15 @@
      幅の予約（scrollbar-gutter）はしない。理由は ui/layout.css の "scroll" に書いた。 */
   scrollbar-width: thin;
   scrollbar-color: var(--suisou-line-strong) transparent;
+}
+
+/* ★動きを減らす設定を尊重する。全部品がトークン経由で時間を取っているので、
+   トークンを潰すだけで足りる ―― * や !important を使わずに済む。 */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --suisou-motion-fast: 0.01ms;
+    --suisou-motion: 0.01ms;
+  }
 }
 
 /* リンクの既定。上のコメントを参照。詳細度は 0 */
