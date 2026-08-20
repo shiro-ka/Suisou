@@ -115,98 +115,42 @@
   </div>
 
   <div class="group">
-    <h2>★決めきれていない —— 見出しの罫</h2>
+    <h2>見出しの帯</h2>
     <p class="note">
-      pickker の形（B）は「見出しを強くする」方向は合っているが、
-      <strong>Suisou の作法から4つ外れている</strong>。
+      ★<strong>左にぶら下げる。</strong>字下げしないので、
+      見出しの文字は本文と左端が揃う。
+      <br><br>
+      <code>border</code> ではなく <code>::before</code> で描いている ——
+      <code>border-left</code> は<strong>箱ごと角丸になる</strong>のでカプセル型にできない。
+      絶対配置なら<strong>箱が動かず、入れ物の余白にも依存しない</strong>。
     </p>
     <table data-suisou-table="tight">
-      <tr><th>B のどこが</th><th>なぜ</th></tr>
-      <tr><td>アクセント色を使っている</td>
-          <td>Suisou のアクセントは<strong>「操作できるもの」の色</strong>
-              （ボタン・リンク・焦点の輪）。押せない見出しが同じ強さで主張する</td></tr>
-      <tr><td>左罫と下罫が二重</td>
-          <td>同じ仕事を2本でやっている</td></tr>
-      <tr><td>6px という太さ</td>
-          <td>Suisou の罫は 1px と 3px だけ。ただし <code>::before</code> で描く帯は
-              罫ではなく<strong>図形</strong>なので、この縛りの外にある</td></tr>
-      <tr><td>見出しだけ字下げされる</td>
-          <td><strong>中身の左端が揃わない。</strong>
-              pickker は <code>margin-left: -.5rem</code> で誤魔化している</td></tr>
+      <tr><th>段</th><th>大きさ / ウェイト</th><th>帯</th><th></th></tr>
+      <tr><td><code>h1</code></td><td>28 / 700</td><td>なし</td>
+          <td>記事のタイトルは1つしかないので区別が要らない</td></tr>
+      <tr><td><code>h2</code></td><td>24 / 700</td><td><strong>6px</strong> accent</td><td>いちばん強い</td></tr>
+      <tr><td><code>h3</code></td><td>20 / 600</td><td>3px accent</td><td></td></tr>
+      <tr><td><code>h4</code></td><td>16 / 600</td><td>3px 薄</td><td></td></tr>
+      <tr><td><code>h5</code></td><td>16 / 500</td><td>1px 薄</td><td></td></tr>
+      <tr><td><code>h6</code></td><td>14 / 600</td><td>なし</td>
+          <td>14px という大きさ自体がしるし</td></tr>
     </table>
-
-    <h3>まず h2 だけで方向を見る</h3>
-    <div class="demo">
-      <span class="demo-label">A —— 罫なし（いまの実装）。サイズとウェイトだけ</span>
-      <div data-suisou-prose data-suisou-surface="panel">
-        <h2>面の階段</h2>
-        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
-        <h2>段の決まり方</h2>
-        <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
-      </div>
-      <span class="demo-label">B —— pickker のまま</span>
-      <div data-suisou-prose data-suisou-surface="panel" class="prose-b">
-        <h2>面の階段</h2>
-        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
-        <h2>段の決まり方</h2>
-        <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
-      </div>
-      <span class="demo-label">C —— 下罫だけ。左端は揃う</span>
-      <div data-suisou-prose data-suisou-surface="panel" class="prose-c">
-        <h2>面の階段</h2>
-        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
-        <h2>段の決まり方</h2>
-        <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
-      </div>
-      <span class="demo-label">D —— 上罫。「ここから次の節」を示す</span>
-      <div data-suisou-prose data-suisou-surface="panel" class="prose-d">
-        <h2>面の階段</h2>
-        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
-        <h2>段の決まり方</h2>
-        <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
-      </div>
-    </div>
-
-    <h3>★帯を採るなら、全段の設計が要る</h3>
     <p class="note">
-      h2 だけ見て決められない。<strong>h1〜h6 まで通した形</strong>で見る。
-      <br><br>
-      <code>h1</code> は帯なし ——
-      <strong>記事のタイトルは1つしかないので、しるしで区別する必要がない</strong>。
-      <code>h6</code> も帯なし —— <strong>14px という大きさ自体がしるし</strong>になる。
+      ★<strong>帯は階層を「担う」のではなく補強する。</strong>
+      主役はサイズとウェイトなので、<code>h3</code> と <code>h4</code> が
+      同じ 3px でも 20px と 16px の差が先に効く。
+      <strong>6段に6種類の帯を用意する必要はない。</strong>
       <br>
-      ★<code>h5</code> / <code>h6</code> の<strong>字下げする左罫は外してある</strong>。
-      帯と二重になるため。<code>type-spec</code> があれを置いたのは
-      「段が7つしかないので下2段を罫で区別する」ためだったが、
-      <strong>帯が階層を担うなら役目が重なる</strong>。
+      帯と文字の間はどの段も <code>space-2</code>。
+      太さが違っても<strong>右端が揃い、太いものだけが左へ伸びる</strong>。
+      <br><br>
+      ★<code>type-spec</code> が h5 / h6 に置いていた「字下げする左罫」は外した。
+      帯と二重になるため。あれは「段が7つしかないので下2段を罫で区別する」ための
+      ものだったが、<strong>帯が階層を担うなら役目が重なる</strong>。
     </p>
-    <table data-suisou-table="tight">
-      <tr><th>段</th><th>大きさ / ウェイト</th><th>帯</th></tr>
-      <tr><td><code>h1</code></td><td>28 / 700</td><td>なし</td></tr>
-      <tr><td><code>h2</code></td><td>24 / 700</td><td><strong>6px</strong> 濃い</td></tr>
-      <tr><td><code>h3</code></td><td>20 / 600</td><td>3px 濃い</td></tr>
-      <tr><td><code>h4</code></td><td>16 / 600</td><td>3px 薄い</td></tr>
-      <tr><td><code>h5</code></td><td>16 / 500</td><td>1px 薄い</td></tr>
-      <tr><td><code>h6</code></td><td>14 / 600</td><td>なし</td></tr>
-    </table>
     <div class="demo">
-      <span class="demo-label">F —— 帯は line-strong（無彩色）</span>
-      <div data-suisou-prose data-suisou-surface="panel" class="prose-f">
-        <h1>Suisou のつくり</h1>
-        <p>記事のタイトル。1つしかないので、しるしで区別する必要がない。</p>
-        <h2>面の階段</h2>
-        <p>bg &lt; panel &lt; item &lt; overlay の4段。地べたに置くのはヘッダの要素だけ。</p>
-        <h3>段の決まり方</h3>
-        <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
-        <h4>選択の下地</h4>
-        <p>アクセント色と中立の2つを出して、現場が選ぶ。</p>
-        <h5>ここから下はほぼ使わない</h5>
-        <p>大きさは h4 と同じで、ウェイトだけ落ちる。</p>
-        <h6>いちばん下</h6>
-        <p>14px。大きさ自体がしるしになるので、帯は持たない。</p>
-      </div>
-      <span class="demo-label">G —— 帯は accent</span>
-      <div data-suisou-prose data-suisou-surface="panel" class="prose-g">
+      <span class="demo-label">h1 から h6 まで</span>
+      <div data-suisou-prose data-suisou-surface="panel">
         <h1>Suisou のつくり</h1>
         <p>記事のタイトル。1つしかないので、しるしで区別する必要がない。</p>
         <h2>面の階段</h2>
@@ -221,22 +165,12 @@
         <p>14px。大きさ自体がしるしになるので、帯は持たない。</p>
       </div>
     </div>
-    <p class="note">
-      ★<strong>帯は階層を「担う」必要はない。</strong>
-      主役はサイズとウェイトで、帯はそれを補強するだけ。
-      だから <code>h3</code> と <code>h4</code> が同じ 3px でも、
-      20px と 16px の差が先に効くので迷わない。
-      <br><br>
-      <strong>残る論点は F と G の差 —— 静的な見出しにアクセント色を使うか</strong>。
-      G はテーマ切替で見出しの色が動く（Palette で色を変えてから戻ると分かる）。
-    </p>
   </div>
 
   <div class="group">
     <h2>未決</h2>
     <table data-suisou-table="tight">
       <tr><th>項目</th><th>状況</th></tr>
-      <tr><td><strong>見出しの罫</strong></td><td>★上の A / B。実物を見て決める</td></tr>
       <tr><td>図の寄せ</td>
           <td>中央寄せしていない。記事でも短文でも左端が揃っている方が
               読みやすいと判断したが、pickker は中央寄せしている</td></tr>

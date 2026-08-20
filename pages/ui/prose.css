@@ -37,16 +37,47 @@
 [data-suisou-prose] :where(h3) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); font-weight: 600; }
 [data-suisou-prose] :where(h4) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 600; }
 
-/* ★h5 / h6 はサイズを増やさず、ウェイトと左罫で階層を作る（type-spec §5）。
-   段が7つしかないので、6段の見出しに1段ずつ割り当てると本文と衝突する。 */
-[data-suisou-prose] :where(h5) {
-  font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 500;
-  border-left: 3px solid var(--suisou-line-strong); padding-left: var(--suisou-space-2);
+/* ★h5 / h6 はサイズを増やさない。段が7つしかないので、6段の見出しに
+   1段ずつ割り当てると本文と衝突する（type-spec §5）。区別は帯とウェイトで作る。 */
+[data-suisou-prose] :where(h5) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 500; }
+[data-suisou-prose] :where(h6) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 600; }
+
+/* ── 見出しの帯 ───────────────────────────
+   ★左にぶら下げる。字下げしないので、見出しの文字は本文と左端が揃う。
+
+   ★border ではなく ::before で描く。border-left は箱ごと角丸になるので
+     カプセル型にできない。絶対配置なら箱が動かず、入れ物の余白にも依存しない。
+     擬似要素を1つ使うが、markdown のアンカーリンクは <a> を挿入する方式が
+     主流なのでぶつかりにくい。
+
+   ★帯は階層を「担う」のではなく補強する。主役はサイズとウェイトなので、
+     h3 と h4 が同じ 3px でも 20px と 16px の差が先に効く。
+     6段に6種類の帯を用意する必要はない。
+
+       h1  帯なし … 記事のタイトルは1つしかないので区別が要らない
+       h2  6px 濃  … いちばん強い
+       h3  3px 濃
+       h4  3px 薄
+       h5  1px 薄
+       h6  帯なし … 14px という大きさ自体がしるし
+
+   帯と文字の間はどの段も space-2。太さが違っても右端が揃い、
+   太いものだけが左へ伸びる。 */
+
+[data-suisou-prose] :where(h2, h3, h4, h5) { position: relative; }
+
+[data-suisou-prose] :where(h2, h3, h4, h5)::before {
+  content: "";
+  position: absolute;
+  top: 0.25em;
+  bottom: 0.25em;
+  border-radius: var(--suisou-radius-pill);
 }
-[data-suisou-prose] :where(h6) {
-  font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 600;
-  border-left: 3px solid var(--suisou-line-weak); padding-left: var(--suisou-space-2);
-}
+
+[data-suisou-prose] :where(h2)::before { width: 6px; left: calc(-1 * (6px + var(--suisou-space-2))); background: var(--suisou-accent); }
+[data-suisou-prose] :where(h3)::before { width: 3px; left: calc(-1 * (3px + var(--suisou-space-2))); background: var(--suisou-accent); }
+[data-suisou-prose] :where(h4)::before { width: 3px; left: calc(-1 * (3px + var(--suisou-space-2))); background: var(--suisou-line-weak); }
+[data-suisou-prose] :where(h5)::before { width: 1px; left: calc(-1 * (1px + var(--suisou-space-2))); background: var(--suisou-line-weak); }
 
 [data-suisou-prose] :where(small) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); }
 [data-suisou-prose] :where(strong, b) { font-weight: 600; }
