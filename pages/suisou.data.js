@@ -8,7 +8,7 @@ const SUISOU = {
    "h": 286,
    "cs": 0.006,
    "available": [
-    "orange",
+    "clown",
     "turtle",
     "teal",
     "jelly",
@@ -19,7 +19,7 @@ const SUISOU = {
     "pink"
    ],
    "recommended": [
-    "orange",
+    "clown",
     "turtle",
     "teal",
     "jelly",
@@ -38,7 +38,7 @@ const SUISOU = {
    "h": 265,
    "cs": 0.018,
    "available": [
-    "orange",
+    "clown",
     "turtle",
     "teal",
     "jelly",
@@ -49,7 +49,7 @@ const SUISOU = {
     "pink"
    ],
    "recommended": [
-    "orange",
+    "clown",
     "turtle",
     "teal",
     "blue",
@@ -69,7 +69,7 @@ const SUISOU = {
    "h": 272,
    "cs": 0.03,
    "available": [
-    "orange",
+    "clown",
     "turtle",
     "teal",
     "jelly",
@@ -80,7 +80,7 @@ const SUISOU = {
     "pink"
    ],
    "recommended": [
-    "orange",
+    "clown",
     "turtle",
     "teal",
     "coral",
@@ -100,7 +100,7 @@ const SUISOU = {
    "h": 265,
    "cs": 0.02,
    "available": [
-    "orange",
+    "clown",
     "turtle",
     "teal",
     "jelly",
@@ -111,7 +111,7 @@ const SUISOU = {
     "pink"
    ],
    "recommended": [
-    "orange",
+    "clown",
     "turtle",
     "teal",
     "jelly",
@@ -126,8 +126,8 @@ const SUISOU = {
  ],
  "accents": [
   {
-   "name": "orange",
-   "jp": "",
+   "name": "clown",
+   "jp": "カクレクマノミ",
    "hue": 55
   },
   {
@@ -188,7 +188,7 @@ const SUISOU = {
     "deg": 33
    }
   ],
-  "orange": [
+  "clown": [
    {
     "semantic": "error",
     "deg": 33
