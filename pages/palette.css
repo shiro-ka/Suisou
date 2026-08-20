@@ -350,6 +350,17 @@
   --suisou-selected-surface: oklch(33.00% 0.0552 188);
   --suisou-selected-surface-hex: "#043e3b";
 }
+/* ★推奨しない … 選択下地が面と近い ΔE 0.050（目標 0.055） */
+[data-suisou-theme="trench"][data-suisou-accent="jelly"] {
+  --suisou-accent: oklch(74.00% 0.0838 212);
+  --suisou-accent-hex: "#67b9ca";
+  --suisou-accent-active: oklch(71.00% 0.0804 212);
+  --suisou-accent-active-hex: "#61afbf";
+  --suisou-focus-ring: oklch(74.00% 0.0838 212);
+  --suisou-focus-ring-hex: "#67b9ca";
+  --suisou-selected-surface: oklch(33.00% 0.0577 212);
+  --suisou-selected-surface-hex: "#003d47";
+}
 [data-suisou-theme="trench"][data-suisou-accent="blue"] {
   --suisou-accent: oklch(74.00% 0.0886 255);
   --suisou-accent-hex: "#85aee2";
@@ -430,6 +441,39 @@
   --suisou-focus-ring-hex: "#6ebbb4";
   --suisou-selected-surface: oklch(33.00% 0.0482 188);
   --suisou-selected-surface-hex: "#113d3a";
+}
+/* ★推奨しない … 選択下地が面と近い ΔE 0.051（目標 0.055） */
+[data-suisou-theme="fjord"][data-suisou-accent="jelly"] {
+  --suisou-accent: oklch(74.00% 0.0774 212);
+  --suisou-accent-hex: "#6db8c7";
+  --suisou-accent-active: oklch(71.00% 0.0742 212);
+  --suisou-accent-active-hex: "#67aebd";
+  --suisou-focus-ring: oklch(74.00% 0.0774 212);
+  --suisou-focus-ring-hex: "#6db8c7";
+  --suisou-selected-surface: oklch(33.00% 0.0577 212);
+  --suisou-selected-surface-hex: "#003d47";
+}
+/* ★推奨しない … accent が text-sub と近い ΔE 0.067 */
+[data-suisou-theme="fjord"][data-suisou-accent="blue"] {
+  --suisou-accent: oklch(74.00% 0.0818 255);
+  --suisou-accent-hex: "#88aede";
+  --suisou-accent-active: oklch(71.00% 0.0923 255);
+  --suisou-accent-active-hex: "#7aa4db";
+  --suisou-focus-ring: oklch(74.00% 0.0818 255);
+  --suisou-focus-ring-hex: "#88aede";
+  --suisou-selected-surface: oklch(33.00% 0.0821 255);
+  --suisou-selected-surface-hex: "#14365e";
+}
+/* ★推奨しない … accent が text-sub と近い ΔE 0.067 */
+[data-suisou-theme="fjord"][data-suisou-accent="indigo"] {
+  --suisou-accent: oklch(74.00% 0.0827 282);
+  --suisou-accent-hex: "#a2a5de";
+  --suisou-accent-active: oklch(71.00% 0.0933 282);
+  --suisou-accent-active-hex: "#989adb";
+  --suisou-focus-ring: oklch(74.00% 0.0827 282);
+  --suisou-focus-ring-hex: "#a2a5de";
+  --suisou-selected-surface: oklch(33.00% 0.0834 282);
+  --suisou-selected-surface-hex: "#2f2e5e";
 }
 [data-suisou-theme="fjord"][data-suisou-accent="coral"] {
   --suisou-accent: oklch(74.00% 0.1055 308);
@@ -553,10 +597,13 @@
   --suisou-selected-surface-hex: "#694754";
 }
 
-/* 出していない組み合わせ（制約を満たさないので使えない）:
-     trench/jelly: 選択下地の解なし
-     fjord/jelly: 選択下地の解なし
+/* ★推奨しない組み合わせ（値は出してある。見づらいだけで壊れてはいない）:
+     trench/jelly: 選択下地が面と近い ΔE 0.050（目標 0.055）
+     fjord/jelly: 選択下地が面と近い ΔE 0.051（目標 0.055）
      fjord/blue: accent が text-sub と近い ΔE 0.067
      fjord/indigo: accent が text-sub と近い ΔE 0.067
+*/
+
+/* 出していない組み合わせ（色域外。意図した色が表示できない）:
    これらを指定しても CSS は無反応で、:root の既定アクセントが残る。
    静かに噛み合わない色になるので、指定する側で避けること。 */

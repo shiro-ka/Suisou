@@ -169,17 +169,28 @@ def resolve_hover(t):
     return round(L, 3)
 
 def resolve_tint(t, h, floor):
-    """載りうる全面に対して ΔE >= floor を満たす最小 C。解が無ければ None"""
+    """載りうる全面に対して ΔE >= floor を満たす最小 C。
+
+    ★フロアに届かない場合も None を返さず、色域内で届く限りの最大 C を返す。
+      「その色は出せない」ではなく「その色では区別しにくい」が実態なので、
+      値は出しておいて、推奨しない理由として警告に載せる（掟2 の運用を参照）。"""
     D = LADDERS[t["ladder"]]
     L, ceil = D["tint"], maxC(D["tint"], h)
     worst = lambda C: min(dE((L, C, h), (D[s], t["cs"], t["h"])) for s in SURFACES)
-    if worst(ceil) < floor: return None
+    if worst(ceil) < floor: return ceil        # 届かない。届く限りを返す
     lo, hi = 0.0, ceil
     for _ in range(48):
         m = (lo + hi) / 2
         if worst(m) < floor: lo = m
         else: hi = m
     return hi
+
+def tint_reaches(t, h, floor):
+    """resolve_tint の返り値がフロアを満たしているか。警告の判定に使う"""
+    D = LADDERS[t["ladder"]]
+    L = D["tint"]
+    C = resolve_tint(t, h, floor)
+    return min(dE((L, C, h), (D[s], t["cs"], t["h"])) for s in SURFACES) >= floor - 1e-9
 
 def sem_ratio(ar):
     return min(0.95, ar + SEM_OFFSET)
@@ -198,38 +209,48 @@ def tokens(t, acc_name, acc_h):
     o["hover-surface"] = (resolve_hover(t), t["cs"], t["h"])   # 中立。アクセントに依存しない
     # 選択の下地は2つ出す。現場が「色で示す」か「明るさだけで示す」かを選ぶ。
     # 明度はどちらも tint で同じ。違うのは彩度だけ（hadal で 0.053 と 0.006）。
-    sel = resolve_tint(t, acc_h, FLOOR["selected"])
-    o["selected-surface"] = None if sel is None else (D["tint"], sel, acc_h)
+    o["selected-surface"] = (D["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h)
     o["selected-neutral"] = (D["tint"], t["cs"], t["h"])       # 中立。アクセントに依存しない
     sr = sem_ratio(t["ar"])
     for n, h in SEM_HUE.items():
         L = SEM_L[t["ladder"]][n]
         o[n] = (L, maxC(L, h) * sr, h)
-        st = resolve_tint(t, h, FLOOR["selected"])
-        o[n+"-surface"] = None if st is None else (D["tint"], st, h)
+        o[n+"-surface"] = (D["tint"], resolve_tint(t, h, FLOOR["selected"]), h)
     return o
 
 # ============================================================ 制約チェック
+def accent_blocking(t, acc_name, acc_h):
+    """出せない理由。色域外だけ。ここが空でない組は CSS に出さない。
+
+    色域外は「意図した色が表示できない」＝ブラウザが勝手に丸めるので、
+    Suisou が保証している値と実際に出る色が食い違う。これは出せない。"""
+    k = tokens(t, acc_name, acc_h)
+    return [f"{n} が色域外" for n, v in k.items() if v and not in_gamut(*v)]
+
+
 def accent_issues(t, acc_name, acc_h):
+    """推奨しない理由。★ここが空でなくても CSS には出す（掟2 の運用）。
+
+    どれも「表示できない」ではなく「区別しにくい」。使う側が承知の上で
+    選べばいい話なので、値は出しておいて理由だけ添える。"""
     k = tokens(t, acc_name, acc_h)
     bad = []
-    if k["hover-surface"] is None:    bad.append("hover 下地の解なし")
-    if k["selected-surface"] is None: bad.append("選択下地の解なし")
+    if not tint_reaches(t, acc_h, FLOOR["selected"]):
+        d = min(dE((LADDERS[t["ladder"]]["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h),
+                   (LADDERS[t["ladder"]][sf], t["cs"], t["h"])) for sf in SURFACES)
+        bad.append(f"選択下地が面と近い ΔE {d:.3f}（目標 {FLOOR['selected']}）")
     for st in ("accent", "accent-active"):
-        if not in_gamut(*k[st]): bad.append(f"{st} が色域外")
         if contrast(k[st], k["floating"]) < 3.0:
             bad.append(f"{st} のコントラスト不足 {contrast(k[st], k['floating']):.2f}:1")
         d = dE(k[st], k["text-sub"])
         if d < FLOOR["textSub"]: bad.append(f"{st} が text-sub と近い ΔE {d:.3f}")
     near = min(((dE(k["accent"], k[n]), n) for n in SEM_HUE))
     if near[0] < FLOOR["semantic"]: bad.append(f"{near[1]} と近い ΔE {near[0]:.3f}")
-    if k["hover-surface"] and k["selected-surface"]:
-        # hover は中立、選択はアクセント色。色相が違うので彩度差では測れない
-        if dE(k["selected-surface"], k["hover-surface"]) < JND:
-            bad.append("hover と選択が近すぎ")
+    if dE(k["selected-surface"], k["hover-surface"]) < JND:
+        bad.append("hover と選択が近すぎ")
     # 中立版の選択下地も hover と区別がつく必要がある。こちらは同じ色相なので
     # 差は明度だけ（tint と hover の段差）。段を詰めたときに真っ先に壊れる。
-    if k["hover-surface"] and dE(k["selected-neutral"], k["hover-surface"]) < JND:
+    if dE(k["selected-neutral"], k["hover-surface"]) < JND:
         bad.append("hover と選択（中立）が近すぎ")
     return bad
 
@@ -263,22 +284,32 @@ def solve():
                  "ar":t["ar"], "semRatio": round(sem_ratio(t["ar"]),3),
                  "textMainL": resolve_text_main(t), "accents": {}}
         for an, ah in ACCENTS:
+            block = accent_blocking(t, an, ah)
             bad = accent_issues(t, an, ah)
             tk = tokens(t, an, ah)
             entry["accents"][an] = {
-                "hue": ah, "available": not bad, "issues": bad,
+                "hue": ah,
+                "available": not block,            # 出すかどうか
+                "recommended": not block and not bad,   # 勧めるかどうか
+                "blocking": block, "issues": bad,
                 "tokens": {n: (None if v is None else
                               {"L":round(v[0],4),"C":round(v[1],4),"H":v[2],"hex":hexof(*v)})
                            for n, v in tk.items()},
                 "pairs": pair_results(t, an, ah),
             }
-            for g in gamut_failures(t, an, ah):
-                out["failures"].append(f"{t['name']}/{an}: {g} が色域外")
+            for g in block:
+                out["failures"].append(f"{t['name']}/{an}: {g}")
             for r in pair_results(t, an, ah):
-                if not r["pass"] and not bad:   # 使用可能な組み合わせだけ構造的破綻として数える
+                # ★推奨する組み合わせだけを構造的破綻として数える。
+                #   推奨しない組は「見づらいと承知で使うもの」なので、
+                #   基準を満たさないのは当たり前。二重に数えない。
+                if not r["pass"] and not bad and not block:
                     out["failures"].append(
                         f"{t['name']}/{an}: {r['a']} on {r['b']} "
                         f"{r['value']}:1 < {r['need']}")
+            out.setdefault("notRecommended", [])
+            if bad and not block:
+                out["notRecommended"].append(f"{t['name']}/{an}: {bad[0]}")
         out["themes"].append(entry)
     # 色相カテゴリのリスク（ΔE では測れないもの）
     out["hueCategoryRisk"] = [
@@ -360,17 +391,25 @@ def write_css(data):
     L.append("")
 
     L.append("/* ── アクセント層（テーマとの組でしか決まらない） ── */")
-    skipped = []
+    skipped, warned = [], []
     for t in data["themes"]:
         L.append("")
         for an, a in t["accents"].items():
             if not a["available"]:
-                skipped.append(f"{t['name']}/{an}: {a['issues'][0]}")
+                skipped.append(f"{t['name']}/{an}: {a['blocking'][0]}")
                 continue
             sel = f'[data-suisou-theme="{t["name"]}"][data-suisou-accent="{an}"]'
+            if not a["recommended"]:
+                warned.append(f"{t['name']}/{an}: {a['issues'][0]}")
+                L.append(f"/* ★推奨しない … {a['issues'][0]} */")
             L += css_block(sel, ACCENT_TOKENS, a["tokens"])
     L.append("")
-    L.append("/* 出していない組み合わせ（制約を満たさないので使えない）:")
+    L.append("/* ★推奨しない組み合わせ（値は出してある。見づらいだけで壊れてはいない）:")
+    for s in warned:
+        L.append(f"     {s}")
+    L.append("*/")
+    L.append("")
+    L.append("/* 出していない組み合わせ（色域外。意図した色が表示できない）:")
     for s in skipped:
         L.append(f"     {s}")
     L.append("   これらを指定しても CSS は無反応で、:root の既定アクセントが残る。")
@@ -394,7 +433,10 @@ def write_site_data(data):
     out = {
         "themes": [{"name": t["name"], "jp": t["jp"], "ladder": t["ladder"],
                     "h": t["h"], "cs": t["cs"],
-                    "available": [a for a, v in t["accents"].items() if v["available"]]}
+                    "available": [a for a, v in t["accents"].items() if v["available"]],
+                    "recommended": [a for a, v in t["accents"].items() if v["recommended"]],
+                    "warnings": {a: v["issues"][0] for a, v in t["accents"].items()
+                                 if v["available"] and not v["recommended"]}}
                    for t in data["themes"]],
         "accents": [{"name": n, "jp": ACCENT_JP.get(n, ""), "hue": h} for n, h in ACCENTS],
         "themeTokens": THEME_TOKENS,
@@ -425,23 +467,29 @@ def write_tables(data):
     L.append("| テーマ | 階段 | H | 面C | 強さ | 意味色倍率 | text-main | 使えるアクセント |")
     L.append("|---|---|---|---|---|---|---|---|")
     for t in data["themes"]:
-        ok = [a for a, v in t["accents"].items() if v["available"]]
+        ok = [a for a, v in t["accents"].items() if v["recommended"]]
         L.append(f"| `{t['name']}` | {t['ladder']} | {t['h']} | {t['cs']} | ×{t['ar']} | "
                  f"×{t['semRatio']} | L{t['textMainL']*100:.1f} | **{len(ok)}/{len(ACCENTS)}** |")
     L.append("")
     L.append("### アクセント可用性\n")
+    L.append("全部の組み合わせを CSS に出している。下の「推奨しない」も選べる ―― "
+             "見づらいだけで壊れてはいないため。\n")
     for t in data["themes"]:
-        ok = [a for a, v in t["accents"].items() if v["available"]]
-        ng = [(a, v["issues"][0]) for a, v in t["accents"].items() if not v["available"]]
+        ok = [a for a, v in t["accents"].items() if v["recommended"]]
+        ng = [(a, v["issues"][0]) for a, v in t["accents"].items()
+              if v["available"] and not v["recommended"]]
+        no = [(a, v["blocking"][0]) for a, v in t["accents"].items() if not v["available"]]
         L.append(f"- **{t['name']}** … {', '.join(ok)}")
         if ng:
-            L.append(f"  - 除外: " + " / ".join(f"{a}（{r}）" for a, r in ng))
+            L.append(f"  - ★推奨しない: " + " / ".join(f"{a}（{r}）" for a, r in ng))
+        if no:
+            L.append(f"  - 出していない: " + " / ".join(f"{a}（{r}）" for a, r in no))
     L.append("")
     L.append("### コントラスト検証（全テーマ × 使用可能アクセント中の最悪値）\n")
     worst = {}
     for t in data["themes"]:
         for an, av in t["accents"].items():
-            if not av["available"]: continue
+            if not av["recommended"]: continue
             for r in av["pairs"]:
                 key = (r["a"], r["b"])
                 if r["value"] is None: continue
@@ -468,19 +516,24 @@ def write_tables(data):
 if __name__ == "__main__":
     data = solve()
     check_only = "--check" in sys.argv
-    n_ok = sum(1 for t in data["themes"] for v in t["accents"].values() if v["available"])
+    n_ok = sum(1 for t in data["themes"] for v in t["accents"].values() if v["recommended"])
+    n_out = sum(1 for t in data["themes"] for v in t["accents"].values() if v["available"])
     n_all = len(data["themes"]) * len(ACCENTS)
-    print(f"themes {len(data['themes'])} / accent combos {n_ok}/{n_all} available")
+    print(f"themes {len(data['themes'])} / accent combos "
+          f"{n_out}/{n_all} 出力 ・ {n_ok}/{n_all} 推奨")
     if data["failures"]:
         print(f"*** {len(data['failures'])} structural failures ***")
         for f_ in data["failures"][:20]: print("  " + f_)
     else:
         print("structural failures: 0")
+    if data.get("notRecommended"):
+        print(f"not recommended: {len(data['notRecommended'])}")
+        for f_ in data["notRecommended"]: print("  ★ " + f_)
     for t in data["themes"]:
-        ng = [a for a, v in t["accents"].items() if not v["available"]]
+        ng = [a for a, v in t["accents"].items() if not v["recommended"]]
         print(f"  {t['name']:9s} text-main L{t['textMainL']*100:.1f}  "
-              f"available {len(ACCENTS)-len(ng)}/{len(ACCENTS)}"
-              + (f"  drop: {', '.join(ng)}" if ng else ""))
+              f"推奨 {len(ACCENTS)-len(ng)}/{len(ACCENTS)}"
+              + (f"  ★{', '.join(ng)}" if ng else ""))
     if check_only:
         sys.exit(1 if data["failures"] else 0)
     print("wrote:", write_tables(data))
