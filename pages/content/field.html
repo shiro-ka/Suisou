@@ -1,0 +1,100 @@
+<!-- Field。全部静的 -->
+<section class="page">
+  <h1>Field</h1>
+  <p class="note">
+    入力欄。<code>input</code> / <code>textarea</code> / <code>select</code> に付ける。
+    面の階段では <strong><code>item</code> に載る</strong> ——
+    <code>panel</code> の中に置かれるものなので1段手前。
+  </p>
+
+  <div class="group">
+    <h2>基本</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-field</span>
+      <div data-suisou-layout="stack" data-suisou-surface="panel">
+        <input data-suisou-field="block" placeholder="#general へメッセージを送信">
+        <input data-suisou-field="block" value="is:issue is:open">
+        <textarea data-suisou-field="block" rows="3" placeholder="長い文章"></textarea>
+      </div>
+    </div>
+    <p class="note">
+      ★<strong>罫は <code>line-strong</code>。</strong>
+      書ける場所は罫を強くして、ただの区切り（<code>line-weak</code>）と区別する。
+      線形デザインでは罫が唯一の手がかりなので、ここを弱くすると入力欄が消える。
+      上の見本は <code>panel</code> の中に置いてあるので、面の段差でも1段浮いて見える。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>幅は持たない</h2>
+    <p class="note">
+      実寸は現場のもの。flex の中なら <code>layout</code> の <code>grow</code>、
+      それ以外で幅いっぱいにしたいときだけ <code>block</code> と書く。
+    </p>
+    <div class="demo">
+      <span class="demo-label">何も書かない —— ブラウザの既定幅</span>
+      <div data-suisou-surface="panel">
+        <input data-suisou-field placeholder="そのまま">
+      </div>
+      <span class="demo-label">flex の中で grow —— 隣に何か置くとき</span>
+      <div data-suisou-layout="row" data-suisou-surface="panel">
+        <input data-suisou-layout="grow" data-suisou-field placeholder="#general へメッセージを送信">
+        <button data-suisou-btn="icon" type="button" aria-label="送信"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14l11 -11" /><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></svg></button>
+      </div>
+      <span class="demo-label">block —— flex の外で幅いっぱい</span>
+      <div data-suisou-surface="panel">
+        <input data-suisou-field="block" placeholder="幅いっぱい">
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>状態</h2>
+    <p class="note">
+      <strong>標準の属性を借りる。</strong><code>disabled</code> と
+      <code>aria-invalid</code> をそのまま見ているので、自分で
+      <code>data-*</code> を発明しなくていい。
+    </p>
+    <div class="demo">
+      <span class="demo-label">ふつう / aria-invalid="true" / disabled</span>
+      <div data-suisou-layout="stack" data-suisou-surface="panel">
+        <input data-suisou-field="block" value="ふつう">
+        <input data-suisou-field="block" value="不正な値" aria-invalid="true">
+        <input data-suisou-field="block" value="書けない" disabled>
+      </div>
+    </div>
+    <table class="spec">
+      <tr><th>状態</th><th>罫</th><th>面</th></tr>
+      <tr><td>ふつう</td><td><code>line-strong</code></td><td><code>item</code></td></tr>
+      <tr><td><code>:focus-visible</code></td><td>そのまま</td>
+          <td>そのまま。外に <code>focus-ring</code> の輪が出る</td></tr>
+      <tr><td><code>aria-invalid="true"</code></td><td><code>error</code></td><td>そのまま</td></tr>
+      <tr><td><code>disabled</code></td><td><code>line-weak</code></td>
+          <td><strong>透過</strong>。書けないものは面に載っていない</td></tr>
+    </table>
+    <p class="note">
+      <code>disabled</code> で面を降ろすのは Button と揃えている ——
+      あちらも罫と面を落として文字だけ残す。
+      <strong>「触れないものは浮いていない」</strong>という一貫した扱い。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table class="spec">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>ラベルと説明文</td>
+          <td>持っていない。<code>&lt;label&gt;</code> と入力欄を束ねる形
+              （ラベル・補助文・エラー文）はまだ決めていない。
+              作例はどちらも <code>aria-label</code> だけで済んでいた</td></tr>
+      <tr><td><code>select</code> の矢印</td>
+          <td>ブラウザ既定のまま。差し替えるには背景画像か
+              <code>appearance: none</code> が要り、色の直書きに近づく</td></tr>
+      <tr><td>checkbox / radio</td>
+          <td>別の部品になる。作例では <code>accent-color</code> だけ当てて逃げている
+              （<code>.demo-check</code>）</td></tr>
+      <tr><td>大きさの段</td>
+          <td>14px 固定。作例では1種類しか要らなかった</td></tr>
+    </table>
+  </div>
+</section>
