@@ -1,0 +1,103 @@
+<!-- Link。全部静的 -->
+<section class="page">
+  <h1>Link</h1>
+  <p class="note">
+    リンク。<strong>色を変えない。下線だけで示す。</strong>
+  </p>
+
+  <div class="group">
+    <h2>なぜ色を変えないか</h2>
+    <p class="note">
+      色で示すと<strong>意味が色だけに載る</strong> —— CVD の論点そのもので、
+      Suisou は「色だけに意味を載せない」と決めている。
+      線形デザインは「塗らず線で区切る」なので、<strong>リンクも線で示すのが素直</strong>。
+      <br><br>
+      実務的な理由もある。既定で色が変わる設計だと、ナビやボタンの
+      <code>&lt;a&gt;</code> を作るたびに<strong>色を消す作業が発生する</strong>。
+    </p>
+    <div class="demo">
+      <span class="demo-label">data-suisou-link</span>
+      <p data-suisou-text="s16 w400 doc">
+        テーマ名は水域にした。<a href="#palette" data-suisou-link>hadal / trench / fjord / shoal</a> の4つで、
+        深いほど光が届かず面の色が薄くなる。値は
+        <a href="#palette" data-suisou-link>solve.py が制約から解いている</a>ので、
+        手で置いた色は1つも無い。
+      </p>
+    </div>
+    <p class="note">
+      カーソルを乗せるとアクセント色が乗る。
+      <strong>下線は常にあるので、色は補強にしかならない。</strong>
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>a そのものには当てない</h2>
+    <p class="note">
+      <code>base.css</code> で <code>&lt;a&gt;</code> は
+      <strong>「色も下線も持たない」に倒してある</strong>。
+      線を引くのはこの属性か <code>prose</code> の中だけ。
+      <br><br>
+      <code>a</code> に一律で下線を引くと、<strong>ボタンやナビの
+      <code>&lt;a&gt;</code>、画像リンクまで線が入って破綻する</strong>。
+      ブラウザ既定の青＋下線も同じ理由で消してある。
+    </p>
+    <div class="demo">
+      <span class="demo-label">属性なしの &lt;a&gt; —— 素のまま。ボタンやナビ用</span>
+      <div data-suisou-layout="row wrap">
+        <a href="#button" data-suisou-btn="outline">ボタンとしての a</a>
+        <a href="#row" data-suisou-btn>ナビとしての a</a>
+        <a href="#tag" data-suisou-tag="accent">タグとしての a</a>
+      </div>
+      <span class="demo-label">画像だけのリンク —— 線を引かない（:has で判定）</span>
+      <div data-suisou-layout="row">
+        <a href="#avatar" data-suisou-link><img data-suisou-avatar="large" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23334'/%3E%3Ccircle cx='32' cy='24' r='12' fill='%23889'/%3E%3Cellipse cx='32' cy='58' rx='22' ry='18' fill='%23889'/%3E%3C/svg%3E" alt=""></a>
+        <span data-suisou-text="s12 w400" class="muted">markdown の <code>[![img](x)](y)</code> がこの形になる</span>
+      </div>
+    </div>
+    <table data-suisou-table="tight">
+      <tr><th>どこ</th><th>色</th><th>下線</th></tr>
+      <tr><td><code>&lt;a&gt;</code>（既定）</td><td>継承</td><td>なし</td></tr>
+      <tr><td><code>data-suisou-link</code></td><td>継承（hover でアクセント）</td><td><strong>あり</strong></td></tr>
+      <tr><td><code>prose</code> の中の <code>&lt;a&gt;</code></td><td>同上</td><td><strong>あり</strong>（自動）</td></tr>
+      <tr><td>画像だけのリンク</td><td>継承</td><td>なし</td></tr>
+    </table>
+    <p class="note">
+      ★<code>prose</code> と同じ規則を<strong>1つのセレクタに並べてある</strong>。
+      markdown が吐く <code>&lt;a&gt;</code> には属性を書けないので
+      <code>prose</code> 側で拾うことになるが、
+      <strong>値を2箇所に書くと必ずズレる</strong>。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>焦点</h2>
+    <p class="note">
+      <code>a</code> の既定は色も下線も消しているが、
+      <strong>焦点の輪だけは残してある</strong> ——
+      キーボードで辿れないと困るため。Tab で移動すると出る。
+    </p>
+    <div class="demo">
+      <span class="demo-label">Tab で辿る</span>
+      <div data-suisou-layout="row wrap">
+        <a href="#link" data-suisou-link>文章の中のリンク</a>
+        <a href="#link" data-suisou-btn="plain">ボタンの a</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table data-suisou-table="tight">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>訪問済み</td>
+          <td>持たない。<code>:visited</code> は取れる情報が制限されていて
+              色しか変えられず、しかも「色だけで示す」ことになる</td></tr>
+      <tr><td>外部リンクのしるし</td>
+          <td>持たない。矢印のアイコンを付ける案はあるが、
+              <code>prose</code> の中で <code>::after</code> に絵を出すことになる</td></tr>
+      <tr><td>押下（<code>:active</code>）</td>
+          <td>持たない。Button は <code>accent-active</code> を持っているので、
+              揃えるなら足す</td></tr>
+    </table>
+  </div>
+</section>
