@@ -26,7 +26,7 @@ SURFACE_STEPS = {"panel", "item", "floating", "none"}
 # 並びのモード。書かなくてよい（既定は横並び）が、2つ書くと片方が黙って死ぬ。
 # とくに center は grid に切り替わるので、flex 前提の stack / row と混ざると
 # 指定したはずの向きが何も起きないまま通ってしまう。
-LAYOUT_MODES = {"stack", "row", "center"}
+LAYOUT_MODES = {"stack", "row", "center", "frame"}
 
 COLOR = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:oklch|oklab|lab|lch|rgba?|hsla?|color)\s*\(", re.I)
 COMMENT_CSS = re.compile(r"/\*.*?\*/", re.S)
