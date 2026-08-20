@@ -423,6 +423,14 @@ def write_css(data):
         f.write("\n".join(L) + "\n")
     return p
 
+def _hue_risk(data):
+    """{アクセント名: [{semantic, deg}, ...]}。ΔE では測れないリスクの受け渡し用"""
+    out = {}
+    for r in sorted(data["hueCategoryRisk"], key=lambda x: x["deg"]):
+        out.setdefault(r["accent"], []).append({"semantic": r["semantic"], "deg": r["deg"]})
+    return out
+
+
 def write_site_data(data):
     """サイトの切替 UI が読む構造データ。色は持たない（色は palette.css の担当）。
 
@@ -439,6 +447,8 @@ def write_site_data(data):
                                  if v["available"] and not v["recommended"]}}
                    for t in data["themes"]],
         "accents": [{"name": n, "jp": ACCENT_JP.get(n, ""), "hue": h} for n, h in ACCENTS],
+        # 色相が近い組。ΔE では測れないので別に持つ。アクセントを選ぶ画面で出す
+        "hueRisk": _hue_risk(data),
         "themeTokens": THEME_TOKENS,
         "accentTokens": ACCENT_TOKENS,
         "default": {"theme": DEFAULT_THEME, "accent": DEFAULT_ACCENT},
