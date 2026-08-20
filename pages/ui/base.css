@@ -23,25 +23,44 @@
 */
 
 :root {
+  /* ★単位は rem。名前の数字は「ルートが 16px のときの px」。
+
+     ユーザーがブラウザの文字サイズ設定を変えたときに追従するため。
+     ページ全体のズーム（Ctrl +）は px でも効くが、「文字だけ大きくする」
+     設定は px を無視する。長文（prose）を対象にする以上ここは譲れない。
+     Bootstrap 5 / Material UI / Tailwind もこの形。
+
+     ★html の font-size は触らない。触るとユーザー設定を上書きしてしまう。
+       Suisou が font-size を置くのは [data-suisou-root]（＝ body 側）だけ。
+
+     ★rem なので入れ子でも掛け算にならない。em は「まわりの文字に合わせる」
+       ものにだけ使う ―― Suisou では行内コード（ui/code.css）の1箇所だけ。
+
+     ★1px の罫と焦点の輪、当たり判定は px のまま。文字サイズではなく
+       「線」と「指」の都合なので、拡大に追従させない。
+
+     「4の倍数」はルートが 16px のときに成立する。ユーザーが設定を変えれば
+     全体が比例して動くので、段どうしの関係は保たれる。 */
+
   /* タイポ … .notes/type-spec.md §3 §6 */
-  --suisou-size-12: 12px;  --suisou-lh-12: 16px;
-  --suisou-size-14: 14px;  --suisou-lh-14: 20px;
-  --suisou-size-16: 16px;  --suisou-lh-16: 24px;
-  --suisou-size-20: 20px;  --suisou-lh-20: 28px;
-  --suisou-size-24: 24px;  --suisou-lh-24: 32px;
-  --suisou-size-28: 28px;  --suisou-lh-28: 32px;
-  --suisou-size-32: 32px;  --suisou-lh-32: 36px;
+  --suisou-size-12: 0.75rem;   --suisou-lh-12: 1rem;      /* 12 / 16 */
+  --suisou-size-14: 0.875rem;  --suisou-lh-14: 1.25rem;   /* 14 / 20 */
+  --suisou-size-16: 1rem;      --suisou-lh-16: 1.5rem;    /* 16 / 24 */
+  --suisou-size-20: 1.25rem;   --suisou-lh-20: 1.75rem;   /* 20 / 28 */
+  --suisou-size-24: 1.5rem;    --suisou-lh-24: 2rem;      /* 24 / 32 */
+  --suisou-size-28: 1.75rem;   --suisou-lh-28: 2rem;      /* 28 / 32 */
+  --suisou-size-32: 2rem;      --suisou-lh-32: 2.25rem;   /* 32 / 36 */
 
   /* ★未確定。余白・角丸はまだ決めていない（handoff の「保留」）。
      UI アンカーの実測 8px を基準に仮置きしている。実物を見て決める。 */
-  --suisou-space-1: 4px;
-  --suisou-space-2: 8px;
-  --suisou-space-3: 16px;
-  --suisou-space-4: 24px;
-  --suisou-icon: 20px;          /* アイコンの一辺。4の倍数 */
-  --suisou-icon-small: 16px;    /* 12px の文字の隣に置く用（Tag など） */
-  --suisou-radius: 8px;
-  --suisou-radius-pill: 999px;
+  --suisou-space-1: 0.25rem;   /*  4 */
+  --suisou-space-2: 0.5rem;    /*  8 */
+  --suisou-space-3: 1rem;      /* 16 */
+  --suisou-space-4: 1.5rem;    /* 24 */
+  --suisou-icon: 1.25rem;       /* 20。アイコンの一辺。4の倍数 */
+  --suisou-icon-small: 1rem;    /* 16。12px の文字の隣に置く用（Tag など） */
+  --suisou-radius: 0.5rem;      /* 8 */
+  --suisou-radius-pill: 999px;  /* 丸め切るだけなので実寸でよい */
 
   --suisou-font: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   --suisou-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;

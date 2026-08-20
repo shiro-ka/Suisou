@@ -11,8 +11,8 @@
 [data-suisou-avatar] {
   flex: none;
   box-sizing: border-box;
-  width: var(--suisou-avatar, 32px);
-  height: var(--suisou-avatar, 32px);
+  width: var(--suisou-avatar, 2rem);
+  height: var(--suisou-avatar, 2rem);
   border-radius: var(--suisou-radius-pill);
   background: var(--suisou-item);
   border: 1px solid var(--suisou-line-weak);
@@ -25,5 +25,5 @@
   object-fit: cover;
 }
 
-[data-suisou-avatar~="small"] { --suisou-avatar: 24px; }
-[data-suisou-avatar~="large"] { --suisou-avatar: 48px; font-size: var(--suisou-size-16); }
+[data-suisou-avatar~="small"] { --suisou-avatar: 1.5rem; }
+[data-suisou-avatar~="large"] { --suisou-avatar: 3rem; font-size: var(--suisou-size-16); }
