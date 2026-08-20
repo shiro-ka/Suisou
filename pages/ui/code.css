@@ -1,0 +1,54 @@
+/* Suisou — Code
+
+     <code data-suisou-code>FLOOR["hover"]</code>
+     <pre data-suisou-code="block"><code>…</code></pre>
+
+   ★装飾は最小。行内コードは**字形（等幅）が既に最大の手がかり**なので、
+     面と角丸だけ足せば足りる。罫は引かない ―― 本文の行間（14px なら 20px）に
+     対して罫と余白を足すと行が窮屈になり、コードが出るたびに行送りが乱れる。
+
+   ★色も変えない。字形で区別できているので、色は二重の合図になる。
+     下地（panel / bg / overlay）によって読みやすさが変わるのも避けたい。
+
+   ★大きさだけ em で持つ。等幅は同じ px でも大きく見えるので少し落とすが、
+     行内コードは「まわりの文字に合わせる」のが正しいふるまいなので、
+     ここだけ相対値にしてある。px の段に載せると 12px の中でも 16px の中でも
+     同じ大きさになってしまう。
+
+   ★prose と同じ規則を1つのセレクタに並べてある。markdown が吐く
+     <code> / <pre> には属性を書けないため。値を2箇所に書くとズレる。 */
+
+[data-suisou-code],
+[data-suisou-prose] :where(code) {
+  font-family: var(--suisou-mono);
+  font-size: 0.9em;
+  background: var(--suisou-item);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+/* ── かたまり ───────────────────────────── */
+
+[data-suisou-code~="block"],
+[data-suisou-prose] :where(pre) {
+  font-family: var(--suisou-mono);
+  font-size: var(--suisou-size-12);
+  line-height: var(--suisou-lh-20);   /* 行を詰めない。桁を追うため */
+
+  margin: 0;
+  padding: var(--suisou-space-2);
+  background: var(--suisou-item);
+  border: 1px solid var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+
+  overflow-x: auto;                   /* 折り返さない。桁がずれるため */
+}
+
+/* かたまりの中の <code> は素に戻す。面と余白が二重になるのを防ぐ */
+[data-suisou-code~="block"] :where(code),
+[data-suisou-prose] :where(pre) :where(code) {
+  font-size: inherit;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+}

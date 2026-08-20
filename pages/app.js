@@ -20,6 +20,7 @@ const PAGES = {
   surface:    { group: '土台', label: 'Surface' },
   layout:     { group: '土台', label: 'Layout' },
   button:     { group: '部品', label: 'Button' },
+  code:       { group: '部品', label: 'Code' },
   field:      { group: '部品', label: 'Field' },
   icon:       { group: '部品', label: 'Icon' },
   link:       { group: '部品', label: 'Link' },
