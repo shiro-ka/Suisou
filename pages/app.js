@@ -95,10 +95,11 @@ function enhancePalette(scope) {
     `${t.name}（${t.jp}）× ${accent()}。色は tools/solve.py が制約から解いた値で、`
     + '手で置いた色は1つも無い。';
 
-  // 使えない組はそもそも CSS に無いので押せなくする
+  // 全部の組を CSS に出してある。基準を満たさないものは押せるが理由を添える
   const row = slot('accents', scope);
   for (const a of SUISOU.accents) {
     const usable = t.available.includes(a.name);
+    const warn = t.warnings?.[a.name];
     const chip = el('button', 'accent-chip', a.jp ? `${a.name}（${a.jp}）` : a.name);
     chip.type = 'button';
     chip.style.setProperty('--c', 'var(--suisou-accent)');
@@ -106,13 +107,18 @@ function enhancePalette(scope) {
     chip.dataset.suisouAccent = a.name;
     chip.disabled = !usable;
     if (a.name === accent()) chip.setAttribute('aria-pressed', 'true');
-    if (!usable) chip.title = `${theme()} では使えない組み合わせ`;
+    if (!usable) chip.title = `${theme()} では出せない（色域外）`;
+    else if (warn) { chip.classList.add('is-warned'); chip.title = warn; chip.append('　★'); }
     chip.addEventListener('click', () => { root.dataset.suisouAccent = a.name; render(); });
     row.append(chip);
   }
-  const short = SUISOU.accents.length - t.available.length;
+  const warned = Object.entries(t.warnings ?? {});
+  const here = t.warnings?.[accent()];
   slot('accent-note', scope).textContent =
-    short ? `${short} 色は制約を満たさないので出していない。` : '';
+    (here ? `★いまの組み合わせは推奨しない … ${here}　` : '')
+    + (warned.length
+        ? `★の ${warned.length} 色は基準を満たさない。壊れてはいないので選べる（値は CSS に出してある）。`
+        : '');
 
   const box = slot('tokens', scope);
   for (const g of GROUPS) {
@@ -200,8 +206,8 @@ function renderNav() {
   }
 }
 
-/* テーマを一巡させる。切り替え先で今のアクセントが使えないなら使える先頭に寄せる。
-   CSS は存在しない組に無反応なので、放っておくと静かに既定色へ落ちて理由が分からなくなる。 */
+/* テーマを一巡させる。全組を CSS に出しているので、アクセントは持ち越せる。
+   ただし色域外で出していない組だけは無反応になるため、そこだけ寄せる。 */
 function cycleTheme() {
   const names = SUISOU.themes.map((t) => t.name);
   const next = themeOf(names[(names.indexOf(theme()) + 1) % names.length]);

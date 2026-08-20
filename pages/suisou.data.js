@@ -17,7 +17,19 @@ const SUISOU = {
     "coral",
     "magenta",
     "pink"
-   ]
+   ],
+   "recommended": [
+    "orange",
+    "turtle",
+    "teal",
+    "jelly",
+    "blue",
+    "indigo",
+    "coral",
+    "magenta",
+    "pink"
+   ],
+   "warnings": {}
   },
   {
    "name": "trench",
@@ -29,12 +41,26 @@ const SUISOU = {
     "orange",
     "turtle",
     "teal",
+    "jelly",
     "blue",
     "indigo",
     "coral",
     "magenta",
     "pink"
-   ]
+   ],
+   "recommended": [
+    "orange",
+    "turtle",
+    "teal",
+    "blue",
+    "indigo",
+    "coral",
+    "magenta",
+    "pink"
+   ],
+   "warnings": {
+    "jelly": "選択下地が面と近い ΔE 0.050（目標 0.055）"
+   }
   },
   {
    "name": "fjord",
@@ -46,10 +72,26 @@ const SUISOU = {
     "orange",
     "turtle",
     "teal",
+    "jelly",
+    "blue",
+    "indigo",
     "coral",
     "magenta",
     "pink"
-   ]
+   ],
+   "recommended": [
+    "orange",
+    "turtle",
+    "teal",
+    "coral",
+    "magenta",
+    "pink"
+   ],
+   "warnings": {
+    "jelly": "選択下地が面と近い ΔE 0.051（目標 0.055）",
+    "blue": "accent が text-sub と近い ΔE 0.067",
+    "indigo": "accent が text-sub と近い ΔE 0.067"
+   }
   },
   {
    "name": "shoal",
@@ -67,7 +109,19 @@ const SUISOU = {
     "coral",
     "magenta",
     "pink"
-   ]
+   ],
+   "recommended": [
+    "orange",
+    "turtle",
+    "teal",
+    "jelly",
+    "blue",
+    "indigo",
+    "coral",
+    "magenta",
+    "pink"
+   ],
+   "warnings": {}
   }
  ],
  "accents": [

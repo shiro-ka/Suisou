@@ -162,6 +162,8 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 }
 .accent-chip:hover { background: var(--suisou-hover-surface); }
 .accent-chip[aria-pressed="true"] { background: var(--suisou-selected-surface); }
+/* 基準を満たさない組。押せるが、破線で「保証していない」ことを示す */
+.accent-chip.is-warned { border-style: dashed; }
 .accent-chip:disabled {
   color: var(--suisou-text-disabled);
   border-color: var(--suisou-line-weak);
