@@ -109,7 +109,7 @@
 /* 本文の幅を絞って中央に寄せる */
 [data-suisou-layout~="container"] {
   width: 100%;
-  max-width: var(--suisou-measure, 1024px);
+  max-width: var(--suisou-measure, 64rem);
   margin-inline: auto;
 }
 

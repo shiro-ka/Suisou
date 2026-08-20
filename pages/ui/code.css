@@ -23,8 +23,8 @@
   font-family: var(--suisou-mono);
   font-size: 0.9em;
   background: var(--suisou-item);
-  border-radius: 4px;
-  padding: 0 4px;
+  border-radius: 0.25rem;
+  padding: 0 0.25rem;
 }
 
 /* ── かたまり ───────────────────────────── */
