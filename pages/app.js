@@ -21,6 +21,7 @@ const PAGES = {
   layout:     { group: '土台', label: 'Layout' },
   button:     { group: '部品', label: 'Button' },
   code:       { group: '部品', label: 'Code' },
+  prose:      { group: '部品', label: 'Prose' },
   field:      { group: '部品', label: 'Field' },
   icon:       { group: '部品', label: 'Icon' },
   link:       { group: '部品', label: 'Link' },

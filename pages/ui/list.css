@@ -1,0 +1,34 @@
+/* Suisou — List
+
+     <ul data-suisou-list><li>…</li></ul>
+
+   ★しるしはブラウザに任せ、色だけ落とす。記号を自作すると
+     「順序なし／順序あり」の意味が読み上げから消えたり、
+     入れ子の階層が伝わらなくなる。::marker なら意味はそのまま。
+
+   ★字下げは space-4（24px 相当）。しるしと本文の間が空きすぎず、
+     入れ子にしたときに階層が読める幅。
+
+   ★prose と同じ規則を1つのセレクタに並べてある。 */
+
+[data-suisou-list],
+[data-suisou-prose] :where(ul, ol) {
+  padding-inline-start: var(--suisou-space-4);
+}
+
+[data-suisou-list] :where(li)::marker,
+[data-suisou-prose] :where(ul, ol) :where(li)::marker {
+  color: var(--suisou-text-sub);
+}
+
+/* 項目のあいだ。段落より詰める ―― 一続きのものとして読ませる */
+[data-suisou-list] :where(li) + :where(li),
+[data-suisou-prose] :where(ul, ol) :where(li) + :where(li) {
+  margin-block-start: var(--suisou-space-1);
+}
+
+/* 入れ子。外側との間合いは項目間と同じにして、階層だけを字下げで示す */
+[data-suisou-list] :where(ul, ol),
+[data-suisou-prose] :where(ul, ol) :where(ul, ol) {
+  margin-block-start: var(--suisou-space-1);
+}

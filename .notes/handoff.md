@@ -258,40 +258,61 @@ akuarium-ui/      layout（header/main/footer/container/box/items/wrapper）
 
 ---
 
-## prose（★後回し。ちゃんと練る必要がある）
+## prose（★2026-08-20 実装。見出しの罫だけ未決）
 
 Markdown が吐いた素の HTML に属性を書けないので、包む側に1つだけ付けて
-中の要素に直接当てる仕組み。Tailwind Typography の `prose` と同じ役目。
+中の要素に直接当てる仕組み。
 
-**`base.css` の「要素セレクタは使わない」を破る唯一の場所**になる。
+**`base.css` の「要素セレクタは使わない」を破る唯一の場所**。
 `[data-suisou-prose]` の内側に閉じているので漏れない ―― 破っていい場所を
-1つだけ用意して封じ込める形。Media が既に小規模に同じことをしている
-（`[data-suisou-media-content] :where(header)`）。
+1つだけ用意して封じ込める形。
 
-### ★満たすべき条件（しろかさんの言）
+### 作り方（案C を採った）
 
-> pickker みたいなブログでも、wixdex のメモとかでも違和感ないデザインにする必要がある
+**部品を先に作って、prose がそれを束ねる。** 各部品ファイルが
+`[data-suisou-prose] :where(…)` を自分のセレクタに並べているので、
+**値が2箇所に散らない**。`prose.css` が持つのは「大きさの割り当て」と
+「縦のリズム」だけで、新しい見た目を1つも発明していない。
 
-実例は両方すでにある。**段が2つ要る**という話になりそう。
+| 要素 | 誰が持つか |
+|---|---|
+| `a` | `ui/link.css` |
+| `code` / `pre` | `ui/code.css` |
+| `blockquote` | `ui/quote.css` |
+| `ul` / `ol` | `ui/list.css` |
+| `table` | `ui/table.css` |
+| 見出し・段落・リズム・`hr` / `img` / `dl` | `ui/prose.css` |
 
-| | 何 | いまの実装 |
-|---|---|---|
-| wixdex | デッキメモ。**panel の中に入る短文** | `marked` + DOMPurify → `class="prose prose-invert prose-sm"`、`border + bg-zinc-600/10 + p-4` の箱の中 |
-| pickker | **記事まるごと**。目次つき | `markdown-it` → `h2` に左罫6px＋下罫、`h4` に左罫3px、リンクカード |
+この順で作った: Table → Link → Code → Quote / List → prose。
 
-### 中身の大半はもう決まっている
+### 縦のリズム
 
-`type-spec` の「長文」の段（`app.js` の `ROLES_DOC`）をそのまま素の要素に配るだけ。
+**見出しは「前を広く、後ろを詰める」。** 前の話題から離し、次の内容に近づける。
+タイポの定石で、**段を増やす前にまずこれを当てた**結果、`space-4`（24px 相当）
+までで足りて新しい段が要らなかった。
 
 ```
-h1 28/700  h2 24/700  h3 20/600  h4 16/600
-h5 16/500 + 左罫       h6 14/600 + 左罫弱
-p 16/400 doc（行間 +4px）        small 14/400
+             既定            tight
+ふつうの間   space-3（16）   space-2（8）
+見出しの前   space-4（24）   space-3（16）
+見出しの後   space-2（8）    space-1（4）
 ```
 
-新しく決めるのは扱っていないもの ―― `ul` / `ol` / `blockquote` / `code` / `pre` /
-`a` / `hr` / `table` / `dl` / `img`。作例に残っている `.demo-code`（行内コード）と
-`.demo-defs`（定義リスト）がその前哨。
+### 2段ある
+
+- `data-suisou-prose` … 記事。本文 16px（pickker）
+- `data-suisou-prose="tight"` … panel の中の短文。本文 14px（wixdex のデッキメモ）
+
+### ★未決: 見出しの罫
+
+`type-spec` と pickker で判断が食い違っている。プレビューの Prose ページに
+A/B を並べてあるので、実物を見て決める。
+
+- **A（実装済み・type-spec）** … h2〜h4 は罫なし。h5 / h6 だけ左罫。本文が静か
+- **B（pickker）** … h2 に左罫6px ＋ 下罫、h4 に左罫3px。見出しが強く飛ばし読みしやすい
+
+pickker は「記事まるごと」なので B が合っていたが、Suisou はアプリの画面でも
+同じ `prose` を使う。決めたら A/B の節と `styles.css` の `.prose-b` を消す。
 
 ---
 

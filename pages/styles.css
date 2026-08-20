@@ -298,3 +298,14 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 
 .muted { color: var(--suisou-text-sub); }
 
+/* ══ ★一時的：prose の見出しの罫 A/B ══════════
+   判断が済んだら、この節と content/prose.html の A/B の節をまとめて消す。 */
+.prose-b :where(h2) {
+  border-left: 6px solid var(--suisou-accent);
+  border-bottom: 1px solid var(--suisou-line-weak);
+  padding: 0 0 var(--suisou-space-1) var(--suisou-space-2);
+}
+.prose-b :where(h4) {
+  border-left: 3px solid var(--suisou-accent);
+  padding-left: var(--suisou-space-2);
+}

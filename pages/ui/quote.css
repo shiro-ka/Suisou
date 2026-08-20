@@ -1,0 +1,23 @@
+/* Suisou — Quote
+
+     <blockquote data-suisou-quote>引用</blockquote>
+
+   左罫だけ。data-suisou-text="rule" と同じ形にしてある ―― 引用も見出しの
+   左罫も「本文からずらして、線で属を示す」という同じ仕事なので、
+   別の見た目を発明しない。
+
+   ★prose と同じ規則を1つのセレクタに並べてある。markdown が吐く
+     <blockquote> には属性を書けないため。値を2箇所に書くとズレる。 */
+
+[data-suisou-quote],
+[data-suisou-prose] :where(blockquote) {
+  border-left: 3px solid var(--suisou-line-strong);
+  padding-left: var(--suisou-space-3);
+  color: var(--suisou-text-sub);
+}
+
+/* 引用の中の段落は間合いだけ持つ。面も罫も足さない */
+[data-suisou-quote] :where(p) + :where(p),
+[data-suisou-prose] :where(blockquote) :where(p) + :where(p) {
+  margin-block-start: var(--suisou-space-2);
+}
