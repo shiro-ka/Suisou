@@ -326,10 +326,39 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   padding-top: var(--suisou-space-3);
 }
 
-/* E … 左罫をぶら下げる。罫は本文の左端より外に出るので、
-       見出しの文字は本文と揃う。太さは既存の3px、色は line-strong */
-.prose-e :where(h2) {
-  border-left: 3px solid var(--suisou-line-strong);
-  padding-left: var(--suisou-space-2);
-  margin-left: calc(-1 * (3px + var(--suisou-space-2)));
+/* E … 左罫をぶら下げる。::before なので丸められる（border では箱ごと丸まる）。
+       箱が動かないので入れ物の余白にも依存しない。3px */
+.prose-e :where(h2) { position: relative; }
+.prose-e :where(h2)::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * (3px + var(--suisou-space-2)));
+  top: 0.2em; bottom: 0.2em;
+  width: 3px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-line-strong);
+}
+
+/* F … 同じだが 6px。丸みがはっきり出る。上下も少し詰めてカプセルにする */
+.prose-f :where(h2) { position: relative; }
+.prose-f :where(h2)::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * (6px + var(--suisou-space-2)));
+  top: 0.25em; bottom: 0.25em;
+  width: 6px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-line-strong);
+}
+
+/* G … F のアクセント色版。B がやりたかったことの、Suisou 作法での再実装 */
+.prose-g :where(h2) { position: relative; }
+.prose-g :where(h2)::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * (6px + var(--suisou-space-2)));
+  top: 0.25em; bottom: 0.25em;
+  width: 6px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-accent);
 }
