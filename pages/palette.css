@@ -19,8 +19,8 @@
   --suisou-panel-hex: "#1a1a1d";
   --suisou-item: oklch(28.00% 0.0060 286);
   --suisou-item-hex: "#28282c";
-  --suisou-floating: oklch(34.00% 0.0060 286);
-  --suisou-floating-hex: "#37373b";
+  --suisou-overlay: oklch(34.00% 0.0060 286);
+  --suisou-overlay-hex: "#37373b";
   --suisou-hover-surface: oklch(19.00% 0.0060 286);
   --suisou-hover-surface-hex: "#131316";
   --suisou-selected-neutral: oklch(33.00% 0.0060 286);
@@ -70,8 +70,8 @@
   --suisou-panel-hex: "#1a1a1d";
   --suisou-item: oklch(28.00% 0.0060 286);
   --suisou-item-hex: "#28282c";
-  --suisou-floating: oklch(34.00% 0.0060 286);
-  --suisou-floating-hex: "#37373b";
+  --suisou-overlay: oklch(34.00% 0.0060 286);
+  --suisou-overlay-hex: "#37373b";
   --suisou-hover-surface: oklch(19.00% 0.0060 286);
   --suisou-hover-surface-hex: "#131316";
   --suisou-selected-neutral: oklch(33.00% 0.0060 286);
@@ -111,8 +111,8 @@
   --suisou-panel-hex: "#161b23";
   --suisou-item: oklch(28.00% 0.0180 265);
   --suisou-item-hex: "#242932";
-  --suisou-floating: oklch(34.00% 0.0180 265);
-  --suisou-floating-hex: "#333842";
+  --suisou-overlay: oklch(34.00% 0.0180 265);
+  --suisou-overlay-hex: "#333842";
   --suisou-hover-surface: oklch(19.00% 0.0180 265);
   --suisou-hover-surface-hex: "#10141c";
   --suisou-selected-neutral: oklch(33.00% 0.0180 265);
@@ -152,8 +152,8 @@
   --suisou-panel-hex: "#161a29";
   --suisou-item: oklch(28.00% 0.0300 272);
   --suisou-item-hex: "#242838";
-  --suisou-floating: oklch(34.00% 0.0300 272);
-  --suisou-floating-hex: "#323748";
+  --suisou-overlay: oklch(34.00% 0.0300 272);
+  --suisou-overlay-hex: "#323748";
   --suisou-hover-surface: oklch(19.00% 0.0300 272);
   --suisou-hover-surface-hex: "#0f1321";
   --suisou-selected-neutral: oklch(33.00% 0.0300 272);
@@ -193,8 +193,8 @@
   --suisou-panel-hex: "#303540";
   --suisou-item: oklch(39.00% 0.0200 265);
   --suisou-item-hex: "#404550";
-  --suisou-floating: oklch(45.00% 0.0200 265);
-  --suisou-floating-hex: "#505561";
+  --suisou-overlay: oklch(45.00% 0.0200 265);
+  --suisou-overlay-hex: "#505561";
   --suisou-hover-surface: oklch(30.00% 0.0200 265);
   --suisou-hover-surface-hex: "#292e38";
   --suisou-selected-neutral: oklch(44.00% 0.0200 265);

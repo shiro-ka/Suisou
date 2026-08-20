@@ -21,7 +21,7 @@ TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
 # 面の段。必ず1つ書く。装飾（bare）だけでは「どの段か」を言っていない
-SURFACE_STEPS = {"panel", "item", "floating", "none"}
+SURFACE_STEPS = {"panel", "item", "overlay", "none"}
 
 # 並びのモード。書かなくてよい（既定は横並び）が、2つ書くと片方が黙って死ぬ。
 # とくに center は grid に切り替わるので、flex 前提の stack / row と混ざると

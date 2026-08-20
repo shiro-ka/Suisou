@@ -175,7 +175,7 @@ const SUISOU = {
   "bg",
   "panel",
   "item",
-  "floating",
+  "overlay",
   "hover-surface",
   "selected-neutral",
   "line-weak",
