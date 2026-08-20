@@ -2,10 +2,13 @@
 
      <p data-suisou-text="s16 w400">本文</p>
      <h5 data-suisou-text="s16 w500 rule">左罫線つき見出し</h5>
-     <p data-suisou-text="s16 w400 doc">長文（行間 +4px）</p>
+     <p data-suisou-text="s16 w400 doc">長文（行間 +0.25rem）</p>
 
-   px を持つのはこのファイルだけ。app.js は「どの段か」しか持たず、
-   画面に出す数値は computed 値を読んで表示する。 */
+   ★実際の寸法は base.css のトークンが持ち、単位は rem。このファイルは
+     「どの段か」を割り当てるだけ。名前の数字（s16 / lh-20）は
+     ルートが 16px のときの px で、ユーザーが文字サイズ設定を変えれば
+     全体が比例して動く。app.js も段しか持たず、画面に出す数値は
+     computed 値（＝解決後の px）を読んで表示する。 */
 
 [data-suisou-text] { font-size: var(--fs); line-height: var(--lh); }
 
@@ -19,7 +22,7 @@
 [data-suisou-text~="s32"] { --fs: var(--suisou-size-32); --lh: var(--suisou-lh-32); }
 
 /* §6「長文は UI に +4px するだけ」。7行の対応表ではなく規則として持つ */
-[data-suisou-text~="doc"] { line-height: calc(var(--lh) + 4px); }
+[data-suisou-text~="doc"] { line-height: calc(var(--lh) + 0.25rem); }
 
 [data-suisou-text~="w400"] { font-weight: 400; }
 [data-suisou-text~="w500"] { font-weight: 500; }
