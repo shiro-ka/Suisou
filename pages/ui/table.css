@@ -1,0 +1,52 @@
+/* Suisou — Table
+
+     <table data-suisou-table>…</table>
+     <table data-suisou-table="tight">…</table>
+
+   罫だけで組む。縦罫は引かず、行の下だけに引く ―― 面を塗らないのと同じ理屈で、
+   格子で囲うより行の連なりが見える方が読みやすい。最後の1本は引かない。
+
+   ★これは prose の下ごしらえでもある。markdown が吐く <table> に属性は
+     書けないので、prose が中でこの規則を呼ぶ。先に部品にしておくと、
+     属性で単体でも使えて、prose と見た目がズレようがない。
+
+   ★プレビューの仕様表が25箇所でこの形を手書きしていた（styles.css の .spec）。
+     3回書いてから足す、をとうに超えていたので部品にした。 */
+
+[data-suisou-table] {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--suisou-size-14);
+  line-height: var(--suisou-lh-14);
+}
+
+[data-suisou-table] :where(th, td) {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--suisou-space-1) var(--suisou-space-2);
+  border-bottom: 1px solid var(--suisou-line-weak);
+}
+
+/* 見出しの行。弱い文字色にして、太さで区別する */
+[data-suisou-table] :where(th) {
+  color: var(--suisou-text-sub);
+  font-weight: 600;
+}
+
+/* 下端で罫が二重にならないようにする。Row の ruled と同じ扱い */
+[data-suisou-table] :where(tr:last-child) :where(th, td) { border-bottom: 0; }
+
+/* ── 形 ─────────────────────────────────── */
+
+/* 詰める。仕様表のように語が短く、行数が多いもの向け。
+   見出しを折り返さないのもここに入れる ―― 長い見出しが来る文章中の表では
+   折り返してほしいので、既定にはしない。 */
+[data-suisou-table~="tight"] {
+  font-size: var(--suisou-size-12);
+  line-height: var(--suisou-lh-12);
+}
+[data-suisou-table~="tight"] :where(th) { white-space: nowrap; }
+
+/* 横にはみ出すとき。表自身を巻物にする。
+   ★markdown 由来の表は包む要素を足せないので、この手が要る */
+[data-suisou-table~="scroll"] { display: block; overflow-x: auto; }
