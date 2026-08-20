@@ -30,6 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0    # ★過去の版を建て直すので履歴が要る
 
       - uses: actions/setup-python@v6
         with:
@@ -40,9 +42,8 @@ jobs:
         run: python3 tools/solve.py
 
       - name: 配る形を組み立てる
-        # ★ここが「配布」の実体。dist/ は常に最新、v/<sha> は固定できる URL。
-        #   Suisou を直すたびに現場の見た目が黙って変わるのを防ぐため、
-        #   現場は v/<sha> を指す。
+        # ★ここが「配布」の実体。dist/ は常に最新で、Suisou を直すと動く。
+        #   固定したい現場は次の段が置く v/<sha> を指す。
         run: |
           SUISOU_VERSION="${GITHUB_SHA::7}" python3 tools/bundle.py
 
@@ -60,10 +61,32 @@ jobs:
 
           # 配る形。<link> 1本で読める場所に置く
           cp -r dist _site/dist                               # 最新。移動する
-          mkdir -p "_site/v/${GITHUB_SHA::7}"
-          cp -r dist/* "_site/v/${GITHUB_SHA::7}/"            # 固定。動かない
           ls -1 _site/dist | head -3
-          echo "固定 URL: /v/${GITHUB_SHA::7}/suisou.css"
+
+      - name: 過去の版を建て直す
+        # ★artifact 配信は毎回サイトを丸ごと差し替えるので、前回置いた
+        #   /v/<sha>/ は次の配信で消える。「固定できる URL」の約束が破れる。
+        #   現場が繋いだ /v/4d55065/ が実際に 404 になった。
+        #
+        #   置き場を引き継ぐのではなく、その版を git から建て直す。
+        #   真実の源泉は git であって配信物ではない、という形に寄せてある
+        #   （再構築物が配信中のものとバイト単位で一致することを確認済み）。
+        run: |
+          for sha in $(git rev-list HEAD); do
+            short=${sha:0:7}
+            # bundle.py が生まれる前の版は配る形を持たない
+            git cat-file -e "$sha:tools/bundle.py" 2>/dev/null || continue
+            wt=$(mktemp -d)
+            git worktree add -q --detach "$wt" "$sha"
+            (
+              cd "$wt"
+              python3 tools/solve.py
+              SUISOU_VERSION="$short" python3 tools/bundle.py
+            ) && mkdir -p "_site/v/$short" && cp -r "$wt"/dist/* "_site/v/$short/"
+            git worktree remove --force "$wt"
+          done
+          echo "固定 URL: $(ls -1 _site/v | wc -l) 版"
+          ls -1 _site/v
 
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
