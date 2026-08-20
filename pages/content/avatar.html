@@ -1,0 +1,90 @@
+<!-- Avatar。全部静的 -->
+<section class="page">
+  <h1>Avatar</h1>
+  <p class="note">
+    人・主体を指すしるし。画像が無いときは頭文字を出す。
+    <strong>円形は「人」、角丸は「モノ」</strong>と区別する ——
+    Suisou の面はすべて角丸 8px なので、円はそれだけで別物に見える。
+  </p>
+
+  <div class="group">
+    <h2>寸法</h2>
+    <div class="demo">
+      <span class="demo-label">small / 既定 / large</span>
+      <div data-suisou-layout="row" data-suisou-surface="panel">
+        <div data-suisou-avatar="small">し</div>
+        <div data-suisou-avatar>し</div>
+        <div data-suisou-avatar="large">し</div>
+      </div>
+    </div>
+    <table class="spec">
+      <tr><th>値</th><th>一辺</th><th>文字</th><th>使う場面</th></tr>
+      <tr><td><code>small</code></td><td>24px</td><td>12px</td><td>一覧の行、密なリスト</td></tr>
+      <tr><td>（書かない）</td><td>32px</td><td>12px</td><td>チャットの発言、コメント</td></tr>
+      <tr><td><code>large</code></td><td>48px</td><td>16px</td><td>プロフィール、記事の署名</td></tr>
+    </table>
+    <p class="note">
+      <strong>寸法は部品が持つ。</strong>使う側に毎回書かせない ——
+      wixdex では <code>w-8 h-8</code> を各所で手書きしていた。
+      値は <code>--suisou-avatar</code> を差し替えているだけなので、
+      段を増やすのも1行で済む。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>画像を入れる</h2>
+    <div class="demo">
+      <span class="demo-label">&lt;img data-suisou-avatar&gt; —— 同じ属性でいい</span>
+      <div data-suisou-layout="row" data-suisou-surface="panel">
+        <img data-suisou-avatar src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23334'/%3E%3Ccircle cx='32' cy='24' r='12' fill='%23889'/%3E%3Cellipse cx='32' cy='58' rx='22' ry='18' fill='%23889'/%3E%3C/svg%3E" alt="">
+        <div data-suisou-avatar>し</div>
+        <div data-suisou-avatar>あ</div>
+      </div>
+    </div>
+    <p class="note">
+      <code>object-fit: cover</code> と <code>overflow: hidden</code> を持っているので、
+      比率の違う画像を入れても円からはみ出さない。
+      <strong>頭文字版と画像版で属性を分けない</strong> ——
+      画像の有無で書き換えるのは現場の都合であって、部品の都合ではない。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>Media と組む</h2>
+    <div class="demo">
+      <span class="demo-label">media-icon の中に入れる</span>
+      <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
+        <div data-suisou-row data-suisou-media>
+          <div data-suisou-media-icon data-suisou-avatar>し</div>
+          <div data-suisou-media-content>
+            <header><span>しろか</span><span>09:40</span></header>
+            <p>属性でいこう。やっぱ見た目尖ってるしキレイだわ</p>
+          </div>
+        </div>
+        <div data-suisou-row data-suisou-media>
+          <div data-suisou-media-icon data-suisou-avatar="small">あ</div>
+          <div data-suisou-media-content>
+            <header><span>相棒</span><span>09:41</span></header>
+            <p>small にすると行が詰まる。一覧向き</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table class="spec">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>頭文字の下地</td>
+          <td><code>item</code> 一色。名前から色を振り分ける仕組みは持たない ——
+              掟1 で色を決めるのは <code>solve.py</code> だけなので、
+              文字列から色を作ることができない</td></tr>
+      <tr><td>重ねて並べる</td>
+          <td>持っていない（GitHub の参加者一覧のような、少し重なる並び）。
+              要るようになったら <code>layout</code> 側の話になりそう</td></tr>
+      <tr><td>状態のしるし</td>
+          <td>オンライン表示のような小さい丸は持たない</td></tr>
+    </table>
+  </div>
+</section>
