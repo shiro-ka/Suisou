@@ -108,10 +108,10 @@ accent C          = maxC(0.74, H) × アクセント強さ
 accent-active     = L0.71 で C = maxC(0.71, H) × アクセント強さ（再クランプ）
 hover-surface     = 中立。面の色相のまま、全面に対し ΔE ≥ 0.03 を満たす最大 L（下向き探索）
 selected-surface  = L33（dark）/ L44（dim）で ΔE ≥ 0.055 を満たす最小 C
-selected-neutral  = 同 L で面の彩度のまま（アクセントに依存しない中立版）
+selected-neutral-surface  = 同 L で面の彩度のまま（アクセントに依存しない中立版）
 semantic C        = maxC(L, H) × min(0.95, アクセント強さ + 0.15)
 semantic-surface  = selected-surface と同じ導出
-on-accent         = bg / focus-ring = accent / scrim = L8 のアルファ 0.72
+focus-ring        = accent / scrim = L8 のアルファ 0.72（on-accent は出力しない。§5）
 ```
 
 ### 制約
@@ -140,18 +140,20 @@ HSL では「明るさを揃えたまま色相だけ変える」ができない�
 
 ---
 
-## §5 トークン一覧（20個）
+## §5 トークン一覧
 
-| 群 | トークン |
-|---|---|
-| **面**(6) | `bg` `panel` `item` `overlay` / `hover-surface` `selected-surface` |
-| **覆い**(1) | `scrim`（アルファ 0.72） |
-| **線**(3) | `line-weak` `line-strong` `focus-ring` |
-| **文字**(4) | `text-disabled` `text-sub` `text-main` `on-accent` |
-| **アクセント**(2) | `accent` `accent-active` |
-| **意味色**(6) | `error` `warning` `success` / `error-surface` `warning-surface` `success-surface` |
+★**一覧は `CONTRACT.md`（生成物）を参照**。`solve.py` の `THEME_TOKENS` / `ACCENT_TOKENS` が正で、
+この仕様書には表を持たない（§15 と同じ理屈。個数を散文に書くと必ずズレる）。
+
+★2026-08-20 の棚卸しで **`on-accent` / `warning-active` / `success-active` を出力から外した**。
+塗るボタンが無いので accent の上に載る文字が無く（チェックのレの字はブラウザが
+`accent-color` から自動で決める）、押せる意味色は danger（error）だけのため。
+計算は `tokens()` に残してあり、使う部品ができたら `THEME_TOKENS` に足すだけで出る。
 
 ★v1.1 の `accent-surface` を **`hover-surface` / `selected-surface` の2段に分割**した。v1.1 では1トークンで「選択行・hover 行・タブの下地」を兼ねており、リスト上で「選択中の行」と「カーソルが乗っている行」が同一に見えた。
+
+★下地トークンの命名規則（2026-08-20 整理）: **下地は `-surface` で終わる**。
+中立版は変種なので印を持つ（`selected-neutral-surface`）。旧名 `selected-neutral` から改名した。
 
 ---
 
@@ -228,34 +230,35 @@ indigo 282 / coral 308 / magenta 332 / pink 355
 
 ```
 hover    : 面の L は動かさない。hover-surface を敷く
-selected : selected-surface + 左端のインジケータ（色だけに頼らない = P4）
-active   : --color-accent-active（C は再クランプ済み）
-focus    : box-shadow: 0 0 0 1px var(--color-bg), 0 0 0 3px var(--color-accent)
-disabled : --color-text-disabled。本文には使わない
+selected : selected-surface（または selected-neutral-surface）。
+           ★左端2pxのアクセント線は保留 ―― Row のページに A/B を出して実物で決める
+active   : --suisou-accent-active（C は再クランプ済み）
+focus    : outline: 2px solid var(--suisou-focus-ring); outline-offset: 2px
+disabled : --suisou-text-disabled。本文には使わない
 ```
 
 **hover を「面を明るくする」でやらない理由**（v1.0 の実測）: (a) アクセントが色域外になる（`hadal` で6色）、(b) hover した overlay(L39) の上で line-weak が 1.24:1、line-strong が 2.53:1 に落ちる、(c) accent の hover(L79) が text-sub(L78) と**コントラスト 1.00:1** になる。「C を濃くする」案も teal で ΔC 0.019 と JND 未満のため不採用。
 
-**focus に二重リングを使う理由**: `focus-ring = accent` なので、accent で装飾された要素にフォーカスが当たると同色が重なって消える。内側に `bg` の 1px を挟んで距離で分離する。
+**focus の輪が accent と重ならない理由**: `focus-ring = accent` なので、accent で装飾された
+要素にフォーカスが当たると同色が隣接して消えうる。実装は `outline-offset: 2px` ――
+輪と要素の間に下地が 2px 見えるので、距離で分離できている（v1.2 で書いていた
+「bg の 1px を挟む二重 box-shadow」はこの形に置き換えた）。
 
 ### コンポーネント層 ＝ 安定化する契約
 
-**利用側が触るのはクラスであってトークンではない。** §6 の「border 必須」と §5 の「text-disabled は disabled 専用」を、規約ではなくデフォルトにする。
+**利用側が触るのは `data-suisou-*` 属性であってトークンではない。** §6 の「border 必須」と
+§5 の「text-disabled は disabled 専用」を、規約ではなくデフォルトにする（`pages/ui/*.css`）。
 
-```css
-.panel { background: var(--color-panel); border: 1px solid var(--color-line-weak); border-radius: 12px; }
-.field { background: var(--color-input); border: 1px solid var(--color-line-strong); }
-.field:focus { box-shadow: 0 0 0 1px var(--color-bg), 0 0 0 3px var(--color-accent); }
-.row:hover { background: var(--color-hover-surface); }
-.row[aria-selected="true"] { background: var(--color-selected-surface); border-left: 2px solid var(--color-accent); }
-[disabled] { color: var(--color-text-disabled); }
-```
-
-**凍結対象はこのクラス契約**。トークン名は内部実装として気楽に改名できる（§13-D の命名検討の優先度が下がった理由）。
+★v1.2 でここに書いていたクラス案（`.panel` / `.field` …）は **data 属性の部品に置き換えた**。
+凍結対象は **`CONTRACT.md`（生成物）にある属性・値・トークン・既定の目録**で、
+破壊的変更はその目録で判定する。
 
 ### CSS の形
 
-切替は `data-theme` と `data-accent` の2属性。アクセントの C・accent-active・2段の surface・text-main の L・意味色はすべて**計算済みの確定値**を書き出す（CSS では `maxC` を計算できないため）。使用不可の組み合わせはコメントとして出力され、生成されない。
+切替は `data-suisou-theme` と `data-suisou-accent` の2属性（**必ず同じ要素に書く**。
+`lint_css.py` が両方向の単独指定を検査する）。アクセントの C・accent-active・下地・
+text-main の L・意味色はすべて**計算済みの確定値**を書き出す（CSS では `maxC` を
+計算できないため）。色域外の組み合わせだけ出力されず、推奨しない組は★コメント付きで出る（掟2 の運用）。
 
 ---
 
@@ -343,7 +346,7 @@ disabled : --color-text-disabled。本文には使わない
   よって**両方出して現場が選ぶ**形にした。2026-08-18 の「部品ごとに違いそう」が正解だった。
 
     --suisou-selected-surface   アクセント色（既定）
-    --suisou-selected-neutral   中立。明るさだけで示す
+    --suisou-selected-neutral-surface   中立。明るさだけで示す
 
   中立版はアクセントに依存しないので `THEME_TOKENS` 側。`hover` との JND 検査も足した ――
   中立版は色相が同じで差が明度だけなので、L の段を詰めたときに真っ先に壊れる。
@@ -394,7 +397,9 @@ pages/
 
 ## §14 再現方法
 
-旧提出書に全実装（JS）があったが撤去済み。現行は `tools/solve.py` の Python 実装は `reference/color-system-oklch.md` 末尾。検算済み（白 → L=100%/C=0、`#808080` → L=60%/C=0、黒 → L=0%）。
+旧提出書に全実装（JS）があったが撤去済み。**現行の正準実装は `tools/solve.py`**（このリポジトリ内で完結。
+OKLCH 変換の一次記録は ccmemory 側 `reference/color-system-oklch.md` にあり、ここには無い）。
+検算済み（白 → L=100%/C=0、`#808080` → L=60%/C=0、黒 → L=0%）。
 
 ```
 lin(L,C,H)     OKLCH → linear sRGB
