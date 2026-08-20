@@ -32,7 +32,26 @@
       <tr><th>装飾（任意）</th><th>効果</th><th>使う場面</th></tr>
       <tr><td><code>bare</code></td><td>罫を消す</td>
           <td>面だけで区切る。wixdex の実測で 37箇所</td></tr>
+      <tr><td><code>tight</code></td><td>縦の余白を 16px → 8px</td>
+          <td>ヘッダ行、入力行。<strong>横は動かさない</strong></td></tr>
+      <tr><td><code>bleed</code></td><td>余白を 0 に</td>
+          <td>行が自分で余白を持つ一覧</td></tr>
     </table>
+    <div class="demo">
+      <span class="demo-label">余白の段</span>
+      <div data-suisou-layout="stack">
+        <div data-suisou-surface="panel">既定 —— 16px</div>
+        <div data-suisou-surface="panel tight">tight —— 縦だけ 8px。左端は上と揃う</div>
+        <div data-suisou-surface="panel bleed">bleed —— 0</div>
+      </div>
+    </div>
+    <p class="note">
+      ★<strong><code>tight</code> は横を動かさない。</strong>
+      面を縦に並べたとき、中身の左端が揃っていないと階段がガタつくため。
+      詰めたいのはたいてい縦（ヘッダ行・入力行）だった ——
+      作例で手書きされていた4つのうち3つが「縦だけ詰めたい」で、
+      残る1つが「端まで届かせたい」。段はこの2つで足りている。
+    </p>
     <p class="note">
       値は空白区切りで重ねる（<code>"panel bare"</code>）。
       <strong>段を書かずに装飾だけ書いても意味が通らない</strong> ——
@@ -82,7 +101,8 @@
     <h2>未決</h2>
     <table class="spec">
       <tr><th>項目</th><th>状況</th></tr>
-      <tr><td>余白の段</td><td>16px 固定。実測は 8〜20px でばらついていたので、必要になったら足す</td></tr>
+      <tr><td>余白の段</td><td>解決済み。<code>tight</code>（縦だけ詰める）と
+          <code>bleed</code>（0）の2つ。作例の手書き4つが全部これで消えた</td></tr>
       <tr><td>命名</td><td>解決済み。面は値、部品は属性名という形の違いで層を分けた</td></tr>
       <tr><td><code>floating</code></td><td>未実装。唯一影を持つ面になる</td></tr>
     </table>
