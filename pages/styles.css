@@ -263,17 +263,6 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 }
 
 /* ★まだ部品が無いもの */
-.demo-input {          /* → Field 部品が要る。item の面に載る */
-  width: 100%; font: inherit;
-  font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14);
-  padding: var(--suisou-space-1) var(--suisou-space-2);
-  border-radius: var(--suisou-radius);
-  background: var(--suisou-item);
-  color: var(--suisou-text-main);
-  border: 1px solid var(--suisou-line-strong);
-}
-.demo-input::placeholder { color: var(--suisou-text-disabled); }
-.demo-input:focus-visible { outline: var(--suisou-focus); outline-offset: 1px; }
 .demo-code {           /* → 行内コードの扱いが未定。prose の一部になりそう */
   font-family: var(--suisou-mono); font-size: var(--suisou-size-12);
   background: var(--suisou-item);
