@@ -8,10 +8,10 @@
 <div class="demo-app">
 
 
-  <div data-suisou-layout="frame grow">
+  <div data-suisou-layout="stack md:frame grow">
 
     <!-- チャンネル一覧。1枚の panel -->
-    <nav data-suisou-layout="aside stack scroll" data-suisou-surface="panel" class="gap-1" style="width: 200px">
+    <nav data-suisou-layout="aside stack scroll" data-suisou-surface="panel" class="gap-1 demo-aside">
       <div data-suisou-text="s12 w600" class="muted">テキストチャンネル</div>
       <button data-suisou-btn="block on" type="button">#general</button>
       <button data-suisou-btn="block" type="button">#random</button>
@@ -26,7 +26,7 @@
     </header>
 
     <!-- ログ。1枚の panel -->
-    <div data-suisou-layout="body stack scroll" data-suisou-surface="panel" class="gap-1">
+    <div data-suisou-layout="body stack scroll grow" data-suisou-surface="panel" class="gap-1">
       <div data-suisou-row data-suisou-media>
         <div data-suisou-media-icon data-suisou-avatar>し</div>
         <div data-suisou-media-content>

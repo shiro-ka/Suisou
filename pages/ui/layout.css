@@ -79,6 +79,12 @@
 
 [data-suisou-layout~="wrap"] { flex-wrap: wrap; }
 
+/* 打ち消し用。既定に戻すための値で、単体で書いても何も変わらない。
+   広い画面でだけ伸ばすのをやめる（"grow md:hold"）、
+   狭い画面でだけ折り返す（"wrap md:nowrap"）といった書き方で効く。 */
+[data-suisou-layout~="hold"]   { flex: none; }
+[data-suisou-layout~="nowrap"] { flex-wrap: nowrap; }
+
 /* 主軸方向の寄せ。余った空間の配り方であって、子の置き方ではない。
    子に grow があると余りが残らないので、これらは何も起きなくなる。
    around / evenly は出番が無かったので持たない（3回書いてから足す）。 */
@@ -105,4 +111,74 @@
   width: 100%;
   max-width: var(--suisou-measure, 1024px);
   margin-inline: auto;
+}
+
+
+/* ── 画面幅で変える ───────────────────────────
+   値に接頭辞を付ける。空白区切りなので ~= がそのまま当たり、語彙は増えない。
+
+     <div data-suisou-layout="stack md:frame grow">   狭いと縦積み、広いと骨格
+
+   ★下から積む（min-width）。Tailwind と同じ向きなので、接頭辞の意味も同じ。
+     段は2つだけ。実寸の出し分けは Suisou の仕事ではないので、
+     並びの向きが変わる幅だけを持つ。
+
+       md   768px   縦積みをやめて横に割れる幅
+       lg  1024px   サイドバーを常時出せる幅
+
+   ★区画（aside / head / body / foot）には接頭辞版を作らない。
+     「どの区画か」は幅で変わるものではないし、frame が効いていなければ
+     grid-area は無視されて、DOM の順に素直に積まれる。
+     だから "stack md:frame" と書くだけで、狭いときは自然に縦一列になる。
+
+   ★hold（flex: none）は既定に戻すための値。狭いときだけ grow したい、の逆。 */
+
+@media (width >= 768px) {
+  [data-suisou-layout~="md:frame"] {
+    display: grid;
+    grid-template-areas: "head" "body" "foot";
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+  [data-suisou-layout~="md:frame"]:has(> [data-suisou-layout~="aside"]) {
+    grid-template-areas: "aside head" "aside body" "aside foot";
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  [data-suisou-layout~="md:stack"] { flex-direction: column; }
+  [data-suisou-layout~="md:row"] { align-items: center; }
+  [data-suisou-layout~="md:center"] { display: grid; place-items: center; }
+  [data-suisou-layout~="md:stretch"] { align-items: stretch; }
+  [data-suisou-layout~="md:wrap"] { flex-wrap: wrap; }
+  [data-suisou-layout~="md:nowrap"] { flex-wrap: nowrap; }
+  [data-suisou-layout~="md:scroll"] { overflow: auto; }
+  [data-suisou-layout~="md:grow"] { flex: 1 1 auto; min-width: 0; min-height: 0; }
+  [data-suisou-layout~="md:hold"] { flex: none; }
+  [data-suisou-layout~="md:start"] { justify-content: flex-start; }
+  [data-suisou-layout~="md:end"] { justify-content: flex-end; }
+  [data-suisou-layout~="md:between"] { justify-content: space-between; }
+}
+
+@media (width >= 1024px) {
+  [data-suisou-layout~="lg:frame"] {
+    display: grid;
+    grid-template-areas: "head" "body" "foot";
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+  [data-suisou-layout~="lg:frame"]:has(> [data-suisou-layout~="aside"]) {
+    grid-template-areas: "aside head" "aside body" "aside foot";
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  [data-suisou-layout~="lg:stack"] { flex-direction: column; }
+  [data-suisou-layout~="lg:row"] { align-items: center; }
+  [data-suisou-layout~="lg:center"] { display: grid; place-items: center; }
+  [data-suisou-layout~="lg:stretch"] { align-items: stretch; }
+  [data-suisou-layout~="lg:wrap"] { flex-wrap: wrap; }
+  [data-suisou-layout~="lg:nowrap"] { flex-wrap: nowrap; }
+  [data-suisou-layout~="lg:scroll"] { overflow: auto; }
+  [data-suisou-layout~="lg:grow"] { flex: 1 1 auto; min-width: 0; min-height: 0; }
+  [data-suisou-layout~="lg:hold"] { flex: none; }
+  [data-suisou-layout~="lg:start"] { justify-content: flex-start; }
+  [data-suisou-layout~="lg:end"] { justify-content: flex-end; }
+  [data-suisou-layout~="lg:between"] { justify-content: space-between; }
 }

@@ -96,11 +96,20 @@ def main():
                             f"（{' / '.join(sorted(SURFACE_STEPS))} から1つ書く）")
 
                 for m in re.finditer(r'data-suisou-layout(?:="([^"]*)")?', line):
-                    modes = LAYOUT_MODES & set((m.group(1) or "").split())
-                    if len(modes) > 1:
-                        problems.append(
-                            f"{rel}:{i}: layout のモードが {len(modes)} 個 … "
-                            f"\"{m.group(1)}\" （{' / '.join(sorted(modes))} は同時に書けない）")
+                    vals = (m.group(1) or "").split()
+                    # 接頭辞ごとに数える。md: の中で2つ書くのも同じく事故なので、
+                    # 素の値と md:/lg: をそれぞれ別の集合として見る
+                    for pre in ("", "md:", "lg:"):
+                        modes = {v[len(pre):] for v in vals
+                                 if v.startswith(pre)
+                                 and (pre or ":" not in v)
+                                 and v[len(pre):] in LAYOUT_MODES}
+                        if len(modes) > 1:
+                            label = f"{pre} の" if pre else ""
+                            problems.append(
+                                f"{rel}:{i}: layout の{label}モードが {len(modes)} 個 … "
+                                f"\"{m.group(1)}\" "
+                                f"（{' / '.join(sorted(pre + x for x in modes))} は同時に書けない）")
 
     print(f"検査 {checked} ファイル / --suisou-* の定義 {len(defined)} 種")
     if problems:

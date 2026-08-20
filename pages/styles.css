@@ -255,6 +255,11 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
      地べた（bg）に直接置くのはヘッダの要素だけ。
      モノは panel に入れる。まとめず、領域ごとに1枚ずつ。 */
 
+/* 作例のサイドバーの実寸。★Suisou は幅を持たないので、幅とその切替は現場の仕事。
+   並びの切替（stack md:frame）は Suisou、何 px かはこちら、という分担になる。 */
+.demo-aside { width: 100%; }
+@media (width >= 768px) { .demo-aside { width: 200px; } }
+
 .demo-app {
   display: flex;
   flex-direction: column;
