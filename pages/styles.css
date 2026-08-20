@@ -297,3 +297,63 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 .demo-defs dd { margin: 0; font-size: var(--suisou-size-14); line-height: var(--suisou-lh-20); }
 
 .muted { color: var(--suisou-text-sub); }
+
+/* ══ Tokens ページ ═════════════════════════════ */
+
+.tk-row {
+  display: grid;
+  grid-template-columns: minmax(0, 13rem) 5rem 9rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--suisou-space-2);
+  padding: var(--suisou-space-1) var(--suisou-space-2);
+  border-radius: var(--suisou-radius);
+}
+.tk-row:hover { background: var(--suisou-hover-surface); }
+
+.tk-name { font-family: var(--suisou-mono); font-size: var(--suisou-size-12); }
+.tk-val  { font-family: var(--suisou-mono); font-size: var(--suisou-size-12); color: var(--suisou-accent); }
+.tk-px   { font-family: var(--suisou-mono); font-size: var(--suisou-size-12); color: var(--suisou-text-sub); }
+.tk-sample { min-width: 0; }
+
+/* 余白は幅そのものを棒で見せる */
+.tk-bar { height: 1rem; background: var(--suisou-accent); border-radius: var(--suisou-radius-small); }
+
+.tk-round {
+  display: inline-flex; align-items: center;
+  height: 2rem; padding: 0 var(--suisou-space-3);
+  border: 1px solid var(--suisou-line-strong);
+  font-size: var(--suisou-size-12);
+  color: var(--suisou-text-sub);
+}
+
+.tk-motion {
+  display: inline-flex; align-items: center;
+  height: 2rem; padding: 0 var(--suisou-space-3);
+  border: 1px solid var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+  font-size: var(--suisou-size-12);
+  color: var(--suisou-text-sub);
+  transition-property: background-color, color, border-color;
+  transition-timing-function: var(--suisou-ease);
+}
+.tk-motion:hover {
+  background: var(--suisou-selected-surface);
+  border-color: var(--suisou-accent);
+  color: var(--suisou-text-main);
+}
+
+.tk-focus {
+  font: inherit; font-size: var(--suisou-size-12);
+  padding: var(--suisou-space-1) var(--suisou-space-2);
+  border: 1px solid var(--suisou-line-strong);
+  border-radius: var(--suisou-radius);
+  background: transparent; color: var(--suisou-text-sub);
+  cursor: pointer;
+}
+.tk-focus:focus-visible { outline: var(--suisou-focus); outline-offset: 2px; }
+
+@media (width <= 720px) {
+  .tk-row { grid-template-columns: minmax(0, 1fr) auto; }
+  .tk-px { grid-column: 2; text-align: right; }
+  .tk-sample { grid-column: 1 / -1; }
+}
