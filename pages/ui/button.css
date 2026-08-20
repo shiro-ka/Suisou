@@ -1,9 +1,9 @@
 /* Suisou — Button
 
-     <button data-suisou-btn>基本</button>
-     <button data-suisou-btn="outline">CTA</button>
-     <button data-suisou-btn="danger icon">削除</button>
-     <button data-suisou-btn aria-pressed="true">押しっぱなし</button>
+     <button data-suisou-button>基本</button>
+     <button data-suisou-button="outline">CTA</button>
+     <button data-suisou-button="danger icon">削除</button>
+     <button data-suisou-button aria-pressed="true">押しっぱなし</button>
 
    値は空白区切り。~= で拾うので、いくつ並べても属性は1つ。
 
@@ -15,7 +15,7 @@
    .notes/palette-spec.md の実測: 明度を上げる方式だと accent の hover(L79) が
    text-sub(L78) と 1.00:1 になり、線が消える。 */
 
-[data-suisou-btn] {
+[data-suisou-button] {
   box-sizing: border-box;
   font-family: inherit;
   font-size: var(--suisou-size-14);
@@ -37,17 +37,17 @@
   gap: var(--suisou-space-2);
 }
 
-[data-suisou-btn]:hover {
+[data-suisou-button]:hover {
   background: var(--suisou-hover-surface);
   color: var(--suisou-text-main);
 }
-[data-suisou-btn]:active { background: var(--suisou-selected-surface); }
-[data-suisou-btn]:focus-visible { outline: var(--suisou-focus); outline-offset: 2px; }
+[data-suisou-button]:active { background: var(--suisou-selected-surface); }
+[data-suisou-button]:focus-visible { outline: var(--suisou-focus); outline-offset: 2px; }
 
 /* アイコンの寸法は部品が持つ。使う側に毎回書かせない
    （wixdex では w-5 h-5 を各所で手書きしていた）。
    色は currentColor で継承されるので、text-sub → text-main が自動で効く。 */
-[data-suisou-btn] > svg {
+[data-suisou-button] > svg {
   width: var(--suisou-icon);
   height: var(--suisou-icon);
   flex-shrink: 0;
@@ -56,19 +56,19 @@
 /* ── 強さ ───────────────────────────────── */
 
 /* CTA。塗らずアウトラインで立てる */
-[data-suisou-btn~="outline"] {
+[data-suisou-button~="outline"] {
   color: var(--suisou-accent);
   border-color: var(--suisou-accent);
   padding-inline: var(--suisou-space-3);
 }
-[data-suisou-btn~="outline"]:hover { color: var(--suisou-accent); }
-[data-suisou-btn~="outline"]:active {
+[data-suisou-button~="outline"]:hover { color: var(--suisou-accent); }
+[data-suisou-button~="outline"]:active {
   color: var(--suisou-accent-active);
   border-color: var(--suisou-accent-active);
 }
 
 /* 色を持たず罫だけで立つ */
-[data-suisou-btn~="plain"] {
+[data-suisou-button~="plain"] {
   border-color: var(--suisou-line-strong);
   padding-inline: var(--suisou-space-3);
 }
@@ -77,13 +77,13 @@
    ★押下色（error-active）は solve.py に足した ―― 意味色にも accent と同じ
      作りの押下色を出すようにしてある。それまでは色が動かず、押しても
      反応が無いように見えていた。 */
-[data-suisou-btn~="danger"] {
+[data-suisou-button~="danger"] {
   color: var(--suisou-error);
   border-color: var(--suisou-error);
   padding-inline: var(--suisou-space-3);
 }
-[data-suisou-btn~="danger"]:hover  { color: var(--suisou-error); background: var(--suisou-error-surface); }
-[data-suisou-btn~="danger"]:active {
+[data-suisou-button~="danger"]:hover  { color: var(--suisou-error); background: var(--suisou-error-surface); }
+[data-suisou-button~="danger"]:active {
   color: var(--suisou-error-active);
   border-color: var(--suisou-error-active);
   background: var(--suisou-error-surface);
@@ -92,19 +92,19 @@
 /* 押しっぱなしの状態（フィルタのトグルなど）。
    wixdex の filterToggle が bg-zinc-500/30 でやっていたもの。
 
-   ★状態は標準の属性を借りる（aria-pressed）。以前は data-suisou-btn="on" と
+   ★状態は標準の属性を借りる（aria-pressed）。以前は data-suisou-button="on" と
      自前で持っていたが、Row は aria-selected / aria-current、Field は
      disabled / aria-invalid を借りていて、ここだけ自前だった。
      寄せると読み上げにも効く。
 
    ★下地は現場が選ぶ。既定はアクセント色、neutral を足すと明るさだけになる。
      Row と同じ選択肢・同じ値の名前。 */
-[data-suisou-btn][aria-pressed="true"] {
+[data-suisou-button][aria-pressed="true"] {
   background: var(--suisou-selected-surface);
   color: var(--suisou-text-main);
 }
-[data-suisou-btn~="neutral"][aria-pressed="true"] {
-  background: var(--suisou-selected-neutral);
+[data-suisou-button~="neutral"][aria-pressed="true"] {
+  background: var(--suisou-selected-neutral-surface);
 }
 
 /* ── 形 ─────────────────────────────────── */
@@ -114,7 +114,7 @@
      20px のアイコンに対して 44px は見た目が空きすぎる。
      実際 wixdex は 32px で運用できていた。両者の間を取っている。
      px のままなのは「指」の都合で、文字サイズに追従させないため。 */
-[data-suisou-btn~="icon"] {
+[data-suisou-button~="icon"] {
   padding: 0;
   aspect-ratio: 1;
   min-width: 36px;
@@ -124,35 +124,35 @@
    中身ぴったりの幅では余りが無く justify-content は効かないため、
    基本形の center が顔を出すのは block と icon のときだけ。
    中央寄せの全幅 CTA が要るようになったら値を足す（3回書いてから）。 */
-[data-suisou-btn~="block"] { display: flex; width: 100%; justify-content: flex-start; }
+[data-suisou-button~="block"] { display: flex; width: 100%; justify-content: flex-start; }
 
 /* ── 無効 ───────────────────────────────── */
 
-[data-suisou-btn][disabled],
-[data-suisou-btn][aria-disabled="true"] {
+[data-suisou-button][disabled],
+[data-suisou-button][aria-disabled="true"] {
   color: var(--suisou-text-disabled);
   border-color: transparent;
   background: transparent;
   cursor: default;
 }
-[data-suisou-btn~="outline"][disabled],
-[data-suisou-btn~="plain"][disabled],
-[data-suisou-btn~="danger"][disabled] { border-color: var(--suisou-line-weak); }
+[data-suisou-button~="outline"][disabled],
+[data-suisou-button~="plain"][disabled],
+[data-suisou-button~="danger"][disabled] { border-color: var(--suisou-line-weak); }
 
 /* ── 連結 ───────────────────────────────────
    wixdex の検索欄がこの形。親が罫と角丸を持ち、overflow で子を切る。
    子側に角丸を持たせないので、何個並んでも破綻しない。 */
 
-[data-suisou-btn-group] {
+[data-suisou-button-group] {
   display: inline-flex;
   border: 1px solid var(--suisou-line-strong);
   border-radius: var(--suisou-radius);
   overflow: hidden;
 }
-[data-suisou-btn-group] > [data-suisou-btn] {
+[data-suisou-button-group] > [data-suisou-button] {
   border-radius: 0;
   border-color: transparent;
 }
-[data-suisou-btn-group] > [data-suisou-btn] + [data-suisou-btn] {
+[data-suisou-button-group] > [data-suisou-button] + [data-suisou-button] {
   border-left-color: var(--suisou-line-weak);
 }

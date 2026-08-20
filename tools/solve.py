@@ -123,7 +123,6 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     ("accent","overlay",3.0,"UI 部品"),
     ("accent","panel",3.0,"UI 部品"),
     ("accent-active","overlay",3.0,"UI 部品(押下)"),
-    ("on-accent","accent",4.5,"ボタン内文字"),
     ("text-main","selected-surface",4.5,"選択行の文字"),
     ("text-main","hover-surface",4.5,"hover 行の文字"),
     ("line-weak","hover-surface",1.5,"hover 行の装飾罫"),
@@ -132,14 +131,18 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     #   選択行の中の Tag の罫がまさに line-weak on selected-surface。
     ("line-weak","selected-surface",1.5,"選択行の装飾罫"),
     ("line-strong","selected-surface",3.0,"選択行の入力枠 1.4.11"),
-    ("line-weak","selected-neutral",1.5,"選択行(中立)の装飾罫"),
-    ("line-strong","selected-neutral",3.0,"選択行(中立)の入力枠 1.4.11"),
-    ("text-main","selected-neutral",4.5,"選択行(中立)の文字"),
+    ("line-weak","selected-neutral-surface",1.5,"選択行(中立)の装飾罫"),
+    ("line-strong","selected-neutral-surface",3.0,"選択行(中立)の入力枠 1.4.11"),
+    ("text-main","selected-neutral-surface",4.5,"選択行(中立)の文字"),
     ("error","overlay",4.5,"状態文言"),
     ("warning","overlay",4.5,"状態文言"),
     ("success","overlay",4.5,"状態文言"),
+    # ★4.5 なのは枠(3.0)と文字の兼用だから。danger ボタンは hover で
+    #   error-surface を敷き、その上のラベルが error のまま ―― 文字の基準で縛る。
+    #   以前は 3.0（枠）でしか縛っておらず、実測 4.88 で「守っているのに
+    #   約束していない」状態だった。階段を動かしたときに CI が守れるようにする。
     ("text-main","error-surface",4.5,"バナーの文字"),
-    ("error","error-surface",3.0,"バナーの枠"),
+    ("error","error-surface",4.5,"バナーの枠 / danger ボタンの文字"),
     ("error-active","error-surface",3.0,"danger ボタン(押下)"),
     ("error-active","overlay",3.0,"danger ボタン(押下)"),
 ]
@@ -207,12 +210,11 @@ def tokens(t, acc_name, acc_h):
     o["accent"]        = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
     o["accent-active"] = (D["accent"]+ACTIVE_DL, maxC(D["accent"]+ACTIVE_DL, acc_h) * t["ar"], acc_h)
     o["focus-ring"]    = o["accent"]
-    o["on-accent"]     = o["bg"]
     o["hover-surface"] = (resolve_hover(t), t["cs"], t["h"])   # 中立。アクセントに依存しない
     # 選択の下地は2つ出す。現場が「色で示す」か「明るさだけで示す」かを選ぶ。
     # 明度はどちらも tint で同じ。違うのは彩度だけ（hadal で 0.053 と 0.006）。
     o["selected-surface"] = (D["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h)
-    o["selected-neutral"] = (D["tint"], t["cs"], t["h"])       # 中立。アクセントに依存しない
+    o["selected-neutral-surface"] = (D["tint"], t["cs"], t["h"])       # 中立。アクセントに依存しない
     sr = sem_ratio(t["ar"])
     for n, h in SEM_HUE.items():
         L = SEM_L[t["ladder"]][n]
@@ -228,9 +230,12 @@ def accent_blocking(t, acc_name, acc_h):
     """出せない理由。色域外だけ。ここが空でない組は CSS に出さない。
 
     色域外は「意図した色が表示できない」＝ブラウザが勝手に丸めるので、
-    Suisou が保証している値と実際に出る色が食い違う。これは出せない。"""
+    Suisou が保証している値と実際に出る色が食い違う。これは出せない。
+    見るのは CSS に出すトークンだけ ―― 計算だけして出さないもの（棚卸しで
+    落とした warning-active など）が組み合わせを道連れにしないようにする。"""
     k = tokens(t, acc_name, acc_h)
-    return [f"{n} が色域外" for n, v in k.items() if v and not in_gamut(*v)]
+    return [f"{n} が色域外" for n, v in k.items()
+            if v and (n in THEME_TOKENS or n in ACCENT_TOKENS) and not in_gamut(*v)]
 
 
 def accent_issues(t, acc_name, acc_h):
@@ -255,7 +260,7 @@ def accent_issues(t, acc_name, acc_h):
         bad.append("hover と選択が近すぎ")
     # 中立版の選択下地も hover と区別がつく必要がある。こちらは同じ色相なので
     # 差は明度だけ（tint と hover の段差）。段を詰めたときに真っ先に壊れる。
-    if dE(k["selected-neutral"], k["hover-surface"]) < JND:
+    if dE(k["selected-neutral-surface"], k["hover-surface"]) < JND:
         bad.append("hover と選択（中立）が近すぎ")
     return bad
 
@@ -276,7 +281,7 @@ def gamut_failures(t, acc_name, acc_h):
 # ============================================================ 解いて JSON に
 def solve():
     out = {
-        "version": "1.3",
+        "version": "1.4",
         "floors": FLOOR, "semOffset": SEM_OFFSET, "activeDL": ACTIVE_DL,
         "scrimAlpha": SCRIM_ALPHA, "jnd": JND,
         "ladders": LADDERS, "semHue": SEM_HUE, "semL": SEM_L,
@@ -330,11 +335,16 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 #   テーマ層   … 全アクセントで同値。面・文字・意味色
 #   アクセント層 … アクセントで変わる。かつテーマをまたぐと値も変わるので、
 #                 テーマとの組でしか定義できない（複合セレクタになる理由）
-THEME_TOKENS = ["bg", "panel", "item", "overlay", "hover-surface", "selected-neutral",
+# ★出すのは使っているものだけ（2026-08-20 棚卸し）。
+#   on-accent … 塗るボタンが無いので載せる文字が無い。チェックボックスのレの字は
+#               ブラウザが accent-color から自動で決める（base.css）。
+#   warning-active / success-active … 押せる意味色は danger（error）だけ。
+#   計算は tokens() が全部やっている。使う部品ができたらここに足すだけで出る。
+THEME_TOKENS = ["bg", "panel", "item", "overlay", "hover-surface", "selected-neutral-surface",
                 "line-weak", "line-strong", "text-disabled", "text-sub", "text-main",
-                "on-accent", "scrim",
+                "scrim",
                 "error", "warning", "success",
-                "error-active", "warning-active", "success-active",
+                "error-active",
                 "error-surface", "warning-surface", "success-surface"]
 ACCENT_TOKENS = ["accent", "accent-active", "focus-ring", "selected-surface"]
 

@@ -34,13 +34,13 @@
 
 [data-suisou-prose] :where(h1) { font-size: var(--suisou-size-28); line-height: var(--suisou-lh-28); font-weight: 700; }
 [data-suisou-prose] :where(h2) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); font-weight: 700; }
-[data-suisou-prose] :where(h3) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); font-weight: 600; }
-[data-suisou-prose] :where(h4) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 600; }
+[data-suisou-prose] :where(h3) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); font-weight: 700; }
+[data-suisou-prose] :where(h4) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 700; }
 
 /* ★h5 / h6 はサイズを増やさない。段が7つしかないので、6段の見出しに
    1段ずつ割り当てると本文と衝突する（type-spec §5）。区別は帯とウェイトで作る。 */
 [data-suisou-prose] :where(h5) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 500; }
-[data-suisou-prose] :where(h6) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 600; }
+[data-suisou-prose] :where(h6) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 700; }
 
 /* ── 見出しの帯 ───────────────────────────
    ★左にぶら下げる。字下げしないので、見出しの文字は本文と左端が揃う。
@@ -62,7 +62,11 @@
        h6  帯なし … 14px という大きさ自体がしるし
 
    帯と文字の間はどの段も space-2。太さが違っても右端が揃い、
-   太いものだけが左へ伸びる。 */
+   太いものだけが左へ伸びる。
+
+   ★前提: 入れ物の左に 6px + space-2（=14px）以上の余白があること。
+     panel の余白（space-3 = 16px）はこれを満たす。地べたに直置きして
+     画面の端に寄せると、帯は外にはみ出して見切れる。 */
 
 [data-suisou-prose] :where(h2, h3, h4, h5) { position: relative; }
 
@@ -80,7 +84,7 @@
 [data-suisou-prose] :where(h5)::before { width: 1px; left: calc(-1 * (1px + var(--suisou-space-2))); background: var(--suisou-line-weak); }
 
 [data-suisou-prose] :where(small) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); }
-[data-suisou-prose] :where(strong, b) { font-weight: 600; }
+[data-suisou-prose] :where(strong, b) { font-weight: 700; }
 
 /* ── 縦のリズム ───────────────────────────
    ★見出しは「前を広く、後ろを詰める」。前の話題から離し、次の内容に近づける。
@@ -122,7 +126,7 @@
   grid-template-columns: auto 1fr;
   gap: var(--suisou-space-1) var(--suisou-space-3);
 }
-[data-suisou-prose] :where(dt) { color: var(--suisou-text-sub); font-weight: 600; }
+[data-suisou-prose] :where(dt) { color: var(--suisou-text-sub); font-weight: 700; }
 
 /* ── 短い方 ─────────────────────────────
    panel の中に入るメモ。wixdex のデッキメモがこの形（prose-sm 相当）。

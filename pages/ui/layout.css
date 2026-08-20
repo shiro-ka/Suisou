@@ -129,10 +129,10 @@
   grid-auto-columns: minmax(0, 1fr);
 }
 
-/* 本文の幅を絞って中央に寄せる */
+/* 本文の幅を絞って中央に寄せる。上限は base.css の --suisou-measure */
 [data-suisou-layout~="container"] {
   width: 100%;
-  max-width: var(--suisou-measure, 64rem);
+  max-width: var(--suisou-measure);
   margin-inline: auto;
 }
 

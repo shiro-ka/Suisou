@@ -73,10 +73,42 @@
       <tr><td><code>aria-selected="true"</code><br><code>aria-current</code></td>
           <td><code>--suisou-selected-surface</code>。アクセント色で示す</td></tr>
       <tr><td>同上 ＋ <code>neutral</code></td>
-          <td><code>--suisou-selected-neutral</code>。
+          <td><code>--suisou-selected-neutral-surface</code>。
               <strong>明るさだけで示す</strong>。明度は上と同じ（<code>tint</code>）で、
               違うのは彩度だけ</td></tr>
     </table>
+  </div>
+
+  <div class="group">
+    <h2>★A/B: 選択行の左の線（保留・2026-08-20）</h2>
+    <p class="note">
+      palette-spec §10 は「選択下地 + 左端2pxのアクセント線」（色だけに頼らない）と
+      書いていたが、実装は下地のみ。<strong>実物を並べて決める。</strong>
+      線は仮に <code>style</code> 直書きで出している（採用したら Row が持つ）。
+    </p>
+    <div class="demo">
+      <span class="demo-label">A —— 下地のみ（いまの実装）</span>
+      <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
+        <div data-suisou-row>ふつうの行</div>
+        <div data-suisou-row aria-selected="true">選ばれている行</div>
+        <div data-suisou-row="neutral" aria-selected="true">選ばれている行（neutral）</div>
+      </div>
+      <span class="demo-label">B —— 下地 + 左2pxのアクセント線（仕様の記述）</span>
+      <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
+        <div data-suisou-row>ふつうの行</div>
+        <div data-suisou-row aria-selected="true"
+             style="box-shadow: inset 2px 0 0 var(--suisou-accent)">選ばれている行</div>
+        <div data-suisou-row="neutral" aria-selected="true"
+             style="box-shadow: inset 2px 0 0 var(--suisou-accent)">選ばれている行（neutral）</div>
+      </div>
+      <span class="demo-label">B' —— ruled でも見る（bleed の中）</span>
+      <div data-suisou-surface="panel bleed" data-suisou-layout="stack">
+        <div data-suisou-row="ruled">ふつうの行</div>
+        <div data-suisou-row="ruled" aria-selected="true"
+             style="box-shadow: inset 2px 0 0 var(--suisou-accent)">選ばれている行</div>
+        <div data-suisou-row="ruled">ふつうの行</div>
+      </div>
+    </div>
   </div>
 
   <div class="group">
@@ -116,7 +148,7 @@
               既定がアクセント、<code>neutral</code> で明るさだけ。
               A/B で見比べたが、明度が同じなので hover との区別も
               コントラストも変わらず、<strong>数値では決められなかった</strong>。
-              Button の <code>on</code> にも同じ値がある</td></tr>
+              Button の <code>aria-pressed</code> にも同じ選択肢がある</td></tr>
       <tr><td>選択の上に載る罫</td>
           <td>解決済み。<code>tint</code> を L36 → L33 に下げた
               （<code>line-weak</code> 1.37 → 1.53、<code>line-strong</code> 2.81 → 3.14）。

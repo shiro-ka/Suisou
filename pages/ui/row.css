@@ -18,7 +18,7 @@
 
    ★選択の下地は現場が選ぶ。両方要るという結論になった。
        既定      アクセント色（--suisou-selected-surface）。色で示す
-       neutral   中立（--suisou-selected-neutral）。明るさだけで示す
+       neutral   中立（--suisou-selected-neutral-surface）。明るさだけで示す
      明度はどちらも同じ（tint）で、違うのは彩度だけ。hover との区別も
      コントラストも変わらないので、数値では決められなかった。 */
 
@@ -30,6 +30,10 @@
 
 [data-suisou-row]:hover { background: var(--suisou-hover-surface); }
 
+/* 行そのものが focusable な現場（tabindex を振った一覧など）向け。
+   輪を内側に入れるのは、ruled の行が端から端まで連なって外側に余白が無いため */
+[data-suisou-row]:focus-visible { outline: var(--suisou-focus); outline-offset: -2px; }
+
 /* 選ばれている。標準の属性で受ける */
 [data-suisou-row][aria-selected="true"],
 [data-suisou-row][aria-current]:not([aria-current="false"]) {
@@ -39,7 +43,7 @@
 /* 色を使わず、明るさだけで示す。一覧の中で色が主張しすぎる場面用 */
 [data-suisou-row~="neutral"][aria-selected="true"],
 [data-suisou-row~="neutral"][aria-current]:not([aria-current="false"]) {
-  background: var(--suisou-selected-neutral);
+  background: var(--suisou-selected-neutral-surface);
 }
 
 /* 連なる形。角丸を捨てて罫で区切る。最後の1本は引かない */

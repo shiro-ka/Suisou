@@ -1,7 +1,7 @@
 /* Suisou — タイポグラフィ。根拠は .notes/type-spec.md
 
      <p data-suisou-text="s16 w400">本文</p>
-     <h5 data-suisou-text="s16 w500 rule">左罫線つき見出し</h5>
+     <h2 data-suisou-text="s24 w700">見出し</h2>
      <p data-suisou-text="s16 w400 doc">長文（行間 +0.25rem）</p>
 
    ★実際の寸法は base.css のトークンが持ち、単位は rem。このファイルは
@@ -24,17 +24,10 @@
 /* §6「長文は UI に +4px するだけ」。7行の対応表ではなく規則として持つ */
 [data-suisou-text~="doc"] { line-height: calc(var(--lh) + 0.25rem); }
 
+/* ウェイトは3段（§4）。★600 は無い ―― Zen Maru Gothic が 600 を持たず
+   700 で描画されていた。フォールバックフォントでは 600/700 が分かれて
+   環境で見た目が割れるので、段として持つのをやめた（2026-08-20）。
+   実測で最頻出だった「本文サイズ + semibold の見出し」は w700 が引き受ける。 */
 [data-suisou-text~="w400"] { font-weight: 400; }
 [data-suisou-text~="w500"] { font-weight: 500; }
-[data-suisou-text~="w600"] { font-weight: 600; }
 [data-suisou-text~="w700"] { font-weight: 700; }
-
-/* §5。h5/h6 はサイズを増やさず、ウェイトと左罫線で階層を作る */
-[data-suisou-text~="rule"] {
-  border-left: 3px solid var(--suisou-line-strong);
-  padding-left: var(--suisou-space-2);
-}
-[data-suisou-text~="rule-weak"] {
-  border-left: 3px solid var(--suisou-line-weak);
-  padding-left: var(--suisou-space-2);
-}

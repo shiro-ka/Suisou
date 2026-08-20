@@ -73,13 +73,13 @@
     <div class="demo">
       <span class="demo-label">開閉に JS を使っていない（popovertarget 属性だけ）。出入りも animate する</span>
       <div data-suisou-layout="row">
-        <button data-suisou-btn="outline" type="button" popovertarget="demo-pop">ポップオーバーを開く</button>
+        <button data-suisou-button="outline" type="button" popovertarget="demo-pop">ポップオーバーを開く</button>
       </div>
       <div id="demo-pop" popover data-suisou-surface="overlay" data-suisou-layout="stack">
-        <span data-suisou-text="s16 w600">overlay の面</span>
+        <span data-suisou-text="s16 w700">overlay の面</span>
         <p data-suisou-text="s14 w400" class="muted">後ろが scrim で塞がれている。罫は line-strong。</p>
         <div data-suisou-layout="row end">
-          <button data-suisou-btn type="button" popovertarget="demo-pop" popovertargetaction="hide">閉じる</button>
+          <button data-suisou-button type="button" popovertarget="demo-pop" popovertargetaction="hide">閉じる</button>
         </div>
       </div>
     </div>
@@ -150,8 +150,8 @@
       <div data-suisou-layout="stack" data-suisou-surface="panel" class="gap-3">
         <div>縦に積む</div>
         <div data-suisou-layout="row">
-          <button data-suisou-btn="outline" type="button">保存</button>
-          <button data-suisou-btn type="button">取り消し</button>
+          <button data-suisou-button="outline" type="button">保存</button>
+          <button data-suisou-button type="button">取り消し</button>
         </div>
       </div>
     </div>

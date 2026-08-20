@@ -11,7 +11,7 @@
      aria-* / disabled        状態。自分で発明せず標準を借りる
 
        <div data-suisou-surface="panel" data-suisou-media class="gap-3">
-       <button data-suisou-btn="outline icon" aria-pressed="true">
+       <button data-suisou-button="outline icon" aria-pressed="true">
 
      形が違えば層が違う。面は値で切り替わり、部品は属性が増える。
 
@@ -51,12 +51,14 @@
   --suisou-size-28: 1.75rem;   --suisou-lh-28: 2rem;      /* 28 / 32 */
   --suisou-size-32: 2rem;      --suisou-lh-32: 2.25rem;   /* 32 / 36 */
 
-  /* ★未確定。余白・角丸はまだ決めていない（handoff の「保留」）。
+  /* ★余白の段だけまだ未確定（handoff の「保留」。角丸とモーションは確定済み）。
      UI アンカーの実測 8px を基準に仮置きしている。実物を見て決める。 */
   --suisou-space-1: 0.25rem;   /*  4 */
   --suisou-space-2: 0.5rem;    /*  8 */
   --suisou-space-3: 1rem;      /* 16 */
   --suisou-space-4: 1.5rem;    /* 24 */
+  /* 本文の幅の上限。layout の container が読む。長文の読みやすい行長 */
+  --suisou-measure: 64rem;     /* 1024 */
   --suisou-icon: 1.25rem;       /* 20。アイコンの一辺。4の倍数 */
   --suisou-icon-small: 1rem;    /* 16。12px の文字の隣に置く用（Tag など） */
   /* ★角丸は3段。太さではなく「対象の高さ」で選ぶ。
@@ -131,8 +133,8 @@
      継承するプロパティなので根で1回書けば全部に届く。
      部品を作る必要が無い ―― ブラウザが描いてくれるものを奪わない。
      ★チェックの色（レの字）はブラウザが下地から自動で決める。
-       未使用のまま残っている on-accent トークンが本来やる仕事を、
-       ここではブラウザが肩代わりしている。 */
+       「アクセントの上に載せる文字色」をトークンで持たないのはこのため
+       ―― 塗るボタンが無い Suisou では、載せる文字はここにしか無い。 */
   accent-color: var(--suisou-accent);
 
   /* スクロールバー。標準の2つは Firefox 64 / Chromium 121 / Safari 18.2 で

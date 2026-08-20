@@ -51,7 +51,7 @@
 [data-suisou-media-content] :where(header) > :first-child {
   font-size: var(--suisou-size-14);
   line-height: var(--suisou-lh-14);
-  font-weight: 600;
+  font-weight: 700;
 }
 [data-suisou-media-content] :where(header) > :not(:first-child) {
   font-size: var(--suisou-size-12);

@@ -16,7 +16,7 @@
       <code>aria-*</code> を借りる。
     </p>
     <div class="demo">
-      <span class="demo-label">&lt;button data-suisou-btn="danger icon" aria-label="削除"&gt;</span>
+      <span class="demo-label">&lt;button data-suisou-button="danger icon" aria-label="削除"&gt;</span>
     </div>
   </div>
 
@@ -24,10 +24,10 @@
     <h2>強さ</h2>
     <div class="demo">
       <div data-suisou-layout="row wrap">
-        <button data-suisou-btn type="button">基本</button>
-        <button data-suisou-btn="outline" type="button">CTA</button>
-        <button data-suisou-btn="plain" type="button">目立たせない</button>
-        <button data-suisou-btn="danger" type="button">破壊的</button>
+        <button data-suisou-button type="button">基本</button>
+        <button data-suisou-button="outline" type="button">CTA</button>
+        <button data-suisou-button="plain" type="button">目立たせない</button>
+        <button data-suisou-button="danger" type="button">破壊的</button>
       </div>
     </div>
     <table data-suisou-table="tight">
@@ -52,10 +52,10 @@
     <h2>状態</h2>
     <div class="demo">
       <div data-suisou-layout="row wrap">
-        <button data-suisou-btn aria-pressed="true" type="button">押しっぱなし</button>
-        <button data-suisou-btn type="button" disabled>無効</button>
-        <button data-suisou-btn="outline" type="button" disabled>無効（CTA）</button>
-        <button data-suisou-btn="danger" type="button" disabled>無効（破壊的）</button>
+        <button data-suisou-button aria-pressed="true" type="button">押しっぱなし</button>
+        <button data-suisou-button type="button" disabled>無効</button>
+        <button data-suisou-button="outline" type="button" disabled>無効（CTA）</button>
+        <button data-suisou-button="danger" type="button" disabled>無効（破壊的）</button>
       </div>
     </div>
     <p class="note">
@@ -65,7 +65,7 @@
       <br>
       Row は <code>aria-selected</code> / <code>aria-current</code>、
       Field は <code>disabled</code> / <code>aria-invalid</code> を借りていて、
-      <strong>Button だけ <code>data-suisou-btn="on"</code> と自前で持っていた</strong>。
+      <strong>Button だけ <code>data-suisou-button="on"</code> と自前で持っていた</strong>。
       寄せたので読み上げにも効くようになった。
     </p>
   </div>
@@ -75,15 +75,15 @@
     <div class="demo">
       <span class="demo-label">icon … 正方形。padding 0 / aspect-ratio 1 / min-width 32px</span>
       <div data-suisou-layout="row wrap">
-        <button data-suisou-btn="icon" type="button" aria-label="追加"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg></button>
-        <button data-suisou-btn="outline icon" type="button" aria-label="次へ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg></button>
-        <button data-suisou-btn="danger icon" type="button" aria-label="削除"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg></button>
-        <button data-suisou-btn="icon" aria-pressed="true" type="button" aria-label="お気に入り"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg></button>
+        <button data-suisou-button="icon" type="button" aria-label="追加"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg></button>
+        <button data-suisou-button="outline icon" type="button" aria-label="次へ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg></button>
+        <button data-suisou-button="danger icon" type="button" aria-label="削除"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg></button>
+        <button data-suisou-button="icon" aria-pressed="true" type="button" aria-label="お気に入り"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg></button>
       </div>
     </div>
     <div class="demo">
       <span class="demo-label">block … 幅いっぱい</span>
-      <button data-suisou-btn="outline block" type="button">保存する</button>
+      <button data-suisou-button="outline block" type="button">保存する</button>
     </div>
     <p class="note">
       ★当たり判定は 32px。タッチ目標の推奨は 44px なので、モバイルを踏むなら要検討。
@@ -104,13 +104,13 @@
   <div class="group">
     <h2>連結</h2>
     <div class="demo">
-      <span class="demo-label">data-suisou-btn-group</span>
+      <span class="demo-label">data-suisou-button-group</span>
       <div data-suisou-layout="row wrap">
-        <div data-suisou-btn-group>
-          <button data-suisou-btn aria-pressed="true" type="button">すべて</button>
-          <button data-suisou-btn type="button">所持</button>
-          <button data-suisou-btn type="button">未所持</button>
-          <button data-suisou-btn="icon" type="button" aria-label="絞り込み"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg></button>
+        <div data-suisou-button-group>
+          <button data-suisou-button aria-pressed="true" type="button">すべて</button>
+          <button data-suisou-button type="button">所持</button>
+          <button data-suisou-button type="button">未所持</button>
+          <button data-suisou-button="icon" type="button" aria-label="絞り込み"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg></button>
         </div>
       </div>
     </div>

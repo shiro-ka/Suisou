@@ -33,7 +33,10 @@
 [data-suisou-prose] :where(pre) {
   font-family: var(--suisou-mono);
   font-size: var(--suisou-size-12);
-  line-height: var(--suisou-lh-20);   /* 行を詰めない。桁を追うため */
+  /* 行を詰めない。桁を追うため、12px の長文行間（20px。type-spec §6）を使う。
+     ★lh-14 は「14px の文字と組む行間」の名で、値が 20px。
+       以前ここに lh-20（=28px）を書いていたのは「20px の行間」との読み違い。 */
+  line-height: var(--suisou-lh-14);
 
   margin: 0;
   padding: var(--suisou-space-2);
