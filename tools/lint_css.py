@@ -110,7 +110,13 @@ def main():
             for hit in COLOR.findall(line):
                 problems.append(f"{rel}:{i}: 色の直書き … {hit.strip()}")
 
-        for name in sorted(set(re.findall(r"var\((--suisou-[a-z0-9-]+)\)", body))):
+        # フォールバック付き（var(--suisou-x, 1rem)）も名前だけ拾って検査する。
+        # 以前は閉じ括弧まで要求していたので、フォールバックがあると素通りだった。
+        # JS のテンプレート（var(--suisou-space-${n})）は名前が途中で切れて
+        # ハイフンで終わるので、それだけ除く。
+        for name in sorted(set(re.findall(r"var\((--suisou-[a-z0-9-]+)", body))):
+            if name.endswith("-"):
+                continue
             if name not in defined:
                 problems.append(f"{rel}: 未定義の変数 … {name}")
 
@@ -124,14 +130,23 @@ def main():
                             f"{rel}:{i}: surface の段が {len(steps)} 個 … \"{got}\" "
                             f"（{' / '.join(sorted(SURFACE_STEPS))} から1つ書く）")
 
-                # ★アクセントは theme との複合選択子でしか定義されない。
-                #   単独で書くと どの選択子にも当たらず :root の既定に落ちて、
-                #   頼んだ色と違う色が静かに出る。
+                # ★テーマとアクセントは必ず同じ要素に書く（複合選択子でしか
+                #   定義されないため）。どちらの単独も事故で、向きが違うだけ:
+                #     accent 単独 … どの選択子にも当たらず :root の既定色に落ちる
+                #     theme 単独 … テーマ層だけ切り替わり、アクセント層は :root の
+                #                  既定（hadal 用に解いた値）のまま残る。彩度も
+                #                  選択下地も噛み合わない組の色が静かに出る
+                #   以前は accent 側しか見ておらず、検査が非対称だった。
                 for m in re.finditer(r'<[^>]*data-suisou-accent[^>]*>', line):
                     if "data-suisou-theme" not in m.group(0):
                         problems.append(
                             f"{rel}:{i}: data-suisou-accent が単独で書かれている … "
                             f"theme と同じ要素に書くこと（複合選択子でしか定義されない）")
+                for m in re.finditer(r'<[^>]*data-suisou-theme[^>]*>', line):
+                    if "data-suisou-accent" not in m.group(0):
+                        problems.append(
+                            f"{rel}:{i}: data-suisou-theme が単独で書かれている … "
+                            f"accent と同じ要素に書くこと（アクセント層が既定のまま残る）")
 
                 for m in re.finditer(r'data-suisou-layout(?:="([^"]*)")?', line):
                     vals = (m.group(1) or "").split()
