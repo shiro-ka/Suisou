@@ -1,0 +1,48 @@
+/* Suisou — Tag
+
+     <span data-suisou-tag>Public</span>
+     <span data-suisou-tag="accent">設計</span>
+     <span data-suisou-tag="bare"><svg …/>4</span>
+
+   分類のしるし。押せるものではない（押せるなら Button）。
+   作例では24箇所に出ていた。最多の「まだ無い部品」だったのでここから作る。
+
+   ★色は閉じた集合。solve.py が出す意味色をそのまま値にしてある。
+     以前は style="--c: var(--suisou-accent)" と現場に書かせていたが、
+     それだと任意の色を差し込める穴になる。掟1 は「色を決めるのは
+     solve.py だけ」なので、選べる色も Suisou が持つ。 */
+
+[data-suisou-tag] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--suisou-space-1);
+
+  font-size: var(--suisou-size-12);
+  line-height: var(--suisou-lh-12);
+  padding: 0 var(--suisou-space-2);
+  border-radius: var(--suisou-radius-pill);
+
+  border: 1px solid var(--suisou-line-weak);
+  color: var(--suisou-text-sub);
+  background: transparent;          /* 線形デザイン。塗らない */
+}
+
+/* ── 色。1つ選ぶ（書かなければ中立） ───────── */
+
+[data-suisou-tag~="accent"]  { border-color: var(--suisou-accent);  color: var(--suisou-accent); }
+[data-suisou-tag~="error"]   { border-color: var(--suisou-error);   color: var(--suisou-error); }
+[data-suisou-tag~="warning"] { border-color: var(--suisou-warning); color: var(--suisou-warning); }
+[data-suisou-tag~="success"] { border-color: var(--suisou-success); color: var(--suisou-success); }
+
+/* ── 装飾 ───────────────────────────────── */
+
+/* 罫を消す。surface の bare と同じ語・同じ意味（罫だけ消して余白は残す） */
+[data-suisou-tag~="bare"] { border-color: transparent; }
+
+/* アイコンは本文より小さい。--suisou-icon（20px）はボタン用で、
+   12px の文字の隣に置くには大きすぎる。4の倍数を保って16pxにする */
+[data-suisou-tag] > svg {
+  width: var(--suisou-icon-small);
+  height: var(--suisou-icon-small);
+  flex: none;
+}
