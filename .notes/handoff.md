@@ -202,6 +202,43 @@ akuarium-ui/      layout（header/main/footer/container/box/items/wrapper）
 
 ---
 
+## prose（★後回し。ちゃんと練る必要がある）
+
+Markdown が吐いた素の HTML に属性を書けないので、包む側に1つだけ付けて
+中の要素に直接当てる仕組み。Tailwind Typography の `prose` と同じ役目。
+
+**`base.css` の「要素セレクタは使わない」を破る唯一の場所**になる。
+`[data-suisou-prose]` の内側に閉じているので漏れない ―― 破っていい場所を
+1つだけ用意して封じ込める形。Media が既に小規模に同じことをしている
+（`[data-suisou-media-content] :where(header)`）。
+
+### ★満たすべき条件（しろかさんの言）
+
+> pickker みたいなブログでも、wixdex のメモとかでも違和感ないデザインにする必要がある
+
+実例は両方すでにある。**段が2つ要る**という話になりそう。
+
+| | 何 | いまの実装 |
+|---|---|---|
+| wixdex | デッキメモ。**panel の中に入る短文** | `marked` + DOMPurify → `class="prose prose-invert prose-sm"`、`border + bg-zinc-600/10 + p-4` の箱の中 |
+| pickker | **記事まるごと**。目次つき | `markdown-it` → `h2` に左罫6px＋下罫、`h4` に左罫3px、リンクカード |
+
+### 中身の大半はもう決まっている
+
+`type-spec` の「長文」の段（`app.js` の `ROLES_DOC`）をそのまま素の要素に配るだけ。
+
+```
+h1 28/700  h2 24/700  h3 20/600  h4 16/600
+h5 16/500 + 左罫       h6 14/600 + 左罫弱
+p 16/400 doc（行間 +4px）        small 14/400
+```
+
+新しく決めるのは扱っていないもの ―― `ul` / `ol` / `blockquote` / `code` / `pre` /
+`a` / `hr` / `table` / `dl` / `img`。作例に残っている `.demo-code`（行内コード）と
+`.demo-defs`（定義リスト）がその前哨。
+
+---
+
 ## 配布の最終形（★まだやらない。判断の足しにするだけ）
 
 最終的には **Cloudflare に置いて、`<link>` / `@import` 1本で読める形**にしたい。
