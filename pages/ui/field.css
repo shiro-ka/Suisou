@@ -1,0 +1,55 @@
+/* Suisou — Field（入力欄）
+
+     <input data-suisou-field placeholder="検索">
+     <input data-suisou-field="block" aria-invalid="true">
+     <textarea data-suisou-field></textarea>
+
+   ★面の階段で item に載る。panel の中に置かれるものなので1段手前。
+     入れ子が深くなっても、値で書いてあるものを裏で書き換えないという
+     surface の約束と揃う。
+
+   ★罫は line-strong。押せる・書ける場所は罫を強くして、ただの区切り
+     （line-weak）と区別する。線形デザインでは罫が唯一の手がかりなので、
+     ここを弱くすると入力欄が消える。
+
+   ★状態は標準を借りる。disabled / aria-invalid をそのまま見る。
+     自分で data-* を発明しない。
+
+   幅は持たない。実寸は現場のもの。flex の中なら layout の grow、
+   それ以外で幅いっぱいにしたいときだけ block と書く。 */
+
+[data-suisou-field] {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: var(--suisou-size-14);
+  line-height: var(--suisou-lh-14);
+  padding: var(--suisou-space-1) var(--suisou-space-2);
+  border-radius: var(--suisou-radius);
+
+  background: var(--suisou-item);
+  color: var(--suisou-text-main);
+  border: 1px solid var(--suisou-line-strong);
+}
+
+[data-suisou-field]::placeholder { color: var(--suisou-text-disabled); }
+
+[data-suisou-field]:focus-visible {
+  outline: var(--suisou-focus);
+  outline-offset: 1px;
+}
+
+/* ── 形 ─────────────────────────────────── */
+
+[data-suisou-field~="block"] { display: block; width: 100%; }
+
+/* ── 状態 ───────────────────────────────── */
+
+[data-suisou-field][aria-invalid="true"] { border-color: var(--suisou-error); }
+
+[data-suisou-field][disabled],
+[data-suisou-field][aria-disabled="true"] {
+  color: var(--suisou-text-disabled);
+  border-color: var(--suisou-line-weak);
+  background: transparent;      /* 面を降ろす。書けないものは載っていない */
+  cursor: default;
+}
