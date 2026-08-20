@@ -8,6 +8,99 @@
     作例では14箇所（チャット5・一覧9）に出ていた。
   </p>
 
+  <!-- ══ ★一時的：selected-surface の A/B ════════════════════
+       判断が済んだら、この節と styles.css の .ab-* をまとめて消す。 -->
+  <div class="group">
+    <h2>★A/B —— 選択下地をどちらにするか</h2>
+    <p class="note">
+      <strong>数字では差がつかない。</strong>明度が同じ（<code>tint</code> L36）なので、
+      hover との区別（ΔE 0.18 / 0.17）もコントラスト（2.81 / 2.87）もほぼ同じ。
+      <strong>違うのは彩度だけ</strong>（0.053 / 0.006）なので、見て決めるしかない。
+      <br><br>
+      各パネルの1行目が選択状態。他の行にカーソルを乗せると hover が出るので、
+      <strong>「選択」と「触っている」が別物に見えるか</strong>を見比べる。
+      アクセントを変えるとどう転ぶかは、Palette のページで色を切り替えてから戻ってくる。
+      <br><br>
+      ※中立版は本来 L36 だが、既存トークンに L36 の中立面が無いので
+      <code>floating</code>（L34）で代用している。2ポイント暗いだけ。
+    </p>
+    <div data-suisou-layout="row stretch">
+      <div data-suisou-layout="stack grow">
+        <span class="ab-head">A —— accent（いまの実装）</span>
+        <div data-suisou-surface="panel bleed" data-suisou-layout="stack">
+        <div data-suisou-row="ruled" data-suisou-media aria-selected="true">
+          <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>選択下地をアクセント色のままにするか</span><span data-suisou-tag="accent">設計</span></header>
+            <span class="demo-meta">#12 opened 3 days ago by shiro-ka</span>
+          </div>
+        </div>
+        <div data-suisou-row="ruled" data-suisou-media>
+          <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>panel の余白に段を足す</span><span data-suisou-tag="accent">設計</span></header>
+            <span class="demo-meta">#11 opened 3 days ago by shiro-ka</span>
+          </div>
+        </div>
+        <div data-suisou-row="ruled" data-suisou-media>
+          <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>block ボタンの既定を左寄せにする</span><span data-suisou-tag="accent">設計</span></header>
+            <span class="demo-meta">#10 opened 3 days ago by shiro-ka</span>
+          </div>
+        </div>
+        <div data-suisou-row="ruled" data-suisou-media>
+          <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>on-accent の去就を決める</span><span data-suisou-tag="accent">設計</span></header>
+            <span class="demo-meta">#9 opened 3 days ago by shiro-ka</span>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div data-suisou-layout="stack grow">
+        <span class="ab-head">B —— 中立</span>
+        <div data-suisou-surface="panel bleed" data-suisou-layout="stack">
+        <div data-suisou-row="ruled" data-suisou-media aria-selected="true" class="ab-neutral">
+          <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>選択下地をアクセント色のままにするか</span><span data-suisou-tag="accent">設計</span></header>
+            <span class="demo-meta">#12 opened 3 days ago by shiro-ka</span>
+          </div>
+        </div>
+        <div data-suisou-row="ruled" data-suisou-media>
+          <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>panel の余白に段を足す</span><span data-suisou-tag="accent">設計</span></header>
+            <span class="demo-meta">#11 opened 3 days ago by shiro-ka</span>
+          </div>
+        </div>
+        <div data-suisou-row="ruled" data-suisou-media>
+          <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>block ボタンの既定を左寄せにする</span><span data-suisou-tag="accent">設計</span></header>
+            <span class="demo-meta">#10 opened 3 days ago by shiro-ka</span>
+          </div>
+        </div>
+        <div data-suisou-row="ruled" data-suisou-media>
+          <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>on-accent の去就を決める</span><span data-suisou-tag="accent">設計</span></header>
+            <span class="demo-meta">#9 opened 3 days ago by shiro-ka</span>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <p class="note">
+      ★判断とは別に、<strong>コントラストの穴が2つある</strong>（どちらを選んでも残る）。
+      <code>line-weak</code> が最悪 1.36（必要 1.5）で、これは<strong>上の選択行の
+      Tag の罫がまさにその組み合わせ</strong>。<code>line-strong</code> は最悪 2.78（必要 3.0）。
+      <code>solve.py</code> の <code>PAIRS</code> に選択下地の行が1つも無いので
+      <code>--check</code> が見ていない ―― 掟2 の違反が検査の穴に隠れている。
+    </p>
+  </div>
+
   <div class="group">
     <h2>2つの形</h2>
     <div class="demo">
