@@ -19,9 +19,12 @@ DIST = os.path.join(ROOT, "dist")
 
 
 def ui_order():
-    """index.html が並べている順そのまま。palette.css は別扱いなので外す。"""
+    """index.html が並べている順そのまま。palette.css は別扱いなので外す。
+
+    ★パターンはファイル名の形に依存させない。以前は [a-z]+ で、
+      ハイフンや数字入りの名前を足すと黙って配布物から欠ける穴だった。"""
     html = open(os.path.join(PAGES, "index.html"), encoding="utf-8").read()
-    files = re.findall(r'href="(ui/[a-z]+\.css)"', html)
+    files = re.findall(r'href="(ui/[^"]+\.css)"', html)
     if not files:
         sys.exit("index.html から ui/*.css の順序を読めなかった")
     return files
@@ -47,9 +50,13 @@ def slice_palette(text, theme=None, accent=None):
 
 
 def strip(css):
-    """コメントを落とす。★設計の記録はリポジトリが持つ ―― 配る側は
-    ブラウザが読むものなので、根拠まで運ぶ必要はない。"""
+    """コメントと -hex 文字列を落とす。★設計の記録はリポジトリが持つ ―― 配る側は
+    ブラウザが読むものなので、根拠まで運ぶ必要はない。
+    -hex はプレビューサイトが色コードを表示するためだけの文字列で、
+    描画には使われない（全部入りで gzip の2割を占めていた）。"""
     css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    css = "\n".join(l for l in css.splitlines()
+                    if not re.match(r"\s*--suisou-[a-z0-9-]+-hex:", l))
     css = re.sub(r"\n{3,}", "\n\n", css)
     return "\n".join(l.rstrip() for l in css.splitlines() if l.strip())
 
