@@ -1,0 +1,115 @@
+/* Suisou — Prose（長文）
+
+     <article data-suisou-prose>… markdown が吐いた HTML …</article>
+     <div data-suisou-prose="tight">… panel の中の短いメモ …</div>
+
+   ★これは Suisou で唯一「素の要素に直接当てる」場所。
+     base.css の「要素セレクタは使わない」を破るが、[data-suisou-prose] の
+     内側に閉じているので適用先には漏れない。
+     破っていい場所を1つだけ用意して封じ込める、という形。
+
+   ★新しい見た目をここで発明しない。
+     リンク・コード・引用・箇条書き・表は、それぞれの部品ファイルが
+     [data-suisou-prose] :where(…) を自分のセレクタに並べている。
+     値を2箇所に書くとズレるため、prose 側では触らない。
+     このファイルが持つのは「大きさの割り当て」と「縦のリズム」だけ。
+
+   ★なぜ要るか: markdown が吐く <h2> や <p> に属性は書けない。
+     Suisou の書き方（data-suisou-text="s24 w700"）が使えないので、
+     包む側に1つだけ付けて中で割り当てる。 */
+
+[data-suisou-prose] {
+  font-size: var(--suisou-size-16);
+  line-height: calc(var(--suisou-lh-16) + 0.25rem);   /* 長文は UI に +4 相当 */
+}
+
+/* ── リセット ─────────────────────────────
+   ブラウザ既定の margin を落とす。リズムは下でまとめて作り直す */
+[data-suisou-prose] :where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd,
+                          pre, blockquote, table, figure, hr) {
+  margin: 0;
+}
+
+/* ── 大きさ … .notes/type-spec.md の「長文」の段 ───── */
+
+[data-suisou-prose] :where(h1) { font-size: var(--suisou-size-28); line-height: var(--suisou-lh-28); font-weight: 700; }
+[data-suisou-prose] :where(h2) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); font-weight: 700; }
+[data-suisou-prose] :where(h3) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); font-weight: 600; }
+[data-suisou-prose] :where(h4) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 600; }
+
+/* ★h5 / h6 はサイズを増やさず、ウェイトと左罫で階層を作る（type-spec §5）。
+   段が7つしかないので、6段の見出しに1段ずつ割り当てると本文と衝突する。 */
+[data-suisou-prose] :where(h5) {
+  font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 500;
+  border-left: 3px solid var(--suisou-line-strong); padding-left: var(--suisou-space-2);
+}
+[data-suisou-prose] :where(h6) {
+  font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 600;
+  border-left: 3px solid var(--suisou-line-weak); padding-left: var(--suisou-space-2);
+}
+
+[data-suisou-prose] :where(small) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); }
+[data-suisou-prose] :where(strong, b) { font-weight: 600; }
+
+/* ── 縦のリズム ───────────────────────────
+   ★見出しは「前を広く、後ろを詰める」。前の話題から離し、次の内容に近づける。
+     これはタイポの定石で、段を増やす前にまずこれを当てる。
+     おかげで space-4（24px 相当）までで足りていて、新しい段が要らなかった。 */
+
+[data-suisou-prose] > :where(* + *) { margin-block-start: var(--suisou-space-3); }
+
+/* 見出しの前は広く */
+[data-suisou-prose] > :where(* + :is(h1, h2, h3, h4, h5, h6)) {
+  margin-block-start: var(--suisou-space-4);
+}
+/* 見出しの後ろは詰める */
+[data-suisou-prose] > :where(:is(h1, h2, h3, h4, h5, h6) + *) {
+  margin-block-start: var(--suisou-space-2);
+}
+
+/* ── 区切りと図 ───────────────────────────── */
+
+[data-suisou-prose] :where(hr) {
+  border: 0;
+  border-top: 1px solid var(--suisou-line-weak);
+}
+[data-suisou-prose] > :where(hr),
+[data-suisou-prose] > :where(hr + *) { margin-block-start: var(--suisou-space-4); }
+
+/* 図。幅は入れ物に従う。中央寄せはしない ―― 記事でも短文でも
+   左端が揃っている方が読みやすく、寄せたい現場は自分で寄せられる */
+[data-suisou-prose] :where(img, video) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--suisou-radius);
+}
+
+/* 定義の並び。用語と説明を2列に置く */
+[data-suisou-prose] :where(dl) {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--suisou-space-1) var(--suisou-space-3);
+}
+[data-suisou-prose] :where(dt) { color: var(--suisou-text-sub); font-weight: 600; }
+
+/* ── 短い方 ─────────────────────────────
+   panel の中に入るメモ。wixdex のデッキメモがこの形（prose-sm 相当）。
+   本文を1段落とし、リズムも1段詰める。 */
+
+[data-suisou-prose~="tight"] {
+  font-size: var(--suisou-size-14);
+  line-height: calc(var(--suisou-lh-14) + 0.25rem);
+}
+[data-suisou-prose~="tight"] :where(h1) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); }
+[data-suisou-prose~="tight"] :where(h2) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); }
+[data-suisou-prose~="tight"] :where(h3) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); }
+[data-suisou-prose~="tight"] :where(h4, h5) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); }
+
+[data-suisou-prose~="tight"] > :where(* + *) { margin-block-start: var(--suisou-space-2); }
+[data-suisou-prose~="tight"] > :where(* + :is(h1, h2, h3, h4, h5, h6)) {
+  margin-block-start: var(--suisou-space-3);
+}
+[data-suisou-prose~="tight"] > :where(:is(h1, h2, h3, h4, h5, h6) + *) {
+  margin-block-start: var(--suisou-space-1);
+}
