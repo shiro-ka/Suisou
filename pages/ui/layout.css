@@ -79,6 +79,13 @@
 
 [data-suisou-layout~="wrap"] { flex-wrap: wrap; }
 
+/* 主軸方向の寄せ。余った空間の配り方であって、子の置き方ではない。
+   子に grow があると余りが残らないので、これらは何も起きなくなる。
+   around / evenly は出番が無かったので持たない（3回書いてから足す）。 */
+[data-suisou-layout~="start"]   { justify-content: flex-start; }
+[data-suisou-layout~="end"]     { justify-content: flex-end; }
+[data-suisou-layout~="between"] { justify-content: space-between; }
+
 /* あふれたらここで受ける。
 
    ★scrollbar-gutter は使わない。バーが出た瞬間の幅の飛びは止まるが、
