@@ -2,11 +2,11 @@
 <section class="page">
   <h1>Surface</h1>
   <p class="note">
-    面。値で選ぶ —— 面は階段（<code>bg &lt; panel &lt; item &lt; floating</code>）という
+    面。値で選ぶ —— 面は階段（<code>bg &lt; panel &lt; item &lt; overlay</code>）という
     閉じた集合なので、属性は1つで値を切り替える。部品（<code>media</code> や
     <code>btn</code>）はこれから増えるので属性そのものが名前になる。
     <strong>形が違えば層が違うと分かる。</strong>
-    平らな容れ物だけを引き受け、影は持たない。浮くものは <code>floating</code> として後で足す。
+    平らな容れ物だけを引き受け、影は持たない。浮くものは <code>overlay</code> として後で足す。
   </p>
 
   <div class="group">
@@ -23,7 +23,7 @@
           <td>いちばん普通の容れ物。Mado の実測で 46箇所</td></tr>
       <tr><td><code>item</code></td><td><code>--suisou-item</code></td>
           <td>1段手前。入力欄、入れ子の容れ物、タグ</td></tr>
-      <tr><td><code>floating</code></td><td><code>--suisou-floating</code></td>
+      <tr><td><code>overlay</code></td><td><code>--suisou-overlay</code></td>
           <td>未実装。唯一影を持つ面になる</td></tr>
       <tr><td><code>none</code></td><td>持たない</td>
           <td>段を上げず罫だけで囲う。実測では 1箇所</td></tr>
@@ -104,7 +104,7 @@
       <tr><td>余白の段</td><td>解決済み。<code>tight</code>（縦だけ詰める）と
           <code>bleed</code>（0）の2つ。作例の手書き4つが全部これで消えた</td></tr>
       <tr><td>命名</td><td>解決済み。面は値、部品は属性名という形の違いで層を分けた</td></tr>
-      <tr><td><code>floating</code></td><td>未実装。唯一影を持つ面になる</td></tr>
+      <tr><td><code>overlay</code></td><td>未実装。唯一影を持つ面になる</td></tr>
     </table>
   </div>
 </section>

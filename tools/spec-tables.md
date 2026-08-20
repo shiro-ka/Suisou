@@ -7,7 +7,7 @@
 | bg | 15 | 26 |
 | panel | 22 | 33 |
 | item | 28 | 39 |
-| floating | 34 | 45 |
+| overlay | 34 | 45 |
 | tint | 33 | 44 |
 | line-weak | 44 | 55 |
 | line-strong | 61 | 73 |
@@ -40,20 +40,20 @@
 
 | ペア | 最悪値 | 必要 | 最悪ケース | 用途 |
 |---|---|---|---|---|
-| `line-weak` on `floating` | 1.51:1 | 1.5 | hadal/orange | 装飾罫 |
+| `line-weak` on `overlay` | 1.51:1 | 1.5 | hadal/orange | 装飾罫 |
 | `line-weak` on `selected-surface` | 1.53:1 | 1.5 | hadal/teal | 選択行の装飾罫 |
-| `error` on `floating` | 4.59:1 | 4.5 | hadal/orange | 状態文言 |
-| `line-strong` on `floating` | 3.10:1 | 3.0 | hadal/orange | 入力枠 1.4.11 |
-| `success` on `floating` | 4.68:1 | 4.5 | shoal/orange | 状態文言 |
-| `warning` on `floating` | 4.70:1 | 4.5 | shoal/orange | 状態文言 |
+| `error` on `overlay` | 4.59:1 | 4.5 | hadal/orange | 状態文言 |
+| `line-strong` on `overlay` | 3.10:1 | 3.0 | hadal/orange | 入力枠 1.4.11 |
+| `success` on `overlay` | 4.68:1 | 4.5 | shoal/orange | 状態文言 |
+| `warning` on `overlay` | 4.70:1 | 4.5 | shoal/orange | 状態文言 |
 | `line-strong` on `selected-surface` | 3.14:1 | 3.0 | hadal/teal | 選択行の入力枠 1.4.11 |
 | `line-weak` on `selected-neutral` | 1.57:1 | 1.5 | hadal/orange | 選択行(中立)の装飾罫 |
 | `line-strong` on `selected-neutral` | 3.22:1 | 3.0 | hadal/orange | 選択行(中立)の入力枠 1.4.11 |
-| `accent-active` on `floating` | 3.40:1 | 3.0 | shoal/magenta | UI 部品(押下) |
-| `text-sub` on `floating` | 5.52:1 | 4.5 | shoal/orange | 本文 |
-| `accent` on `floating` | 3.81:1 | 3.0 | shoal/magenta | UI 部品 |
+| `accent-active` on `overlay` | 3.40:1 | 3.0 | shoal/magenta | UI 部品(押下) |
+| `text-sub` on `overlay` | 5.52:1 | 4.5 | shoal/orange | 本文 |
+| `accent` on `overlay` | 3.81:1 | 3.0 | shoal/magenta | UI 部品 |
 | `line-strong` on `item` | 3.85:1 | 3.0 | hadal/orange | 入力枠 1.4.11 |
-| `text-main` on `floating` | 6.53:1 | 4.5 | shoal/orange | 本文 |
+| `text-main` on `overlay` | 6.53:1 | 4.5 | shoal/orange | 本文 |
 | `text-main` on `selected-surface` | 6.62:1 | 4.5 | shoal/teal | 選択行の文字 |
 | `text-main` on `selected-neutral` | 6.82:1 | 4.5 | shoal/orange | 選択行(中立)の文字 |
 | `text-main` on `error-surface` | 6.95:1 | 4.5 | shoal/orange | バナーの文字 |
