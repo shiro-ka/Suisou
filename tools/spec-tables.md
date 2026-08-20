@@ -27,11 +27,13 @@
 
 ### アクセント可用性
 
+全部の組み合わせを CSS に出している。下の「推奨しない」も選べる ―― 見づらいだけで壊れてはいないため。
+
 - **hadal** … orange, turtle, teal, jelly, blue, indigo, coral, magenta, pink
 - **trench** … orange, turtle, teal, blue, indigo, coral, magenta, pink
-  - 除外: jelly（選択下地の解なし）
+  - ★推奨しない: jelly（選択下地が面と近い ΔE 0.050（目標 0.055））
 - **fjord** … orange, turtle, teal, coral, magenta, pink
-  - 除外: jelly（選択下地の解なし） / blue（accent が text-sub と近い ΔE 0.067） / indigo（accent が text-sub と近い ΔE 0.067）
+  - ★推奨しない: jelly（選択下地が面と近い ΔE 0.051（目標 0.055）） / blue（accent が text-sub と近い ΔE 0.067） / indigo（accent が text-sub と近い ΔE 0.067）
 - **shoal** … orange, turtle, teal, jelly, blue, indigo, coral, magenta, pink
 
 ### コントラスト検証（全テーマ × 使用可能アクセント中の最悪値）
