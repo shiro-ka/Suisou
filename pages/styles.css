@@ -263,11 +263,6 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 }
 
 /* ★まだ部品が無いもの */
-.demo-msg {            /* → Row 部品が要る。中身は Media が持つようになった */
-  padding: var(--suisou-space-1) var(--suisou-space-2);
-  border-radius: var(--suisou-radius);
-}
-.demo-msg:hover { background: var(--suisou-hover-surface); }
 .demo-input {          /* → Field 部品が要る。item の面に載る */
   width: 100%; font: inherit;
   font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14);
@@ -285,17 +280,6 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   border: 1px solid var(--suisou-line-weak);
   border-radius: 4px; padding: 0 4px;
 }
-
-/* 一覧の行 → Row 部品が要る。★保留中の selected の判断材料はここ */
-.demo-row {
-  display: flex; gap: var(--suisou-space-2); align-items: flex-start;
-  padding: var(--suisou-space-2);
-  border-bottom: 1px solid var(--suisou-line-weak);
-}
-.demo-row:last-child { border-bottom: 0; }
-.demo-row:hover { background: var(--suisou-hover-surface); }
-/* GitHub は選択（チェック）した行の面が変わる。★保留中の判断はここで見る */
-.demo-row[aria-selected="true"] { background: var(--suisou-selected-surface); }
 
 .demo-meta { font-size: var(--suisou-size-12); line-height: var(--suisou-lh-12); color: var(--suisou-text-sub); }
 

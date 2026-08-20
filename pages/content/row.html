@@ -1,0 +1,122 @@
+<!-- Row。全部静的 -->
+<section class="page">
+  <h1>Row</h1>
+  <p class="note">
+    行。持つのは<strong>余白・角丸・下地の反応</strong>だけ。
+    中身の並べ方は Media が持つので、同じ要素に両方書ける ——
+    当たる CSS プロパティが重ならない。
+    作例では14箇所（チャット5・一覧9）に出ていた。
+  </p>
+
+  <div class="group">
+    <h2>2つの形</h2>
+    <div class="demo">
+      <span class="demo-label">既定 —— 角丸。容れ物の中に浮く</span>
+      <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
+        <div data-suisou-row>しろか — テーマ名を水域にした</div>
+        <div data-suisou-row>相棒 — 値は変えていません</div>
+        <div data-suisou-row>しろか — hover の色ってどう決まってる？</div>
+      </div>
+      <span class="demo-label">ruled —— 角丸なし＋下罫。端から端まで連なる</span>
+      <div data-suisou-surface="panel bleed" data-suisou-layout="stack">
+        <div data-suisou-row="ruled">選択下地をアクセント色のままにするか</div>
+        <div data-suisou-row="ruled">panel の余白に段を足す</div>
+        <div data-suisou-row="ruled">block ボタンの既定を左寄せにする</div>
+      </div>
+    </div>
+    <p class="note">
+      <code>ruled</code> は <code>surface="bleed"</code> と組で使う ——
+      <strong>行が自分で余白を持つので、容れ物の側は余白を持たない。</strong>
+      最後の1本は引かないので、下端で罫が二重にならない。
+      <br><br>
+      すきまは書かなくていい。<code>ruled</code> の行を子に持つ入れ物は
+      <code>:has()</code> で <code>gap: 0</code> になる ——
+      <strong>すきまは親が持っていて行からは消せない</strong>ので、
+      Suisou 側で面倒をみている。
+    </p>
+    <table class="spec">
+      <tr><th>値</th><th>形</th><th>使う場面</th></tr>
+      <tr><td>（書かない）</td><td>角丸 8px、上下 4px / 左右 8px</td>
+          <td>チャット、メニュー。行と行の間にすきまがある</td></tr>
+      <tr><td><code>ruled</code></td><td>角丸なし、上下 8px、下罫</td>
+          <td>一覧。<code>surface="bleed"</code> の中に敷き詰める</td></tr>
+    </table>
+  </div>
+
+  <div class="group">
+    <h2>状態</h2>
+    <p class="note">
+      <strong>標準の属性を借りる。</strong><code>aria-selected</code> と
+      <code>aria-current</code> をそのまま見ているので、
+      自分で <code>data-*</code> を発明しなくていい。読み上げにも効く。
+    </p>
+    <div class="demo">
+      <span class="demo-label">カーソルを乗せると hover-surface が敷かれる</span>
+      <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
+        <div data-suisou-row>ふつう</div>
+        <div data-suisou-row aria-selected="true">aria-selected="true"</div>
+        <div data-suisou-row aria-current="page">aria-current="page"</div>
+        <div data-suisou-row aria-current="false">aria-current="false" —— 反応しない</div>
+      </div>
+    </div>
+    <table class="spec">
+      <tr><th>状態</th><th>下地</th></tr>
+      <tr><td>ふつう</td><td>なし（透過）</td></tr>
+      <tr><td><code>:hover</code></td><td><code>--suisou-hover-surface</code>。
+          面の色相のまま暗い側へ。<strong>アクセントを混ぜない</strong></td></tr>
+      <tr><td><code>aria-selected="true"</code><br><code>aria-current</code></td>
+          <td><code>--suisou-selected-surface</code>。★下の未決を見る</td></tr>
+    </table>
+  </div>
+
+  <div class="group">
+    <h2>Media と組む</h2>
+    <div class="demo">
+      <span class="demo-label">&lt;div data-suisou-row="ruled" data-suisou-media&gt;</span>
+      <div data-suisou-surface="panel bleed" data-suisou-layout="stack">
+        <div data-suisou-row="ruled" data-suisou-media aria-selected="true">
+          <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>選択下地をアクセント色のままにするか中立にするか</span><span data-suisou-tag="accent">設計</span></header>
+            <span class="demo-meta">#12 opened 3 days ago by shiro-ka</span>
+          </div>
+          <span data-suisou-media-tail data-suisou-tag="bare"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>4</span>
+        </div>
+        <div data-suisou-row="ruled" data-suisou-media>
+          <span data-suisou-media-icon><svg data-suisou-icon="small sub" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg></span>
+          <div data-suisou-media-content>
+            <header><span>面の input を item に改名する</span><span data-suisou-tag="success">済</span></header>
+            <span class="demo-meta">#4 closed 2 days ago by shiro-ka</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note">
+      Row が余白と下地、Media が並び、Icon と Tag が中身。
+      <strong>4つの属性が同じ行に乗っているが、当たる CSS プロパティは重ならない。</strong>
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table class="spec">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td><strong>選択の下地</strong></td>
+          <td>★ここが判断材料。<code>hover</code> は中立にした
+              （<code>solve.py</code> の <code>resolve_hover</code>）が、
+              <strong>選択はまだアクセント色</strong>。
+              「ボタンごとに違いそう」で止まっている。
+              上の見本で hover と選択を見比べて決める</td></tr>
+      <tr><td>選択の罫</td>
+          <td><code>selected-surface</code> に載る <code>line-strong</code> が
+              2.81:1 で、必要な 3.0 に届いていない。<code>trench</code> には
+              解のある明度帯が無い（<code>.notes/palette-spec.md</code> §13）</td></tr>
+      <tr><td>押せる行</td>
+          <td><code>cursor</code> を持たない。押せる行が要るようになったら足す。
+              その場合 <code>&lt;button&gt;</code> にするか
+              <code>&lt;a&gt;</code> にするかも決める</td></tr>
+      <tr><td>余白の段</td>
+          <td>2種類（既定と <code>ruled</code>）。作例ではこれで足りた</td></tr>
+    </table>
+  </div>
+</section>
