@@ -38,30 +38,32 @@ const PAGES = {
 /* ── Palette の並び。トークンの意味づけであって、値は持たない ── */
 const GROUPS = [
   { title: '面と文字', tokens: ['bg', 'panel', 'item', 'overlay',
-                                'hover-surface', 'selected-neutral',
+                                'hover-surface', 'selected-neutral-surface',
                                 'line-weak', 'line-strong',
                                 'text-disabled', 'text-sub', 'text-main'] },
   { title: 'アクセント', tokens: SUISOU.accentTokens },
   { title: '意味色', tokens: ['error', 'warning', 'success',
                               'error-surface', 'warning-surface', 'success-surface'] },
-  { title: 'その他', tokens: ['on-accent', 'scrim'] },
+  { title: 'その他', tokens: ['scrim'] },
 ];
 
 /* ── Typography の構造。どの役割がどの段か、であって px ではない ──
    px は ui/type.css の [data-suisou-text] が持つ。根拠は type-spec §3〜§6。 */
 const SCALE = [12, 14, 16, 20, 24, 28, 32];
-const WEIGHTS = [400, 500, 600, 700];
+const WEIGHTS = [400, 500, 700];   /* 600 は無い。type.css のウェイトの節を参照 */
 const ROLES_UI = [
-  ['h1', 20, 700], ['h2', 16, 600], ['h3', 14, 600],
+  ['h1', 20, 700], ['h2', 16, 700], ['h3', 14, 700],
   ['p', 14, 400], ['small', 12, 400],
 ];
 /* 長文の段。★見出しの階層のしるし（左の帯）は prose が持つので、ここでは
    大きさとウェイトだけを見せる。以前 h5/h6 に付けていた「字下げする左罫」は
-   帯と二重になるので外した（ui/prose.css を参照）。 */
+   帯と二重になるので外した（ui/prose.css を参照）。
+   ★doc（+4px の行間）は本文だけ。見出しは1〜2行で終わるので UI の行間のまま
+   （type-spec §6）。prose.css の実装と揃えてある。 */
 const ROLES_DOC = [
-  ['h1', 28, 700], ['h2', 24, 700], ['h3', 20, 600], ['h4', 16, 600],
-  ['h5', 16, 500], ['h6', 14, 600],
-  ['p', 16, 400], ['small', 14, 400],
+  ['h1', 28, 700], ['h2', 24, 700], ['h3', 20, 700], ['h4', 16, 700],
+  ['h5', 16, 500], ['h6', 14, 700],
+  ['p', 16, 400, true], ['small', 14, 400, true],
 ];
 const SAMPLE = '水槽 Suisou — あいうえお ABCDEfg 0123';
 
@@ -178,8 +180,8 @@ function enhanceTypography(scope) {
   fill(slot('scale-doc', scope), SCALE.map((s) => typeRow(`${s}px`, `s${s} w400 doc`)));
   fill(slot('weights', scope), WEIGHTS.map((n) => typeRow(String(n), `s16 w${n}`)));
   fill(slot('roles-ui', scope), ROLES_UI.map(([n, s, w]) => typeRow(n, `s${s} w${w}`)));
-  fill(slot('roles-doc', scope), ROLES_DOC.map(([n, s, w, extra]) =>
-    typeRow(n, `s${s} w${w} doc${extra ? ' ' + extra : ''}`, extra ? '左罫線' : '')));
+  fill(slot('roles-doc', scope), ROLES_DOC.map(([n, s, w, doc]) =>
+    typeRow(n, `s${s} w${w}${doc ? ' doc' : ''}`)));
 
   for (const row of scope.querySelectorAll('.t-row')) {
     const note = row.dataset.note;

@@ -33,7 +33,7 @@
 [data-suisou-table] :where(th),
 [data-suisou-prose] :where(table) :where(th) {
   color: var(--suisou-text-sub);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* 下端で罫が二重にならないようにする。Row の ruled と同じ扱い */
@@ -52,5 +52,7 @@
 [data-suisou-table~="tight"] :where(th) { white-space: nowrap; }
 
 /* 横にはみ出すとき。表自身を巻物にする。
-   ★markdown 由来の表は包む要素を足せないので、この手が要る */
+   ★markdown 由来の表は包む要素を足せないので、この手が要る。
+   ★既知の制約: display を変えると表の意味論（読み上げの行・列）が
+     消える実装がある。包める場面では包む側に overflow を持たせる方が安全 */
 [data-suisou-table~="scroll"] { display: block; overflow-x: auto; }
