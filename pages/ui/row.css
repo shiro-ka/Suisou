@@ -54,6 +54,17 @@
 }
 [data-suisou-row~="ruled"]:last-child { border-bottom: 0; }
 
+/* ★ruled の選択には左2pxのアクセント線を足す（2026-08-20、A/B を実物で判定）。
+     既定の行 … 下地のみ。角丸で浮いていて、まわりの余白が既に区別を助ける
+     ruled   … 下地 + 線。敷き詰めた一覧では下地だけだと目が滑るし、
+               直角なので線が上下の罫まできれいに走る
+   border-left ではなく box-shadow なのは、幅を食って中身が 2px 動くのを
+   避けるため。neutral と組むと「下地は明るさだけ、色は線1本」になる。 */
+[data-suisou-row~="ruled"][aria-selected="true"],
+[data-suisou-row~="ruled"][aria-current]:not([aria-current="false"]) {
+  box-shadow: inset 2px 0 0 var(--suisou-accent);
+}
+
 /* 連なる行は隙間を持たない。すきまは親（layout）が持っていて行からは消せないので、
    :has() で親側に効かせる。frame が aside を見ているのと同じやり方。
    詳細度は (0,2,0) なので layout の既定にも helpers の .gap-* にも勝つ ――
