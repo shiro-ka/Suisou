@@ -72,14 +72,19 @@ def hue_dist(a, b):
 # 面の階段。bg < panel < item < floating の順に明るく（＝手前に）なる。
 # item は「面の上に載るもの」。入力欄だけでなく、入れ子の容れ物やタグにも使う。
 # Akuarium も同じ概念を item と呼んでいた（--item-bd-l / .blackish-item-bg）。
+# ★tint は面の階段（bg < panel < item < floating）の段ではない。
+#   選択と意味色の「下地」の明度で、上に載る罫（line-weak / line-strong）から
+#   決まる。36 だったときは誰も検査していなかったので line-weak が 1.36:1 で
+#   割れていた。33 まで下げて 1.50:1 / 3.08:1 を確保している。
+#   floating(34) より下になるが、別の軸なので順序の問題ではない。
 LADDERS = {
     # dark … 通常のダーク
-    "dark": {"bg":.15, "panel":.22, "item":.28, "floating":.34, "tint":.36,
+    "dark": {"bg":.15, "panel":.22, "item":.28, "floating":.34, "tint":.33,
              "line-weak":.44, "line-strong":.61, "text-disabled":.62,
              "accent":.74, "text-sub":.78, "text-main":.94},
     # dim … ライト志向のユーザーに投げる明るめの階段。極性は反転しない。
     #        bg を L30 より上げると本文 4.5:1 を満たす L が色域外に出る。
-    "dim":  {"bg":.26, "panel":.33, "item":.39, "floating":.45, "tint":.47,
+    "dim":  {"bg":.26, "panel":.33, "item":.39, "floating":.45, "tint":.44,
              "line-weak":.55, "line-strong":.73, "text-disabled":.74,
              "accent":.80, "text-sub":.90, "text-main":.955},
 }
@@ -123,6 +128,13 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     ("text-main","hover-surface",4.5,"hover 行の文字"),
     ("line-weak","hover-surface",1.5,"hover 行の装飾罫"),
     ("line-strong","hover-surface",3.0,"hover 行の入力枠 1.4.11"),
+    # ★選択下地の上に載るもの。ここが長らく未検査で、掟2 の違反が隠れていた。
+    #   選択行の中の Tag の罫がまさに line-weak on selected-surface。
+    ("line-weak","selected-surface",1.5,"選択行の装飾罫"),
+    ("line-strong","selected-surface",3.0,"選択行の入力枠 1.4.11"),
+    ("line-weak","selected-neutral",1.5,"選択行(中立)の装飾罫"),
+    ("line-strong","selected-neutral",3.0,"選択行(中立)の入力枠 1.4.11"),
+    ("text-main","selected-neutral",4.5,"選択行(中立)の文字"),
     ("error","floating",4.5,"状態文言"),
     ("warning","floating",4.5,"状態文言"),
     ("success","floating",4.5,"状態文言"),

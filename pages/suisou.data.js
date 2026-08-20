@@ -29,7 +29,6 @@ const SUISOU = {
     "orange",
     "turtle",
     "teal",
-    "jelly",
     "blue",
     "indigo",
     "coral",

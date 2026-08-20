@@ -8,7 +8,7 @@
 | panel | 22 | 33 |
 | item | 28 | 39 |
 | floating | 34 | 45 |
-| tint | 36 | 47 |
+| tint | 33 | 44 |
 | line-weak | 44 | 55 |
 | line-strong | 61 | 73 |
 | text-disabled | 62 | 74 |
@@ -21,16 +21,17 @@
 | テーマ | 階段 | H | 面C | 強さ | 意味色倍率 | text-main | 使えるアクセント |
 |---|---|---|---|---|---|---|---|
 | `hadal` | dark | 286 | 0.006 | ×0.85 | ×0.95 | L94.0 | **9/9** |
-| `trench` | dark | 265 | 0.018 | ×0.65 | ×0.8 | L94.0 | **9/9** |
+| `trench` | dark | 265 | 0.018 | ×0.65 | ×0.8 | L94.0 | **8/9** |
 | `fjord` | dark | 272 | 0.03 | ×0.6 | ×0.75 | L93.5 | **6/9** |
 | `shoal` | dim | 265 | 0.02 | ×0.6 | ×0.75 | L95.5 | **9/9** |
 
 ### アクセント可用性
 
 - **hadal** … orange, turtle, teal, jelly, blue, indigo, coral, magenta, pink
-- **trench** … orange, turtle, teal, jelly, blue, indigo, coral, magenta, pink
+- **trench** … orange, turtle, teal, blue, indigo, coral, magenta, pink
+  - 除外: jelly（選択下地の解なし）
 - **fjord** … orange, turtle, teal, coral, magenta, pink
-  - 除外: jelly（accent が text-sub と近い ΔE 0.079） / blue（accent が text-sub と近い ΔE 0.067） / indigo（accent が text-sub と近い ΔE 0.067）
+  - 除外: jelly（選択下地の解なし） / blue（accent が text-sub と近い ΔE 0.067） / indigo（accent が text-sub と近い ΔE 0.067）
 - **shoal** … orange, turtle, teal, jelly, blue, indigo, coral, magenta, pink
 
 ### コントラスト検証（全テーマ × 使用可能アクセント中の最悪値）
@@ -38,20 +39,25 @@
 | ペア | 最悪値 | 必要 | 最悪ケース | 用途 |
 |---|---|---|---|---|
 | `line-weak` on `floating` | 1.51:1 | 1.5 | hadal/orange | 装飾罫 |
+| `line-weak` on `selected-surface` | 1.53:1 | 1.5 | hadal/teal | 選択行の装飾罫 |
 | `error` on `floating` | 4.59:1 | 4.5 | hadal/orange | 状態文言 |
 | `line-strong` on `floating` | 3.10:1 | 3.0 | hadal/orange | 入力枠 1.4.11 |
 | `success` on `floating` | 4.68:1 | 4.5 | shoal/orange | 状態文言 |
 | `warning` on `floating` | 4.70:1 | 4.5 | shoal/orange | 状態文言 |
+| `line-strong` on `selected-surface` | 3.14:1 | 3.0 | hadal/teal | 選択行の入力枠 1.4.11 |
+| `line-weak` on `selected-neutral` | 1.57:1 | 1.5 | hadal/orange | 選択行(中立)の装飾罫 |
+| `line-strong` on `selected-neutral` | 3.22:1 | 3.0 | hadal/orange | 選択行(中立)の入力枠 1.4.11 |
 | `accent-active` on `floating` | 3.40:1 | 3.0 | shoal/magenta | UI 部品(押下) |
 | `text-sub` on `floating` | 5.52:1 | 4.5 | shoal/orange | 本文 |
 | `accent` on `floating` | 3.81:1 | 3.0 | shoal/magenta | UI 部品 |
 | `line-strong` on `item` | 3.85:1 | 3.0 | hadal/orange | 入力枠 1.4.11 |
-| `text-main` on `selected-surface` | 5.82:1 | 4.5 | shoal/teal | 選択行の文字 |
-| `text-main` on `error-surface` | 6.10:1 | 4.5 | shoal/orange | バナーの文字 |
-| `error` on `error-surface` | 4.30:1 | 3.0 | shoal/orange | バナーの枠 |
 | `text-main` on `floating` | 6.53:1 | 4.5 | shoal/orange | 本文 |
+| `text-main` on `selected-surface` | 6.62:1 | 4.5 | shoal/teal | 選択行の文字 |
+| `text-main` on `selected-neutral` | 6.82:1 | 4.5 | shoal/orange | 選択行(中立)の文字 |
+| `text-main` on `error-surface` | 6.95:1 | 4.5 | shoal/orange | バナーの文字 |
 | `line-weak` on `hover-surface` | 2.37:1 | 1.5 | fjord/orange | hover 行の装飾罫 |
 | `line-strong` on `hover-surface` | 4.87:1 | 3.0 | hadal/orange | hover 行の入力枠 1.4.11 |
+| `error` on `error-surface` | 4.88:1 | 3.0 | hadal/orange | バナーの枠 |
 | `on-accent` on `accent` | 7.72:1 | 4.5 | hadal/magenta | ボタン内文字 |
 | `accent` on `panel` | 6.25:1 | 3.0 | shoal/magenta | UI 部品 |
 | `text-main` on `hover-surface` | 11.97:1 | 4.5 | shoal/orange | hover 行の文字 |
