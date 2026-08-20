@@ -1,0 +1,85 @@
+<!-- Icon。全部静的 -->
+<section class="page">
+  <h1>Icon</h1>
+  <p class="note">
+    単独で置く <code>&lt;svg&gt;</code> の寸法と色。
+    <strong>部品の中に置くなら要らない</strong> —— Button と Tag は自分の中の
+    <code>svg</code> の寸法を持っているので、そのまま放り込めば揃う。
+    これが要るのはどの部品にも属さないとき（一覧の状態しるし、空表示など）。
+  </p>
+
+  <div class="group">
+    <h2>寸法</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-icon</span>
+      <div data-suisou-layout="row">
+        <svg data-suisou-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
+        <span data-suisou-text="s12 w400" class="muted">20px（既定）</span>
+      </div>
+      <span class="demo-label">data-suisou-icon="small"</span>
+      <div data-suisou-layout="row">
+        <svg data-suisou-icon="small" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
+        <span data-suisou-text="s12 w400" class="muted">16px。12px の文字の隣に置く用</span>
+      </div>
+    </div>
+    <table class="spec">
+      <tr><th>値</th><th>寸法</th><th>トークン</th></tr>
+      <tr><td>（書かない）</td><td>20px</td><td><code>--suisou-icon</code></td></tr>
+      <tr><td><code>small</code></td><td>16px</td><td><code>--suisou-icon-small</code></td></tr>
+    </table>
+  </div>
+
+  <div class="group">
+    <h2>色 —— 1つ選ぶ</h2>
+    <p class="note">
+      Tag と同じ閉じた集合。<strong>書かなければ <code>currentColor</code> のまま</strong>で、
+      文字と一緒に色が動く。以前は作例側で
+      <code>style="--c: var(--suisou-success)"</code> と書かせていて、
+      任意の色を差し込める穴になっていた。
+    </p>
+    <div class="demo">
+      <span class="demo-label">状態のしるし</span>
+      <div data-suisou-layout="row wrap" class="gap-3">
+        <span data-suisou-layout="row"><svg data-suisou-icon="success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg><span data-suisou-text="s12 w400">success</span></span>
+        <span data-suisou-layout="row"><svg data-suisou-icon="warning" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4" /><path d="M12 17h.01" /><path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" /></svg><span data-suisou-text="s12 w400">warning</span></span>
+        <span data-suisou-layout="row"><svg data-suisou-icon="error" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg><span data-suisou-text="s12 w400">error</span></span>
+        <span data-suisou-layout="row"><svg data-suisou-icon="accent" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg><span data-suisou-text="s12 w400">accent</span></span>
+        <span data-suisou-layout="row"><svg data-suisou-icon="sub" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg><span data-suisou-text="s12 w400">sub</span></span>
+      </div>
+    </div>
+    <p class="note">
+      <code>sub</code> があるのは Tag との違い。Tag は既定が <code>text-sub</code> だが、
+      Icon の既定は継承なので、<strong>弱めたいときに名指しする語が要る</strong>。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>部品の中では要らない</h2>
+    <div class="demo">
+      <span class="demo-label">Button と Tag は自分で寸法を持つ</span>
+      <div data-suisou-layout="row wrap">
+        <button data-suisou-btn="icon" type="button" aria-label="追加"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg></button>
+        <button data-suisou-btn="plain" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg><span>属性なし</span></button>
+        <span data-suisou-tag="success"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5l10 -10" /></svg>属性なし</span>
+      </div>
+    </div>
+    <p class="note">
+      どちらも <code>&gt; svg</code> で自分の中の svg を面倒みている。
+      <strong>寸法の指定が2通りあるように見えるが、使う側が選ぶ場面は無い</strong> ——
+      部品の中なら書かない、外なら書く。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table class="spec">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>アイコンそのもの</td><td>Suisou は持たない。形は現場が用意する
+          （作例は Tabler Icons の形を手で置いている）</td></tr>
+      <tr><td>大きい段</td><td>20 / 16 の2段。空表示に使う大きいアイコンが
+          要るようになったら足す</td></tr>
+      <tr><td>塗り</td><td><code>stroke</code> 前提。<code>fill</code> のアイコンは
+          <code>currentColor</code> が効くかどうかが形しだい</td></tr>
+    </table>
+  </div>
+</section>
