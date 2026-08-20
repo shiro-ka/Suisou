@@ -9,11 +9,15 @@ on:
     paths:
       - 'pages/**'
       - 'tools/lint_css.py'
+      - 'tools/contract.py'
+      - 'CONTRACT.md'
       - '.github/workflows/check_css.yml'
   pull_request:
     paths:
       - 'pages/**'
       - 'tools/lint_css.py'
+      - 'tools/contract.py'
+      - 'CONTRACT.md'
       - '.github/workflows/check_css.yml'
   workflow_dispatch:
 
@@ -26,3 +30,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python3 tools/lint_css.py
+
+      - name: 公開契約の目録が生成元と一致するか
+        # CONTRACT.md は生成物。属性や値を変えたら python3 tools/contract.py を実行する
+        run: python3 tools/contract.py --check
