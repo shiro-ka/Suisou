@@ -310,7 +310,6 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 
 /* 一覧のヘッダ行 */
 .demo-list-head {
-  display: flex; align-items: center; gap: var(--suisou-space-3);
   padding: var(--suisou-space-2);
   border-bottom: 1px solid var(--suisou-line-weak);
   font-size: var(--suisou-size-12); line-height: var(--suisou-lh-12);

@@ -130,6 +130,12 @@
               <code>min-*</code> が無いと中身がはみ出して親ごと伸びる</td></tr>
       <tr><td><code>wrap</code></td><td><code>flex-wrap: wrap</code></td>
           <td>タグやチップの列</td></tr>
+      <tr><td><code>start</code></td><td><code>justify-content: flex-start</code></td>
+          <td>主軸の先頭に寄せる（既定なので明示したいときだけ）</td></tr>
+      <tr><td><code>end</code></td><td><code>justify-content: flex-end</code></td>
+          <td>主軸の末尾に寄せる</td></tr>
+      <tr><td><code>between</code></td><td><code>justify-content: space-between</code></td>
+          <td>両端に置いて間を空ける。<strong>子が2つのときだけ素直に効く</strong></td></tr>
       <tr><td><code>scroll</code></td><td><code>overflow: auto</code></td>
           <td>領域の中だけスクロールさせる。<code>grow</code> と組で使う</td></tr>
       <tr><td><code>container</code></td><td><code>max-width: 1024px; margin-inline: auto</code></td>
@@ -138,6 +144,52 @@
     <p class="note">
       <code>grow</code> は <code>flex-grow</code> から取った。
       <strong>Suisou では「塗る」ことをしないので、<code>fill</code> という語は使わない。</strong>
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>寄せ —— 主軸方向</h2>
+    <p class="note">
+      <code>justify-content</code> は<strong>主軸方向の「余った空間の配り方」</strong>で、
+      子の置き方ではない。<code>align-items</code>（交差軸）と混ざりやすいが、
+      <strong>向きで意味が入れ替わる</strong> ——
+      <code>row</code> なら横、<code>stack</code> なら縦に効く。
+      <br><br>
+      ★<strong>子に <code>grow</code> が1つでもあると効かなくなる。</strong>
+      <code>grow</code> が余りを全部取ってしまい、配るものが残らないため。
+      「なぜか効かない」の大半はこれ。
+    </p>
+    <div class="demo">
+      <span class="demo-label">既定（start）</span>
+      <div data-suisou-layout="row" data-suisou-surface="panel">
+        <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
+      </div>
+      <span class="demo-label">end</span>
+      <div data-suisou-layout="row end" data-suisou-surface="panel">
+        <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
+      </div>
+      <span class="demo-label">between —— 子が2つ</span>
+      <div data-suisou-layout="row between" data-suisou-surface="panel">
+        <div class="demo-box">左</div><div class="demo-box">右</div>
+      </div>
+      <span class="demo-label">between —— 子が3つ。全部ばらける</span>
+      <div data-suisou-layout="row between" data-suisou-surface="panel">
+        <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
+      </div>
+      <span class="demo-label">grow があると効かない（between を書いてある）</span>
+      <div data-suisou-layout="row between" data-suisou-surface="panel">
+        <div class="demo-box">左</div>
+        <div class="demo-box" data-suisou-layout="grow">grow</div>
+        <div class="demo-box">右</div>
+      </div>
+    </div>
+    <p class="note">
+      <code>space-around</code> と <code>space-evenly</code> は持たない。
+      作例で1度も要らなかったので、3回書いてから足す。
+      <br>
+      <strong><code>between</code> は「2つのまとまり」を両端に置くもの</strong>なので、
+      子が3つ以上あると全部ばらける。左側をまとめる要素が要る ——
+      課題一覧のヘッダ行がその形をしている。
     </p>
   </div>
 
@@ -258,10 +310,6 @@
     <h2>未決</h2>
     <table class="spec">
       <tr><th>項目</th><th>状況</th></tr>
-      <tr><td>寄せ（<code>justify-content</code>）</td>
-          <td>持っていない。作例で <code>style="justify-content: flex-start"</code> を
-              手書きしている箇所がある。<code>start</code> / <code>end</code> /
-              <code>between</code> を足すか未定</td></tr>
       <tr><td>画面幅で変わる並び</td>
           <td>持っていない。ただし <code>frame</code> なら
               <code>grid-template-areas</code> を1つ書き換えるだけなので、

@@ -35,11 +35,12 @@
   </div>
 
   <div data-suisou-layout="stack grow scroll" data-suisou-surface="panel" style="padding: 0">
-    <div class="demo-list-head">
-      <input class="demo-check" type="checkbox" aria-label="すべて選択">
-      <span data-suisou-text="s12 w600">8 Open</span>
-      <span class="muted">12 Closed</span>
-      <span data-suisou-layout="grow"></span>
+    <div class="demo-list-head" data-suisou-layout="row between">
+      <span data-suisou-layout="row" class="gap-3">
+        <input class="demo-check" type="checkbox" aria-label="すべて選択">
+        <span data-suisou-text="s12 w600">8 Open</span>
+        <span class="muted">12 Closed</span>
+      </span>
       <span data-suisou-layout="row" class="muted gap-3">
         <span>Author</span><span>Label</span><span>Projects</span><span>Assignee</span><span>Sort</span>
       </span>

@@ -96,7 +96,11 @@
   min-width: 32px;
 }
 
-[data-suisou-btn~="block"] { display: flex; width: 100%; }
+/* 幅いっぱい。全幅のボタンは実質「メニューの行」なので左に寄せる。
+   中身ぴったりの幅では余りが無く justify-content は効かないため、
+   基本形の center が顔を出すのは block と icon のときだけ。
+   中央寄せの全幅 CTA が要るようになったら値を足す（3回書いてから）。 */
+[data-suisou-btn~="block"] { display: flex; width: 100%; justify-content: flex-start; }
 
 /* ── 無効 ───────────────────────────────── */
 
