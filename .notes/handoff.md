@@ -197,9 +197,28 @@ fjord  × indigo   同 0.067
   `hadal`（超深海層）/ `trench`（海溝）/ `fjord`（峡湾）/ `shoal`（浅瀬）。
   `hadal` は Akuarium から継承。`fjord` は旧 `nord-ish` で、Nord 由来を残したまま水域名にした。
   これで階段名 `dim` とテーマ名の衝突も解消した
-- **アクセント名** … 海の生き物にする方針。★**一部確定（2026-08-18）**:
-  `lime → turtle`（ウミガメ）/ `cyan → jelly`（クラゲ）/ `purple → coral`（サンゴ）。
-  残る `orange / teal / blue / indigo / magenta / pink` は**まだ仮名**
+- **アクセント名** … 海の生き物にする方針。★**一部確定**:
+  `lime → turtle`（ウミガメ）/ `cyan → jelly`（クラゲ）/ `purple → coral`（サンゴ）
+  （2026-08-18）、`orange → clown`（カクレクマノミ、2026-08-20）。
+  残る `teal / blue / indigo / magenta / pink` は**まだ仮名**。
+
+  ★実際の色を見ると名前と食い違うものがある。名前を決めるときは実物を見ること。
+
+  ```
+  clown   H 55  #f48d3c  オレンジ
+  turtle  H122  #9bb93d  ★黄緑。海藻に近い
+  teal    H188  #44c1b8  青緑
+  jelly   H212  #43bdd3  水色
+  blue    H255  #78aef3  空色寄り
+  indigo  H282  #9fa1f3  ★藤色。インディゴではない
+  coral   H308  #c58ff3  ★薄紫。サンゴ色ではない
+  magenta H332  #f46fe5  ピンク紫
+  pink    H355  #f47eb0  ピンク
+  ```
+
+  L74 固定で彩度が乗りきらないため、想像より淡く出る。
+  候補として挙がったが未決: `abalone`（アワビ・螺鈿の青緑）/ `whale` /
+  `mussel`（ムール貝の殻） / `octopus` / `shrimp`
 
 ★このリポジトリには前身の **Akuarium** が入っており、**既に命名体系がある**。
 
@@ -414,7 +433,7 @@ palette.css hadal × orange だけ    518
 3. ~~**CVD シミュレーション**~~ … ★**2026-08-20 やらないと決めた**。
 
    Oklab の ΔE は色覚特性をモデル化していないので、2型色覚では `turtle`/`teal` と
-   `success`、`orange`/`pink` と `error` が危険側に寄る。これは事実として残る。
+   `success`、`clown`/`pink` と `error` が危険側に寄る。これは事実として残る。
 
    **やらない理由**: 対策が既に設計に入っているため。線形デザインは構造を罫と
    レイアウトに載せていて、色は意味を**補強**しているだけ。実際、作例の課題一覧は
@@ -429,7 +448,7 @@ palette.css hadal × orange だけ    518
    ```
    pink   × error    27度      turtle × success  33度
    turtle × warning  32度      teal   × success  33度
-   orange × error    33度      orange × warning  35度
+   clown × error    33度      clown × warning  35度
    ```
 
    該当する色は点線＋△で表示し、選んでいる間は「意味を色だけに載せず、

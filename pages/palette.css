@@ -259,7 +259,7 @@
 
 /* ── アクセント層（テーマとの組でしか決まらない） ── */
 
-[data-suisou-theme="hadal"][data-suisou-accent="orange"] {
+[data-suisou-theme="hadal"][data-suisou-accent="clown"] {
   --suisou-accent: oklch(74.00% 0.1549 55);
   --suisou-accent-hex: "#f48d3c";
   --suisou-accent-active: oklch(71.00% 0.1495 55);
@@ -350,7 +350,7 @@
   --suisou-selected-surface-hex: "#4c2937";
 }
 
-[data-suisou-theme="trench"][data-suisou-accent="orange"] {
+[data-suisou-theme="trench"][data-suisou-accent="clown"] {
   --suisou-accent: oklch(74.00% 0.1184 55);
   --suisou-accent-hex: "#e4965e";
   --suisou-accent-active: oklch(71.00% 0.1143 55);
@@ -442,7 +442,7 @@
   --suisou-selected-surface-hex: "#4a2a37";
 }
 
-[data-suisou-theme="fjord"][data-suisou-accent="orange"] {
+[data-suisou-theme="fjord"][data-suisou-accent="clown"] {
   --suisou-accent: oklch(74.00% 0.1093 55);
   --suisou-accent-hex: "#e09865";
   --suisou-accent-active: oklch(71.00% 0.1055 55);
@@ -536,7 +536,7 @@
   --suisou-selected-surface-hex: "#492b37";
 }
 
-[data-suisou-theme="shoal"][data-suisou-accent="orange"] {
+[data-suisou-theme="shoal"][data-suisou-accent="clown"] {
   --suisou-accent: oklch(80.00% 0.0797 55);
   --suisou-accent-hex: "#e7b18d";
   --suisou-accent-active: oklch(77.00% 0.0941 55);
