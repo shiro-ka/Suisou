@@ -20,8 +20,17 @@
    値は面の階段（bg < panel < item < overlay）とそのまま対応する。
    surface="item" は --suisou-item を使う。覚えることが減る。
 
-   平らな容れ物だけを引き受ける。影は持たない ―― 影は「実際に浮くもの」だけの
-   もので、面の分離は border が担保する。★overlay だけ規則が未実装（影の値が未決）。
+   ★影は持たない。「線形デザインだから」ではなく、ダーク専用では影が機能しないため。
+     影は下地を暗くする技法だが、Suisou の下地は既に暗いので暗くする余地が無い。
+     実測（hadal）: 一番濃い scrim を一番明るい面に落として輝度比 1.45 ――
+     Suisou 自身の一番緩い可視性の基準（装飾罫の 1.5）にすら届かない。
+     Tailwind の shadow-xl（黒 α0.10）に至っては 1.02 で、何も起きていない。
+
+   ★暗い側で効くのは光の方（白 α0.15 を panel に落とすと 3.45）。ただし
+     line-strong を罫に回すと 3.10 で、ほぼ同じ強さになる。つまり
+     **Suisou の罫は、ぼかしていない白い光**。白いグロウを足すと同じものが
+     二重になって輪郭が濁るので、足さない。Linear などが内側に白い光を入れるのは
+     罫が極端に薄いからで、罫を 3:1 で引く Suisou には代用品が要らない。
 
    中身の並べ方は持たない。並びは部品（media）とユーティリティの担当なので、
    同じ要素に同居できる:  <div data-suisou-surface="panel" data-suisou-media> */
@@ -37,6 +46,21 @@
 [data-suisou-surface~="panel"] { background: var(--suisou-panel); }
 [data-suisou-surface~="item"]  { background: var(--suisou-item); }
 [data-suisou-surface~="none"]  { background: transparent; }   /* 段を上げず、罫だけで囲う */
+
+
+/* 浮くもの。モーダル・ポップオーバー・ドロップダウン。
+   ★他の面と違い「下地が読めない」のが唯一の特徴なので、明度差だけに頼らず
+     罫を強くする。line-strong on overlay は PAIRS で 3.0 以上を検証済み。
+   後ろが操作できないことは面ではなく scrim（<dialog> の ::backdrop）が伝える。 */
+[data-suisou-surface~="overlay"] {
+  background: var(--suisou-overlay);
+  border-color: var(--suisou-line-strong);
+}
+
+/* 後ろを塞ぐ膜。<dialog> にも popover にも同じ疑似要素があるので1行で足りる。
+   ★開閉に JS が要らない（掟4）―― popovertarget 属性か <dialog> の
+     formmethod="dialog" で完結する。 */
+[data-suisou-surface~="overlay"]::backdrop { background: var(--suisou-scrim); }
 
 /* 装飾 … 任意 */
 [data-suisou-surface~="bare"] { border-color: transparent; }  /* 罫を消す */
