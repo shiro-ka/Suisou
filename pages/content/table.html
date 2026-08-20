@@ -1,0 +1,106 @@
+<!-- Table。全部静的 -->
+<section class="page">
+  <h1>Table</h1>
+  <p class="note">
+    表。<strong>罫だけで組む。</strong>縦罫は引かず、行の下だけに引く ——
+    面を塗らないのと同じ理屈で、格子で囲うより<strong>行の連なりが見える方が読みやすい</strong>。
+    最後の1本は引かないので、下端で罫が二重にならない。
+    <br><br>
+    このページを含むプレビュー全体が、この形を25箇所で手書きしていた
+    （<code>styles.css</code> の <code>.spec</code>）。
+    「3回書いてから足す」をとうに超えていたので部品にした。
+  </p>
+
+  <div class="group">
+    <h2>大きさ</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-table —— 既定 14px</span>
+      <table data-suisou-table>
+        <tr><th>値</th><th>効果</th></tr>
+        <tr><td>panel</td><td>いちばん普通の容れ物</td></tr>
+        <tr><td>item</td><td>1段手前。入力欄や入れ子</td></tr>
+        <tr><td>overlay</td><td>浮くもの。罫が強くなる</td></tr>
+      </table>
+      <span class="demo-label">data-suisou-table="tight" —— 12px。見出しは折り返さない</span>
+      <table data-suisou-table="tight">
+        <tr><th>値</th><th>効果</th></tr>
+        <tr><td>panel</td><td>いちばん普通の容れ物</td></tr>
+        <tr><td>item</td><td>1段手前。入力欄や入れ子</td></tr>
+        <tr><td>overlay</td><td>浮くもの。罫が強くなる</td></tr>
+      </table>
+    </div>
+    <table data-suisou-table="tight">
+      <tr><th>値</th><th>本文</th><th>見出しの折り返し</th><th>使う場面</th></tr>
+      <tr><td>（書かない）</td><td>14px</td><td>する</td>
+          <td>文章の中の表。見出しが長いことがある</td></tr>
+      <tr><td><code>tight</code></td><td>12px</td><td>しない</td>
+          <td>仕様表。語が短く行数が多い</td></tr>
+      <tr><td><code>scroll</code></td><td>—</td><td>—</td>
+          <td>横にはみ出すとき。表自身を巻物にする</td></tr>
+    </table>
+    <p class="note">
+      ★<strong>見出しの折り返しを <code>tight</code> 側に入れた</strong>のが判断どころ。
+      仕様表は語が短いので折り返さない方が読みやすいが、
+      文章中の表には長い見出しが来るので、既定は折り返す。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>はみ出すとき</h2>
+    <p class="note">
+      <code>scroll</code> を付けると表自身が巻物になる。
+      ★<strong>markdown 由来の表は包む要素を足せない</strong>ので、
+      <code>layout="scroll"</code> のラッパで囲う手が使えない。この手が要る。
+    </p>
+    <div class="demo">
+      <span class="demo-label">data-suisou-table="tight scroll"</span>
+      <div data-suisou-surface="panel" style="max-width: 340px">
+        <table data-suisou-table="tight scroll">
+          <tr><th>トークン</th><th>L</th><th>C</th><th>H</th><th>用途</th><th>備考</th></tr>
+          <tr><td>bg</td><td>15</td><td>0.006</td><td>286</td><td>地べた</td><td>ヘッダだけが載る</td></tr>
+          <tr><td>panel</td><td>22</td><td>0.006</td><td>286</td><td>容れ物</td><td>モノはここに入る</td></tr>
+          <tr><td>item</td><td>28</td><td>0.006</td><td>286</td><td>入力欄</td><td>1段手前</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>面と組む</h2>
+    <p class="note">
+      表は面を持たない。囲いたいときは <code>surface</code> と組む ——
+      <code>bleed</code> にすると罫が容れ物の端まで届く。
+    </p>
+    <div class="demo">
+      <span class="demo-label">surface="panel bleed" の中に置く</span>
+      <div data-suisou-surface="panel bleed">
+        <table data-suisou-table="tight">
+          <tr><th>テーマ</th><th>和名</th><th>階段</th></tr>
+          <tr><td>hadal</td><td>超深海層</td><td>dark</td></tr>
+          <tr><td>trench</td><td>海溝</td><td>dark</td></tr>
+          <tr><td>fjord</td><td>峡湾</td><td>dark</td></tr>
+          <tr><td>shoal</td><td>浅瀬</td><td>dim</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table data-suisou-table="tight">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>見出しの罫</td>
+          <td>本文と同じ <code>line-weak</code>。見出しの下だけ
+              <code>line-strong</code> にする案もあるが、25箇所の見た目が変わるので
+              いったん今のまま。実物を見て決める</td></tr>
+      <tr><td>行の hover</td>
+          <td>持たない。押せる表が要るようになったら
+              <code>Row</code> と同じ扱いにする</td></tr>
+      <tr><td><code>caption</code></td>
+          <td>素のまま。markdown は出さないが、手書きの表では使う</td></tr>
+      <tr><td>数値の右寄せ</td>
+          <td>持たない。列ごとの寄せは <code>&lt;col&gt;</code> か
+              現場の class になりそう</td></tr>
+    </table>
+  </div>
+</section>
