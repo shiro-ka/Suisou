@@ -1,0 +1,167 @@
+<!-- Prose。全部静的 -->
+<section class="page">
+  <h1>Prose</h1>
+  <p class="note">
+    長文。<strong>markdown が吐いた素の HTML に属性を書けない</strong>ので、
+    包む側に1つだけ付けて中で割り当てる。
+    <br><br>
+    ★<strong>Suisou で唯一「素の要素に直接当てる」場所</strong>。
+    <code>base.css</code> の「要素セレクタは使わない」を破るが、
+    <code>data-suisou-prose</code> の内側に閉じているので適用先には漏れない。
+    <strong>破っていい場所を1つだけ用意して封じ込める</strong>、という形。
+  </p>
+
+  <div class="group">
+    <h2>新しい見た目を発明していない</h2>
+    <p class="note">
+      リンク・コード・引用・箇条書き・表は、<strong>それぞれの部品ファイルが
+      <code>[data-suisou-prose] :where(…)</code> を自分のセレクタに並べている</strong>。
+      値を2箇所に書くとズレるので、<code>prose.css</code> 側では触らない。
+      このファイルが持つのは<strong>「大きさの割り当て」と「縦のリズム」だけ</strong>。
+    </p>
+    <table data-suisou-table="tight">
+      <tr><th>要素</th><th>誰が持つか</th></tr>
+      <tr><td><code>a</code></td><td><code>ui/link.css</code>（Link と同じ規則）</td></tr>
+      <tr><td><code>code</code> / <code>pre</code></td><td><code>ui/code.css</code></td></tr>
+      <tr><td><code>blockquote</code></td><td><code>ui/quote.css</code></td></tr>
+      <tr><td><code>ul</code> / <code>ol</code></td><td><code>ui/list.css</code></td></tr>
+      <tr><td><code>table</code></td><td><code>ui/table.css</code></td></tr>
+      <tr><td>見出し・段落・リズム・<code>hr</code>・<code>img</code>・<code>dl</code></td>
+          <td><code>ui/prose.css</code></td></tr>
+    </table>
+  </div>
+
+  <div class="group">
+    <h2>実物</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-prose</span>
+      <article data-suisou-prose data-suisou-surface="panel">
+        <h2>面の階段</h2>
+        <p>Suisou の面は4段ある。深いほど光が届かず、面の色が薄くなる。
+        地べたに置くのは<a href="#surface" data-suisou-link>ヘッダの要素</a>だけで、
+        モノは <code>panel</code> に入れる。</p>
+        <h3>段の決まり方</h3>
+        <p>値は <code>tools/solve.py</code> が制約から解いている。
+        手で置いた色は1つも無い。</p>
+        <ul>
+          <li><code>bg</code> — 地べた。ヘッダだけが載る</li>
+          <li><code>panel</code> — いちばん普通の容れ物
+            <ul>
+              <li>入れ子にするときは <code>item</code> を明示する</li>
+              <li>自動では上げない</li>
+            </ul>
+          </li>
+          <li><code>overlay</code> — 浮くもの。罫が強くなる</li>
+        </ul>
+        <blockquote>
+          <p>影は使わない。ダーク専用では下地を暗くする余地が無いため。</p>
+        </blockquote>
+        <h4>コードで書くと</h4>
+        <pre><code>[data-suisou-surface~="panel"] { background: var(--suisou-panel); }</code></pre>
+        <h5>左罫のつく見出し</h5>
+        <p>h5 と h6 はサイズを増やさず、ウェイトと左罫で階層を作る。
+        段が7つしかないので、6段の見出しに1段ずつ割り当てると本文と衝突する。</p>
+        <h6>いちばん下の段</h6>
+        <p>罫が弱くなるだけで、大きさは本文と同じ。</p>
+        <hr>
+        <table>
+          <tr><th>段</th><th>L</th><th>用途</th></tr>
+          <tr><td>bg</td><td>15</td><td>地べた</td></tr>
+          <tr><td>panel</td><td>22</td><td>容れ物</td></tr>
+        </table>
+        <dl>
+          <dt>掟1</dt><dd>色を決めるのは solve.py だけ</dd>
+          <dt>掟4</dt><dd>Suisou 本体に JS を持ち込まない</dd>
+        </dl>
+      </article>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>縦のリズム</h2>
+    <p class="note">
+      ★<strong>見出しは「前を広く、後ろを詰める」。</strong>
+      前の話題から離し、次の内容に近づける。タイポの定石で、
+      <strong>段を増やす前にまずこれを当てる</strong>。
+      おかげで <code>space-4</code>（24px 相当）までで足りていて、
+      新しい段が要らなかった。
+    </p>
+    <table data-suisou-table="tight">
+      <tr><th>どこ</th><th>既定</th><th><code>tight</code></th></tr>
+      <tr><td>ふつうの間</td><td><code>space-3</code>（16）</td><td><code>space-2</code>（8）</td></tr>
+      <tr><td>見出しの前</td><td><code>space-4</code>（24）</td><td><code>space-3</code>（16）</td></tr>
+      <tr><td>見出しの後ろ</td><td><code>space-2</code>（8）</td><td><code>space-1</code>（4）</td></tr>
+    </table>
+  </div>
+
+  <div class="group">
+    <h2>短い方 —— tight</h2>
+    <p class="note">
+      <code>panel</code> の中に入るメモ。wixdex のデッキメモがこの形
+      （Tailwind の <code>prose-sm</code> 相当）。本文を1段落とし、リズムも1段詰める。
+    </p>
+    <div class="demo">
+      <span class="demo-label">data-suisou-prose="tight"</span>
+      <div data-suisou-prose="tight" data-suisou-surface="panel">
+        <h3>デッキメモ</h3>
+        <p>タマ軸。<code>2/2</code> でルリグデッキを固める。</p>
+        <ul>
+          <li>初手は <strong>青の炎</strong> を優先</li>
+          <li>ガード用に <code>ハンデス</code> を2枚残す</li>
+        </ul>
+        <blockquote><p>相手が緑単なら3ターン目まで待つ。</p></blockquote>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>★決めきれていない —— 見出しの罫</h2>
+    <p class="note">
+      <code>type-spec</code> と pickker で判断が食い違っている。
+      <strong>上の実物は type-spec の方（A）で描いてある。</strong>
+      並べたので見比べてほしい。
+    </p>
+    <div class="demo">
+      <span class="demo-label">A —— type-spec。h2〜h4 は罫なし、h5 / h6 だけ左罫</span>
+      <div data-suisou-prose data-suisou-surface="panel">
+        <h2>面の階段</h2>
+        <p>サイズとウェイトだけで階層を作る。罫は最下層にだけ置く。</p>
+        <h3>段の決まり方</h3>
+        <p>値は solve.py が制約から解いている。</p>
+      </div>
+      <span class="demo-label">B —— pickker。h2 に左罫6px ＋ 下罫、h4 に左罫3px</span>
+      <div data-suisou-prose data-suisou-surface="panel" class="prose-b">
+        <h2>面の階段</h2>
+        <p>サイズとウェイトだけで階層を作る。罫は最下層にだけ置く。</p>
+        <h3>段の決まり方</h3>
+        <p>値は solve.py が制約から解いている。</p>
+      </div>
+    </div>
+    <p class="note">
+      A は<strong>本文が静か</strong>で、見出しは大きさで見分ける。
+      B は<strong>見出しが強い</strong>ので、長い記事を飛ばし読みしやすい。
+      <br>
+      pickker は「記事まるごと」なので B が合っていたが、
+      Suisou はアプリの画面でも同じ <code>prose</code> を使う。
+      <strong>どちらを正にするかは好みの話</strong>だと思う。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table data-suisou-table="tight">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td><strong>見出しの罫</strong></td><td>★上の A / B。実物を見て決める</td></tr>
+      <tr><td>図の寄せ</td>
+          <td>中央寄せしていない。記事でも短文でも左端が揃っている方が
+              読みやすいと判断したが、pickker は中央寄せしている</td></tr>
+      <tr><td>本文の幅</td>
+          <td>持たない。<code>layout="container"</code> が別にあるので、
+              そちらと組む。1行の文字数の目安はまだ決めていない</td></tr>
+      <tr><td>脚注・目次</td>
+          <td>持たない。markdown の拡張で出る HTML の形が決まらないと書けない</td></tr>
+      <tr><td>シンタックスハイライト</td>
+          <td>持たない（Code の未決と同じ。掟4 に触る）</td></tr>
+    </table>
+  </div>
+</section>
