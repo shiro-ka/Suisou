@@ -24,7 +24,7 @@
       <tr><td><code>item</code></td><td><code>--suisou-item</code></td>
           <td>1段手前。入力欄、入れ子の容れ物、タグ</td></tr>
       <tr><td><code>overlay</code></td><td><code>--suisou-overlay</code></td>
-          <td>未実装。唯一影を持つ面になる</td></tr>
+          <td>浮くもの。罫が <code>line-strong</code> に上がる。影は持たない</td></tr>
       <tr><td><code>none</code></td><td>持たない</td>
           <td>段を上げず罫だけで囲う。実測では 1箇所</td></tr>
     </table>
@@ -59,6 +59,57 @@
       <code>tools/lint_css.py</code> が段をちょうど1つ持っているか検査する。
     </p>
     <p class="note">値は空白区切りで重ねられる（<code>"panel bare"</code>）。</p>
+  </div>
+
+  <div class="group">
+    <h2>overlay —— 浮くもの</h2>
+    <p class="note">
+      モーダル・ポップオーバー・ドロップダウン。
+      <strong>他の面と違い「下地が読めない」のが唯一の特徴</strong>なので、
+      明度差だけに頼らず<strong>罫を <code>line-strong</code> に上げる</strong>。
+      <code>line-strong</code> on <code>overlay</code> は
+      <code>PAIRS</code> で 3.0 以上を検証済み。
+    </p>
+    <div class="demo">
+      <span class="demo-label">開閉に JS を使っていない（popovertarget 属性だけ）</span>
+      <div data-suisou-layout="row">
+        <button data-suisou-btn="outline" type="button" popovertarget="demo-pop">ポップオーバーを開く</button>
+      </div>
+      <div id="demo-pop" popover data-suisou-surface="overlay" data-suisou-layout="stack">
+        <span data-suisou-text="s16 w600">overlay の面</span>
+        <p data-suisou-text="s14 w400" class="muted">後ろが scrim で塞がれている。罫は line-strong。</p>
+        <div data-suisou-layout="row end">
+          <button data-suisou-btn type="button" popovertarget="demo-pop" popovertargetaction="hide">閉じる</button>
+        </div>
+      </div>
+    </div>
+    <p class="note">
+      ★<strong>影は持たない。</strong>「線形デザインだから」ではなく、
+      <strong>ダーク専用では影が機能しない</strong>ため。
+      影は下地を暗くする技法だが、Suisou の下地は既に暗いので暗くする余地が無い。
+    </p>
+    <table class="spec">
+      <tr><th>やり方</th><th>panel(L22) の上での輝度比</th><th>判定</th></tr>
+      <tr><td>Tailwind の <code>shadow-xl</code>（黒 α0.10）</td><td>1.02</td>
+          <td>何も起きていない</td></tr>
+      <tr><td>一番濃い <code>scrim</code>（α0.72）</td><td>1.14</td>
+          <td>Suisou の一番緩い基準（装飾罫 1.5）にも届かない</td></tr>
+      <tr><td>白い光 α0.15</td><td>3.45</td><td>効く。ただし下を見る</td></tr>
+      <tr><td><strong>罫を <code>line-strong</code> に</strong></td><td>3.10</td>
+          <td><strong>採用</strong>。白い光とほぼ同じ強さ</td></tr>
+    </table>
+    <p class="note">
+      暗い側で効くのは<strong>光の方</strong>で、白いグロウは理屈では正しい。
+      ただ <code>line-strong</code> を罫に回すとほぼ同じ強さになる ——
+      つまり<strong>Suisou の罫は、ぼかしていない白い光</strong>。
+      足すと同じものが二重になって輪郭が濁るので足さない。
+      Linear などが内側に白い光を入れるのは罫が極端に薄いからで、
+      <strong>罫を 3:1 で引く Suisou には代用品が要らない</strong>。
+      <br><br>
+      例外は<strong>画像の上に浮くもの</strong>（下地の明るさが読めない）。
+      白い下地なら <code>scrim</code> は 3.18 で効く。
+      ただし <code>overlay</code> の仕事ではないので、3回書いてから足す。
+    </p>
   </div>
 
   <div class="group">
@@ -104,7 +155,8 @@
       <tr><td>余白の段</td><td>解決済み。<code>tight</code>（縦だけ詰める）と
           <code>bleed</code>（0）の2つ。作例の手書き4つが全部これで消えた</td></tr>
       <tr><td>命名</td><td>解決済み。面は値、部品は属性名という形の違いで層を分けた</td></tr>
-      <tr><td><code>overlay</code></td><td>未実装。唯一影を持つ面になる</td></tr>
+      <tr><td><code>overlay</code></td><td>解決済み。面 + <code>line-strong</code> の罫 + <code>::backdrop</code> の scrim。
+          影は持たない（ダーク専用では機能しないため）</td></tr>
     </table>
   </div>
 </section>
