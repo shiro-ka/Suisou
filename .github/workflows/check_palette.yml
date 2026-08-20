@@ -11,12 +11,18 @@ on:
       - 'tools/solve.py'
       - 'tools/spec-tables.md'
       - 'pages/palette.css'
+      - 'pages/suisou.data.js'
+      - 'tools/contract.py'
+      - 'CONTRACT.md'
       - '.github/workflows/check_palette.yml'
   pull_request:
     paths:
       - 'tools/solve.py'
       - 'tools/spec-tables.md'
       - 'pages/palette.css'
+      - 'pages/suisou.data.js'
+      - 'tools/contract.py'
+      - 'CONTRACT.md'
       - '.github/workflows/check_palette.yml'
   workflow_dispatch:
 
@@ -41,3 +47,7 @@ jobs:
             echo "::error::生成物が solve.py の出力とずれている。python3 tools/solve.py を実行してコミットし直すこと。"
             exit 1
           fi
+
+      - name: 公開契約の目録が生成元と一致するか
+        # solve.py はトークン・テーマ・既定の一覧の生成元でもあるので、ここでも照合する
+        run: python3 tools/contract.py --check
