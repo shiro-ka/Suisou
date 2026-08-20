@@ -58,6 +58,15 @@
   background: var(--suisou-bg);
   color: var(--suisou-text-main);
 
+  /* リンクの既定。★色も下線も持たない ―― どう見せるかは文脈が決める。
+
+     a に一律で下線を引くと、ボタンやナビの <a>（wixdex のサイドバーがこれ）や
+     画像リンク（markdown の [![img](x)](y)）まで線が入って破綻する。
+     ブラウザ既定の青＋下線も同じ理由で消す。
+     文章の中だけ線を引くのは Link 側の仕事（ui/link.css）。
+
+     :where() で詳細度を 0 にしてあるので、現場の規則も Suisou の部品も必ず勝つ。 */
+
   /* ネイティブの部品（checkbox / radio / range / progress）の色。
      継承するプロパティなので根で1回書けば全部に届く。
      部品を作る必要が無い ―― ブラウザが描いてくれるものを奪わない。
@@ -73,4 +82,15 @@
      幅の予約（scrollbar-gutter）はしない。理由は ui/layout.css の "scroll" に書いた。 */
   scrollbar-width: thin;
   scrollbar-color: var(--suisou-line-strong) transparent;
+}
+
+/* リンクの既定。上のコメントを参照。詳細度は 0 */
+:where([data-suisou-root] a) {
+  color: inherit;
+  text-decoration: none;
+}
+/* 焦点の輪だけは既定で出す。キーボードで辿れないと困るため */
+:where([data-suisou-root] a:focus-visible) {
+  outline: var(--suisou-focus);
+  outline-offset: 2px;
 }

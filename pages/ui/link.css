@@ -1,0 +1,36 @@
+/* Suisou — Link
+
+     <a href="…" data-suisou-link>文章の中のリンク</a>
+
+   ★色を変えない。下線だけで示す。
+
+     色で示すと、意味が色だけに載る（CVD の論点そのもの）。線形デザインは
+     「塗らず線で区切る」なので、リンクも線で示すのが素直。
+     Tailwind などで「リンクの色を消す」作業が繰り返し発生するのも、
+     既定で色を変える設計の副作用。
+
+   ★a そのものには当てない。base.css で a は「色も下線も持たない」に倒してあり、
+     線を引くのはこの属性か prose の中だけ。ボタンやナビの <a>、画像リンクに
+     線が入らないのはそのため。
+
+   ★prose と同じ規則を1つのセレクタに並べてある。markdown が吐く <a> には
+     属性を書けないので prose 側で拾うが、値を2箇所に書くと必ずズレる。 */
+
+[data-suisou-link],
+[data-suisou-prose] :where(a) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;   /* 仮名の下がりと線がぶつからない位置 */
+}
+
+/* hover でだけ色が乗る。下線は常にあるので、色は補強にしかならない */
+[data-suisou-link]:hover,
+[data-suisou-prose] :where(a):hover {
+  color: var(--suisou-accent);
+}
+
+/* 画像だけのリンクには線を引かない。markdown の [![img](x)](y) がこれ */
+[data-suisou-link]:has(> img:only-child),
+[data-suisou-prose] :where(a:has(> img:only-child)) {
+  text-decoration: none;
+}
