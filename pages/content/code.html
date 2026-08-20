@@ -1,0 +1,104 @@
+<!-- Code。全部静的 -->
+<section class="page">
+  <h1>Code</h1>
+  <p class="note">
+    コード。<strong>装飾は最小。</strong>
+    行内コードは<strong>字形（等幅）が既に最大の手がかり</strong>なので、
+    面と角丸だけ足せば足りる。
+  </p>
+
+  <div class="group">
+    <h2>行内</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-code</span>
+      <p data-suisou-text="s16 w400 doc">
+        明るさは動かさず、面の色相のまま暗い側へ下げている。
+        <code data-suisou-code>FLOOR["hover"]</code> = 0.03 を満たす最大の
+        <code data-suisou-code>L</code> を <code data-suisou-code>resolve_hover()</code>
+        が二分探索で求めている。
+      </p>
+      <span class="demo-label">12px の中でも同じ比率で小さくなる</span>
+      <p data-suisou-text="s12 w400">
+        小さい文字の中の <code data-suisou-code>--suisou-hover-surface</code> も、
+        まわりに対して同じ比率で収まる。
+      </p>
+    </div>
+    <p class="note">
+      ★<strong>罫は引かない。</strong>本文の行間（14px なら 20px）に対して
+      罫と余白を足すと行が窮屈になり、<strong>コードが出るたびに行送りが乱れる</strong>。
+      <br>
+      ★<strong>色も変えない。</strong>字形で区別できているので、色は二重の合図になる。
+      下地（<code>panel</code> / <code>bg</code> / <code>overlay</code>）によって
+      読みやすさが変わるのも避けたい。
+      <br>
+      ★<strong>大きさだけ <code>em</code> で持つ。</strong>
+      等幅は同じ px でも大きく見えるので少し落とすが、行内コードは
+      「まわりの文字に合わせる」のが正しいふるまい。px の段に載せると
+      12px の中でも 16px の中でも同じ大きさになってしまう。
+      <strong>Suisou で相対値を使っている唯一の場所</strong>。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>かたまり</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-code="block"</span>
+      <pre data-suisou-code="block"><code>def resolve_hover(t):
+    D = LADDERS[t["ladder"]]
+    faces = ["bg"] + SURFACES
+    L = D["tint"]
+    while L &gt; 0.02 and min(dE((L, t["cs"], t["h"]), (D[s], t["cs"], t["h"]))
+                           for s in faces) &lt; FLOOR["hover"]:
+        L -= 0.001
+    return round(L, 3)</code></pre>
+      <span class="demo-label">はみ出す行は横に流れる（折り返さない）</span>
+      <pre data-suisou-code="block"><code>PAIRS = [("line-weak","selected-surface",1.5,"選択行の装飾罫"), ("line-strong","selected-surface",3.0,"選択行の入力枠 1.4.11")]</code></pre>
+    </div>
+    <p class="note">
+      ★<strong>折り返さない。</strong>桁がずれるとコードは読めなくなるので、
+      横に流す方を採る。<code>Table</code> の <code>scroll</code> と同じ判断。
+      <br>
+      行間だけ <code>lh-20</code> に広げてある —— 桁を目で追うため、
+      かたまりの中は詰めない。
+      <br>
+      かたまりの中の <code>&lt;code&gt;</code> は素に戻している。
+      <strong>面と余白が二重にならないため</strong>（markdown は必ず
+      <code>&lt;pre&gt;&lt;code&gt;</code> の入れ子で吐く）。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>面の上に置く</h2>
+    <p class="note">
+      コードの面は <code>item</code>。<code>panel</code> の中に置かれるものなので1段手前で、
+      <code>Field</code> と同じ扱い。
+    </p>
+    <div class="demo">
+      <span class="demo-label">panel の中</span>
+      <div data-suisou-surface="panel" data-suisou-layout="stack">
+        <span data-suisou-text="s14 w400">面の段は <code data-suisou-code>bg &lt; panel &lt; item &lt; overlay</code>。</span>
+        <pre data-suisou-code="block"><code>--suisou-item: oklch(28.00% 0.0060 286);
+[data-suisou-surface~="item"] { background: var(--suisou-item); }</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table data-suisou-table="tight">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td><strong>シンタックスハイライト</strong></td>
+          <td>★持たない。色を付けるにはトークン種別ごとの class が要り、
+              それを吐くのは JS かビルド。<strong>掟4（JS を持ち込まない）に触る</strong>。
+              現場が Prism などを入れるなら、色は現場のものになる ——
+              掟1 の外に出る唯一の色</td></tr>
+      <tr><td>行番号</td><td>持たない。<code>counter</code> で出せるが、
+              コピーしたときに混ざる問題がある</td></tr>
+      <tr><td>ファイル名の見出し</td>
+          <td>持たない。markdown が吐かないので、手書きのときだけの話になる</td></tr>
+      <tr><td>色を変える案</td>
+          <td>行内コードをアクセント色にする案は不採用。字形で足りているので
+              二重になる。実物を見て物足りなければ戻す</td></tr>
+    </table>
+  </div>
+</section>

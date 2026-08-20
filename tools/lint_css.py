@@ -31,6 +31,11 @@ LAYOUT_MODES = {"stack", "row", "center", "frame"}
 COLOR = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:oklch|oklab|lab|lch|rgba?|hsla?|color)\s*\(", re.I)
 COMMENT_CSS = re.compile(r"/\*.*?\*/", re.S)
 COMMENT_HTML = re.compile(r"<!--.*?-->", re.S)
+# <code> と <pre> の中身は「表示される文字」であってマークアップではない。
+# 説明のために書いた見本を実物と誤読しないよう、中身だけ落とす。
+# 開始タグは残すので、そこに付いた属性はこれまで通り検査される。
+# 行番号がずれないよう、落とした分は改行で埋める。
+CODE_HTML = re.compile(r"(<(code|pre)\b[^>]*>)(.*?)(</\2>)", re.S | re.I)
 
 
 def walk(d):
@@ -52,6 +57,8 @@ def strip_comments(text, path):
     text = COMMENT_CSS.sub("", text)
     if path.endswith(".html"):
         text = COMMENT_HTML.sub("", text)
+        text = CODE_HTML.sub(
+            lambda m: m.group(1) + "\n" * m.group(3).count("\n") + m.group(4), text)
     return text
 
 
