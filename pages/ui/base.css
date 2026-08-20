@@ -59,8 +59,18 @@
   --suisou-space-4: 1.5rem;    /* 24 */
   --suisou-icon: 1.25rem;       /* 20。アイコンの一辺。4の倍数 */
   --suisou-icon-small: 1rem;    /* 16。12px の文字の隣に置く用（Tag など） */
-  --suisou-radius: 0.5rem;      /* 8 */
-  --suisou-radius-pill: 999px;  /* 丸め切るだけなので実寸でよい */
+  /* ★角丸は3段。太さではなく「対象の高さ」で選ぶ。
+
+     8px は高さ 32px 前後の部品（ボタン・入力欄・面）に合わせた値で、
+     高さ 20px の行内コードに当てると高さの4割が丸まってカプセルに見え、
+     Tag と見分けがつかなくなる。だから小さいものには 4px。
+
+       small  4px   行内コードのような背の低いもの
+       通常   8px   面・ボタン・入力欄・コードのかたまり
+       pill   丸め切る。Avatar・Tag・見出しの帯 */
+  --suisou-radius-small: 0.25rem; /* 4 */
+  --suisou-radius: 0.5rem;        /* 8 */
+  --suisou-radius-pill: 999px;    /* 丸め切るだけなので実寸でよい */
 
   --suisou-font: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   --suisou-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
