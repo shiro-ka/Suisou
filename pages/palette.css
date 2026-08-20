@@ -23,6 +23,8 @@
   --suisou-floating-hex: "#37373b";
   --suisou-hover-surface: oklch(19.00% 0.0060 286);
   --suisou-hover-surface-hex: "#131316";
+  --suisou-selected-neutral: oklch(36.00% 0.0060 286);
+  --suisou-selected-neutral-hex: "#3d3d40";
   --suisou-line-weak: oklch(44.00% 0.0060 286);
   --suisou-line-weak-hex: "#525256";
   --suisou-line-strong: oklch(61.00% 0.0060 286);
@@ -72,6 +74,8 @@
   --suisou-floating-hex: "#37373b";
   --suisou-hover-surface: oklch(19.00% 0.0060 286);
   --suisou-hover-surface-hex: "#131316";
+  --suisou-selected-neutral: oklch(36.00% 0.0060 286);
+  --suisou-selected-neutral-hex: "#3d3d40";
   --suisou-line-weak: oklch(44.00% 0.0060 286);
   --suisou-line-weak-hex: "#525256";
   --suisou-line-strong: oklch(61.00% 0.0060 286);
@@ -111,6 +115,8 @@
   --suisou-floating-hex: "#333842";
   --suisou-hover-surface: oklch(19.00% 0.0180 265);
   --suisou-hover-surface-hex: "#10141c";
+  --suisou-selected-neutral: oklch(36.00% 0.0180 265);
+  --suisou-selected-neutral-hex: "#383d47";
   --suisou-line-weak: oklch(44.00% 0.0180 265);
   --suisou-line-weak-hex: "#4e535d";
   --suisou-line-strong: oklch(61.00% 0.0180 265);
@@ -150,6 +156,8 @@
   --suisou-floating-hex: "#323748";
   --suisou-hover-surface: oklch(19.00% 0.0300 272);
   --suisou-hover-surface-hex: "#0f1321";
+  --suisou-selected-neutral: oklch(36.00% 0.0300 272);
+  --suisou-selected-neutral-hex: "#373c4d";
   --suisou-line-weak: oklch(44.00% 0.0300 272);
   --suisou-line-weak-hex: "#4c5264";
   --suisou-line-strong: oklch(61.00% 0.0300 272);
@@ -189,6 +197,8 @@
   --suisou-floating-hex: "#505561";
   --suisou-hover-surface: oklch(30.00% 0.0200 265);
   --suisou-hover-surface-hex: "#292e38";
+  --suisou-selected-neutral: oklch(47.00% 0.0200 265);
+  --suisou-selected-neutral-hex: "#555b66";
   --suisou-line-weak: oklch(55.00% 0.0200 265);
   --suisou-line-weak-hex: "#6c727e";
   --suisou-line-strong: oklch(73.00% 0.0200 265);
