@@ -98,6 +98,18 @@
   --suisou-ease: cubic-bezier(0.2, 0, 0, 1);
 }
 
+/* ★アクセントは theme とセットで書く。
+
+     <html data-suisou-theme="hadal" data-suisou-accent="jelly">
+
+   アクセントの値はテーマごとに違う（面の彩度とアクセント強さがテーマの属性なので、
+   同じ色相でも解が変わる）。そのため palette.css は
+   [data-suisou-theme="…"][data-suisou-accent="…"] の複合選択子でしか定義していない。
+
+   ★accent だけ書くと どの選択子にも当たらず、:root の既定に静かに落ちる。
+     coral を頼んだのに既定の色が出て、しかも気づけない。
+     tools/lint_css.py が単独指定を検査する。 */
+
 /* 面。ページ全体に敷く場合だけ付ける */
 [data-suisou-root] {
   font-family: var(--suisou-font);

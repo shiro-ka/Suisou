@@ -3,7 +3,8 @@
      <div data-suisou-layout="stack">縦に積む</div>
      <div data-suisou-layout="row">横に並べて縦中央に寄せる</div>
      <div data-suisou-layout="row stretch">画面を割る。子は高さいっぱい</div>
-     <div data-suisou-layout="frame">画面の骨格。子は aside / head / body / foot と名乗る</div>
+     <div data-suisou-layout="frame screen">画面の骨格。子は aside / head / body / foot と名乗る</div>
+     <div data-suisou-layout="stack md:even">等分の列。狭いと縦積み</div>
 
    ★すきまは焼き込む。Suisou のレイアウトは既定で space-2（8px）で並ぶ。
      これが「Suisou の間合い」で、毎回選ぶものではない。
@@ -106,6 +107,28 @@
    名前は flex-grow から。「塗る」と読める fill は Suisou では使わない */
 [data-suisou-layout~="grow"] { flex: 1 1 auto; min-width: 0; min-height: 0; }
 
+/* ★画面の高さいっぱい。frame と組んで初めて frame が仕事を始める。
+
+   frame の grid-template-rows は auto minmax(0,1fr) auto だが、
+   入れ物の高さが決まっていないと 1fr に配る余りが存在せず、
+   結果として stack と同じ「中身の高さのまま積む」になる。
+   プレビューが常に高さのある箱の中で frame を試していたので気づけなかった。
+
+   height ではなく min-height。中身が画面より長いときは伸びてほしい。
+   dvh はモバイルのアドレスバーの出入りに追従する。 */
+[data-suisou-layout~="screen"] { min-height: 100dvh; }
+
+/* ★等分の列。子の数だけ列を作り、幅を均等にする。
+   grow（flex: 1 1 auto）は「余りを等分する」ので、元の中身の幅の差が残る。
+   カードを3枚きれいに並べたいときはこちら。
+
+   狭い画面では潰れるので "stack md:even" と組むのが基本形。 */
+[data-suisou-layout~="even"] {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+}
+
 /* 本文の幅を絞って中央に寄せる */
 [data-suisou-layout~="container"] {
   width: 100%;
@@ -153,6 +176,8 @@
   [data-suisou-layout~="md:scroll"] { overflow: auto; }
   [data-suisou-layout~="md:grow"] { flex: 1 1 auto; min-width: 0; min-height: 0; }
   [data-suisou-layout~="md:hold"] { flex: none; }
+  [data-suisou-layout~="md:screen"] { min-height: 100dvh; }
+  [data-suisou-layout~="md:even"] { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
   [data-suisou-layout~="md:start"] { justify-content: flex-start; }
   [data-suisou-layout~="md:end"] { justify-content: flex-end; }
   [data-suisou-layout~="md:between"] { justify-content: space-between; }
@@ -178,6 +203,8 @@
   [data-suisou-layout~="lg:scroll"] { overflow: auto; }
   [data-suisou-layout~="lg:grow"] { flex: 1 1 auto; min-width: 0; min-height: 0; }
   [data-suisou-layout~="lg:hold"] { flex: none; }
+  [data-suisou-layout~="lg:screen"] { min-height: 100dvh; }
+  [data-suisou-layout~="lg:even"] { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
   [data-suisou-layout~="lg:start"] { justify-content: flex-start; }
   [data-suisou-layout~="lg:end"] { justify-content: flex-end; }
   [data-suisou-layout~="lg:between"] { justify-content: space-between; }

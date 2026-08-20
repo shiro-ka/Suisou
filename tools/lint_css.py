@@ -5,6 +5,7 @@
   2. 参照している --suisou-* が palette.css に実在するか
   3. data-suisou-surface が「段」をちょうど1つ持っているか
   4. data-suisou-layout の「モード」が2つ以上書かれていないか
+  5. data-suisou-accent が data-suisou-theme と同じ要素に書かれているか
 
 生成物（palette.css）は検査対象から外す。あれだけが色を持ってよい。
 
@@ -101,6 +102,15 @@ def main():
                         problems.append(
                             f"{rel}:{i}: surface の段が {len(steps)} 個 … \"{got}\" "
                             f"（{' / '.join(sorted(SURFACE_STEPS))} から1つ書く）")
+
+                # ★アクセントは theme との複合選択子でしか定義されない。
+                #   単独で書くと どの選択子にも当たらず :root の既定に落ちて、
+                #   頼んだ色と違う色が静かに出る。
+                for m in re.finditer(r'<[^>]*data-suisou-accent[^>]*>', line):
+                    if "data-suisou-theme" not in m.group(0):
+                        problems.append(
+                            f"{rel}:{i}: data-suisou-accent が単独で書かれている … "
+                            f"theme と同じ要素に書くこと（複合選択子でしか定義されない）")
 
                 for m in re.finditer(r'data-suisou-layout(?:="([^"]*)")?', line):
                     vals = (m.group(1) or "").split()
