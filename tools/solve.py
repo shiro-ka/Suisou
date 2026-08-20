@@ -140,6 +140,8 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     ("success","overlay",4.5,"状態文言"),
     ("text-main","error-surface",4.5,"バナーの文字"),
     ("error","error-surface",3.0,"バナーの枠"),
+    ("error-active","error-surface",3.0,"danger ボタン(押下)"),
+    ("error-active","overlay",3.0,"danger ボタン(押下)"),
 ]
 
 # ============================================================ 導出
@@ -215,6 +217,9 @@ def tokens(t, acc_name, acc_h):
     for n, h in SEM_HUE.items():
         L = SEM_L[t["ladder"]][n]
         o[n] = (L, maxC(L, h) * sr, h)
+        # 押下色。accent-active と同じ作り（同じだけ暗くして彩度を再クランプ）。
+        # danger ボタンが押しても色を変えられなかったのはこれが無かったため。
+        o[n+"-active"] = (L+ACTIVE_DL, maxC(L+ACTIVE_DL, h) * sr, h)
         o[n+"-surface"] = (D["tint"], resolve_tint(t, h, FLOOR["selected"]), h)
     return o
 
@@ -329,6 +334,7 @@ THEME_TOKENS = ["bg", "panel", "item", "overlay", "hover-surface", "selected-neu
                 "line-weak", "line-strong", "text-disabled", "text-sub", "text-main",
                 "on-accent", "scrim",
                 "error", "warning", "success",
+                "error-active", "warning-active", "success-active",
                 "error-surface", "warning-surface", "success-surface"]
 ACCENT_TOKENS = ["accent", "accent-active", "focus-ring", "selected-surface"]
 

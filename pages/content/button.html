@@ -52,15 +52,21 @@
     <h2>状態</h2>
     <div class="demo">
       <div data-suisou-layout="row wrap">
-        <button data-suisou-btn="on" type="button">押しっぱなし</button>
+        <button data-suisou-btn aria-pressed="true" type="button">押しっぱなし</button>
         <button data-suisou-btn type="button" disabled>無効</button>
         <button data-suisou-btn="outline" type="button" disabled>無効（CTA）</button>
         <button data-suisou-btn="danger" type="button" disabled>無効（破壊的）</button>
       </div>
     </div>
     <p class="note">
-      無効は <code>disabled</code> か <code>aria-disabled="true"</code> のどちらでも効く。
-      ★<code>on</code> は <code>aria-pressed</code> に寄せるべきか未決。
+      ★<strong>状態は標準の属性を借りる。</strong>
+      無効は <code>disabled</code> か <code>aria-disabled="true"</code>、
+      押しっぱなしは <code>aria-pressed="true"</code>。
+      <br>
+      Row は <code>aria-selected</code> / <code>aria-current</code>、
+      Field は <code>disabled</code> / <code>aria-invalid</code> を借りていて、
+      <strong>Button だけ <code>data-suisou-btn="on"</code> と自前で持っていた</strong>。
+      寄せたので読み上げにも効くようになった。
     </p>
   </div>
 
@@ -72,7 +78,7 @@
         <button data-suisou-btn="icon" type="button" aria-label="追加"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg></button>
         <button data-suisou-btn="outline icon" type="button" aria-label="次へ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg></button>
         <button data-suisou-btn="danger icon" type="button" aria-label="削除"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg></button>
-        <button data-suisou-btn="on icon" type="button" aria-label="お気に入り"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg></button>
+        <button data-suisou-btn="icon" aria-pressed="true" type="button" aria-label="お気に入り"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" /></svg></button>
       </div>
     </div>
     <div class="demo">
@@ -101,7 +107,7 @@
       <span class="demo-label">data-suisou-btn-group</span>
       <div data-suisou-layout="row wrap">
         <div data-suisou-btn-group>
-          <button data-suisou-btn="on" type="button">すべて</button>
+          <button data-suisou-btn aria-pressed="true" type="button">すべて</button>
           <button data-suisou-btn type="button">所持</button>
           <button data-suisou-btn type="button">未所持</button>
           <button data-suisou-btn="icon" type="button" aria-label="絞り込み"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6l6 -6" /></svg></button>
@@ -119,9 +125,19 @@
     <table data-suisou-table="tight">
       <tr><th>項目</th><th>状況</th></tr>
       <tr><td>サイズ段</td><td>1サイズのみ。wixdex の実測ではほぼ一択だったので増やしていない</td></tr>
-      <tr><td><code>on</code> の表現</td><td><code>aria-pressed</code> に寄せるか未決</td></tr>
-      <tr><td>当たり判定</td><td>32px。モバイルなら 44px 検討</td></tr>
-      <tr><td><code>danger</code> の押下色</td><td>solver に <code>error</code> の active が無い</td></tr>
+      <tr><td><code>on</code> の表現</td>
+          <td>解決済み。<code>aria-pressed="true"</code> に寄せた ——
+              Row は <code>aria-selected</code> / <code>aria-current</code>、
+              Field は <code>disabled</code> / <code>aria-invalid</code> を借りていて、
+              <strong>ここだけ自前だった</strong>。読み上げにも効く</td></tr>
+      <tr><td>当たり判定</td>
+          <td>解決済み。32px → <strong>36px</strong>。指の目安としてよく挙がるのは
+              44px だが、20px のアイコンに対して空きすぎる。
+              wixdex は 32px で運用できていたので、両者の間を取った</td></tr>
+      <tr><td><code>danger</code> の押下色</td>
+          <td>解決済み。<code>solve.py</code> に意味色の押下色
+              （<code>error-active</code> ほか）を足した。
+              <strong>それまでは押しても色が動かず、反応が無いように見えていた</strong></td></tr>
     </table>
   </div>
 </section>

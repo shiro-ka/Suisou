@@ -222,6 +222,9 @@ const SUISOU = {
   "error",
   "warning",
   "success",
+  "error-active",
+  "warning-active",
+  "success-active",
   "error-surface",
   "warning-surface",
   "success-surface"
