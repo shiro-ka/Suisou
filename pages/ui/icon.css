@@ -1,0 +1,34 @@
+/* Suisou — Icon
+
+     <svg data-suisou-icon>…</svg>                    20px、色は継承
+     <svg data-suisou-icon="small success">…</svg>    16px、success 色
+
+   ★部品の中に置く svg には要らない。Button と Tag は自分の中の svg の
+     寸法を持っているので、そのまま放り込めば揃う。これが要るのは
+     どの部品にも属さず単独で置くとき（一覧の状態しるし、空表示など）。
+
+   ★色は Tag と同じ閉じた集合。solve.py が出す意味色をそのまま値にしてある。
+     以前は作例側で style="--c: var(--suisou-success)" と書かせていて、
+     任意の色を差し込める穴になっていた。掟1 は「色を決めるのは
+     solve.py だけ」なので、選べる色も Suisou が持つ。
+
+   色を書かなければ currentColor のまま。文字と一緒に色が動く。 */
+
+[data-suisou-icon] {
+  width: var(--suisou-icon);
+  height: var(--suisou-icon);
+  flex: none;
+}
+
+/* 寸法 */
+[data-suisou-icon~="small"] {
+  width: var(--suisou-icon-small);
+  height: var(--suisou-icon-small);
+}
+
+/* 色 … 1つ選ぶ（書かなければ継承） */
+[data-suisou-icon~="sub"]     { color: var(--suisou-text-sub); }
+[data-suisou-icon~="accent"]  { color: var(--suisou-accent); }
+[data-suisou-icon~="success"] { color: var(--suisou-success); }
+[data-suisou-icon~="warning"] { color: var(--suisou-warning); }
+[data-suisou-icon~="error"]   { color: var(--suisou-error); }
