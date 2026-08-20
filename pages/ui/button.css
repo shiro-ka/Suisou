@@ -3,6 +3,7 @@
      <button data-suisou-btn>基本</button>
      <button data-suisou-btn="outline">CTA</button>
      <button data-suisou-btn="danger icon">削除</button>
+     <button data-suisou-btn aria-pressed="true">押しっぱなし</button>
 
    値は空白区切り。~= で拾うので、いくつ並べても属性は1つ。
 
@@ -69,38 +70,51 @@
   padding-inline: var(--suisou-space-3);
 }
 
-/* ★破壊的操作。仕様書に「意味色は状態を持たない（hover / active しない）。
-   destructive なボタンは v1.2 のスコープ外」とあり、error の押下色が
-   solve.py に無い。色は動かさず下地だけで反応させている。 */
+/* 破壊的操作。outline と同じ形で、色だけ error 系に差し替える。
+   ★押下色（error-active）は solve.py に足した ―― 意味色にも accent と同じ
+     作りの押下色を出すようにしてある。それまでは色が動かず、押しても
+     反応が無いように見えていた。 */
 [data-suisou-btn~="danger"] {
   color: var(--suisou-error);
   border-color: var(--suisou-error);
   padding-inline: var(--suisou-space-3);
 }
 [data-suisou-btn~="danger"]:hover  { color: var(--suisou-error); background: var(--suisou-error-surface); }
-[data-suisou-btn~="danger"]:active { background: var(--suisou-error-surface); }
+[data-suisou-btn~="danger"]:active {
+  color: var(--suisou-error-active);
+  border-color: var(--suisou-error-active);
+  background: var(--suisou-error-surface);
+}
 
 /* 押しっぱなしの状態（フィルタのトグルなど）。
    wixdex の filterToggle が bg-zinc-500/30 でやっていたもの。
 
+   ★状態は標準の属性を借りる（aria-pressed）。以前は data-suisou-btn="on" と
+     自前で持っていたが、Row は aria-selected / aria-current、Field は
+     disabled / aria-invalid を借りていて、ここだけ自前だった。
+     寄せると読み上げにも効く。
+
    ★下地は現場が選ぶ。既定はアクセント色、neutral を足すと明るさだけになる。
-     Row と同じ選択肢・同じ値の名前。「ボタンごとに違いそう」がそのまま
-     ボタンごとに書ける形になった。 */
-[data-suisou-btn~="on"] {
+     Row と同じ選択肢・同じ値の名前。 */
+[data-suisou-btn][aria-pressed="true"] {
   background: var(--suisou-selected-surface);
   color: var(--suisou-text-main);
 }
-[data-suisou-btn~="on"][data-suisou-btn~="neutral"] {
+[data-suisou-btn~="neutral"][aria-pressed="true"] {
   background: var(--suisou-selected-neutral);
 }
 
 /* ── 形 ─────────────────────────────────── */
 
-/* 正方形。アイコン専用 */
+/* 正方形。アイコン専用。
+   ★当たり判定は 36px。指の目安としてよく挙がるのは 44px だが、
+     20px のアイコンに対して 44px は見た目が空きすぎる。
+     実際 wixdex は 32px で運用できていた。両者の間を取っている。
+     px のままなのは「指」の都合で、文字サイズに追従させないため。 */
 [data-suisou-btn~="icon"] {
   padding: 0;
   aspect-ratio: 1;
-  min-width: 32px;
+  min-width: 36px;
 }
 
 /* 幅いっぱい。全幅のボタンは実質「メニューの行」なので左に寄せる。
