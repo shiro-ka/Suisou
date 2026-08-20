@@ -184,8 +184,11 @@ def tokens(t, acc_name, acc_h):
     o["focus-ring"]    = o["accent"]
     o["on-accent"]     = o["bg"]
     o["hover-surface"] = (resolve_hover(t), t["cs"], t["h"])   # 中立。アクセントに依存しない
+    # 選択の下地は2つ出す。現場が「色で示す」か「明るさだけで示す」かを選ぶ。
+    # 明度はどちらも tint で同じ。違うのは彩度だけ（hadal で 0.053 と 0.006）。
     sel = resolve_tint(t, acc_h, FLOOR["selected"])
     o["selected-surface"] = None if sel is None else (D["tint"], sel, acc_h)
+    o["selected-neutral"] = (D["tint"], t["cs"], t["h"])       # 中立。アクセントに依存しない
     sr = sem_ratio(t["ar"])
     for n, h in SEM_HUE.items():
         L = SEM_L[t["ladder"]][n]
@@ -212,6 +215,10 @@ def accent_issues(t, acc_name, acc_h):
         # hover は中立、選択はアクセント色。色相が違うので彩度差では測れない
         if dE(k["selected-surface"], k["hover-surface"]) < JND:
             bad.append("hover と選択が近すぎ")
+    # 中立版の選択下地も hover と区別がつく必要がある。こちらは同じ色相なので
+    # 差は明度だけ（tint と hover の段差）。段を詰めたときに真っ先に壊れる。
+    if k["hover-surface"] and dE(k["selected-neutral"], k["hover-surface"]) < JND:
+        bad.append("hover と選択（中立）が近すぎ")
     return bad
 
 def pair_results(t, acc_name, acc_h):
@@ -275,7 +282,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 #   テーマ層   … 全アクセントで同値。面・文字・意味色
 #   アクセント層 … アクセントで変わる。かつテーマをまたぐと値も変わるので、
 #                 テーマとの組でしか定義できない（複合セレクタになる理由）
-THEME_TOKENS = ["bg", "panel", "item", "floating", "hover-surface",
+THEME_TOKENS = ["bg", "panel", "item", "floating", "hover-surface", "selected-neutral",
                 "line-weak", "line-strong", "text-disabled", "text-sub", "text-main",
                 "on-accent", "scrim",
                 "error", "warning", "success",

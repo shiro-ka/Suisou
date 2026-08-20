@@ -81,10 +81,17 @@
 [data-suisou-btn~="danger"]:active { background: var(--suisou-error-surface); }
 
 /* 押しっぱなしの状態（フィルタのトグルなど）。
-   wixdex の filterToggle が bg-zinc-500/30 でやっていたもの */
+   wixdex の filterToggle が bg-zinc-500/30 でやっていたもの。
+
+   ★下地は現場が選ぶ。既定はアクセント色、neutral を足すと明るさだけになる。
+     Row と同じ選択肢・同じ値の名前。「ボタンごとに違いそう」がそのまま
+     ボタンごとに書ける形になった。 */
 [data-suisou-btn~="on"] {
   background: var(--suisou-selected-surface);
   color: var(--suisou-text-main);
+}
+[data-suisou-btn~="on"][data-suisou-btn~="neutral"] {
+  background: var(--suisou-selected-neutral);
 }
 
 /* ── 形 ─────────────────────────────────── */

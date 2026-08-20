@@ -16,9 +16,11 @@
      ruled は surface="bleed" と組で使う ―― 行が自分で余白を持つので、
      容れ物の側は余白を持たない。
 
-   ★保留: 選択の下地（--suisou-selected-surface）をアクセント色のままにするか
-     中立にするか。hover は中立にした（solve.py の resolve_hover）が、選択は
-     まだアクセント。「ボタンごとに違いそう」で止まっている。判断材料はここで見る。 */
+   ★選択の下地は現場が選ぶ。両方要るという結論になった。
+       既定      アクセント色（--suisou-selected-surface）。色で示す
+       neutral   中立（--suisou-selected-neutral）。明るさだけで示す
+     明度はどちらも同じ（tint）で、違うのは彩度だけ。hover との区別も
+     コントラストも変わらないので、数値では決められなかった。 */
 
 [data-suisou-row] {
   padding: var(--suisou-space-1) var(--suisou-space-2);
@@ -31,6 +33,12 @@
 [data-suisou-row][aria-selected="true"],
 [data-suisou-row][aria-current]:not([aria-current="false"]) {
   background: var(--suisou-selected-surface);
+}
+
+/* 色を使わず、明るさだけで示す。一覧の中で色が主張しすぎる場面用 */
+[data-suisou-row~="neutral"][aria-selected="true"],
+[data-suisou-row~="neutral"][aria-current]:not([aria-current="false"]) {
+  background: var(--suisou-selected-neutral);
 }
 
 /* 連なる形。角丸を捨てて罫で区切る。最後の1本は引かない */

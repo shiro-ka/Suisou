@@ -124,6 +124,7 @@ const SUISOU = {
   "item",
   "floating",
   "hover-surface",
+  "selected-neutral",
   "line-weak",
   "line-strong",
   "text-disabled",
