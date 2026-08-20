@@ -280,11 +280,8 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
   color: var(--suisou-text-sub);
 }
 
-/* チェックボックス → Checkbox 部品が要る */
-.demo-check {
-  flex: none; width: 14px; height: 14px; margin: 0;
-  accent-color: var(--suisou-accent);
-}
+/* 色は base.css の accent-color が継承で届く。寸法だけこちらで詰める */
+.demo-check { flex: none; width: 14px; height: 14px; margin: 0; }
 
 /* 定義の並び → Description list の扱いが未定 */
 .demo-defs { display: grid; grid-template-columns: auto 1fr; gap: var(--suisou-space-1) var(--suisou-space-3); }
