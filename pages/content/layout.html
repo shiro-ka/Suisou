@@ -130,6 +130,10 @@
               <code>min-*</code> が無いと中身がはみ出して親ごと伸びる</td></tr>
       <tr><td><code>wrap</code></td><td><code>flex-wrap: wrap</code></td>
           <td>タグやチップの列</td></tr>
+      <tr><td><code>hold</code></td><td><code>flex: none</code></td>
+          <td><code>grow</code> を打ち消す。既定なので単体では何も変わらない</td></tr>
+      <tr><td><code>nowrap</code></td><td><code>flex-wrap: nowrap</code></td>
+          <td><code>wrap</code> を打ち消す。同上</td></tr>
       <tr><td><code>start</code></td><td><code>justify-content: flex-start</code></td>
           <td>主軸の先頭に寄せる（既定なので明示したいときだけ）</td></tr>
       <tr><td><code>end</code></td><td><code>justify-content: flex-end</code></td>
@@ -281,6 +285,74 @@
   </div>
 
   <div class="group">
+    <h2>画面幅で変える</h2>
+    <p class="note">
+      値に接頭辞を付ける。<strong>空白区切りなので <code>~=</code> がそのまま当たり、
+      語彙は増えない。</strong>
+    </p>
+    <div class="demo">
+      <span class="demo-label">data-suisou-layout="stack md:row" —— 窓を狭めると縦に積む</span>
+      <div data-suisou-layout="stack md:row">
+        <div class="demo-box">あ</div>
+        <div class="demo-box">い</div>
+        <div class="demo-box">う</div>
+      </div>
+      <span class="demo-label">data-suisou-layout="stack md:frame" —— 骨格そのものを切り替える</span>
+      <div data-suisou-layout="stack md:frame" class="demo-frame">
+        <div data-suisou-surface="panel" data-suisou-layout="aside" style="min-width: 120px">aside</div>
+        <div data-suisou-surface="panel" data-suisou-layout="head">head</div>
+        <div data-suisou-surface="panel" data-suisou-layout="body grow">body</div>
+        <div data-suisou-surface="panel" data-suisou-layout="foot">foot</div>
+      </div>
+    </div>
+    <table class="spec">
+      <tr><th>接頭辞</th><th>効く幅</th><th>意味</th></tr>
+      <tr><td><code>md:</code></td><td>768px 以上</td><td>縦積みをやめて横に割れる幅</td></tr>
+      <tr><td><code>lg:</code></td><td>1024px 以上</td><td>サイドバーを常時出せる幅</td></tr>
+    </table>
+    <p class="note">
+      ★<strong>下から積む</strong>（<code>min-width</code>）。Tailwind と同じ向きなので、
+      接頭辞の意味も同じ。
+      <br>
+      ★<strong>段は2つだけ。</strong>実寸の出し分けは Suisou の仕事ではないので、
+      <strong>並びの向きが変わる幅だけを持つ</strong>。
+      「サイドバーを 200px にする」のような数値は現場が持ち、
+      現場の <code>@media</code> でやる ——
+      作例のチャットがその形（並びは <code>stack md:frame</code>、
+      幅は <code>styles.css</code> の <code>.demo-aside</code>）。
+      <br>
+      ★<strong>区画（<code>aside</code> / <code>head</code> / <code>body</code> /
+      <code>foot</code>）に接頭辞版は無い。</strong>
+      「どの区画か」は幅で変わるものではないし、<code>frame</code> が効いていなければ
+      <code>grid-area</code> は無視されて DOM の順に素直に積まれる。だから
+      <code>"stack md:frame"</code> と書くだけで、狭いときは自然に縦一列になる。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>打ち消し —— hold と nowrap</h2>
+    <p class="note">
+      既定に戻すための値。<strong>単体で書いても何も変わらない</strong>が、
+      接頭辞と組むと「広い画面でだけやめる」が書ける。
+    </p>
+    <div class="demo">
+      <span class="demo-label">grow md:hold —— 狭いときだけ伸びる</span>
+      <div data-suisou-layout="row">
+        <div class="demo-box">固定</div>
+        <div class="demo-box" data-suisou-layout="grow md:hold">狭いと伸びる</div>
+      </div>
+      <span class="demo-label">wrap md:nowrap —— 狭いときだけ折り返す</span>
+      <div data-suisou-layout="row wrap md:nowrap">
+        <div class="demo-box">あいうえお</div>
+        <div class="demo-box">かきくけこ</div>
+        <div class="demo-box">さしすせそ</div>
+        <div class="demo-box">たちつてと</div>
+        <div class="demo-box">なにぬねの</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
     <h2>すきまを変える</h2>
     <p class="note">
       既定は <code>space-2</code>（8px）。これが Suisou の間合いなので、
@@ -311,9 +383,9 @@
     <table class="spec">
       <tr><th>項目</th><th>状況</th></tr>
       <tr><td>画面幅で変わる並び</td>
-          <td>持っていない。ただし <code>frame</code> なら
-              <code>grid-template-areas</code> を1つ書き換えるだけなので、
-              ここから手を付けるのが早い</td></tr>
+          <td>解決済み。値に <code>md:</code> / <code>lg:</code> を付ける。
+              全値に接頭辞版がある（区画を除く）。
+              <code>layout.css</code> 全体で gzip 615 バイト</td></tr>
       <tr><td>格子（grid）</td>
           <td><code>center</code> だけが grid。列数を持つ格子は無い。
               3回書いてから足す</td></tr>
