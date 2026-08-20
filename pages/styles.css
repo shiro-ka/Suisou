@@ -290,9 +290,3 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 
 .muted { color: var(--suisou-text-sub); }
 
-/* ══ ★一時的：selected-surface の A/B ════════════
-   判断が済んだら、この節と content/row.html の A/B の節をまとめて消す。
-   中立版の実物は L36 だが、既存トークンに L36 の中立面が無いので
-   floating（L34）で代用している。2ポイント暗いだけ。 */
-.ab-neutral[aria-selected="true"] { background: var(--suisou-floating); }
-.ab-head { font-family: var(--suisou-mono); font-size: var(--suisou-size-12); color: var(--suisou-text-sub); }
