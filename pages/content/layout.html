@@ -36,9 +36,19 @@
   <div class="group">
     <h2>モード —— 1つだけ書く</h2>
     <p class="note">
-      2つ書くと片方が黙って死ぬ。とくに <code>center</code> は grid に切り替わるので、
-      flex 前提の <code>stack</code> と混ぜると指定した向きが何も起きないまま通る。
-      <code>tools/lint_css.py</code> が同時指定を検査する。
+      2つ書くと片方が黙って死ぬ。とくに <code>center</code> と <code>even</code> は
+      grid に切り替わるので、flex 前提の <code>stack</code> と混ぜると
+      指定した向きが何も起きないまま通る。
+      <br>
+      ★<code>tools/lint_css.py</code> が同時指定を検査する。
+      <strong>モードの一覧は <code>layout.css</code> から導いている</strong> ——
+      「<code>display</code> か <code>flex-direction</code> を敷いているか」で判定する。
+      手で持っていたときに <code>even</code> を足し忘れて
+      <code>"stack even"</code> が素通りしたので、真実の源泉を1つにした。
+      <br>
+      この規則だと <code>row</code> は対象から外れる。
+      <code>align-items</code> しか敷かないので、grid に切り替わっても死なず、
+      混ざっても指定が失われないため。
     </p>
     <div class="demo">
       <span class="demo-label">stack —— 縦に積む</span>
@@ -66,6 +76,9 @@
           <td>1つのものを真ん中に。flex ではなく grid</td></tr>
       <tr><td><code>frame</code></td><td><code>display: grid; grid-template-areas: …</code></td>
           <td>画面の骨格。子が区画を名乗る。下の節を見る</td></tr>
+      <tr><td><code>even</code></td><td><code>display: grid; grid-auto-flow: column</code></td>
+          <td>等分の列。子の数だけ列ができる。狭い画面では
+              <code>stack md:even</code> と組む</td></tr>
     </table>
   </div>
 

@@ -24,10 +24,6 @@ TARGET_EXT = (".css", ".html", ".js")
 # 面の段。必ず1つ書く。装飾（bare）だけでは「どの段か」を言っていない
 SURFACE_STEPS = {"panel", "item", "overlay", "none"}
 
-# 並びのモード。書かなくてよい（既定は横並び）が、2つ書くと片方が黙って死ぬ。
-# とくに center は grid に切り替わるので、flex 前提の stack / row と混ざると
-# 指定したはずの向きが何も起きないまま通ってしまう。
-LAYOUT_MODES = {"stack", "row", "center", "frame"}
 
 COLOR = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:oklch|oklab|lab|lch|rgba?|hsla?|color)\s*\(", re.I)
 COMMENT_CSS = re.compile(r"/\*.*?\*/", re.S)
@@ -37,6 +33,31 @@ COMMENT_HTML = re.compile(r"<!--.*?-->", re.S)
 # 開始タグは残すので、そこに付いた属性はこれまで通り検査される。
 # 行番号がずれないよう、落とした分は改行で埋める。
 CODE_HTML = re.compile(r"(<(code|pre)\b[^>]*>)(.*?)(</\2>)", re.S | re.I)
+
+
+def layout_modes():
+    """並びのモードを ui/layout.css から導く。
+
+    ★手で持たない。even を足したとき集合に入れ忘れて "stack even" が素通りし、
+      縦積みを頼んだのに横に並ぶ状態になった（外部の現場が発見）。
+      掟1「真実の源泉は1つ」と同じ形にして、モードを足しても直さなくて済むようにする。
+
+    判定は「display か flex-direction を敷いているか」。これが検査の目的そのもの
+    ―― 2つ書くと片方が黙って死ぬのは、その2つのプロパティを取り合うときだけ。
+
+    ★この規則だと row が外れる。row は align-items だけなので、grid に
+      切り替わっても死なず、混ざっても指定が失われない。検査の対象ではない。
+    """
+    path = os.path.join(ROOT, "pages", "ui", "layout.css")
+    css = COMMENT_CSS.sub("", open(path, encoding="utf-8").read())
+    modes = set()
+    for val, body in re.findall(r'\[data-suisou-layout~="([^"]+)"\][^{]*\{([^}]*)\}', css):
+        if re.search(r"(?:^|[;{\s])(?:display|flex-direction)\s*:", body):
+            modes.add(val.split(":")[-1])       # md: / lg: の接頭辞は落とす
+    return modes
+
+
+LAYOUT_MODES = layout_modes()
 
 
 def walk(d):
