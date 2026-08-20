@@ -64,6 +64,8 @@
           <td>横並び。ボタン列、アイコンと文字</td></tr>
       <tr><td><code>center</code></td><td><code>display: grid; place-items: center</code></td>
           <td>1つのものを真ん中に。flex ではなく grid</td></tr>
+      <tr><td><code>frame</code></td><td><code>display: grid; grid-template-areas: …</code></td>
+          <td>画面の骨格。子が区画を名乗る。下の節を見る</td></tr>
     </table>
   </div>
 
@@ -175,30 +177,55 @@
   </div>
 
   <div class="group">
-    <h2>骨格を組む</h2>
+    <h2>骨格を組む —— frame</h2>
     <p class="note">
-      <code>row stretch</code> で割り、片方に <code>grow</code>、中身に <code>scroll</code>。
-      作例の2枚（チャット・課題一覧）はどちらもこの形をしている。
-      面は <code>surface</code> 属性が持つので、同じ要素に両方書ける ——
-      当たる CSS プロパティが重ならないため、入れ子にする必要がない。
+      画面の骨格は <code>frame</code> が持つ。<strong>区画を親がまとめて決め、
+      子は「自分がどの区画か」しか言わない。</strong>
+      flex では2次元が作れないので、右側をまとめるためだけの空箱が要った。それが消える。
+      <br><br>
+      区画の名前は <strong>Suisou が持つ</strong>（<code>aside</code> /
+      <code>head</code> / <code>body</code> / <code>foot</code>）。
+      現場が名前を発明すると <code>channel-list</code> のような今回だけの語になり、
+      配れなくなるため。
     </p>
     <div class="demo">
-      <span class="demo-label">&lt;div data-suisou-layout="row stretch grow"&gt;</span>
-      <div data-suisou-layout="row stretch" class="demo-frame">
-        <div data-suisou-surface="panel" data-suisou-layout="stack scroll" style="width: 120px">
+      <span class="demo-label">&lt;div data-suisou-layout="frame"&gt;</span>
+      <div data-suisou-layout="frame" class="demo-frame">
+        <div data-suisou-surface="panel" data-suisou-layout="aside stack scroll" style="width: 120px">
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
         </div>
-        <div data-suisou-layout="stack grow">
-          <div data-suisou-surface="panel">ヘッダ</div>
-          <div data-suisou-surface="panel" data-suisou-layout="grow">本体</div>
-          <div data-suisou-surface="panel">入力</div>
-        </div>
+        <div data-suisou-surface="panel" data-suisou-layout="head">ヘッダ</div>
+        <div data-suisou-surface="panel" data-suisou-layout="body">本体</div>
+        <div data-suisou-surface="panel" data-suisou-layout="foot">入力</div>
+      </div>
+      <span class="demo-label">aside を書かなければ列ごと消える（:has で見ている）</span>
+      <div data-suisou-layout="frame" class="demo-frame">
+        <div data-suisou-surface="panel" data-suisou-layout="head">ヘッダ</div>
+        <div data-suisou-surface="panel" data-suisou-layout="body">本体</div>
+        <div data-suisou-surface="panel" data-suisou-layout="foot">入力</div>
       </div>
     </div>
+    <table class="spec">
+      <tr><th>区画</th><th>位置</th><th>高さ / 幅</th></tr>
+      <tr><td><code>aside</code></td><td>左。上から下まで通す</td><td>中身なり（<code>auto</code>）</td></tr>
+      <tr><td><code>head</code></td><td>右上</td><td>中身なり</td></tr>
+      <tr><td><code>body</code></td><td>右中央</td><td><strong>余りを全部取る</strong>（<code>minmax(0, 1fr)</code>）</td></tr>
+      <tr><td><code>foot</code></td><td>右下</td><td>中身なり</td></tr>
+    </table>
+    <p class="note">
+      <code>body</code> のトラックが <code>minmax(0, 1fr)</code> なので、
+      <strong><code>min-width: 0</code> のおまじないが要らない</strong> ——
+      トラック側で同じ仕事をしている。<code>grow</code> も <code>stretch</code> も書かない。
+      面は <code>surface</code> 属性が持つので同じ要素に両方書ける。
+      <br><br>
+      ★<code>head</code> や <code>foot</code> を書かないとき、そのトラックは 0 になるが
+      <strong>すきま（gap）は残る</strong>。<code>aside</code> だけは <code>:has()</code> で
+      列ごと畳んでいる。気になったら同じ手当てを増やす。
+    </p>
   </div>
 
   <div class="group">
@@ -236,8 +263,9 @@
               手書きしている箇所がある。<code>start</code> / <code>end</code> /
               <code>between</code> を足すか未定</td></tr>
       <tr><td>画面幅で変わる並び</td>
-          <td>持っていない。wixdex は <code>md:flex-row</code> /
-              <code>hidden lg:flex</code> を使っている。Tailwind を置き換えるなら避けて通れない</td></tr>
+          <td>持っていない。ただし <code>frame</code> なら
+              <code>grid-template-areas</code> を1つ書き換えるだけなので、
+              ここから手を付けるのが早い</td></tr>
       <tr><td>格子（grid）</td>
           <td><code>center</code> だけが grid。列数を持つ格子は無い。
               3回書いてから足す</td></tr>
