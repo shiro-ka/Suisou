@@ -117,33 +117,72 @@
   <div class="group">
     <h2>★決めきれていない —— 見出しの罫</h2>
     <p class="note">
-      <code>type-spec</code> と pickker で判断が食い違っている。
-      <strong>上の実物は type-spec の方（A）で描いてある。</strong>
-      並べたので見比べてほしい。
+      pickker の形（B）は「見出しを強くする」方向は合っているが、
+      <strong>Suisou の作法から4つ外れている</strong>。
     </p>
+    <table data-suisou-table="tight">
+      <tr><th>B のどこが</th><th>なぜ</th></tr>
+      <tr><td>アクセント色を使っている</td>
+          <td>Suisou のアクセントは<strong>「操作できるもの」の色</strong>
+              （ボタン・リンク・焦点の輪）。押せない見出しが同じ強さで主張する</td></tr>
+      <tr><td>左罫と下罫が二重</td>
+          <td>同じ仕事を2本でやっている。白いグロウを却下したときと同じ形</td></tr>
+      <tr><td>6px という太さ</td>
+          <td>Suisou の線は <strong>1px（面）と 3px（<code>text="rule"</code>）</strong>だけ</td></tr>
+      <tr><td>見出しだけ字下げされる</td>
+          <td><strong>中身の左端が揃わない。</strong>
+              <code>surface</code> の <code>tight</code> で横を動かさないと決めた理屈と同じ。
+              pickker は <code>margin-left: -.5rem</code> で誤魔化している</td></tr>
+    </table>
     <div class="demo">
-      <span class="demo-label">A —— type-spec。h2〜h4 は罫なし、h5 / h6 だけ左罫</span>
+      <span class="demo-label">A —— 罫なし（いまの実装）。サイズとウェイトだけ</span>
       <div data-suisou-prose data-suisou-surface="panel">
         <h2>面の階段</h2>
-        <p>サイズとウェイトだけで階層を作る。罫は最下層にだけ置く。</p>
-        <h3>段の決まり方</h3>
-        <p>値は solve.py が制約から解いている。</p>
+        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
+        <h2>段の決まり方</h2>
+        <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
       </div>
-      <span class="demo-label">B —— pickker。h2 に左罫6px ＋ 下罫、h4 に左罫3px</span>
+      <span class="demo-label">B —— pickker のまま。左罫6px アクセント色 ＋ 下罫</span>
       <div data-suisou-prose data-suisou-surface="panel" class="prose-b">
         <h2>面の階段</h2>
-        <p>サイズとウェイトだけで階層を作る。罫は最下層にだけ置く。</p>
-        <h3>段の決まり方</h3>
-        <p>値は solve.py が制約から解いている。</p>
+        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
+        <h2>段の決まり方</h2>
+        <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
+      </div>
+      <span class="demo-label">C —— 下罫だけ。左端は揃う（GitHub の README がこの形）</span>
+      <div data-suisou-prose data-suisou-surface="panel" class="prose-c">
+        <h2>面の階段</h2>
+        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
+        <h2>段の決まり方</h2>
+        <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
+      </div>
+      <span class="demo-label">D —— 上罫。「ここから次の節」を示す</span>
+      <div data-suisou-prose data-suisou-surface="panel" class="prose-d">
+        <h2>面の階段</h2>
+        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
+        <h2>段の決まり方</h2>
+        <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
+      </div>
+      <span class="demo-label">E —— 左罫をぶら下げる。罫だけ外に出して文字は本文と揃える</span>
+      <div data-suisou-prose data-suisou-surface="panel" class="prose-e">
+        <h2>面の階段</h2>
+        <p>Suisou の面は4段ある。地べたに置くのはヘッダの要素だけで、モノは panel に入れる。</p>
+        <h2>段の決まり方</h2>
+        <p>値は solve.py が制約から解いている。手で置いた色は1つも無い。</p>
       </div>
     </div>
     <p class="note">
-      A は<strong>本文が静か</strong>で、見出しは大きさで見分ける。
-      B は<strong>見出しが強い</strong>ので、長い記事を飛ばし読みしやすい。
-      <br>
-      pickker は「記事まるごと」なので B が合っていたが、
-      Suisou はアプリの画面でも同じ <code>prose</code> を使う。
-      <strong>どちらを正にするかは好みの話</strong>だと思う。
+      C は<strong>静かで確実</strong>だが、見慣れた形でもある。
+      D は<strong>意味が正確</strong> —— 見出しは前の話題の終わりではなく
+      <strong>次の内容の頭</strong>なので、線を上に置く方が筋が通る。
+      リズムの「見出しの前を広く」とも噛み合う。
+      E は<strong>Suisou らしさが一番出る</strong> ——
+      既存の 3px の罫を使い、色はアクセントでなく <code>line-strong</code>、
+      そして<strong>字下げせずに罫だけ外へ出す</strong>ので左端が揃う。
+      記事の左に線が並んで、構造がそのまま見える。
+      <br><br>
+      ★E は<strong>入れ物に余白が要る</strong>（罫が外にはみ出すため）。
+      <code>panel</code> の中なら問題ないが、地べたに直接置くと切れる。
     </p>
   </div>
 
