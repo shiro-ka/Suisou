@@ -23,6 +23,7 @@ const PAGES = {
   field:      { group: '部品', label: 'Field' },
   icon:       { group: '部品', label: 'Icon' },
   row:        { group: '部品', label: 'Row' },
+  table:      { group: '部品', label: 'Table' },
   media:      { group: '部品', label: 'Media' },
   avatar:     { group: '部品', label: 'Avatar' },
   tag:        { group: '部品', label: 'Tag' },

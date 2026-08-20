@@ -17,7 +17,7 @@
       <div data-suisou-surface="panel bare">罫なし。面だけで区切る</div>
       <div data-suisou-surface="none">段を上げず、罫だけで囲う</div>
     </div>
-    <table class="spec">
+    <table data-suisou-table="tight">
       <tr><th>段（必須・1つ）</th><th>面</th><th>使う場面</th></tr>
       <tr><td><code>panel</code></td><td><code>--suisou-panel</code></td>
           <td>いちばん普通の容れ物。Mado の実測で 46箇所</td></tr>
@@ -28,7 +28,7 @@
       <tr><td><code>none</code></td><td>持たない</td>
           <td>段を上げず罫だけで囲う。実測では 1箇所</td></tr>
     </table>
-    <table class="spec">
+    <table data-suisou-table="tight">
       <tr><th>装飾（任意）</th><th>効果</th><th>使う場面</th></tr>
       <tr><td><code>bare</code></td><td>罫を消す</td>
           <td>面だけで区切る。wixdex の実測で 37箇所</td></tr>
@@ -88,7 +88,7 @@
       <strong>ダーク専用では影が機能しない</strong>ため。
       影は下地を暗くする技法だが、Suisou の下地は既に暗いので暗くする余地が無い。
     </p>
-    <table class="spec">
+    <table data-suisou-table="tight">
       <tr><th>やり方</th><th>panel(L22) の上での輝度比</th><th>判定</th></tr>
       <tr><td>Tailwind の <code>shadow-xl</code>（黒 α0.10）</td><td>1.02</td>
           <td>何も起きていない</td></tr>
@@ -150,7 +150,7 @@
 
   <div class="group">
     <h2>未決</h2>
-    <table class="spec">
+    <table data-suisou-table="tight">
       <tr><th>項目</th><th>状況</th></tr>
       <tr><td>余白の段</td><td>解決済み。<code>tight</code>（縦だけ詰める）と
           <code>bleed</code>（0）の2つ。作例の手書き4つが全部これで消えた</td></tr>
