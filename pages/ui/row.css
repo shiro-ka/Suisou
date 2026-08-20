@@ -1,0 +1,48 @@
+/* Suisou — Row（行）
+
+     <div data-suisou-row data-suisou-media>浮いた行。まわりに余白がある</div>
+     <div data-suisou-row="ruled" data-suisou-media>連なった行。罫で区切る</div>
+     <div data-suisou-row aria-selected="true">選ばれている行</div>
+
+   ★並べ方は持たない。行の中身は Media（アイコン＋本文＋しっぽ）が並べるので、
+     Row が持つのは「余白・角丸・下地の反応」だけ。同じ要素に両方書ける。
+
+   ★状態は標準の属性を借りる。aria-selected / aria-current を自分で
+     発明した data-* に置き換えない。読み上げにも効くので二重に得。
+
+   ★2つの形がある。
+       既定    角丸。まわりに余白がある入れ物の中に浮く（チャット、メニュー）
+       ruled   角丸なし＋下罫。面の端から端まで連なる（一覧）
+     ruled は surface="bleed" と組で使う ―― 行が自分で余白を持つので、
+     容れ物の側は余白を持たない。
+
+   ★保留: 選択の下地（--suisou-selected-surface）をアクセント色のままにするか
+     中立にするか。hover は中立にした（solve.py の resolve_hover）が、選択は
+     まだアクセント。「ボタンごとに違いそう」で止まっている。判断材料はここで見る。 */
+
+[data-suisou-row] {
+  padding: var(--suisou-space-1) var(--suisou-space-2);
+  border-radius: var(--suisou-radius);
+}
+
+[data-suisou-row]:hover { background: var(--suisou-hover-surface); }
+
+/* 選ばれている。標準の属性で受ける */
+[data-suisou-row][aria-selected="true"],
+[data-suisou-row][aria-current]:not([aria-current="false"]) {
+  background: var(--suisou-selected-surface);
+}
+
+/* 連なる形。角丸を捨てて罫で区切る。最後の1本は引かない */
+[data-suisou-row~="ruled"] {
+  border-radius: 0;
+  padding-block: var(--suisou-space-2);
+  border-bottom: 1px solid var(--suisou-line-weak);
+}
+[data-suisou-row~="ruled"]:last-child { border-bottom: 0; }
+
+/* 連なる行は隙間を持たない。すきまは親（layout）が持っていて行からは消せないので、
+   :has() で親側に効かせる。frame が aside を見ているのと同じやり方。
+   詳細度は (0,2,0) なので layout の既定にも helpers の .gap-* にも勝つ ――
+   ruled にしておいて隙間を空けたい場面は無いため、ここは勝ってよい。 */
+[data-suisou-layout]:has(> [data-suisou-row~="ruled"]) { gap: 0; }

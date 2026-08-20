@@ -21,6 +21,7 @@ const PAGES = {
   layout:     { group: '土台', label: 'Layout' },
   button:     { group: '部品', label: 'Button' },
   icon:       { group: '部品', label: 'Icon' },
+  row:        { group: '部品', label: 'Row' },
   tag:        { group: '部品', label: 'Tag' },
   chat:       { group: '作例', label: 'チャット', bleed: true },
   list:       { group: '作例', label: '課題一覧', bleed: true },
