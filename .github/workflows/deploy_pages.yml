@@ -39,6 +39,13 @@ jobs:
         # 配信するのは常に solve.py の出力。コミット済みの生成物には依存しない。
         run: python3 tools/solve.py
 
+      - name: 配る形を組み立てる
+        # ★ここが「配布」の実体。dist/ は常に最新、v/<sha> は固定できる URL。
+        #   Suisou を直すたびに現場の見た目が黙って変わるのを防ぐため、
+        #   現場は v/<sha> を指す。
+        run: |
+          SUISOU_VERSION="${GITHUB_SHA::7}" python3 tools/bundle.py
+
       - name: 配信するものを組み立てる
         run: |
           mkdir -p _site
@@ -50,6 +57,13 @@ jobs:
           cp -r pages/content       _site/content         # 差し替わるページの中身
           cp pages/palette.css      _site/palette.css     # solve.py の生成物
           cp pages/suisou.data.js   _site/suisou.data.js  # solve.py の生成物（構造のみ）
+
+          # 配る形。<link> 1本で読める場所に置く
+          cp -r dist _site/dist                               # 最新。移動する
+          mkdir -p "_site/v/${GITHUB_SHA::7}"
+          cp -r dist/* "_site/v/${GITHUB_SHA::7}/"            # 固定。動かない
+          ls -1 _site/dist | head -3
+          echo "固定 URL: /v/${GITHUB_SHA::7}/suisou.css"
 
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5

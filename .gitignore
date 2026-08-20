@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+
+# tools/bundle.py の出力。配信時に作る
+dist/
