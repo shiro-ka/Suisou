@@ -117,14 +117,15 @@
               A/B で見比べたが、明度が同じなので hover との区別も
               コントラストも変わらず、<strong>数値では決められなかった</strong>。
               Button の <code>on</code> にも同じ値がある</td></tr>
-      <tr><td><strong>選択の上に載る罫</strong></td>
-          <td>★未解決。33組を検査したところ <code>line-weak</code> が最悪 1.36
-              （必要 1.5）、<code>line-strong</code> が最悪 2.78（必要 3.0）。
-              <strong>どちらの下地を選んでも残る</strong>（明度が同じなので）。
-              <code>solve.py</code> の <code>PAIRS</code> に選択下地の行が
-              1つも無いので <code>--check</code> が見ていない ——
-              掟2 の違反が検査の穴に隠れている。
-              上の見本の Tag の罫がまさにその組み合わせ</td></tr>
+      <tr><td>選択の上に載る罫</td>
+          <td>解決済み。<code>tint</code> を L36 → L33 に下げた
+              （<code>line-weak</code> 1.37 → 1.53、<code>line-strong</code> 2.81 → 3.14）。
+              原因は色相ではなく<strong>階段上の位置</strong>で、
+              <code>floating</code>(L34) は <code>PAIRS</code> に入っていて通っていたのに、
+              2ポイント上の <code>tint</code>(L36) は誰も見ていなかった。
+              <strong>代償として使える組み合わせが 33 → 32 に減った</strong>
+              （<code>trench × jelly</code>）。両立する L は存在しないので、
+              掟2 を優先して1つ捨てている</td></tr>
       <tr><td>押せる行</td>
           <td><code>cursor</code> を持たない。押せる行が要るようになったら足す。
               その場合 <code>&lt;button&gt;</code> にするか
