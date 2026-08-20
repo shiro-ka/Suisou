@@ -21,6 +21,7 @@
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;   /* 仮名の下がりと線がぶつからない位置 */
+  transition: color var(--suisou-motion-fast) var(--suisou-ease);
 }
 
 /* hover でだけ色が乗る。下線は常にあるので、色は補強にしかならない */

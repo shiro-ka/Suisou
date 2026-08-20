@@ -28,6 +28,9 @@
   border: 1px solid transparent;      /* 罫なしでも高さを揃えるため枠は持つ */
 
   cursor: pointer;
+  transition: background-color var(--suisou-motion-fast) var(--suisou-ease),
+              color            var(--suisou-motion-fast) var(--suisou-ease),
+              border-color     var(--suisou-motion-fast) var(--suisou-ease);
   display: inline-flex;
   align-items: center;
   justify-content: center;

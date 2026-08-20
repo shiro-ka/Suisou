@@ -71,7 +71,7 @@
       <code>PAIRS</code> で 3.0 以上を検証済み。
     </p>
     <div class="demo">
-      <span class="demo-label">開閉に JS を使っていない（popovertarget 属性だけ）</span>
+      <span class="demo-label">開閉に JS を使っていない（popovertarget 属性だけ）。出入りも animate する</span>
       <div data-suisou-layout="row">
         <button data-suisou-btn="outline" type="button" popovertarget="demo-pop">ポップオーバーを開く</button>
       </div>
@@ -83,6 +83,15 @@
         </div>
       </div>
     </div>
+    <p class="note">
+      出入りは <code>--suisou-motion</code>（200ms）でふわっとさせている。
+      <strong>JS は使っていない</strong> —— <code>display</code> と
+      <code>overlay</code> を <code>allow-discrete</code> で繋ぎ、
+      <code>@starting-style</code> で「開く直前の姿」を与えるのが定石。
+      未対応のブラウザでは単に animate しないだけで壊れない。
+      <br>
+      膜（<code>scrim</code>）は中身より少し速く消える —— 閉じたことが先に伝わる。
+    </p>
     <p class="note">
       ★<strong>影は持たない。</strong>「線形デザインだから」ではなく、
       <strong>ダーク専用では影が機能しない</strong>ため。

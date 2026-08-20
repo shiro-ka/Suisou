@@ -25,6 +25,8 @@
   border: 1px solid var(--suisou-line-weak);
   color: var(--suisou-text-sub);
   background: transparent;          /* 線形デザイン。塗らない */
+  transition: color var(--suisou-motion-fast) var(--suisou-ease),
+              border-color var(--suisou-motion-fast) var(--suisou-ease);
 }
 
 /* ── 色。1つ選ぶ（書かなければ中立） ───────── */

@@ -29,6 +29,7 @@
   background: var(--suisou-item);
   color: var(--suisou-text-main);
   border: 1px solid var(--suisou-line-strong);
+  transition: border-color var(--suisou-motion-fast) var(--suisou-ease);
 }
 
 [data-suisou-field]::placeholder { color: var(--suisou-text-disabled); }
