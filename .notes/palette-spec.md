@@ -231,7 +231,8 @@ indigo 282 / coral 308 / magenta 332 / pink 355
 ```
 hover    : 面の L は動かさない。hover-surface を敷く
 selected : selected-surface（または selected-neutral-surface）。
-           ★左端2pxのアクセント線は保留 ―― Row のページに A/B を出して実物で決める
+           ★左端2pxのアクセント線は「形」で決まる（2026-08-20 実物判定）――
+           既定の行は下地のみ、ruled（連なる一覧）は下地 + 線
 active   : --suisou-accent-active（C は再クランプ済み）
 focus    : outline: 2px solid var(--suisou-focus-ring); outline-offset: 2px
 disabled : --suisou-text-disabled。本文には使わない

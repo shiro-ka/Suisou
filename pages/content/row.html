@@ -38,7 +38,7 @@
       <tr><th>値</th><th>形</th><th>使う場面</th></tr>
       <tr><td>（書かない）</td><td>角丸 8px、上下 4px / 左右 8px</td>
           <td>チャット、メニュー。行と行の間にすきまがある</td></tr>
-      <tr><td><code>ruled</code></td><td>角丸なし、上下 8px、下罫</td>
+      <tr><td><code>ruled</code></td><td>角丸なし、上下 8px、下罫。選択で左2pxの線</td>
           <td>一覧。<code>surface="bleed"</code> の中に敷き詰める</td></tr>
     </table>
   </div>
@@ -80,32 +80,25 @@
   </div>
 
   <div class="group">
-    <h2>★A/B: 選択行の左の線（保留・2026-08-20）</h2>
+    <h2>選択のしるし（★確定 2026-08-20）</h2>
     <p class="note">
-      palette-spec §10 は「選択下地 + 左端2pxのアクセント線」（色だけに頼らない）と
-      書いていたが、実装は下地のみ。<strong>実物を並べて決める。</strong>
-      線は仮に <code>style</code> 直書きで出している（採用したら Row が持つ）。
+      A/B を実物で並べて判定した。<strong>形で決まる —— 値を足す必要はない。</strong>
+      既定の行は角丸で浮いていて、まわりの余白が既に区別を助けるので下地だけ。
+      <code>ruled</code> は敷き詰めた一覧で下地だけだと目が滑るので、
+      <strong>左2pxのアクセント線</strong>が付く（直角なので線が上下の罫まで走る）。
     </p>
     <div class="demo">
-      <span class="demo-label">A —— 下地のみ（いまの実装）</span>
+      <span class="demo-label">既定 —— 下地のみ</span>
       <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
         <div data-suisou-row>ふつうの行</div>
         <div data-suisou-row aria-selected="true">選ばれている行</div>
         <div data-suisou-row="neutral" aria-selected="true">選ばれている行（neutral）</div>
       </div>
-      <span class="demo-label">B —— 下地 + 左2pxのアクセント線（仕様の記述）</span>
-      <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
-        <div data-suisou-row>ふつうの行</div>
-        <div data-suisou-row aria-selected="true"
-             style="box-shadow: inset 2px 0 0 var(--suisou-accent)">選ばれている行</div>
-        <div data-suisou-row="neutral" aria-selected="true"
-             style="box-shadow: inset 2px 0 0 var(--suisou-accent)">選ばれている行（neutral）</div>
-      </div>
-      <span class="demo-label">B' —— ruled でも見る（bleed の中）</span>
+      <span class="demo-label">ruled —— 下地 + 左2pxのアクセント線</span>
       <div data-suisou-surface="panel bleed" data-suisou-layout="stack">
         <div data-suisou-row="ruled">ふつうの行</div>
-        <div data-suisou-row="ruled" aria-selected="true"
-             style="box-shadow: inset 2px 0 0 var(--suisou-accent)">選ばれている行</div>
+        <div data-suisou-row="ruled" aria-selected="true">選ばれている行</div>
+        <div data-suisou-row="ruled neutral" aria-selected="true">選ばれている行（neutral）—— 下地は明るさだけ、色は線1本</div>
         <div data-suisou-row="ruled">ふつうの行</div>
       </div>
     </div>
