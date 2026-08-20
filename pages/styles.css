@@ -298,8 +298,11 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 
 .muted { color: var(--suisou-text-sub); }
 
-/* ══ ★一時的：prose の見出しの罫 A/B ══════════
-   判断が済んだら、この節と content/prose.html の A/B の節をまとめて消す。 */
+/* ══ ★一時的：prose の見出しの罫 比較 ════════
+   判断が済んだら、この節と content/prose.html の比較の節をまとめて消す。
+   A（実装済み）は素の [data-suisou-prose] なので、ここには B 以降だけ書く。 */
+
+/* B … pickker のまま。アクセント色・二重の罫・6px・字下げ */
 .prose-b :where(h2) {
   border-left: 6px solid var(--suisou-accent);
   border-bottom: 1px solid var(--suisou-line-weak);
@@ -308,4 +311,25 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 .prose-b :where(h4) {
   border-left: 3px solid var(--suisou-accent);
   padding-left: var(--suisou-space-2);
+}
+
+/* C … 下罫だけ。左端は揃う。GitHub の README がこの形 */
+.prose-c :where(h2) {
+  border-bottom: 1px solid var(--suisou-line-weak);
+  padding-bottom: var(--suisou-space-1);
+}
+
+/* D … 上罫。「ここから次の節」を示す。見出しは前の話題の終わりではなく
+       次の内容の頭なので、線を上に置く方が意味が正確 */
+.prose-d :where(h2) {
+  border-top: 1px solid var(--suisou-line-weak);
+  padding-top: var(--suisou-space-3);
+}
+
+/* E … 左罫をぶら下げる。罫は本文の左端より外に出るので、
+       見出しの文字は本文と揃う。太さは既存の3px、色は line-strong */
+.prose-e :where(h2) {
+  border-left: 3px solid var(--suisou-line-strong);
+  padding-left: var(--suisou-space-2);
+  margin-left: calc(-1 * (3px + var(--suisou-space-2)));
 }
