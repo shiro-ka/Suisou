@@ -91,8 +91,10 @@
           <td>ブラウザ既定のまま。差し替えるには背景画像か
               <code>appearance: none</code> が要り、色の直書きに近づく</td></tr>
       <tr><td>checkbox / radio</td>
-          <td>別の部品になる。作例では <code>accent-color</code> だけ当てて逃げている
-              （<code>.demo-check</code>）</td></tr>
+          <td>解決済み。部品にしない ——
+              <code>accent-color</code> が根（<code>base.css</code>）に1行あれば、
+              継承でネイティブの checkbox / radio / range / progress 全部に届く。
+              <strong>ブラウザが描いてくれるものを奪わない</strong></td></tr>
       <tr><td>大きさの段</td>
           <td>14px 固定。作例では1種類しか要らなかった</td></tr>
     </table>
