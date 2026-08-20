@@ -58,6 +58,14 @@
   background: var(--suisou-bg);
   color: var(--suisou-text-main);
 
+  /* ネイティブの部品（checkbox / radio / range / progress）の色。
+     継承するプロパティなので根で1回書けば全部に届く。
+     部品を作る必要が無い ―― ブラウザが描いてくれるものを奪わない。
+     ★チェックの色（レの字）はブラウザが下地から自動で決める。
+       未使用のまま残っている on-accent トークンが本来やる仕事を、
+       ここではブラウザが肩代わりしている。 */
+  accent-color: var(--suisou-accent);
+
   /* スクロールバー。標準の2つは Firefox 64 / Chromium 121 / Safari 18.2 で
      出揃ったので ::-webkit-scrollbar は書かない（あちらは標準化されたことがない）。
      どちらも継承するプロパティなので、根で1回書けば全部の入れ物に届く。
