@@ -17,6 +17,7 @@ const slot = (name, scope = document) => scope.querySelector(`[data-slot="${name
 const PAGES = {
   palette:    { group: '土台', label: 'Palette',    enhance: enhancePalette },
   typography: { group: '土台', label: 'Typography', enhance: enhanceTypography },
+  tokens:     { group: '土台', label: 'Tokens', enhance: enhanceTokens },
   surface:    { group: '土台', label: 'Surface' },
   layout:     { group: '土台', label: 'Layout' },
   button:     { group: '部品', label: 'Button' },
@@ -184,6 +185,88 @@ function enhanceTypography(scope) {
     const note = row.dataset.note;
     row.children[2].textContent = metricsOf(row.children[1]) + (note ? `　${note}` : '');
   }
+}
+
+/* ── Tokens ─────────────────────────────────
+   値は書かない。宣言値は custom property から、解決後の px は実際に
+   その寸法を持つ要素を測って出す。rem なので、ブラウザの文字サイズ設定を
+   変えると右の px だけが動く ―― このページ自身がその証拠になる。 */
+
+const rootStyle = () => getComputedStyle(root);
+const declared = (token) => rootStyle().getPropertyValue(`--suisou-${token}`).trim();
+
+function pxOf(token) {
+  const probe = el('div');
+  probe.style.cssText =
+    `position:absolute;visibility:hidden;height:0;width:var(--suisou-${token})`;
+  document.body.append(probe);
+  const v = probe.getBoundingClientRect().width;
+  probe.remove();
+  return Math.round(v * 10) / 10;
+}
+
+function tokenRow(scope, token, sample, note) {
+  const row = el('div', 'tk-row');
+  row.append(el('div', 'tk-name', `--suisou-${token}`),
+             el('div', 'tk-val', declared(token)),
+             el('div', 'tk-px', note ?? `${pxOf(token)}px`));
+  const box = el('div', 'tk-sample');
+  box.append(sample);
+  row.append(box);
+  slot(scope).append(row);
+}
+
+function enhanceTokens() {
+  const t = themeOf(theme());
+  slot('summary').textContent =
+    `色以外のトークン。単位は rem で、名前の数字は「ルートが ${pxOf('size-16')}px のときの px」。`
+    + ' 左が宣言値、その右が解決後の実寸。ブラウザの文字サイズ設定を変えると右だけが動く。';
+
+  for (const n of [1, 2, 3, 4]) {
+    const bar = el('div', 'tk-bar');
+    bar.style.width = `var(--suisou-space-${n})`;
+    tokenRow('space', `space-${n}`, bar);
+  }
+
+  for (const [name, label] of [['radius-small', '行内コード'], ['radius', '面・ボタン・入力欄'],
+                               ['radius-pill', 'Avatar・Tag・見出しの帯']]) {
+    const box = el('div', 'tk-round', label);
+    box.style.borderRadius = `var(--suisou-${name})`;
+    tokenRow('radius', name, box);
+  }
+
+  const ICON = 'M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0';
+  for (const name of ['icon', 'icon-small']) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('data-suisou-icon', name === 'icon-small' ? 'small' : '');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', ICON);
+    svg.append(path);
+    tokenRow('icon', name, svg);
+  }
+
+  for (const [name, use] of [['motion-fast', '色だけ動くもの'], ['motion', '現れる・消えるもの']]) {
+    const box = el('div', 'tk-motion', 'カーソルを乗せる');
+    box.style.transitionDuration = `var(--suisou-${name})`;
+    tokenRow('motion', name, box, use);
+  }
+  const ease = el('div', 'tk-motion', 'カーソルを乗せる');
+  ease.style.transitionDuration = 'var(--suisou-motion)';
+  tokenRow('motion', 'ease', ease, 'イージング');
+
+  for (const [name, sample] of [['font', '水槽 Suisou — あいうえお ABCDEfg'],
+                                ['mono', 'FLOOR["hover"] = 0.03']]) {
+    const box = el('div', null, sample);
+    box.style.fontFamily = `var(--suisou-${name})`;
+    tokenRow('misc', name, box, '書体');
+  }
+  const ring = el('button', 'tk-focus', 'Tab で辿ると輪が出る');
+  ring.type = 'button';
+  tokenRow('misc', 'focus', ring, 'アクセント色と同じ');
 }
 
 /* ── 差し替え ───────────────────────────────── */

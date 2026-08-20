@@ -1,0 +1,72 @@
+<!-- Tokens。値は app.js が computed から読む -->
+<section class="page">
+  <h1>Tokens</h1>
+  <p class="note" data-slot="summary"></p>
+
+  <div class="group">
+    <h2>余白</h2>
+    <p class="note">
+      並びのすきま・部品の内側の余白はすべてこの4段。
+      <code>layout</code> の既定は <code>space-2</code> で、
+      <strong>すきまは焼き込んである</strong>（毎回選ばない）。
+    </p>
+    <div class="demo" data-slot="space"></div>
+  </div>
+
+  <div class="group">
+    <h2>角丸</h2>
+    <p class="note">
+      ★<strong>太さではなく「対象の高さ」で選ぶ。</strong>
+      8px は高さ 32px 前後の部品に合わせた値で、高さ 20px の行内コードに当てると
+      <strong>高さの4割が丸まってカプセルに見え、Tag と見分けがつかなくなる</strong>。
+    </p>
+    <div class="demo" data-slot="radius"></div>
+  </div>
+
+  <div class="group">
+    <h2>アイコン</h2>
+    <p class="note">
+      部品の中の <code>&lt;svg&gt;</code> は部品が寸法を持つので、
+      この値を書くのは<strong>単独で置くとき</strong>だけ（<code>Icon</code> を見る）。
+    </p>
+    <div class="demo" data-slot="icon"></div>
+  </div>
+
+  <div class="group">
+    <h2>モーション</h2>
+    <p class="note">
+      決め方は「<strong>動く距離が大きいほど長くする</strong>」。
+      Suisou は面を塗らず罫で示すので<strong>位置が動く要素がほとんど無く</strong>、
+      色だけが変わる。だから速い方に倒してある。
+      <br>
+      ★<strong>焦点の輪は動かさない。</strong>キーボード操作では即座に出てほしいため。
+      <br>
+      ★<code>prefers-reduced-motion</code> は<strong>このトークンを潰すだけ</strong>で効く。
+      全部品がトークン経由で時間を取っているので、<code>*</code> も
+      <code>!important</code> も要らない。
+    </p>
+    <div class="demo" data-slot="motion"></div>
+  </div>
+
+  <div class="group">
+    <h2>書体と焦点</h2>
+    <div class="demo" data-slot="misc"></div>
+  </div>
+
+  <div class="group">
+    <h2>未決</h2>
+    <table data-suisou-table="tight">
+      <tr><th>項目</th><th>状況</th></tr>
+      <tr><td>余白の段</td>
+          <td>4 / 8 / 16 / 24 の4段。<strong>まだ実測で確定していない</strong> ——
+              UI アンカーの実測 8px を基準に仮置きしたもの。
+              prose の縦のリズムはこの4段で足りた</td></tr>
+      <tr><td>大きい余白</td>
+          <td>32 以上を持たない。記事の節と節の間で要るかと思ったが、
+              「見出しの前を広く、後ろを詰める」を先に当てたら 24 で足りた</td></tr>
+      <tr><td>モーションの3段目</td>
+          <td>持たない。パネルがスライドするような<strong>位置が動くもの</strong>が
+              出てきたら 300ms 前後を足す</td></tr>
+    </table>
+  </div>
+</section>
