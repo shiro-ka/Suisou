@@ -108,6 +108,7 @@ def render():
     L.append("")
     L.append("- `dist/suisou.css` … 全部入り（テーマ切替できる）／"
              "`dist/suisou-<theme>-<accent>.css` … 選んだ組だけ")
+    L.append("- `/v1/…` … v1 系の最新。破壊的変更で凍結され、次の版が生まれる")
     L.append("- `/v/<sha7>/…` … 固定 URL。動かない")
     L.append("- **フォントは利用側が読み込む**。既定の書体は Zen Maru Gothic の 400 / 500 / 700")
     L.append("- `helpers.css` は契約外（任意。他にユーティリティが無いときだけ）。"

@@ -12,7 +12,7 @@
 
 | 属性 | 値 |
 |---|---|
-| `data-suisou-accent` | `clown` `turtle` `teal` `jelly` `blue` `indigo` `coral` `magenta` `pink` |
+| `data-suisou-accent` | `clown` `turtle` `teal` `jelly` `blue` `indigo` `coral` `magenta` `seal` |
 | `data-suisou-avatar` | `small` `large` |
 | `data-suisou-button` | `outline` `plain` `danger` `neutral` `icon` `block` |
 | `data-suisou-button-group` | （値なし） |
@@ -39,7 +39,7 @@
 - 値は空白区切りで併記できる（`~=` で当たる）
 - `layout` の値には `md:` / `lg:` の接頭辞版がある（768px / 1024px、min-width）
 - `theme` と `accent` は**必ず同じ要素に書く**（複合選択子でしか定義されない）
-- `accent` のうち仮名（まだ生き物になっていない）: `teal` `blue` `indigo` `magenta` `pink`。確定: `clown` `turtle` `jelly` `coral`
+- `accent` のうち仮名（まだ生き物になっていない）: `teal` `blue` `indigo` `magenta`。確定: `clown` `turtle` `jelly` `coral` `seal`
 
 ## 借りる標準属性（状態）
 
@@ -65,6 +65,7 @@
 ## 配布
 
 - `dist/suisou.css` … 全部入り（テーマ切替できる）／`dist/suisou-<theme>-<accent>.css` … 選んだ組だけ
+- `/v1/…` … v1 系の最新。破壊的変更で凍結され、次の版が生まれる
 - `/v/<sha7>/…` … 固定 URL。動かない
 - **フォントは利用側が読み込む**。既定の書体は Zen Maru Gothic の 400 / 500 / 700
 - `helpers.css` は契約外（任意。他にユーティリティが無いときだけ）。`suisou.data.js` は配布物ではない
