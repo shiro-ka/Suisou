@@ -1,0 +1,42 @@
+<!-- Banner。全部静的 -->
+<section class="page">
+  <h1>Banner</h1>
+  <p class="note">
+    フォームの結果・操作の結果を、<strong>その場に置いて知らせる</strong>箱。
+    意味色の枠 + 意味色の下地 + 本文の3点セット。色の組は solve.py の
+    <code>PAIRS</code>（バナーの文字 4.5:1 / バナーの枠 4.5:1）が守っている ——
+    この部品より先に契約が存在した。
+  </p>
+
+  <div class="group">
+    <h2>種類 —— 1つ選ぶ（必須）</h2>
+    <p class="note">
+      裸の <code>data-suisou-banner</code> は無い ——「知らせる」と言っておいて
+      何の知らせか言わないことはできない。surface が段を必須にしているのと同じ理屈。
+    </p>
+    <div class="demo">
+      <div data-suisou-layout="stack">
+        <p data-suisou-banner="error">メールアドレスかパスワードが違います。</p>
+        <p data-suisou-banner="success">確認メールを送信しました。</p>
+        <p data-suisou-banner="warning">この操作は取り消せません。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>文字は text-main</h2>
+    <p class="note">
+      意味色の文字は<strong>枠に使っている</strong>。本文まで意味色にすると長文が読みにくい ——
+      色は縁が言う、中身は普通に読む。
+    </p>
+  </div>
+
+  <div class="group">
+    <h2>意味は現場が書く</h2>
+    <p class="note">
+      動的に出す帯は、エラーなら <code>role="alert"</code>、成功なら
+      <code>role="status"</code> を書かないと読み上げに伝わらない（Spinner と同じ考え方）。
+    </p>
+    <pre data-suisou-code><code>&lt;p data-suisou-banner="error" role="alert"&gt;{form.error}&lt;/p&gt;</code></pre>
+  </div>
+</section>
