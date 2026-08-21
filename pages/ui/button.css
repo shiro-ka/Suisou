@@ -123,8 +123,18 @@
 /* 幅いっぱい。全幅のボタンは実質「メニューの行」なので左に寄せる。
    中身ぴったりの幅では余りが無く justify-content は効かないため、
    基本形の center が顔を出すのは block と icon のときだけ。
-   中央寄せの全幅 CTA が要るようになったら値を足す（3回書いてから）。 */
-[data-suisou-button~="block"] { display: flex; width: 100%; justify-content: flex-start; }
+   中央寄せの全幅 CTA が要るようになったら値を足す（3回書いてから）。
+
+   ★余白は基本形（4/8）より広い縦8・横16。メニューの行は指で押す・縦に連なる
+     ものなので詰めない。type-spec §7 の暫定案「UI は縦8/横16」と同じ値。
+     wixdex のサイドバーを基本形の余白で組んだら「詰まりすぎ」だった（2026-08-21、
+     元実装は縦12/横16）。縦8 + stack の隙間8 で行送りが元実装とほぼ揃う。 */
+[data-suisou-button~="block"] {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  padding: var(--suisou-space-2) var(--suisou-space-3);
+}
 
 /* ── 無効 ───────────────────────────────── */
 
