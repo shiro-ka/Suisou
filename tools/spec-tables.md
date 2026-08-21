@@ -58,16 +58,11 @@
 | `error-active` on `error-surface` | 4.31:1 | 3.0 | hadal/clown | danger ボタン(押下) |
 | `text-main` on `overlay` | 6.53:1 | 4.5 | shoal/clown | 本文 |
 | `text-main` on `selected-surface` | 6.62:1 | 4.5 | shoal/teal | 選択行の文字 |
-| `wixoss-black` on `overlay` | 4.45:1 | 3.0 | shoal/clown | ドメイン色の図像 |
 | `text-main` on `selected-neutral-surface` | 6.82:1 | 4.5 | shoal/clown | 選択行(中立)の文字 |
-| `wixoss-blue` on `overlay` | 4.57:1 | 3.0 | shoal/clown | ドメイン色の図像 |
-| `wixoss-red` on `overlay` | 4.59:1 | 3.0 | hadal/clown | ドメイン色の図像 |
 | `text-main` on `error-surface` | 6.95:1 | 4.5 | shoal/clown | バナーの文字 |
 | `line-weak` on `hover-surface` | 2.37:1 | 1.5 | fjord/clown | hover 行の装飾罫 |
-| `wixoss-green` on `overlay` | 4.84:1 | 3.0 | shoal/clown | ドメイン色の図像 |
 | `line-strong` on `hover-surface` | 4.87:1 | 3.0 | hadal/clown | hover 行の入力枠 1.4.11 |
 | `accent` on `panel` | 6.25:1 | 3.0 | shoal/magenta | UI 部品 |
-| `wixoss-white` on `overlay` | 6.46:1 | 3.0 | shoal/clown | ドメイン色の図像 |
 | `text-main` on `hover-surface` | 11.97:1 | 4.5 | shoal/clown | hover 行の文字 |
 
 ### 色相カテゴリのリスク（ΔE では測れない）
