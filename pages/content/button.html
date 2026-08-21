@@ -114,9 +114,22 @@
         </div>
       </div>
     </div>
+    <div class="demo">
+      <span class="demo-label">入力欄も飲み込める —— 検索バーが部品の組み合わせだけで組める</span>
+      <div data-suisou-layout="row wrap">
+        <div data-suisou-button-group>
+          <button data-suisou-button="icon" type="button" aria-label="検索"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg></button>
+          <input data-suisou-field placeholder="カード名で検索">
+          <button data-suisou-button="icon" type="button" aria-label="クリア"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg></button>
+        </div>
+      </div>
+    </div>
     <p class="note">
       親が罫と角丸を持ち、<code>overflow</code> で子を切る。子は角丸を持たないので
       何個並んでも破綻しない。wixdex の検索欄がこの作りだった。
+      <br>
+      <strong>部品が2つ以上繋がったら、界面（枠・輪・角丸）は入れ物の仕事。</strong>
+      中の <code>field</code> は素肌になり、焦点の輪は入力中にグループ全体へ出る。
     </p>
   </div>
 

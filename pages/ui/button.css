@@ -166,3 +166,27 @@
 [data-suisou-button-group] > [data-suisou-button] + [data-suisou-button] {
   border-left-color: var(--suisou-line-weak);
 }
+
+/* ★入力欄も飲み込める（2026-08-21。まさに wixdex の検索欄で要った）。
+
+     <div data-suisou-button-group>
+       <button data-suisou-button>…</button>
+       <input data-suisou-field placeholder="検索">
+       <button data-suisou-button>…</button>
+     </div>
+
+   子の field は素肌になり、枠と焦点の輪は親が受け持つ ―― 部品が2つ以上
+   繋がったら、界面（枠・輪・角丸）は入れ物の仕事で、子は中身だけを持つ。
+   入力欄は伸びる係も兼ねる（連結の中で余った幅は文字を書く場所に回る）。 */
+[data-suisou-button-group] > [data-suisou-field] {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+[data-suisou-button-group] > [data-suisou-field]:focus-visible { outline: none; }
+[data-suisou-button-group]:has(> [data-suisou-field]:focus-visible) {
+  outline: var(--suisou-focus);
+  outline-offset: 1px;
+}
