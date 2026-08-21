@@ -14,7 +14,7 @@
 |---|---|
 | `data-suisou-accent` | `clown` `turtle` `teal` `jelly` `blue` `indigo` `coral` `magenta` `seal` |
 | `data-suisou-avatar` | `small` `large` |
-| `data-suisou-button` | `outline` `plain` `danger` `neutral` `icon` `block` |
+| `data-suisou-button` | `outline` `plain` `danger` `neutral` `icon` `block` `wide` |
 | `data-suisou-button-group` | （値なし） |
 | `data-suisou-code` | `block` |
 | `data-suisou-field` | `block` |
