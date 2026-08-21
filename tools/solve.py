@@ -93,6 +93,20 @@ SEM_L = {
     "dark": {"error":.73, "warning":.82, "success":.76},
     "dim":  {"error":.85, "warning":.85, "success":.83},
 }
+# ドメイン色 … 対象物側で固定され、作者が動かせない色（palette-spec §1 の第4分類）。
+#   H は対象物から来る（wixoss は WIXOSS のカード5色。wixdex が目で当てた
+#   Tailwind 近似色を OKLCH に逆算して H を読んだ）。L は視認用に階段ごとに固定、
+#   C は意味色と同じ maxC × sem_ratio ―― テーマのトーンに従い、意味色と同格に立つ。
+#   ★意味色と違い「意味」を持たない。エラーの赤とカードの赤は同じ色相でも別トークン。
+#   値は (H, 彩度比)。彩度比は maxC に掛ける割合で、ほとんどの色は 1.0（振り切る）。
+#   白だけ 0.36 ―― 白は「彩度が無いこと」がアイデンティティで、上限まで振ると
+#   ただの黄色になる（実際になった。#fce92f）。0.36 は wixdex の近似色の実測比。
+DOMAIN_HUE = {"wixoss": {"white": (103, 0.36), "red": (22, 1.0), "blue": (255, 1.0),
+                          "green": (152, 1.0), "black": (306, 1.0)}}
+DOMAIN_L = {
+    "dark": {"white": .92, "red": .73, "blue": .74, "green": .76, "black": .74},
+    "dim":  {"white": .95, "red": .85, "blue": .84, "green": .84, "black": .84},
+}
 # テーマ名は水域。深いほど光が届かず、面の色が薄くなる。
 # 階段の名前（dark / dim）とは別物。shoal が dim 階段を使うだけで、名前は衝突しない。
 THEMES = [
@@ -147,6 +161,10 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     ("error","error-surface",4.5,"バナーの枠 / danger ボタンの文字"),
     ("error-active","error-surface",3.0,"danger ボタン(押下)"),
     ("error-active","overlay",3.0,"danger ボタン(押下)"),
+] + [
+    # ドメイン色はアイコン・図像として面に載る。非文字の 3.0（1.4.11）で縛る
+    (f"{dom}-{n}", "overlay", 3.0, "ドメイン色の図像")
+    for dom, hues in DOMAIN_HUE.items() for n in hues
 ]
 
 # ============================================================ 導出
@@ -218,6 +236,10 @@ def tokens(t, acc_name, acc_h):
     o["selected-surface"] = (D["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h)
     o["selected-neutral-surface"] = (D["tint"], t["cs"], t["h"])       # 中立。アクセントに依存しない
     sr = sem_ratio(t["ar"])
+    for dom, hues in DOMAIN_HUE.items():
+        for n, (h, cr) in hues.items():
+            L = DOMAIN_L[t["ladder"]][n]
+            o[f"{dom}-{n}"] = (L, maxC(L, h) * cr * sr, h)
     for n, h in SEM_HUE.items():
         L = SEM_L[t["ladder"]][n]
         o[n] = (L, maxC(L, h) * sr, h)
@@ -347,7 +369,9 @@ THEME_TOKENS = ["bg", "panel", "item", "overlay", "hover-surface", "selected-neu
                 "scrim",
                 "error", "warning", "success",
                 "error-active",
-                "error-surface", "warning-surface", "success-surface"]
+                "error-surface", "warning-surface", "success-surface"] + [
+                # ドメイン色。テーマ層（アクセントに依存しない）
+                f"{dom}-{n}" for dom, hues in DOMAIN_HUE.items() for n in hues]
 ACCENT_TOKENS = ["accent", "accent-active", "focus-ring", "selected-surface"]
 
 # 属性が無いときの既定。色ではなく「どれを既定に見せるか」の選択なので、ここに置く。
