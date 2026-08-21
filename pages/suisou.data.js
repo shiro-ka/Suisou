@@ -35,8 +35,8 @@ const SUISOU = {
    "name": "trench",
    "jp": "海溝",
    "ladder": "dark",
-   "h": 265,
-   "cs": 0.018,
+   "h": 262,
+   "cs": 0.044,
    "available": [
     "clown",
     "turtle",
@@ -59,15 +59,15 @@ const SUISOU = {
     "seal"
    ],
    "warnings": {
-    "jelly": "選択下地が面と近い ΔE 0.050（目標 0.055）"
+    "jelly": "選択下地が面と近い ΔE 0.046（目標 0.055）"
    }
   },
   {
    "name": "fjord",
    "jp": "峡湾",
    "ladder": "dark",
-   "h": 272,
-   "cs": 0.03,
+   "h": 278,
+   "cs": 0.044,
    "available": [
     "clown",
     "turtle",
@@ -83,15 +83,14 @@ const SUISOU = {
     "clown",
     "turtle",
     "teal",
+    "jelly",
+    "blue",
+    "indigo",
     "coral",
     "magenta",
     "seal"
    ],
-   "warnings": {
-    "jelly": "選択下地が面と近い ΔE 0.051（目標 0.055）",
-    "blue": "accent が text-sub と近い ΔE 0.067",
-    "indigo": "accent が text-sub と近い ΔE 0.067"
-   }
+   "warnings": {}
   },
   {
    "name": "shoal",
