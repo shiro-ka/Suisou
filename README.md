@@ -9,6 +9,38 @@ UI だけでなく、ブログや規約のような長文コンテンツも適�
 
 **プレビュー** … https://shiro-ka.github.io/Suisou/
 
+## 使う
+
+最小の1枚。`<link>` 1本と `data-suisou-root`、あとは属性で組む。
+
+```html
+<!DOCTYPE html>
+<html lang="ja" data-suisou-theme="hadal" data-suisou-accent="clown">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- フォントは利用側が読み込む（Suisou は書体を運ばない） -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://shiro-ka.github.io/Suisou/v1/suisou.css">
+</head>
+<body data-suisou-root>
+  <main data-suisou-layout="stack container">
+    <div data-suisou-surface="panel">
+      <button data-suisou-button="outline">はじめる</button>
+    </div>
+  </main>
+</body>
+</html>
+```
+
+- **URL は3系統**。普段は `/v1/`（v1 系の最新。直せば自動で行き渡る）。
+  見た目を凍結したい現場は `/v/<sha7>/`（固定。動かない）。`/dist/` は常に最新
+- **テーマとアクセントは必ず同じ要素に書く**。片方だけだと噛み合わない色が静かに出る
+- 切替が要らなければ `suisou-<theme>-<accent>.css`（1組だけ。半分の重さ）
+- 属性・値・トークンの全一覧は [CONTRACT.md](CONTRACT.md)
+
 ## このリポジトリの掟
 
 **色を決めるのは `tools/solve.py` だけ。** CSS にも仕様書にも色の値を手で書きません。

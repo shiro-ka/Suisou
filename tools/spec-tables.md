@@ -29,12 +29,12 @@
 
 全部の組み合わせを CSS に出している。下の「推奨しない」も選べる ―― 見づらいだけで壊れてはいないため。
 
-- **hadal** … clown, turtle, teal, jelly, blue, indigo, coral, magenta, pink
-- **trench** … clown, turtle, teal, blue, indigo, coral, magenta, pink
+- **hadal** … clown, turtle, teal, jelly, blue, indigo, coral, magenta, seal
+- **trench** … clown, turtle, teal, blue, indigo, coral, magenta, seal
   - ★推奨しない: jelly（選択下地が面と近い ΔE 0.050（目標 0.055））
-- **fjord** … clown, turtle, teal, coral, magenta, pink
+- **fjord** … clown, turtle, teal, coral, magenta, seal
   - ★推奨しない: jelly（選択下地が面と近い ΔE 0.051（目標 0.055）） / blue（accent が text-sub と近い ΔE 0.067） / indigo（accent が text-sub と近い ΔE 0.067）
-- **shoal** … clown, turtle, teal, jelly, blue, indigo, coral, magenta, pink
+- **shoal** … clown, turtle, teal, jelly, blue, indigo, coral, magenta, seal
 
 ### コントラスト検証（全テーマ × 使用可能アクセント中の最悪値）
 
@@ -69,7 +69,7 @@
 
 | アクセント | 意味色 | 色相差 |
 |---|---|---|
-| `pink` | `error` | 27度 |
+| `seal` | `error` | 27度 |
 | `turtle` | `warning` | 32度 |
 | `clown` | `error` | 33度 |
 | `turtle` | `success` | 33度 |

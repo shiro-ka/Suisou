@@ -309,7 +309,7 @@
   --suisou-selected-surface: oklch(33.00% 0.0581 332);
   --suisou-selected-surface-hex: "#472a43";
 }
-[data-suisou-theme="hadal"][data-suisou-accent="pink"] {
+[data-suisou-theme="hadal"][data-suisou-accent="seal"] {
   --suisou-accent: oklch(74.00% 0.1535 355);
   --suisou-accent-hex: "#f47eb0";
   --suisou-accent-active: oklch(71.00% 0.1775 355);
@@ -401,7 +401,7 @@
   --suisou-selected-surface: oklch(33.00% 0.0585 332);
   --suisou-selected-surface-hex: "#472a43";
 }
-[data-suisou-theme="trench"][data-suisou-accent="pink"] {
+[data-suisou-theme="trench"][data-suisou-accent="seal"] {
   --suisou-accent: oklch(74.00% 0.1174 355);
   --suisou-accent-hex: "#e58bae";
   --suisou-accent-active: oklch(71.00% 0.1357 355);
@@ -495,7 +495,7 @@
   --suisou-selected-surface: oklch(33.00% 0.0624 332);
   --suisou-selected-surface-hex: "#482944";
 }
-[data-suisou-theme="fjord"][data-suisou-accent="pink"] {
+[data-suisou-theme="fjord"][data-suisou-accent="seal"] {
   --suisou-accent: oklch(74.00% 0.1084 355);
   --suisou-accent-hex: "#e18eae";
   --suisou-accent-active: oklch(71.00% 0.1253 355);
@@ -586,7 +586,7 @@
   --suisou-selected-surface: oklch(44.00% 0.0587 332);
   --suisou-selected-surface-hex: "#664661";
 }
-[data-suisou-theme="shoal"][data-suisou-accent="pink"] {
+[data-suisou-theme="shoal"][data-suisou-accent="seal"] {
   --suisou-accent: oklch(80.00% 0.0779 355);
   --suisou-accent-hex: "#e7a9c0";
   --suisou-accent-active: oklch(77.00% 0.0926 355);
