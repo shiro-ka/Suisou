@@ -165,7 +165,6 @@ body { margin: 0; overflow: hidden; }   /* ページ全体はスクロールし�
 /* 基準を満たさない組。押せるが、破線で「保証していない」ことを示す */
 .accent-chip.is-warned { border-style: dashed; }
 /* 意味色と色相が近い色。使えるが、意味を色だけに載せてはいけない */
-.accent-chip.is-risky { border-style: dotted; }
 .accent-chip:disabled {
   color: var(--suisou-text-disabled);
   border-color: var(--suisou-line-weak);
