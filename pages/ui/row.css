@@ -35,6 +35,7 @@
 [data-suisou-row]:hover {
   background: var(--suisou-hover-surface);
   --suisou-line-weak: var(--suisou-line-weak-hover);
+  --suisou-line-strong: var(--suisou-line-strong-hover);
 }
 
 /* 行そのものが focusable な現場（tabindex を振った一覧など）向け。
@@ -46,6 +47,7 @@
 [data-suisou-row][aria-current]:not([aria-current="false"]) {
   background: var(--suisou-selected-surface);
   --suisou-line-weak: var(--suisou-line-weak-selected);
+  --suisou-line-strong: var(--suisou-line-strong-selected);
 }
 
 /* 色を使わず、明るさだけで示す。一覧の中で色が主張しすぎる場面用 */
@@ -53,6 +55,7 @@
 [data-suisou-row~="neutral"][aria-current]:not([aria-current="false"]) {
   background: var(--suisou-selected-neutral-surface);
   --suisou-line-weak: var(--suisou-line-weak-selected);
+  --suisou-line-strong: var(--suisou-line-strong-selected);
 }
 
 /* 連なる形。角丸を捨てて罫で区切る。最後の1本は引かない */

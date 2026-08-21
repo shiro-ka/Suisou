@@ -143,8 +143,10 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     ("line-weak-panel","panel",1.5,"装飾罫"),
     ("line-weak-item","item",1.5,"装飾罫"),
     ("line-weak-overlay","overlay",1.5,"装飾罫"),
-    ("line-strong","overlay",3.0,"入力枠 1.4.11"),
-    ("line-strong","item",3.0,"入力枠 1.4.11"),
+    ("line-strong","bg",3.0,"入力枠 1.4.11"),
+    ("line-strong-panel","panel",3.0,"入力枠 1.4.11"),
+    ("line-strong-item","item",3.0,"入力枠 1.4.11"),
+    ("line-strong-overlay","overlay",3.0,"入力枠 1.4.11"),
     ("text-sub","overlay",4.5,"本文"),
     ("text-main","overlay",4.5,"本文"),
     ("accent","overlay",3.0,"UI 部品"),
@@ -153,13 +155,13 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     ("text-main","selected-surface",4.5,"選択行の文字"),
     ("text-main","hover-surface",4.5,"hover 行の文字"),
     ("line-weak-hover","hover-surface",1.5,"hover 行の装飾罫"),
-    ("line-strong","hover-surface",3.0,"hover 行の入力枠 1.4.11"),
+    ("line-strong-hover","hover-surface",3.0,"hover 行の入力枠 1.4.11"),
     # ★選択下地の上に載るもの。ここが長らく未検査で、掟2 の違反が隠れていた。
     #   選択行の中の Tag の罫がまさに line-weak on selected-surface。
     ("line-weak-selected","selected-surface",1.5,"選択行の装飾罫"),
-    ("line-strong","selected-surface",3.0,"選択行の入力枠 1.4.11"),
+    ("line-strong-selected","selected-surface",3.0,"選択行の入力枠 1.4.11"),
     ("line-weak-selected","selected-neutral-surface",1.5,"選択行(中立)の装飾罫"),
-    ("line-strong","selected-neutral-surface",3.0,"選択行(中立)の入力枠 1.4.11"),
+    ("line-strong-selected","selected-neutral-surface",3.0,"選択行(中立)の入力枠 1.4.11"),
     ("text-main","selected-neutral-surface",4.5,"選択行(中立)の文字"),
     ("error","overlay",4.5,"状態文言"),
     ("warning","overlay",4.5,"状態文言"),
@@ -209,9 +211,14 @@ def resolve_hover(t):
 # 暗い面だけがそこまで下りてくる。丸め（L を小数4桁で出す）で下限を割らない
 # ぶんの余裕も兼ねる。
 LINE_WEAK_RATIO = 1.51
+# 機能の線（入力枠・連結の器・面の縁）の狙い。WCAG 1.4.11 の 3:1 が下限で、
+# 3.10 は現行 overlay の実測値 ―― 装飾罫と同じく「一番手前の面は据え置き、
+# 暗い面だけが下りてくる」形にする。下限ぎりぎりではなく 0.10 の余裕を持たせて
+# あるのは、L を小数4桁で出す丸めで 3.0 を割らないため。
+LINE_STRONG_RATIO = 3.10
 
-def resolve_line_weak(t, face_L):
-    """その面の上で LINE_WEAK_RATIO ちょうどになる罫の明度を返す。
+def resolve_line(t, face_L, ratio):
+    """その面の上で ratio ちょうどになる罫の明度を返す。
 
     ★装飾罫だけは「絶対の明度」ではなく「面からの差」で解く（2026-08-22）。
 
@@ -230,16 +237,16 @@ def resolve_line_weak(t, face_L):
       機能の線なので、下限を超えて見やすい側に振れているのは害ではない。
       揃えるのは「装飾」＝ 目を引いてはいけない線だけ。"""
     lo, hi = face_L, 1.0
-    for _ in range(40):
+    for _ in range(48):
         m = (lo + hi) / 2
-        if contrast((m, t["cs"], t["h"]), (face_L, t["cs"], t["h"])) < LINE_WEAK_RATIO:
+        if contrast((m, t["cs"], t["h"]), (face_L, t["cs"], t["h"])) < ratio:
             lo = m
         else:
             hi = m
-    return round(hi, 4)
+    return round(hi + 0.0005, 4)
 
-def resolve_line_weak_selected(t):
-    """選択行の下地の上で 1.51:1 を満たす罫。**全アクセント中の最悪値**で解く。
+def resolve_line_selected(t, ratio):
+    """選択行の下地の上で ratio を満たす罫。**全アクセント中の最悪値**で解く。
 
     選択の下地は2つある ―― 色つき（accent 色相 × 解いた C）と中立（面の C）。
     明度はどちらも tint で同じだが、色つきの方は彩度が乗るぶん輝度が上がるので、
@@ -258,7 +265,7 @@ def resolve_line_weak_selected(t):
     lo, hi = 0.0, 1.0
     for _ in range(48):
         m = (lo + hi) / 2
-        if (lum(m, t["cs"], t["h"]) + 0.05) / (worst_lum + 0.05) < LINE_WEAK_RATIO:
+        if (lum(m, t["cs"], t["h"]) + 0.05) / (worst_lum + 0.05) < ratio:
             lo = m
         else:
             hi = m
@@ -300,13 +307,16 @@ def tokens(t, acc_name, acc_h):
     o["scrim"]     = face(0.08, t)
     # 装飾罫は面ごと。既定（--suisou-line-weak）は根の面＝bg に合わせる。
     # 段の上に載ったときは surface.css がその段の値へ差し替える（CSS 変数は継承する）。
-    o["line-weak"] = face(resolve_line_weak(t, D["bg"]), t)
-    for st in SURFACES:
-        o[f"line-weak-{st}"] = face(resolve_line_weak(t, D[st]), t)
-    # 行の下地も「別の面」。選択・hover した行の中の罫は、その下地に合わせる。
-    # 選択の下地は色つき・中立の2つあるが明度はどちらも tint なので1つで足りる。
-    o["line-weak-hover"]    = face(resolve_line_weak(t, resolve_hover(t)), t)
-    o["line-weak-selected"] = face(resolve_line_weak_selected(t), t)
+    # ★罫は2本とも「面からの差」で解く。既定は根の面＝bg に合わせ、
+    #   段の上に載ったときは surface.css が、行の下地が変わったときは row.css が
+    #   その面の値へ差し替える（CSS 変数は継承する）。
+    #   選択の下地は色つき・中立の2つあるが明度はどちらも tint なので1つで足りる。
+    for name, ratio in (("line-weak", LINE_WEAK_RATIO), ("line-strong", LINE_STRONG_RATIO)):
+        o[name] = face(resolve_line(t, D["bg"], ratio), t)
+        for st in SURFACES:
+            o[f"{name}-{st}"] = face(resolve_line(t, D[st], ratio), t)
+        o[f"{name}-hover"]    = face(resolve_line(t, resolve_hover(t), ratio), t)
+        o[f"{name}-selected"] = face(resolve_line_selected(t, ratio), t)
     o["accent"]        = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
     o["accent-active"] = (D["accent"]+ACTIVE_DL, maxC(D["accent"]+ACTIVE_DL, acc_h) * t["ar"], acc_h)
     o["focus-ring"]    = o["accent"]
@@ -452,7 +462,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 THEME_TOKENS = ["bg", "panel", "item", "overlay", "hover-surface", "selected-neutral-surface",
                 "line-weak", "line-weak-panel", "line-weak-item", "line-weak-overlay",
                 "line-weak-hover", "line-weak-selected",
-                "line-strong", "text-disabled", "text-sub", "text-main",
+                "line-strong", "line-strong-panel", "line-strong-item", "line-strong-overlay",
+                "line-strong-hover", "line-strong-selected",
+                "text-disabled", "text-sub", "text-main",
                 "scrim",
                 "error", "warning", "success",
                 "error-active",
