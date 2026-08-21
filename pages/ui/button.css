@@ -160,13 +160,46 @@
 
 /* ── 連結 ───────────────────────────────────
    wixdex の検索欄がこの形。親が罫と角丸を持ち、overflow で子を切る。
-   子側に角丸を持たせないので、何個並んでも破綻しない。 */
+   子側に角丸を持たせないので、何個並んでも破綻しない。
+
+   既定は inline-flex ―― 中身ぴったりの幅で、文の途中や行の端に置ける。
+   幅いっぱいに使いたいときは even（下）。 */
 
 [data-suisou-button-group] {
   display: inline-flex;
   border: 1px solid var(--suisou-line-strong);
   border-radius: var(--suisou-radius);
   overflow: hidden;
+}
+
+/* ★等分（2026-08-22 昇格）。幅いっぱいに広げ、子を同じ幅で割る。
+
+     <div data-suisou-button-group="even">
+       <button data-suisou-button aria-pressed="true">ログイン</button>
+       <button data-suisou-button>新規登録</button>
+     </div>
+
+   タブ・セグメント・フィルタの升目。**5現場が同じ打ち消しを書いていた**
+   （wixdex の SearchArea / ShareModal / CardList / login / settings）。
+   3つの別名 —— .cell / .tab / 素の flex-1 —— に散っていたので
+   「同じ名前が3回」では数に見えず、需要で数えて初めて見つかった。
+
+   ★原因は現場ではなく部品の側にあった。既定が inline-flex なので、
+     幅いっぱいに使う現場は必ず display から打ち消さざるを得ない。
+     打ち消しが要る形は、部品が持っていない形。
+
+   ★子は flex-basis 0 で割る（1 1 auto ではなく）。auto だと中身の
+     文字数で幅が変わり、「すべて / 所持 / 未所持」が不揃いになる。
+     等分と言った以上、文字数に左右されない。
+   ★field と affix は除く。入力欄は余りを全部もらう係で、
+     飾り文字は中身ぴったりのまま ―― どちらも「等分」の対象ではない。 */
+[data-suisou-button-group~="even"] {
+  display: flex;
+  width: 100%;
+}
+[data-suisou-button-group~="even"] > [data-suisou-button] {
+  flex: 1 1 0;
+  min-width: 0;
 }
 [data-suisou-button-group] > [data-suisou-button] {
   border-radius: 0;
