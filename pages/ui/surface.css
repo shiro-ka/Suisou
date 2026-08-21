@@ -46,8 +46,9 @@
 
    ★段を上げたら装飾罫も差し替える（2026-08-22）。
 
-     --suisou-line-weak は「いま載っている面の上で 1.5:1 になる罫」で、
-     面ごとに値が違う（solve.py の resolve_line_weak）。段を上げた要素が
+     罫は2本とも「いま載っている面の上で決まった比になる線」で、面ごとに
+     値が違う（solve.py の resolve_line）。装飾罫は 1.51:1、機能の線
+     （入力枠・連結の器・面の縁）は 3.10:1。段を上げた要素が
      自分の中の既定を書き換えるので、**中に入る部品は何も知らなくていい**
      ―― Tag も Row も Code も表も、var(--suisou-line-weak) と書くだけで
      載っている面に合った濃さになる。CSS 変数が継承する性質をそのまま使う。
@@ -60,10 +61,12 @@
 [data-suisou-surface~="panel"] {
   background: var(--suisou-panel);
   --suisou-line-weak: var(--suisou-line-weak-panel);
+  --suisou-line-strong: var(--suisou-line-strong-panel);
 }
 [data-suisou-surface~="item"] {
   background: var(--suisou-item);
   --suisou-line-weak: var(--suisou-line-weak-item);
+  --suisou-line-strong: var(--suisou-line-strong-item);
 }
 [data-suisou-surface~="none"]  { background: transparent; }   /* 段を上げず、罫だけで囲う */
 
@@ -74,8 +77,9 @@
    後ろが操作できないことは面ではなく scrim（<dialog> の ::backdrop）が伝える。 */
 [data-suisou-surface~="overlay"] {
   background: var(--suisou-overlay);
-  border-color: var(--suisou-line-strong);
+  border-color: var(--suisou-line-strong-overlay);
   --suisou-line-weak: var(--suisou-line-weak-overlay);
+  --suisou-line-strong: var(--suisou-line-strong-overlay);
 }
 
 /* 後ろを塞ぐ膜。<dialog> にも popover にも同じ疑似要素があるので1行で足りる。
