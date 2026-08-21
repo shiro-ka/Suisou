@@ -1,0 +1,86 @@
+<!-- Spinner。全部静的 -->
+<section class="page">
+  <h1>Spinner</h1>
+  <p class="note">
+    <strong>いつ終わるか分からない</strong>ものを示す。終わりが分かるもの（アップロードの％など）は
+    ここではなく <code>&lt;progress value&gt;</code> —— 値を持てるなら標準の部品が正しい。
+  </p>
+
+  <div class="group">
+    <h2>形 —— 2つ</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-spinner</span>
+      <div data-suisou-layout="row">
+        <div data-suisou-spinner role="status" aria-label="読み込み中"></div>
+        <span data-suisou-text="s12 w400" class="muted">輪が回る。ボタンの中・一覧の末尾・画面の真ん中</span>
+      </div>
+      <span class="demo-label">data-suisou-spinner="bar"</span>
+      <div data-suisou-spinner="bar" role="status" aria-label="読み込み中"></div>
+      <span data-suisou-text="s12 w400" class="muted">線が流れる。面の上辺や見出しの下など、横に長い場所</span>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>大きさ —— 現場のもの</h2>
+    <p class="note">
+      既定はアイコンと同じ 20px。<code>--suisou-spinner</code> を上書きして変える。
+      <strong>線の太さは大きさから導く</strong>（寸法の 1/10）ので、どの寸法でも輪の見え方が揃う。
+      太さを固定すると、大きくしたとき輪が糸のように細くなる。
+    </p>
+    <div class="demo">
+      <span class="demo-label">style="--suisou-spinner: 4rem"</span>
+      <div data-suisou-layout="row">
+        <div data-suisou-spinner style="--suisou-spinner: 4rem" role="status" aria-label="読み込み中"></div>
+        <div data-suisou-spinner style="--suisou-spinner: 2rem" role="status" aria-label="読み込み中"></div>
+        <div data-suisou-spinner role="status" aria-label="読み込み中"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>部品の中に置く</h2>
+    <p class="note">
+      Button は自分の中の <code>svg</code> の寸法を持っているが、Spinner は <code>svg</code> ではないので
+      既定の 20px がそのまま効く。アイコンと同じ大きさなので置き換えられる。
+    </p>
+    <div class="demo">
+      <div data-suisou-layout="row">
+        <button data-suisou-button="outline" disabled>
+          <div data-suisou-spinner role="status" aria-label="送信中"></div>
+          送信中
+        </button>
+        <button data-suisou-button="plain" disabled>
+          <div data-suisou-spinner role="status" aria-label="読み込み中"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>意味は現場が書く</h2>
+    <p class="note">
+      <strong><code>role="status"</code> と <code>aria-label</code> は現場のもの。</strong>
+      意味は CSS では足せない —— <code>div</code> は素では何も伝えないので、これが無いと
+      読み上げに「読み込み中」が出ない。Suisou が状態に標準の属性を借りるのと同じ考え方で、
+      ここだけは属性を書いてもらう必要がある。
+    </p>
+    <pre data-suisou-code><code>&lt;div data-suisou-spinner role="status" aria-label="読み込み中"&gt;&lt;/div&gt;</code></pre>
+  </div>
+
+  <div class="group">
+    <h2>動きを減らす設定</h2>
+    <p class="note">
+      OS で「動きを減らす」にしていると、<strong>回転をやめてその場でゆっくり明滅する</strong>（1.6秒）。
+      位置が動かないので酔いの原因にならず、「何か動いている」ことは伝わる。
+      止めてしまうと「固まった」ようにしか見えないので、消しはしない。
+    </p>
+    <p class="note">
+      ★Spinner は <strong><code>--suisou-motion</code> を使わない唯一の部品</strong>。
+      Suisou はこの設定のときモーションのトークンを 0.01ms に潰すが、
+      出入りのように1回で終わる動きはそれで消えて正しい一方、
+      <strong>無限に繰り返す動きに同じことをすると 0.01ms 周期＝高速の明滅</strong>になり、
+      配慮したはずが一番危険なものになる。だから自前の時間（800ms）を持ち、
+      減らす設定のときの振る舞いも自分で決めている。
+    </p>
+  </div>
+</section>
