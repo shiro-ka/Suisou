@@ -224,12 +224,7 @@ const SUISOU = {
   "error-active",
   "error-surface",
   "warning-surface",
-  "success-surface",
-  "wixoss-white",
-  "wixoss-red",
-  "wixoss-blue",
-  "wixoss-green",
-  "wixoss-black"
+  "success-surface"
  ],
  "accentTokens": [
   "accent",
