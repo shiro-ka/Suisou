@@ -42,9 +42,29 @@
   padding: var(--suisou-space-3);
 }
 
-/* 段 … どの面に載るか。必ず1つ書く */
-[data-suisou-surface~="panel"] { background: var(--suisou-panel); }
-[data-suisou-surface~="item"]  { background: var(--suisou-item); }
+/* 段 … どの面に載るか。必ず1つ書く
+
+   ★段を上げたら装飾罫も差し替える（2026-08-22）。
+
+     --suisou-line-weak は「いま載っている面の上で 1.5:1 になる罫」で、
+     面ごとに値が違う（solve.py の resolve_line_weak）。段を上げた要素が
+     自分の中の既定を書き換えるので、**中に入る部品は何も知らなくていい**
+     ―― Tag も Row も Code も表も、var(--suisou-line-weak) と書くだけで
+     載っている面に合った濃さになる。CSS 変数が継承する性質をそのまま使う。
+
+     以前は L44 の1つだけを全部の面に引いていたので、面が暗いほど罫が
+     強く出ていた（overlay 1.51:1 に対し bg では 2.53:1 と1.67倍）。
+     PAIRS は下限しか見ないため、強すぎる側は誰も検査していなかった。
+
+   ★none は段を上げないので差し替えない。まわりの面の値をそのまま継ぐ。 */
+[data-suisou-surface~="panel"] {
+  background: var(--suisou-panel);
+  --suisou-line-weak: var(--suisou-line-weak-panel);
+}
+[data-suisou-surface~="item"] {
+  background: var(--suisou-item);
+  --suisou-line-weak: var(--suisou-line-weak-item);
+}
 [data-suisou-surface~="none"]  { background: transparent; }   /* 段を上げず、罫だけで囲う */
 
 
@@ -55,6 +75,7 @@
 [data-suisou-surface~="overlay"] {
   background: var(--suisou-overlay);
   border-color: var(--suisou-line-strong);
+  --suisou-line-weak: var(--suisou-line-weak-overlay);
 }
 
 /* 後ろを塞ぐ膜。<dialog> にも popover にも同じ疑似要素があるので1行で足りる。

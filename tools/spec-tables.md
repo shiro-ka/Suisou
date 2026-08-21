@@ -39,14 +39,18 @@
 
 | ペア | 最悪値 | 必要 | 最悪ケース | 用途 |
 |---|---|---|---|---|
-| `line-weak` on `overlay` | 1.51:1 | 1.5 | hadal/clown | 装飾罫 |
-| `line-weak` on `selected-surface` | 1.53:1 | 1.5 | hadal/teal | 選択行の装飾罫 |
+| `line-weak` on `bg` | 1.51:1 | 1.5 | hadal/clown | 装飾罫 |
+| `line-weak-panel` on `panel` | 1.51:1 | 1.5 | hadal/clown | 装飾罫 |
+| `line-weak-item` on `item` | 1.51:1 | 1.5 | hadal/clown | 装飾罫 |
+| `line-weak-overlay` on `overlay` | 1.51:1 | 1.5 | hadal/clown | 装飾罫 |
+| `line-weak-hover` on `hover-surface` | 1.51:1 | 1.5 | hadal/clown | hover 行の装飾罫 |
+| `line-weak-selected` on `selected-surface` | 1.51:1 | 1.5 | hadal/teal | 選択行の装飾罫 |
 | `error` on `overlay` | 4.59:1 | 4.5 | hadal/clown | 状態文言 |
 | `line-strong` on `overlay` | 3.10:1 | 3.0 | hadal/clown | 入力枠 1.4.11 |
+| `line-weak-selected` on `selected-neutral-surface` | 1.55:1 | 1.5 | hadal/clown | 選択行(中立)の装飾罫 |
 | `success` on `overlay` | 4.68:1 | 4.5 | shoal/clown | 状態文言 |
 | `warning` on `overlay` | 4.70:1 | 4.5 | shoal/clown | 状態文言 |
 | `line-strong` on `selected-surface` | 3.14:1 | 3.0 | hadal/teal | 選択行の入力枠 1.4.11 |
-| `line-weak` on `selected-neutral-surface` | 1.57:1 | 1.5 | hadal/clown | 選択行(中立)の装飾罫 |
 | `error` on `error-surface` | 4.80:1 | 4.5 | trench/clown | バナーの枠 / danger ボタンの文字 |
 | `line-strong` on `selected-neutral-surface` | 3.22:1 | 3.0 | hadal/clown | 選択行(中立)の入力枠 1.4.11 |
 | `accent-active` on `overlay` | 3.40:1 | 3.0 | shoal/magenta | UI 部品(押下) |
@@ -59,7 +63,6 @@
 | `text-main` on `selected-surface` | 6.62:1 | 4.5 | shoal/teal | 選択行の文字 |
 | `text-main` on `selected-neutral-surface` | 6.82:1 | 4.5 | shoal/clown | 選択行(中立)の文字 |
 | `text-main` on `error-surface` | 6.95:1 | 4.5 | shoal/clown | バナーの文字 |
-| `line-weak` on `hover-surface` | 2.37:1 | 1.5 | fjord/clown | hover 行の装飾罫 |
 | `line-strong` on `hover-surface` | 4.86:1 | 3.0 | fjord/clown | hover 行の入力枠 1.4.11 |
 | `accent` on `panel` | 6.25:1 | 3.0 | shoal/magenta | UI 部品 |
 | `text-main` on `hover-surface` | 11.97:1 | 4.5 | shoal/clown | hover 行の文字 |

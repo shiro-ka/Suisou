@@ -136,7 +136,13 @@ SURFACES = ["panel", "item", "overlay"]   # item … 面の上に載るもの（
 JND = 0.02
 
 PAIRS = [  # (ink, surface, 必要比, 用途)
-    ("line-weak","overlay",1.5,"装飾罫"),
+    # 装飾罫は面ごとに値が違うので、面ごとに検査する（2026-08-22）。
+    # 1つの L で全部の面に引いていた頃は overlay だけを見ていて、
+    # 暗い面で強く出過ぎているのを誰も止めていなかった。
+    ("line-weak","bg",1.5,"装飾罫"),
+    ("line-weak-panel","panel",1.5,"装飾罫"),
+    ("line-weak-item","item",1.5,"装飾罫"),
+    ("line-weak-overlay","overlay",1.5,"装飾罫"),
     ("line-strong","overlay",3.0,"入力枠 1.4.11"),
     ("line-strong","item",3.0,"入力枠 1.4.11"),
     ("text-sub","overlay",4.5,"本文"),
@@ -146,13 +152,13 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     ("accent-active","overlay",3.0,"UI 部品(押下)"),
     ("text-main","selected-surface",4.5,"選択行の文字"),
     ("text-main","hover-surface",4.5,"hover 行の文字"),
-    ("line-weak","hover-surface",1.5,"hover 行の装飾罫"),
+    ("line-weak-hover","hover-surface",1.5,"hover 行の装飾罫"),
     ("line-strong","hover-surface",3.0,"hover 行の入力枠 1.4.11"),
     # ★選択下地の上に載るもの。ここが長らく未検査で、掟2 の違反が隠れていた。
     #   選択行の中の Tag の罫がまさに line-weak on selected-surface。
-    ("line-weak","selected-surface",1.5,"選択行の装飾罫"),
+    ("line-weak-selected","selected-surface",1.5,"選択行の装飾罫"),
     ("line-strong","selected-surface",3.0,"選択行の入力枠 1.4.11"),
-    ("line-weak","selected-neutral-surface",1.5,"選択行(中立)の装飾罫"),
+    ("line-weak-selected","selected-neutral-surface",1.5,"選択行(中立)の装飾罫"),
     ("line-strong","selected-neutral-surface",3.0,"選択行(中立)の入力枠 1.4.11"),
     ("text-main","selected-neutral-surface",4.5,"選択行(中立)の文字"),
     ("error","overlay",4.5,"状態文言"),
@@ -198,6 +204,66 @@ def resolve_hover(t):
         L -= 0.001
     return round(L, 3)
 
+# 装飾罫の狙い。PAIRS の下限は 1.5 だが、狙いは 1.51 にしてある ――
+# 現行の overlay がちょうど 1.51:1 なので、**一番手前の面は据え置き**になり、
+# 暗い面だけがそこまで下りてくる。丸め（L を小数4桁で出す）で下限を割らない
+# ぶんの余裕も兼ねる。
+LINE_WEAK_RATIO = 1.51
+
+def resolve_line_weak(t, face_L):
+    """その面の上で LINE_WEAK_RATIO ちょうどになる罫の明度を返す。
+
+    ★装飾罫だけは「絶対の明度」ではなく「面からの差」で解く（2026-08-22）。
+
+      単一の L44 で全部の面に引いていたため、面が暗いほど罫が強く出ていた:
+
+        line-weak on overlay(L34)  1.51:1   ← PAIRS が見ていた唯一の面
+        line-weak on item(L28)     1.88:1
+        line-weak on panel(L22)    2.23:1
+        line-weak on bg(L15)       2.53:1   ← 1.67倍の開き
+
+      PAIRS は下限しか見ないので、強く出過ぎる側は誰も止めていなかった。
+      実際 wixdex のデッキ欄で「罫が強すぎる」と指摘され、元の実装（1.23:1）
+      との比較で 1.8 倍あることが実測で出た。
+
+    ★line-strong は据え置き。あちらは入力枠（WCAG 1.4.11 の 3:1）という
+      機能の線なので、下限を超えて見やすい側に振れているのは害ではない。
+      揃えるのは「装飾」＝ 目を引いてはいけない線だけ。"""
+    lo, hi = face_L, 1.0
+    for _ in range(40):
+        m = (lo + hi) / 2
+        if contrast((m, t["cs"], t["h"]), (face_L, t["cs"], t["h"])) < LINE_WEAK_RATIO:
+            lo = m
+        else:
+            hi = m
+    return round(hi, 4)
+
+def resolve_line_weak_selected(t):
+    """選択行の下地の上で 1.51:1 を満たす罫。**全アクセント中の最悪値**で解く。
+
+    選択の下地は2つある ―― 色つき（accent 色相 × 解いた C）と中立（面の C）。
+    明度はどちらも tint で同じだが、色つきの方は彩度が乗るぶん輝度が上がるので、
+    中立だけで解くと色つきの上で下限を割る（実測 1.47〜1.49:1）。
+
+    この罫はテーマ層のトークン（アクセントで変わらない）なので、
+    そのテーマで一番明るくなるアクセントに合わせておく必要がある。"""
+    D = LADDERS[t["ladder"]]
+    worst = D["tint"]                      # 中立版から始める
+    worst_lum = lum(D["tint"], t["cs"], t["h"])
+    for _, ah in ACCENTS:
+        c = (D["tint"], resolve_tint(t, ah, FLOOR["selected"]), ah)
+        if lum(*c) > worst_lum:
+            worst_lum, worst = lum(*c), c
+    # 面と同じ色相で罫を引くので、狙いの比を満たす L を輝度から解く
+    lo, hi = 0.0, 1.0
+    for _ in range(48):
+        m = (lo + hi) / 2
+        if (lum(m, t["cs"], t["h"]) + 0.05) / (worst_lum + 0.05) < LINE_WEAK_RATIO:
+            lo = m
+        else:
+            hi = m
+    return round(hi + 0.0005, 4)           # 丸めで下限を割らないぶんの余裕
+
 def resolve_tint(t, h, floor):
     """載りうる全面に対して ΔE >= floor を満たす最小 C。
 
@@ -232,6 +298,15 @@ def tokens(t, acc_name, acc_h):
         o[k] = face(D[k], t)
     o["text-main"] = face(resolve_text_main(t), t)
     o["scrim"]     = face(0.08, t)
+    # 装飾罫は面ごと。既定（--suisou-line-weak）は根の面＝bg に合わせる。
+    # 段の上に載ったときは surface.css がその段の値へ差し替える（CSS 変数は継承する）。
+    o["line-weak"] = face(resolve_line_weak(t, D["bg"]), t)
+    for st in SURFACES:
+        o[f"line-weak-{st}"] = face(resolve_line_weak(t, D[st]), t)
+    # 行の下地も「別の面」。選択・hover した行の中の罫は、その下地に合わせる。
+    # 選択の下地は色つき・中立の2つあるが明度はどちらも tint なので1つで足りる。
+    o["line-weak-hover"]    = face(resolve_line_weak(t, resolve_hover(t)), t)
+    o["line-weak-selected"] = face(resolve_line_weak_selected(t), t)
     o["accent"]        = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
     o["accent-active"] = (D["accent"]+ACTIVE_DL, maxC(D["accent"]+ACTIVE_DL, acc_h) * t["ar"], acc_h)
     o["focus-ring"]    = o["accent"]
@@ -375,7 +450,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 #   warning-active / success-active … 押せる意味色は danger（error）だけ。
 #   計算は tokens() が全部やっている。使う部品ができたらここに足すだけで出る。
 THEME_TOKENS = ["bg", "panel", "item", "overlay", "hover-surface", "selected-neutral-surface",
-                "line-weak", "line-strong", "text-disabled", "text-sub", "text-main",
+                "line-weak", "line-weak-panel", "line-weak-item", "line-weak-overlay",
+                "line-weak-hover", "line-weak-selected",
+                "line-strong", "text-disabled", "text-sub", "text-main",
                 "scrim",
                 "error", "warning", "success",
                 "error-active",
