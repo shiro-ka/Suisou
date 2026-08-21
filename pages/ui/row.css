@@ -28,7 +28,14 @@
   transition: background-color var(--suisou-motion-fast) var(--suisou-ease);
 }
 
-[data-suisou-row]:hover { background: var(--suisou-hover-surface); }
+/* ★下地を替えたら装飾罫も替える（2026-08-22）。surface が段でやるのと同じ。
+   選択行の中の Tag の罫がまさにこれ ―― 行の下地は面の階段の段ではないので、
+   面の値のままだと選択行の中で罫が消える（tint は bg より明るいため）。
+   中に入る部品は何も知らなくていい。var(--suisou-line-weak) と書くだけ。 */
+[data-suisou-row]:hover {
+  background: var(--suisou-hover-surface);
+  --suisou-line-weak: var(--suisou-line-weak-hover);
+}
 
 /* 行そのものが focusable な現場（tabindex を振った一覧など）向け。
    輪を内側に入れるのは、ruled の行が端から端まで連なって外側に余白が無いため */
@@ -38,12 +45,14 @@
 [data-suisou-row][aria-selected="true"],
 [data-suisou-row][aria-current]:not([aria-current="false"]) {
   background: var(--suisou-selected-surface);
+  --suisou-line-weak: var(--suisou-line-weak-selected);
 }
 
 /* 色を使わず、明るさだけで示す。一覧の中で色が主張しすぎる場面用 */
 [data-suisou-row~="neutral"][aria-selected="true"],
 [data-suisou-row~="neutral"][aria-current]:not([aria-current="false"]) {
   background: var(--suisou-selected-neutral-surface);
+  --suisou-line-weak: var(--suisou-line-weak-selected);
 }
 
 /* 連なる形。角丸を捨てて罫で区切る。最後の1本は引かない */
