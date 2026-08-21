@@ -52,7 +52,7 @@
 
 色（`palette.css`。値を決めるのは solve.py だけ）:
 
-- テーマ層: `--suisou-bg` `--suisou-panel` `--suisou-item` `--suisou-overlay` `--suisou-hover-surface` `--suisou-selected-neutral-surface` `--suisou-line-weak` `--suisou-line-strong` `--suisou-text-disabled` `--suisou-text-sub` `--suisou-text-main` `--suisou-scrim` `--suisou-error` `--suisou-warning` `--suisou-success` `--suisou-error-active` `--suisou-error-surface` `--suisou-warning-surface` `--suisou-success-surface`
+- テーマ層: `--suisou-bg` `--suisou-panel` `--suisou-item` `--suisou-overlay` `--suisou-hover-surface` `--suisou-selected-neutral-surface` `--suisou-line-weak` `--suisou-line-weak-panel` `--suisou-line-weak-item` `--suisou-line-weak-overlay` `--suisou-line-weak-hover` `--suisou-line-weak-selected` `--suisou-line-strong` `--suisou-text-disabled` `--suisou-text-sub` `--suisou-text-main` `--suisou-scrim` `--suisou-error` `--suisou-warning` `--suisou-success` `--suisou-error-active` `--suisou-error-surface` `--suisou-warning-surface` `--suisou-success-surface`
 - アクセント層: `--suisou-accent` `--suisou-accent-active` `--suisou-focus-ring` `--suisou-selected-surface`
 
 寸法・書体・モーション（`ui/base.css`）:
