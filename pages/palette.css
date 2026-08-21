@@ -51,6 +51,16 @@
   --suisou-warning-surface-hex: "#3f3416";
   --suisou-success-surface: oklch(33.00% 0.0500 155);
   --suisou-success-surface-hex: "#1f3d2a";
+  --suisou-wixoss-white: oklch(92.00% 0.0662 103);
+  --suisou-wixoss-white-hex: "#ece7b4";
+  --suisou-wixoss-red: oklch(73.00% 0.1580 22);
+  --suisou-wixoss-red-hex: "#fb7a7a";
+  --suisou-wixoss-blue: oklch(74.00% 0.1296 255);
+  --suisou-wixoss-blue-hex: "#70adfb";
+  --suisou-wixoss-green: oklch(76.00% 0.1900 152);
+  --suisou-wixoss-green-hex: "#27d271";
+  --suisou-wixoss-black: oklch(74.00% 0.1623 306);
+  --suisou-wixoss-black-hex: "#c48dfb";
   --suisou-accent: oklch(74.00% 0.1096 212);
   --suisou-accent-hex: "#43bdd3";
   --suisou-accent-active: oklch(71.00% 0.1052 212);
@@ -102,6 +112,16 @@
   --suisou-warning-surface-hex: "#3f3416";
   --suisou-success-surface: oklch(33.00% 0.0500 155);
   --suisou-success-surface-hex: "#1f3d2a";
+  --suisou-wixoss-white: oklch(92.00% 0.0662 103);
+  --suisou-wixoss-white-hex: "#ece7b4";
+  --suisou-wixoss-red: oklch(73.00% 0.1580 22);
+  --suisou-wixoss-red-hex: "#fb7a7a";
+  --suisou-wixoss-blue: oklch(74.00% 0.1296 255);
+  --suisou-wixoss-blue-hex: "#70adfb";
+  --suisou-wixoss-green: oklch(76.00% 0.1900 152);
+  --suisou-wixoss-green-hex: "#27d271";
+  --suisou-wixoss-black: oklch(74.00% 0.1623 306);
+  --suisou-wixoss-black-hex: "#c48dfb";
 }
 
 [data-suisou-theme="trench"] {
@@ -143,6 +163,16 @@
   --suisou-warning-surface-hex: "#3d351f";
   --suisou-success-surface: oklch(33.00% 0.0452 155);
   --suisou-success-surface-hex: "#213c2b";
+  --suisou-wixoss-white: oklch(92.00% 0.0557 103);
+  --suisou-wixoss-white-hex: "#ebe7bc";
+  --suisou-wixoss-red: oklch(73.00% 0.1331 22);
+  --suisou-wixoss-red-hex: "#f08381";
+  --suisou-wixoss-blue: oklch(74.00% 0.1091 255);
+  --suisou-wixoss-blue-hex: "#7baeef";
+  --suisou-wixoss-green: oklch(76.00% 0.1600 152);
+  --suisou-wixoss-green-hex: "#52cd7d";
+  --suisou-wixoss-black: oklch(74.00% 0.1367 306);
+  --suisou-wixoss-black-hex: "#c093ef";
 }
 
 [data-suisou-theme="fjord"] {
@@ -184,6 +214,16 @@
   --suisou-warning-surface-hex: "#3a3527";
   --suisou-success-surface: oklch(33.00% 0.0334 155);
   --suisou-success-surface-hex: "#273b2e";
+  --suisou-wixoss-white: oklch(92.00% 0.0522 103);
+  --suisou-wixoss-white-hex: "#eae7bf";
+  --suisou-wixoss-red: oklch(73.00% 0.1248 22);
+  --suisou-wixoss-red-hex: "#ec8684";
+  --suisou-wixoss-blue: oklch(74.00% 0.1023 255);
+  --suisou-wixoss-blue-hex: "#7eaeeb";
+  --suisou-wixoss-green: oklch(76.00% 0.1500 152);
+  --suisou-wixoss-green-hex: "#5bcc80";
+  --suisou-wixoss-black: oklch(74.00% 0.1282 306);
+  --suisou-wixoss-black-hex: "#bf95eb";
 }
 
 [data-suisou-theme="shoal"] {
@@ -225,6 +265,16 @@
   --suisou-warning-surface-hex: "#5a523d";
   --suisou-success-surface: oklch(44.00% 0.0439 155);
   --suisou-success-surface-hex: "#3f5a48";
+  --suisou-wixoss-white: oklch(95.00% 0.0365 103);
+  --suisou-wixoss-white-hex: "#f2f0d4";
+  --suisou-wixoss-red: oklch(85.00% 0.0612 22);
+  --suisou-wixoss-red-hex: "#f4bfbc";
+  --suisou-wixoss-blue: oklch(84.00% 0.0606 255);
+  --suisou-wixoss-blue-hex: "#b1cdf2";
+  --suisou-wixoss-green: oklch(84.00% 0.1658 152);
+  --suisou-wixoss-green-hex: "#69e993";
+  --suisou-wixoss-black: oklch(84.00% 0.0755 306);
+  --suisou-wixoss-black-hex: "#d7bef2";
 }
 
 /* ── アクセント層（テーマとの組でしか決まらない） ── */
