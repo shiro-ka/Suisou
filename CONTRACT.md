@@ -30,6 +30,7 @@
 | `data-suisou-quote` | （値なし） |
 | `data-suisou-root` | （値なし） |
 | `data-suisou-row` | `neutral` `ruled` |
+| `data-suisou-spinner` | `bar` |
 | `data-suisou-surface` | `panel` `item` `none` `overlay` `drawer` `bare` `tight` `bleed` |
 | `data-suisou-table` | `tight` `scroll` |
 | `data-suisou-tag` | `accent` `error` `warning` `success` `bare` |

@@ -1,0 +1,117 @@
+/* Suisou — Spinner（読み込み中）
+
+     <div data-suisou-spinner role="status" aria-label="読み込み中"></div>
+     <div data-suisou-spinner="bar" role="status" aria-label="読み込み中"></div>
+
+   ★形は2つ。どちらも「いつ終わるか分からない」ものを示す。
+     終わりが分かるもの（アップロードの％など）はここではなく <progress value>。
+     ブラウザが描くものを奪わない ―― 値を持てるなら標準の部品が正しい。
+
+       既定  輪が回る。ボタンの中・一覧の末尾・画面の真ん中
+       bar   線が流れる。面の上辺や見出しの下など、横に長い場所
+
+   ★意味は CSS では足せない。role="status" と aria-label は現場が書く。
+     div は素では何も伝えないので、これが無いと読み上げに「読み込み中」が
+     出ない。Suisou が状態に標準の属性を借りるのと同じ考え方で、
+     ここだけは属性を書いてもらう必要がある。
+
+   ★大きさは --suisou-spinner で変える（実寸は現場のもの）。
+     既定はアイコンと同じ 20px。画面の真ん中に大きく出したいときは
+
+       <div data-suisou-spinner style="--suisou-spinner: 4rem"></div>
+
+     surface="drawer" が --suisou-drawer を持つのと同じやり方。
+     線の太さは大きさから導くので、どの寸法でも輪の見え方が揃う。
+
+   ★色は accent と line-weak の2色だけ。輪の全部を accent にすると
+     「回っている」ことが分からない（どこが先頭か見えない）ので、
+     下地の輪を弱い罫で敷いて、その上を accent が走る形にしてある。
+     塗りではなく線なので、線形デザインのまま。
+
+   ★★時間に --suisou-motion / --suisou-motion-fast を使わない。
+
+     Suisou は「動きを減らす」設定のときトークンを 0.01ms に潰す（base.css）。
+     出入りのように1回で終わる動きはそれで消えて正しいが、**無限に繰り返す
+     動きに同じことをすると 0.01ms 周期＝高速の明滅**になり、配慮したはずが
+     一番危険なものになる。だからここは自前の時間を持つ。
+
+     減らす設定のときは回転を止め、代わりにゆっくり明滅させる（1.6秒）。
+     「何か動いている」ことは伝わり、位置は動かないので酔いの原因にならない。
+     止めてしまうと「固まった」ようにしか見えないため、消しはしない。 */
+
+[data-suisou-spinner] {
+  --suisou-spinner: var(--suisou-icon);      /* 20px。現場が上書きする */
+  --suisou-spinner-time: 800ms;
+  box-sizing: border-box;
+  display: inline-block;
+  flex: none;
+  width: var(--suisou-spinner);
+  height: var(--suisou-spinner);
+  border-radius: var(--suisou-radius-pill);
+
+  /* 線の太さは寸法の 1/10。20px なら 2px、64px なら 6.4px。
+     太さを固定すると、大きくしたとき輪が糸のように細くなる */
+  border: calc(var(--suisou-spinner) / 10) solid var(--suisou-line-weak);
+  border-top-color: var(--suisou-accent);
+
+  animation: suisou-spin var(--suisou-spinner-time) linear infinite;
+}
+
+@keyframes suisou-spin {
+  to { transform: rotate(1turn); }
+}
+
+/* ── 線が流れる形 ─────────────────────────
+   面の上辺や見出しの下に敷く。高さは 2px 固定 ―― これは文字ではなく
+   「線」なので、base.css の方針どおり拡大に追従させない。
+   幅は持たない（実寸は現場のもの）。置かれた場所いっぱいに伸びる。 */
+
+[data-suisou-spinner~="bar"] {
+  width: auto;
+  height: 2px;
+  border: 0;
+  background: var(--suisou-line-weak);
+  overflow: hidden;
+  animation: none;                            /* 回るのは中の線 */
+  display: block;
+}
+
+[data-suisou-spinner~="bar"]::before {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 40%;
+  border-radius: inherit;
+  background: var(--suisou-accent);
+  animation: suisou-slide calc(var(--suisou-spinner-time) * 2) var(--suisou-ease) infinite;
+}
+
+/* 端で折り返さず、左から入って右へ抜ける。行ったり来たりさせると
+   目が線を追いかけてしまうので、一方向に流す */
+@keyframes suisou-slide {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(350%); }
+}
+
+/* ── 動きを減らす設定 ───────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  /* 回転と横流れをやめ、その場でゆっくり明滅させる。
+     ★ここで --suisou-motion 系を使わないのは上に書いたとおり。
+       潰されたトークンを無限ループに掛けると高速明滅になる。 */
+  [data-suisou-spinner] {
+    animation: suisou-pulse 1.6s ease-in-out infinite;
+    border-color: var(--suisou-accent);       /* 先頭が分からなくてよいので全周 */
+  }
+  [data-suisou-spinner~="bar"] {
+    animation: none;
+  }
+  [data-suisou-spinner~="bar"]::before {
+    width: 100%;
+    animation: suisou-pulse 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes suisou-pulse {
+  50% { opacity: 0.35; }
+}
