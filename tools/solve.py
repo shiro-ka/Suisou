@@ -57,6 +57,17 @@ def maxC(L, H):
     _MC[k] = lo
     return lo
 
+def face(L, t):
+    """面と、面と同じ色相で置くインクの値。彩度は色域で頭を打つ。
+
+    ★accent も意味色も maxC で頭を打っているのに、ここだけ cs を生で使っていた。
+      効いてくるのは階段の底（scrim は L8）で、シアン〜青の色相では maxC が
+      0.017 しか無く、cs=0.020 が 0.003 だけはみ出す。見えない差なのに
+      「色域外」判定はテーマ×全アクセントを道連れに出力停止させるので、
+      色相 170〜230 のテーマが丸ごと作れなくなっていた（2026-08-21 に発見）。
+      はみ出したぶんを黙って丸めるのはブラウザではなく solve.py の仕事。"""
+    return (L, min(t["cs"], maxC(L, t["h"])), t["h"])
+
 def _lab(L, C, H):
     return (L, C*math.cos(math.radians(H)), C*math.sin(math.radians(H)))
 
@@ -151,7 +162,11 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
 
 # ============================================================ 導出
 def resolve_text_main(t):
-    """目標 L から下げて、色域に入る最大 L を返す"""
+    """目標 L から下げて、色域に入る最大 L を返す。
+
+    ★面の彩度は face() が色域で頭を打つので、L を下げなくても色域には入る。
+      それでも L を下げるのは、彩度を削られた本文だけがテーマの色を失って
+      他の面から浮くのを避けるため ―― ここは丸めずに明度で譲る。"""
     L = LADDERS[t["ladder"]]["text-main"]
     while L > 0.80 and not in_gamut(L, t["cs"], t["h"]):
         L -= 0.005
@@ -170,7 +185,7 @@ def resolve_hover(t):
     D = LADDERS[t["ladder"]]
     faces = ["bg"] + SURFACES
     L = D["tint"]
-    while L > 0.02 and min(dE((L, t["cs"], t["h"]), (D[s], t["cs"], t["h"]))
+    while L > 0.02 and min(dE(face(L, t), face(D[s], t))
                            for s in faces) < FLOOR["hover"]:
         L -= 0.001
     return round(L, 3)
@@ -183,7 +198,7 @@ def resolve_tint(t, h, floor):
       値は出しておいて、推奨しない理由として警告に載せる（掟2 の運用を参照）。"""
     D = LADDERS[t["ladder"]]
     L, ceil = D["tint"], maxC(D["tint"], h)
-    worst = lambda C: min(dE((L, C, h), (D[s], t["cs"], t["h"])) for s in SURFACES)
+    worst = lambda C: min(dE((L, C, h), face(D[s], t)) for s in SURFACES)
     if worst(ceil) < floor: return ceil        # 届かない。届く限りを返す
     lo, hi = 0.0, ceil
     for _ in range(48):
@@ -197,7 +212,7 @@ def tint_reaches(t, h, floor):
     D = LADDERS[t["ladder"]]
     L = D["tint"]
     C = resolve_tint(t, h, floor)
-    return min(dE((L, C, h), (D[s], t["cs"], t["h"])) for s in SURFACES) >= floor - 1e-9
+    return min(dE((L, C, h), face(D[s], t)) for s in SURFACES) >= floor - 1e-9
 
 def sem_ratio(ar):
     return min(0.95, ar + SEM_OFFSET)
@@ -206,17 +221,17 @@ def tokens(t, acc_name, acc_h):
     D = LADDERS[t["ladder"]]
     o = {}
     for k in ["bg","panel","item","overlay","line-weak","line-strong","text-disabled","text-sub"]:
-        o[k] = (D[k], t["cs"], t["h"])
-    o["text-main"] = (resolve_text_main(t), t["cs"], t["h"])
-    o["scrim"]     = (0.08, t["cs"], t["h"])
+        o[k] = face(D[k], t)
+    o["text-main"] = face(resolve_text_main(t), t)
+    o["scrim"]     = face(0.08, t)
     o["accent"]        = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
     o["accent-active"] = (D["accent"]+ACTIVE_DL, maxC(D["accent"]+ACTIVE_DL, acc_h) * t["ar"], acc_h)
     o["focus-ring"]    = o["accent"]
-    o["hover-surface"] = (resolve_hover(t), t["cs"], t["h"])   # 中立。アクセントに依存しない
+    o["hover-surface"] = face(resolve_hover(t), t)             # 中立。アクセントに依存しない
     # 選択の下地は2つ出す。現場が「色で示す」か「明るさだけで示す」かを選ぶ。
     # 明度はどちらも tint で同じ。違うのは彩度だけ（hadal で 0.053 と 0.006）。
     o["selected-surface"] = (D["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h)
-    o["selected-neutral-surface"] = (D["tint"], t["cs"], t["h"])       # 中立。アクセントに依存しない
+    o["selected-neutral-surface"] = face(D["tint"], t)                 # 中立。アクセントに依存しない
     sr = sem_ratio(t["ar"])
     for n, h in SEM_HUE.items():
         L = SEM_L[t["ladder"]][n]
@@ -323,7 +338,16 @@ def solve():
             if bad and not block:
                 out["notRecommended"].append(f"{t['name']}/{an}: {bad[0]}")
         out["themes"].append(entry)
-    # 色相カテゴリのリスク（ΔE では測れないもの）
+    # 意味色と色相が同じ家族に入るアクセント。表に出すだけの資料で、判定には使わない。
+    #
+    # ★以前はこれを「△」としてアクセント選択の画面に出していたが、やめた（2026-08-21）。
+    #   ΔE と順位が食い違っていて、危険度を表していなかった ―― shoal では
+    #   turtle×success(ΔE 0.090) に印が付く一方、より近い magenta×error(0.097) と
+    #   coral×error(0.099) は色相差が 40 度を超えるので無印だった。
+    #   実運用でも hadal×clown（33度）が wixdex で赤いバナーと並んで問題なく回っている。
+    #   accent と意味色の近さは FLOOR["semantic"] の ΔE 検査が既に見ている。
+    #   「色だけに意味を載せない」はアクセントに依らず常に成り立つ規則なので、
+    #   色ごとの印ではなく一文として書く（pages/app.js）。
     out["hueCategoryRisk"] = [
         {"accent":an, "semantic":sn, "deg":round(hue_dist(ah, sh))}
         for an, ah in ACCENTS for sn, sh in SEM_HUE.items() if hue_dist(ah, sh) < 40
@@ -441,14 +465,6 @@ def write_css(data):
         f.write("\n".join(L) + "\n")
     return p
 
-def _hue_risk(data):
-    """{アクセント名: [{semantic, deg}, ...]}。ΔE では測れないリスクの受け渡し用"""
-    out = {}
-    for r in sorted(data["hueCategoryRisk"], key=lambda x: x["deg"]):
-        out.setdefault(r["accent"], []).append({"semantic": r["semantic"], "deg": r["deg"]})
-    return out
-
-
 def write_site_data(data):
     """サイトの切替 UI が読む構造データ。色は持たない（色は palette.css の担当）。
 
@@ -465,8 +481,6 @@ def write_site_data(data):
                                  if v["available"] and not v["recommended"]}}
                    for t in data["themes"]],
         "accents": [{"name": n, "jp": ACCENT_JP.get(n, ""), "hue": h} for n, h in ACCENTS],
-        # 色相が近い組。ΔE では測れないので別に持つ。アクセントを選ぶ画面で出す
-        "hueRisk": _hue_risk(data),
         "themeTokens": THEME_TOKENS,
         "accentTokens": ACCENT_TOKENS,
         "default": {"theme": DEFAULT_THEME, "accent": DEFAULT_ACCENT},
@@ -529,11 +543,15 @@ def write_tables(data):
         mark = "" if v >= need else " ⚠"
         L.append(f"| `{a}` on `{b}` | {v:.2f}:1{mark} | {need} | {tn}/{an} | {note} |")
     L.append("")
-    L.append("### 色相カテゴリのリスク（ΔE では測れない）\n")
-    L.append("| アクセント | 意味色 | 色相差 |")
-    L.append("|---|---|---|")
+    L.append("### 意味色と同じ色相の家族に入るアクセント\n")
+    L.append("資料。**判定には使わない** ―― 近さは accent×意味色の ΔE 検査（FLOOR.semantic）が見ている。\n")
+    L.append("| アクセント | 意味色 | 色相差 | accent×意味色の ΔE（最小のテーマ） |")
+    L.append("|---|---|---|---|")
     for r in sorted(data["hueCategoryRisk"], key=lambda x: x["deg"]):
-        L.append(f"| `{r['accent']}` | `{r['semantic']}` | {r['deg']}度 |")
+        de = min(dE(tokens(t, r["accent"], dict(ACCENTS)[r["accent"]])["accent"],
+                    tokens(t, r["accent"], dict(ACCENTS)[r["accent"]])[r["semantic"]])
+                 for t in THEMES)
+        L.append(f"| `{r['accent']}` | `{r['semantic']}` | {r['deg']}度 | {de:.3f} |")
     L.append("")
     L.append("<!-- /GENERATED -->")
     p = os.path.join(HERE, "spec-tables.md")

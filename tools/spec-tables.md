@@ -65,15 +65,17 @@
 | `accent` on `panel` | 6.25:1 | 3.0 | shoal/magenta | UI 部品 |
 | `text-main` on `hover-surface` | 11.97:1 | 4.5 | shoal/clown | hover 行の文字 |
 
-### 色相カテゴリのリスク（ΔE では測れない）
+### 意味色と同じ色相の家族に入るアクセント
 
-| アクセント | 意味色 | 色相差 |
-|---|---|---|
-| `seal` | `error` | 27度 |
-| `turtle` | `warning` | 32度 |
-| `clown` | `error` | 33度 |
-| `turtle` | `success` | 33度 |
-| `teal` | `success` | 33度 |
-| `clown` | `warning` | 35度 |
+資料。**判定には使わない** ―― 近さは accent×意味色の ΔE 検査（FLOOR.semantic）が見ている。
+
+| アクセント | 意味色 | 色相差 | accent×意味色の ΔE（最小のテーマ） |
+|---|---|---|---|
+| `seal` | `error` | 27度 | 0.058 |
+| `turtle` | `warning` | 32度 | 0.085 |
+| `clown` | `error` | 33度 | 0.066 |
+| `turtle` | `success` | 33度 | 0.080 |
+| `teal` | `success` | 33度 | 0.089 |
+| `clown` | `warning` | 35度 | 0.094 |
 
 <!-- /GENERATED -->

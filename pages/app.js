@@ -117,32 +117,24 @@ function enhancePalette(scope) {
     chip.dataset.suisouAccent = a.name;
     chip.disabled = !usable;
     if (a.name === accent()) chip.setAttribute('aria-pressed', 'true');
-    // 色相が近い意味色。ΔE では測れないので solve.py が別に出している
-    const risk = SUISOU.hueRisk?.[a.name];
     if (!usable) chip.title = `${theme()} では出せない（色域外）`;
     else if (warn) { chip.classList.add('is-warned'); chip.title = warn; chip.append('　★'); }
-    if (usable && risk) {
-      chip.classList.add('is-risky');
-      const near = risk.map((r) => `${r.semantic} と ${r.deg}度`).join('・');
-      chip.title = (chip.title ? chip.title + '　/　' : '') + `色相が近い: ${near}`;
-      chip.append('　△');
-    }
     chip.addEventListener('click', () => { root.dataset.suisouAccent = a.name; render(); });
     row.append(chip);
   }
   const warned = Object.entries(t.warnings ?? {});
   const here = t.warnings?.[accent()];
-  const riskHere = SUISOU.hueRisk?.[accent()];
+  // ★色相が近い意味色（clown と error など）に印を付けるのはやめた（2026-08-21）。
+  //   ΔE と順位が食い違っていて、危険度を表していなかった ―― shoal では
+  //   turtle(ΔE 0.090) に印が付き、より近い magenta(0.097)・coral(0.099) が無印だった。
+  //   言いたかったこと（色だけに意味を載せない）はどのアクセントでも同じなので、
+  //   下の一文に一本化する。色相差の実数は spec-tables.md に残してある。
   slot('accent-note', scope).textContent =
     (here ? `★いまの組み合わせは推奨しない … ${here}　` : '')
     + (warned.length
         ? `★の ${warned.length} 色は基準を満たさない。壊れてはいないので選べる（値は CSS に出してある）。　`
         : '')
-    + (riskHere
-        ? `△いまのアクセントは ${riskHere.map((r) => r.semantic).join('・')} と色相が近い（`
-          + `${riskHere.map((r) => r.deg + '度').join('・')}）。`
-          + '意味を色だけに載せず、アイコンか文言を添えること。'
-        : '△は意味色と色相が近い色。ΔE では測れないので別に見ている。');
+    + '意味は色だけに載せない（アイコンか文言を添える）。どのアクセントでも同じ。';
 
   const box = slot('tokens', scope);
   for (const g of GROUPS) {
