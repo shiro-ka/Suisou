@@ -171,40 +171,6 @@ const SUISOU = {
    "hue": 355
   }
  ],
- "hueRisk": {
-  "seal": [
-   {
-    "semantic": "error",
-    "deg": 27
-   }
-  ],
-  "turtle": [
-   {
-    "semantic": "warning",
-    "deg": 32
-   },
-   {
-    "semantic": "success",
-    "deg": 33
-   }
-  ],
-  "clown": [
-   {
-    "semantic": "error",
-    "deg": 33
-   },
-   {
-    "semantic": "warning",
-    "deg": 35
-   }
-  ],
-  "teal": [
-   {
-    "semantic": "success",
-    "deg": 33
-   }
-  ]
- },
  "themeTokens": [
   "bg",
   "panel",
