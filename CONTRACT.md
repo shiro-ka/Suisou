@@ -30,7 +30,7 @@
 | `data-suisou-quote` | （値なし） |
 | `data-suisou-root` | （値なし） |
 | `data-suisou-row` | `neutral` `ruled` |
-| `data-suisou-surface` | `panel` `item` `none` `overlay` `bare` `tight` `bleed` |
+| `data-suisou-surface` | `panel` `item` `none` `overlay` `drawer` `bare` `tight` `bleed` |
 | `data-suisou-table` | `tight` `scroll` |
 | `data-suisou-tag` | `accent` `error` `warning` `success` `bare` |
 | `data-suisou-text` | `s12` `s14` `s16` `s20` `s24` `s28` `s32` `doc` `w400` `w500` `w700` |

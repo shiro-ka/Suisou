@@ -100,6 +100,47 @@
   }
 }
 
+/* 端に寄せて浮く形。ハンバーガーの中身・モバイルのメニュー。overlay と組で書く:
+
+     <button data-suisou-button="icon" popovertarget="menu">…</button>
+     <div id="menu" popover data-suisou-surface="overlay drawer">…</div>
+
+   ★popover と組むと開閉に JS が要らない（掟4）―― ESC・外側クリックで閉じるのも
+     ::backdrop の膜もブラウザが持つ。出入りはフェードではなく右からの滑り。
+   ★幅の既定は 20rem。現場は --suisou-drawer を上書きして変える（実寸は現場のもの）。
+     3現場ぶんの前例: wixdex のサイドバー / プレビューのメニュー / pickker のドロワー */
+[data-suisou-surface~="drawer"] {
+  --suisou-drawer: 20rem;
+  position: fixed;
+  inset: 0 0 0 auto;                 /* 右端に貼り付く */
+  margin: 0;                         /* popover の UA 既定（中央寄せ）を外す */
+  height: 100dvh;
+  max-height: none;
+  width: min(var(--suisou-drawer), 90vw);
+  border: 0;
+  border-left: 1px solid var(--suisou-line-strong);
+  border-radius: 0;
+}
+
+/* 滑りの出入り。overlay のフェードを上書きする（この節が後にある理由）。
+   構えは overlay のフェードと同じ: display / overlay を allow-discrete で繋ぎ、
+   @starting-style が開く直前の姿を与える。未対応なら滑らず出るだけ */
+:where([popover], dialog)[data-suisou-surface~="drawer"] {
+  opacity: 1;
+  translate: 100% 0;
+  transition: translate var(--suisou-motion) var(--suisou-ease),
+              display var(--suisou-motion) allow-discrete,
+              overlay var(--suisou-motion) allow-discrete;
+}
+:where([popover], dialog)[data-suisou-surface~="drawer"]:where(:popover-open, [open]) {
+  translate: 0 0;
+}
+@starting-style {
+  :where([popover], dialog)[data-suisou-surface~="drawer"]:where(:popover-open, [open]) {
+    translate: 100% 0;
+  }
+}
+
 /* 装飾 … 任意 */
 [data-suisou-surface~="bare"] { border-color: transparent; }  /* 罫を消す */
 

@@ -74,6 +74,18 @@
       <span class="demo-label">開閉に JS を使っていない（popovertarget 属性だけ）。出入りも animate する</span>
       <div data-suisou-layout="row">
         <button data-suisou-button="outline" type="button" popovertarget="demo-pop">ポップオーバーを開く</button>
+        <button data-suisou-button="plain" type="button" popovertarget="demo-drawer">ドロワーを開く</button>
+      </div>
+      <div id="demo-drawer" popover data-suisou-surface="overlay drawer" data-suisou-layout="stack">
+        <span data-suisou-text="s16 w700">drawer —— 端に寄せて浮く</span>
+        <p data-suisou-text="s14 w400" class="muted">
+          ハンバーガーの中身・モバイルのメニュー。出入りはフェードではなく右からの滑り。
+          ESC でも外側クリックでも閉じる —— ぜんぶブラウザの仕事で、JS は1行も無い。
+        </p>
+        <button data-suisou-button="block" type="button">メニューの行のかたち</button>
+        <button data-suisou-button="block" type="button">縦8・横16 の余白</button>
+        <div data-suisou-layout="grow"></div>
+        <button data-suisou-button type="button" popovertarget="demo-drawer" popovertargetaction="hide">閉じる</button>
       </div>
       <div id="demo-pop" popover data-suisou-surface="overlay" data-suisou-layout="stack">
         <span data-suisou-text="s16 w700">overlay の面</span>
