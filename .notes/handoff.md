@@ -215,8 +215,9 @@ fjord  × indigo   同 0.067
 - **アクセント名** … 海の生き物にする方針。★**一部確定**:
   `lime → turtle`（ウミガメ）/ `cyan → jelly`（クラゲ）/ `purple → coral`（サンゴ）
   （2026-08-18）、`orange → clown`（カクレクマノミ、2026-08-20）。
-  残る `teal / blue / indigo / magenta / pink` は**まだ仮名**。
-  ★2026-08-20、リネームは**見送り**と判断（候補 `abalone / whale / mussel / octopus / shrimp` は下に残す）。
+  残る `teal / blue / indigo / magenta` は**まだ仮名**。
+  ★2026-08-20 に一括リネームは**見送り**と判断（候補 `abalone / whale / mussel / octopus` は下に残す）。
+  ★2026-08-21、`pink → seal`（アザラシ）だけ**確定**。
   CONTRACT.md には仮名と明記してある。
 
   ★実際の色を見ると名前と食い違うものがある。名前を決めるときは実物を見ること。
@@ -232,7 +233,7 @@ fjord  × indigo   同 0.067
   indigo  H282  #9fa1f3  ★藤色。インディゴではない
   coral   H308  #c58ff3  ★薄紫。サンゴ色ではない
   magenta H332  #f46fe5  ピンク紫
-  pink    H355  #f47eb0  ピンク
+  seal    H355  #f47eb0  ピンク（アザラシ。旧 pink、2026-08-21 確定）
   ```
 
   L74 固定で彩度が乗りきらないため、想像より淡く出る。
@@ -559,7 +560,7 @@ palette.css hadal × orange だけ    518
 3. ~~**CVD シミュレーション**~~ … ★**2026-08-20 やらないと決めた**。
 
    Oklab の ΔE は色覚特性をモデル化していないので、2型色覚では `turtle`/`teal` と
-   `success`、`clown`/`pink` と `error` が危険側に寄る。これは事実として残る。
+   `success`、`clown`/`seal` と `error` が危険側に寄る。これは事実として残る。
 
    **やらない理由**: 対策が既に設計に入っているため。線形デザインは構造を罫と
    レイアウトに載せていて、色は意味を**補強**しているだけ。実際、作例の課題一覧は
@@ -572,7 +573,7 @@ palette.css hadal × orange だけ    518
    `spec-tables.md` には出ていたが、**アクセントを選ぶ場所には届いていなかった**。
 
    ```
-   pink   × error    27度      turtle × success  33度
+   seal   × error    27度      turtle × success  33度
    turtle × warning  32度      teal   × success  33度
    clown × error    33度      clown × warning  35度
    ```

@@ -16,7 +16,7 @@ const SUISOU = {
     "indigo",
     "coral",
     "magenta",
-    "pink"
+    "seal"
    ],
    "recommended": [
     "clown",
@@ -27,7 +27,7 @@ const SUISOU = {
     "indigo",
     "coral",
     "magenta",
-    "pink"
+    "seal"
    ],
    "warnings": {}
   },
@@ -46,7 +46,7 @@ const SUISOU = {
     "indigo",
     "coral",
     "magenta",
-    "pink"
+    "seal"
    ],
    "recommended": [
     "clown",
@@ -56,7 +56,7 @@ const SUISOU = {
     "indigo",
     "coral",
     "magenta",
-    "pink"
+    "seal"
    ],
    "warnings": {
     "jelly": "選択下地が面と近い ΔE 0.050（目標 0.055）"
@@ -77,7 +77,7 @@ const SUISOU = {
     "indigo",
     "coral",
     "magenta",
-    "pink"
+    "seal"
    ],
    "recommended": [
     "clown",
@@ -85,7 +85,7 @@ const SUISOU = {
     "teal",
     "coral",
     "magenta",
-    "pink"
+    "seal"
    ],
    "warnings": {
     "jelly": "選択下地が面と近い ΔE 0.051（目標 0.055）",
@@ -108,7 +108,7 @@ const SUISOU = {
     "indigo",
     "coral",
     "magenta",
-    "pink"
+    "seal"
    ],
    "recommended": [
     "clown",
@@ -119,7 +119,7 @@ const SUISOU = {
     "indigo",
     "coral",
     "magenta",
-    "pink"
+    "seal"
    ],
    "warnings": {}
   }
@@ -166,13 +166,13 @@ const SUISOU = {
    "hue": 332
   },
   {
-   "name": "pink",
-   "jp": "",
+   "name": "seal",
+   "jp": "アザラシ",
    "hue": 355
   }
  ],
  "hueRisk": {
-  "pink": [
+  "seal": [
    {
     "semantic": "error",
     "deg": 27
