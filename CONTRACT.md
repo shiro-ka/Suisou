@@ -13,7 +13,9 @@
 | 属性 | 値 |
 |---|---|
 | `data-suisou-accent` | `clown` `turtle` `teal` `jelly` `blue` `indigo` `coral` `magenta` `seal` |
+| `data-suisou-affix` | （値なし） |
 | `data-suisou-avatar` | `small` `large` |
+| `data-suisou-banner` | `error` `warning` `success` |
 | `data-suisou-button` | `outline` `plain` `danger` `neutral` `icon` `block` `wide` |
 | `data-suisou-button-group` | （値なし） |
 | `data-suisou-code` | `block` |

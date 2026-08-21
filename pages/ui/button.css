@@ -195,6 +195,24 @@
   min-width: 0;
 }
 [data-suisou-button-group] > [data-suisou-field]:focus-visible { outline: none; }
+
+/* ★連結の中の飾り文字（2026-08-22、3回ルールで昇格）。
+
+     <div data-suisou-button-group>
+       <span data-suisou-affix>/@</span>
+       <input data-suisou-field placeholder="your_name">
+     </div>
+
+   URL の接頭辞や単位のように、押せず書けない文字を連結の中に置く。
+   wixdex の settings / ShareModal / login が同じ .prefix を3回手書きしていた。
+   色は text-disabled ―― 押せるもの（text-sub）よりさらに一歩引く。
+   文字の大きさは持たない。まわり（連結の中身）に合わせる。 */
+[data-suisou-button-group] > [data-suisou-affix] {
+  align-self: center;
+  padding-inline-start: var(--suisou-space-2);
+  color: var(--suisou-text-disabled);
+  white-space: nowrap;
+}
 [data-suisou-button-group]:has(> [data-suisou-field]:focus-visible) {
   outline: var(--suisou-focus);
   outline-offset: 1px;

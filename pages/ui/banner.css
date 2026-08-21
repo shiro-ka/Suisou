@@ -1,0 +1,41 @@
+/* Suisou — Banner（結果を知らせる帯）
+
+     <p data-suisou-banner="error">メールアドレスかパスワードが違います。</p>
+     <p data-suisou-banner="success">送信しました。</p>
+     <p data-suisou-banner="warning">この操作は取り消せません。</p>
+
+   フォームの結果・操作の結果を、その場に置いて知らせる箱。
+   意味色の枠 + 意味色の下地 + 本文、の3点セット。
+
+   ★値は必須で1つ（error / warning / success）。裸の banner は無い ――
+     「知らせる」と言っておいて何の知らせか言わないことはできない。
+     surface が段を必須にしているのと同じ理屈。
+
+   ★色の組はぜんぶ solve.py が検証済み。PAIRS に「バナーの文字」
+     「バナーの枠」の行があり、text-main on error-surface 4.5:1 /
+     error on error-surface 4.5:1 を CI が守っている。
+     この部品より先に契約が存在した ―― wixdex の3現場が同じ箱を
+     手書きしていて（login ×2 / reset / ErrorMessage）、3回ルールで
+     昇格した（2026-08-22）。
+
+   ★意味は CSS では足せない。エラーの帯には role="alert"、
+     成功の帯には role="status" を現場が書く（Spinner と同じ考え方）。
+     動的に出す帯は書かないと読み上げに伝わらない。
+
+   文字は text-main。意味色の文字（error など）は枠に使っていて、
+   本文まで意味色にすると長文が読みにくい ―― 色は縁が言う、中身は普通に読む。 */
+
+[data-suisou-banner] {
+  box-sizing: border-box;
+  border: 1px solid;
+  border-radius: var(--suisou-radius);
+  padding: var(--suisou-space-2) var(--suisou-space-3);
+  color: var(--suisou-text-main);
+  font-size: var(--suisou-size-14);
+  line-height: var(--suisou-lh-14);
+}
+
+/* 種類 … 1つ選ぶ（必須） */
+[data-suisou-banner~="error"]   { border-color: var(--suisou-error);   background: var(--suisou-error-surface); }
+[data-suisou-banner~="warning"] { border-color: var(--suisou-warning); background: var(--suisou-warning-surface); }
+[data-suisou-banner~="success"] { border-color: var(--suisou-success); background: var(--suisou-success-surface); }

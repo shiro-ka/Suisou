@@ -32,6 +32,7 @@ const PAGES = {
   avatar:     { group: '部品', label: 'Avatar' },
   tag:        { group: '部品', label: 'Tag' },
   spinner:    { group: '部品', label: 'Spinner' },
+  banner:     { group: '部品', label: 'Banner' },
   chat:       { group: '作例', label: 'チャット', bleed: true },
   list:       { group: '作例', label: '課題一覧', bleed: true },
 };
