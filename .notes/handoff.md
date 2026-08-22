@@ -647,3 +647,77 @@ log/2026-08-17.md                 … 決定の経緯
 ```
 
 必要になったら ccmemory から持ってくる。
+
+---
+
+## Tailwind を消せる形に育てる（2026-08-22 の測定）
+
+しろかさんの願い ――「将来的にちゃんと Tailwind 消しても Suisou で wixdex ぐらい
+作りたい」。急がないが、距離は測ってある。
+
+### いまの距離
+
+wixdex に残る class は **853 箇所 / 259 種**。分解するとこうなる。
+
+| 塊 | 数 | Suisou が持つべきか |
+|---|---|---|
+| 色 | 112 | **持つべき**。`@theme` ブリッジ依存なので Tailwind 撤去で真っ先に死ぬ |
+| 配置 | 〜300 | **半分は持つべき**（`layout` の守備範囲） |
+| 余白 | 〜160 | **持つべき**（段は既にある） |
+| 実寸 | 〜160 | 持たない。現場のもの（`aspect-[12/17]` など） |
+| タイポ | 〜120 | **持つべき**（`data-suisou-text` の守備範囲） |
+
+**8割は原理的に Suisou 側**。「残す予定の薄い層」は実は 160 前後しかない。
+
+★撤去の順序は固定される: **色 112 → 幾何 740 → Tailwind 撤去**。
+  色クラスはブリッジ（Tailwind の機能）があって初めて Suisou の色になるので、
+  先に Tailwind を抜くと 112 箇所が一斉に無色化する。
+
+### 構造的に欠けている3つ
+
+3回ルールでは出てこない。**現場は Tailwind があるから困らず、需要が可視化されない**ため。
+
+1. **レスポンシブの語彙**（wixdex で 58 箇所・5段）
+   Suisou の `layout` は `md:` `lg:` しか持たない。wixdex は `sm` `xl` `2xl` も使う。
+   ここが埋まらないと現場は必ず Tailwind に戻る。**最大の穴。**
+   段をいくつ持つかは設計判断（Suisou が5段持つのか、2段に絞って現場に譲るのか）。
+
+2. **余白を「1箇所だけ置く」手段**
+   段（4/8/16/24）はあるが `layout` の gap 経由でしか使えない。`mb-2` 相当がない。
+   `helpers.css` は「Tailwind 併用時は入れるな」と書いてあり、
+   **併用をやめた先の道具がない**。衝突しない名前空間での再設計が要る。
+
+3. **リセット**
+   Suisou は「要素セレクタを使わない」掟でリセットを持たない。
+   Tailwind の preflight（配信 CSS 25KB のうち **11KB**）が消えると `box-sizing` も無くなる。
+   掟の例外を1つ作る必要がある ―― `prose` が既に
+   「破っていい場所を1つだけ用意して封じ込める」形をとっているので前例はある。
+
+### ★この見立ては n=1
+
+**上の3つは wixdex 1つだけを見て出した結論**。客が増えれば変わる。
+
+実際、**Suisou の `layout` は19語あるのに wixdex は4語（`row` `stack` `between` `end`）しか
+使っていない**。未使用は:
+
+```
+aside body center container even foot frame grow head hold
+nowrap screen scroll start stretch wrap
+```
+
+画面の骨格（`frame` / `head` / `aside` / `body` / `foot`）が丸ごと未検証。
+wixdex が単画面のツールで、シェルを持たないため。
+
+### 次の客は Mado
+
+- ダッシュボード型・**13画面**。`DashboardShell` / `Header` / `Sidebar` / `Footer` /
+  `InfoNav` / `UserCard` を持つ ―― **まさに未使用の骨格語彙を最初に試す客**
+- `tailwind-variants` + `tailwind-merge` を使っている（wixdex の cva と同じ問題）
+- `src/lib/components/ui/` に自前の小さなデザインシステムがある
+  （Input / Textarea / Toggle / Skeleton / badge / button）
+  → **Suisou に無い部品の一覧そのもの**。Toggle と Skeleton は Suisou に無い
+- `bits-ui` が依存にあるが**使用 0 件**（wixdex の typography プラグインと同じ死んだ依存）
+- 面は H262 の紺で、これが `trench` の由来。**Mado は trench × blue** で入る
+
+**Mado を通してから 1〜3 を設計すること。** wixdex だけで決めると、
+また「wixdex の適用で組み切れた」（＝半分しか見ていない）を繰り返す。
