@@ -198,6 +198,25 @@
    残る1つは「端まで届かせたい」だった。段はこの2つで足りる。 */
 [data-suisou-surface~="tight"] { padding-block: var(--suisou-space-2); }
 
+/* まだ何も無い場所（2026-08-22、Mado の4現場から昇格）。
+
+     <div data-suisou-surface="panel empty" data-suisou-layout="stack center">
+       <p>まだ質問がありません</p>
+     </div>
+
+   罫を破線にして「ここに入るはずのものが無い」を示す。実線は「在る物の輪郭」で、
+   空の入れ物に実線を引くと中身が在るように見える ―― 破線はその区別のための線。
+
+   ★色は line-strong。装飾罫より強くするのは、空表示が**面の中で一番目立つべき
+     もの**だから（他に何も無いので、これが唯一の手がかりになる）。
+   ★Mado の4現場: プロフィールの箱一覧 ×2 / 通知設定 / 受信トレイ。
+     どれも「0件のとき」で、4つとも border-dashed + border-border-strong を
+     手書きしていた。 */
+[data-suisou-surface~="empty"] {
+  border-style: dashed;
+  border-color: var(--suisou-line-strong);
+}
+
 /* 中身を端まで届かせる。行が自分で余白を持つ一覧など。
    罫と角丸は残るので、中身は角丸に沿って切られる（overflow は持たせない） */
 [data-suisou-surface~="bleed"] { padding: 0; }
