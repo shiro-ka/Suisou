@@ -21,6 +21,36 @@
 [data-suisou-text~="s28"] { --fs: var(--suisou-size-28); --lh: var(--suisou-lh-28); }
 [data-suisou-text~="s32"] { --fs: var(--suisou-size-32); --lh: var(--suisou-lh-32); }
 
+/* ── 画面幅で段を変える（2026-08-22 昇格）─────────
+     <h2 data-suisou-text="s24 md:s28 w700">広い画面でひとまわり大きく</h2>
+
+   layout と同じ md:(768) / lg:(1024) の2段だけ。sm / xl / 2xl は持たない ――
+   段を増やすほど「毎回選ぶもの」に戻ってしまう。2段で表せない振り方は
+   現場のもの。
+
+   ★需要は wixdex 1 + Mado 6 の7現場（text-sm md:text-base の型）。
+     Suisou に語彙が無いために、変換済みのファイルでもレスポンシブの
+     文字だけ Tailwind に残り続けていた ―― handoff の「最大の穴」の実例。
+   ★サイズだけ。ウェイトを画面幅で変える現場は無かった（7現場とも太さは固定）。 */
+@media (min-width: 768px) {
+  [data-suisou-text~="md:s12"] { --fs: var(--suisou-size-12); --lh: var(--suisou-lh-12); }
+  [data-suisou-text~="md:s14"] { --fs: var(--suisou-size-14); --lh: var(--suisou-lh-14); }
+  [data-suisou-text~="md:s16"] { --fs: var(--suisou-size-16); --lh: var(--suisou-lh-16); }
+  [data-suisou-text~="md:s20"] { --fs: var(--suisou-size-20); --lh: var(--suisou-lh-20); }
+  [data-suisou-text~="md:s24"] { --fs: var(--suisou-size-24); --lh: var(--suisou-lh-24); }
+  [data-suisou-text~="md:s28"] { --fs: var(--suisou-size-28); --lh: var(--suisou-lh-28); }
+  [data-suisou-text~="md:s32"] { --fs: var(--suisou-size-32); --lh: var(--suisou-lh-32); }
+}
+@media (min-width: 1024px) {
+  [data-suisou-text~="lg:s12"] { --fs: var(--suisou-size-12); --lh: var(--suisou-lh-12); }
+  [data-suisou-text~="lg:s14"] { --fs: var(--suisou-size-14); --lh: var(--suisou-lh-14); }
+  [data-suisou-text~="lg:s16"] { --fs: var(--suisou-size-16); --lh: var(--suisou-lh-16); }
+  [data-suisou-text~="lg:s20"] { --fs: var(--suisou-size-20); --lh: var(--suisou-lh-20); }
+  [data-suisou-text~="lg:s24"] { --fs: var(--suisou-size-24); --lh: var(--suisou-lh-24); }
+  [data-suisou-text~="lg:s28"] { --fs: var(--suisou-size-28); --lh: var(--suisou-lh-28); }
+  [data-suisou-text~="lg:s32"] { --fs: var(--suisou-size-32); --lh: var(--suisou-lh-32); }
+}
+
 /* §6「長文は UI に +4px するだけ」。7行の対応表ではなく規則として持つ */
 [data-suisou-text~="doc"] { line-height: calc(var(--lh) + 0.25rem); }
 
