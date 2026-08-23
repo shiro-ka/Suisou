@@ -769,6 +769,33 @@ wixdex で出なかったのは、あちらが**高さ固定の単画面**でペ
 
 ---
 
+## 4例目: YTaq（2026-08-23）―― 新しい導入形態「被せ型」
+
+YTaq は YouTube に被せる拡張。**他人の DOM には data-suisou-* を付けられない**ので、
+suisou.css（部品）は輸入できない。輸入したのはトークンだけ:
+
+- `sync-suisou.sh` が `dist/suisou-trench-blue.css` のテーマブロックから
+  `--suisou-*` を抜いて `ytaq-variables.css` に写す。**値の手書きゼロ**（掟1は保たれる）
+- 面の割り当ては Mado の骨格の写し: 底=bg / ヘッダー・サイドバー=panel /
+  カード=item / モーダル=overlay。面ごとの罫は surface.css の変数すり替えが
+  使えないので `-panel` / `-item` / `-overlay` を**手で選ぶ**（ここが被せ型の弱点。
+  面を移動したら罫の付け替えを人間が覚えている必要がある）
+- 部品の「宣言」は写せる: field / outline ボタン / plain ボタン / spinner /
+  沈むホバー（hover-surface）は dist の宣言をそのまま現場セレクタに移植した
+- 写せなかった寸法: YouTube は `html{font-size:10px}` なので **rem トークンは全滅**。
+  radius だけ px で持ち直した。被せ型では寸法トークンは信用できない
+- 残した色: プレイヤー chrome の白（rate / frame）と映像のレターボックス #000。
+  「テーマの色」ではなく「コンテンツの色」という区別で線を引いた
+
+これで導入形態は4つ: リンク型（pickker）/ @theme 橋（wixdex）/
+:root 橋（Mado）/ 被せ型（YTaq）。
+
+発見: YTaq のテーマ設定画面（色ピッカー5個）は **ずっと no-op だった**。
+設定は --ytaq-bg 等を注入するが、読む側の CSS は --aq* 系に移行済みで誰も参照していない。
+「黙って何も起きない」の新標本。設定 UI ごと Suisou のテーマ×アクセント選択に
+作り替えるか、消すか ―― しろかさんに未確認。options/options.css は拡張自身の
+ページなので、本物の suisou.css を読める唯一の場所でもある（未着手）。
+
 ## 方針（2026-08-22 確定。しろかさんの「複合的に判断して方針を定めて」への回答）
 
 ### 決めたこと
@@ -784,6 +811,7 @@ wixdex で出なかったのは、あちらが**高さ固定の単画面**でペ
    | Suisou: solve.py --check + lint_css | 生成物と手書き CSS | tint の未検査、scrim のクランプ漏れ |
    | wixdex: check-bridge.mjs | @theme 対応表に無い色の素通り | neutral-700 / white 45箇所 |
    | Mado: check-classes.mjs | 定義に無い色クラスの空振り | bg-primary-light 7箇所 |
+   | YTaq: build-xpi.sh 内 | 未定義の --suisou-* 参照と旧色システムの残骸 | テーマ設定画面が丸ごと no-op だった |
    CSS はエラーを出さない。**採用の形ごとに「何が黙って壊れるか」が違う**ので、
    導入1日目に自分の形の検査を書くこと。
 
