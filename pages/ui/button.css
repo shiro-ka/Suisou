@@ -12,7 +12,7 @@
    gray-300 と white で割れ、背景の有無も揃っていなかった。ここを既定にする。
 
    hover で面の明度は動かさない。hover-surface を敷く。
-   .notes/palette-spec.md の実測: 明度を上げる方式だと accent の hover(L79) が
+   設計仕様の実測: 明度を上げる方式だと accent の hover(L79) が
    text-sub(L78) と 1.00:1 になり、線が消える。 */
 
 [data-suisou-button] {

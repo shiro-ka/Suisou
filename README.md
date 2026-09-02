@@ -50,7 +50,7 @@ python3 tools/solve.py          # 生成（palette.css / suisou.data.js / spec-t
 python3 tools/solve.py --check  # 検証のみ。破綻があれば exit 1
 ```
 
-数値の表は生成物である `tools/spec-tables.md` が持ちます。`.notes/palette-spec.md` は散文と判断の理由だけを持ち、表を持ちません。
+数値の表は生成物である `tools/spec-tables.md` が持ちます。設計仕様書は散文と判断の理由だけを持ち、表を持ちません。
 真実の源泉を1つにしないと、ツール・仕様書・実装が同じ数値を主張して同期が手作業になります。
 
 CI（`.github/workflows/check_palette.yml`）が、構造的破綻と、生成物が `solve.py` の出力と一致することを検証します。

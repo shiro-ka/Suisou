@@ -30,7 +30,7 @@
   margin: 0;
 }
 
-/* ── 大きさ … .notes/type-spec.md の「長文」の段 ───── */
+/* ── 大きさ … 設計仕様の「長文」の段 ───── */
 
 [data-suisou-prose] :where(h1) { font-size: var(--suisou-size-28); line-height: var(--suisou-lh-28); font-weight: 700; }
 [data-suisou-prose] :where(h2) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); font-weight: 700; }
