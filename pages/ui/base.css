@@ -42,7 +42,7 @@
      「4の倍数」はルートが 16px のときに成立する。ユーザーが設定を変えれば
      全体が比例して動くので、段どうしの関係は保たれる。 */
 
-  /* タイポ … .notes/type-spec.md §3 §6 */
+  /* タイポ … 設計仕様 §3 §6 */
   --suisou-size-12: 0.75rem;   --suisou-lh-12: 1rem;      /* 12 / 16 */
   --suisou-size-14: 0.875rem;  --suisou-lh-14: 1.25rem;   /* 14 / 20 */
   --suisou-size-16: 1rem;      --suisou-lh-16: 1.5rem;    /* 16 / 24 */

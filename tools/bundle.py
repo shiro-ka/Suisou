@@ -71,7 +71,7 @@ def build(theme=None, accent=None, version="dev"):
     what = "全部入り（テーマ切替あり）" if theme is None else f"{theme} × {accent} のみ（切替なし）"
     head = (f"/*! Suisou {version} — {what}\n"
             f" * https://github.com/shiro-ka/Suisou\n"
-            f" * 生成物。編集しない。設計の根拠はリポジトリの ui/*.css と .notes/ にある。 */\n")
+            f" * 生成物。編集しない。設計の根拠はリポジトリの ui/*.css にある。 */\n")
     return head + body + "\n"
 
 
