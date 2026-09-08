@@ -58,6 +58,8 @@ jobs:
           cp -r pages/content       _site/content         # 差し替わるページの中身
           cp pages/palette.css      _site/palette.css     # solve.py の生成物
           cp pages/suisou.data.js   _site/suisou.data.js  # solve.py の生成物（構造のみ）
+          cp pages/404.html         _site/404.html        # ★無い URL に 404 を返させる
+          cp pages/_headers         _site/_headers        # CF Pages の配り方（GitHub Pages は見ない）
 
           # 配る形。<link> 1本で読める場所に置く
           cp -r dist _site/dist                               # 最新。移動する
