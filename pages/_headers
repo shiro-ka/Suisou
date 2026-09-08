@@ -1,0 +1,23 @@
+# Cloudflare Pages のヘッダ指定。★配信物ではなく「配り方」なので git に置く。
+#
+# ★2026-09-08 に一度失った。_site/ を作り直したとき、このファイルだけが
+#   どこにも無かった（手で書いて _site/ に直接置いていた）。本番の
+#   レスポンスヘッダから復元してここに移した。**配信の入力は全部 git に置く。**
+#
+# ★GitHub Pages はこのファイルを見ない。CF に移すまでの間、GitHub Actions 経由の
+#   配信ではキャッシュ制御が効かないが、固定 URL の約束（内容が動かない）は
+#   URL 側が担保しているので壊れはしない。
+
+/*
+  Access-Control-Allow-Origin: *
+  X-Content-Type-Options: nosniff
+
+# v1 は動く。5分だけ持って、あとは必ず問い合わせる。
+# ★長くすると Suisou を直しても現場に行き渡らない。ここが「rolling」の実体。
+/v1/*
+  Cache-Control: public, max-age=300, must-revalidate
+
+# 固定 URL は内容が動かないので、1年 immutable。
+# ★これが /v/<sha7>/ を配る理由そのもの。再検証すら要らない。
+/v/*
+  Cache-Control: public, max-age=31536000, immutable

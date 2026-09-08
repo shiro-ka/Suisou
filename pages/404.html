@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja" data-suisou-theme="hadal" data-suisou-accent="jelly">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Suisou</title>
+<link rel="stylesheet" href="/v1/suisou.css">
+</head>
+<!--
+  ★これが無いと Cloudflare Pages は「無い URL」に 200 と index.html を返す（2026-09-08 実測）。
+
+    /v/4d55065/suisou.css  200 text/css    生きている
+    /v/e5c1053/suisou.css  200 text/html   配信されていない。でも 200
+    /v/zzzzzzz/suisou.css  200 text/html   でたらめでも 200
+
+  ★何が困るか。<link> から読むと HTML が返り、ブラウザが CSS として拒否して
+    **素の HTML の画面**になる。DNS が落ちたときの見え方と同じなので、
+    「さっきの変更で壊した」と誤診する（実際に一度やった）。
+    curl の %{http_code} でも生きているように見えるので、確認の手も騙される。
+
+  ★404.html を置くと Pages は無い URL に 404 を返すようになる。
+    固定 URL の約束（一度公開した /v/<sha7>/ を消さない）を破ったとき、
+    黙って化けるのではなく落ちてほしい。
+-->
+<body data-suisou-root data-suisou-layout="center screen">
+  <div data-suisou-layout="stack gap-3" data-suisou-text="center">
+    <p data-suisou-text="s32 w700">404</p>
+    <p data-suisou-text="s16 sub">その URL は配信されていません。</p>
+    <p data-suisou-text="s14 sub">
+      固定 URL（<code data-suisou-code>/v/&lt;sha7&gt;/</code>）を指しているなら、
+      その版はまだ配信に含まれていません。
+    </p>
+    <p><a href="/" data-suisou-link>Suisou の手帖へ</a></p>
+  </div>
+</body>
+</html>
