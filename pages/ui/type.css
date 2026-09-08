@@ -54,6 +54,30 @@
 /* §6「長文は UI に +4px するだけ」。7行の対応表ではなく規則として持つ */
 [data-suisou-text~="doc"] { line-height: calc(var(--lh) + 0.25rem); }
 
+/* ── 色 ────────────────────────────────────
+     <p data-suisou-text="s14 sub">補足</p>
+     <p data-suisou-text="s12 error">保存に失敗しました</p>
+
+   ★Icon と同じ閉じた集合。書かなければ継承（currentColor のまま）。
+     以前は「文字の色だけ現場が var(--suisou-text-sub) を手書き」という状態で、
+     **Mado 1現場で 68 箇所**あった（2026-09-08 実測）。書かれていた色は8種、
+     うち `inherit` 1件を除いて**全部 Suisou のトークン** ―― つまり値は語彙の中に
+     あるのに、それを言う属性が無いから CSS に落ちていた。
+     Icon が color を持っていて Text が持っていない、という部品間のズレでもあった。
+
+   ★★`disabled` は入れない（palette-spec §5）。
+     `--suisou-text-disabled` は **disabled / placeholder 専用**で、overlay 上 3.23:1 と
+     WCAG 1.4.3 の除外規定に依る値。本文に使うと基準を割る。
+     v1.0 の `text-faint` から改名したのは「本文に使った瞬間レビューで浮かせる」ため。
+     ここに段を作ると、その狙いを自分で潰すことになる。
+     ★薄い注記が欲しい現場は `sub` を使う。それが3段目。 */
+
+[data-suisou-text~="sub"]     { color: var(--suisou-text-sub); }
+[data-suisou-text~="accent"]  { color: var(--suisou-accent); }
+[data-suisou-text~="success"] { color: var(--suisou-success); }
+[data-suisou-text~="warning"] { color: var(--suisou-warning); }
+[data-suisou-text~="error"]   { color: var(--suisou-error); }
+
 /* ウェイトは3段（§4）。★600 は無い ―― Zen Maru Gothic が 600 を持たず
    700 で描画されていた。フォールバックフォントでは 600/700 が分かれて
    環境で見た目が割れるので、段として持つのをやめた（2026-08-20）。
