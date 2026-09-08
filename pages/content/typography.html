@@ -47,6 +47,31 @@
   </div>
 
   <div class="group">
+    <h2>行の寄せ</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-text="s14 center"</span>
+      <p data-suisou-text="s14 center" data-suisou-surface="panel">中央に寄せた行</p>
+      <span class="demo-label">data-suisou-text="start" —— button の既定（中央）を行に戻す</span>
+      <div data-suisou-layout="row">
+        <button data-suisou-button="block">既定（中央）</button>
+        <button data-suisou-button="block" data-suisou-text="start">start</button>
+      </div>
+    </div>
+    <p class="note">
+      <strong><code>text-align</code> は layout の寄せとは別物。</strong>
+      layout の <code>start</code> / <code>middle</code> / <code>end</code> は
+      <strong>箱の並べ方</strong>（主軸の余りの配り方）で、こちらは<strong>行ボックスの中</strong>の話。
+      同じ名前を layout に置くと、どちらの軸を言っているのか読めなくなるので text に持たせた。
+      <br><br>
+      ★<code>start</code> は<strong>打ち消しの語</strong>。単体で書いても普通は何も変わらない ——
+      ブラウザが <code>button</code> の中身を中央に寄せるので、それを行に戻すために要る。
+      <br><br>
+      ★<code>end</code> は持たない。実測で2件しか無く（どちらも数値の列）、3回に届かなかった。
+      画面幅で寄せを変える <code>md:</code> / <code>lg:</code> も、需要が2現場とも0だったので作らない。
+    </p>
+  </div>
+
+  <div class="group">
     <h2>役割 — UI</h2>
     <div data-slot="roles-ui"></div>
   </div>

@@ -21,7 +21,7 @@
 | `data-suisou-code` | `block` |
 | `data-suisou-field` | `block` |
 | `data-suisou-icon` | `small` `tiny` `sub` `accent` `success` `warning` `error` |
-| `data-suisou-layout` | `gap-0` `gap-1` `gap-2` `gap-3` `gap-4` `stack` `row` `center` `frame` `aside` `head` `body` `foot` `stretch` `wrap` `hold` `nowrap` `start` `end` `between` `scroll` `grow` `screen` `even` `container` |
+| `data-suisou-layout` | `gap-0` `gap-1` `gap-2` `gap-3` `gap-4` `stack` `row` `center` `frame` `aside` `head` `body` `foot` `stretch` `wrap` `hold` `nowrap` `start` `middle` `end` `between` `scroll` `grow` `screen` `even` `container` |
 | `data-suisou-link` | （値なし） |
 | `data-suisou-list` | （値なし） |
 | `data-suisou-media` | `stack` |
@@ -36,7 +36,7 @@
 | `data-suisou-surface` | `panel` `item` `none` `overlay` `drawer` `start` `bare` `tight` `empty` `bleed` |
 | `data-suisou-table` | `tight` `scroll` |
 | `data-suisou-tag` | `accent` `error` `warning` `success` `bare` |
-| `data-suisou-text` | `s12` `s14` `s16` `s20` `s24` `s28` `s32` `doc` `sub` `accent` `success` `warning` `error` `w400` `w500` `w700` |
+| `data-suisou-text` | `s12` `s14` `s16` `s20` `s24` `s28` `s32` `doc` `sub` `accent` `success` `warning` `error` `w400` `w500` `w700` `center` `start` |
 | `data-suisou-theme` | `hadal` `trench` `fjord` `shoal` |
 
 - 値は空白区切りで併記できる（`~=` で当たる）

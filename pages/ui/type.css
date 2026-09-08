@@ -85,3 +85,29 @@
 [data-suisou-text~="w400"] { font-weight: 400; }
 [data-suisou-text~="w500"] { font-weight: 500; }
 [data-suisou-text~="w700"] { font-weight: 700; }
+
+/* ── 行の寄せ（2026-09-08 昇格）─────────────────
+
+     <p data-suisou-text="s14 sub center">中央に寄せた注記</p>
+     <button data-suisou-button="block" data-suisou-text="start">左に戻す</button>
+
+   ★needs の実測（Mado + wixdex の2現場）:
+       center  22（Mado 11 scoped / wixdex 11 Tailwind）
+       start    5（Mado 2 / wixdex 3）
+       end      2  ← 3回ルール未満。持たない
+
+   ★start は「打ち消し」の語。単体で書いても普通は何も変わらない ――
+     ブラウザが button の中身を center にするので、それを行に戻すために要る
+     （5件のうち3件が button だった）。layout の stretch / hold / nowrap と同じ役目。
+
+   ★end を入れなかったのは数が届かないから。2件とも数字の列（右揃えの合計欄）で、
+     どちらも「表の中の数値」という同じ形をしている。★3件目が出たら、
+     end ではなく tabular な列の語として入れるか考え直すこと。
+
+   ★なぜ layout ではなく text か。text-align は flex/grid の寄せとは別物で、
+     行ボックスの中の話。layout に置くと start / end / between（＝主軸の寄せ）と
+     名前が衝突し、どちらの軸の話か読めなくなる。
+
+   ★md: / lg: は作らない。画面幅で行の寄せを変える現場が2現場とも0だった。 */
+[data-suisou-text~="center"] { text-align: center; }
+[data-suisou-text~="start"]  { text-align: start; }
