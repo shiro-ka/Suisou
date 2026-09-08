@@ -20,7 +20,7 @@
 | `data-suisou-button-group` | `even` |
 | `data-suisou-code` | `block` |
 | `data-suisou-field` | `block` |
-| `data-suisou-icon` | `small` `sub` `accent` `success` `warning` `error` |
+| `data-suisou-icon` | `small` `tiny` `sub` `accent` `success` `warning` `error` |
 | `data-suisou-layout` | `gap-0` `gap-1` `gap-2` `gap-3` `gap-4` `stack` `row` `center` `frame` `aside` `head` `body` `foot` `stretch` `wrap` `hold` `nowrap` `start` `end` `between` `scroll` `grow` `screen` `even` `container` |
 | `data-suisou-link` | （値なし） |
 | `data-suisou-list` | （値なし） |
@@ -57,7 +57,7 @@
 
 寸法・書体・モーション（`ui/base.css`）:
 
-- `--suisou-size-12` `--suisou-lh-12` `--suisou-size-14` `--suisou-lh-14` `--suisou-size-16` `--suisou-lh-16` `--suisou-size-20` `--suisou-lh-20` `--suisou-size-24` `--suisou-lh-24` `--suisou-size-28` `--suisou-lh-28` `--suisou-size-32` `--suisou-lh-32` `--suisou-space-1` `--suisou-space-2` `--suisou-space-3` `--suisou-space-4` `--suisou-measure` `--suisou-icon` `--suisou-icon-small` `--suisou-radius-small` `--suisou-radius` `--suisou-radius-pill` `--suisou-font` `--suisou-mono` `--suisou-focus` `--suisou-motion-fast` `--suisou-motion` `--suisou-ease`
+- `--suisou-size-12` `--suisou-lh-12` `--suisou-size-14` `--suisou-lh-14` `--suisou-size-16` `--suisou-lh-16` `--suisou-size-20` `--suisou-lh-20` `--suisou-size-24` `--suisou-lh-24` `--suisou-size-28` `--suisou-lh-28` `--suisou-size-32` `--suisou-lh-32` `--suisou-space-1` `--suisou-space-2` `--suisou-space-3` `--suisou-space-4` `--suisou-measure` `--suisou-icon` `--suisou-icon-small` `--suisou-icon-tiny` `--suisou-radius-small` `--suisou-radius` `--suisou-radius-pill` `--suisou-font` `--suisou-mono` `--suisou-focus` `--suisou-motion-fast` `--suisou-motion` `--suisou-ease`
 
 ## 既定
 
