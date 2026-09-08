@@ -8,11 +8,12 @@
 
    Bulma も同じ構成で、中核とは別にヘルパーを持っている。 */
 
-.gap-0 { gap: 0; }
-.gap-1 { gap: var(--suisou-space-1); }
-.gap-2 { gap: var(--suisou-space-2); }
-.gap-3 { gap: var(--suisou-space-3); }
-.gap-4 { gap: var(--suisou-space-4); }
+/* ★.gap-* はここから外した（2026-09-08）。
+   data-suisou-layout="gap-0".."gap-4" として**契約の中**に入ったので、
+   同じものを2箇所で持たない。名前は同じ、名前空間だけが属性側に移った。
+   ―― helpers は接頭辞なしで汎用名を占領するため「Tailwind 併用時は入れるな」
+   という条件付きだったが、併用をやめた現場にはすきまを変える手段が要る。
+   属性なら誰とも衝突しない。 */
 
 .p-0 { padding: 0; }
 .p-1 { padding: var(--suisou-space-1); }
