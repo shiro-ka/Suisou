@@ -31,6 +31,43 @@
    要素セレクタは使わない約束だが、これは layout の内側に閉じているので例外。 */
 :where([data-suisou-layout]) > * { flex: none; }
 
+/* ── すきま。既定を変えたいときだけ書く ─────────
+
+     <div data-suisou-layout="stack gap-3">面の中の並び</div>
+     <div data-suisou-layout="stack md:frame screen gap-0">画面の骨格</div>
+
+   ★既定（space-2）は据え置き。これが「Suisou の間合い」で、**毎回選ぶものではない**。
+     ここは「既定では合わない場所」のための逃げ道で、書かないのが普通。
+
+   ★名前は helpers.css の .gap-* と同じ（段の番号 = --suisou-space-N）。
+     新しい語を発明していない ―― 変えたのは**名前空間だけ**。
+     helpers は接頭辞なしのクラスなので汎用名を占領し、「Tailwind 併用時は入れるな」
+     という条件付きだった。併用をやめた現場に配る道具が無くなるので、属性側へ移す。
+
+   ★段の意味は base.css が書いている通り:
+       gap-1  4   部品の中の詰め（見出しと補足のような一続きの2行）
+       （既定） 8   標準の隙間
+       gap-3  16  面の余白（カード・フォーム・節の中）
+       gap-4  24  大きな区切り（ページの節どうし）
+       gap-0  0   すきまを持たない（画面の骨格。区切りは罫がやる）
+
+   ★需要の実測（Mado 1現場、2026-09-08。Tailwind を外し切った状態）:
+     58 箇所が gap を手書きしていて、**4段 + 0 の中に全部収まっていた**
+     （16px 28 / 24px 14 / 4px 10 / 0 6）。当たっていた先も段の意味と一致する ――
+     .page .cols が 24、.card .form .group が 16、.heading .text が 4、
+     .shell .frame が 0。★別に 17 箇所、既定と同じ値を書き直しているだけの
+     冗長な宣言があった（現場側で削除済み）。
+
+   ★gap-2 も置く。既定と同じ値だが、親から段を変えられた入れ子で戻すために要る。
+
+   ★md: / lg: の接頭辞版は作らない。画面幅ですきまを変えたい現場がまだ無い（3回ルール）。 */
+
+[data-suisou-layout~="gap-0"] { gap: 0; }
+[data-suisou-layout~="gap-1"] { gap: var(--suisou-space-1); }
+[data-suisou-layout~="gap-2"] { gap: var(--suisou-space-2); }
+[data-suisou-layout~="gap-3"] { gap: var(--suisou-space-3); }
+[data-suisou-layout~="gap-4"] { gap: var(--suisou-space-4); }
+
 /* ── モード。1つだけ選ぶ ───────────────────── */
 
 [data-suisou-layout~="stack"]  { flex-direction: column; }

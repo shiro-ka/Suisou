@@ -21,7 +21,7 @@
 | `data-suisou-code` | `block` |
 | `data-suisou-field` | `block` |
 | `data-suisou-icon` | `small` `sub` `accent` `success` `warning` `error` |
-| `data-suisou-layout` | `stack` `row` `center` `frame` `aside` `head` `body` `foot` `stretch` `wrap` `hold` `nowrap` `start` `end` `between` `scroll` `grow` `screen` `even` `container` |
+| `data-suisou-layout` | `gap-0` `gap-1` `gap-2` `gap-3` `gap-4` `stack` `row` `center` `frame` `aside` `head` `body` `foot` `stretch` `wrap` `hold` `nowrap` `start` `end` `between` `scroll` `grow` `screen` `even` `container` |
 | `data-suisou-link` | （値なし） |
 | `data-suisou-list` | （値なし） |
 | `data-suisou-media` | `stack` |
