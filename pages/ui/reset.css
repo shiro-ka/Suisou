@@ -1,0 +1,62 @@
+/* Suisou — Reset（ブラウザ既定の打ち消し）
+
+   ★なぜ要るか（2026-09-08、Mado が Tailwind を外して分かった）
+
+     Suisou は「要素セレクタを使わない」掟なので、見出しや段落の既定マージンに
+     手を出さない。設計としては正しい ―― が、それは **リセットは適用先が持つ**
+     ということでもある。ところがその前提はどこにも書いていなかった。
+
+     Mado は Tailwind の preflight に暗黙に頼っていて、Tailwind を外した瞬間に
+     h1〜h6 / p / ul の margin が一斉に復活し、**カードの中の余白が全部壊れた**。
+     すきまは data-suisou-layout が焼き込みで持つので、既定のマージンは
+     邪魔にしかならない。現場が同じものを書き直す前に、こちらで持つ。
+
+   ★掟の破り方は prose と同じ形にした。
+
+     [data-suisou-root] の内側に閉じ、:where() で詳細度を 0 にする。
+     - 「ページ全体に敷く」と宣言した場所にしか効かない（base.css の root と同じ約束）
+     - 詳細度 0 なので、現場の規則も Suisou の部品も必ず勝つ
+     - 属性を足さないので契約（data-suisou-*）は増えない
+
+     prose が「破っていい場所を1つだけ用意して封じ込める」形をとっているので、
+     これが2つ目。★3つ目を作らないこと ―― 例外が増えると掟が意味を失う。
+
+   ★入れる物は「Mado が実際に書き直したもの」だけにした。
+     preflight は 11KB あるが、その大半は Tailwind 自身のための地ならし。
+     必要になっていない物を先回りで入れない（3回ルールと同じ姿勢）。 */
+
+/* 箱の数え方。Suisou の部品は各自 border-box を宣言しているが、
+   現場が置く素の div には効かない。preflight が消えて最初に困るのがここ。 */
+:where([data-suisou-root], [data-suisou-root] *, [data-suisou-root] *::before, [data-suisou-root] *::after) {
+  box-sizing: border-box;
+}
+
+/* 既定のマージン。縦のすきまは layout が持つので、要素側は 0 に倒す。
+   ★body も含める ―― ブラウザ既定の 8px が画面の骨格（frame screen）を押し出す。 */
+:where([data-suisou-root]) {
+  margin: 0;
+}
+:where([data-suisou-root]) :where(h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd, ul, ol, pre) {
+  margin: 0;
+}
+
+/* しるしの字下げ。持つのは data-suisou-list と prose だけで、素の ul/ol は持たない
+   （どちらも属性セレクタなのでこの :where より強く、上書きされない）。 */
+:where([data-suisou-root]) :where(ul, ol) {
+  padding-inline-start: 0;
+}
+
+/* 画像と図。inline のままだと行の下に隙間が出る（行末の descender ぶん）。
+   max-width は「入れ物からはみ出さない」だけ。実寸は現場のもの。 */
+:where([data-suisou-root]) :where(img, svg, video, canvas) {
+  display: block;
+  max-width: 100%;
+}
+
+/* 書式の継承。ブラウザは form の部品にだけ別の書体と大きさを当てるので、
+   ★Suisou の部品（button / field）は font-family: inherit を自分で書いている。
+     ここはその外側 ―― 現場が置く素の button や select のため。 */
+:where([data-suisou-root]) :where(button, input, textarea, select) {
+  font: inherit;
+  color: inherit;
+}

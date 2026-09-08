@@ -25,6 +25,28 @@
   </div>
 
   <div class="group">
+    <h2>色</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-text="s14 sub"</span>
+      <p data-suisou-text="s14 sub">補足・注記。3段目の弱い文字はこれ</p>
+      <span class="demo-label">data-suisou-text="s14 accent"</span>
+      <p data-suisou-text="s14 accent">アクセント。枠や配置と併せて使う</p>
+      <span class="demo-label">data-suisou-text="s14 success / warning / error"</span>
+      <div data-suisou-layout="row wrap">
+        <span data-suisou-text="s14 success">保存しました</span>
+        <span data-suisou-text="s14 warning">取り消せません</span>
+        <span data-suisou-text="s14 error">保存に失敗しました</span>
+      </div>
+    </div>
+    <p class="note">
+      Icon と同じ閉じた集合。書かなければ継承（<code>currentColor</code> のまま）。
+      <strong>disabled の段は無い</strong> —— <code>--suisou-text-disabled</code> は
+      disabled / placeholder 専用で、overlay の上で 3.23:1（WCAG 1.4.3 の除外規定に依る値）。
+      本文に使うと基準を割るので、段を作らない。薄い注記が欲しいときは <code>sub</code> がその役。
+    </p>
+  </div>
+
+  <div class="group">
     <h2>役割 — UI</h2>
     <div data-slot="roles-ui"></div>
   </div>
