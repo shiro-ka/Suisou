@@ -125,8 +125,23 @@
 
 /* 主軸方向の寄せ。余った空間の配り方であって、子の置き方ではない。
    子に grow があると余りが残らないので、これらは何も起きなくなる。
-   around / evenly は出番が無かったので持たない（3回書いてから足す）。 */
+   around / evenly は出番が無かったので持たない（3回書いてから足す）。
+
+   ★middle が「主軸の中央」（2026-09-08 昇格。需要 20 ―― wixdex 19 / Mado 1）。
+
+     center ではないのは、その名前が**モードの方に取られている**から
+     （center = grid + place-items）。row に center を足すと grid に化けて
+     並びが壊れる ―― lint_css.py がモード2個として弾くので気づけはするが、
+     名前としては明らかに逆を向いている。
+
+   ★名前の借金として残す。実測すると center モードの利用は4箇所（Mado 3 /
+     作例 1）しかなく、需要 20 の方が名前を持てていない。本来は center を
+     寄せに返し、grid のモードを別名にすべき。**それは公開契約の破壊**
+     （CONTRACT の値を変える＝v1 を凍結して次版を建てる）なので、
+     次に破壊的変更をまとめて出すときに一緒に直す。
+     ★申し送りは ccmemory/dev/suisou.md。 */
 [data-suisou-layout~="start"]   { justify-content: flex-start; }
+[data-suisou-layout~="middle"]  { justify-content: center; }
 [data-suisou-layout~="end"]     { justify-content: flex-end; }
 [data-suisou-layout~="between"] { justify-content: space-between; }
 
@@ -216,6 +231,7 @@
   [data-suisou-layout~="md:screen"] { min-height: 100dvh; }
   [data-suisou-layout~="md:even"] { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
   [data-suisou-layout~="md:start"] { justify-content: flex-start; }
+  [data-suisou-layout~="md:middle"] { justify-content: center; }
   [data-suisou-layout~="md:end"] { justify-content: flex-end; }
   [data-suisou-layout~="md:between"] { justify-content: space-between; }
 }
@@ -243,6 +259,7 @@
   [data-suisou-layout~="lg:screen"] { min-height: 100dvh; }
   [data-suisou-layout~="lg:even"] { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
   [data-suisou-layout~="lg:start"] { justify-content: flex-start; }
+  [data-suisou-layout~="lg:middle"] { justify-content: center; }
   [data-suisou-layout~="lg:end"] { justify-content: flex-end; }
   [data-suisou-layout~="lg:between"] { justify-content: space-between; }
 }

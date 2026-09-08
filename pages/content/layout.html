@@ -149,6 +149,8 @@
           <td><code>wrap</code> を打ち消す。同上</td></tr>
       <tr><td><code>start</code></td><td><code>justify-content: flex-start</code></td>
           <td>主軸の先頭に寄せる（既定なので明示したいときだけ）</td></tr>
+      <tr><td><code>middle</code></td><td><code>justify-content: center</code></td>
+          <td>主軸の中央に寄せる。<strong><code>center</code> ではない</strong>（下記）</td></tr>
       <tr><td><code>end</code></td><td><code>justify-content: flex-end</code></td>
           <td>主軸の末尾に寄せる</td></tr>
       <tr><td><code>between</code></td><td><code>justify-content: space-between</code></td>
@@ -175,10 +177,22 @@
       ★<strong>子に <code>grow</code> が1つでもあると効かなくなる。</strong>
       <code>grow</code> が余りを全部取ってしまい、配るものが残らないため。
       「なぜか効かない」の大半はこれ。
+      <br><br>
+      ★<strong>中央は <code>middle</code>。<code>center</code> と書くと grid に化ける。</strong>
+      <code>center</code> はモードの名前（<code>display: grid; place-items: center</code>）で、
+      <code>row center</code> と書くと並びごと別物になる。
+      <strong>この名前の配り方は失敗している</strong> —— 実測すると中央寄せの需要が 20 件、
+      <code>center</code> モードの利用は 4 件で、<strong>よく要る方が名前を持てていない</strong>。
+      <code>center</code> を寄せに返すのは公開契約の破壊なので、次の破壊的変更でまとめて直す。
+      それまでは <code>lint_css.py</code> が「モード2個」として弾く。
     </p>
     <div class="demo">
       <span class="demo-label">既定（start）</span>
       <div data-suisou-layout="row" data-suisou-surface="panel">
+        <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
+      </div>
+      <span class="demo-label">middle —— 主軸の中央</span>
+      <div data-suisou-layout="row middle" data-suisou-surface="panel">
         <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
       </div>
       <span class="demo-label">end</span>
