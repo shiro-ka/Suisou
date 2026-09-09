@@ -65,6 +65,7 @@
 ## 既定
 
 - 属性が無いとき: `hadal` × `jelly`
+- layout はモードを1つ書いて初めて `display` が入る。子側の語（`grow` / `share` / `hold`）だけでは並びは変わらない
 - layout の子は動かない（`flex: none`）。伸びるものだけ `grow` と名指す
 - `button="block"` は左寄せ（全幅のボタンはメニューの行）
 
