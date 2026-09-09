@@ -37,7 +37,7 @@
 | `data-suisou-surface` | `panel` `item` `none` `overlay` `drawer` `start` `bare` `tight` `empty` `bleed` |
 | `data-suisou-table` | `tight` `scroll` |
 | `data-suisou-tag` | `accent` `error` `warning` `success` `bare` |
-| `data-suisou-text` | `s12` `s14` `s16` `s20` `s24` `s28` `s32` `doc` `sub` `accent` `success` `warning` `error` `w400` `w500` `w700` `center` `start` |
+| `data-suisou-text` | `s12` `s14` `s16` `s20` `s24` `s28` `s32` `doc` `sub` `accent` `success` `warning` `error` `w400` `w500` `w700` `center` `start` `one-line` |
 | `data-suisou-theme` | `hadal` `trench` `fjord` `shoal` |
 
 - 値は空白区切りで併記できる（`~=` で当たる）
