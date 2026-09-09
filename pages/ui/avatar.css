@@ -15,6 +15,10 @@
   height: var(--suisou-avatar, 2rem);
   border-radius: var(--suisou-radius-pill);
   background: var(--suisou-item);
+  /* ★tile と同じ理由（2026-09-09）。item の面を敷いたら罫も item 用にする。
+     ここは長らく抜けていて、まわりの面の濃さのまま引いていた。 */
+  --suisou-line-weak: var(--suisou-line-weak-item);
+  --suisou-line-strong: var(--suisou-line-strong-item);
   border: 1px solid var(--suisou-line-weak);
   color: var(--suisou-text-sub);
   font-size: var(--suisou-size-12);

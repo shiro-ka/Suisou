@@ -27,6 +27,15 @@
   height: var(--suisou-tile, 2.25rem);
   border-radius: var(--suisou-radius);
   background: var(--suisou-item);
+
+  /* ★段を上げたら罫も差し替える（surface.css の「段」と同じ約束）。
+     item の面を敷いた時点でこの要素の上は item なので、
+     自分の罫も item 用の値で引かないと**まわりの面の濃さのまま**になる。
+     ★これを忘れていて、現場の見た目が 0.05% ずれた（2026-09-09 実測）。
+       Mado は surface="item" + layout="center" で組んでいたので正しい色が出ており、
+       tile に置き換えたときだけ罫が濁った。 */
+  --suisou-line-weak: var(--suisou-line-weak-item);
+  --suisou-line-strong: var(--suisou-line-strong-item);
   border: 1px solid var(--suisou-line-weak);
   display: grid;
   place-items: center;
