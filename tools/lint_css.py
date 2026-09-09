@@ -45,8 +45,10 @@ def layout_modes():
     判定は「display か flex-direction を敷いているか」。これが検査の目的そのもの
     ―― 2つ書くと片方が黙って死ぬのは、その2つのプロパティを取り合うときだけ。
 
-    ★この規則だと row が外れる。row は align-items だけなので、grid に
-      切り替わっても死なず、混ざっても指定が失われない。検査の対象ではない。
+    ★2026-09-09 から row も集合に入る。row が flex-direction を持つように
+      なったため（それまでは align-items だけで、検査の対象外だった）。
+      **この関数は直していない** ―― 規則が CSS から導いているので、
+      layout.css を直しただけで検査が追随した。掟1 の形が効いた実例。
     """
     path = os.path.join(ROOT, "pages", "ui", "layout.css")
     css = COMMENT_CSS.sub("", open(path, encoding="utf-8").read())

@@ -46,9 +46,10 @@
       手で持っていたときに <code>even</code> を足し忘れて
       <code>"stack even"</code> が素通りしたので、真実の源泉を1つにした。
       <br>
-      この規則だと <code>row</code> は対象から外れる。
-      <code>align-items</code> しか敷かないので、grid に切り替わっても死なず、
-      混ざっても指定が失われないため。
+      ★2026-09-09 から <code>row</code> も対象に入る。<code>row</code> が
+      <code>flex-direction</code> を持つようになったため ——
+      <strong>検査の関数は1行も直していない</strong>。
+      規則を CSS から導いているので、<code>layout.css</code> を直しただけで追随した。
     </p>
     <div class="demo">
       <span class="demo-label">stack —— 縦に積む</span>
@@ -70,8 +71,9 @@
       <tr><th>値</th><th>CSS</th><th>使う場面</th></tr>
       <tr><td><code>stack</code></td><td><code>flex-direction: column</code></td>
           <td>縦に積む。いちばん多い</td></tr>
-      <tr><td><code>row</code></td><td><code>align-items: center</code></td>
-          <td>横並び。ボタン列、アイコンと文字</td></tr>
+      <tr><td><code>row</code></td><td><code>flex-direction: row; align-items: center</code></td>
+          <td>横並び。ボタン列、アイコンと文字。<code>stack md:row</code> で
+              「狭いと縦積み・広いと横並び」</td></tr>
       <tr><td><code>center</code></td><td><code>display: grid; place-items: center</code></td>
           <td>1つのものを真ん中に。flex ではなく grid</td></tr>
       <tr><td><code>frame</code></td><td><code>display: grid; grid-template-areas: …</code></td>
@@ -80,6 +82,34 @@
           <td>等分の列。子の数だけ列ができる。狭い画面では
               <code>stack md:even</code> と組む</td></tr>
     </table>
+  </div>
+
+  <div class="group">
+    <h2>狭いと縦積み、広いと横並び</h2>
+    <p class="note">
+      <code>stack md:row</code> と書く。いちばんよく要る形。
+      <br><br>
+      ★<strong><code>row</code> が <code>flex-direction</code> を持つようになったのは
+      2026-09-09。</strong> それまでは <code>align-items: center</code> だけだった ——
+      flex の既定が row なので「単体では何も変わらない値」でよいと考えていたが、
+      <strong><code>stack</code> を画面幅で解けなくなっていた</strong>。
+      <code>stack md:row</code> と書いても縦積みのままで、現場が
+      <code>@media</code> で <code>flex-direction</code> を戻す羽目になっていた
+      （Mado 3 箇所 / wixdex 3 箇所）。ある現場には
+      「打ち消し：<code>stack md:row</code>（<code>md:row</code> が
+      <code>flex-direction</code> を戻さない）」というコメント付きの回避まで書かれていた。
+      <br><br>
+      ★このページは<strong>最初から <code>row</code> をモードと呼んでいた</strong>
+      （「モードは1つだけ書く」）。文書が正しく、実装だけが方向を持っていなかった。
+    </p>
+    <div class="demo">
+      <span class="demo-label">stack md:row —— 画面を広げると横に並ぶ</span>
+      <div data-suisou-layout="stack md:row" data-suisou-surface="panel">
+        <div class="demo-box" data-suisou-layout="grow stack">あ</div>
+        <div class="demo-box" data-suisou-layout="grow stack">い</div>
+        <div class="demo-box" data-suisou-layout="grow stack">う</div>
+      </div>
+    </div>
   </div>
 
   <div class="group">

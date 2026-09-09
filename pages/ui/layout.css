@@ -71,7 +71,24 @@
 /* ── モード。1つだけ選ぶ ───────────────────── */
 
 [data-suisou-layout~="stack"]  { flex-direction: column; }
-[data-suisou-layout~="row"]    { align-items: center; }
+
+/* ★row は方向も持つ（2026-09-09）。以前は align-items だけだった。
+
+   flex の既定が row なので「単体では何も変わらない」―― そう思って方向を
+   書いていなかったが、**stack を画面幅で解けなくなっていた**。
+   `stack md:row` と書いても縦積みのままで、現場が @media で
+   flex-direction を戻す羽目になっていた（Mado 3 / wixdex 3 の計6箇所）。
+   ★Mado には「打ち消し：stack md:row（md:row が flex-direction を戻さない）」
+     というコメント付きの回避まで書かれていた ―― 罠として実地で確認済み。
+
+   ★このファイルの冒頭は最初から「モード（stack / row / center / frame）は
+     1つだけ書く」と言っている。**文書は row をモードと呼んでいるのに、
+     実装だけが方向を持っていなかった**。その食い違いを閉じる。
+
+   ★副作用は lint_css.py が拾う。あちらはモードを「display か flex-direction を
+     敷いているか」で判定するので、row が自動的にモードの集合に入り、
+     `stack row` のような同時指定が検査で落ちるようになる（真実の源泉が1つ）。 */
+[data-suisou-layout~="row"]    { flex-direction: row; align-items: center; }
 
 /* 中央に置く。flex ではなく grid */
 [data-suisou-layout~="center"] { display: grid; place-items: center; }
@@ -220,7 +237,7 @@
     grid-template-columns: auto minmax(0, 1fr);
   }
   [data-suisou-layout~="md:stack"] { flex-direction: column; }
-  [data-suisou-layout~="md:row"] { align-items: center; }
+  [data-suisou-layout~="md:row"] { flex-direction: row; align-items: center; }
   [data-suisou-layout~="md:center"] { display: grid; place-items: center; }
   [data-suisou-layout~="md:stretch"] { align-items: stretch; }
   [data-suisou-layout~="md:wrap"] { flex-wrap: wrap; }
@@ -248,7 +265,7 @@
     grid-template-columns: auto minmax(0, 1fr);
   }
   [data-suisou-layout~="lg:stack"] { flex-direction: column; }
-  [data-suisou-layout~="lg:row"] { align-items: center; }
+  [data-suisou-layout~="lg:row"] { flex-direction: row; align-items: center; }
   [data-suisou-layout~="lg:center"] { display: grid; place-items: center; }
   [data-suisou-layout~="lg:stretch"] { align-items: stretch; }
   [data-suisou-layout~="lg:wrap"] { flex-wrap: wrap; }
