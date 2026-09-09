@@ -198,6 +198,50 @@
   grid-auto-columns: minmax(0, 1fr);
 }
 
+/* ★配分。「余りを取る」grow と違い、**場所そのものを比で割る**（2026-09-09）。
+
+     <div data-suisou-layout="row">
+       <div data-suisou-layout="share" style="--suisou-share: 2">脇</div>
+       <div data-suisou-layout="share" style="--suisou-share: 3">本文</div>
+     </div>
+
+   ★grow との違いは基準（flex-basis）。
+
+       grow    flex: 1 1 auto   中身の大きさを基準にしてから**余り**を配る
+       share   flex: N 1 0      基準を 0 にして**全体**を比で割る
+
+     この違いで実際にズレた ―― 2:3 で割ったつもりが 32:68 になった（wixdex 実測）。
+     「余りを取る」と「場所を割る」は別の意図なので、別の語にする。
+
+   ★値は --suisou-share で渡す。spinner の大きさと同じ形 ―― 比は現場の都合で、
+     閉じた集合にならない（2:3 も 3:5 も要る）。書かなければ 1。
+
+   ★実測 9 箇所（wixdex のみ）。デッキ側と一覧側の 2:3、
+     絞り込みの群をボタンの数で割る 3:5:3 など。 */
+[data-suisou-layout~="share"] {
+  flex: var(--suisou-share, 1) 1 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* ★N列に割る。even は「子1つで1列」なので、列数を決める書き方ができなかった。
+
+     <div data-suisou-layout="cols" style="--suisou-cols: 5">…</div>
+
+   ★列数は --suisou-cols で渡す（既定 2）。1〜12 を語にすると 12 個 ×
+     画面幅の段だけ名前が増えるので、値で持つ。spinner と同じ姿勢。
+     画面幅で変えたいときは現場が @media で --suisou-cols を書き換える
+     ―― 接頭辞版を作らないのはそのため。
+
+   ★minmax(0, 1fr) は even と同じ。1fr だけだと中身が列より広いときに
+     はみ出す（grid の既定の min が auto のため）。
+
+   ★実測 16 箇所（wixdex のみ）。カードの升目、統計の表、設定の並び。 */
+[data-suisou-layout~="cols"] {
+  display: grid;
+  grid-template-columns: repeat(var(--suisou-cols, 2), minmax(0, 1fr));
+}
+
 /* 本文の幅を絞って中央に寄せる。上限は base.css の --suisou-measure */
 [data-suisou-layout~="container"] {
   width: 100%;

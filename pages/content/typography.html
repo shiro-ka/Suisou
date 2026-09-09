@@ -103,6 +103,27 @@
   </div>
 
   <div class="group">
+    <h2>数字の幅を揃える</h2>
+    <div class="demo">
+      <span class="demo-label">既定 —— 桁が変わると幅が動く</span>
+      <div data-suisou-layout="stack gap-1" data-suisou-text="s20 w700">
+        <span>1,111</span><span>8,888</span>
+      </div>
+      <span class="demo-label">data-suisou-text="tabular"</span>
+      <div data-suisou-layout="stack gap-1" data-suisou-text="s20 w700 tabular">
+        <span>1,111</span><span>8,888</span>
+      </div>
+    </div>
+    <p class="note">
+      数が動く場所（順位・枚数・カウンタ・残り文字数）で、桁が変わるたびに
+      文字幅が変わって<strong>隣の要素が跳ねる</strong>。実測 4 箇所（2 現場）。
+      <br><br>
+      ★等幅フォントに切り替えるのとは違う。<strong>書体はそのままで数字の字送りだけ</strong>を揃えるので、
+      見出しの中の数字にも使える。
+    </p>
+  </div>
+
+  <div class="group">
     <h2>役割 — UI</h2>
     <div data-slot="roles-ui"></div>
   </div>

@@ -98,12 +98,27 @@
      寄せると読み上げにも効く。
 
    ★下地は現場が選ぶ。既定はアクセント色、neutral を足すと明るさだけになる。
-     Row と同じ選択肢・同じ値の名前。 */
-[data-suisou-button][aria-pressed="true"] {
+     Row と同じ選択肢・同じ値の名前。
+
+   ★aria-current も見る（2026-09-09）。**Row は見ていたのに Button は見ていなかった**。
+     タブがリンク（<a>）のときは「押されている」ではなく「現在地」なので
+     aria-current="page" が正しく、aria-pressed は使えない。
+     Mado がそれで詰まり、
+       [data-suisou-button][aria-current="page"] { … }
+     という打ち消しを現場に書いていた（実測 8 箇所ぶんの分岐）。
+     ★CONTRACT は借りる属性として aria-current を挙げているのに、
+       Button だけが無視していた ―― 語彙の不足ではなく**一貫性の欠け**。
+
+   ★:not([aria-current="false"]) を付けるのは Row と同じ形。
+     aria-current は "false" が「現在地ではない」を意味する文字列なので、
+     属性の有無だけで判定すると false のときも点いてしまう。 */
+[data-suisou-button][aria-pressed="true"],
+[data-suisou-button][aria-current]:not([aria-current="false"]) {
   background: var(--suisou-selected-surface);
   color: var(--suisou-text-main);
 }
-[data-suisou-button~="neutral"][aria-pressed="true"] {
+[data-suisou-button~="neutral"][aria-pressed="true"],
+[data-suisou-button~="neutral"][aria-current]:not([aria-current="false"]) {
   background: var(--suisou-selected-neutral-surface);
 }
 

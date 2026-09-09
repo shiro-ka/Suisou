@@ -1,0 +1,36 @@
+/* Suisou — Tile（アイコンを載せる角丸の正方形）
+
+     <span data-suisou-tile><svg data-suisou-icon="accent">…</svg></span>
+     <span data-suisou-tile="small"><svg data-suisou-icon="small">…</svg></span>
+
+   ★Avatar との違いは形の意味。**円は「人・主体」、角丸は「モノ・種類」**
+     という約束が avatar.css に既に書いてある。その角丸側が無かった。
+
+   ★なぜ要るか（2026-09-09）
+
+     Mado が同じものを部品として自作し、**11 箇所**で使っていた
+     （`ui/Glyph.svelte`。特徴の3枚 / 使い方の手順 / ランディング / 窓カードの先頭）。
+     部品の中には「Suisou の3回ルールに乗るので還元候補」と自分で書いてあった。
+     中身は surface="item" + layout="center" + 正方形の実寸だけで、
+     **新しい概念は何も足していない** ―― つまり Suisou 側に置ける。
+
+   ★色は持たない。中の svg に data-suisou-icon="accent" などを書く。
+     掟1「色を決めるのは solve.py だけ」に合わせて、tone のような穴を開けない。
+
+   ★寸法は avatar と同じ形（--suisou-tile で上書きできる）。
+     既定 2.25rem は Mado の実測値そのまま。small は一覧の行の先頭用。 */
+
+[data-suisou-tile] {
+  flex: none;
+  box-sizing: border-box;
+  width: var(--suisou-tile, 2.25rem);
+  height: var(--suisou-tile, 2.25rem);
+  border-radius: var(--suisou-radius);
+  background: var(--suisou-item);
+  border: 1px solid var(--suisou-line-weak);
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+[data-suisou-tile~="small"] { --suisou-tile: 1.75rem; }

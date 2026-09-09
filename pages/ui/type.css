@@ -142,3 +142,17 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* ── 数字の幅を揃える（2026-09-09 昇格）─────────────
+
+     <span data-suisou-text="s20 w700 tabular">1,234</span>
+
+   ★数が動く場所（順位・枚数・カウンタ・残り文字数）で、桁が変わるたびに
+     文字幅が変わって隣の要素が跳ねる。等幅の数字にすると止まる。
+
+   ★実測 4 箇所（Mado 3 / wixdex 1）。Mado は順位と枚数、wixdex はカードの枚数。
+     どちらも font-variant-numeric: tabular-nums を手書きしていた。
+
+   ★等幅フォント（font-mono）に切り替えるのとは違う。書体はそのままで、
+     **数字の字送りだけ**を揃える。見出しの中の数字にも使える。 */
+[data-suisou-text~="tabular"] { font-variant-numeric: tabular-nums; }
