@@ -72,6 +72,37 @@
   </div>
 
   <div class="group">
+    <h2>1行に収める</h2>
+    <div class="demo">
+      <span class="demo-label">data-suisou-text="w500 one-line"</span>
+      <div data-suisou-surface="panel" style="max-width: 18rem">
+        <div data-suisou-text="w500 one-line">とても長いデッキ名がここに入って画面からはみ出す</div>
+      </div>
+      <span class="demo-label">flex の子でも効く（min-width: 0 を含むため）</span>
+      <div data-suisou-layout="row" data-suisou-surface="panel" style="max-width: 18rem">
+        <span data-suisou-icon="sub">▣</span>
+        <div data-suisou-text="w500 one-line" data-suisou-layout="grow">とても長いデッキ名がここに入って画面からはみ出す</div>
+      </div>
+    </div>
+    <p class="note">
+      ★<strong>2 現場が同じ 4 行を別の名前で発明していた</strong>ので昇格させた（実測 10 箇所）。
+      <br><br>
+      ★<code>min-width: 0</code> まで持つのが肝。<strong>3 行そろって初めて効く</strong>うえ、
+      flex の子は <code>min-width</code> の既定が <code>auto</code> なので、
+      <strong>3 行書いても縮まず溢れる</strong>。片方の現場はこの 4 行目を書いていて、
+      もう片方は書いていなかった —— <strong>忘れるのは仕組みの側の落ち度</strong>。
+      ブロック要素では既定が 0 なので、書いても何も起きない。
+      <br><br>
+      ★名前は現場が自分で付けた <code>one-line</code> を採った。
+      <code>ellipsis</code> は「…」という<strong>見た目</strong>の名前だが、
+      やりたいのは<strong>「1 行に収める」</strong>で、そちらが意図に近い。
+      <br><br>
+      ★<strong>N 行で切る（<code>line-clamp</code>）はまだ持たない。</strong>
+      1 現場に 3 箇所あるだけで、行数を値に取るので語の形も変わる。2 現場目が出てから。
+    </p>
+  </div>
+
+  <div class="group">
     <h2>役割 — UI</h2>
     <div data-slot="roles-ui"></div>
   </div>

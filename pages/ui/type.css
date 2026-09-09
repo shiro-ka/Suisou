@@ -111,3 +111,34 @@
    ★md: / lg: は作らない。画面幅で行の寄せを変える現場が2現場とも0だった。 */
 [data-suisou-text~="center"] { text-align: center; }
 [data-suisou-text~="start"]  { text-align: start; }
+
+/* ── 1行に収める（2026-09-09 昇格）───────────────
+
+     <div data-suisou-text="w500 one-line">とても長いデッキ名…</div>
+
+   ★2現場が**同じ4行を別の名前で発明していた**。
+
+     wixdex `.one-line`            Mado `.ellipsis` / `.title`
+       min-width: 0;                 overflow: hidden;
+       overflow: hidden;             text-overflow: ellipsis;
+       text-overflow: ellipsis;      white-space: nowrap;
+       white-space: nowrap;
+
+   ★min-width: 0 が片方にしか無いのが、この形の罠。**3行そろって初めて効く**うえ、
+     flex の子は min-width の既定が auto なので、3行書いても縮まず溢れる。
+     ここで4行目まで持つ ―― 忘れるのは仕組みの側の落ち度。
+     ★ブロック要素では min-width の既定が 0 なので、書いても何も起きない。安全。
+
+   ★名前は wixdex が自分で付けた one-line を採る。ellipsis は「…」という
+     見た目の名前だが、やりたいのは「1行に収める」で、そちらが意図に近い。
+
+   ★実測: wixdex 7（truncate 6 + .one-line 1）/ Mado 3 = 10 箇所。
+
+   ★N行で切る（line-clamp）は**まだ持たない**。Mado 3 / wixdex 0 で1現場のみ。
+     行数を値に取る（2行・3行）ので語の形も変わる。2現場目が出てから。 */
+[data-suisou-text~="one-line"] {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
