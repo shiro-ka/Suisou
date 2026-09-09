@@ -100,6 +100,8 @@ def render():
     L.append("## 既定")
     L.append("")
     L.append(f"- 属性が無いとき: `{solve.DEFAULT_THEME}` × `{solve.DEFAULT_ACCENT}`")
+    L.append("- layout はモードを1つ書いて初めて `display` が入る。"
+             "子側の語（`grow` / `share` / `hold`）だけでは並びは変わらない")
     L.append("- layout の子は動かない（`flex: none`）。伸びるものだけ `grow` と名指す")
     L.append("- `button=\"block\"` は左寄せ（全幅のボタンはメニューの行）")
     L.append("")

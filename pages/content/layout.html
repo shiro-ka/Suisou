@@ -2,7 +2,7 @@
 <section class="page">
   <h1>Layout</h1>
   <p class="note">
-    並び。属性を付けた時点で <code>display: flex</code> と
+    並び。<strong>モードを 1 つ書いた時点で</strong> <code>display</code> と
     <code>gap: 8px</code>（<code>space-2</code>）が入る。
     <strong>すきまは焼き込んである</strong> —— Suisou の間合いは毎回選ぶものではない。
     値は空白区切りで重ねるので、属性はいくつ語を並べても1つ。
@@ -11,12 +11,27 @@
   </p>
 
   <div class="group">
-    <h2>既定</h2>
+    <h2>既定 —— モードを書かなければ何も起きない</h2>
     <p class="note">
-      値を1つも書かなくても flex と gap は効く。向きは横、子は高さいっぱいに伸びる
-      —— flex の初期値そのままなので、<strong>ここに名前は要らない</strong>。
+      ★<strong>2026-09-09 に変えた。</strong>それまでは属性を付けた時点で
+      <code>display: flex</code> が入っていた。そのせいで
+      <strong>子側の語（<code>grow</code> / <code>share</code> / <code>hold</code>）だけを
+      書いた要素まで flex の行になっていた</strong>。
       <br><br>
-      ただし<strong>子は既定で動かない</strong>（<code>flex: none</code>）。
+      <code>data-suisou-layout="grow"</code> だけ書いた <code>&lt;main&gt;</code> が
+      横並びの入れ物になり、<strong>ページが 4071px に伸びた</strong>。
+      <code>share</code> を <code>button-group</code> に足したら
+      <strong>8px の隙間が割り込んだ</strong>。どちらも実際の現場で起きている。
+      <br><br>
+      「モードを必ず 1 つ添える」という決まりを破った側の落ち度ではあるが、
+      <strong>破ったときに黙って別物になるのが仕組みの落ち度</strong>。
+      <code>display</code> を敷くのをモードの仕事に移した。
+      <br><br>
+      ★すきまは <code>--suisou-gap</code> を経由する。<code>gap-N</code> の規則は
+      モードより前に書かれているので、モード側で <code>gap</code> を直に書くと
+      <strong><code>gap-N</code> が順序で負ける</strong>。
+      <br><br>
+      <strong>子は既定で動かない</strong>（<code>flex: none</code>）。
       flex 本来の既定は <code>0 1 auto</code> ＝「伸びないが縮む」で、これが驚きの元になる ——
       <code>width: 200px</code> と書いても守られないし、<code>stack scroll</code> の中身が
       スクロールせずに潰れる。Suisou は「言われたことしかしない」を既定にして、
@@ -24,8 +39,14 @@
       おかげで flex の中で動く要素は目で数えられる。
     </p>
     <div class="demo">
-      <span class="demo-label">data-suisou-layout</span>
+      <span class="demo-label">data-suisou-layout —— モードが無いので並びは変わらない</span>
       <div data-suisou-layout>
+        <div class="demo-box">あ</div>
+        <div class="demo-box">い</div>
+        <div class="demo-box">う</div>
+      </div>
+      <span class="demo-label">data-suisou-layout="row" —— ここで初めて flex になる</span>
+      <div data-suisou-layout="row">
         <div class="demo-box">あ</div>
         <div class="demo-box">い</div>
         <div class="demo-box">う</div>

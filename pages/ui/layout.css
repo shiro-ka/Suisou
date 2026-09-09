@@ -16,9 +16,25 @@
    ★モード（stack / row / center / frame）は1つだけ書く。tools/lint_css.py が検査する。
      center は grid に切り替わるので、flex 前提の語と混ぜても黙って効かない。 */
 
+/* ★基底は「すきまの値」しか持たない（2026-09-09 に変更）。
+
+   以前はここで display: flex と gap を無条件に敷いていた。そのせいで
+   **子側の語（grow / share / hold）だけを書いた要素まで flex の行になった**。
+
+     data-suisou-layout="grow"   だけ書いた <main> が横並びの入れ物になり、
+                                 ページが 4071px に伸びた（Mado 実測）
+     data-suisou-layout="share"  を button-group に足したら 8px の隙間が
+                                 割り込んだ（wixdex 実測）
+
+   ★どちらも「モードを必ず1つ添える」という決まりを破った側の落ち度ではあるが、
+     **破ったときに黙って別物になる**のが仕組みの落ち度。display を敷くのを
+     モード（stack / row / center / frame / even / cols）の仕事に移して、
+     子側の語だけでは並びが変わらないようにした。
+
+   ★すきまを変数で渡すのは順序の問題を避けるため。gap-N の規則はモードより
+     前に書かれているので、モード側で gap を直に書くと gap-N が負ける。 */
 [data-suisou-layout] {
-  display: flex;
-  gap: var(--suisou-space-2);
+  --suisou-gap: var(--suisou-space-2);
 }
 
 /* ★子は既定で動かない（flex: none）。伸び縮みするものにだけ grow と書く。
@@ -62,15 +78,15 @@
 
    ★md: / lg: の接頭辞版は作らない。画面幅ですきまを変えたい現場がまだ無い（3回ルール）。 */
 
-[data-suisou-layout~="gap-0"] { gap: 0; }
-[data-suisou-layout~="gap-1"] { gap: var(--suisou-space-1); }
-[data-suisou-layout~="gap-2"] { gap: var(--suisou-space-2); }
-[data-suisou-layout~="gap-3"] { gap: var(--suisou-space-3); }
-[data-suisou-layout~="gap-4"] { gap: var(--suisou-space-4); }
+[data-suisou-layout~="gap-0"] { --suisou-gap: 0; }
+[data-suisou-layout~="gap-1"] { --suisou-gap: var(--suisou-space-1); }
+[data-suisou-layout~="gap-2"] { --suisou-gap: var(--suisou-space-2); }
+[data-suisou-layout~="gap-3"] { --suisou-gap: var(--suisou-space-3); }
+[data-suisou-layout~="gap-4"] { --suisou-gap: var(--suisou-space-4); }
 
 /* ── モード。1つだけ選ぶ ───────────────────── */
 
-[data-suisou-layout~="stack"]  { flex-direction: column; }
+[data-suisou-layout~="stack"]  { display: flex; flex-direction: column; gap: var(--suisou-gap); }
 
 /* ★row は方向も持つ（2026-09-09）。以前は align-items だけだった。
 
@@ -88,10 +104,10 @@
    ★副作用は lint_css.py が拾う。あちらはモードを「display か flex-direction を
      敷いているか」で判定するので、row が自動的にモードの集合に入り、
      `stack row` のような同時指定が検査で落ちるようになる（真実の源泉が1つ）。 */
-[data-suisou-layout~="row"]    { flex-direction: row; align-items: center; }
+[data-suisou-layout~="row"]    { display: flex; flex-direction: row; align-items: center; gap: var(--suisou-gap); }
 
 /* 中央に置く。flex ではなく grid */
-[data-suisou-layout~="center"] { display: grid; place-items: center; }
+[data-suisou-layout~="center"] { display: grid; place-items: center; gap: var(--suisou-gap); }
 
 /* 画面の骨格。区画を親がまとめて決め、子は「自分がどの区画か」しか言わない。
    flex だと2次元が作れないので、右側をまとめるためだけの空箱が要った。それが消える。
@@ -104,6 +120,7 @@
    ―― 空のトラックにも gap は入るので、無いときは列ごと消す。 */
 [data-suisou-layout~="frame"] {
   display: grid;
+  gap: var(--suisou-gap);
   grid-template-areas: "head"
                        "body"
                        "foot";
@@ -194,6 +211,7 @@
    狭い画面では潰れるので "stack md:even" と組むのが基本形。 */
 [data-suisou-layout~="even"] {
   display: grid;
+  gap: var(--suisou-gap);
   grid-auto-flow: column;
   grid-auto-columns: minmax(0, 1fr);
 }
@@ -239,6 +257,7 @@
    ★実測 16 箇所（wixdex のみ）。カードの升目、統計の表、設定の並び。 */
 [data-suisou-layout~="cols"] {
   display: grid;
+  gap: var(--suisou-gap);
   grid-template-columns: repeat(var(--suisou-cols, 2), minmax(0, 1fr));
 }
 
@@ -272,6 +291,7 @@
 @media (width >= 768px) {
   [data-suisou-layout~="md:frame"] {
     display: grid;
+    gap: var(--suisou-gap);
     grid-template-areas: "head" "body" "foot";
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto minmax(0, 1fr) auto;
@@ -280,9 +300,9 @@
     grid-template-areas: "aside head" "aside body" "aside foot";
     grid-template-columns: auto minmax(0, 1fr);
   }
-  [data-suisou-layout~="md:stack"] { flex-direction: column; }
-  [data-suisou-layout~="md:row"] { flex-direction: row; align-items: center; }
-  [data-suisou-layout~="md:center"] { display: grid; place-items: center; }
+  [data-suisou-layout~="md:stack"] { display: flex; flex-direction: column; gap: var(--suisou-gap); }
+  [data-suisou-layout~="md:row"] { display: flex; flex-direction: row; align-items: center; gap: var(--suisou-gap); }
+  [data-suisou-layout~="md:center"] { display: grid; place-items: center; gap: var(--suisou-gap); }
   [data-suisou-layout~="md:stretch"] { align-items: stretch; }
   [data-suisou-layout~="md:wrap"] { flex-wrap: wrap; }
   [data-suisou-layout~="md:nowrap"] { flex-wrap: nowrap; }
@@ -293,9 +313,10 @@
   [data-suisou-layout~="md:screen"] { min-height: 100dvh; }
   [data-suisou-layout~="md:cols"] {
     display: grid;
+    gap: var(--suisou-gap);
     grid-template-columns: repeat(var(--suisou-cols, 2), minmax(0, 1fr));
   }
-  [data-suisou-layout~="md:even"] { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+  [data-suisou-layout~="md:even"] { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--suisou-gap); }
   [data-suisou-layout~="md:start"] { justify-content: flex-start; }
   [data-suisou-layout~="md:middle"] { justify-content: center; }
   [data-suisou-layout~="md:end"] { justify-content: flex-end; }
@@ -305,6 +326,7 @@
 @media (width >= 1024px) {
   [data-suisou-layout~="lg:frame"] {
     display: grid;
+    gap: var(--suisou-gap);
     grid-template-areas: "head" "body" "foot";
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto minmax(0, 1fr) auto;
@@ -313,9 +335,9 @@
     grid-template-areas: "aside head" "aside body" "aside foot";
     grid-template-columns: auto minmax(0, 1fr);
   }
-  [data-suisou-layout~="lg:stack"] { flex-direction: column; }
-  [data-suisou-layout~="lg:row"] { flex-direction: row; align-items: center; }
-  [data-suisou-layout~="lg:center"] { display: grid; place-items: center; }
+  [data-suisou-layout~="lg:stack"] { display: flex; flex-direction: column; gap: var(--suisou-gap); }
+  [data-suisou-layout~="lg:row"] { display: flex; flex-direction: row; align-items: center; gap: var(--suisou-gap); }
+  [data-suisou-layout~="lg:center"] { display: grid; place-items: center; gap: var(--suisou-gap); }
   [data-suisou-layout~="lg:stretch"] { align-items: stretch; }
   [data-suisou-layout~="lg:wrap"] { flex-wrap: wrap; }
   [data-suisou-layout~="lg:nowrap"] { flex-wrap: nowrap; }
@@ -326,9 +348,10 @@
   [data-suisou-layout~="lg:screen"] { min-height: 100dvh; }
   [data-suisou-layout~="lg:cols"] {
     display: grid;
+    gap: var(--suisou-gap);
     grid-template-columns: repeat(var(--suisou-cols, 2), minmax(0, 1fr));
   }
-  [data-suisou-layout~="lg:even"] { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+  [data-suisou-layout~="lg:even"] { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--suisou-gap); }
   [data-suisou-layout~="lg:start"] { justify-content: flex-start; }
   [data-suisou-layout~="lg:middle"] { justify-content: center; }
   [data-suisou-layout~="lg:end"] { justify-content: flex-end; }
