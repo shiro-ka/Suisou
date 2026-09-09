@@ -194,4 +194,55 @@
           影は持たない（ダーク専用では機能しないため）</td></tr>
     </table>
   </div>
+
+  <div class="group">
+    <h2>区切りの罫 —— <code>data-suisou-rule</code></h2>
+    <p class="note">
+      Suisou は<strong>面ではなく線で区切る</strong>体系なのに、
+      <strong>その線の語が長いあいだ無かった</strong>（2026-09-09 に追加）。
+      2 現場で <code>border-&lt;辺&gt;: 1px solid var(--suisou-line-weak)</code> を
+      <strong>17 箇所</strong>手書きしていた ——
+      うち片方は <code>.rule</code> という同じ 3 行を<strong>4 つのファイルに複製</strong>していた。
+      <strong>語が無いと現場が各自で発明する。</strong>
+      <br><br>
+      ★<code>row="ruled"</code> とは別物。あちらは<strong>一覧の行と行の間</strong>の罫で、
+      こちらは<strong>構造の縁</strong>（帯の下・脚の上・脇と本文の間）。用途が重ならない。
+      <br><br>
+      ★色は書かない。<code>--suisou-line-weak</code> を読むだけなので、
+      面や行の状態に応じて<strong>文脈が値を差し替える</strong>。
+      罫の側は「どの面の上に載っているか」を知らなくていい。
+      <br><br>
+      ★辺は論理プロパティ（<code>block-start</code> / <code>block-end</code> /
+      <code>inline-end</code>）。<strong><code>start</code> は持たない</strong> ——
+      実測で 0 件で、左に立てる 1 本は <code>quote</code> の役目だから。
+    </p>
+    <table>
+      <tr><th>値</th><th>CSS</th><th>使う場面</th><th>実測</th></tr>
+      <tr><td><code>top</code></td><td><code>border-block-start</code></td>
+          <td>節の切れ目、脚の上</td><td>9</td></tr>
+      <tr><td><code>bottom</code></td><td><code>border-block-end</code></td>
+          <td>見出しの帯の下</td><td>4</td></tr>
+      <tr><td><code>end</code></td><td><code>border-inline-end</code></td>
+          <td>脇と本文の間（縦の 1 本）</td><td>2</td></tr>
+    </table>
+    <div class="demo">
+      <span class="demo-label">bottom —— 帯の下</span>
+      <div data-suisou-layout="stack gap-0" data-suisou-surface="panel">
+        <div data-suisou-rule="bottom" data-suisou-text="s16 w500">見出しの帯</div>
+        <div data-suisou-text="s14 sub">本文</div>
+      </div>
+      <span class="demo-label">end —— 脇と本文の間</span>
+      <div data-suisou-layout="row stretch gap-3" data-suisou-surface="panel">
+        <div data-suisou-rule="end" data-suisou-layout="stack" data-suisou-text="s14 sub" style="padding-inline-end: var(--suisou-space-3)">
+          <span>脇</span><span>のしるし</span>
+        </div>
+        <div data-suisou-layout="grow stack" data-suisou-text="s14">本文</div>
+      </div>
+      <span class="demo-label">top —— 節の切れ目</span>
+      <div data-suisou-layout="stack gap-3" data-suisou-surface="panel">
+        <div data-suisou-text="s14">前の節</div>
+        <div data-suisou-rule="top" data-suisou-text="s14">次の節</div>
+      </div>
+    </div>
+  </div>
 </section>
