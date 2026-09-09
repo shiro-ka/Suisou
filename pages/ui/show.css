@@ -1,0 +1,42 @@
+/* Suisou — Show（画面幅で出し分ける）
+
+     <nav    data-suisou-show="md">広い画面だけに出る帯</nav>
+     <button data-suisou-show="under-md">狭い画面だけに出る三本線</button>
+
+   ★なぜ要るか（2026-09-09、2現場の実測 17 箇所）
+
+     Mado 4 / wixdex 13。どちらも**必ず対で現れる** ――
+     「狭いときは三本線、広いときはリンクの帯」「狭いときは上の帯、広いときは脇」。
+     Mado は @media を2つ書き、wixdex は Tailwind の hidden / md:flex で書いていた。
+
+   ★★これは語彙の穴であると同時に、**罠を1つ消す**。
+
+     [data-suisou-layout] { display: flex } は無条件なので、
+     現場が Tailwind の `hidden`（display: none）を併記しても**黙って殺される**
+     ―― Tailwind v4 のユーティリティは @layer utilities の中にあり、
+     レイヤ無しの Suisou に詳細度でも順序でも勝てない（wixdex で実測）。
+     Suisou 側に語があれば、同じレイヤの中で素直に効く。
+
+   ★このファイルは **layout.css より後に読む**。詳細度は同じ [attr]（0,1,0）なので、
+     display: none を勝たせるのは順序だけ。index.html の並びが契約の一部になる。
+     !important は使わない（base.css の姿勢に合わせる）。
+
+   ★段は md(768) / lg(1024) の2つだけ。layout / type と同じ。
+     sm / xl / 2xl は持たない ―― 2段で表せない振り方は現場のもの。
+
+   ★「出す・出さない」は見た目ではなく構造の分岐なので、layout とは別の属性にした。
+     layout に値を足すと [data-suisou-layout] { display: flex } が付いてきてしまい、
+     ブロックのまま隠したい要素（見出し・画像）に使えない。 */
+
+@media (max-width: 767.98px) {
+  [data-suisou-show~="md"] { display: none; }
+}
+@media (max-width: 1023.98px) {
+  [data-suisou-show~="lg"] { display: none; }
+}
+@media (min-width: 768px) {
+  [data-suisou-show~="under-md"] { display: none; }
+}
+@media (min-width: 1024px) {
+  [data-suisou-show~="under-lg"] { display: none; }
+}

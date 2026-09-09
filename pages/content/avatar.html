@@ -87,4 +87,28 @@
           <td>オンライン表示のような小さい丸は持たない</td></tr>
     </table>
   </div>
+
+  <div class="group">
+    <h2>Tile —— 角丸の正方形（<code>data-suisou-tile</code>）</h2>
+    <p class="note">
+      <strong>円は「人・主体」、角丸は「モノ・種類」</strong>という約束は
+      このページに最初から書いてあったが、<strong>その角丸側が無かった</strong>（2026-09-09 に追加）。
+      <br><br>
+      ★現場が同じものを部品として自作し、<strong>11 箇所</strong>で使っていた。
+      中身は <code>surface="item"</code> + <code>layout="center"</code> + 正方形の実寸だけで、
+      <strong>新しい概念を何も足していなかった</strong> —— つまり Suisou 側に置ける。
+      <br><br>
+      ★色は持たない。中の <code>svg</code> に <code>data-suisou-icon="accent"</code> などを書く。
+      掟 1「色を決めるのは <code>solve.py</code> だけ」に合わせて、
+      <code>tone</code> のような穴を開けない。
+    </p>
+    <div class="demo">
+      <span class="demo-label">data-suisou-tile / "small"</span>
+      <div data-suisou-layout="row gap-3">
+        <span data-suisou-tile><svg data-suisou-icon="accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></span>
+        <span data-suisou-tile="small"><svg data-suisou-icon="small success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg></span>
+        <div data-suisou-avatar>し</div>
+      </div>
+    </div>
+  </div>
 </section>

@@ -187,6 +187,10 @@
           <td>両端に置いて間を空ける。<strong>子が2つのときだけ素直に効く</strong></td></tr>
       <tr><td><code>scroll</code></td><td><code>overflow: auto</code></td>
           <td>領域の中だけスクロールさせる。<code>grow</code> と組で使う</td></tr>
+      <tr><td><code>share</code></td><td><code>flex: var(--suisou-share, 1) 1 0</code></td>
+          <td>場所そのものを比で割る。<strong><code>grow</code> と基準が違う</strong></td></tr>
+      <tr><td><code>cols</code></td><td><code>grid-template-columns: repeat(var(--suisou-cols, 2), …)</code></td>
+          <td>N 列に割る。列数は <code>--suisou-cols</code> で渡す</td></tr>
       <tr><td><code>container</code></td><td><code>max-width: 1024px; margin-inline: auto</code></td>
           <td>本文の幅を絞って中央に寄せる。<code>--suisou-measure</code> で変えられる</td></tr>
     </table>
@@ -450,5 +454,96 @@
           <td>1024px 仮置き。<code>--suisou-measure</code> で上書きできるが、
               段として決めていない</td></tr>
     </table>
+  </div>
+
+  <div class="group">
+    <h2>grow と share —— 「余りを取る」と「場所を割る」</h2>
+    <p class="note">
+      名前が似ているが<strong>基準（<code>flex-basis</code>）が違う</strong>。
+      <br><br>
+      <code>grow</code> = <code>flex: 1 1 auto</code> ——
+      <strong>中身の大きさを基準にしてから余りを配る</strong>。
+      <br>
+      <code>share</code> = <code>flex: N 1 0</code> ——
+      <strong>基準を 0 にして全体を比で割る</strong>。
+      <br><br>
+      ★この違いで実際にズレた。2:3 で割ったつもりが <strong>32:68</strong> になった
+      （中身の幅の差が残るため）。現場が <code>grow</code> の上に
+      <code>flex-grow</code> だけ重ねていたのが原因で、
+      <strong>「余りを取る」と「場所を割る」は別の意図</strong>だと分かったので語を分けた。
+      <br><br>
+      ★比は <code>--suisou-share</code> で渡す。閉じた集合にならない（2:3 も 3:5 も要る）ので、
+      <code>spinner</code> の大きさと同じ「値で持つ」形。
+    </p>
+    <div class="demo">
+      <span class="demo-label">share 2 : 3</span>
+      <div data-suisou-layout="row" data-suisou-surface="panel">
+        <div class="demo-box" data-suisou-layout="share" style="--suisou-share: 2">2</div>
+        <div class="demo-box" data-suisou-layout="share" style="--suisou-share: 3">3</div>
+      </div>
+      <span class="demo-label">同じ中身を grow で並べると、中身の幅の差が残る</span>
+      <div data-suisou-layout="row" data-suisou-surface="panel">
+        <div class="demo-box" data-suisou-layout="grow">みじかい</div>
+        <div class="demo-box" data-suisou-layout="grow">とてもとても長い中身がここに入る</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>cols —— N 列に割る</h2>
+    <p class="note">
+      <code>even</code> は「子 1 つで 1 列」なので、<strong>列数を決める書き方ができなかった</strong>。
+      列数は <code>--suisou-cols</code> で渡す（既定 2）。
+      <br><br>
+      ★1〜12 を語にすると<strong>12 個 × 画面幅の段だけ名前が増える</strong>ので値で持つ。
+      画面幅で変えたいときは現場が <code>@media</code> で <code>--suisou-cols</code> を書き換える
+      —— 接頭辞版を作らないのはそのため。
+    </p>
+    <div class="demo">
+      <span class="demo-label">--suisou-cols: 5</span>
+      <div data-suisou-layout="cols" style="--suisou-cols: 5" data-suisou-surface="panel">
+        <div class="demo-box">1</div><div class="demo-box">2</div><div class="demo-box">3</div>
+        <div class="demo-box">4</div><div class="demo-box">5</div><div class="demo-box">6</div>
+        <div class="demo-box">7</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>画面幅で出し分ける —— <code>data-suisou-show</code></h2>
+    <p class="note">
+      <strong>必ず対で使う。</strong>「狭いときは三本線、広いときはリンクの帯」
+      「狭いときは上の帯、広いときは脇」—— 2 現場で実測 17 箇所、
+      全部この形だった。
+      <br><br>
+      ★★<strong>これは語彙の穴であると同時に罠を 1 つ消す。</strong>
+      <code>[data-suisou-layout] { display: flex }</code> は無条件なので、
+      現場が Tailwind の <code>hidden</code> を併記しても<strong>黙って殺される</strong>
+      （Tailwind v4 は <code>@layer utilities</code> の中にあり、
+      レイヤ無しの Suisou に詳細度でも順序でも勝てない）。
+      Suisou 側に語があれば同じレイヤの中で素直に効く。
+      <br><br>
+      ★<code>layout</code> ではなく別の属性にしたのは、
+      <code>layout</code> に値を足すと <code>display: flex</code> が付いてきてしまい、
+      <strong>ブロックのまま隠したい要素</strong>（見出し・画像）に使えないから。
+      <br><br>
+      ★<code>ui/show.css</code> は <strong><code>layout.css</code> より後に読む</strong>。
+      詳細度は同じ <code>[attr]</code> なので、<code>display: none</code> を勝たせるのは順序だけ。
+      <strong><code>index.html</code> の並びが契約の一部</strong>になる。
+    </p>
+    <table>
+      <tr><th>値</th><th>出る範囲</th></tr>
+      <tr><td><code>md</code></td><td>768px 以上</td></tr>
+      <tr><td><code>lg</code></td><td>1024px 以上</td></tr>
+      <tr><td><code>under-md</code></td><td>768px 未満</td></tr>
+      <tr><td><code>under-lg</code></td><td>1024px 未満</td></tr>
+    </table>
+    <div class="demo">
+      <span class="demo-label">窓幅を変えると入れ替わる</span>
+      <div data-suisou-layout="row" data-suisou-surface="panel">
+        <div class="demo-box" data-suisou-show="under-md">狭い画面だけ</div>
+        <div class="demo-box" data-suisou-show="md">広い画面だけ</div>
+      </div>
+    </div>
   </div>
 </section>
