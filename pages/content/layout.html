@@ -57,7 +57,7 @@
   <div class="group">
     <h2>モード —— 1つだけ書く</h2>
     <p class="note">
-      2つ書くと片方が黙って死ぬ。とくに <code>center</code> と <code>even</code> は
+      2つ書くと片方が黙って死ぬ。とくに <code>pin</code> と <code>even</code> は
       grid に切り替わるので、flex 前提の <code>stack</code> と混ぜると
       指定した向きが何も起きないまま通る。
       <br>
@@ -83,8 +83,8 @@
         <div class="demo-box">あ</div>
         <div class="demo-box">い</div>
       </div>
-      <span class="demo-label">center —— grid で中央に置く</span>
-      <div data-suisou-layout="center" class="demo-frame">
+      <span class="demo-label">pin —— grid でど真ん中に1つ置く</span>
+      <div data-suisou-layout="pin" class="demo-frame">
         <div class="demo-box">中央</div>
       </div>
     </div>
@@ -95,7 +95,7 @@
       <tr><td><code>row</code></td><td><code>flex-direction: row; align-items: center</code></td>
           <td>横並び。ボタン列、アイコンと文字。<code>stack md:row</code> で
               「狭いと縦積み・広いと横並び」</td></tr>
-      <tr><td><code>center</code></td><td><code>display: grid; place-items: center</code></td>
+      <tr><td><code>pin</code></td><td><code>display: grid; place-items: center</code></td>
           <td>1つのものを真ん中に。flex ではなく grid</td></tr>
       <tr><td><code>frame</code></td><td><code>display: grid; grid-template-areas: …</code></td>
           <td>画面の骨格。子が区画を名乗る。下の節を見る</td></tr>
@@ -198,10 +198,13 @@
           <td><code>grow</code> を打ち消す。既定なので単体では何も変わらない</td></tr>
       <tr><td><code>nowrap</code></td><td><code>flex-wrap: nowrap</code></td>
           <td><code>wrap</code> を打ち消す。同上</td></tr>
+      <tr><td><code>center</code></td><td><code>align-items: center</code></td>
+          <td>交差軸の中央に寄せる。<code>stack center</code> がいちばん多い形。
+              <code>row</code> では既定なので何も変わらない</td></tr>
       <tr><td><code>start</code></td><td><code>justify-content: flex-start</code></td>
           <td>主軸の先頭に寄せる（既定なので明示したいときだけ）</td></tr>
       <tr><td><code>middle</code></td><td><code>justify-content: center</code></td>
-          <td>主軸の中央に寄せる。<strong><code>center</code> ではない</strong>（下記）</td></tr>
+          <td>主軸の中央に寄せる。交差軸は <code>center</code>（下記）</td></tr>
       <tr><td><code>end</code></td><td><code>justify-content: flex-end</code></td>
           <td>主軸の末尾に寄せる</td></tr>
       <tr><td><code>between</code></td><td><code>justify-content: space-between</code></td>
@@ -233,17 +236,25 @@
       <code>grow</code> が余りを全部取ってしまい、配るものが残らないため。
       「なぜか効かない」の大半はこれ。
       <br><br>
-      ★<strong>中央は <code>middle</code>。<code>center</code> と書くと grid に化ける。</strong>
-      <code>center</code> はモードの名前（<code>display: grid; place-items: center</code>）で、
-      <code>row center</code> と書くと並びごと別物になる。
-      <strong>この名前の配り方は失敗している</strong> —— 実測すると中央寄せの需要が 20 件、
-      <code>center</code> モードの利用は 4 件で、<strong>よく要る方が名前を持てていない</strong>。
-      <code>center</code> を寄せに返すのは公開契約の破壊なので、次の破壊的変更でまとめて直す。
-      それまでは <code>lint_css.py</code> が「モード2個」として弾く。
+      ★<strong><code>middle</code> は主軸、<code>center</code> は交差軸。</strong>
+      軸が違うだけで、どちらも「中央」。
+      <br><br>
+      <code>row middle</code> は横に並べて横方向の中央、
+      <code>stack center</code> は縦に積んで横方向の中央。
+      <strong>いちばん多いのは <code>stack center</code></strong>（空表示、ランディングの節）。
+      <br><br>
+      ★<strong>v1 では <code>center</code> が grid のモードだったので、これが書けなかった。</strong>
+      モードは1つしか書けないので <code>stack center</code> が成立せず、現場は 18 箇所で
+      <code>align-items: center</code> を手書きしていた。v2 で grid 側を <code>pin</code> に
+      改名して名前を返した（<a href="https://github.com/shiro-ka/Suisou/blob/main/CONTRACT.md">CONTRACT</a> の「版が変わった理由」）。
     </p>
     <div class="demo">
       <span class="demo-label">既定（start）</span>
       <div data-suisou-layout="row" data-suisou-surface="panel">
+        <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
+      </div>
+      <span class="demo-label">stack center —— 交差軸の中央（積んで横は中央）</span>
+      <div data-suisou-layout="stack center" data-suisou-surface="panel">
         <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
       </div>
       <span class="demo-label">middle —— 主軸の中央</span>

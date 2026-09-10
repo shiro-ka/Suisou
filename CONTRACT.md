@@ -21,7 +21,7 @@
 | `data-suisou-code` | `block` |
 | `data-suisou-field` | `block` |
 | `data-suisou-icon` | `small` `tiny` `sub` `accent` `success` `warning` `error` |
-| `data-suisou-layout` | `gap-0` `gap-1` `gap-2` `gap-3` `gap-4` `stack` `row` `center` `frame` `aside` `head` `body` `foot` `stretch` `wrap` `hold` `nowrap` `start` `middle` `end` `between` `scroll` `grow` `screen` `even` `share` `cols` `container` |
+| `data-suisou-layout` | `gap-0` `gap-1` `gap-2` `gap-3` `gap-4` `stack` `row` `pin` `frame` `aside` `head` `body` `foot` `stretch` `center` `wrap` `hold` `nowrap` `start` `middle` `end` `between` `scroll` `grow` `screen` `even` `share` `cols` `container` |
 | `data-suisou-link` | （値なし） |
 | `data-suisou-list` | （値なし） |
 | `data-suisou-media` | `stack` |
@@ -72,10 +72,16 @@
 ## 配布
 
 - `dist/suisou.css` … 全部入り（テーマ切替できる）／`dist/suisou-<theme>-<accent>.css` … 選んだ組だけ
-- `/v1/…` … v1 系の最新。破壊的変更で凍結され、次の版が生まれる
+- `/v2/…` … **いま使う版**。v2 系の最新で、直せば全現場に行き渡る
+- `/v1/…` … **凍結済み**（2026-09-10、`07c066f` で停止）。`center` が grid のモードだった頃の版。もう動かない
 - `/v/<sha7>/…` … 固定 URL。動かない
 - **フォントは利用側が読み込む**。既定の書体は Zen Maru Gothic の 400 / 500 / 700
 - `helpers.css` は契約外（任意。他にユーティリティが無いときだけ）。`suisou.data.js` は配布物ではない
+
+## 版が変わった理由
+
+- **v1 → v2**（2026-09-10）… `center` の意味を変えた。v1 では grid のモード（`display: grid; place-items: center`）、v2 では交差軸の中央に寄せるふるまい（`align-items: center`）。grid のモードは `pin` に改名した
+  - 直し方: `layout="center"` を単体で書いていたら `layout="pin"` に。`stack` や `row` と併用したかった場所は、そのまま `center` が使えるようになる
 
 ## 明文化した割り切り
 

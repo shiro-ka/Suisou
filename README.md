@@ -7,7 +7,7 @@
 複数のプロダクトで「しろかが作った」と分かるデザインパターンを共有するための設計体系です。
 UI だけでなく、ブログや規約のような長文コンテンツも適用先に含みます。
 
-**プレビュー** … https://shiro-ka.github.io/Suisou/
+**プレビュー** … https://suisou.pages.dev/
 
 ## 使う
 
@@ -23,7 +23,7 @@ UI だけでなく、ブログや規約のような長文コンテンツも適�
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://shiro-ka.github.io/Suisou/v1/suisou.css">
+<link rel="stylesheet" href="https://suisou.pages.dev/v1/suisou.css">
 </head>
 <body data-suisou-root>
   <main data-suisou-layout="stack container">

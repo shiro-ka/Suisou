@@ -64,11 +64,24 @@ jobs:
           # 配る形。<link> 1本で読める場所に置く
           cp -r dist _site/dist                               # 最新。移動する
 
-          # ★/v1/ … v1 系の最新。普段は全現場がここを指し、Suisou を直せば自動で行き渡る。
+          # ★/v2/ … いま使う版。普段は全現場がここを指し、Suisou を直せば自動で行き渡る。
           #   破壊的変更（CONTRACT.md の目録にある名前・値・既定を変える変更）をしたら
-          #   /v2/ を作り、この行は「最後の v1 の sha から建て直す」形に変える。
+          #   /v3/ を作り、v2 は下の「凍結した版」に移す。
           #   凍結したい現場だけ /v/<sha7>/ を指す。
-          cp -r dist _site/v1
+          cp -r dist _site/v2
+
+          # ★凍結した版。**最新の dist ではなく、その版の sha から建て直す**。
+          #   ここを `cp -r dist` にすると凍結が黙って壊れる（現場は動かないつもりで居る）。
+          #   v1 … 2026-09-10 に 07c066f で停止。center が grid のモードだった頃。
+          for frozen in "v1:07c066f"; do
+            name=${frozen%%:*}; sha=${frozen##*:}
+            wt=$(mktemp -d)
+            git worktree add -q --detach "$wt" "$sha"
+            ( cd "$wt" && python3 tools/solve.py && SUISOU_VERSION="$sha" python3 tools/bundle.py )
+            mkdir -p "_site/$name" && cp -r "$wt"/dist/* "_site/$name/"
+            git worktree remove --force "$wt"
+            echo "凍結: /$name/ ← $sha"
+          done
           ls -1 _site/dist | head -3
 
       - name: 過去の版を建て直す
