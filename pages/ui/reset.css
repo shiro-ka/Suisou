@@ -1,5 +1,3 @@
-/* Suisou — Reset */
-
 :where([data-suisou-body], [data-suisou-body] *, [data-suisou-body] *::before, [data-suisou-body] *::after) {
   box-sizing: border-box;
 }
