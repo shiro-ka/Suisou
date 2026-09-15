@@ -69,8 +69,10 @@ const ROLES_DOC = [
 ];
 const SAMPLE = '水槽 Suisou — あいうえお ABCDEfg 0123';
 
-const theme = () => root.dataset.suisouTheme;
-const accent = () => root.dataset.suisouAccent;
+const pairOf = (elm) => (elm.dataset.suisouTheme || '').split(/\s+/).filter(Boolean);
+const setPair = (elm, t, a) => { elm.dataset.suisouTheme = `${t} ${a}`; };
+const theme = () => pairOf(root)[0];
+const accent = () => pairOf(root)[1];
 const themeOf = (name) => SUISOU.themes.find((t) => t.name === name);
 
 let current = null;
@@ -115,13 +117,12 @@ function enhancePalette(scope) {
     const chip = el('button', 'accent-chip', a.jp ? `${a.name}（${a.jp}）` : a.name);
     chip.type = 'button';
     chip.style.setProperty('--c', 'var(--suisou-accent)');
-    chip.dataset.suisouTheme = theme();
-    chip.dataset.suisouAccent = a.name;
+    setPair(chip, theme(), a.name);
     chip.disabled = !usable;
     if (a.name === accent()) chip.setAttribute('aria-pressed', 'true');
     if (!usable) chip.title = `${theme()} では出せない（色域外）`;
     else if (warn) { chip.classList.add('is-warned'); chip.title = warn; chip.append('　★'); }
-    chip.addEventListener('click', () => { root.dataset.suisouAccent = a.name; render(); });
+    chip.addEventListener('click', () => { setPair(root, theme(), a.name); render(); });
     row.append(chip);
   }
   const warned = Object.entries(t.warnings ?? {});
@@ -311,8 +312,8 @@ function renderNav() {
 function cycleTheme() {
   const names = SUISOU.themes.map((t) => t.name);
   const next = themeOf(names[(names.indexOf(theme()) + 1) % names.length]);
-  root.dataset.suisouTheme = next.name;
-  if (!next.available.includes(accent())) root.dataset.suisouAccent = next.available[0];
+  const a = next.available.includes(accent()) ? accent() : next.available[0];
+  setPair(root, next.name, a);
   render();
 }
 

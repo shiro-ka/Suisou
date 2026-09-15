@@ -12,10 +12,10 @@
 
 | 属性 | 値 |
 |---|---|
-| `data-suisou-accent` | `clown` `turtle` `teal` `jelly` `blue` `indigo` `coral` `magenta` `seal` |
 | `data-suisou-affix` | （値なし） |
 | `data-suisou-avatar` | `small` `large` |
 | `data-suisou-banner` | `error` `warning` `success` |
+| `data-suisou-body` | （値なし） |
 | `data-suisou-button` | `outline` `plain` `danger` `neutral` `icon` `block` `wide` |
 | `data-suisou-button-group` | `even` |
 | `data-suisou-code` | `block` |
@@ -30,7 +30,6 @@
 | `data-suisou-media-tail` | （値なし） |
 | `data-suisou-prose` | `tight` |
 | `data-suisou-quote` | （値なし） |
-| `data-suisou-root` | （値なし） |
 | `data-suisou-row` | `neutral` `ruled` |
 | `data-suisou-rule` | `top` `bottom` `end` |
 | `data-suisou-show` | `md` `lg` `under-md` `under-lg` |
@@ -39,13 +38,13 @@
 | `data-suisou-table` | `tight` `scroll` |
 | `data-suisou-tag` | `accent` `error` `warning` `success` `bare` |
 | `data-suisou-text` | `s12` `s14` `s16` `s20` `s24` `s28` `s32` `doc` `sub` `accent` `success` `warning` `error` `w400` `w500` `w700` `center` `start` `one-line` `tabular` |
-| `data-suisou-theme` | `hadal` `trench` `fjord` `shoal` |
+| `data-suisou-theme` | `hadal` `trench` `fjord` `shoal` `clown` `turtle` `teal` `jelly` `blue` `indigo` `coral` `magenta` `seal` |
 | `data-suisou-tile` | `small` |
 
 - 値は空白区切りで併記できる（`~=` で当たる）
 - `layout` の値には `md:` / `lg:` の接頭辞版がある（768px / 1024px、min-width）
-- `theme` と `accent` は**必ず同じ要素に書く**（複合選択子でしか定義されない）
-- `accent` のうち仮名（まだ生き物になっていない）: `teal` `blue` `indigo` `magenta`。確定: `clown` `turtle` `jelly` `coral` `seal`
+- `theme` は**水域1つ＋生き物1つ**を空白区切りで書く（例 `"hadal jelly"`）。片方だけだとアクセント層が既定のまま残る
+- 生き物のうち仮名（まだ名前が付いていない）: `teal` `blue` `indigo` `magenta`。確定: `clown` `turtle` `jelly` `coral` `seal`
 
 ## 借りる標準属性（状態）
 
@@ -72,14 +71,18 @@
 ## 配布
 
 - `dist/suisou.css` … 全部入り（テーマ切替できる）／`dist/suisou-<theme>-<accent>.css` … 選んだ組だけ
-- `/v2/…` … **いま使う版**。v2 系の最新で、直せば全現場に行き渡る
-- `/v1/…` … **凍結済み**（2026-09-10、`07c066f` で停止）。`center` が grid のモードだった頃の版。もう動かない
+- `/v3/…` … **いま使う版**。v3 系の最新で、直せば全現場に行き渡る
+- `/v2/…` … **凍結済み**（2026-09-15）。`theme` と `accent` が別の属性で、根が `data-suisou-root` だった頃の版
+- `/v1/…` … **凍結済み**（2026-09-10、`07c066f` で停止）。`center` が grid のモードだった頃の版
 - `/v/<sha7>/…` … 固定 URL。動かない
 - **フォントは利用側が読み込む**。既定の書体は Zen Maru Gothic の 400 / 500 / 700
 - `helpers.css` は契約外（任意。他にユーティリティが無いときだけ）。`suisou.data.js` は配布物ではない
 
 ## 版が変わった理由
 
+- **v2 → v3**（2026-09-15）… 属性を2つ減らした。`data-suisou-accent` を `data-suisou-theme` に畳んで**組を1つの属性**にし、`data-suisou-root` を `data-suisou-body` に改名した
+  - 直し方: `theme="hadal" accent="clown"` → `theme="hadal clown"`、`data-suisou-root` → `data-suisou-body`。どちらも機械的な置換で済む
+  - 理由: 組を別々の属性に置くと**片方だけ書いた事故が静かに起きる**ため、掟と lint で守っていた。1属性なら構造的に起きない
 - **v1 → v2**（2026-09-10）… `center` の意味を変えた。v1 では grid のモード（`display: grid; place-items: center`）、v2 では交差軸の中央に寄せるふるまい（`align-items: center`）。grid のモードは `pin` に改名した
   - 直し方: `layout="center"` を単体で書いていたら `layout="pin"` に。`stack` や `row` と併用したかった場所は、そのまま `center` が使えるようになる
 
