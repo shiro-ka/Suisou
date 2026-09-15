@@ -15,12 +15,12 @@
     <p class="note">
       ★<strong>2026-09-09 に変えた。</strong>それまでは属性を付けた時点で
       <code>display: flex</code> が入っていた。そのせいで
-      <strong>子側の語（<code>grow</code> / <code>share</code> / <code>hold</code>）だけを
+      <strong>子側の語（<code>grow</code> / <code>hold</code>）だけを
       書いた要素まで flex の行になっていた</strong>。
       <br><br>
       <code>data-suisou-layout="grow"</code> だけ書いた <code>&lt;main&gt;</code> が
       横並びの入れ物になり、<strong>ページが 4071px に伸びた</strong>。
-      <code>share</code> を <code>button-group</code> に足したら
+      <code>share</code>（当時の語）を <code>button-group</code> に足したら
       <strong>8px の隙間が割り込んだ</strong>。どちらも実際の現場で起きている。
       <br><br>
       「モードを必ず 1 つ添える」という決まりを破った側の落ち度ではあるが、
@@ -98,7 +98,7 @@
       <tr><td><code>even</code></td><td><code>display: flex</code> ＋ 子に <code>flex: 1 1 0</code></td>
           <td>等分に割る。子の数だけ等分される。狭い画面では
               <code>stack md:even</code> と組む。
-              ★子に <code>share</code> を書けばそこだけ例外にできる</td></tr>
+              ★子に <code>grow</code> を書けばそこだけ例外にできる</td></tr>
     </table>
   </div>
 
@@ -208,8 +208,6 @@
           <td>両端に置いて間を空ける。<strong>子が2つのときだけ素直に効く</strong></td></tr>
       <tr><td><code>scroll</code></td><td><code>overflow: auto</code></td>
           <td>領域の中だけスクロールさせる。<code>grow</code> と組で使う</td></tr>
-      <tr><td><code>share</code></td><td><code>flex: var(--suisou-share, 1) 1 0</code></td>
-          <td>場所そのものを比で割る。<strong><code>grow</code> と基準が違う</strong></td></tr>
       <tr><td><code>grid</code></td><td><code>grid-template-columns: var(--suisou-grid-cols, …)</code></td>
           <td>升目に並べる。既定は「12rem 以上で入るだけ」。
               <code>--suisou-grid-cols</code> / <code>--suisou-grid-rows</code> で上書きする</td></tr>
@@ -477,31 +475,31 @@
   </div>
 
   <div class="group">
-    <h2>grow と share —— 「余りを取る」と「場所を割る」</h2>
+    <h2>grow —— 場所を割る</h2>
     <p class="note">
-      名前が似ているが<strong>基準（<code>flex-basis</code>）が違う</strong>。
+      <code>flex: var(--suisou-grow, 1) 1 0</code>。
+      <strong>基準を 0 にしてから比で割る</strong>ので、中身の幅の差が残らない。
       <br><br>
-      <code>grow</code> = <code>flex: 1 1 auto</code> ——
-      <strong>中身の大きさを基準にしてから余りを配る</strong>。
-      <br>
-      <code>share</code> = <code>flex: N 1 0</code> ——
-      <strong>基準を 0 にして全体を比で割る</strong>。
+      ★比は <code>--suisou-grow</code> で渡す（既定 1）。
+      閉じた集合にならない（2:3 も 3:5 も要る）ので、<code>spinner</code> の大きさと同じ
+      「値で持つ」形。
       <br><br>
-      ★この違いで実際にズレた。2:3 で割ったつもりが <strong>32:68</strong> になった
-      （中身の幅の差が残るため）。現場が <code>grow</code> の上に
-      <code>flex-grow</code> だけ重ねていたのが原因で、
-      <strong>「余りを取る」と「場所を割る」は別の意図</strong>だと分かったので語を分けた。
+      ★★<strong>v3 まで基準が <code>auto</code>（<code>flex: 1 1 auto</code>）だった。</strong>
+      それだと「余りを配る」になり、<strong>2:3 で割ったつもりが 32:68 になる</strong>
+      （中身の幅の差が残るため）。当時は「場所を割る」用に <code>share</code> という別語を
+      持っていたが、基準を 0 に変えたことで <code>grow</code> に吸収した。
       <br><br>
-      ★比は <code>--suisou-share</code> で渡す。閉じた集合にならない（2:3 も 3:5 も要る）ので、
-      <code>spinner</code> の大きさと同じ「値で持つ」形。
+      ★子が <strong>1 つだけ</strong>のときは基準が <code>auto</code> でも <code>0</code> でも
+      <strong>結果は同じ</strong>（どちらも「親 − 兄弟の合計」になる）。
+      差が出るのは <code>grow</code> が 2 つ以上あるときだけ。
     </p>
     <div class="demo">
-      <span class="demo-label">share 2 : 3</span>
+      <span class="demo-label">grow 2 : 3</span>
       <div data-suisou-layout="row" data-suisou-surface="panel">
-        <div class="demo-box" data-suisou-layout="share" style="--suisou-share: 2">2</div>
-        <div class="demo-box" data-suisou-layout="share" style="--suisou-share: 3">3</div>
+        <div class="demo-box" data-suisou-layout="grow" style="--suisou-grow: 2">2</div>
+        <div class="demo-box" data-suisou-layout="grow" style="--suisou-grow: 3">3</div>
       </div>
-      <span class="demo-label">同じ中身を grow で並べると、中身の幅の差が残る</span>
+      <span class="demo-label">中身の長さが違っても比は守られる</span>
       <div data-suisou-layout="row" data-suisou-surface="panel">
         <div class="demo-box" data-suisou-layout="grow">みじかい</div>
         <div class="demo-box" data-suisou-layout="grow">とてもとても長い中身がここに入る</div>
@@ -519,7 +517,7 @@
       ★形を変えたいときは <code>--suisou-grid-cols</code> /
       <code>--suisou-grid-rows</code> に<strong>指定まるごと</strong>を渡す。
       トラックの書き方は閉じた集合にならないので、語ではなく値で持つ
-      —— <code>--suisou-share</code> と同じ姿勢。
+      —— <code>--suisou-grow</code> と同じ姿勢。
       <br><br>
       ★★自分で書くときは <code>minmax(0, 1fr)</code> を使うこと。
       <code>1fr</code> だけだと<strong>最小幅が中身の幅になり、長い語や画像で枠から溢れる</strong>。
