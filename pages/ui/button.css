@@ -106,7 +106,7 @@
      Mado がそれで詰まり、
        [data-suisou-button][aria-current="page"] { … }
      という打ち消しを現場に書いていた（実測 8 箇所ぶんの分岐）。
-     ★CONTRACT は借りる属性として aria-current を挙げているのに、
+     ★借りる属性の一覧には aria-current が入っているのに、
        Button だけが無視していた ―― 語彙の不足ではなく**一貫性の欠け**。
 
    ★:not([aria-current="false"]) を付けるのは Row と同じ形。
