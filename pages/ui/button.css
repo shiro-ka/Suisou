@@ -263,5 +263,5 @@
 }
 [data-suisou-button-group]:has(> [data-suisou-field]:focus-visible) {
   outline: var(--suisou-focus);
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
