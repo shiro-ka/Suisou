@@ -1,158 +1,44 @@
-/* Suisou — タイポグラフィ。
-
-     <p data-suisou-text="s16 w400">本文</p>
-     <h2 data-suisou-text="s24 w700">見出し</h2>
-     <p data-suisou-text="s16 w400 doc">長文（行間 +0.25rem）</p>
-
-   ★実際の寸法は base.css のトークンが持ち、単位は rem。このファイルは
-     「どの段か」を割り当てるだけ。名前の数字（s16 / lh-20）は
-     ルートが 16px のときの px で、ユーザーが文字サイズ設定を変えれば
-     全体が比例して動く。app.js も段しか持たず、画面に出す数値は
-     computed 値（＝解決後の px）を読んで表示する。 */
-
-[data-suisou-text] { font-size: var(--fs); line-height: var(--lh); }
-
-/* サイズの段 … §3。14 以外はすべて4の倍数。等比スケールは採らない */
-[data-suisou-text~="s12"] { --fs: var(--suisou-size-12); --lh: var(--suisou-lh-12); }
-[data-suisou-text~="s14"] { --fs: var(--suisou-size-14); --lh: var(--suisou-lh-14); }
-[data-suisou-text~="s16"] { --fs: var(--suisou-size-16); --lh: var(--suisou-lh-16); }
-[data-suisou-text~="s20"] { --fs: var(--suisou-size-20); --lh: var(--suisou-lh-20); }
-[data-suisou-text~="s24"] { --fs: var(--suisou-size-24); --lh: var(--suisou-lh-24); }
-[data-suisou-text~="s28"] { --fs: var(--suisou-size-28); --lh: var(--suisou-lh-28); }
-[data-suisou-text~="s32"] { --fs: var(--suisou-size-32); --lh: var(--suisou-lh-32); }
-
-/* ── 画面幅で段を変える（2026-08-22 昇格）─────────
-     <h2 data-suisou-text="s24 md:s28 w700">広い画面でひとまわり大きく</h2>
-
-   layout と同じ md:(768) / lg:(1024) の2段だけ。sm / xl / 2xl は持たない ――
-   段を増やすほど「毎回選ぶもの」に戻ってしまう。2段で表せない振り方は
-   現場のもの。
-
-   ★需要は wixdex 1 + Mado 6 の7現場（text-sm md:text-base の型）。
-     Suisou に語彙が無いために、変換済みのファイルでもレスポンシブの
-     文字だけ Tailwind に残り続けていた ―― handoff の「最大の穴」の実例。
-   ★サイズだけ。ウェイトを画面幅で変える現場は無かった（7現場とも太さは固定）。 */
+[data-suisou-text] { font-size: var(--suisou-type-size); line-height: var(--suisou-type-lh); }
+[data-suisou-text~="s12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
+[data-suisou-text~="s14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
+[data-suisou-text~="s16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
+[data-suisou-text~="s20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
+[data-suisou-text~="s24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
+[data-suisou-text~="s28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
+[data-suisou-text~="s32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
 @media (min-width: 768px) {
-  [data-suisou-text~="md:s12"] { --fs: var(--suisou-size-12); --lh: var(--suisou-lh-12); }
-  [data-suisou-text~="md:s14"] { --fs: var(--suisou-size-14); --lh: var(--suisou-lh-14); }
-  [data-suisou-text~="md:s16"] { --fs: var(--suisou-size-16); --lh: var(--suisou-lh-16); }
-  [data-suisou-text~="md:s20"] { --fs: var(--suisou-size-20); --lh: var(--suisou-lh-20); }
-  [data-suisou-text~="md:s24"] { --fs: var(--suisou-size-24); --lh: var(--suisou-lh-24); }
-  [data-suisou-text~="md:s28"] { --fs: var(--suisou-size-28); --lh: var(--suisou-lh-28); }
-  [data-suisou-text~="md:s32"] { --fs: var(--suisou-size-32); --lh: var(--suisou-lh-32); }
+  [data-suisou-text~="md:s12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
+  [data-suisou-text~="md:s14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
+  [data-suisou-text~="md:s16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
+  [data-suisou-text~="md:s20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
+  [data-suisou-text~="md:s24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
+  [data-suisou-text~="md:s28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
+  [data-suisou-text~="md:s32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
 }
 @media (min-width: 1024px) {
-  [data-suisou-text~="lg:s12"] { --fs: var(--suisou-size-12); --lh: var(--suisou-lh-12); }
-  [data-suisou-text~="lg:s14"] { --fs: var(--suisou-size-14); --lh: var(--suisou-lh-14); }
-  [data-suisou-text~="lg:s16"] { --fs: var(--suisou-size-16); --lh: var(--suisou-lh-16); }
-  [data-suisou-text~="lg:s20"] { --fs: var(--suisou-size-20); --lh: var(--suisou-lh-20); }
-  [data-suisou-text~="lg:s24"] { --fs: var(--suisou-size-24); --lh: var(--suisou-lh-24); }
-  [data-suisou-text~="lg:s28"] { --fs: var(--suisou-size-28); --lh: var(--suisou-lh-28); }
-  [data-suisou-text~="lg:s32"] { --fs: var(--suisou-size-32); --lh: var(--suisou-lh-32); }
+  [data-suisou-text~="lg:s12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
+  [data-suisou-text~="lg:s14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
+  [data-suisou-text~="lg:s16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
+  [data-suisou-text~="lg:s20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
+  [data-suisou-text~="lg:s24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
+  [data-suisou-text~="lg:s28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
+  [data-suisou-text~="lg:s32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
 }
-
-/* §6「長文は UI に +4px するだけ」。7行の対応表ではなく規則として持つ */
-[data-suisou-text~="doc"] { line-height: calc(var(--lh) + 0.25rem); }
-
-/* ── 色 ────────────────────────────────────
-     <p data-suisou-text="s14 sub">補足</p>
-     <p data-suisou-text="s12 error">保存に失敗しました</p>
-
-   ★Icon と同じ閉じた集合。書かなければ継承（currentColor のまま）。
-     以前は「文字の色だけ現場が var(--suisou-text-sub) を手書き」という状態で、
-     **Mado 1現場で 68 箇所**あった（2026-09-08 実測）。書かれていた色は8種、
-     うち `inherit` 1件を除いて**全部 Suisou のトークン** ―― つまり値は語彙の中に
-     あるのに、それを言う属性が無いから CSS に落ちていた。
-     Icon が color を持っていて Text が持っていない、という部品間のズレでもあった。
-
-   ★★`disabled` は入れない（palette-spec §5）。
-     `--suisou-text-disabled` は **disabled / placeholder 専用**で、overlay 上 3.23:1 と
-     WCAG 1.4.3 の除外規定に依る値。本文に使うと基準を割る。
-     v1.0 の `text-faint` から改名したのは「本文に使った瞬間レビューで浮かせる」ため。
-     ここに段を作ると、その狙いを自分で潰すことになる。
-     ★薄い注記が欲しい現場は `sub` を使う。それが3段目。 */
-
+[data-suisou-text~="doc"] { line-height: calc(var(--suisou-type-lh) + 0.25rem); }
 [data-suisou-text~="sub"]     { color: var(--suisou-text-sub); }
 [data-suisou-text~="accent"]  { color: var(--suisou-accent); }
 [data-suisou-text~="success"] { color: var(--suisou-success); }
 [data-suisou-text~="warning"] { color: var(--suisou-warning); }
 [data-suisou-text~="error"]   { color: var(--suisou-error); }
-
-/* ウェイトは3段（§4）。★600 は無い ―― Zen Maru Gothic が 600 を持たず
-   700 で描画されていた。フォールバックフォントでは 600/700 が分かれて
-   環境で見た目が割れるので、段として持つのをやめた（2026-08-20）。
-   実測で最頻出だった「本文サイズ + semibold の見出し」は w700 が引き受ける。 */
 [data-suisou-text~="w400"] { font-weight: 400; }
 [data-suisou-text~="w500"] { font-weight: 500; }
 [data-suisou-text~="w700"] { font-weight: 700; }
-
-/* ── 行の寄せ（2026-09-08 昇格）─────────────────
-
-     <p data-suisou-text="s14 sub center">中央に寄せた注記</p>
-     <button data-suisou-button="block" data-suisou-text="start">左に戻す</button>
-
-   ★needs の実測（Mado + wixdex の2現場）:
-       center  22（Mado 11 scoped / wixdex 11 Tailwind）
-       start    5（Mado 2 / wixdex 3）
-       end      2  ← 3回ルール未満。持たない
-
-   ★start は「打ち消し」の語。単体で書いても普通は何も変わらない ――
-     ブラウザが button の中身を center にするので、それを行に戻すために要る
-     （5件のうち3件が button だった）。layout の stretch / hold / nowrap と同じ役目。
-
-   ★end を入れなかったのは数が届かないから。2件とも数字の列（右揃えの合計欄）で、
-     どちらも「表の中の数値」という同じ形をしている。★3件目が出たら、
-     end ではなく tabular な列の語として入れるか考え直すこと。
-
-   ★なぜ layout ではなく text か。text-align は flex/grid の寄せとは別物で、
-     行ボックスの中の話。layout に置くと start / end / between（＝主軸の寄せ）と
-     名前が衝突し、どちらの軸の話か読めなくなる。
-
-   ★md: / lg: は作らない。画面幅で行の寄せを変える現場が2現場とも0だった。 */
 [data-suisou-text~="center"] { text-align: center; }
 [data-suisou-text~="start"]  { text-align: start; }
-
-/* ── 1行に収める（2026-09-09 昇格）───────────────
-
-     <div data-suisou-text="w500 one-line">とても長いデッキ名…</div>
-
-   ★2現場が**同じ4行を別の名前で発明していた**。
-
-     wixdex `.one-line`            Mado `.ellipsis` / `.title`
-       min-width: 0;                 overflow: hidden;
-       overflow: hidden;             text-overflow: ellipsis;
-       text-overflow: ellipsis;      white-space: nowrap;
-       white-space: nowrap;
-
-   ★min-width: 0 が片方にしか無いのが、この形の罠。**3行そろって初めて効く**うえ、
-     flex の子は min-width の既定が auto なので、3行書いても縮まず溢れる。
-     ここで4行目まで持つ ―― 忘れるのは仕組みの側の落ち度。
-     ★ブロック要素では min-width の既定が 0 なので、書いても何も起きない。安全。
-
-   ★名前は wixdex が自分で付けた one-line を採る。ellipsis は「…」という
-     見た目の名前だが、やりたいのは「1行に収める」で、そちらが意図に近い。
-
-   ★実測: wixdex 7（truncate 6 + .one-line 1）/ Mado 3 = 10 箇所。
-
-   ★N行で切る（line-clamp）は**まだ持たない**。Mado 3 / wixdex 0 で1現場のみ。
-     行数を値に取る（2行・3行）ので語の形も変わる。2現場目が出てから。 */
 [data-suisou-text~="one-line"] {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-/* ── 数字の幅を揃える（2026-09-09 昇格）─────────────
-
-     <span data-suisou-text="s20 w700 tabular">1,234</span>
-
-   ★数が動く場所（順位・枚数・カウンタ・残り文字数）で、桁が変わるたびに
-     文字幅が変わって隣の要素が跳ねる。等幅の数字にすると止まる。
-
-   ★実測 4 箇所（Mado 3 / wixdex 1）。Mado は順位と枚数、wixdex はカードの枚数。
-     どちらも font-variant-numeric: tabular-nums を手書きしていた。
-
-   ★等幅フォント（font-mono）に切り替えるのとは違う。書体はそのままで、
-     **数字の字送りだけ**を揃える。見出しの中の数字にも使える。 */
 [data-suisou-text~="tabular"] { font-variant-numeric: tabular-nums; }
