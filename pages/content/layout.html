@@ -57,7 +57,7 @@
   <div class="group">
     <h2>モード —— 1つだけ書く</h2>
     <p class="note">
-      2つ書くと片方が黙って死ぬ。とくに <code>frame</code> と <code>grid</code> は
+      2つ書くと片方が黙って死ぬ。とくに <code>grid</code> は
       grid に切り替わるので、flex 前提の <code>stack</code> と混ぜると
       指定した向きが何も起きないまま通る。
       <br>
@@ -95,8 +95,6 @@
       <tr><td><code>row</code></td><td><code>flex-direction: row; align-items: center</code></td>
           <td>横並び。ボタン列、アイコンと文字。<code>stack md:row</code> で
               「狭いと縦積み・広いと横並び」</td></tr>
-      <tr><td><code>frame</code></td><td><code>display: grid; grid-template-areas: …</code></td>
-          <td>画面の骨格。子が区画を名乗る。下の節を見る</td></tr>
       <tr><td><code>even</code></td><td><code>display: flex</code> ＋ 子に <code>flex: 1 1 0</code></td>
           <td>等分に割る。子の数だけ等分される。狭い画面では
               <code>stack md:even</code> と組む。
@@ -327,54 +325,48 @@
   </div>
 
   <div class="group">
-    <h2>骨格を組む —— frame</h2>
+    <h2>骨格を組む</h2>
     <p class="note">
-      画面の骨格は <code>frame</code> が持つ。<strong>区画を親がまとめて決め、
-      子は「自分がどの区画か」しか言わない。</strong>
-      flex では2次元が作れないので、右側をまとめるためだけの空箱が要った。それが消える。
+      画面の骨格は <strong>専用の語を持たない</strong>。
+      <code>row</code> と <code>stack</code> と <code>grow</code> と <code>scroll</code> で組む。
       <br><br>
-      区画の名前は <strong>Suisou が持つ</strong>（<code>aside</code> /
-      <code>head</code> / <code>body</code> / <code>foot</code>）。
-      現場が名前を発明すると <code>channel-list</code> のような今回だけの語になり、
-      配れなくなるため。
+      ★v3 まで <code>frame</code> という grid のモードがあり、
+      <code>aside</code> / <code>head</code> / <code>body</code> / <code>foot</code> という
+      区画の語を連れていた。<strong>畳んだ</strong> ——
+      節約できるのは「右側をまとめる箱」1つだけで、代償がモード1つと語4つだった。
+      実使用も1現場で、そこでも2次元（柱と帯を同時に出す）を使っていなかった。
     </p>
     <div class="demo">
-      <span class="demo-label">&lt;div data-suisou-layout="frame"&gt;</span>
-      <div data-suisou-layout="frame" class="demo-frame">
-        <div data-suisou-surface="panel" data-suisou-layout="aside stack scroll" style="width: 120px">
-          <div class="demo-box">一覧</div>
-          <div class="demo-box">一覧</div>
+      <span class="demo-label">柱 + 帯 + 本体 + 入力</span>
+      <div data-suisou-layout="row" class="demo-frame">
+        <div data-suisou-surface="panel" data-suisou-layout="stack scroll" style="width: 120px">
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
         </div>
-        <div data-suisou-surface="panel" data-suisou-layout="head">ヘッダ</div>
-        <div data-suisou-surface="panel" data-suisou-layout="body">本体</div>
-        <div data-suisou-surface="panel" data-suisou-layout="foot">入力</div>
+        <div data-suisou-layout="stack grow">
+          <div data-suisou-surface="panel">ヘッダ</div>
+          <div data-suisou-surface="panel" data-suisou-layout="grow scroll">本体</div>
+          <div data-suisou-surface="panel">入力</div>
+        </div>
       </div>
-      <span class="demo-label">aside を書かなければ列ごと消える（:has で見ている）</span>
-      <div data-suisou-layout="frame" class="demo-frame">
-        <div data-suisou-surface="panel" data-suisou-layout="head">ヘッダ</div>
-        <div data-suisou-surface="panel" data-suisou-layout="body">本体</div>
-        <div data-suisou-surface="panel" data-suisou-layout="foot">入力</div>
+      <span class="demo-label">柱を消せば、そのまま1列になる</span>
+      <div data-suisou-layout="row" class="demo-frame">
+        <div data-suisou-layout="stack grow">
+          <div data-suisou-surface="panel">ヘッダ</div>
+          <div data-suisou-surface="panel" data-suisou-layout="grow scroll">本体</div>
+          <div data-suisou-surface="panel">入力</div>
+        </div>
       </div>
     </div>
-    <table data-suisou-table="tight">
-      <tr><th>区画</th><th>位置</th><th>高さ / 幅</th></tr>
-      <tr><td><code>aside</code></td><td>左。上から下まで通す</td><td>中身なり（<code>auto</code>）</td></tr>
-      <tr><td><code>head</code></td><td>右上</td><td>中身なり</td></tr>
-      <tr><td><code>body</code></td><td>右中央</td><td><strong>余りを全部取る</strong>（<code>minmax(0, 1fr)</code>）</td></tr>
-      <tr><td><code>foot</code></td><td>右下</td><td>中身なり</td></tr>
-    </table>
     <p class="note">
-      <code>body</code> のトラックが <code>minmax(0, 1fr)</code> なので、
-      <strong><code>min-width: 0</code> のおまじないが要らない</strong> ——
-      トラック側で同じ仕事をしている。<code>grow</code> も <code>stretch</code> も書かない。
-      面は <code>surface</code> 属性が持つので同じ要素に両方書ける。
+      ★<strong>本体には <code>grow</code> と <code>scroll</code> を書く。</strong>
+      <code>grow</code> が <code>min-height: 0</code> を連れてくるので、
+      中身がはみ出して親ごと伸びるのを止められる。
       <br><br>
-      ★<code>head</code> や <code>foot</code> を書かないとき、そのトラックは 0 になるが
-      <strong>すきま（gap）は残る</strong>。<code>aside</code> だけは <code>:has()</code> で
-      列ごと畳んでいる。気になったら同じ手当てを増やす。
+      ★狭い画面で柱を消したいときは、柱を <code>data-suisou-show="md"</code> にする。
+      <strong>兄弟が消えるだけなので、残りが自然に全幅になる</strong> ——
+      grid のときのように空いた列の隙間が残ることがない。
     </p>
   </div>
 
@@ -391,12 +383,13 @@
         <div class="demo-box">い</div>
         <div class="demo-box">う</div>
       </div>
-      <span class="demo-label">data-suisou-layout="stack md:frame" —— 骨格そのものを切り替える</span>
-      <div data-suisou-layout="stack md:frame" class="demo-frame">
-        <div data-suisou-surface="panel" data-suisou-layout="aside" style="min-width: 120px">aside</div>
-        <div data-suisou-surface="panel" data-suisou-layout="head">head</div>
-        <div data-suisou-surface="panel" data-suisou-layout="body grow">body</div>
-        <div data-suisou-surface="panel" data-suisou-layout="foot">foot</div>
+      <span class="demo-label">data-suisou-layout="stack md:row" —— 骨格そのものを切り替える</span>
+      <div data-suisou-layout="stack md:row" class="demo-frame">
+        <div data-suisou-surface="panel" style="min-width: 120px">柱</div>
+        <div data-suisou-layout="stack grow">
+          <div data-suisou-surface="panel">帯</div>
+          <div data-suisou-surface="panel" data-suisou-layout="grow">本体</div>
+        </div>
       </div>
     </div>
     <table data-suisou-table="tight">
@@ -412,14 +405,8 @@
       <strong>並びの向きが変わる幅だけを持つ</strong>。
       「サイドバーを 200px にする」のような数値は現場が持ち、
       現場の <code>@media</code> でやる ——
-      作例のチャットがその形（並びは <code>stack md:frame</code>、
+      作例のチャットがその形（並びは <code>stack md:row</code>、
       幅は <code>styles.css</code> の <code>.demo-aside</code>）。
-      <br>
-      ★<strong>区画（<code>aside</code> / <code>head</code> / <code>body</code> /
-      <code>foot</code>）に接頭辞版は無い。</strong>
-      「どの区画か」は幅で変わるものではないし、<code>frame</code> が効いていなければ
-      <code>grid-area</code> は無視されて DOM の順に素直に積まれる。だから
-      <code>"stack md:frame"</code> と書くだけで、狭いときは自然に縦一列になる。
     </p>
   </div>
 

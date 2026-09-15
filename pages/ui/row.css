@@ -78,7 +78,7 @@
 }
 
 /* 連なる行は隙間を持たない。すきまは親（layout）が持っていて行からは消せないので、
-   :has() で親側に効かせる。frame が aside を見ているのと同じやり方。
+   :has() で親側に効かせる。
    詳細度は (0,2,0) なので layout の既定にも helpers の .gap-* にも勝つ ――
    ruled にしておいて隙間を空けたい場面は無いため、ここは勝ってよい。 */
 [data-suisou-layout]:has(> [data-suisou-row~="ruled"]) { gap: 0; }
