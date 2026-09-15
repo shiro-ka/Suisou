@@ -65,8 +65,11 @@ def render():
     L.append("")
     L.append("- 値は空白区切りで併記できる（`~=` で当たる）")
     L.append("- `layout` の値には `md:` / `lg:` の接頭辞版がある（768px / 1024px、min-width）")
-    L.append("- `theme` は**水域1つ＋生き物1つ**を空白区切りで書く（例 `\"hadal jelly\"`）。"
-             "片方だけだとアクセント層が既定のまま残る")
+    L.append("- `theme` は**水域1つ＋生き物1つ**を空白区切りで書く（例 `\"hadal jelly\"`）。順不同")
+    L.append("  - 水域だけ … アクセントの4トークンが未定義になる（焦点の輪が消える）")
+    L.append("  - 生き物だけ／未宣言 … **色が全部未定義**になる（白地・黒文字・罫なし）")
+    L.append("  - 同じ種類を2つ以上 … **未定義**。`palette.css` の並び順で後が勝つ")
+    L.append("  - 知らない語 … 無視される")
     L.append(f"- 生き物のうち仮名（まだ名前が付いていない）: "
              f"{' '.join(f'`{n}`' for n in provisional)}。確定: {' '.join(f'`{n}`' for n in fixed)}")
     L.append("")
@@ -90,7 +93,7 @@ def render():
 
     L.append("## 既定")
     L.append("")
-    L.append(f"- 属性が無いとき: `{solve.DEFAULT_THEME}` × `{solve.DEFAULT_ACCENT}`")
+    L.append("- `theme` を宣言しない要素は色を持たない（既定の色は無い）")
     L.append("- layout はモードを1つ書いて初めて `display` が入る。"
              "子側の語（`grow` / `share` / `hold`）だけでは並びは変わらない")
     L.append("- layout の子は動かない（`flex: none`）。伸びるものだけ `grow` と名指す")
@@ -114,9 +117,10 @@ def render():
 
     L.append("## 版が変わった理由")
     L.append("")
-    L.append("- **v2 → v3**（2026-09-15）… 属性を2つ減らした。"
+    L.append("- **v2 → v3**（2026-09-15）… 属性を2つ減らし、既定の色をやめた。"
              "`data-suisou-accent` を `data-suisou-theme` に畳んで**組を1つの属性**にし、"
-             "`data-suisou-root` を `data-suisou-body` に改名した")
+             "`data-suisou-root` を `data-suisou-body` に改名し、"
+             "`:root` の既定色を**廃止**した（宣言しなければ色が付かない）")
     L.append("  - 直し方: `theme=\"hadal\" accent=\"clown\"` → `theme=\"hadal clown\"`、"
              "`data-suisou-root` → `data-suisou-body`。どちらも機械的な置換で済む")
     L.append("  - 理由: 組を別々の属性に置くと**片方だけ書いた事故が静かに起きる**ため、"
