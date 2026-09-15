@@ -102,7 +102,8 @@ def main():
     for p in walk("pages"):
         if p.endswith(".css"):
             with open(p, encoding="utf-8") as f:
-                defined |= set(re.findall(r"--suisou-[a-z0-9-]+(?=\s*:)", f.read()))
+                src = COMMENT_CSS.sub("", f.read())
+                defined |= set(re.findall(r"--suisou-[a-z0-9-]+(?=\s*:)", src))
 
     problems = []
     checked = 0

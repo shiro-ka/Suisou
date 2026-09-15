@@ -1,132 +1,15 @@
-/* Suisou — Layout
-
-     <div data-suisou-layout="stack">縦に積む</div>
-     <div data-suisou-layout="row">横に並べて縦中央に寄せる</div>
-     <div data-suisou-layout="row stretch">画面を割る。子は高さいっぱい</div>
-     <div data-suisou-layout="frame screen">画面の骨格。子は aside / head / body / foot と名乗る</div>
-     <div data-suisou-layout="stack md:even">等分の列。狭いと縦積み</div>
-
-   ★すきまは焼き込む。Suisou のレイアウトは既定で space-2（8px）で並ぶ。
-     これが「Suisou の間合い」で、毎回選ぶものではない。
-     現場が変えたくなったら helpers.css の .gap-* を重ねる。
-
-   ★汎用の名前を占領しない。並びは属性の中の語なので、.row や .grow という
-     クラスを世界から奪わない。接頭辞は属性名に1回だけ出る。
-
-   ★モード（stack / row / pin / frame）は1つだけ書く。tools/lint_css.py が検査する。
-     pin は grid に切り替わるので、flex 前提の語と混ぜても黙って効かない。 */
-
-/* ★基底は「すきまの値」しか持たない（2026-09-09 に変更）。
-
-   以前はここで display: flex と gap を無条件に敷いていた。そのせいで
-   **子側の語（grow / share / hold）だけを書いた要素まで flex の行になった**。
-
-     data-suisou-layout="grow"   だけ書いた <main> が横並びの入れ物になり、
-                                 ページが 4071px に伸びた（Mado 実測）
-     data-suisou-layout="share"  を button-group に足したら 8px の隙間が
-                                 割り込んだ（wixdex 実測）
-
-   ★どちらも「モードを必ず1つ添える」という決まりを破った側の落ち度ではあるが、
-     **破ったときに黙って別物になる**のが仕組みの落ち度。display を敷くのを
-     モード（stack / row / pin / frame / even / cols）の仕事に移して、
-     子側の語だけでは並びが変わらないようにした。
-
-   ★すきまを変数で渡すのは順序の問題を避けるため。gap-N の規則はモードより
-     前に書かれているので、モード側で gap を直に書くと gap-N が負ける。 */
 [data-suisou-layout] {
   --suisou-gap: var(--suisou-space-2);
 }
-
-/* ★子は既定で動かない（flex: none）。伸び縮みするものにだけ grow と書く。
-
-   flex の既定は 0 1 auto ＝「伸びないが縮む」で、これが驚きの元になる。
-   width を書いても守られないし、stack scroll の中身がスクロールせず潰れる。
-   「言われたことしかしない」を既定にして、動くものは名指しさせる。
-
-   :where() で詳細度を 0 にしてあるので、grow も現場の class も必ず勝つ。
-   要素セレクタは使わない約束だが、これは layout の内側に閉じているので例外。 */
 :where([data-suisou-layout]) > * { flex: none; }
-
-/* ── すきま。既定を変えたいときだけ書く ─────────
-
-     <div data-suisou-layout="stack gap-3">面の中の並び</div>
-     <div data-suisou-layout="stack md:frame screen gap-0">画面の骨格</div>
-
-   ★既定（space-2）は据え置き。これが「Suisou の間合い」で、**毎回選ぶものではない**。
-     ここは「既定では合わない場所」のための逃げ道で、書かないのが普通。
-
-   ★名前は helpers.css の .gap-* と同じ（段の番号 = --suisou-space-N）。
-     新しい語を発明していない ―― 変えたのは**名前空間だけ**。
-     helpers は接頭辞なしのクラスなので汎用名を占領し、「Tailwind 併用時は入れるな」
-     という条件付きだった。併用をやめた現場に配る道具が無くなるので、属性側へ移す。
-
-   ★段の意味は base.css が書いている通り:
-       gap-1  4   部品の中の詰め（見出しと補足のような一続きの2行）
-       （既定） 8   標準の隙間
-       gap-3  16  面の余白（カード・フォーム・節の中）
-       gap-4  24  大きな区切り（ページの節どうし）
-       gap-0  0   すきまを持たない（画面の骨格。区切りは罫がやる）
-
-   ★需要の実測（Mado 1現場、2026-09-08。Tailwind を外し切った状態）:
-     58 箇所が gap を手書きしていて、**4段 + 0 の中に全部収まっていた**
-     （16px 28 / 24px 14 / 4px 10 / 0 6）。当たっていた先も段の意味と一致する ――
-     .page .cols が 24、.card .form .group が 16、.heading .text が 4、
-     .shell .frame が 0。★別に 17 箇所、既定と同じ値を書き直しているだけの
-     冗長な宣言があった（現場側で削除済み）。
-
-   ★gap-2 も置く。既定と同じ値だが、親から段を変えられた入れ子で戻すために要る。
-
-   ★md: / lg: の接頭辞版は作らない。画面幅ですきまを変えたい現場がまだ無い（3回ルール）。 */
-
 [data-suisou-layout~="gap-0"] { --suisou-gap: 0; }
 [data-suisou-layout~="gap-1"] { --suisou-gap: var(--suisou-space-1); }
 [data-suisou-layout~="gap-2"] { --suisou-gap: var(--suisou-space-2); }
 [data-suisou-layout~="gap-3"] { --suisou-gap: var(--suisou-space-3); }
 [data-suisou-layout~="gap-4"] { --suisou-gap: var(--suisou-space-4); }
-
-/* ── モード。1つだけ選ぶ ───────────────────── */
-
 [data-suisou-layout~="stack"]  { display: flex; flex-direction: column; gap: var(--suisou-gap); }
-
-/* ★row は方向も持つ（2026-09-09）。以前は align-items だけだった。
-
-   flex の既定が row なので「単体では何も変わらない」―― そう思って方向を
-   書いていなかったが、**stack を画面幅で解けなくなっていた**。
-   `stack md:row` と書いても縦積みのままで、現場が @media で
-   flex-direction を戻す羽目になっていた（Mado 3 / wixdex 3 の計6箇所）。
-   ★Mado には「打ち消し：stack md:row（md:row が flex-direction を戻さない）」
-     というコメント付きの回避まで書かれていた ―― 罠として実地で確認済み。
-
-   ★このファイルの冒頭は最初から「モード（stack / row / pin / frame）は
-     1つだけ書く」と言っている。**文書は row をモードと呼んでいるのに、
-     実装だけが方向を持っていなかった**。その食い違いを閉じる。
-
-   ★副作用は lint_css.py が拾う。あちらはモードを「display か flex-direction を
-     敷いているか」で判定するので、row が自動的にモードの集合に入り、
-     `stack row` のような同時指定が検査で落ちるようになる（真実の源泉が1つ）。 */
 [data-suisou-layout~="row"]    { display: flex; flex-direction: row; align-items: center; gap: var(--suisou-gap); }
-
-/* ★ど真ん中に1つ置く。flex ではなく grid（2026-09-10 に center から改名）。
-
-   主軸も交差軸も中央 ―― 「画面の真ん中にエラーを1枚」のような、
-   中身が1つしかない場面のための語。並べる場面には向かない。
-
-   ★改名した理由: center という名前は**いちばん多い需要**（stack の中で
-     横を中央に寄せる。実測 18 箇所）が取るべきで、grid のど真ん中は
-     実測4箇所しか無かった。多い方が自然な語を持つ。
-   ★center は下の「ふるまい」に移った（align-items: center）。 */
 [data-suisou-layout~="pin"] { display: grid; place-items: center; gap: var(--suisou-gap); }
-
-
-/* 画面の骨格。区画を親がまとめて決め、子は「自分がどの区画か」しか言わない。
-   flex だと2次元が作れないので、右側をまとめるためだけの空箱が要った。それが消える。
-
-   区画の名前は Suisou が持つ（aside / head / body / foot）。
-   現場が名前を発明すると "channel-list" のような今回だけの語になり、配れなくなる。
-
-   minmax(0, 1fr) がトラック側で min-width: 0 と同じ仕事をするので、
-   子に書く必要が無い。:has() で aside の有無を見て列を1本に畳む
-   ―― 空のトラックにも gap は入るので、無いときは列ごと消す。 */
 [data-suisou-layout~="frame"] {
   display: grid;
   gap: var(--suisou-gap);
@@ -142,174 +25,43 @@
                        "aside foot";
   grid-template-columns: auto minmax(0, 1fr);
 }
-
-/* どの区画に入るか。frame の子だけが意味を持つ */
 [data-suisou-layout~="aside"] { grid-area: aside; }
 [data-suisou-layout~="head"]  { grid-area: head; }
 [data-suisou-layout~="body"]  { grid-area: body; }
 [data-suisou-layout~="foot"]  { grid-area: foot; }
-
-/* ── ふるまい。重ねて使う ───────────────────
-   モードより後に置く。row の中央寄せを stretch が上書きできる順序にしてある */
-
-/* 子を交差軸いっぱいに伸ばす。flex の初期値がこれなので、単体で書いても
-   何も変わらない。row の中央寄せを打ち消すためだけに在る（"row stretch"）。
-   以前は cols という名前だったが、横向きなのに columns と読め、
-   しかも単体では何もしない値だったのでやめた。 */
 [data-suisou-layout~="stretch"] { align-items: stretch; }
-
-/* ★交差軸の中央（2026-09-10 昇格。需要 18 ―― Mado 18 / wixdex 0）。
-
-   stack の中で横を中央に寄せる、いちばん多い形。row では既定なので
-   何も変わらない（stretch を打ち消したいときだけ意味がある）。
-
-   ★この名前は grid のモードが持っていた。**モードは1つしか書けないので
-     stack と併用できず**、現場は 18 箇所で align-items: center を手書きしていた。
-     2026-09-08 に `stack center` と 27 箇所書いてから気づいて全部戻した経緯もある。
-     grid のど真ん中は実測4箇所しか無かったので、多い方に名前を返して
-     grid 側を pin に改名した（★これが v2 を建てた理由）。
-
-   ★surface.css の空表示の作例は最初から
-     `<div data-suisou-surface="panel empty" data-suisou-layout="stack center">`
-     と書いてあった ―― **文書の方が正しく、実装が追いついていなかった**。 */
 [data-suisou-layout~="center"] { align-items: center; }
-
 [data-suisou-layout~="wrap"] { flex-wrap: wrap; }
-
-/* 打ち消し用。既定に戻すための値で、単体で書いても何も変わらない。
-   広い画面でだけ伸ばすのをやめる（"grow md:hold"）、
-   狭い画面でだけ折り返す（"wrap md:nowrap"）といった書き方で効く。 */
 [data-suisou-layout~="hold"]   { flex: none; }
 [data-suisou-layout~="nowrap"] { flex-wrap: nowrap; }
-
-/* 主軸方向の寄せ。余った空間の配り方であって、子の置き方ではない。
-   子に grow があると余りが残らないので、これらは何も起きなくなる。
-   around / evenly は出番が無かったので持たない（3回書いてから足す）。
-
-   ★middle が「主軸の中央」、center が「交差軸の中央」（v2 で整理）。
-     この2つは軸が違うだけで、どちらも「中央」。混ぜないこと。
-
-       row middle    横に並べて、横方向の中央に寄せる
-       row center    横に並べて、縦方向の中央（＝既定なので何も変わらない）
-       stack center  縦に積んで、横方向の中央に寄せる  ← いちばん多い形
-       stack middle  縦に積んで、縦方向の中央（画面いっぱいのときだけ意味がある）
-
-   ★v1 では center が grid のモードだったので、この寄せは middle しか名乗れず、
-     交差軸の中央には**名前が無かった**。v2 で grid 側を pin に改名して返した。 */
 [data-suisou-layout~="start"]   { justify-content: flex-start; }
 [data-suisou-layout~="middle"]  { justify-content: center; }
 [data-suisou-layout~="end"]     { justify-content: flex-end; }
 [data-suisou-layout~="between"] { justify-content: space-between; }
-
-/* あふれたらここで受ける。
-
-   ★scrollbar-gutter は使わない。バーが出た瞬間の幅の飛びは止まるが、
-     代わりに溝がずっと居座る。stable は右だけに空くので左右の余白が食い違い、
-     both-edges は両側に空く分だけ中身が痩せる。どちらも「常に変」で、
-     バーが出るときだけ 10px 動く方がまだ普通に見えた。動きを取る。 */
 [data-suisou-layout~="scroll"] { overflow: auto; }
-
-/* 余った幅・高さを取る。既定が flex: none なので、伸びるものと縮むものは
-   すべてこれを書く（＝ flex の中で動く要素は目で数えられる）。
-   min-* が無いと中身がはみ出して親ごと伸びるので両方に 0 を入れてある。
-   名前は flex-grow から。「塗る」と読める fill は Suisou では使わない */
 [data-suisou-layout~="grow"] { flex: 1 1 auto; min-width: 0; min-height: 0; }
-
-/* ★画面の高さいっぱい。frame と組んで初めて frame が仕事を始める。
-
-   frame の grid-template-rows は auto minmax(0,1fr) auto だが、
-   入れ物の高さが決まっていないと 1fr に配る余りが存在せず、
-   結果として stack と同じ「中身の高さのまま積む」になる。
-   プレビューが常に高さのある箱の中で frame を試していたので気づけなかった。
-
-   height ではなく min-height。中身が画面より長いときは伸びてほしい。
-   dvh はモバイルのアドレスバーの出入りに追従する。 */
 [data-suisou-layout~="screen"] { min-height: 100dvh; }
-
-/* ★等分の列。子の数だけ列を作り、幅を均等にする。
-   grow（flex: 1 1 auto）は「余りを等分する」ので、元の中身の幅の差が残る。
-   カードを3枚きれいに並べたいときはこちら。
-
-   狭い画面では潰れるので "stack md:even" と組むのが基本形。 */
 [data-suisou-layout~="even"] {
   display: grid;
   gap: var(--suisou-gap);
   grid-auto-flow: column;
   grid-auto-columns: minmax(0, 1fr);
 }
-
-/* ★配分。「余りを取る」grow と違い、**場所そのものを比で割る**（2026-09-09）。
-
-     <div data-suisou-layout="row">
-       <div data-suisou-layout="share" style="--suisou-share: 2">脇</div>
-       <div data-suisou-layout="share" style="--suisou-share: 3">本文</div>
-     </div>
-
-   ★grow との違いは基準（flex-basis）。
-
-       grow    flex: 1 1 auto   中身の大きさを基準にしてから**余り**を配る
-       share   flex: N 1 0      基準を 0 にして**全体**を比で割る
-
-     この違いで実際にズレた ―― 2:3 で割ったつもりが 32:68 になった（wixdex 実測）。
-     「余りを取る」と「場所を割る」は別の意図なので、別の語にする。
-
-   ★値は --suisou-share で渡す。spinner の大きさと同じ形 ―― 比は現場の都合で、
-     閉じた集合にならない（2:3 も 3:5 も要る）。書かなければ 1。
-
-   ★実測 9 箇所（wixdex のみ）。デッキ側と一覧側の 2:3、
-     絞り込みの群をボタンの数で割る 3:5:3 など。 */
 [data-suisou-layout~="share"] {
   flex: var(--suisou-share, 1) 1 0;
   min-width: 0;
   min-height: 0;
 }
-
-/* ★N列に割る。even は「子1つで1列」なので、列数を決める書き方ができなかった。
-
-     <div data-suisou-layout="cols" style="--suisou-cols: 5">…</div>
-
-   ★列数は --suisou-cols で渡す（既定 2）。1〜12 を語にすると 12 個 ×
-     画面幅の段だけ名前が増えるので、値で持つ。spinner と同じ姿勢。
-     画面幅で変えたいときは現場が @media で --suisou-cols を書き換える
-     ―― 接頭辞版を作らないのはそのため。
-
-   ★minmax(0, 1fr) は even と同じ。1fr だけだと中身が列より広いときに
-     はみ出す（grid の既定の min が auto のため）。
-
-   ★実測 16 箇所（wixdex のみ）。カードの升目、統計の表、設定の並び。 */
 [data-suisou-layout~="cols"] {
   display: grid;
   gap: var(--suisou-gap);
   grid-template-columns: repeat(var(--suisou-cols, 2), minmax(0, 1fr));
 }
-
-/* 本文の幅を絞って中央に寄せる。上限は base.css の --suisou-measure */
 [data-suisou-layout~="container"] {
   width: 100%;
   max-width: var(--suisou-measure);
   margin-inline: auto;
 }
-
-
-/* ── 画面幅で変える ───────────────────────────
-   値に接頭辞を付ける。空白区切りなので ~= がそのまま当たり、語彙は増えない。
-
-     <div data-suisou-layout="stack md:frame grow">   狭いと縦積み、広いと骨格
-
-   ★下から積む（min-width）。Tailwind と同じ向きなので、接頭辞の意味も同じ。
-     段は2つだけ。実寸の出し分けは Suisou の仕事ではないので、
-     並びの向きが変わる幅だけを持つ。
-
-       md   768px   縦積みをやめて横に割れる幅
-       lg  1024px   サイドバーを常時出せる幅
-
-   ★区画（aside / head / body / foot）には接頭辞版を作らない。
-     「どの区画か」は幅で変わるものではないし、frame が効いていなければ
-     grid-area は無視されて、DOM の順に素直に積まれる。
-     だから "stack md:frame" と書くだけで、狭いときは自然に縦一列になる。
-
-   ★hold（flex: none）は既定に戻すための値。狭いときだけ grow したい、の逆。 */
-
 @media (width >= 768px) {
   [data-suisou-layout~="md:frame"] {
     display: grid;
@@ -345,7 +97,6 @@
   [data-suisou-layout~="md:end"] { justify-content: flex-end; }
   [data-suisou-layout~="md:between"] { justify-content: space-between; }
 }
-
 @media (width >= 1024px) {
   [data-suisou-layout~="lg:frame"] {
     display: grid;
