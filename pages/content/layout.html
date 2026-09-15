@@ -57,7 +57,7 @@
   <div class="group">
     <h2>モード —— 1つだけ書く</h2>
     <p class="note">
-      2つ書くと片方が黙って死ぬ。とくに <code>pin</code> と <code>even</code> は
+      2つ書くと片方が黙って死ぬ。とくに <code>even</code> と <code>cols</code> は
       grid に切り替わるので、flex 前提の <code>stack</code> と混ぜると
       指定した向きが何も起きないまま通る。
       <br>
@@ -83,8 +83,8 @@
         <div class="demo-box">あ</div>
         <div class="demo-box">い</div>
       </div>
-      <span class="demo-label">pin —— grid でど真ん中に1つ置く</span>
-      <div data-suisou-layout="pin" class="demo-frame">
+      <span class="demo-label">stack center middle —— ど真ん中に1つ置く</span>
+      <div data-suisou-layout="stack center middle" class="demo-frame">
         <div class="demo-box">中央</div>
       </div>
     </div>
@@ -95,8 +95,6 @@
       <tr><td><code>row</code></td><td><code>flex-direction: row; align-items: center</code></td>
           <td>横並び。ボタン列、アイコンと文字。<code>stack md:row</code> で
               「狭いと縦積み・広いと横並び」</td></tr>
-      <tr><td><code>pin</code></td><td><code>display: grid; place-items: center</code></td>
-          <td>1つのものを真ん中に。flex ではなく grid</td></tr>
       <tr><td><code>frame</code></td><td><code>display: grid; grid-template-areas: …</code></td>
           <td>画面の骨格。子が区画を名乗る。下の節を見る</td></tr>
       <tr><td><code>even</code></td><td><code>display: grid; grid-auto-flow: column</code></td>
@@ -246,7 +244,8 @@
       ★<strong>v1 では <code>center</code> が grid のモードだったので、これが書けなかった。</strong>
       モードは1つしか書けないので <code>stack center</code> が成立せず、現場は 18 箇所で
       <code>align-items: center</code> を手書きしていた。v2 で grid 側を <code>pin</code> に
-      改名して名前を返した。
+      改名して名前を返し、v3 でその <code>pin</code> も畳んだ ——
+      <code>stack center middle</code> で同じ形が書けるため。
     </p>
     <div class="demo">
       <span class="demo-label">既定（start）</span>
