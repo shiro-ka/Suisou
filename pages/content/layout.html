@@ -57,7 +57,7 @@
   <div class="group">
     <h2>モード —— 1つだけ書く</h2>
     <p class="note">
-      2つ書くと片方が黙って死ぬ。とくに <code>frame</code> と <code>cols</code> は
+      2つ書くと片方が黙って死ぬ。とくに <code>frame</code> と <code>grid</code> は
       grid に切り替わるので、flex 前提の <code>stack</code> と混ぜると
       指定した向きが何も起きないまま通る。
       <br>
@@ -212,8 +212,9 @@
           <td>領域の中だけスクロールさせる。<code>grow</code> と組で使う</td></tr>
       <tr><td><code>share</code></td><td><code>flex: var(--suisou-share, 1) 1 0</code></td>
           <td>場所そのものを比で割る。<strong><code>grow</code> と基準が違う</strong></td></tr>
-      <tr><td><code>cols</code></td><td><code>grid-template-columns: repeat(var(--suisou-cols, 2), …)</code></td>
-          <td>N 列に割る。列数は <code>--suisou-cols</code> で渡す</td></tr>
+      <tr><td><code>grid</code></td><td><code>grid-template-columns: var(--suisou-grid-cols, …)</code></td>
+          <td>升目に並べる。既定は「12rem 以上で入るだけ」。
+              <code>--suisou-grid-cols</code> / <code>--suisou-grid-rows</code> で上書きする</td></tr>
       <tr><td><code>container</code></td><td><code>max-width: 1024px; margin-inline: auto</code></td>
           <td>本文の幅を絞って中央に寄せる。<code>--suisou-measure</code> で変えられる</td></tr>
     </table>
@@ -522,21 +523,41 @@
   </div>
 
   <div class="group">
-    <h2>cols —— N 列に割る</h2>
+    <h2>grid —— 升目に並べる</h2>
     <p class="note">
-      <code>even</code> は「子 1 つで 1 枠」なので、<strong>列数を決める書き方ができなかった</strong>。
-      列数は <code>--suisou-cols</code> で渡す（既定 2）。
+      <strong>書かなければ「12rem 以上で入るだけ並べて折り返す」</strong>
+      （<code>repeat(auto-fill, minmax(12rem, 1fr))</code>）。
+      列数はブラウザが幅から計算するので <code>@media</code> が要らない。
       <br><br>
-      ★1〜12 を語にすると<strong>12 個 × 画面幅の段だけ名前が増える</strong>ので値で持つ。
-      画面幅で変えたいときは現場が <code>@media</code> で <code>--suisou-cols</code> を書き換える
-      —— 接頭辞版を作らないのはそのため。
+      ★形を変えたいときは <code>--suisou-grid-cols</code> /
+      <code>--suisou-grid-rows</code> に<strong>指定まるごと</strong>を渡す。
+      トラックの書き方は閉じた集合にならないので、語ではなく値で持つ
+      —— <code>--suisou-share</code> と同じ姿勢。
+      <br><br>
+      ★★自分で書くときは <code>minmax(0, 1fr)</code> を使うこと。
+      <code>1fr</code> だけだと<strong>最小幅が中身の幅になり、長い語や画像で枠から溢れる</strong>。
     </p>
     <div class="demo">
-      <span class="demo-label">--suisou-cols: 5</span>
-      <div data-suisou-layout="cols" style="--suisou-cols: 5" data-suisou-surface="panel">
+      <span class="demo-label">既定 —— 12rem 以上で入るだけ</span>
+      <div data-suisou-layout="grid" data-suisou-surface="panel">
+        <div class="demo-box">1</div><div class="demo-box">2</div><div class="demo-box">3</div>
+        <div class="demo-box">4</div><div class="demo-box">5</div>
+      </div>
+    </div>
+    <div class="demo">
+      <span class="demo-label">--suisou-grid-cols: repeat(5, minmax(0,1fr))</span>
+      <div data-suisou-layout="grid" style="--suisou-grid-cols: repeat(5, minmax(0,1fr))"
+           data-suisou-surface="panel">
         <div class="demo-box">1</div><div class="demo-box">2</div><div class="demo-box">3</div>
         <div class="demo-box">4</div><div class="demo-box">5</div><div class="demo-box">6</div>
         <div class="demo-box">7</div>
+      </div>
+    </div>
+    <div class="demo">
+      <span class="demo-label">--suisou-grid-cols: 1fr 12rem —— 左が余り・右が固定</span>
+      <div data-suisou-layout="grid" style="--suisou-grid-cols: 1fr 12rem"
+           data-suisou-surface="panel">
+        <div class="demo-box">本文</div><div class="demo-box">脇</div>
       </div>
     </div>
   </div>
