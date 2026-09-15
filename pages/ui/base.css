@@ -1,166 +1,49 @@
-/* Suisou — 土台。トークンと最小限のリセット。
-   色の値は持たない。palette.css（solve.py の生成物）の var(--suisou-*) だけを参照する。
-
-   ★このシステムの約束:
-
-     data-suisou-surface="…"  面 ＝ 階段の段。閉じた集合なので値で選ぶ
-     data-suisou-layout="…"   並び ＝ Suisou の間合い。すきまは焼き込んである
-     data-suisou-<部品>       部品 ＝ ブランド。増えるので属性そのものが名前
-     class                    現場のもの。Suisou は中核で一切使わない
-                              （helpers.css は任意。他にユーティリティが無いときだけ）
-     aria-* / disabled        状態。自分で発明せず標準を借りる
-
-       <div data-suisou-surface="panel" data-suisou-media class="gap-3">
-       <button data-suisou-button="outline icon" aria-pressed="true">
-
-     形が違えば層が違う。面は値で切り替わり、部品は属性が増える。
-
-     値は空白区切り。~= で拾うので、いくつ並べても属性は1つ。
-     適用先が Tailwind でも、部品は class を使わないので取り合いにならない。
-
-   要素セレクタ（button { … } など）は使わない。適用先の全ボタンに漏れるため。
-   focus の輪も各部品ファイルが持ち、1ファイル単位で配れる状態を保つ。
-*/
-
 :root {
-  /* ★単位は rem。名前の数字は「ルートが 16px のときの px」。
-
-     ユーザーがブラウザの文字サイズ設定を変えたときに追従するため。
-     ページ全体のズーム（Ctrl +）は px でも効くが、「文字だけ大きくする」
-     設定は px を無視する。長文（prose）を対象にする以上ここは譲れない。
-     Bootstrap 5 / Material UI / Tailwind もこの形。
-
-     ★html の font-size は触らない。触るとユーザー設定を上書きしてしまう。
-       Suisou が font-size を置くのは [data-suisou-body]（＝ body 側）だけ。
-
-     ★rem なので入れ子でも掛け算にならない。em は「まわりの文字に合わせる」
-       ものにだけ使う ―― Suisou では行内コード（ui/code.css）の1箇所だけ。
-
-     ★1px の罫と焦点の輪、当たり判定は px のまま。文字サイズではなく
-       「線」と「指」の都合なので、拡大に追従させない。
-
-     「4の倍数」はルートが 16px のときに成立する。ユーザーが設定を変えれば
-     全体が比例して動くので、段どうしの関係は保たれる。 */
-
-  /* タイポ … 設計仕様 §3 §6 */
-  --suisou-size-12: 0.75rem;   --suisou-lh-12: 1rem;      /* 12 / 16 */
-  --suisou-size-14: 0.875rem;  --suisou-lh-14: 1.25rem;   /* 14 / 20 */
-  --suisou-size-16: 1rem;      --suisou-lh-16: 1.5rem;    /* 16 / 24 */
-  --suisou-size-20: 1.25rem;   --suisou-lh-20: 1.75rem;   /* 20 / 28 */
-  --suisou-size-24: 1.5rem;    --suisou-lh-24: 2rem;      /* 24 / 32 */
-  --suisou-size-28: 1.75rem;   --suisou-lh-28: 2rem;      /* 28 / 32 */
-  --suisou-size-32: 2rem;      --suisou-lh-32: 2.25rem;   /* 32 / 36 */
-
-  /* ★余白は4段で確定（2026-08-21）。wixdex の適用がこの4段だけで組み切れた。
-     4=部品の中の詰め / 8=標準の隙間 / 16=面の余白 / 24=大きな区切り。
-     12 は入れない ―― 欲しく見えた場面は「縦8+隙間8」で足りた（type-spec §7）。 */
-  --suisou-space-1: 0.25rem;   /*  4 */
-  --suisou-space-2: 0.5rem;    /*  8 */
-  --suisou-space-3: 1rem;      /* 16 */
-  --suisou-space-4: 1.5rem;    /* 24 */
-  /* 本文の幅の上限。layout の container が読む。長文の読みやすい行長 */
-  --suisou-measure: 64rem;     /* 1024 */
-  --suisou-icon: 1.25rem;       /* 20。アイコンの一辺。4の倍数 */
-  --suisou-icon-small: 1rem;    /* 16。12px の文字の隣に置く用（Tag など） */
-  /* ★12。「印の中に置くグリフ」用（2026-09-08 追加）。small(16) との違いは役目で、
-     small は「文字の隣に並ぶ」、tiny は「小さな下地の中に収まる」―― バッジや
-     カードの角のしるし。16 だと下地が窮屈になる。
-     ★需要は wixdex 3現場（カード絵のバッジ2つ + Bluesky のしるし）。
-       3回ルールの手前だったが、**2段では少ない**というしろさま判断で入れた（2026-09-08）。 */
-  --suisou-icon-tiny: 0.75rem;  /* 12 */
-  /* ★角丸は3段。太さではなく「対象の高さ」で選ぶ。
-
-     8px は高さ 32px 前後の部品（ボタン・入力欄・面）に合わせた値で、
-     高さ 20px の行内コードに当てると高さの4割が丸まってカプセルに見え、
-     Tag と見分けがつかなくなる。だから小さいものには 4px。
-
-       small  4px   行内コードのような背の低いもの
-       通常   8px   面・ボタン・入力欄・コードのかたまり
-       pill   丸め切る。Avatar・Tag・見出しの帯 */
-  --suisou-radius-small: 0.25rem; /* 4 */
-  --suisou-radius: 0.5rem;        /* 8 */
-  --suisou-radius-pill: 999px;    /* 丸め切るだけなので実寸でよい */
-
+  --suisou-size-12: 0.75rem;   --suisou-lh-12: 1rem;
+  --suisou-size-14: 0.875rem;  --suisou-lh-14: 1.25rem;
+  --suisou-size-16: 1rem;      --suisou-lh-16: 1.5rem;
+  --suisou-size-20: 1.25rem;   --suisou-lh-20: 1.75rem;
+  --suisou-size-24: 1.5rem;    --suisou-lh-24: 2rem;
+  --suisou-size-28: 1.75rem;   --suisou-lh-28: 2rem;
+  --suisou-size-32: 2rem;      --suisou-lh-32: 2.25rem;
+  --suisou-space-1: 0.25rem;
+  --suisou-space-2: 0.5rem;
+  --suisou-space-3: 1rem;
+  --suisou-space-4: 1.5rem;
+  --suisou-measure: 64rem;
+  --suisou-icon: 1.25rem;
+  --suisou-icon-small: 1rem;
+  --suisou-icon-tiny: 0.75rem;
+  --suisou-radius-small: 0.25rem;
+  --suisou-radius: 0.5rem;
+  --suisou-radius-pill: 999px;
   --suisou-font: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   --suisou-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-
-  /* 焦点の輪。各部品が同じものを使う */
   --suisou-focus: 2px solid var(--suisou-focus-ring);
-
-  /* ★モーション。段は2つだけ。
-
-     決め方は「動く距離が大きいほど長くする」。Suisou は面を塗らず罫で示すので
-     **位置が動く要素がほとんど無く**、色だけが変わる。だから速い方でいい。
-
-       fast  120ms  色だけ動くもの（hover / 選択 / 押下 / 罫）
-       通常  200ms  現れる・消えるもの（overlay / scrim）
-
-     120ms は Carbon の fast-02（110）と Bootstrap の既定（150）の間。
-     動いたと気づかせず、切り替わりの角だけ取る。
-
-     イージングは ease-out 系。ユーザーが起こした動きは始まりを速くすると
-     「押した瞬間に反応した」感じになる。
-
-     ★焦点の輪は動かさない。キーボード操作では即座に出てほしいため。
-
-     ★★このトークンは「1回で終わる動き」専用。無限に繰り返す動きに使わない。
-       下の prefers-reduced-motion でトークンを 0.01ms に潰しているので、
-       ループに掛けると 0.01ms 周期＝高速の明滅になり、配慮したはずが
-       一番危険なものになる。繰り返す動きは自前の時間を持ち、減らす設定の
-       ときの振る舞いも自分で決めること（実例は ui/spinner.css）。 */
   --suisou-motion-fast: 120ms;
   --suisou-motion: 200ms;
   --suisou-ease: cubic-bezier(0.2, 0, 0, 1);
 }
-
 [data-suisou-body] {
   font-family: var(--suisou-font);
   font-size: var(--suisou-size-14);
   line-height: var(--suisou-lh-14);
   background: var(--suisou-bg);
   color: var(--suisou-text-main);
-
-  /* リンクの既定。★色も下線も持たない ―― どう見せるかは文脈が決める。
-
-     a に一律で下線を引くと、ボタンやナビの <a>（wixdex のサイドバーがこれ）や
-     画像リンク（markdown の [![img](x)](y)）まで線が入って破綻する。
-     ブラウザ既定の青＋下線も同じ理由で消す。
-     文章の中だけ線を引くのは Link 側の仕事（ui/link.css）。
-
-     :where() で詳細度を 0 にしてあるので、現場の規則も Suisou の部品も必ず勝つ。 */
-
-  /* ネイティブの部品（checkbox / radio / range / progress）の色。
-     継承するプロパティなので根で1回書けば全部に届く。
-     部品を作る必要が無い ―― ブラウザが描いてくれるものを奪わない。
-     ★チェックの色（レの字）はブラウザが下地から自動で決める。
-       「アクセントの上に載せる文字色」をトークンで持たないのはこのため
-       ―― 塗るボタンが無い Suisou では、載せる文字はここにしか無い。 */
   accent-color: var(--suisou-accent);
-
-  /* スクロールバー。標準の2つは Firefox 64 / Chromium 121 / Safari 18.2 で
-     出揃ったので ::-webkit-scrollbar は書かない（あちらは標準化されたことがない）。
-     どちらも継承するプロパティなので、根で1回書けば全部の入れ物に届く。
-     溝は透明にして、線1本だけを見せる ―― 面ではなく線で区切る扱いに合わせる。
-     幅の予約（scrollbar-gutter）はしない。理由は ui/layout.css の "scroll" に書いた。 */
   scrollbar-width: thin;
   scrollbar-color: var(--suisou-line-strong) transparent;
 }
-
-/* ★動きを減らす設定を尊重する。全部品がトークン経由で時間を取っているので、
-   トークンを潰すだけで足りる ―― * や !important を使わずに済む。 */
 @media (prefers-reduced-motion: reduce) {
   :root {
     --suisou-motion-fast: 0.01ms;
     --suisou-motion: 0.01ms;
   }
 }
-
-/* リンクの既定。上のコメントを参照。詳細度は 0 */
 :where([data-suisou-body] a) {
   color: inherit;
   text-decoration: none;
 }
-/* 焦点の輪だけは既定で出す。キーボードで辿れないと困るため */
 :where([data-suisou-body] a:focus-visible) {
   outline: var(--suisou-focus);
   outline-offset: 2px;
