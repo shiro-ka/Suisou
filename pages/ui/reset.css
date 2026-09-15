@@ -13,7 +13,7 @@
 
    ★掟の破り方は prose と同じ形にした。
 
-     [data-suisou-root] の内側に閉じ、:where() で詳細度を 0 にする。
+     [data-suisou-body] の内側に閉じ、:where() で詳細度を 0 にする。
      - 「ページ全体に敷く」と宣言した場所にしか効かない（base.css の root と同じ約束）
      - 詳細度 0 なので、現場の規則も Suisou の部品も必ず勝つ
      - 属性を足さないので契約（data-suisou-*）は増えない
@@ -27,28 +27,28 @@
 
 /* 箱の数え方。Suisou の部品は各自 border-box を宣言しているが、
    現場が置く素の div には効かない。preflight が消えて最初に困るのがここ。 */
-:where([data-suisou-root], [data-suisou-root] *, [data-suisou-root] *::before, [data-suisou-root] *::after) {
+:where([data-suisou-body], [data-suisou-body] *, [data-suisou-body] *::before, [data-suisou-body] *::after) {
   box-sizing: border-box;
 }
 
 /* 既定のマージン。縦のすきまは layout が持つので、要素側は 0 に倒す。
    ★body も含める ―― ブラウザ既定の 8px が画面の骨格（frame screen）を押し出す。 */
-:where([data-suisou-root]) {
+:where([data-suisou-body]) {
   margin: 0;
 }
-:where([data-suisou-root]) :where(h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd, ul, ol, pre) {
+:where([data-suisou-body]) :where(h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd, ul, ol, pre) {
   margin: 0;
 }
 
 /* しるしの字下げ。持つのは data-suisou-list と prose だけで、素の ul/ol は持たない
    （どちらも属性セレクタなのでこの :where より強く、上書きされない）。 */
-:where([data-suisou-root]) :where(ul, ol) {
+:where([data-suisou-body]) :where(ul, ol) {
   padding-inline-start: 0;
 }
 
 /* 画像と図。inline のままだと行の下に隙間が出る（行末の descender ぶん）。
    max-width は「入れ物からはみ出さない」だけ。実寸は現場のもの。 */
-:where([data-suisou-root]) :where(img, svg, video, canvas) {
+:where([data-suisou-body]) :where(img, svg, video, canvas) {
   display: block;
   max-width: 100%;
 }
@@ -56,7 +56,7 @@
 /* 書式の継承。ブラウザは form の部品にだけ別の書体と大きさを当てるので、
    ★Suisou の部品（button / field）は font-family: inherit を自分で書いている。
      ここはその外側 ―― 現場が置く素の button や select のため。 */
-:where([data-suisou-root]) :where(button, input, textarea, select) {
+:where([data-suisou-body]) :where(button, input, textarea, select) {
   font: inherit;
   color: inherit;
 }

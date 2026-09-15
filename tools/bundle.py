@@ -40,9 +40,13 @@ def slice_palette(text, theme=None, accent=None):
     for line in text.splitlines(keepends=True):
         if depth == 0 and line.lstrip().startswith("["):
             sel = line.split("{")[0]
-            t = re.search(r'data-suisou-theme="([a-z]+)"', sel)
-            a = re.search(r'data-suisou-accent="([a-z]+)"', sel)
-            keep = (t is None or t.group(1) == theme) and (a is None or a.group(1) == accent)
+            # 選択子に出る data-suisou-theme~= の語。1語＝テーマ層 / 2語＝アクセント層
+            got = re.findall(r'data-suisou-theme~="([a-z]+)"', sel)
+            keep = (
+                not got
+                or (len(got) == 1 and got[0] == theme)
+                or (len(got) == 2 and got[0] == theme and got[1] == accent)
+            )
         depth += line.count("{") - line.count("}")
         if keep:
             out.append(line)

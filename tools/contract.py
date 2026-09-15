@@ -40,8 +40,8 @@ def collect():
                     vals.append(base)
         states |= set(STATE.findall(css))
     # theme / accent は生成物（palette.css）側の属性なので solve から足す
-    attrs["theme"] = [t["name"] for t in solve.THEMES]
-    attrs["accent"] = [n for n, _ in solve.ACCENTS]
+    attrs["theme"] = ([t["name"] for t in solve.THEMES]
+                      + [n for n, _ in solve.ACCENTS])
     base = COMMENT.sub("", open(os.path.join(UI, "base.css"), encoding="utf-8").read())
     dims = []
     for name in TOKEN_DEF.findall(base):
@@ -75,8 +75,9 @@ def render():
     L.append("")
     L.append("- 値は空白区切りで併記できる（`~=` で当たる）")
     L.append("- `layout` の値には `md:` / `lg:` の接頭辞版がある（768px / 1024px、min-width）")
-    L.append("- `theme` と `accent` は**必ず同じ要素に書く**（複合選択子でしか定義されない）")
-    L.append(f"- `accent` のうち仮名（まだ生き物になっていない）: "
+    L.append("- `theme` は**水域1つ＋生き物1つ**を空白区切りで書く（例 `\"hadal jelly\"`）。"
+             "片方だけだとアクセント層が既定のまま残る")
+    L.append(f"- 生き物のうち仮名（まだ名前が付いていない）: "
              f"{' '.join(f'`{n}`' for n in provisional)}。確定: {' '.join(f'`{n}`' for n in fixed)}")
     L.append("")
 
@@ -110,9 +111,11 @@ def render():
     L.append("")
     L.append("- `dist/suisou.css` … 全部入り（テーマ切替できる）／"
              "`dist/suisou-<theme>-<accent>.css` … 選んだ組だけ")
-    L.append("- `/v2/…` … **いま使う版**。v2 系の最新で、直せば全現場に行き渡る")
+    L.append("- `/v3/…` … **いま使う版**。v3 系の最新で、直せば全現場に行き渡る")
+    L.append("- `/v2/…` … **凍結済み**（2026-09-15）。"
+             "`theme` と `accent` が別の属性で、根が `data-suisou-root` だった頃の版")
     L.append("- `/v1/…` … **凍結済み**（2026-09-10、`07c066f` で停止）。"
-             "`center` が grid のモードだった頃の版。もう動かない")
+             "`center` が grid のモードだった頃の版")
     L.append("- `/v/<sha7>/…` … 固定 URL。動かない")
     L.append("- **フォントは利用側が読み込む**。既定の書体は Zen Maru Gothic の 400 / 500 / 700")
     L.append("- `helpers.css` は契約外（任意。他にユーティリティが無いときだけ）。"
@@ -121,6 +124,13 @@ def render():
 
     L.append("## 版が変わった理由")
     L.append("")
+    L.append("- **v2 → v3**（2026-09-15）… 属性を2つ減らした。"
+             "`data-suisou-accent` を `data-suisou-theme` に畳んで**組を1つの属性**にし、"
+             "`data-suisou-root` を `data-suisou-body` に改名した")
+    L.append("  - 直し方: `theme=\"hadal\" accent=\"clown\"` → `theme=\"hadal clown\"`、"
+             "`data-suisou-root` → `data-suisou-body`。どちらも機械的な置換で済む")
+    L.append("  - 理由: 組を別々の属性に置くと**片方だけ書いた事故が静かに起きる**ため、"
+             "掟と lint で守っていた。1属性なら構造的に起きない")
     L.append("- **v1 → v2**（2026-09-10）… `center` の意味を変えた。"
              "v1 では grid のモード（`display: grid; place-items: center`）、"
              "v2 では交差軸の中央に寄せるふるまい（`align-items: center`）。"

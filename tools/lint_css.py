@@ -5,7 +5,7 @@
   2. 参照している --suisou-* が palette.css に実在するか
   3. data-suisou-surface が「段」をちょうど1つ持っているか
   4. data-suisou-layout の「モード」が2つ以上書かれていないか
-  5. data-suisou-accent が data-suisou-theme と同じ要素に書かれているか
+  5. data-suisou-theme が「水域1つ＋生き物1つ」の組になっているか
 
 生成物（palette.css）は検査対象から外す。あれだけが色を持ってよい。
 
@@ -23,6 +23,11 @@ TARGET_EXT = (".css", ".html", ".js")
 
 # 面の段。必ず1つ書く。装飾（bare）だけでは「どの段か」を言っていない
 SURFACE_STEPS = {"panel", "item", "overlay", "none"}
+
+sys.path.insert(0, HERE)
+import solve
+THEME_NAMES = {t["name"] for t in solve.THEMES}
+ACCENT_NAMES = {a[0] for a in solve.ACCENTS}
 
 
 COLOR = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:oklch|oklab|lab|lch|rgba?|hsla?|color)\s*\(", re.I)
@@ -132,23 +137,15 @@ def main():
                             f"{rel}:{i}: surface の段が {len(steps)} 個 … \"{got}\" "
                             f"（{' / '.join(sorted(SURFACE_STEPS))} から1つ書く）")
 
-                # ★テーマとアクセントは必ず同じ要素に書く（複合選択子でしか
-                #   定義されないため）。どちらの単独も事故で、向きが違うだけ:
-                #     accent 単独 … どの選択子にも当たらず :root の既定色に落ちる
-                #     theme 単独 … テーマ層だけ切り替わり、アクセント層は :root の
-                #                  既定（hadal 用に解いた値）のまま残る。彩度も
-                #                  選択下地も噛み合わない組の色が静かに出る
-                #   以前は accent 側しか見ておらず、検査が非対称だった。
-                for m in re.finditer(r'<[^>]*data-suisou-accent[^>]*>', line):
-                    if "data-suisou-theme" not in m.group(0):
+                for m in re.finditer(r'data-suisou-theme(?:="([^"]*)")?', line):
+                    vals = (m.group(1) or "").split()
+                    ts = [v for v in vals if v in THEME_NAMES]
+                    as_ = [v for v in vals if v in ACCENT_NAMES]
+                    if len(ts) != 1 or len(as_) != 1 or len(vals) != 2:
+                        got = m.group(1) if m.group(1) is not None else "（値なし）"
                         problems.append(
-                            f"{rel}:{i}: data-suisou-accent が単独で書かれている … "
-                            f"theme と同じ要素に書くこと（複合選択子でしか定義されない）")
-                for m in re.finditer(r'<[^>]*data-suisou-theme[^>]*>', line):
-                    if "data-suisou-accent" not in m.group(0):
-                        problems.append(
-                            f"{rel}:{i}: data-suisou-theme が単独で書かれている … "
-                            f"accent と同じ要素に書くこと（アクセント層が既定のまま残る）")
+                            f"{rel}:{i}: theme の組が揃っていない … \"{got}\" "
+                            f"（水域1つ＋生き物1つを空白区切りで書く）")
 
                 for m in re.finditer(r'data-suisou-layout(?:="([^"]*)")?', line):
                     vals = (m.group(1) or "").split()

@@ -3,15 +3,12 @@
   <h1>Palette</h1>
   <p class="note" data-slot="summary"></p>
   <p class="note">
-    ★<strong>アクセントは theme とセットで書く。</strong>
-    <code>&lt;html data-suisou-theme="hadal" data-suisou-accent="jelly"&gt;</code>
+    ★<strong>水域と生き物を1つずつ、同じ属性に書く。</strong>
+    <code>&lt;html data-suisou-theme="hadal jelly"&gt;</code>
     <br>
-    アクセントの値は<strong>テーマごとに違う</strong>（面の彩度とアクセント強さが
-    テーマの属性なので、同じ色相でも解が変わる）。そのため
-    <code>palette.css</code> は複合選択子でしか定義していない ——
-    <strong><code>accent</code> だけ書くと どの選択子にも当たらず、
-    <code>:root</code> の既定に静かに落ちる。</strong>
-    <code>tools/lint_css.py</code> が単独指定を検査する。
+    生き物の色は<strong>水域ごとに違う</strong>（面の彩度とアクセント強さが
+    水域の属性なので、同じ色相でも解が変わる）。片方だけ書くと
+    <code>:root</code> の既定に静かに落ちる。
   </p>
 
   <div class="group">
