@@ -57,7 +57,7 @@
   <div class="group">
     <h2>モード —— 1つだけ書く</h2>
     <p class="note">
-      2つ書くと片方が黙って死ぬ。とくに <code>even</code> と <code>cols</code> は
+      2つ書くと片方が黙って死ぬ。とくに <code>frame</code> と <code>cols</code> は
       grid に切り替わるので、flex 前提の <code>stack</code> と混ぜると
       指定した向きが何も起きないまま通る。
       <br>
@@ -97,9 +97,10 @@
               「狭いと縦積み・広いと横並び」</td></tr>
       <tr><td><code>frame</code></td><td><code>display: grid; grid-template-areas: …</code></td>
           <td>画面の骨格。子が区画を名乗る。下の節を見る</td></tr>
-      <tr><td><code>even</code></td><td><code>display: grid; grid-auto-flow: column</code></td>
-          <td>等分の列。子の数だけ列ができる。狭い画面では
-              <code>stack md:even</code> と組む</td></tr>
+      <tr><td><code>even</code></td><td><code>display: flex</code> ＋ 子に <code>flex: 1 1 0</code></td>
+          <td>等分に割る。子の数だけ等分される。狭い画面では
+              <code>stack md:even</code> と組む。
+              ★子に <code>share</code> を書けばそこだけ例外にできる</td></tr>
     </table>
   </div>
 
@@ -523,7 +524,7 @@
   <div class="group">
     <h2>cols —— N 列に割る</h2>
     <p class="note">
-      <code>even</code> は「子 1 つで 1 列」なので、<strong>列数を決める書き方ができなかった</strong>。
+      <code>even</code> は「子 1 つで 1 枠」なので、<strong>列数を決める書き方ができなかった</strong>。
       列数は <code>--suisou-cols</code> で渡す（既定 2）。
       <br><br>
       ★1〜12 を語にすると<strong>12 個 × 画面幅の段だけ名前が増える</strong>ので値で持つ。
