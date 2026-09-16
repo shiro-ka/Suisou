@@ -15,7 +15,7 @@
     <p class="note">
       ★<strong>2026-09-09 に変えた。</strong>それまでは属性を付けた時点で
       <code>display: flex</code> が入っていた。そのせいで
-      <strong>子側の語（<code>grow</code> / <code>hold</code>）だけを
+      <strong>子側の語（<code>grow</code>）だけを
       書いた要素まで flex の行になっていた</strong>。
       <br><br>
       <code>data-suisou-layout="grow"</code> だけ書いた <code>&lt;main&gt;</code> が
@@ -191,10 +191,6 @@
               <code>min-*</code> が無いと中身がはみ出して親ごと伸びる</td></tr>
       <tr><td><code>wrap</code></td><td><code>flex-wrap: wrap</code></td>
           <td>タグやチップの列</td></tr>
-      <tr><td><code>hold</code></td><td><code>flex: none</code></td>
-          <td><code>grow</code> を打ち消す。既定なので単体では何も変わらない</td></tr>
-      <tr><td><code>nowrap</code></td><td><code>flex-wrap: nowrap</code></td>
-          <td><code>wrap</code> を打ち消す。同上</td></tr>
       <tr><td><code>center</code></td><td><code>align-items: center</code></td>
           <td>交差軸の中央に寄せる。<code>stack center</code> がいちばん多い形。
               <code>row</code> では既定なので何も変わらない</td></tr>
@@ -406,29 +402,6 @@
       作例のチャットがその形（並びは <code>stack md:row</code>、
       幅は <code>styles.css</code> の <code>.demo-aside</code>）。
     </p>
-  </div>
-
-  <div class="group">
-    <h2>打ち消し —— hold と nowrap</h2>
-    <p class="note">
-      既定に戻すための値。<strong>単体で書いても何も変わらない</strong>が、
-      接頭辞と組むと「広い画面でだけやめる」が書ける。
-    </p>
-    <div class="demo">
-      <span class="demo-label">grow md:hold —— 狭いときだけ伸びる</span>
-      <div data-suisou-layout="row">
-        <div class="demo-box">固定</div>
-        <div class="demo-box" data-suisou-layout="grow md:hold">狭いと伸びる</div>
-      </div>
-      <span class="demo-label">wrap md:nowrap —— 狭いときだけ折り返す</span>
-      <div data-suisou-layout="row wrap md:nowrap">
-        <div class="demo-box">あいうえお</div>
-        <div class="demo-box">かきくけこ</div>
-        <div class="demo-box">さしすせそ</div>
-        <div class="demo-box">たちつてと</div>
-        <div class="demo-box">なにぬねの</div>
-      </div>
-    </div>
   </div>
 
   <div class="group">
