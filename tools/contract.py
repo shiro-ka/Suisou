@@ -95,7 +95,7 @@ def render():
     L.append("")
     L.append("- `theme` を宣言しない要素は色を持たない（既定の色は無い）")
     L.append("- layout はモードを1つ書いて初めて `display` が入る。"
-             "子側の語（`grow` / `share` / `hold`）だけでは並びは変わらない")
+             "子側の語（`grow`）だけでは並びは変わらない")
     L.append("- layout の子は動かない（`flex: none`）。伸びるものだけ `grow` と名指す")
     L.append("- `button=\"block\"` は左寄せ（全幅のボタンはメニューの行）")
     L.append("")
@@ -117,14 +117,29 @@ def render():
 
     L.append("## 版が変わった理由")
     L.append("")
-    L.append("- **v2 → v3**（2026-09-15）… 属性を2つ減らし、既定の色をやめた。"
-             "`data-suisou-accent` を `data-suisou-theme` に畳んで**組を1つの属性**にし、"
+    L.append("- **v2 → v3**（2026-09-15〜16）… 属性を2つ減らし、既定の色をやめ、"
+             "layout の語彙を 29 語から 20 語に削った")
+    L.append("  - **色**: `data-suisou-accent` を `data-suisou-theme` に畳んで**組を1つの属性**にし、"
              "`data-suisou-root` を `data-suisou-body` に改名し、"
              "`:root` の既定色を**廃止**した（宣言しなければ色が付かない）")
-    L.append("  - 直し方: `theme=\"hadal\" accent=\"clown\"` → `theme=\"hadal clown\"`、"
+    L.append("    - 直し方: `theme=\"hadal\" accent=\"clown\"` → `theme=\"hadal clown\"`、"
              "`data-suisou-root` → `data-suisou-body`。どちらも機械的な置換で済む")
-    L.append("  - 理由: 組を別々の属性に置くと**片方だけ書いた事故が静かに起きる**ため、"
+    L.append("    - 理由: 組を別々の属性に置くと**片方だけ書いた事故が静かに起きる**ため、"
              "掟と lint で守っていた。1属性なら構造的に起きない")
+    L.append("  - **layout**: `pin` / `frame` / 区画4語（`aside` `head` `body` `foot`）/ "
+             "`cols` / `share` / `hold` / `nowrap` を落とし、`cols` は `grid` として作り直し、"
+             "`grow` の基準を `auto` から `0` に変えた")
+    L.append("    - 直し方: `pin` → `stack center middle`、"
+             "`frame` + 区画 → `row screen` + `stack grow`、"
+             "`cols` + `--suisou-cols: N` → `grid` + "
+             "`--suisou-grid-cols: repeat(N, minmax(0,1fr))`、"
+             "`share` → `grow`（`--suisou-share` → `--suisou-grow`）")
+    L.append("    - ★**`grow` は目で確認すること。** 基準が `auto`（中身の幅から余りを配る）から "
+             "`0`（中身を無視して比で割る）に変わったので、"
+             "**`grow` が2つ以上ある親は見た目が変わる**")
+    L.append("    - `hold` / `nowrap` は打ち消し専用の語だったが、"
+             "打ち消す相手（`grow` / `wrap`）が同じ画面幅にいると意味が無く、"
+             "**現場での有効な使用が0件**だった。要るようになったら足す")
     L.append("- **v1 → v2**（2026-09-10）… `center` の意味を変えた。"
              "v1 では grid のモード（`display: grid; place-items: center`）、"
              "v2 では交差軸の中央に寄せるふるまい（`align-items: center`）。"
