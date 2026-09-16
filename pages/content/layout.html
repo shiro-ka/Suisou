@@ -185,7 +185,7 @@
       <tr><th>値</th><th>CSS</th><th>使う場面</th></tr>
       <tr><td><code>stretch</code></td><td><code>align-items: stretch</code></td>
           <td><code>row</code> の縦中央を打ち消す。単体では何も変わらない（flex の初期値）</td></tr>
-      <tr><td><code>grow</code></td><td><code>flex: 1 1 auto; min-width: 0; min-height: 0</code></td>
+      <tr><td><code>grow</code></td><td><code>flex: var(--suisou-grow, 1) 1 0; min-width: 0; min-height: 0</code></td>
           <td>余りを取る。既定が <code>flex: none</code> なので、
               <strong>伸びるものも縮むものもこれを書く</strong>。
               <code>min-*</code> が無いと中身がはみ出して親ごと伸びる</td></tr>
