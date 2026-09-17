@@ -19,8 +19,6 @@
 [data-suisou-layout~="scroll-x"] { overflow-x: auto; overflow-y: hidden; }
 [data-suisou-layout~="grow"] { flex: var(--suisou-grow, 1) 1 0; min-width: 0; min-height: 0; }
 [data-suisou-layout~="screen"] { min-height: 100dvh; }
-[data-suisou-layout~="even"] { display: flex; flex-direction: row; gap: var(--suisou-gap); }
-:where([data-suisou-layout~="even"]) > * { flex: 1 1 0; min-width: 0; }
 [data-suisou-layout~="grid"] {
   display: grid;
   gap: var(--suisou-gap);
@@ -51,8 +49,6 @@
     grid-template-columns: var(--suisou-grid-cols, repeat(auto-fill, minmax(12rem, 1fr)));
     grid-template-rows: var(--suisou-grid-rows, none);
   }
-  [data-suisou-layout~="md:even"] { display: flex; flex-direction: row; gap: var(--suisou-gap); }
-  :where([data-suisou-layout~="md:even"]) > * { flex: 1 1 0; min-width: 0; }
   [data-suisou-layout~="md:middle"] { justify-content: center; }
   [data-suisou-layout~="md:end"] { justify-content: flex-end; }
   [data-suisou-layout~="md:between"] { justify-content: space-between; }
@@ -73,8 +69,6 @@
     grid-template-columns: var(--suisou-grid-cols, repeat(auto-fill, minmax(12rem, 1fr)));
     grid-template-rows: var(--suisou-grid-rows, none);
   }
-  [data-suisou-layout~="lg:even"] { display: flex; flex-direction: row; gap: var(--suisou-gap); }
-  :where([data-suisou-layout~="lg:even"]) > * { flex: 1 1 0; min-width: 0; }
   [data-suisou-layout~="lg:middle"] { justify-content: center; }
   [data-suisou-layout~="lg:end"] { justify-content: flex-end; }
   [data-suisou-layout~="lg:between"] { justify-content: space-between; }
