@@ -118,11 +118,13 @@ def main():
             for hit in COLOR.findall(line):
                 problems.append(f"{rel}:{i}: 色の直書き … {hit.strip()}")
 
-        # フォールバック付き（var(--suisou-x, 1rem)）も名前だけ拾って検査する。
-        # 以前は閉じ括弧まで要求していたので、フォールバックがあると素通りだった。
+        # ★フォールバック付き var(--x, …) は検査しない（2026-09-17）。
+        #   未定義でも動く書き方で、現場が値を渡す口はこの形になる。
+        #   フォールバック無しのタイポは宣言ごと無効になるので、そちらだけ見る。
         # JS のテンプレート（var(--suisou-space-${n})）は名前が途中で切れて
         # ハイフンで終わるので、それだけ除く。
-        for name in sorted(set(re.findall(r"var\((--suisou-[a-z0-9-]+)", body))):
+        for name in sorted({m.group(1) for m in
+                            re.finditer(r"var\(\s*(--suisou-[a-z0-9-]+)\s*\)", body)}):
             if name.endswith("-"):
                 continue
             if name not in defined:
