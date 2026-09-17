@@ -180,6 +180,18 @@
         <div class="demo-box">7</div>
         <div class="demo-box">8</div>
       </div>
+      <span class="demo-label">scroll-x —— 横に流す。<code>row</code> と組で使う</span>
+      <div data-suisou-layout="row scroll-x">
+        <div class="demo-box">あいうえお</div>
+        <div class="demo-box">かきくけこ</div>
+        <div class="demo-box">さしすせそ</div>
+        <div class="demo-box">たちつてと</div>
+        <div class="demo-box">なにぬねの</div>
+        <div class="demo-box">はひふへほ</div>
+        <div class="demo-box">まみむめも</div>
+        <div class="demo-box">やいゆえよ</div>
+        <div class="demo-box">らりるれろ</div>
+      </div>
     </div>
     <table data-suisou-table="tight">
       <tr><th>値</th><th>CSS</th><th>使う場面</th></tr>
@@ -206,6 +218,11 @@
           <td><code>overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges</code></td>
           <td>領域の中だけ縦にスクロールさせる。<code>grow</code> と組で使う。
               <strong>幅は溢れても動かない</strong></td></tr>
+      <tr><td><code>scroll-x</code></td>
+          <td><code>overflow-x: auto; overflow-y: hidden</code></td>
+          <td>領域の中だけ横に流す。<code>row</code> と組で使う。
+              <code>scroll-x md:scroll-y</code> で「狭いと横に流し、広いと縦に積む」。
+              ★<strong>高さはバーの出入りで動く</strong>（下記）</td></tr>
       <tr><td><code>grid</code></td><td><code>grid-template-columns: var(--suisou-grid-cols, …)</code></td>
           <td>升目に並べる。既定は「12rem 以上で入るだけ」。
               <code>--suisou-grid-cols</code> / <code>--suisou-grid-rows</code> で上書きする</td></tr>
@@ -312,9 +329,19 @@
       <code>both-edges</code> は溝の幅を一度も知らずに済む
       —— <strong>答えを持たず、条件だけブラウザに渡す</strong>。
       <br><br>
-      ★<strong>横スクロールには効かない。</strong>
+      ★<strong>横スクロール（<code>scroll-x</code>）には効かない。</strong>
       <code>scrollbar-gutter</code> が制御できるのは左右の端だけで、
       上下の端は仕様の範囲外（CSS Overflow 3）。
+      <strong>横バーの出入りで高さが動くのは、現時点の CSS では止められない。</strong>
+      <br><br>
+      ★<strong><code>scroll-x</code> に余白の補正を焼き込むことはしない。</strong>
+      バー幅ぶんの <code>padding-bottom</code> を当て勘で引く手はあるが、
+      合うのは「クラシック型のバーが実際に出ている」ときだけで、
+      <strong>出ていないときとオーバーレイ型の環境では下だけ狭くなる</strong>。
+      そもそも <code>layout</code> は <code>padding</code> を持たない
+      —— 面の内側の余白は <code>surface</code> の担当で、
+      <strong><code>surface.css</code> は <code>layout.css</code> より後に読まれる</strong>ので、
+      書いても上書きされる。<strong>穴は塞がずに空けておき、要る現場が面の側で調整する。</strong>
     </p>
     <div class="demo">
       <span class="demo-label">中身が少ない —— バーは出ない</span>
