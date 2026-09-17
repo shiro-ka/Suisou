@@ -129,6 +129,7 @@ def render():
     L.append("  - **layout**: `pin` / `frame` / 区画4語（`aside` `head` `body` `foot`）/ "
              "`cols` / `share` / `hold` / `nowrap` を落とし、`cols` は `grid` として作り直し、"
              "`scroll` は `scroll-y` に改名して中身を変え、`scroll-x` を足し、"
+             "`container` を4語に割って `--suisou-measure` を廃止し、"
              "`grow` の基準を `auto` から `0` に変えた")
     L.append("    - 直し方: `pin` → `stack center middle`、"
              "`frame` + 区画 → `row screen` + `stack grow`、"
@@ -146,6 +147,13 @@ def render():
              "**両軸に流したい実例が0件**で、横に流すものは `table=\"scroll\"` と "
              "`code` が自分で持っていた。★`scrollbar-gutter` を焼き込んだので"
              "**溢れても幅が動かない**")
+    L.append("    - `container` … `max-width: var(--suisou-measure)`（既定 64rem）1本だったのを、"
+             "`container`（`clamp(46rem, 90vw, 80rem)` ＝ 画面に合わせて 736〜1280px で伸び縮み）と "
+             "`container-s` / `-m` / `-l`（46 / 64 / 80rem の固定）に割った。"
+             "**`--suisou-measure` は廃止** ―― 現場が任意の値を渡す口は持たない")
+    L.append("      - ★**無印は親が画面幅の場所で使う。** `90vw` は画面基準なので、"
+             "サイドバーの内側などに置くと親を超えて上限が効かない。"
+             "親が狭い場所では固定の3つを使う")
     L.append("    - `scroll-x`（`overflow-x: auto; overflow-y: hidden`）を足した。"
              "`scroll-x md:scroll-y` で「狭いと横に流し、広いと縦に積む」。"
              "★**高さはバーの出入りで動く** ―― `scrollbar-gutter` が効くのは左右の端だけで、"

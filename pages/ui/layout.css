@@ -28,11 +28,14 @@
   grid-template-columns: var(--suisou-grid-cols, repeat(auto-fill, minmax(12rem, 1fr)));
   grid-template-rows: var(--suisou-grid-rows, none);
 }
-[data-suisou-layout~="container"] {
-  width: 100%;
-  max-width: var(--suisou-measure);
-  margin-inline: auto;
-}
+[data-suisou-layout~="container"],
+[data-suisou-layout~="container-s"],
+[data-suisou-layout~="container-m"],
+[data-suisou-layout~="container-l"] { width: 100%; margin-inline: auto; }
+[data-suisou-layout~="container"]   { max-width: clamp(46rem, 90vw, 80rem); }
+[data-suisou-layout~="container-s"] { max-width: 46rem; }
+[data-suisou-layout~="container-m"] { max-width: 64rem; }
+[data-suisou-layout~="container-l"] { max-width: 80rem; }
 @media (width >= 768px) {
       [data-suisou-layout~="md:stack"] { display: flex; flex-direction: column; gap: var(--suisou-gap); }
   [data-suisou-layout~="md:row"] { display: flex; flex-direction: row; align-items: center; gap: var(--suisou-gap); }
