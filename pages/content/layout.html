@@ -226,8 +226,15 @@
       <tr><td><code>grid</code></td><td><code>grid-template-columns: var(--suisou-grid-cols, …)</code></td>
           <td>升目に並べる。既定は「12rem 以上で入るだけ」。
               <code>--suisou-grid-cols</code> / <code>--suisou-grid-rows</code> で上書きする</td></tr>
-      <tr><td><code>container</code></td><td><code>max-width: 1024px; margin-inline: auto</code></td>
-          <td>本文の幅を絞って中央に寄せる。<code>--suisou-measure</code> で変えられる</td></tr>
+      <tr><td><code>container</code></td>
+          <td><code>max-width: clamp(46rem, 90vw, 80rem); margin-inline: auto</code></td>
+          <td>幅を絞って中央に寄せる。画面に合わせて <strong>736px 〜 1280px</strong> で伸び縮みする。
+              ★<strong>親が画面幅の場所で使う</strong> —— サイドバーの内側などに置くと
+              <code>90vw</code> が親を超えて上限が効かない</td></tr>
+      <tr><td><code>container-s</code> / <code>-m</code> / <code>-l</code></td>
+          <td><code>max-width: 46rem</code> / <code>64rem</code> / <code>80rem</code></td>
+          <td>伸び縮みしない固定の幅。<strong>736 / 1024 / 1280px</strong>。
+              親が狭い場所ではこちらを使う</td></tr>
     </table>
     <p class="note">
       <code>grow</code> は <code>flex-grow</code> から取った。
@@ -487,8 +494,8 @@
           <td><code>center</code> だけが grid。列数を持つ格子は無い。
               3回書いてから足す</td></tr>
       <tr><td><code>container</code> の幅</td>
-          <td>1024px 仮置き。<code>--suisou-measure</code> で上書きできるが、
-              段として決めていない</td></tr>
+          <td><strong>46 / 64 / 80rem の3つ</strong>と、その間を伸び縮みする無印だけ。
+              現場が任意の値を渡す口は持たない</td></tr>
     </table>
   </div>
 
