@@ -18,7 +18,7 @@
 [data-suisou-layout~="scroll-y"] { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges; }
 [data-suisou-layout~="scroll-x"] { overflow-x: auto; overflow-y: hidden; }
 [data-suisou-layout~="grow"] { flex: var(--suisou-grow, 1) 1 0; min-width: 0; min-height: 0; }
-[data-suisou-layout~="screen"] { min-height: 100dvh; }
+[data-suisou-layout~="min-screen"] { min-height: 100dvh; }
 [data-suisou-layout~="grid"] {
   display: grid;
   gap: var(--suisou-gap);
@@ -42,7 +42,7 @@
   [data-suisou-layout~="md:scroll-y"] { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges; }
   [data-suisou-layout~="md:scroll-x"] { overflow-x: auto; overflow-y: hidden; }
   [data-suisou-layout~="md:grow"] { flex: var(--suisou-grow, 1) 1 0; min-width: 0; min-height: 0; }
-  [data-suisou-layout~="md:screen"] { min-height: 100dvh; }
+  [data-suisou-layout~="md:min-screen"] { min-height: 100dvh; }
   [data-suisou-layout~="md:grid"] {
     display: grid;
     gap: var(--suisou-gap);
@@ -62,7 +62,7 @@
   [data-suisou-layout~="lg:scroll-y"] { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges; }
   [data-suisou-layout~="lg:scroll-x"] { overflow-x: auto; overflow-y: hidden; }
   [data-suisou-layout~="lg:grow"] { flex: var(--suisou-grow, 1) 1 0; min-width: 0; min-height: 0; }
-  [data-suisou-layout~="lg:screen"] { min-height: 100dvh; }
+  [data-suisou-layout~="lg:min-screen"] { min-height: 100dvh; }
   [data-suisou-layout~="lg:grid"] {
     display: grid;
     gap: var(--suisou-gap);
