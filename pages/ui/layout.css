@@ -1,6 +1,4 @@
-[data-suisou-layout] {
-  --suisou-gap: var(--suisou-space-2);
-}
+:where([data-suisou-layout]) { --suisou-gap: var(--suisou-space-2); }
 :where([data-suisou-layout]) > * { flex: none; }
 [data-suisou-layout~="gap-0"] { --suisou-gap: 0; }
 [data-suisou-layout~="gap-1"] { --suisou-gap: var(--suisou-space-1); }

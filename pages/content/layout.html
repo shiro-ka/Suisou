@@ -31,6 +31,11 @@
       モードより前に書かれているので、モード側で <code>gap</code> を直に書くと
       <strong><code>gap-N</code> が順序で負ける</strong>。
       <br><br>
+      ★<strong>基底の宣言も <code>:where()</code> で包んで詳細度を 0 にしてある</strong>
+      （2026-09-17）。子の既定（<code>flex: none</code>）と同じ扱いで、
+      <code>gap-N</code> も現場の規則も<strong>順序に頼らず必ず勝てる</strong>。
+      それまで基底だけ包まれておらず、<strong>2行で扱いが分かれていた</strong>。
+      <br><br>
       <strong>子は既定で動かない</strong>（<code>flex: none</code>）。
       flex 本来の既定は <code>0 1 auto</code> ＝「伸びないが縮む」で、これが驚きの元になる ——
       <code>width: 200px</code> と書いても守られないし、<code>stack scroll-y</code> の中身が
