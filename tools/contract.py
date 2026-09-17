@@ -128,7 +128,7 @@ def render():
              "掟と lint で守っていた。1属性なら構造的に起きない")
     L.append("  - **layout**: `pin` / `frame` / 区画4語（`aside` `head` `body` `foot`）/ "
              "`cols` / `share` / `hold` / `nowrap` を落とし、`cols` は `grid` として作り直し、"
-             "`scroll` は `scroll-y` に改名して中身を変え、"
+             "`scroll` は `scroll-y` に改名して中身を変え、`scroll-x` を足し、"
              "`grow` の基準を `auto` から `0` に変えた")
     L.append("    - 直し方: `pin` → `stack center middle`、"
              "`frame` + 区画 → `row screen` + `stack grow`、"
@@ -146,6 +146,12 @@ def render():
              "**両軸に流したい実例が0件**で、横に流すものは `table=\"scroll\"` と "
              "`code` が自分で持っていた。★`scrollbar-gutter` を焼き込んだので"
              "**溢れても幅が動かない**")
+    L.append("    - `scroll-x`（`overflow-x: auto; overflow-y: hidden`）を足した。"
+             "`scroll-x md:scroll-y` で「狭いと横に流し、広いと縦に積む」。"
+             "★**高さはバーの出入りで動く** ―― `scrollbar-gutter` が効くのは左右の端だけで、"
+             "上下は仕様の範囲外（CSS Overflow 3）。"
+             "**余白の補正は焼き込まない**（`layout` は `padding` を持たない層で、"
+             "`surface.css` が後に読まれるので上書きされる）")
     L.append("- **v1 → v2**（2026-09-10）… `center` の意味を変えた。"
              "v1 では grid のモード（`display: grid; place-items: center`）、"
              "v2 では交差軸の中央に寄せるふるまい（`align-items: center`）。"
