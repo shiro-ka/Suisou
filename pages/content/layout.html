@@ -33,7 +33,7 @@
       <br><br>
       <strong>子は既定で動かない</strong>（<code>flex: none</code>）。
       flex 本来の既定は <code>0 1 auto</code> ＝「伸びないが縮む」で、これが驚きの元になる ——
-      <code>width: 200px</code> と書いても守られないし、<code>stack scroll</code> の中身が
+      <code>width: 200px</code> と書いても守られないし、<code>stack scroll-y</code> の中身が
       スクロールせずに潰れる。Suisou は「言われたことしかしない」を既定にして、
       <strong>動くものには <code>grow</code> と名指しさせる</strong>。
       おかげで flex の中で動く要素は目で数えられる。
@@ -169,8 +169,8 @@
         <div class="demo-box">はひふへほ</div>
         <div class="demo-box">まみむめも</div>
       </div>
-      <span class="demo-label">scroll —— あふれたらその中でスクロールする</span>
-      <div data-suisou-layout="stack scroll" class="demo-frame">
+      <span class="demo-label">scroll-y —— あふれたらその中で縦にスクロールする</span>
+      <div data-suisou-layout="stack scroll-y" class="demo-frame">
         <div class="demo-box">1</div>
         <div class="demo-box">2</div>
         <div class="demo-box">3</div>
@@ -202,8 +202,10 @@
           <td>主軸の末尾に寄せる</td></tr>
       <tr><td><code>between</code></td><td><code>justify-content: space-between</code></td>
           <td>両端に置いて間を空ける。<strong>子が2つのときだけ素直に効く</strong></td></tr>
-      <tr><td><code>scroll</code></td><td><code>overflow: auto</code></td>
-          <td>領域の中だけスクロールさせる。<code>grow</code> と組で使う</td></tr>
+      <tr><td><code>scroll-y</code></td>
+          <td><code>overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges</code></td>
+          <td>領域の中だけ縦にスクロールさせる。<code>grow</code> と組で使う。
+              <strong>幅は溢れても動かない</strong></td></tr>
       <tr><td><code>grid</code></td><td><code>grid-template-columns: var(--suisou-grid-cols, …)</code></td>
           <td>升目に並べる。既定は「12rem 以上で入るだけ」。
               <code>--suisou-grid-cols</code> / <code>--suisou-grid-rows</code> で上書きする</td></tr>
@@ -292,20 +294,36 @@
       <code>::-webkit-scrollbar</code> は書かない —— あちらは標準化されたことがなく、
       同じことが標準側でできるようになった。
       <br><br>
-      <strong>幅の予約（<code>scrollbar-gutter</code>）はしない。</strong>
-      バーが出た瞬間の幅の飛びは止まるが、代わりに溝がずっと居座る。
-      <code>stable</code> は右だけに空くので左右の余白が食い違い、
-      <code>both-edges</code> は両側に空く分だけ中身が痩せる。
-      どちらも「常に変」で、<strong>バーが出るときだけ 10px 動く方がまだ普通に見えた</strong>。
+      <strong>幅は予約する（<code>scrollbar-gutter: stable both-edges</code>）。</strong>
+      <code>scroll-y</code> に焼き込んであるので、現場が書く必要はない。
+      <br><br>
+      <code>stable</code> だけだと溝が右にしか空かず、<strong>左右の余白が食い違う</strong>
+      —— 溝は padding の外側に足され、バーが無いときは padding の延長として塗られるため。
+      <code>both-edges</code> は反対側にも同じ溝を作るので<strong>対称になる</strong>。
+      代償は溝2本ぶん中身が痩せること。ただし<strong>オーバーレイ型のスクロールバー
+      （macOS / iOS の既定）では溝が作られない</strong>ので、痩せるのは
+      クラシック型の環境だけで、そこでは元々バーが出たときに痩せていた。
+      <br><br>
+      ★<strong>「右の padding を溝の分だけ減らす」という手は採らない。</strong>
+      溝の実寸はブラウザ・OS・設定で違い、<strong>CSS から知る手段が無い</strong>。
+      JS で測れば正確だが、<strong>JS を要求する部品は作らない</strong>のが Suisou の割り切り。
+      決め打ちにすると、溝が作られないオーバーレイ型の環境で
+      <strong>右だけ狭くなって対称が壊れる</strong>。
+      <code>both-edges</code> は溝の幅を一度も知らずに済む
+      —— <strong>答えを持たず、条件だけブラウザに渡す</strong>。
+      <br><br>
+      ★<strong>横スクロールには効かない。</strong>
+      <code>scrollbar-gutter</code> が制御できるのは左右の端だけで、
+      上下の端は仕様の範囲外（CSS Overflow 3）。
     </p>
     <div class="demo">
       <span class="demo-label">中身が少ない —— バーは出ない</span>
-      <div data-suisou-layout="stack scroll" data-suisou-surface="panel" class="demo-frame">
+      <div data-suisou-layout="stack scroll-y" data-suisou-surface="panel" class="demo-frame">
         <div class="demo-box">1</div>
         <div class="demo-box">2</div>
       </div>
       <span class="demo-label">中身が多い —— バーの分だけ中身が細くなる</span>
-      <div data-suisou-layout="stack scroll" data-suisou-surface="panel" class="demo-frame">
+      <div data-suisou-layout="stack scroll-y" data-suisou-surface="panel" class="demo-frame">
         <div class="demo-box">1</div>
         <div class="demo-box">2</div>
         <div class="demo-box">3</div>
@@ -322,7 +340,7 @@
     <h2>骨格を組む</h2>
     <p class="note">
       画面の骨格は <strong>専用の語を持たない</strong>。
-      <code>row</code> と <code>stack</code> と <code>grow</code> と <code>scroll</code> で組む。
+      <code>row</code> と <code>stack</code> と <code>grow</code> と <code>scroll-y</code> で組む。
       <br><br>
       ★v3 まで <code>frame</code> という grid のモードがあり、
       <code>aside</code> / <code>head</code> / <code>body</code> / <code>foot</code> という
@@ -333,14 +351,14 @@
     <div class="demo">
       <span class="demo-label">柱 + 帯 + 本体 + 入力</span>
       <div data-suisou-layout="row" class="demo-frame">
-        <div data-suisou-surface="panel" data-suisou-layout="stack scroll" style="width: 120px">
+        <div data-suisou-surface="panel" data-suisou-layout="stack scroll-y" style="width: 120px">
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
         </div>
         <div data-suisou-layout="stack grow">
           <div data-suisou-surface="panel">ヘッダ</div>
-          <div data-suisou-surface="panel" data-suisou-layout="grow scroll">本体</div>
+          <div data-suisou-surface="panel" data-suisou-layout="grow scroll-y">本体</div>
           <div data-suisou-surface="panel">入力</div>
         </div>
       </div>
@@ -348,13 +366,13 @@
       <div data-suisou-layout="row" class="demo-frame">
         <div data-suisou-layout="stack grow">
           <div data-suisou-surface="panel">ヘッダ</div>
-          <div data-suisou-surface="panel" data-suisou-layout="grow scroll">本体</div>
+          <div data-suisou-surface="panel" data-suisou-layout="grow scroll-y">本体</div>
           <div data-suisou-surface="panel">入力</div>
         </div>
       </div>
     </div>
     <p class="note">
-      ★<strong>本体には <code>grow</code> と <code>scroll</code> を書く。</strong>
+      ★<strong>本体には <code>grow</code> と <code>scroll-y</code> を書く。</strong>
       <code>grow</code> が <code>min-height: 0</code> を連れてくるので、
       中身がはみ出して親ごと伸びるのを止められる。
       <br><br>
