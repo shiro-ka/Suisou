@@ -129,7 +129,8 @@ def render():
     L.append("  - **layout**: `pin` / `frame` / 区画4語（`aside` `head` `body` `foot`）/ "
              "`cols` / `share` / `hold` / `nowrap` を落とし、`cols` は `grid` として作り直し、"
              "`scroll` は `scroll-y` に改名して中身を変え、`scroll-x` を足し、"
-             "`container` を4語に割って `--suisou-measure` を廃止し、`start` を落とし、"
+             "`container` を4語に割って `--suisou-measure` を廃止し、"
+             "`start` と `even` を落とし、"
              "`grow` の基準を `auto` から `0` に変えた")
     L.append("    - 直し方: `pin` → `stack center middle`、"
              "`frame` + 区画 → `row screen` + `stack grow`、"
@@ -147,6 +148,14 @@ def render():
              "**両軸に流したい実例が0件**で、横に流すものは `table=\"scroll\"` と "
              "`code` が自分で持っていた。★`scrollbar-gutter` を焼き込んだので"
              "**溢れても幅が動かない**")
+    L.append("    - `even` を落とした。`grow` の基準を `auto` から `0` に変えたことで、"
+             "`even` が子に撒く `flex: 1 1 0` と `grow` が**同じ値**になり、"
+             "「余りを配る `grow` と違って中身の幅の差が残らない」という存在理由が消えた。"
+             "★**layout で子に規則を撒く唯一の語**でもあったので、落とすとモードが "
+             "`stack` / `row` / `grid` の3つに揃う")
+    L.append("      - 直し方: `even` → `row` ＋ 子に `grow`、"
+             "`stack md:even` → `stack md:row` ＋ 子に **`md:grow`**。"
+             "★**素の `grow` を書くと狭い画面（`stack`）で縦に伸びる**ので接頭辞が要る")
     L.append("    - `start`（`justify-content: flex-start`）を落とした。"
              "**flex の既定値**なので `row` でも `stack` でも空振りし、実使用0件だった。"
              "★置き方で残る空振り（`row center` / `stack stretch`）は"

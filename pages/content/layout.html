@@ -64,7 +64,7 @@
       ★<code>tools/lint_css.py</code> が同時指定を検査する。
       <strong>モードの一覧は <code>layout.css</code> から導いている</strong> ——
       「<code>display</code> か <code>flex-direction</code> を敷いているか」で判定する。
-      手で持っていたときに <code>even</code> を足し忘れて
+      手で持っていたときに <code>even</code>（★v3 で廃止）を足し忘れて
       <code>"stack even"</code> が素通りしたので、真実の源泉を1つにした。
       <br>
       ★2026-09-09 から <code>row</code> も対象に入る。<code>row</code> が
@@ -95,10 +95,9 @@
       <tr><td><code>row</code></td><td><code>flex-direction: row; align-items: center</code></td>
           <td>横並び。ボタン列、アイコンと文字。<code>stack md:row</code> で
               「狭いと縦積み・広いと横並び」</td></tr>
-      <tr><td><code>even</code></td><td><code>display: flex</code> ＋ 子に <code>flex: 1 1 0</code></td>
-          <td>等分に割る。子の数だけ等分される。狭い画面では
-              <code>stack md:even</code> と組む。
-              ★子に <code>grow</code> を書けばそこだけ例外にできる</td></tr>
+      <tr><td><code>grid</code></td><td><code>display: grid</code> ＋ <code>grid-template-columns</code></td>
+          <td>升目に並べる。既定は「12rem 以上で入るだけ並べて折り返す」。
+              形を変えたいときは <code>--suisou-grid-cols</code> に<strong>指定まるごと</strong>を渡す</td></tr>
     </table>
   </div>
 
