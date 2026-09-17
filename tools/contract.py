@@ -128,6 +128,7 @@ def render():
              "掟と lint で守っていた。1属性なら構造的に起きない")
     L.append("  - **layout**: `pin` / `frame` / 区画4語（`aside` `head` `body` `foot`）/ "
              "`cols` / `share` / `hold` / `nowrap` を落とし、`cols` は `grid` として作り直し、"
+             "`scroll` は `scroll-y` に改名して中身を変え、"
              "`grow` の基準を `auto` から `0` に変えた")
     L.append("    - 直し方: `pin` → `stack center middle`、"
              "`frame` + 区画 → `row screen` + `stack grow`、"
@@ -140,6 +141,11 @@ def render():
     L.append("    - `hold` / `nowrap` は打ち消し専用の語だったが、"
              "打ち消す相手（`grow` / `wrap`）が同じ画面幅にいると意味が無く、"
              "**現場での有効な使用が0件**だった。要るようになったら足す")
+    L.append("    - `scroll`（`overflow: auto` ＝ 両軸）→ `scroll-y`"
+             "（`overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges`）。"
+             "**両軸に流したい実例が0件**で、横に流すものは `table=\"scroll\"` と "
+             "`code` が自分で持っていた。★`scrollbar-gutter` を焼き込んだので"
+             "**溢れても幅が動かない**")
     L.append("- **v1 → v2**（2026-09-10）… `center` の意味を変えた。"
              "v1 では grid のモード（`display: grid; place-items: center`）、"
              "v2 では交差軸の中央に寄せるふるまい（`align-items: center`）。"
