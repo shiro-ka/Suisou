@@ -211,6 +211,15 @@
           <td>主軸の末尾に寄せる</td></tr>
       <tr><td><code>between</code></td><td><code>justify-content: space-between</code></td>
           <td>両端に置いて間を空ける。<strong>子が2つのときだけ素直に効く</strong></td></tr>
+      <tr><td><code>min-screen</code></td><td><code>min-height: 100dvh</code></td>
+          <td>入れ物の高さを画面に合わせる。★<strong>単体では何も見えない</strong> ——
+              <code>middle</code> で縦中央に寄せるにも、<code>grow</code> に余りを配るにも
+              <strong>入れ物の高さが決まっている必要がある</strong>。その前提を作る語。
+              <code>height</code> ではなく <code>min-height</code> なのは中身が画面より
+              長いときに伸びてほしいから。<code>dvh</code> はモバイルのアドレスバーの
+              出入りに追従する。
+              ★<strong>横の版は持たない</strong> —— ブロック要素は既定で横幅いっぱいなので、
+              <code>min-width</code> を画面に合わせたい実測が0件だった</td></tr>
       <tr><td><code>scroll-y</code></td>
           <td><code>overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges</code></td>
           <td>領域の中だけ縦にスクロールさせる。<code>grow</code> と組で使う。

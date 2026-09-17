@@ -130,7 +130,7 @@ def render():
              "`cols` / `share` / `hold` / `nowrap` を落とし、`cols` は `grid` として作り直し、"
              "`scroll` は `scroll-y` に改名して中身を変え、`scroll-x` を足し、"
              "`container` を4語に割って `--suisou-measure` を廃止し、"
-             "`start` と `even` を落とし、"
+             "`start` と `even` を落とし、`screen` を `min-screen` に改名し、"
              "`grow` の基準を `auto` から `0` に変えた")
     L.append("    - 直し方: `pin` → `stack center middle`、"
              "`frame` + 区画 → `row screen` + `stack grow`、"
@@ -148,6 +148,11 @@ def render():
              "**両軸に流したい実例が0件**で、横に流すものは `table=\"scroll\"` と "
              "`code` が自分で持っていた。★`scrollbar-gutter` を焼き込んだので"
              "**溢れても幅が動かない**")
+    L.append("    - `screen` → `min-screen` に改名。実体が `min-height: 100dvh` なのに"
+             "「ぴったり画面の高さ」と読めたため。★**横の版は持たない** ―― "
+             "ブロック要素は既定で横幅いっぱいなので、`min-width` を画面に合わせたい実測が0件"
+             "（`100dvw` の4件は全部 overlay の `width` で `surface` の領分）。"
+             "軸が1つしかないので接尾辞で分けない")
     L.append("    - `even` を落とした。`grow` の基準を `auto` から `0` に変えたことで、"
              "`even` が子に撒く `flex: 1 1 0` と `grow` が**同じ値**になり、"
              "「余りを配る `grow` と違って中身の幅の差が残らない」という存在理由が消えた。"
