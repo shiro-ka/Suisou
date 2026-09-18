@@ -20,7 +20,7 @@
 
        <div data-suisou-spinner style="--suisou-spinner: 4rem"></div>
 
-     surface="drawer" が --suisou-drawer を持つのと同じやり方。
+     tray="drawer" が --suisou-drawer を持つのと同じやり方。
      線の太さは大きさから導くので、どの寸法でも輪の見え方が揃う。
 
    ★色は accent と line-weak の2色だけ。輪の全部を accent にすると

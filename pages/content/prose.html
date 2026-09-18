@@ -35,10 +35,10 @@
     <h2>実物</h2>
     <div class="demo">
       <span class="demo-label">data-suisou-prose</span>
-      <article data-suisou-prose data-suisou-surface="panel">
+      <article data-suisou-prose data-suisou-tray="panel">
         <h2>面の階段</h2>
         <p>Suisou の面は4段ある。深いほど光が届かず、面の色が薄くなる。
-        地べたに置くのは<a href="#surface" data-suisou-link>ヘッダの要素</a>だけで、
+        地べたに置くのは<a href="#tray" data-suisou-link>ヘッダの要素</a>だけで、
         モノは <code>panel</code> に入れる。</p>
         <h3>段の決まり方</h3>
         <p>値は <code>tools/solve.py</code> が制約から解いている。
@@ -57,7 +57,7 @@
           <p>影は使わない。ダーク専用では下地を暗くする余地が無いため。</p>
         </blockquote>
         <h4>コードで書くと</h4>
-        <pre><code>[data-suisou-surface~="panel"] { background: var(--suisou-panel); }</code></pre>
+        <pre><code>[data-suisou-tray~="panel"] { background: var(--suisou-panel); }</code></pre>
         <h5>左罫のつく見出し</h5>
         <p>h5 と h6 はサイズを増やさず、ウェイトと左罫で階層を作る。
         段が7つしかないので、6段の見出しに1段ずつ割り当てると本文と衝突する。</p>
@@ -102,7 +102,7 @@
     </p>
     <div class="demo">
       <span class="demo-label">data-suisou-prose="tight"</span>
-      <div data-suisou-prose="tight" data-suisou-surface="panel">
+      <div data-suisou-prose="tight" data-suisou-tray="panel">
         <h3>デッキメモ</h3>
         <p>タマ軸。<code>2/2</code> でルリグデッキを固める。</p>
         <ul>
@@ -150,7 +150,7 @@
     </p>
     <div class="demo">
       <span class="demo-label">h1 から h6 まで</span>
-      <div data-suisou-prose data-suisou-surface="panel">
+      <div data-suisou-prose data-suisou-tray="panel">
         <h1>Suisou のつくり</h1>
         <p>記事のタイトル。1つしかないので、しるしで区別する必要がない。</p>
         <h2>面の階段</h2>

@@ -11,7 +11,7 @@
   <div data-suisou-layout="stack s:row grow">
 
     <!-- チャンネル一覧。1枚の panel -->
-    <nav data-suisou-layout="stack scroll-y" data-suisou-surface="panel" class="gap-1 demo-aside">
+    <nav data-suisou-layout="stack scroll-y" data-suisou-tray="panel" class="gap-1 demo-aside">
       <div data-suisou-text="s12 w700" class="muted">テキストチャンネル</div>
       <button data-suisou-button="block" aria-pressed="true" type="button">#general</button>
       <button data-suisou-button="block" type="button">#random</button>
@@ -23,13 +23,13 @@
     <div data-suisou-layout="stack grow">
 
     <!-- チャンネルのヘッダ。これも1枚の panel -->
-    <header data-suisou-layout="row" data-suisou-surface="panel">
+    <header data-suisou-layout="row" data-suisou-tray="panel">
       <span data-suisou-layout="grow" data-suisou-text="s16 w700">#general</span>
       <span data-suisou-text="s12 w400" class="muted">4 人がオンライン</span>
     </header>
 
     <!-- ログ。1枚の panel -->
-    <div data-suisou-layout="stack scroll-y grow" data-suisou-surface="panel" class="gap-1">
+    <div data-suisou-layout="stack scroll-y grow" data-suisou-tray="panel" class="gap-1">
       <div data-suisou-row data-suisou-media>
         <div data-suisou-media-icon data-suisou-avatar>し</div>
         <div data-suisou-media-content>
@@ -68,7 +68,7 @@
       </div>
 
     <!-- 入力欄。これも1枚の panel -->
-    <div data-suisou-layout="row" data-suisou-surface="panel">
+    <div data-suisou-layout="row" data-suisou-tray="panel">
       <input data-suisou-layout="grow" data-suisou-field placeholder="#general へメッセージを送信">
       <button data-suisou-button="icon" type="button" aria-label="送信"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14l11 -11" /><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></svg></button>
     </div>

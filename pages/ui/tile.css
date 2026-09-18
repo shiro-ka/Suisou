@@ -11,7 +11,7 @@
      Mado が同じものを部品として自作し、**11 箇所**で使っていた
      （`ui/Glyph.svelte`。特徴の3枚 / 使い方の手順 / ランディング / 窓カードの先頭）。
      部品の中には「Suisou の3回ルールに乗るので還元候補」と自分で書いてあった。
-     中身は surface="item" + layout="stack center middle" + 正方形の実寸だけで、
+     中身は tray="item" + layout="stack center middle" + 正方形の実寸だけで、
      **新しい概念は何も足していない** ―― つまり Suisou 側に置ける。
 
    ★色は持たない。中の svg に data-suisou-icon="accent" などを書く。
@@ -27,11 +27,11 @@
   border-radius: var(--suisou-radius);
   background: var(--suisou-item);
 
-  /* ★段を上げたら罫も差し替える（surface.css の「段」と同じ約束）。
+  /* ★段を上げたら罫も差し替える（tray.css の「段」と同じ約束）。
      item の面を敷いた時点でこの要素の上は item なので、
      自分の罫も item 用の値で引かないと**まわりの面の濃さのまま**になる。
      ★これを忘れていて、現場の見た目が 0.05% ずれた（2026-09-09 実測）。
-       Mado は surface="item" + layout="stack center middle" で組んでいたので正しい色が出ており、
+       Mado は tray="item" + layout="stack center middle" で組んでいたので正しい色が出ており、
        tile に置き換えたときだけ罫が濁った。 */
   --suisou-line-weak: var(--suisou-line-weak-item);
   --suisou-line-strong: var(--suisou-line-strong-item);

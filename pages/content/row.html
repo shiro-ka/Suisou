@@ -12,13 +12,13 @@
     <h2>2つの形</h2>
     <div class="demo">
       <span class="demo-label">既定 —— 角丸。容れ物の中に浮く</span>
-      <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
+      <div data-suisou-tray="panel" data-suisou-layout="stack" class="gap-1">
         <div data-suisou-row>しろか — テーマ名を水域にした</div>
         <div data-suisou-row>相棒 — 値は変えていません</div>
         <div data-suisou-row>しろか — hover の色ってどう決まってる？</div>
       </div>
       <span class="demo-label">ruled —— 角丸なし＋下罫。端から端まで連なる</span>
-      <div data-suisou-surface="panel" data-suisou-layout="stack">
+      <div data-suisou-tray="panel" data-suisou-layout="stack">
         <div data-suisou-row="ruled">選択下地をアクセント色のままにするか</div>
         <div data-suisou-row="ruled">panel の余白に段を足す</div>
         <div data-suisou-row="ruled">block ボタンの既定を左寄せにする</div>
@@ -27,7 +27,7 @@
     <p class="note">
       <code>ruled</code> は<strong>行が自分で余白を持つ</strong>形。
       最後の1本は引かないので、下端で罫が二重にならない。
-      ★容れ物の側の余白を 0 にする <code>surface="bleed"</code> は 2026-09-18 に廃止した
+      ★容れ物の側の余白を 0 にする <code>tray="bleed"</code> は 2026-09-18 に廃止した
       —— 面が縁まで詰まっているより、両端に隙間がある方がいいという判断（しろさま）。
       <br><br>
       すきまは書かなくていい。<code>ruled</code> の行を子に持つ入れ物は
@@ -53,14 +53,14 @@
     </p>
     <div class="demo">
       <span class="demo-label">カーソルを乗せると hover-surface が敷かれる</span>
-      <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
+      <div data-suisou-tray="panel" data-suisou-layout="stack" class="gap-1">
         <div data-suisou-row>ふつう</div>
         <div data-suisou-row aria-selected="true">aria-selected="true"</div>
         <div data-suisou-row aria-current="page">aria-current="page"</div>
         <div data-suisou-row aria-current="false">aria-current="false" —— 反応しない</div>
       </div>
       <span class="demo-label">neutral —— 色を使わず明るさだけで示す</span>
-      <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
+      <div data-suisou-tray="panel" data-suisou-layout="stack" class="gap-1">
         <div data-suisou-row="neutral">ふつう</div>
         <div data-suisou-row="neutral" aria-selected="true">aria-selected="true"</div>
         <div data-suisou-row="neutral" aria-current="page">aria-current="page"</div>
@@ -90,13 +90,13 @@
     </p>
     <div class="demo">
       <span class="demo-label">既定 —— 下地のみ</span>
-      <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
+      <div data-suisou-tray="panel" data-suisou-layout="stack" class="gap-1">
         <div data-suisou-row>ふつうの行</div>
         <div data-suisou-row aria-selected="true">選ばれている行</div>
         <div data-suisou-row="neutral" aria-selected="true">選ばれている行（neutral）</div>
       </div>
       <span class="demo-label">ruled —— 下地 + 左2pxのアクセント線</span>
-      <div data-suisou-surface="panel" data-suisou-layout="stack">
+      <div data-suisou-tray="panel" data-suisou-layout="stack">
         <div data-suisou-row="ruled">ふつうの行</div>
         <div data-suisou-row="ruled" aria-selected="true">選ばれている行</div>
         <div data-suisou-row="ruled neutral" aria-selected="true">選ばれている行（neutral）—— 下地は明るさだけ、色は線1本</div>
@@ -109,7 +109,7 @@
     <h2>Media と組む</h2>
     <div class="demo">
       <span class="demo-label">&lt;div data-suisou-row="ruled" data-suisou-media&gt;</span>
-      <div data-suisou-surface="panel" data-suisou-layout="stack">
+      <div data-suisou-tray="panel" data-suisou-layout="stack">
         <div data-suisou-row="ruled" data-suisou-media aria-selected="true">
           <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
           <div data-suisou-media-content>
