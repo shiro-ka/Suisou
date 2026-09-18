@@ -1,6 +1,5 @@
 [data-suisou-surface~="panel"],
-[data-suisou-surface~="item"],
-[data-suisou-surface~="none"] {
+[data-suisou-surface~="item"] {
   border: 1px solid var(--suisou-line-weak);
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2);
@@ -16,8 +15,6 @@
   --suisou-line-weak: var(--suisou-line-weak-item);
   --suisou-line-strong: var(--suisou-line-strong-item);
 }
-[data-suisou-surface~="none"]  { background: transparent; }
-
 :where(dialog)[data-suisou-surface]::backdrop { background: var(--suisou-scrim); }
 
 :where(dialog)[data-suisou-surface] {
@@ -114,7 +111,9 @@
 }
 [popover][data-suisou-surface~="drawer"]::backdrop { background: var(--suisou-scrim); }
 
-[data-suisou-surface~="bare"] { border-color: transparent; }
+[data-suisou-surface~="bd-none"] { border-color: transparent; }
 
-[data-suisou-surface~="empty"] { border-style: dashed; }
+[data-suisou-surface~="bd-dash"] { border-style: dashed; }
+
+[data-suisou-surface~="bg-none"] { background: transparent; }
 
