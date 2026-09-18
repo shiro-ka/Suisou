@@ -3,7 +3,7 @@
 [data-suisou-surface~="none"] {
   border: 1px solid var(--suisou-line-weak);
   border-radius: var(--suisou-radius);
-  padding: var(--suisou-space-3);
+  padding: var(--suisou-space-2);
 }
 
 [data-suisou-surface~="panel"] {
@@ -91,11 +91,8 @@
 
 [data-suisou-surface~="bare"] { border-color: transparent; }
 
-[data-suisou-surface~="tight"] { padding-block: var(--suisou-space-2); }
-
 [data-suisou-surface~="empty"] {
   border-style: dashed;
   border-color: var(--suisou-line-strong);
 }
 
-[data-suisou-surface~="bleed"] { padding: 0; }
