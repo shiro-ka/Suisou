@@ -60,7 +60,7 @@ def layout_modes():
     modes = set()
     for val, body in re.findall(r'\[data-suisou-layout~="([^"]+)"\][^{]*\{([^}]*)\}', css):
         if re.search(r"(?:^|[;{\s])(?:display|flex-direction)\s*:", body):
-            modes.add(val.split(":")[-1])       # md: / lg: の接頭辞は落とす
+            modes.add(re.split(r"[:>]", val)[-1])  # s: / s> の段つきは落とす
     return modes
 
 
@@ -152,12 +152,12 @@ def main():
 
                 for m in re.finditer(r'data-suisou-layout(?:="([^"]*)")?', line):
                     vals = (m.group(1) or "").split()
-                    # 接頭辞ごとに数える。md: の中で2つ書くのも同じく事故なので、
-                    # 素の値と md:/lg: をそれぞれ別の集合として見る
-                    for pre in ("", "md:", "lg:"):
+                    # 段ごとに数える。s: の中で2つ書くのも同じく事故なので、
+                    # 素の値と s:/m:/l: をそれぞれ別の集合として見る
+                    for pre in ("", "s:", "m:", "l:"):
                         modes = {v[len(pre):] for v in vals
                                  if v.startswith(pre)
-                                 and (pre or ":" not in v)
+                                 and (pre or not re.search(r"[:>]", v))
                                  and v[len(pre):] in LAYOUT_MODES}
                         if len(modes) > 1:
                             label = f"{pre} の" if pre else ""
