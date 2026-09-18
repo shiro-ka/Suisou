@@ -3,7 +3,7 @@
 
   1. 色の値が直接書かれていないか（#rrggbb / oklch() / rgb() / hsl() …）
   2. 参照している --suisou-* が palette.css に実在するか
-  3. data-suisou-surface が「段」をちょうど1つ持っているか
+  3. data-suisou-surface が「段」をちょうど1つ持っているか（drawer は除く）
   4. data-suisou-layout の「モード」が2つ以上書かれていないか
   5. data-suisou-theme が「水域1つ＋生き物1つ」の組になっているか
 
@@ -133,7 +133,11 @@ def main():
         if path.endswith(".html"):
             for i, line in enumerate(body.splitlines(), 1):
                 for m in re.finditer(r'data-suisou-surface(?:="([^"]*)")?', line):
-                    steps = SURFACE_STEPS & set((m.group(1) or "").split())
+                    vals = set((m.group(1) or "").split())
+                    # drawer は段を持たない（自分で panel の色を持つ独立した語。2026-09-18）
+                    if "drawer" in vals:
+                        continue
+                    steps = SURFACE_STEPS & vals
                     if len(steps) != 1:
                         got = m.group(1) if m.group(1) is not None else "（値なし）"
                         problems.append(

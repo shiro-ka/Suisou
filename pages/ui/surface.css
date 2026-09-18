@@ -52,42 +52,67 @@
 
 [data-suisou-surface~="drawer"] {
   --suisou-drawer: 20rem;
-  position: fixed;
-  inset: 0 0 0 auto;
-  margin: 0;
-  height: 100dvh;
-  max-height: none;
-  width: min(var(--suisou-drawer), 90vw);
-  border: 0;
-  border-inline-start: 1px solid var(--suisou-line-strong);
-  border-radius: 0;
+  background: var(--suisou-panel);
+  --suisou-line-weak: var(--suisou-line-weak-panel);
+  --suisou-line-strong: var(--suisou-line-strong-panel);
+  padding: 0;
 }
-
+[data-suisou-surface~="drawer"][data-suisou-surface~="end"] {
+  width: min(var(--suisou-drawer), 90vw);
+  border-inline-start: 1px solid var(--suisou-line-strong);
+}
 [data-suisou-surface~="drawer"][data-suisou-surface~="start"] {
-  inset: 0 auto 0 0;
-  border-inline-start: 0;
+  width: min(var(--suisou-drawer), 90vw);
   border-inline-end: 1px solid var(--suisou-line-strong);
 }
+[data-suisou-surface~="drawer"][data-suisou-surface~="top"] {
+  max-height: min(var(--suisou-drawer), 90vh);
+  border-block-end: 1px solid var(--suisou-line-strong);
+}
+[data-suisou-surface~="drawer"][data-suisou-surface~="bottom"] {
+  max-height: min(var(--suisou-drawer), 90vh);
+  border-block-start: 1px solid var(--suisou-line-strong);
+}
 
-:where([popover], dialog)[data-suisou-surface~="drawer"] {
-  --suisou-drawer-hidden: 100%;
-  opacity: 1;
-  translate: var(--suisou-drawer-hidden) 0;
+[popover][data-suisou-surface~="drawer"] {
+  position: fixed;
+  margin: 0;
+  translate: var(--suisou-drawer-hidden);
   transition: translate var(--suisou-motion) var(--suisou-ease),
               display var(--suisou-motion) allow-discrete,
               overlay var(--suisou-motion) allow-discrete;
 }
-:where([popover], dialog)[data-suisou-surface~="drawer"][data-suisou-surface~="start"] {
-  --suisou-drawer-hidden: -100%;
+[popover][data-suisou-surface~="drawer"][data-suisou-surface~="end"] {
+  --suisou-drawer-hidden: 100% 0;
+  inset: 0 0 0 auto;
+  height: 100dvh;
+  max-height: none;
 }
-:where([popover], dialog)[data-suisou-surface~="drawer"]:where(:popover-open, [open]) {
-  translate: 0 0;
+[popover][data-suisou-surface~="drawer"][data-suisou-surface~="start"] {
+  --suisou-drawer-hidden: -100% 0;
+  inset: 0 auto 0 0;
+  height: 100dvh;
+  max-height: none;
 }
+[popover][data-suisou-surface~="drawer"][data-suisou-surface~="top"] {
+  --suisou-drawer-hidden: 0 -100%;
+  inset: 0 0 auto 0;
+  width: 100dvw;
+  max-width: none;
+}
+[popover][data-suisou-surface~="drawer"][data-suisou-surface~="bottom"] {
+  --suisou-drawer-hidden: 0 100%;
+  inset: auto 0 0 0;
+  width: 100dvw;
+  max-width: none;
+}
+[popover][data-suisou-surface~="drawer"]:popover-open { translate: 0 0; }
 @starting-style {
-  :where([popover], dialog)[data-suisou-surface~="drawer"]:where(:popover-open, [open]) {
-    translate: var(--suisou-drawer-hidden) 0;
+  [popover][data-suisou-surface~="drawer"]:popover-open {
+    translate: var(--suisou-drawer-hidden);
   }
 }
+[popover][data-suisou-surface~="drawer"]::backdrop { background: var(--suisou-scrim); }
 
 [data-suisou-surface~="bare"] { border-color: transparent; }
 
