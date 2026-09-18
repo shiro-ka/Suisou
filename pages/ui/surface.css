@@ -18,34 +18,34 @@
 }
 [data-suisou-surface~="none"]  { background: transparent; }
 
-:where([popover], dialog)[data-suisou-surface]::backdrop { background: var(--suisou-scrim); }
+:where(dialog)[data-suisou-surface]::backdrop { background: var(--suisou-scrim); }
 
-:where([popover], dialog)[data-suisou-surface] {
+:where(dialog)[data-suisou-surface] {
   opacity: 0;
   transition: opacity var(--suisou-motion) var(--suisou-ease),
               display var(--suisou-motion) allow-discrete,
               overlay var(--suisou-motion) allow-discrete;
 }
-:where([popover], dialog)[data-suisou-surface]:where(:popover-open, [open]) {
+:where(dialog)[data-suisou-surface]:where(:popover-open, [open]) {
   opacity: 1;
 }
 @starting-style {
-  :where([popover], dialog)[data-suisou-surface]:where(:popover-open, [open]) {
+  :where(dialog)[data-suisou-surface]:where(:popover-open, [open]) {
     opacity: 0;
   }
 }
 
-:where([popover], dialog)[data-suisou-surface]::backdrop {
+:where(dialog)[data-suisou-surface]::backdrop {
   opacity: 0;
   transition: opacity var(--suisou-motion-fast) var(--suisou-ease),
               display var(--suisou-motion-fast) allow-discrete,
               overlay var(--suisou-motion-fast) allow-discrete;
 }
-:where([popover], dialog)[data-suisou-surface]:where(:popover-open, [open])::backdrop {
+:where(dialog)[data-suisou-surface]:where(:popover-open, [open])::backdrop {
   opacity: 1;
 }
 @starting-style {
-  :where([popover], dialog)[data-suisou-surface]:where(:popover-open, [open])::backdrop {
+  :where(dialog)[data-suisou-surface]:where(:popover-open, [open])::backdrop {
     opacity: 0;
   }
 }
