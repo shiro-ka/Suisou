@@ -10,7 +10,6 @@
 
 [data-suisou-avatar] {
   flex: none;
-  box-sizing: border-box;
   width: var(--suisou-avatar, 2rem);
   height: var(--suisou-avatar, 2rem);
   border-radius: var(--suisou-radius-pill);

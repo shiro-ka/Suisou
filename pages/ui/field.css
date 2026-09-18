@@ -19,7 +19,6 @@
    それ以外で幅いっぱいにしたいときだけ block と書く。 */
 
 [data-suisou-field] {
-  box-sizing: border-box;
   font-family: inherit;
   font-size: var(--suisou-size-14);
   line-height: var(--suisou-lh-14);

@@ -22,7 +22,7 @@ TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
 # 面の段。必ず1つ書く。装飾（bare）だけでは「どの段か」を言っていない
-SURFACE_STEPS = {"panel", "item", "overlay", "none"}
+SURFACE_STEPS = {"panel", "item", "none"}   # overlay は段ではなく機能の語（2026-09-18）
 
 sys.path.insert(0, HERE)
 import solve

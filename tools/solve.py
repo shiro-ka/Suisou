@@ -80,22 +80,22 @@ def hue_dist(a, b):
     return min(d, 360 - d)
 
 # ============================================================ 定義（人が決めるもの）
-# 面の階段。bg < panel < item < overlay の順に明るく（＝手前に）なる。
+# 面の階段。bg < panel < item の順に明るく（＝手前に）なる。
 # item は「面の上に載るもの」。入力欄だけでなく、入れ子の容れ物やタグにも使う。
 # Akuarium も同じ概念を item と呼んでいた（--item-bd-l / .blackish-item-bg）。
-# ★tint は面の階段（bg < panel < item < overlay）の段ではない。
+# ★tint は面の階段（bg < panel < item）の段ではない。
 #   選択と意味色の「下地」の明度で、上に載る罫（line-weak / line-strong）から
 #   決まる。36 だったときは誰も検査していなかったので line-weak が 1.36:1 で
 #   割れていた。33 まで下げて 1.50:1 / 3.08:1 を確保している。
 #   overlay(34) より下になるが、別の軸なので順序の問題ではない。
 LADDERS = {
     # dark … 通常のダーク
-    "dark": {"bg":.15, "panel":.22, "item":.28, "overlay":.22, "tint":.33,
+    "dark": {"bg":.15, "panel":.22, "item":.28, "tint":.33,
              "line-weak":.44, "line-strong":.61, "text-disabled":.62,
              "accent":.74, "text-sub":.78, "text-main":.94},
     # dim … ライト志向のユーザーに投げる明るめの階段。極性は反転しない。
     #        bg を L30 より上げると本文 4.5:1 を満たす L が色域外に出る。
-    "dim":  {"bg":.26, "panel":.33, "item":.39, "overlay":.33, "tint":.44,
+    "dim":  {"bg":.26, "panel":.33, "item":.39, "tint":.44,
              "line-weak":.55, "line-strong":.73, "text-disabled":.74,
              "accent":.80, "text-sub":.90, "text-main":.955},
 }
@@ -132,7 +132,7 @@ FLOOR = {"hover":0.03, "selected":0.055, "semantic":0.055, "textSub":0.08}
 SEM_OFFSET = 0.15      # 意味色はアクセントより常にこれだけ強い（経験値）
 ACTIVE_DL  = -0.03
 SCRIM_ALPHA = 0.72
-SURFACES = ["panel", "item", "overlay"]   # item … 面の上に載るもの（入力欄・入れ子の容れ物など）
+SURFACES = ["panel", "item"]   # item … 面の上に載るもの（入力欄・入れ子の容れ物など）
 JND = 0.02
 
 PAIRS = [  # (ink, surface, 必要比, 用途)
@@ -142,16 +142,10 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     ("line-weak","bg",1.5,"装飾罫"),
     ("line-weak-panel","panel",1.5,"装飾罫"),
     ("line-weak-item","item",1.5,"装飾罫"),
-    ("line-weak-overlay","overlay",1.5,"装飾罫"),
     ("line-strong","bg",3.0,"入力枠 1.4.11"),
     ("line-strong-panel","panel",3.0,"入力枠 1.4.11"),
     ("line-strong-item","item",3.0,"入力枠 1.4.11"),
-    ("line-strong-overlay","overlay",3.0,"入力枠 1.4.11"),
-    ("text-sub","overlay",4.5,"本文"),
-    ("text-main","overlay",4.5,"本文"),
-    ("accent","overlay",3.0,"UI 部品"),
     ("accent","panel",3.0,"UI 部品"),
-    ("accent-active","overlay",3.0,"UI 部品(押下)"),
     ("text-main","selected-surface",4.5,"選択行の文字"),
     ("text-main","hover-surface",4.5,"hover 行の文字"),
     ("line-weak-hover","hover-surface",1.5,"hover 行の装飾罫"),
@@ -163,9 +157,6 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     ("line-weak-selected","selected-neutral-surface",1.5,"選択行(中立)の装飾罫"),
     ("line-strong-selected","selected-neutral-surface",3.0,"選択行(中立)の入力枠 1.4.11"),
     ("text-main","selected-neutral-surface",4.5,"選択行(中立)の文字"),
-    ("error","overlay",4.5,"状態文言"),
-    ("warning","overlay",4.5,"状態文言"),
-    ("success","overlay",4.5,"状態文言"),
     # ★4.5 なのは枠(3.0)と文字の兼用だから。danger ボタンは hover で
     #   error-surface を敷き、その上のラベルが error のまま ―― 文字の基準で縛る。
     #   以前は 3.0（枠）でしか縛っておらず、実測 4.88 で「守っているのに
@@ -173,7 +164,6 @@ PAIRS = [  # (ink, surface, 必要比, 用途)
     ("text-main","error-surface",4.5,"バナーの文字"),
     ("error","error-surface",4.5,"バナーの枠 / danger ボタンの文字"),
     ("error-active","error-surface",3.0,"danger ボタン(押下)"),
-    ("error-active","overlay",3.0,"danger ボタン(押下)"),
 ]
 
 # ============================================================ 導出
@@ -305,7 +295,7 @@ def sem_ratio(ar):
 def tokens(t, acc_name, acc_h):
     D = LADDERS[t["ladder"]]
     o = {}
-    for k in ["bg","panel","item","overlay","line-weak","line-strong","text-disabled","text-sub"]:
+    for k in ["bg","panel","item","line-weak","line-strong","text-disabled","text-sub"]:
         o[k] = face(D[k], t)
     o["text-main"] = face(resolve_text_main(t), t)
     o["scrim"]     = face(0.08, t)
@@ -364,8 +354,9 @@ def accent_issues(t, acc_name, acc_h):
                    (LADDERS[t["ladder"]][sf], t["cs"], t["h"])) for sf in SURFACES)
         bad.append(f"選択下地が面と近い ΔE {d:.3f}（目標 {FLOOR['selected']}）")
     for st in ("accent", "accent-active"):
-        if contrast(k[st], k["overlay"]) < 3.0:
-            bad.append(f"{st} のコントラスト不足 {contrast(k[st], k['overlay']):.2f}:1")
+        # 最悪ケースは一番明るい面。overlay を段から外したので item が最上段（2026-09-18）
+        if contrast(k[st], k["item"]) < 3.0:
+            bad.append(f"{st} のコントラスト不足 {contrast(k[st], k['item']):.2f}:1")
         d = dE(k[st], k["text-sub"])
         if d < FLOOR["textSub"]: bad.append(f"{st} が text-sub と近い ΔE {d:.3f}")
     near = min(((dE(k["accent"], k[n]), n) for n in SEM_HUE))
@@ -463,10 +454,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 #               ブラウザが accent-color から自動で決める（base.css）。
 #   warning-active / success-active … 押せる意味色は danger（error）だけ。
 #   計算は tokens() が全部やっている。使う部品ができたらここに足すだけで出る。
-THEME_TOKENS = ["bg", "panel", "item", "overlay", "hover-surface", "selected-neutral-surface",
-                "line-weak", "line-weak-panel", "line-weak-item", "line-weak-overlay",
+THEME_TOKENS = ["bg", "panel", "item", "hover-surface", "selected-neutral-surface",
+                "line-weak", "line-weak-panel", "line-weak-item",
                 "line-weak-hover", "line-weak-selected",
-                "line-strong", "line-strong-panel", "line-strong-item", "line-strong-overlay",
+                "line-strong", "line-strong-panel", "line-strong-item",
                 "line-strong-hover", "line-strong-selected",
                 "text-disabled", "text-sub", "text-main",
                 "scrim",
@@ -557,7 +548,7 @@ def write_tables(data):
     """仕様書に差し込む表。手書きの表を仕様書から消すための生成物。"""
     L = []
     L.append("### L 階段（2系統）\n")
-    keys = ["bg","panel","item","overlay","tint","line-weak","line-strong",
+    keys = ["bg","panel","item","tint","line-weak","line-strong",
             "text-disabled","accent","text-sub","text-main"]
     L.append("| | dark | dim |\n|---|---|---|")
     for k in keys:

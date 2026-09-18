@@ -26,7 +26,6 @@
    本文まで意味色にすると長文が読みにくい ―― 色は縁が言う、中身は普通に読む。 */
 
 [data-suisou-banner] {
-  box-sizing: border-box;
   border: 1px solid;
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2) var(--suisou-space-3);
