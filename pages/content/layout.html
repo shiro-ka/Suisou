@@ -421,7 +421,7 @@
       <code>grow</code> が <code>min-height: 0</code> を連れてくるので、
       中身がはみ出して親ごと伸びるのを止められる。
       <br><br>
-      ★狭い画面で柱を消したいときは、柱を <code>data-suisou-show="md"</code> にする。
+      ★狭い画面で柱を消したいときは、柱を <code>data-suisou-show="md&gt;none"</code> にする。
       <strong>兄弟が消えるだけなので、残りが自然に全幅になる</strong> ——
       grid のときのように空いた列の隙間が残ることがない。
     </p>
@@ -601,22 +601,33 @@
       <code>layout</code> に値を足すと <code>display: flex</code> が付いてきてしまい、
       <strong>ブロックのまま隠したい要素</strong>（見出し・画像）に使えないから。
       <br><br>
+      ★<strong>記法は「段 + 記号 + 語」で、記号は不等号として読む。</strong>
+      段が左の被演算子、画面幅が右 —— <code>md&gt;none</code> は
+      「md が画面より大きい」＝ 768px 未満で消える。境界の 768px ちょうどは
+      <code>md:</code> 側に入る。
+      <br><br>
+      ★<strong>戻す語（Tailwind の <code>md:block</code>）は作らない。</strong>
+      <code>display: none</code> を解除すると <code>layout</code> の
+      <code>display: flex</code> まで巻き戻ってしまうため
+      （<code>revert</code> は author origin を丸ごと巻き戻す）。
+      <strong><code>none</code> を足すだけ</strong>にして、解除の問題そのものを作らない。
+      <br><br>
       ★<code>ui/show.css</code> は <strong><code>layout.css</code> より後に読む</strong>。
       詳細度は同じ <code>[attr]</code> なので、<code>display: none</code> を勝たせるのは順序だけ。
       <strong><code>index.html</code> の並びが契約の一部</strong>になる。
     </p>
     <table>
-      <tr><th>値</th><th>出る範囲</th></tr>
-      <tr><td><code>md</code></td><td>768px 以上</td></tr>
-      <tr><td><code>lg</code></td><td>1024px 以上</td></tr>
-      <tr><td><code>under-md</code></td><td>768px 未満</td></tr>
-      <tr><td><code>under-lg</code></td><td>1024px 未満</td></tr>
+      <tr><th>値</th><th>読み</th><th>出る範囲</th></tr>
+      <tr><td><code>md&gt;none</code></td><td>md &gt; 画面</td><td>768px 以上</td></tr>
+      <tr><td><code>lg&gt;none</code></td><td>lg &gt; 画面</td><td>1024px 以上</td></tr>
+      <tr><td><code>md:none</code></td><td>md &lt;= 画面</td><td>768px 未満</td></tr>
+      <tr><td><code>lg:none</code></td><td>lg &lt;= 画面</td><td>1024px 未満</td></tr>
     </table>
     <div class="demo">
       <span class="demo-label">窓幅を変えると入れ替わる</span>
       <div data-suisou-layout="row" data-suisou-surface="panel">
-        <div class="demo-box" data-suisou-show="under-md">狭い画面だけ</div>
-        <div class="demo-box" data-suisou-show="md">広い画面だけ</div>
+        <div class="demo-box" data-suisou-show="md:none">狭い画面だけ</div>
+        <div class="demo-box" data-suisou-show="md&gt;none">広い画面だけ</div>
       </div>
     </div>
   </div>
