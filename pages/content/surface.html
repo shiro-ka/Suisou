@@ -32,27 +32,16 @@
       <tr><th>装飾（任意）</th><th>効果</th><th>使う場面</th></tr>
       <tr><td><code>bare</code></td><td>罫を消す</td>
           <td>面だけで区切る。wixdex の実測で 37箇所</td></tr>
-      <tr><td><code>tight</code></td><td>縦の余白を 16px → 8px</td>
-          <td>ヘッダ行、入力行。<strong>横は動かさない</strong></td></tr>
       <tr><td><code>empty</code></td><td>罫を破線に。まだ何も無い場所</td>
-      <tr><td><code>bleed</code></td><td>余白を 0 に</td>
-          <td>行が自分で余白を持つ一覧</td></tr>
     </table>
     <div class="demo">
-      <span class="demo-label">余白の段</span>
+      <span class="demo-label">余白</span>
       <div data-suisou-layout="stack">
-        <div data-suisou-surface="panel">既定 —— 16px</div>
-        <div data-suisou-surface="panel tight">tight —— 縦だけ 8px。左端は上と揃う</div>
-        <div data-suisou-surface="panel bleed">bleed —— 0</div>
+        <div data-suisou-surface="panel">既定 —— 8px。段は持たない</div>
         <div data-suisou-surface="panel empty">empty —— まだ何も無い場所。破線は「入るはずのものが無い」の印</div>
       </div>
     </div>
     <p class="note">
-      ★<strong><code>tight</code> は横を動かさない。</strong>
-      面を縦に並べたとき、中身の左端が揃っていないと階段がガタつくため。
-      詰めたいのはたいてい縦（ヘッダ行・入力行）だった ——
-      作例で手書きされていた4つのうち3つが「縦だけ詰めたい」で、
-      残る1つが「端まで届かせたい」。段はこの2つで足りている。
     </p>
     <p class="note">
       値は空白区切りで重ねる（<code>"panel bare"</code>）。
@@ -187,11 +176,16 @@
     <h2>未決</h2>
     <table data-suisou-table="tight">
       <tr><th>項目</th><th>状況</th></tr>
-      <tr><td>余白の段</td><td>解決済み。<code>tight</code>（縦だけ詰める）と
-          <code>bleed</code>（0）の2つ。作例の手書き4つが全部これで消えた</td></tr>
+      <tr><td>余白</td><td><strong>段を持たない。</strong>既定の 8px 一本。
+          <code>tight</code>（縦だけ詰める）と <code>bleed</code>（0）は 2026-09-18 に廃止。
+          段が要るなら <code>p-1</code> のような形で作り直す</td></tr>
       <tr><td>命名</td><td>解決済み。面は値、部品は属性名という形の違いで層を分けた</td></tr>
-      <tr><td><code>overlay</code></td><td>解決済み。面 + <code>line-strong</code> の罫 + <code>::backdrop</code> の scrim。
-          影は持たない（ダーク専用では機能しないため）</td></tr>
+      <tr><td><code>overlay</code></td><td><strong>2026-09-18 に廃止。</strong>
+          ダーク専用では面を明るくしても浮いて見えない（真っ黒で覆っても比が 0.03 しか動かない）。
+          浮くかどうかは <code>&lt;dialog&gt;</code> が言うので、膜と出入りは要素を見て当てる。
+          影も持たない（同じ理由）</td></tr>
+      <tr><td>装飾の語</td><td>検討中。<code>bare</code> / <code>empty</code> と
+          「背景を透明にする語」（旧 <code>none</code>）をまとめて見る</td></tr>
     </table>
   </div>
 

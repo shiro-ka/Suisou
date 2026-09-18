@@ -18,16 +18,17 @@
         <div data-suisou-row>しろか — hover の色ってどう決まってる？</div>
       </div>
       <span class="demo-label">ruled —— 角丸なし＋下罫。端から端まで連なる</span>
-      <div data-suisou-surface="panel bleed" data-suisou-layout="stack">
+      <div data-suisou-surface="panel" data-suisou-layout="stack">
         <div data-suisou-row="ruled">選択下地をアクセント色のままにするか</div>
         <div data-suisou-row="ruled">panel の余白に段を足す</div>
         <div data-suisou-row="ruled">block ボタンの既定を左寄せにする</div>
       </div>
     </div>
     <p class="note">
-      <code>ruled</code> は <code>surface="bleed"</code> と組で使う ——
-      <strong>行が自分で余白を持つので、容れ物の側は余白を持たない。</strong>
+      <code>ruled</code> は<strong>行が自分で余白を持つ</strong>形。
       最後の1本は引かないので、下端で罫が二重にならない。
+      ★容れ物の側の余白を 0 にする <code>surface="bleed"</code> は 2026-09-18 に廃止した
+      —— 面が縁まで詰まっているより、両端に隙間がある方がいいという判断（しろさま）。
       <br><br>
       すきまは書かなくていい。<code>ruled</code> の行を子に持つ入れ物は
       <code>:has()</code> で <code>gap: 0</code> になる ——
@@ -39,7 +40,7 @@
       <tr><td>（書かない）</td><td>角丸 8px、上下 4px / 左右 8px</td>
           <td>チャット、メニュー。行と行の間にすきまがある</td></tr>
       <tr><td><code>ruled</code></td><td>角丸なし、上下 8px、下罫。選択で左2pxの線</td>
-          <td>一覧。<code>surface="bleed"</code> の中に敷き詰める</td></tr>
+          <td>一覧。面の中に敷き詰める</td></tr>
     </table>
   </div>
 
@@ -95,7 +96,7 @@
         <div data-suisou-row="neutral" aria-selected="true">選ばれている行（neutral）</div>
       </div>
       <span class="demo-label">ruled —— 下地 + 左2pxのアクセント線</span>
-      <div data-suisou-surface="panel bleed" data-suisou-layout="stack">
+      <div data-suisou-surface="panel" data-suisou-layout="stack">
         <div data-suisou-row="ruled">ふつうの行</div>
         <div data-suisou-row="ruled" aria-selected="true">選ばれている行</div>
         <div data-suisou-row="ruled neutral" aria-selected="true">選ばれている行（neutral）—— 下地は明るさだけ、色は線1本</div>
@@ -108,7 +109,7 @@
     <h2>Media と組む</h2>
     <div class="demo">
       <span class="demo-label">&lt;div data-suisou-row="ruled" data-suisou-media&gt;</span>
-      <div data-suisou-surface="panel bleed" data-suisou-layout="stack">
+      <div data-suisou-surface="panel" data-suisou-layout="stack">
         <div data-suisou-row="ruled" data-suisou-media aria-selected="true">
           <span data-suisou-media-icon><svg data-suisou-icon="small success" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg></span>
           <div data-suisou-media-content>
