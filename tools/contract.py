@@ -29,7 +29,7 @@ def collect():
         for name, val in ATTR.findall(css):
             vals = attrs.setdefault(name, [])
             if val:
-                base = val.split(":")[-1]          # md: / lg: は同じ値の接頭辞版
+                base = re.split(r"[:>]", val)[-1]  # md: / md> は同じ値の段つき版
                 if base not in vals:
                     vals.append(base)
         states |= set(STATE.findall(css))
@@ -64,7 +64,10 @@ def render():
         L.append(f"| `data-suisou-{name}` | {' '.join(f'`{v}`' for v in vals) if vals else '（値なし）'} |")
     L.append("")
     L.append("- 値は空白区切りで併記できる（`~=` で当たる）")
-    L.append("- `layout` の値には `md:` / `lg:` の接頭辞版がある（768px / 1024px、min-width）")
+    L.append("- 値には段つき版がある（`md` 768px / `lg` 1024px）。"
+             "**記号は不等号**で、段が左・画面幅が右 ―― "
+             "`md:row` は `md <= 画面`（768px 以上）、`md>none` は `md > 画面`（768px 未満）。"
+             "境界のちょうど 768px は `md:` 側")
     L.append("- `theme` は**水域1つ＋生き物1つ**を空白区切りで書く（例 `\"hadal jelly\"`）。順不同")
     L.append("  - 水域だけ … アクセントの4トークンが未定義になる（焦点の輪が消える）")
     L.append("  - 生き物だけ／未宣言 … **色が全部未定義**になる（白地・黒文字・罫なし）")
