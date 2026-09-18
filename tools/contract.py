@@ -29,7 +29,7 @@ def collect():
         for name, val in ATTR.findall(css):
             vals = attrs.setdefault(name, [])
             if val:
-                base = re.split(r"[:>]", val)[-1]  # md: / md> は同じ値の段つき版
+                base = re.split(r"[:>]", val)[-1]  # s: / s> は同じ値の段つき版
                 if base not in vals:
                     vals.append(base)
         states |= set(STATE.findall(css))
@@ -64,10 +64,10 @@ def render():
         L.append(f"| `data-suisou-{name}` | {' '.join(f'`{v}`' for v in vals) if vals else '（値なし）'} |")
     L.append("")
     L.append("- 値は空白区切りで併記できる（`~=` で当たる）")
-    L.append("- 値には段つき版がある（`md` 768px / `lg` 1024px）。"
+    L.append("- 値には段つき版がある（`s` 768px / `m` 1024px / `l` 1280px）。"
              "**記号は不等号**で、段が左・画面幅が右 ―― "
-             "`md:row` は `md <= 画面`（768px 以上）、`md>none` は `md > 画面`（768px 未満）。"
-             "境界のちょうど 768px は `md:` 側")
+             "`s:row` は `s <= 画面`（768px 以上）、`s>none` は `s > 画面`（768px 未満）。"
+             "境界のちょうど 768px は `s:` 側")
     L.append("- `theme` は**水域1つ＋生き物1つ**を空白区切りで書く（例 `\"hadal jelly\"`）。順不同")
     L.append("  - 水域だけ … アクセントの4トークンが未定義になる（焦点の輪が消える）")
     L.append("  - 生き物だけ／未宣言 … **色が全部未定義**になる（白地・黒文字・罫なし）")
@@ -162,8 +162,19 @@ def render():
              "★**layout で子に規則を撒く唯一の語**でもあったので、落とすとモードが "
              "`stack` / `row` / `grid` の3つに揃う")
     L.append("      - 直し方: `even` → `row` ＋ 子に `grow`、"
-             "`stack md:even` → `stack md:row` ＋ 子に **`md:grow`**。"
+             "`stack md:even`（v2 の書き方）→ `stack s:row` ＋ 子に **`s:grow`**。"
              "★**素の `grow` を書くと狭い画面（`stack`）で縦に伸びる**ので接頭辞が要る")
+    L.append("    - ★**段つきの記法を全部変えた。** 接頭辞 `md:` / `lg:` を "
+             "`s:`(768) / `m:`(1024) に改名し、`l:`(1280) を新設して**3段**にした。"
+             "さらに `show` の `under-md` / `under-lg` を廃止し、"
+             "**「段 + 記号 + 語」の後置で記号を不等号として読む**形に統一した ―― "
+             "段が左の被演算子、画面幅が右。`s:row` ＝ `s <= 画面`、"
+             "`s>none` ＝ `s > 画面`。★`<` を使わないのは現場の制約で、"
+             "Blogger の XML テーマが属性値中の `<` を禁止しており、"
+             "SSR も `<` だけを `&lt;` に escape するため（`>` と `:` は素通り）")
+    L.append("      - 直し方: `md:` → `s:`、`lg:` → `m:`。"
+             "`show=\"md\"` → `show=\"s>none\"`、`show=\"under-md\"` → `show=\"s:none\"`。"
+             "★**show は旧が「出る範囲」・新が「消える範囲」で逆転している**")
     L.append("    - `start`（`justify-content: flex-start`）を落とした。"
              "**flex の既定値**なので `row` でも `stack` でも空振りし、実使用0件だった。"
              "★置き方で残る空振り（`row center` / `stack stretch`）は"
@@ -177,7 +188,7 @@ def render():
              "サイドバーの内側などに置くと親を超えて上限が効かない。"
              "親が狭い場所では固定の3つを使う")
     L.append("    - `scroll-x`（`overflow-x: auto; overflow-y: hidden`）を足した。"
-             "`scroll-x md:scroll-y` で「狭いと横に流し、広いと縦に積む」。"
+             "`scroll-x s:scroll-y` で「狭いと横に流し、広いと縦に積む」。"
              "★**高さはバーの出入りで動く** ―― `scrollbar-gutter` が効くのは左右の端だけで、"
              "上下は仕様の範囲外（CSS Overflow 3）。"
              "**余白の補正は焼き込まない**（`layout` は `padding` を持たない層で、"

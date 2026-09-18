@@ -98,7 +98,7 @@
       <tr><td><code>stack</code></td><td><code>flex-direction: column</code></td>
           <td>縦に積む。いちばん多い</td></tr>
       <tr><td><code>row</code></td><td><code>flex-direction: row; align-items: center</code></td>
-          <td>横並び。ボタン列、アイコンと文字。<code>stack md:row</code> で
+          <td>横並び。ボタン列、アイコンと文字。<code>stack s:row</code> で
               「狭いと縦積み・広いと横並び」</td></tr>
       <tr><td><code>grid</code></td><td><code>display: grid</code> ＋ <code>grid-template-columns</code></td>
           <td>升目に並べる。既定は「12rem 以上で入るだけ並べて折り返す」。
@@ -109,24 +109,24 @@
   <div class="group">
     <h2>狭いと縦積み、広いと横並び</h2>
     <p class="note">
-      <code>stack md:row</code> と書く。いちばんよく要る形。
+      <code>stack s:row</code> と書く。いちばんよく要る形。
       <br><br>
       ★<strong><code>row</code> が <code>flex-direction</code> を持つようになったのは
       2026-09-09。</strong> それまでは <code>align-items: center</code> だけだった ——
       flex の既定が row なので「単体では何も変わらない値」でよいと考えていたが、
       <strong><code>stack</code> を画面幅で解けなくなっていた</strong>。
-      <code>stack md:row</code> と書いても縦積みのままで、現場が
+      <code>stack s:row</code> と書いても縦積みのままで、現場が
       <code>@media</code> で <code>flex-direction</code> を戻す羽目になっていた
       （Mado 3 箇所 / wixdex 3 箇所）。ある現場には
-      「打ち消し：<code>stack md:row</code>（<code>md:row</code> が
+      「打ち消し：<code>stack s:row</code>（<code>s:row</code> が
       <code>flex-direction</code> を戻さない）」というコメント付きの回避まで書かれていた。
       <br><br>
       ★このページは<strong>最初から <code>row</code> をモードと呼んでいた</strong>
       （「モードは1つだけ書く」）。文書が正しく、実装だけが方向を持っていなかった。
     </p>
     <div class="demo">
-      <span class="demo-label">stack md:row —— 画面を広げると横に並ぶ</span>
-      <div data-suisou-layout="stack md:row" data-suisou-surface="panel">
+      <span class="demo-label">stack s:row —— 画面を広げると横に並ぶ</span>
+      <div data-suisou-layout="stack s:row" data-suisou-surface="panel">
         <div class="demo-box" data-suisou-layout="grow stack">あ</div>
         <div class="demo-box" data-suisou-layout="grow stack">い</div>
         <div class="demo-box" data-suisou-layout="grow stack">う</div>
@@ -232,7 +232,7 @@
       <tr><td><code>scroll-x</code></td>
           <td><code>overflow-x: auto; overflow-y: hidden</code></td>
           <td>領域の中だけ横に流す。<code>row</code> と組で使う。
-              <code>scroll-x md:scroll-y</code> で「狭いと横に流し、広いと縦に積む」。
+              <code>scroll-x s:scroll-y</code> で「狭いと横に流し、広いと縦に積む」。
               ★<strong>高さはバーの出入りで動く</strong>（下記）</td></tr>
       <tr><td><code>grid</code></td><td><code>grid-template-columns: var(--suisou-grid-cols, …)</code></td>
           <td>升目に並べる。既定は「12rem 以上で入るだけ」。
@@ -421,7 +421,7 @@
       <code>grow</code> が <code>min-height: 0</code> を連れてくるので、
       中身がはみ出して親ごと伸びるのを止められる。
       <br><br>
-      ★狭い画面で柱を消したいときは、柱を <code>data-suisou-show="md&gt;none"</code> にする。
+      ★狭い画面で柱を消したいときは、柱を <code>data-suisou-show="s&gt;none"</code> にする。
       <strong>兄弟が消えるだけなので、残りが自然に全幅になる</strong> ——
       grid のときのように空いた列の隙間が残ることがない。
     </p>
@@ -434,14 +434,14 @@
       語彙は増えない。</strong>
     </p>
     <div class="demo">
-      <span class="demo-label">data-suisou-layout="stack md:row" —— 窓を狭めると縦に積む</span>
-      <div data-suisou-layout="stack md:row">
+      <span class="demo-label">data-suisou-layout="stack s:row" —— 窓を狭めると縦に積む</span>
+      <div data-suisou-layout="stack s:row">
         <div class="demo-box">あ</div>
         <div class="demo-box">い</div>
         <div class="demo-box">う</div>
       </div>
-      <span class="demo-label">data-suisou-layout="stack md:row" —— 骨格そのものを切り替える</span>
-      <div data-suisou-layout="stack md:row" class="demo-frame">
+      <span class="demo-label">data-suisou-layout="stack s:row" —— 骨格そのものを切り替える</span>
+      <div data-suisou-layout="stack s:row" class="demo-frame">
         <div data-suisou-surface="panel" style="min-width: 120px">柱</div>
         <div data-suisou-layout="stack grow">
           <div data-suisou-surface="panel">帯</div>
@@ -450,9 +450,10 @@
       </div>
     </div>
     <table data-suisou-table="tight">
-      <tr><th>接頭辞</th><th>効く幅</th><th>意味</th></tr>
-      <tr><td><code>md:</code></td><td>768px 以上</td><td>縦積みをやめて横に割れる幅</td></tr>
-      <tr><td><code>lg:</code></td><td>1024px 以上</td><td>サイドバーを常時出せる幅</td></tr>
+      <tr><th>段</th><th>効く幅</th><th>意味</th><th><code>container</code></th></tr>
+      <tr><td><code>s:</code></td><td>768px 以上</td><td>縦積みをやめて横に割れる幅</td><td><code>container-s</code> 736px</td></tr>
+      <tr><td><code>m:</code></td><td>1024px 以上</td><td>サイドバーを常時出せる幅</td><td><code>container-m</code> 1024px</td></tr>
+      <tr><td><code>l:</code></td><td>1280px 以上</td><td>最大幅まで使い切る幅</td><td><code>container-l</code> 1280px</td></tr>
     </table>
     <p class="note">
       ★<strong>下から積む</strong>（<code>min-width</code>）。Tailwind と同じ向きなので、
@@ -462,7 +463,7 @@
       <strong>並びの向きが変わる幅だけを持つ</strong>。
       「サイドバーを 200px にする」のような数値は現場が持ち、
       現場の <code>@media</code> でやる ——
-      作例のチャットがその形（並びは <code>stack md:row</code>、
+      作例のチャットがその形（並びは <code>stack s:row</code>、
       幅は <code>styles.css</code> の <code>.demo-aside</code>）。
     </p>
   </div>
@@ -498,7 +499,7 @@
     <table data-suisou-table="tight">
       <tr><th>項目</th><th>状況</th></tr>
       <tr><td>画面幅で変わる並び</td>
-          <td>解決済み。値に <code>md:</code> / <code>lg:</code> を付ける。
+          <td>解決済み。値に <code>s:</code> / <code>m:</code> を付ける。
               全値に接頭辞版がある（区画を除く）。
               <code>layout.css</code> 全体で gzip 615 バイト</td></tr>
       <tr><td>格子（grid）</td>
@@ -602,9 +603,9 @@
       <strong>ブロックのまま隠したい要素</strong>（見出し・画像）に使えないから。
       <br><br>
       ★<strong>記法は「段 + 記号 + 語」で、記号は不等号として読む。</strong>
-      段が左の被演算子、画面幅が右 —— <code>md&gt;none</code> は
+      段が左の被演算子、画面幅が右 —— <code>s&gt;none</code> は
       「md が画面より大きい」＝ 768px 未満で消える。境界の 768px ちょうどは
-      <code>md:</code> 側に入る。
+      <code>s:</code> 側に入る。
       <br><br>
       ★<strong>戻す語（Tailwind の <code>md:block</code>）は作らない。</strong>
       <code>display: none</code> を解除すると <code>layout</code> の
@@ -618,16 +619,18 @@
     </p>
     <table>
       <tr><th>値</th><th>読み</th><th>出る範囲</th></tr>
-      <tr><td><code>md&gt;none</code></td><td>md &gt; 画面</td><td>768px 以上</td></tr>
-      <tr><td><code>lg&gt;none</code></td><td>lg &gt; 画面</td><td>1024px 以上</td></tr>
-      <tr><td><code>md:none</code></td><td>md &lt;= 画面</td><td>768px 未満</td></tr>
-      <tr><td><code>lg:none</code></td><td>lg &lt;= 画面</td><td>1024px 未満</td></tr>
+      <tr><td><code>s&gt;none</code></td><td>s &gt; 画面</td><td>768px 以上</td></tr>
+      <tr><td><code>m&gt;none</code></td><td>m &gt; 画面</td><td>1024px 以上</td></tr>
+      <tr><td><code>s:none</code></td><td>s &lt;= 画面</td><td>768px 未満</td></tr>
+      <tr><td><code>m:none</code></td><td>m &lt;= 画面</td><td>1024px 未満</td></tr>
+      <tr><td><code>l&gt;none</code></td><td>l &gt; 画面</td><td>1280px 以上</td></tr>
+      <tr><td><code>l:none</code></td><td>l &lt;= 画面</td><td>1280px 未満</td></tr>
     </table>
     <div class="demo">
       <span class="demo-label">窓幅を変えると入れ替わる</span>
       <div data-suisou-layout="row" data-suisou-surface="panel">
-        <div class="demo-box" data-suisou-show="md:none">狭い画面だけ</div>
-        <div class="demo-box" data-suisou-show="md&gt;none">広い画面だけ</div>
+        <div class="demo-box" data-suisou-show="s:none">狭い画面だけ</div>
+        <div class="demo-box" data-suisou-show="s&gt;none">広い画面だけ</div>
       </div>
     </div>
   </div>

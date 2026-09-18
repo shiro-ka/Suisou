@@ -7,22 +7,31 @@
 [data-suisou-text~="s28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
 [data-suisou-text~="s32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
 @media (min-width: 768px) {
-  [data-suisou-text~="md:s12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
-  [data-suisou-text~="md:s14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
-  [data-suisou-text~="md:s16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
-  [data-suisou-text~="md:s20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
-  [data-suisou-text~="md:s24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
-  [data-suisou-text~="md:s28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
-  [data-suisou-text~="md:s32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
+  [data-suisou-text~="s:s12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
+  [data-suisou-text~="s:s14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
+  [data-suisou-text~="s:s16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
+  [data-suisou-text~="s:s20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
+  [data-suisou-text~="s:s24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
+  [data-suisou-text~="s:s28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
+  [data-suisou-text~="s:s32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
 }
 @media (min-width: 1024px) {
-  [data-suisou-text~="lg:s12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
-  [data-suisou-text~="lg:s14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
-  [data-suisou-text~="lg:s16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
-  [data-suisou-text~="lg:s20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
-  [data-suisou-text~="lg:s24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
-  [data-suisou-text~="lg:s28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
-  [data-suisou-text~="lg:s32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
+  [data-suisou-text~="m:s12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
+  [data-suisou-text~="m:s14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
+  [data-suisou-text~="m:s16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
+  [data-suisou-text~="m:s20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
+  [data-suisou-text~="m:s24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
+  [data-suisou-text~="m:s28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
+  [data-suisou-text~="m:s32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
+}
+@media (min-width: 1280px) {
+  [data-suisou-text~="l:s12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
+  [data-suisou-text~="l:s14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
+  [data-suisou-text~="l:s16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
+  [data-suisou-text~="l:s20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
+  [data-suisou-text~="l:s24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
+  [data-suisou-text~="l:s28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
+  [data-suisou-text~="l:s32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
 }
 [data-suisou-text~="doc"] { line-height: calc(var(--suisou-type-lh) + 0.25rem); }
 [data-suisou-text~="sub"]     { color: var(--suisou-text-sub); }
