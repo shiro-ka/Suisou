@@ -14,42 +14,49 @@
     <div class="demo">
       <span class="demo-label">data-suisou-surface="panel"</span>
       <div data-suisou-surface="panel">面 + 罫。既定</div>
-      <div data-suisou-surface="panel bare">罫なし。面だけで区切る</div>
-      <div data-suisou-surface="none">段を上げず、罫だけで囲う</div>
+      <div data-suisou-surface="panel bd-none">罫なし。面だけで区切る</div>
+      <div data-suisou-surface="panel bg-none">段を上げず、罫だけで囲う</div>
     </div>
     <table data-suisou-table="tight">
       <tr><th>段（必須・1つ）</th><th>面</th><th>使う場面</th></tr>
       <tr><td><code>panel</code></td><td><code>--suisou-panel</code></td>
-          <td>いちばん普通の容れ物。Mado の実測で 46箇所</td></tr>
+          <td>いちばん普通の容れ物。地べたに敷いて、その上にモノを載せる</td></tr>
       <tr><td><code>item</code></td><td><code>--suisou-item</code></td>
-          <td>1段手前。入力欄、入れ子の容れ物、タグ</td></tr>
-      <tr><td><code>overlay</code></td><td><code>--suisou-overlay</code></td>
-          <td>浮くもの。罫が <code>line-strong</code> に上がる。影は持たない</td></tr>
-      <tr><td><code>none</code></td><td>持たない</td>
-          <td>段を上げず罫だけで囲う。実測では 1箇所</td></tr>
+          <td>1段手前。panel の中に置く入れ子の容れ物</td></tr>
     </table>
+    <p class="note">
+      ★<strong>階段は Suisou の言葉。</strong>
+      背景（<code>bg</code>）があって、その上に入れ物（<code>panel</code>）を配置して、
+      その中に UI のモノ（<code>item</code>）を入れる。
+      <strong><code>item</code> の中に <code>item</code> は想定していない</strong> ——
+      そうしたくなったら UI 側に改善の余地があるという合図。だから階段はこの3段で終わり。
+    </p>
     <table data-suisou-table="tight">
-      <tr><th>装飾（任意）</th><th>効果</th><th>使う場面</th></tr>
-      <tr><td><code>bare</code></td><td>罫を消す</td>
-          <td>面だけで区切る。wixdex の実測で 37箇所</td></tr>
-      <tr><td><code>empty</code></td><td>罫を破線に。まだ何も無い場所</td>
+      <tr><th>装飾（任意）</th><th>効果</th></tr>
+      <tr><td><code>bd-none</code></td><td>罫を消す（<code>border-color: transparent</code>）</td></tr>
+      <tr><td><code>bd-dash</code></td><td>罫を破線に（<code>border-style: dashed</code>）</td></tr>
+      <tr><td><code>bg-none</code></td><td>背景を消す（<code>background: transparent</code>）</td></tr>
     </table>
     <div class="demo">
-      <span class="demo-label">余白</span>
+      <span class="demo-label">装飾</span>
       <div data-suisou-layout="stack">
-        <div data-suisou-surface="panel">既定 —— 8px。段は持たない</div>
-        <div data-suisou-surface="panel empty">empty —— まだ何も無い場所。破線は「入るはずのものが無い」の印</div>
+        <div data-suisou-surface="panel">既定 —— 罫は実線、余白 8px。段は持たない</div>
+        <div data-suisou-surface="panel bd-dash">bd-dash —— 破線。まだ何も無い場所に</div>
+        <div data-suisou-surface="panel bd-none">bd-none —— 罫なし。面だけで区切る</div>
+        <div data-suisou-surface="panel bg-none">bg-none —— 背景なし。罫だけで囲う</div>
       </div>
     </div>
     <p class="note">
-    </p>
-    <p class="note">
-      値は空白区切りで重ねる（<code>"panel bare"</code>）。
+      値は空白区切りで重ねる（<code>"panel bd-dash"</code>）。
       <strong>段を書かずに装飾だけ書いても意味が通らない</strong> ——
       面だと宣言しておいてどの段か言っていないため。
-      <code>tools/lint_css.py</code> が段をちょうど1つ持っているか検査する。
+      <code>tools/lint_css.py</code> が段をちょうど1つ持っているか検査する
+      （<code>drawer</code> は段を持たない独立した語なので除く）。
+      <br><br>
+      ★<strong>属性だけでは何も起きない。</strong>
+      <code>border</code> / <code>border-radius</code> / <code>padding</code> は段の語が持つ。
+      値を書かせる設計にしてある。
     </p>
-    <p class="note">値は空白区切りで重ねられる（<code>"panel bare"</code>）。</p>
   </div>
 
   <div class="group">
@@ -149,7 +156,7 @@
       <div data-suisou-layout="stack" data-suisou-surface="panel">
         外側 — panel
         <div data-suisou-surface="item">内側 — item。1段手前</div>
-        <div data-suisou-surface="none">内側 — outline。面を持たない</div>
+        <div data-suisou-surface="panel bg-none">内側 — outline。面を持たない</div>
       </div>
     </div>
   </div>
@@ -184,8 +191,12 @@
           ダーク専用では面を明るくしても浮いて見えない（真っ黒で覆っても比が 0.03 しか動かない）。
           浮くかどうかは <code>&lt;dialog&gt;</code> が言うので、膜と出入りは要素を見て当てる。
           影も持たない（同じ理由）</td></tr>
-      <tr><td>装飾の語</td><td>検討中。<code>bare</code> / <code>empty</code> と
-          「背景を透明にする語」（旧 <code>none</code>）をまとめて見る</td></tr>
+      <tr><td>装飾の語</td><td>解決済み（2026-09-18）。「対象-状態」に統一 ——
+          <code>bd-none</code> / <code>bd-dash</code> / <code>bg-none</code>。
+          旧 <code>bare</code> / <code>empty</code> / 段の <code>none</code> がこれに移った</td></tr>
+      <tr><td>辺の語</td><td><code>drawer</code> の <code>end</code> / <code>start</code> /
+          <code>top</code> / <code>bottom</code> は <code>rule</code> に合わせてある。
+          ★<code>rule</code> はまだ読んでいないので、そのとき揃え直す</td></tr>
     </table>
   </div>
 
