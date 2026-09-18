@@ -11,7 +11,7 @@
     <h2>寸法</h2>
     <div class="demo">
       <span class="demo-label">small / 既定 / large</span>
-      <div data-suisou-layout="row" data-suisou-surface="panel">
+      <div data-suisou-layout="row" data-suisou-tray="panel">
         <div data-suisou-avatar="small">し</div>
         <div data-suisou-avatar>し</div>
         <div data-suisou-avatar="large">し</div>
@@ -35,7 +35,7 @@
     <h2>画像を入れる</h2>
     <div class="demo">
       <span class="demo-label">&lt;img data-suisou-avatar&gt; —— 同じ属性でいい</span>
-      <div data-suisou-layout="row" data-suisou-surface="panel">
+      <div data-suisou-layout="row" data-suisou-tray="panel">
         <img data-suisou-avatar src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23334'/%3E%3Ccircle cx='32' cy='24' r='12' fill='%23889'/%3E%3Cellipse cx='32' cy='58' rx='22' ry='18' fill='%23889'/%3E%3C/svg%3E" alt="">
         <div data-suisou-avatar>し</div>
         <div data-suisou-avatar>あ</div>
@@ -53,7 +53,7 @@
     <h2>Media と組む</h2>
     <div class="demo">
       <span class="demo-label">media-icon の中に入れる</span>
-      <div data-suisou-surface="panel" data-suisou-layout="stack" class="gap-1">
+      <div data-suisou-tray="panel" data-suisou-layout="stack" class="gap-1">
         <div data-suisou-row data-suisou-media>
           <div data-suisou-media-icon data-suisou-avatar>し</div>
           <div data-suisou-media-content>
@@ -95,7 +95,7 @@
       このページに最初から書いてあったが、<strong>その角丸側が無かった</strong>（2026-09-09 に追加）。
       <br><br>
       ★現場が同じものを部品として自作し、<strong>11 箇所</strong>で使っていた。
-      中身は <code>surface="item"</code> + <code>layout="stack center middle"</code> + 正方形の実寸だけで、
+      中身は <code>tray="item"</code> + <code>layout="stack center middle"</code> + 正方形の実寸だけで、
       <strong>新しい概念を何も足していなかった</strong> —— つまり Suisou 側に置ける。
       <br><br>
       ★色は持たない。中の <code>svg</code> に <code>data-suisou-icon="accent"</code> などを書く。

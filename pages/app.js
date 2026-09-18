@@ -18,7 +18,7 @@ const PAGES = {
   palette:    { group: '土台', label: 'Palette',    enhance: enhancePalette },
   typography: { group: '土台', label: 'Typography', enhance: enhanceTypography },
   tokens:     { group: '土台', label: 'Tokens', enhance: enhanceTokens },
-  surface:    { group: '土台', label: 'Surface' },
+  tray:    { group: '土台', label: 'Tray' },
   layout:     { group: '土台', label: 'Layout' },
   button:     { group: '部品', label: 'Button' },
   code:       { group: '部品', label: 'Code' },

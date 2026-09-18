@@ -126,7 +126,7 @@
     </p>
     <div class="demo">
       <span class="demo-label">stack s:row —— 画面を広げると横に並ぶ</span>
-      <div data-suisou-layout="stack s:row" data-suisou-surface="panel">
+      <div data-suisou-layout="stack s:row" data-suisou-tray="panel">
         <div class="demo-box" data-suisou-layout="grow stack">あ</div>
         <div class="demo-box" data-suisou-layout="grow stack">い</div>
         <div class="demo-box" data-suisou-layout="grow stack">う</div>
@@ -144,13 +144,13 @@
     <div class="demo">
       <span class="demo-label">row —— 高さは中身なり</span>
       <div data-suisou-layout="row">
-        <div data-suisou-surface="panel">短い</div>
-        <div data-suisou-surface="panel">長い<br>2行<br>3行</div>
+        <div data-suisou-tray="panel">短い</div>
+        <div data-suisou-tray="panel">長い<br>2行<br>3行</div>
       </div>
       <span class="demo-label">row stretch —— 高さが揃う</span>
       <div data-suisou-layout="row stretch">
-        <div data-suisou-surface="panel">短い</div>
-        <div data-suisou-surface="panel">長い<br>2行<br>3行</div>
+        <div data-suisou-tray="panel">短い</div>
+        <div data-suisou-tray="panel">長い<br>2行<br>3行</div>
       </div>
     </div>
   </div>
@@ -280,31 +280,31 @@
     </p>
     <div class="demo">
       <span class="demo-label">既定（start）</span>
-      <div data-suisou-layout="row" data-suisou-surface="panel">
+      <div data-suisou-layout="row" data-suisou-tray="panel">
         <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
       </div>
       <span class="demo-label">stack center —— 交差軸の中央（積んで横は中央）</span>
-      <div data-suisou-layout="stack center" data-suisou-surface="panel">
+      <div data-suisou-layout="stack center" data-suisou-tray="panel">
         <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
       </div>
       <span class="demo-label">middle —— 主軸の中央</span>
-      <div data-suisou-layout="row middle" data-suisou-surface="panel">
+      <div data-suisou-layout="row middle" data-suisou-tray="panel">
         <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
       </div>
       <span class="demo-label">end</span>
-      <div data-suisou-layout="row end" data-suisou-surface="panel">
+      <div data-suisou-layout="row end" data-suisou-tray="panel">
         <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
       </div>
       <span class="demo-label">between —— 子が2つ</span>
-      <div data-suisou-layout="row between" data-suisou-surface="panel">
+      <div data-suisou-layout="row between" data-suisou-tray="panel">
         <div class="demo-box">左</div><div class="demo-box">右</div>
       </div>
       <span class="demo-label">between —— 子が3つ。全部ばらける</span>
-      <div data-suisou-layout="row between" data-suisou-surface="panel">
+      <div data-suisou-layout="row between" data-suisou-tray="panel">
         <div class="demo-box">あ</div><div class="demo-box">い</div><div class="demo-box">う</div>
       </div>
       <span class="demo-label">grow があると効かない（between を書いてある）</span>
-      <div data-suisou-layout="row between" data-suisou-surface="panel">
+      <div data-suisou-layout="row between" data-suisou-tray="panel">
         <div class="demo-box">左</div>
         <div class="demo-box" data-suisou-layout="grow">grow</div>
         <div class="demo-box">右</div>
@@ -357,18 +357,18 @@
       合うのは「クラシック型のバーが実際に出ている」ときだけで、
       <strong>出ていないときとオーバーレイ型の環境では下だけ狭くなる</strong>。
       そもそも <code>layout</code> は <code>padding</code> を持たない
-      —— 面の内側の余白は <code>surface</code> の担当で、
-      <strong><code>surface.css</code> は <code>layout.css</code> より後に読まれる</strong>ので、
+      —— 面の内側の余白は <code>tray</code> の担当で、
+      <strong><code>tray.css</code> は <code>layout.css</code> より後に読まれる</strong>ので、
       書いても上書きされる。<strong>穴は塞がずに空けておき、要る現場が面の側で調整する。</strong>
     </p>
     <div class="demo">
       <span class="demo-label">中身が少ない —— バーは出ない</span>
-      <div data-suisou-layout="stack scroll-y" data-suisou-surface="panel" class="demo-frame">
+      <div data-suisou-layout="stack scroll-y" data-suisou-tray="panel" class="demo-frame">
         <div class="demo-box">1</div>
         <div class="demo-box">2</div>
       </div>
       <span class="demo-label">中身が多い —— バーの分だけ中身が細くなる</span>
-      <div data-suisou-layout="stack scroll-y" data-suisou-surface="panel" class="demo-frame">
+      <div data-suisou-layout="stack scroll-y" data-suisou-tray="panel" class="demo-frame">
         <div class="demo-box">1</div>
         <div class="demo-box">2</div>
         <div class="demo-box">3</div>
@@ -396,23 +396,23 @@
     <div class="demo">
       <span class="demo-label">柱 + 帯 + 本体 + 入力</span>
       <div data-suisou-layout="row" class="demo-frame">
-        <div data-suisou-surface="panel" data-suisou-layout="stack scroll-y" style="width: 120px">
+        <div data-suisou-tray="panel" data-suisou-layout="stack scroll-y" style="width: 120px">
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
         </div>
         <div data-suisou-layout="stack grow">
-          <div data-suisou-surface="panel">ヘッダ</div>
-          <div data-suisou-surface="panel" data-suisou-layout="grow scroll-y">本体</div>
-          <div data-suisou-surface="panel">入力</div>
+          <div data-suisou-tray="panel">ヘッダ</div>
+          <div data-suisou-tray="panel" data-suisou-layout="grow scroll-y">本体</div>
+          <div data-suisou-tray="panel">入力</div>
         </div>
       </div>
       <span class="demo-label">柱を消せば、そのまま1列になる</span>
       <div data-suisou-layout="row" class="demo-frame">
         <div data-suisou-layout="stack grow">
-          <div data-suisou-surface="panel">ヘッダ</div>
-          <div data-suisou-surface="panel" data-suisou-layout="grow scroll-y">本体</div>
-          <div data-suisou-surface="panel">入力</div>
+          <div data-suisou-tray="panel">ヘッダ</div>
+          <div data-suisou-tray="panel" data-suisou-layout="grow scroll-y">本体</div>
+          <div data-suisou-tray="panel">入力</div>
         </div>
       </div>
     </div>
@@ -442,10 +442,10 @@
       </div>
       <span class="demo-label">data-suisou-layout="stack s:row" —— 骨格そのものを切り替える</span>
       <div data-suisou-layout="stack s:row" class="demo-frame">
-        <div data-suisou-surface="panel" style="min-width: 120px">柱</div>
+        <div data-suisou-tray="panel" style="min-width: 120px">柱</div>
         <div data-suisou-layout="stack grow">
-          <div data-suisou-surface="panel">帯</div>
-          <div data-suisou-surface="panel" data-suisou-layout="grow">本体</div>
+          <div data-suisou-tray="panel">帯</div>
+          <div data-suisou-tray="panel" data-suisou-layout="grow">本体</div>
         </div>
       </div>
     </div>
@@ -532,12 +532,12 @@
     </p>
     <div class="demo">
       <span class="demo-label">grow 2 : 3</span>
-      <div data-suisou-layout="row" data-suisou-surface="panel">
+      <div data-suisou-layout="row" data-suisou-tray="panel">
         <div class="demo-box" data-suisou-layout="grow" style="--suisou-grow: 2">2</div>
         <div class="demo-box" data-suisou-layout="grow" style="--suisou-grow: 3">3</div>
       </div>
       <span class="demo-label">中身の長さが違っても比は守られる</span>
-      <div data-suisou-layout="row" data-suisou-surface="panel">
+      <div data-suisou-layout="row" data-suisou-tray="panel">
         <div class="demo-box" data-suisou-layout="grow">みじかい</div>
         <div class="demo-box" data-suisou-layout="grow">とてもとても長い中身がここに入る</div>
       </div>
@@ -561,7 +561,7 @@
     </p>
     <div class="demo">
       <span class="demo-label">既定 —— 12rem 以上で入るだけ</span>
-      <div data-suisou-layout="grid" data-suisou-surface="panel">
+      <div data-suisou-layout="grid" data-suisou-tray="panel">
         <div class="demo-box">1</div><div class="demo-box">2</div><div class="demo-box">3</div>
         <div class="demo-box">4</div><div class="demo-box">5</div>
       </div>
@@ -569,7 +569,7 @@
     <div class="demo">
       <span class="demo-label">--suisou-grid-cols: repeat(5, minmax(0,1fr))</span>
       <div data-suisou-layout="grid" style="--suisou-grid-cols: repeat(5, minmax(0,1fr))"
-           data-suisou-surface="panel">
+           data-suisou-tray="panel">
         <div class="demo-box">1</div><div class="demo-box">2</div><div class="demo-box">3</div>
         <div class="demo-box">4</div><div class="demo-box">5</div><div class="demo-box">6</div>
         <div class="demo-box">7</div>
@@ -578,7 +578,7 @@
     <div class="demo">
       <span class="demo-label">--suisou-grid-cols: 1fr 12rem —— 左が余り・右が固定</span>
       <div data-suisou-layout="grid" style="--suisou-grid-cols: 1fr 12rem"
-           data-suisou-surface="panel">
+           data-suisou-tray="panel">
         <div class="demo-box">本文</div><div class="demo-box">脇</div>
       </div>
     </div>
@@ -628,7 +628,7 @@
     </table>
     <div class="demo">
       <span class="demo-label">窓幅を変えると入れ替わる</span>
-      <div data-suisou-layout="row" data-suisou-surface="panel">
+      <div data-suisou-layout="row" data-suisou-tray="panel">
         <div class="demo-box" data-suisou-show="s:none">狭い画面だけ</div>
         <div class="demo-box" data-suisou-show="s&gt;none">広い画面だけ</div>
       </div>

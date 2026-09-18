@@ -9,7 +9,7 @@
 
    ★値は必須で1つ（error / warning / success）。裸の banner は無い ――
      「知らせる」と言っておいて何の知らせか言わないことはできない。
-     surface が段を必須にしているのと同じ理屈。
+     tray が段を必須にしているのと同じ理屈。
 
    ★色の組はぜんぶ solve.py が検証済み。PAIRS に「バナーの文字」
      「バナーの枠」の行があり、text-main on error-surface 4.5:1 /
