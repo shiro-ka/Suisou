@@ -77,7 +77,6 @@
    後ろが操作できないことは面ではなく scrim（<dialog> の ::backdrop）が伝える。 */
 [data-suisou-surface~="overlay"] {
   background: var(--suisou-overlay);
-  border-color: var(--suisou-line-strong-overlay);
   --suisou-line-weak: var(--suisou-line-weak-overlay);
   --suisou-line-strong: var(--suisou-line-strong-overlay);
 }

@@ -51,15 +51,14 @@ const SUISOU = {
     "clown",
     "turtle",
     "teal",
+    "jelly",
     "blue",
     "indigo",
     "coral",
     "magenta",
     "seal"
    ],
-   "warnings": {
-    "jelly": "選択下地が面と近い ΔE 0.046（目標 0.055）"
-   }
+   "warnings": {}
   },
   {
    "name": "fjord",
