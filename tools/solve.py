@@ -90,12 +90,12 @@ def hue_dist(a, b):
 #   overlay(34) より下になるが、別の軸なので順序の問題ではない。
 LADDERS = {
     # dark … 通常のダーク
-    "dark": {"bg":.15, "panel":.22, "item":.28, "overlay":.34, "tint":.33,
+    "dark": {"bg":.15, "panel":.22, "item":.28, "overlay":.22, "tint":.33,
              "line-weak":.44, "line-strong":.61, "text-disabled":.62,
              "accent":.74, "text-sub":.78, "text-main":.94},
     # dim … ライト志向のユーザーに投げる明るめの階段。極性は反転しない。
     #        bg を L30 より上げると本文 4.5:1 を満たす L が色域外に出る。
-    "dim":  {"bg":.26, "panel":.33, "item":.39, "overlay":.45, "tint":.44,
+    "dim":  {"bg":.26, "panel":.33, "item":.39, "overlay":.33, "tint":.44,
              "line-weak":.55, "line-strong":.73, "text-disabled":.74,
              "accent":.80, "text-sub":.90, "text-main":.955},
 }
@@ -199,7 +199,11 @@ def resolve_hover(t):
     暗い側なら載るインクのコントラストはむしろ上がる。
     """
     D = LADDERS[t["ladder"]]
-    faces = ["bg"] + SURFACES
+    # ★tint（選択の下地）も避ける。ここを面だけにしていた頃は、overlay が tint より
+    #   明るい位置に居たおかげで hover が下へ押し出されていただけで、**偶然の依存**
+    #   だった（2026-09-18 に overlay を panel と同じ L にしたら hover が tint に
+    #   重なって 36 組すべてが「hover と選択（中立）が近すぎ」で落ちた）。
+    faces = ["bg"] + SURFACES + ["tint"]
     L = D["tint"]
     while L > 0.02 and min(dE(face(L, t), face(D[s], t))
                            for s in faces) < FLOOR["hover"]:
