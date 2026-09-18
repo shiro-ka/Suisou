@@ -16,7 +16,6 @@
    text-sub(L78) と 1.00:1 になり、線が消える。 */
 
 [data-suisou-button] {
-  box-sizing: border-box;
   font-family: inherit;
   font-size: var(--suisou-size-14);
   line-height: var(--suisou-lh-14);

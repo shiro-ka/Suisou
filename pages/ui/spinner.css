@@ -42,7 +42,6 @@
 [data-suisou-spinner] {
   --suisou-spinner: var(--suisou-icon);      /* 20px。現場が上書きする */
   --suisou-spinner-time: 800ms;
-  box-sizing: border-box;
   display: inline-block;
   flex: none;
   width: var(--suisou-spinner);

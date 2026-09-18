@@ -22,7 +22,6 @@
 
 [data-suisou-tile] {
   flex: none;
-  box-sizing: border-box;
   width: var(--suisou-tile, 2.25rem);
   height: var(--suisou-tile, 2.25rem);
   border-radius: var(--suisou-radius);

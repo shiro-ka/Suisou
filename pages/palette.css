@@ -5,8 +5,6 @@
   --suisou-panel-hex: "#1a1a1d";
   --suisou-item: oklch(28.00% 0.0060 286);
   --suisou-item-hex: "#28282c";
-  --suisou-overlay: oklch(22.00% 0.0060 286);
-  --suisou-overlay-hex: "#1a1a1d";
   --suisou-hover-surface: oklch(19.00% 0.0060 286);
   --suisou-hover-surface-hex: "#131316";
   --suisou-selected-neutral-surface: oklch(33.00% 0.0060 286);
@@ -17,8 +15,6 @@
   --suisou-line-weak-panel-hex: "#39393d";
   --suisou-line-weak-item: oklch(38.91% 0.0060 286);
   --suisou-line-weak-item-hex: "#444448";
-  --suisou-line-weak-overlay: oklch(34.70% 0.0060 286);
-  --suisou-line-weak-overlay-hex: "#39393d";
   --suisou-line-weak-hover: oklch(33.04% 0.0060 286);
   --suisou-line-weak-hover-hex: "#353538";
   --suisou-line-weak-selected: oklch(43.36% 0.0060 286);
@@ -29,8 +25,6 @@
   --suisou-line-strong-panel-hex: "#68686c";
   --suisou-line-strong-item: oklch(55.78% 0.0060 286);
   --suisou-line-strong-item-hex: "#737377";
-  --suisou-line-strong-overlay: oklch(51.74% 0.0060 286);
-  --suisou-line-strong-overlay-hex: "#68686c";
   --suisou-line-strong-hover: oklch(50.23% 0.0060 286);
   --suisou-line-strong-hover-hex: "#636367";
   --suisou-line-strong-selected: oklch(60.36% 0.0060 286);
@@ -66,8 +60,6 @@
   --suisou-panel-hex: "#0f1a2f";
   --suisou-item: oklch(28.00% 0.0440 262);
   --suisou-item-hex: "#1d293f";
-  --suisou-overlay: oklch(22.00% 0.0440 262);
-  --suisou-overlay-hex: "#0f1a2f";
   --suisou-hover-surface: oklch(19.00% 0.0440 262);
   --suisou-hover-surface-hex: "#091327";
   --suisou-selected-neutral-surface: oklch(33.00% 0.0440 262);
@@ -78,8 +70,6 @@
   --suisou-line-weak-panel-hex: "#2d3a51";
   --suisou-line-weak-item: oklch(38.89% 0.0440 262);
   --suisou-line-weak-item-hex: "#38455d";
-  --suisou-line-weak-overlay: oklch(34.69% 0.0440 262);
-  --suisou-line-weak-overlay-hex: "#2d3a51";
   --suisou-line-weak-hover: oklch(33.02% 0.0440 262);
   --suisou-line-weak-hover-hex: "#29354c";
   --suisou-line-weak-selected: oklch(43.13% 0.0440 262);
@@ -90,8 +80,6 @@
   --suisou-line-strong-panel-hex: "#5a6982";
   --suisou-line-strong-item: oklch(55.75% 0.0440 262);
   --suisou-line-strong-item-hex: "#66748e";
-  --suisou-line-strong-overlay: oklch(51.70% 0.0440 262);
-  --suisou-line-strong-overlay-hex: "#5a6982";
   --suisou-line-strong-hover: oklch(50.19% 0.0440 262);
   --suisou-line-strong-hover-hex: "#56647d";
   --suisou-line-strong-selected: oklch(60.10% 0.0440 262);
@@ -127,8 +115,6 @@
   --suisou-panel-hex: "#16182f";
   --suisou-item: oklch(28.00% 0.0440 278);
   --suisou-item-hex: "#24273e";
-  --suisou-overlay: oklch(22.00% 0.0440 278);
-  --suisou-overlay-hex: "#16182f";
   --suisou-hover-surface: oklch(19.00% 0.0440 278);
   --suisou-hover-surface-hex: "#0f1127";
   --suisou-selected-neutral-surface: oklch(33.00% 0.0440 278);
@@ -139,8 +125,6 @@
   --suisou-line-weak-panel-hex: "#343851";
   --suisou-line-weak-item: oklch(38.92% 0.0440 278);
   --suisou-line-weak-item-hex: "#3f435c";
-  --suisou-line-weak-overlay: oklch(34.75% 0.0440 278);
-  --suisou-line-weak-overlay-hex: "#343851";
   --suisou-line-weak-hover: oklch(33.10% 0.0440 278);
   --suisou-line-weak-hover-hex: "#30334c";
   --suisou-line-weak-selected: oklch(43.29% 0.0440 278);
@@ -151,8 +135,6 @@
   --suisou-line-strong-panel-hex: "#626682";
   --suisou-line-strong-item: oklch(55.78% 0.0440 278);
   --suisou-line-strong-item-hex: "#6d728e";
-  --suisou-line-strong-overlay: oklch(51.77% 0.0440 278);
-  --suisou-line-strong-overlay-hex: "#626682";
   --suisou-line-strong-hover: oklch(50.28% 0.0440 278);
   --suisou-line-strong-hover-hex: "#5e627d";
   --suisou-line-strong-selected: oklch(60.26% 0.0440 278);
@@ -188,8 +170,6 @@
   --suisou-panel-hex: "#303540";
   --suisou-item: oklch(39.00% 0.0200 265);
   --suisou-item-hex: "#404550";
-  --suisou-overlay: oklch(33.00% 0.0200 265);
-  --suisou-overlay-hex: "#303540";
   --suisou-hover-surface: oklch(30.00% 0.0200 265);
   --suisou-hover-surface-hex: "#292e38";
   --suisou-selected-neutral-surface: oklch(44.00% 0.0200 265);
@@ -200,8 +180,6 @@
   --suisou-line-weak-panel-hex: "#4b505b";
   --suisou-line-weak-item: oklch(48.69% 0.0200 265);
   --suisou-line-weak-item-hex: "#5a606b";
-  --suisou-line-weak-overlay: oklch(43.09% 0.0200 265);
-  --suisou-line-weak-overlay-hex: "#4b505b";
   --suisou-line-weak-hover: oklch(40.52% 0.0200 265);
   --suisou-line-weak-hover-hex: "#444954";
   --suisou-line-weak-selected: oklch(53.96% 0.0200 265);
@@ -212,8 +190,6 @@
   --suisou-line-strong-panel-hex: "#7b818d";
   --suisou-line-strong-item: oklch(66.15% 0.0200 265);
   --suisou-line-strong-item-hex: "#8d939f";
-  --suisou-line-strong-overlay: oklch(60.08% 0.0200 265);
-  --suisou-line-strong-overlay-hex: "#7b818d";
   --suisou-line-strong-hover: oklch(57.40% 0.0200 265);
   --suisou-line-strong-hover-hex: "#737985";
   --suisou-line-strong-selected: oklch(72.12% 0.0200 265);
