@@ -1,20 +1,3 @@
-/* Suisou — Button
-
-     <button data-suisou-button>基本</button>
-     <button data-suisou-button="outline">CTA</button>
-     <button data-suisou-button="danger icon">削除</button>
-     <button data-suisou-button aria-pressed="true">押しっぱなし</button>
-
-   値は空白区切り。~= で拾うので、いくつ並べても属性は1つ。
-
-   基本形を「罫なし」にしたのは実測から。wixdex の <button> 84個のうち
-   26個がアイコンのみで、単独では最大の塊だった。しかも hover 後の文字色が
-   gray-300 と white で割れ、背景の有無も揃っていなかった。ここを既定にする。
-
-   hover で面の明度は動かさない。hover-surface を敷く。
-   設計仕様の実測: 明度を上げる方式だと accent の hover(L79) が
-   text-sub(L78) と 1.00:1 になり、線が消える。 */
-
 [data-suisou-button] {
   font-family: inherit;
   font-size: var(--suisou-size-14);
@@ -24,7 +7,7 @@
 
   background: transparent;
   color: var(--suisou-text-sub);
-  border: 1px solid transparent;      /* 罫なしでも高さを揃えるため枠は持つ */
+  border: 1px solid transparent;
 
   cursor: pointer;
   transition: background-color var(--suisou-motion-fast) var(--suisou-ease),
@@ -43,18 +26,12 @@
 [data-suisou-button]:active { background: var(--suisou-selected-surface); }
 [data-suisou-button]:focus-visible { outline: var(--suisou-focus); outline-offset: 2px; }
 
-/* アイコンの寸法は部品が持つ。使う側に毎回書かせない
-   （wixdex では w-5 h-5 を各所で手書きしていた）。
-   色は currentColor で継承されるので、text-sub → text-main が自動で効く。 */
 [data-suisou-button] > svg {
   width: var(--suisou-icon);
   height: var(--suisou-icon);
   flex-shrink: 0;
 }
 
-/* ── 強さ ───────────────────────────────── */
-
-/* CTA。塗らずアウトラインで立てる */
 [data-suisou-button~="outline"] {
   color: var(--suisou-accent);
   border-color: var(--suisou-accent);
@@ -66,16 +43,11 @@
   border-color: var(--suisou-accent-active);
 }
 
-/* 色を持たず罫だけで立つ */
 [data-suisou-button~="plain"] {
   border-color: var(--suisou-line-strong);
   padding-inline: var(--suisou-space-3);
 }
 
-/* 破壊的操作。outline と同じ形で、色だけ error 系に差し替える。
-   ★押下色（error-active）は solve.py に足した ―― 意味色にも accent と同じ
-     作りの押下色を出すようにしてある。それまでは色が動かず、押しても
-     反応が無いように見えていた。 */
 [data-suisou-button~="danger"] {
   color: var(--suisou-error);
   border-color: var(--suisou-error);
@@ -88,29 +60,6 @@
   background: var(--suisou-error-surface);
 }
 
-/* 押しっぱなしの状態（フィルタのトグルなど）。
-   wixdex の filterToggle が bg-zinc-500/30 でやっていたもの。
-
-   ★状態は標準の属性を借りる（aria-pressed）。以前は data-suisou-button="on" と
-     自前で持っていたが、Row は aria-selected / aria-current、Field は
-     disabled / aria-invalid を借りていて、ここだけ自前だった。
-     寄せると読み上げにも効く。
-
-   ★下地は現場が選ぶ。既定はアクセント色、neutral を足すと明るさだけになる。
-     Row と同じ選択肢・同じ値の名前。
-
-   ★aria-current も見る（2026-09-09）。**Row は見ていたのに Button は見ていなかった**。
-     タブがリンク（<a>）のときは「押されている」ではなく「現在地」なので
-     aria-current="page" が正しく、aria-pressed は使えない。
-     Mado がそれで詰まり、
-       [data-suisou-button][aria-current="page"] { … }
-     という打ち消しを現場に書いていた（実測 8 箇所ぶんの分岐）。
-     ★借りる属性の一覧には aria-current が入っているのに、
-       Button だけが無視していた ―― 語彙の不足ではなく**一貫性の欠け**。
-
-   ★:not([aria-current="false"]) を付けるのは Row と同じ形。
-     aria-current は "false" が「現在地ではない」を意味する文字列なので、
-     属性の有無だけで判定すると false のときも点いてしまう。 */
 [data-suisou-button][aria-pressed="true"],
 [data-suisou-button][aria-current]:not([aria-current="false"]) {
   background: var(--suisou-selected-surface);
@@ -121,27 +70,12 @@
   background: var(--suisou-selected-neutral-surface);
 }
 
-/* ── 形 ─────────────────────────────────── */
-
-/* 正方形。アイコン専用。
-   ★当たり判定は 36px。指の目安としてよく挙がるのは 44px だが、
-     20px のアイコンに対して 44px は見た目が空きすぎる。
-     実際 wixdex は 32px で運用できていた。両者の間を取っている。
-     px のままなのは「指」の都合で、文字サイズに追従させないため。 */
 [data-suisou-button~="icon"] {
   padding: 0;
   aspect-ratio: 1;
   min-width: 36px;
 }
 
-/* 幅いっぱい。全幅のボタンは実質「メニューの行」なので左に寄せる。
-   中身ぴったりの幅では余りが無く justify-content は効かないため、
-   基本形の center が顔を出すのは block と icon のときだけ。
-
-   ★余白は基本形（4/8）より広い縦8・横16。メニューの行は指で押す・縦に連なる
-     ものなので詰めない。type-spec §7 の暫定案「UI は縦8/横16」と同じ値。
-     wixdex のサイドバーを基本形の余白で組んだら「詰まりすぎ」だった（2026-08-21、
-     元実装は縦12/横16）。縦8 + stack の隙間8 で行送りが元実装とほぼ揃う。 */
 [data-suisou-button~="block"] {
   display: flex;
   width: 100%;
@@ -149,17 +83,11 @@
   padding: var(--suisou-space-2) var(--suisou-space-3);
 }
 
-/* 全幅の CTA。block が「メニューの行」（左寄せ）なのに対し、こちらは
-   「この画面の目的」の一本 ―― 中央寄せのまま幅を取る。ログイン・送信・作成。
-   ★3回ルールで昇格（2026-08-21）。wixdex のサイドバーのログイン、login ページの
-     送信2つ、ハンドル続行で、現場の width:100% 直書きが5回目に達した */
 [data-suisou-button~="wide"] {
   display: flex;
   width: 100%;
   padding-block: var(--suisou-space-2);
 }
-
-/* ── 無効 ───────────────────────────────── */
 
 [data-suisou-button][disabled],
 [data-suisou-button][aria-disabled="true"] {
@@ -172,13 +100,6 @@
 [data-suisou-button~="plain"][disabled],
 [data-suisou-button~="danger"][disabled] { border-color: var(--suisou-line-weak); }
 
-/* ── 連結 ───────────────────────────────────
-   wixdex の検索欄がこの形。親が罫と角丸を持ち、overflow で子を切る。
-   子側に角丸を持たせないので、何個並んでも破綻しない。
-
-   既定は inline-flex ―― 中身ぴったりの幅で、文の途中や行の端に置ける。
-   幅いっぱいに使いたいときは even（下）。 */
-
 [data-suisou-button-group] {
   display: inline-flex;
   border: 1px solid var(--suisou-line-strong);
@@ -186,27 +107,6 @@
   overflow: hidden;
 }
 
-/* ★等分（2026-08-22 昇格）。幅いっぱいに広げ、子を同じ幅で割る。
-
-     <div data-suisou-button-group="even">
-       <button data-suisou-button aria-pressed="true">ログイン</button>
-       <button data-suisou-button>新規登録</button>
-     </div>
-
-   タブ・セグメント・フィルタの升目。**5現場が同じ打ち消しを書いていた**
-   （wixdex の SearchArea / ShareModal / CardList / login / settings）。
-   3つの別名 —— .cell / .tab / 素の flex-1 —— に散っていたので
-   「同じ名前が3回」では数に見えず、需要で数えて初めて見つかった。
-
-   ★原因は現場ではなく部品の側にあった。既定が inline-flex なので、
-     幅いっぱいに使う現場は必ず display から打ち消さざるを得ない。
-     打ち消しが要る形は、部品が持っていない形。
-
-   ★子は flex-basis 0 で割る（1 1 auto ではなく）。auto だと中身の
-     文字数で幅が変わり、「すべて / 所持 / 未所持」が不揃いになる。
-     等分と言った以上、文字数に左右されない。
-   ★field と affix は除く。入力欄は余りを全部もらう係で、
-     飾り文字は中身ぴったりのまま ―― どちらも「等分」の対象ではない。 */
 [data-suisou-button-group~="even"] {
   display: flex;
   width: 100%;
@@ -223,17 +123,6 @@
   border-left-color: var(--suisou-line-weak);
 }
 
-/* ★入力欄も飲み込める（2026-08-21。まさに wixdex の検索欄で要った）。
-
-     <div data-suisou-button-group>
-       <button data-suisou-button>…</button>
-       <input data-suisou-field placeholder="検索">
-       <button data-suisou-button>…</button>
-     </div>
-
-   子の field は素肌になり、枠と焦点の輪は親が受け持つ ―― 部品が2つ以上
-   繋がったら、界面（枠・輪・角丸）は入れ物の仕事で、子は中身だけを持つ。
-   入力欄は伸びる係も兼ねる（連結の中で余った幅は文字を書く場所に回る）。 */
 [data-suisou-button-group] > [data-suisou-field] {
   border: 0;
   border-radius: 0;
@@ -243,17 +132,6 @@
 }
 [data-suisou-button-group] > [data-suisou-field]:focus-visible { outline: none; }
 
-/* ★連結の中の飾り文字（2026-08-22、3回ルールで昇格）。
-
-     <div data-suisou-button-group>
-       <span data-suisou-affix>/@</span>
-       <input data-suisou-field placeholder="your_name">
-     </div>
-
-   URL の接頭辞や単位のように、押せず書けない文字を連結の中に置く。
-   wixdex の settings / ShareModal / login が同じ .prefix を3回手書きしていた。
-   色は text-disabled ―― 押せるもの（text-sub）よりさらに一歩引く。
-   文字の大きさは持たない。まわり（連結の中身）に合わせる。 */
 [data-suisou-button-group] > [data-suisou-affix] {
   align-self: center;
   padding-inline-start: var(--suisou-space-2);
