@@ -1,6 +1,4 @@
 [data-suisou-button] {
-  font-size: var(--suisou-size-14);
-  line-height: var(--suisou-lh-14);
   padding: var(--suisou-space-1) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
 
