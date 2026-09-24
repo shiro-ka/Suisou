@@ -35,6 +35,15 @@
   --suisou-next: var(--suisou-panel);
   --suisou-line-weak-next: var(--suisou-line-weak-panel);
 }
+body[data-suisou-body~="shell"] {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+[data-suisou-body~="shell"] > :where(nav)    { grid-area: 1 / 1 / -1 / 2; }
+[data-suisou-body~="shell"] > :where(header) { grid-area: 1 / 2; }
+[data-suisou-body~="shell"] > :where(main)   { grid-area: 2 / 2; }
+[data-suisou-body~="shell"] > :where(footer) { grid-area: 3 / 2; }
 :where([data-suisou-body] header, [data-suisou-body] footer, [data-suisou-body] aside) {
   --suisou-next: transparent;
   --suisou-line-weak-next: transparent;
