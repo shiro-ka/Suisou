@@ -205,7 +205,7 @@ def render():
 
     L.append("## 明文化した割り切り")
     L.append("")
-    L.append("- **accent を文字に使う場所**（outline ボタンのラベル、`tag=\"accent\"`）は "
+    L.append("- **accent を文字に使う場所**（`button=\"accent\"` のラベル、`tag=\"accent\"`）は "
              "3.0:1 の保証（文字の 4.5 ではない）。意味色の文字は 4.5。"
              "アクセントは常に枠・下線・配置と併用する前提")
     L.append("- **ダーク専用**。純粋なライトは作らない。明るめは `shoal`（dim 階段）")
