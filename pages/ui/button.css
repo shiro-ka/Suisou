@@ -38,7 +38,7 @@
   border-color: var(--suisou-accent-active);
 }
 
-[data-suisou-button~="plain"] {
+[data-suisou-button~="outline"] {
   border-color: var(--suisou-line-strong);
 }
 
@@ -90,7 +90,7 @@
   cursor: default;
 }
 [data-suisou-button~="accent"][disabled],
-[data-suisou-button~="plain"][disabled],
+[data-suisou-button~="outline"][disabled],
 [data-suisou-button~="danger"][disabled] { border-color: var(--suisou-line-weak); }
 
 [data-suisou-button-group] {
