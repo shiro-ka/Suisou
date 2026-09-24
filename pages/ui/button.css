@@ -76,12 +76,6 @@
   padding: var(--suisou-space-2) var(--suisou-space-3);
 }
 
-[data-suisou-button~="wide"] {
-  display: flex;
-  width: 100%;
-  padding-block: var(--suisou-space-2);
-}
-
 :where([data-suisou-body] button, [data-suisou-button])[disabled],
 :where([data-suisou-body] button, [data-suisou-button])[aria-disabled="true"] {
   color: var(--suisou-text-disabled);

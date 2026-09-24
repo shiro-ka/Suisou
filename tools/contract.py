@@ -13,7 +13,7 @@ sys.path.insert(0, HERE)
 import solve
 
 COMMENT = re.compile(r"/\*.*?\*/", re.S)
-ATTR = re.compile(r'\[data-suisou-([a-z-]+)(?:~="([^"]+)")?\]')
+ATTR = re.compile(r'\[data-suisou(-[a-z-]+)?(?:~="([^"]+)")?\]')
 STATE = re.compile(r"\[(aria-[a-z-]+|disabled|popover|open)(?:[~^]?=[^\]]*)?\]")
 TOKEN_DEF = re.compile(r"(--suisou-[a-z0-9-]+)\s*:")
 
@@ -27,6 +27,7 @@ def collect():
     for p in ui_files():
         css = COMMENT.sub("", open(p, encoding="utf-8").read())
         for name, val in ATTR.findall(css):
+            name = name[1:] if name else ""   # 接尾辞なしの data-suisou は "" で持つ
             vals = attrs.setdefault(name, [])
             if val:
                 base = re.split(r"[:>]", val)[-1]  # s: / s> は同じ値の段つき版
@@ -61,7 +62,8 @@ def render():
     L.append("|---|---|")
     for name in sorted(attrs):
         vals = attrs[name]
-        L.append(f"| `data-suisou-{name}` | {' '.join(f'`{v}`' for v in vals) if vals else '（値なし）'} |")
+        attr = f"data-suisou-{name}" if name else "data-suisou"
+        L.append(f"| `{attr}` | {' '.join(f'`{v}`' for v in vals) if vals else '（値なし）'} |")
     L.append("")
     L.append("- 値は空白区切りで併記できる（`~=` で当たる）")
     L.append("- 値には段つき版がある（`s` 768px / `m` 1024px / `l` 1280px）。"
