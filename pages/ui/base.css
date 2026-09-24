@@ -32,6 +32,12 @@
   accent-color: var(--suisou-accent);
   scrollbar-width: thin;
   scrollbar-color: var(--suisou-line-strong) transparent;
+  --suisou-next: var(--suisou-panel);
+  --suisou-line-weak-next: var(--suisou-line-weak-panel);
+}
+:where([data-suisou-body] header, [data-suisou-body] footer, [data-suisou-body] aside) {
+  --suisou-next: transparent;
+  --suisou-line-weak-next: transparent;
 }
 @media (prefers-reduced-motion: reduce) {
   :root {
