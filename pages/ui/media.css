@@ -1,34 +1,11 @@
-/* Suisou — Media
-
-     <div data-suisou-media>
-       <div data-suisou-media-icon data-suisou-avatar>し</div>
-       <div data-suisou-media-content>
-         <header><span>しろか</span><span>09:12</span></header>
-         <p>本文</p>
-       </div>
-     </div>
-
-   先頭に固定幅のもの、右に可変の本文。2010 年に OOCSS で提唱された
-   メディアオブジェクトの形で、Bootstrap も Bulma も media と呼んでいた。
-   チャットの発言・コメント・通知・検索結果と、繰り返し出てくる。
-
-   ★面は持たない。触るのは並び方だけなので、面の部品と同じ要素に同居できる。
-     <div data-suisou-tray="panel" data-suisou-media>   ← 入れ子にしない
-   panel を作って中に media を入れる、という段を踏まなくていい。
-
-   ★中身は位置ではなく名前で当てる（-icon / -content / -tail）。
-     並び順を変えても壊れない。 */
-
 [data-suisou-media] {
   display: flex;
   gap: var(--suisou-space-2);
   align-items: flex-start;
 }
 
-/* 先頭。縮まない。Avatar を載せることが多いが、素のアイコンでもよい */
 [data-suisou-media-icon] { flex: none; }
 
-/* 本体。余った幅を取る */
 [data-suisou-media-content] {
   flex: 1 1 auto;
   min-width: 0;
@@ -37,11 +14,8 @@
   gap: var(--suisou-space-1);
 }
 
-/* 末尾。コメント数・時刻・操作など。縮まない */
 [data-suisou-media-tail] { flex: none; }
 
-/* 本体の中の見出し行と本文は要素で整える。:where() で詳細度を 0 にしてあり、
-   かつ本体の内側にしか効かないので、適用先の <header> や <p> には漏れない。 */
 [data-suisou-media-content] :where(header) {
   display: flex;
   flex-wrap: wrap;
@@ -64,5 +38,4 @@
   line-height: var(--suisou-lh-14);
 }
 
-/* 縦に積む。通知の一覧のように、先頭を上に置きたいとき */
 [data-suisou-media~="stack"] { flex-direction: column; align-items: stretch; }

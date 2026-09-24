@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-"""語彙の目録を CSS と solve.py から導いて標準出力に出す。
 
-  python3 tools/contract.py
-"""
 import os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -17,24 +14,22 @@ ATTR = re.compile(r'\[data-suisou(-[a-z-]+)?(?:~="([^"]+)")?\]')
 STATE = re.compile(r"\[(aria-[a-z-]+|disabled|popover|open)(?:[~^]?=[^\]]*)?\]")
 TOKEN_DEF = re.compile(r"(--suisou-[a-z0-9-]+)\s*:")
 
-
 def ui_files():
     return [os.path.join(UI, n) for n in sorted(os.listdir(UI)) if n.endswith(".css")]
-
 
 def collect():
     attrs, states = {}, set()
     for p in ui_files():
         css = COMMENT.sub("", open(p, encoding="utf-8").read())
         for name, val in ATTR.findall(css):
-            name = name[1:] if name else ""   # 接尾辞なしの data-suisou は "" で持つ
+            name = name[1:] if name else ""
             vals = attrs.setdefault(name, [])
             if val:
-                base = re.split(r"[:>]", val)[-1]  # s: / s> は同じ値の段つき版
+                base = re.split(r"[:>]", val)[-1]
                 if base not in vals:
                     vals.append(base)
         states |= set(STATE.findall(css))
-    # theme / accent は生成物（palette.css）側の属性なので solve から足す
+
     attrs["theme"] = ([t["name"] for t in solve.THEMES]
                       + [n for n, _ in solve.ACCENTS])
     base = COMMENT.sub("", open(os.path.join(UI, "base.css"), encoding="utf-8").read())
@@ -43,7 +38,6 @@ def collect():
         if name not in dims:
             dims.append(name)
     return attrs, sorted(states), dims
-
 
 def render():
     attrs, states, dims = collect()
@@ -212,7 +206,6 @@ def render():
     L.append("- **JS を要求する部品は作らない**（`<link>` 1本が配布の形）")
     L.append("")
     return "\n".join(L) + "\n"
-
 
 if __name__ == "__main__":
     sys.stdout.write(render())

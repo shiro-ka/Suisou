@@ -1,34 +1,3 @@
-/* Suisou — Rule（区切りの罫）
-
-     <header data-suisou-rule="bottom">…</header>   見出しの帯の下に1本
-     <footer data-suisou-rule="top">…</footer>      脚の上に1本
-     <aside  data-suisou-rule="end">…</aside>       脇と本文の間に1本
-
-   ★なぜ要るか（2026-09-09、2現場の実測）
-
-     Suisou は「面ではなく線で区切る」体系なのに、**その線の語が無かった**。
-     Mado 11 箇所 + wixdex 6 箇所 = 17 箇所が
-     `border-<辺>: 1px solid var(--suisou-line-weak)` を手書きしていた。
-     ★wixdex に至っては `.rule { border-color: … }` という同じ3行が
-       **4つのファイルに複製**されていた ―― 語が無いと現場が各自で発明する。
-
-   ★row="ruled" とは別物。あちらは**一覧の行と行の間**の罫（行が自分で持つ）。
-     こちらは**構造の縁**（帯・脚・脇・節の切れ目）。用途が重ならない。
-
-   ★色は書かない。var(--suisou-line-weak) と書くだけで、面や行の状態に応じて
-     文脈が値を差し替える（row.css が --suisou-line-weak を上書きする仕組みと同じ）。
-     これで「どの面の上に載っているか」を罫の側が知らなくて済む。
-
-   ★辺は論理プロパティ。書字方向が変わっても意味が保たれる。
-
-   ★実測（2026-09-09）:
-       top     9   Mado 7 / wixdex 2   節の切れ目、脚の上
-       bottom  4   Mado 3 / wixdex 1   見出しの帯の下
-       end     2   Mado 1 / wixdex 1   脇と本文の間（縦の1本）
-       start   0   ★持たない
-     start が無いのは需要が0だから。**左に立てる1本は quote の仕事**
-     （引用の縦棒）なので、そちらと役目が重なる。要るようになったら1行で足せる。 */
-
 [data-suisou-rule~="top"]    { border-block-start: 1px solid var(--suisou-line-weak); }
 [data-suisou-rule~="bottom"] { border-block-end:   1px solid var(--suisou-line-weak); }
 [data-suisou-rule~="end"]    { border-inline-end:  1px solid var(--suisou-line-weak); }

@@ -1,16 +1,5 @@
 name: サイトを配信
 
-# ブランチを経由せず、artifact を直接 Pages に渡す。
-# 生成物をリポジトリにコミットしないので、同期のズレが構造的に起きない。
-#
-# 前提: Settings > Pages > Source が「GitHub Actions」になっていること。
-#       「Deploy from a branch」のままだと、この workflow は成功しても配信に反映されない。
-#
-# ★build と deploy を分けてある。artifact は「実行」単位ではなく「試行」単位で
-#   積まれるので、1ジョブだと Re-run するたびに github-pages という名前の artifact が
-#   増え、deploy-pages が「同じ名前が3個ある」と言って落ちる。分けておけば
-#   失敗した deploy だけを Re-run でき、そのとき artifact は積まれない。
-
 on:
   push:
     branches: [main]
@@ -19,9 +8,9 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write     # Pages への OIDC 認証に必要
+  id-token: write
 
-concurrency:          # 連続 push でデプロイが競合しないようにする
+concurrency:
   group: pages
   cancel-in-progress: true
 
@@ -31,19 +20,16 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          fetch-depth: 0    # ★過去の版を建て直すので履歴が要る
+          fetch-depth: 0
 
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
       - name: パレットを生成する
-        # 配信するのは常に solve.py の出力。コミット済みの生成物には依存しない。
         run: python3 tools/solve.py
 
       - name: 配る形を組み立てる
-        # ★ここが「配布」の実体。dist/ は常に最新で、Suisou を直すと動く。
-        #   固定したい現場は次の段が置く v/<sha> を指す。
         run: |
           SUISOU_VERSION="${GITHUB_SHA::7}" python3 tools/bundle.py
 
@@ -52,27 +38,19 @@ jobs:
           mkdir -p _site
           cp pages/index.html       _site/index.html
           cp pages/styles.css       _site/styles.css
-          cp pages/helpers.css      _site/helpers.css     # 任意のヘルパー
+          cp pages/helpers.css      _site/helpers.css
           cp pages/app.js           _site/app.js
-          cp -r pages/ui            _site/ui              # Suisou の部品（1ファイルずつ）
-          cp -r pages/content       _site/content         # 差し替わるページの中身
-          cp pages/palette.css      _site/palette.css     # solve.py の生成物
-          cp pages/suisou.data.js   _site/suisou.data.js  # solve.py の生成物（構造のみ）
-          cp pages/404.html         _site/404.html        # ★無い URL に 404 を返させる
-          cp pages/_headers         _site/_headers        # CF Pages の配り方（GitHub Pages は見ない）
+          cp -r pages/ui            _site/ui
+          cp -r pages/content       _site/content
+          cp pages/palette.css      _site/palette.css
+          cp pages/suisou.data.js   _site/suisou.data.js
+          cp pages/404.html         _site/404.html
+          cp pages/_headers         _site/_headers
 
-          # 配る形。<link> 1本で読める場所に置く
-          cp -r dist _site/dist                               # 最新。移動する
+          cp -r dist _site/dist
 
-          # ★/v2/ … いま使う版。普段は全現場がここを指し、Suisou を直せば自動で行き渡る。
-          #   破壊的変更（属性・値・トークンの名前や既定を変える変更）をしたら
-          #   /v3/ を作り、v2 は下の「凍結した版」に移す。
-          #   凍結したい現場だけ /v/<sha7>/ を指す。
           cp -r dist _site/v2
 
-          # ★凍結した版。**最新の dist ではなく、その版の sha から建て直す**。
-          #   ここを `cp -r dist` にすると凍結が黙って壊れる（現場は動かないつもりで居る）。
-          #   v1 … 2026-09-10 に 07c066f で停止。center が grid のモードだった頃。
           for frozen in "v1:07c066f"; do
             name=${frozen%%:*}; sha=${frozen##*:}
             wt=$(mktemp -d)
@@ -85,21 +63,9 @@ jobs:
           ls -1 _site/dist | head -3
 
       - name: 過去の版を建て直す
-        # ★ビルド時間と artifact はコミット数に比例して伸びる（1版 ≒ 数秒 + 数百KB）。
-        #   痛くなったら「pages/ か tools/ に触れた版 + 公開済みの版」に絞る。
-        #   ただし一度公開した /v/<sha>/ を消すと固定 URL の約束が破れるので、
-        #   絞るときは既存の版の一覧を先に固定すること。
-        # ★artifact 配信は毎回サイトを丸ごと差し替えるので、前回置いた
-        #   /v/<sha>/ は次の配信で消える。「固定できる URL」の約束が破れる。
-        #   現場が繋いだ /v/4d55065/ が実際に 404 になった。
-        #
-        #   置き場を引き継ぐのではなく、その版を git から建て直す。
-        #   真実の源泉は git であって配信物ではない、という形に寄せてある
-        #   （再構築物が配信中のものとバイト単位で一致することを確認済み）。
         run: |
           for sha in $(git rev-list HEAD); do
             short=${sha:0:7}
-            # bundle.py が生まれる前の版は配る形を持たない
             git cat-file -e "$sha:tools/bundle.py" 2>/dev/null || continue
             wt=$(mktemp -d)
             git worktree add -q --detach "$wt" "$sha"

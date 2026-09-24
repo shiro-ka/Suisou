@@ -1,48 +1,17 @@
-/* Suisou — Row（行）
-
-     <div data-suisou-row data-suisou-media>浮いた行。まわりに余白がある</div>
-     <div data-suisou-row="ruled" data-suisou-media>連なった行。罫で区切る</div>
-     <div data-suisou-row aria-selected="true">選ばれている行</div>
-
-   ★並べ方は持たない。行の中身は Media（アイコン＋本文＋しっぽ）が並べるので、
-     Row が持つのは「余白・角丸・下地の反応」だけ。同じ要素に両方書ける。
-
-   ★状態は標準の属性を借りる。aria-selected / aria-current を自分で
-     発明した data-* に置き換えない。読み上げにも効くので二重に得。
-
-   ★2つの形がある。
-       既定    角丸。まわりに余白がある入れ物の中に浮く（チャット、メニュー）
-       ruled   角丸なし＋下罫。面の端から端まで連なる（一覧）
-     ruled は行が自分で余白を持つ形。★容れ物の余白を 0 にする tray の bleed は
-     2026-09-18 に廃止した（面が縁まで詰まっているより両端に隙間がある方がいい）。
-
-   ★選択の下地は現場が選ぶ。両方要るという結論になった。
-       既定      アクセント色（--suisou-selected-surface）。色で示す
-       neutral   中立（--suisou-selected-neutral-surface）。明るさだけで示す
-     明度はどちらも同じ（tint）で、違うのは彩度だけ。hover との区別も
-     コントラストも変わらないので、数値では決められなかった。 */
-
 [data-suisou-row] {
   padding: var(--suisou-space-1) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
   transition: background-color var(--suisou-motion-fast) var(--suisou-ease);
 }
 
-/* ★下地を替えたら装飾罫も替える（2026-08-22）。tray が段でやるのと同じ。
-   選択行の中の Tag の罫がまさにこれ ―― 行の下地は面の階段の段ではないので、
-   面の値のままだと選択行の中で罫が消える（tint は bg より明るいため）。
-   中に入る部品は何も知らなくていい。var(--suisou-line-weak) と書くだけ。 */
 [data-suisou-row]:hover {
   background: var(--suisou-hover-surface);
   --suisou-line-weak: var(--suisou-line-weak-hover);
   --suisou-line-strong: var(--suisou-line-strong-hover);
 }
 
-/* 行そのものが focusable な現場（tabindex を振った一覧など）向け。
-   輪を内側に入れるのは、ruled の行が端から端まで連なって外側に余白が無いため */
 [data-suisou-row]:focus-visible { outline: var(--suisou-focus); outline-offset: -2px; }
 
-/* 選ばれている。標準の属性で受ける */
 [data-suisou-row][aria-selected="true"],
 [data-suisou-row][aria-current]:not([aria-current="false"]) {
   background: var(--suisou-selected-surface);
@@ -50,7 +19,6 @@
   --suisou-line-strong: var(--suisou-line-strong-selected);
 }
 
-/* 色を使わず、明るさだけで示す。一覧の中で色が主張しすぎる場面用 */
 [data-suisou-row~="neutral"][aria-selected="true"],
 [data-suisou-row~="neutral"][aria-current]:not([aria-current="false"]) {
   background: var(--suisou-selected-neutral-surface);
@@ -58,7 +26,6 @@
   --suisou-line-strong: var(--suisou-line-strong-selected);
 }
 
-/* 連なる形。角丸を捨てて罫で区切る。最後の1本は引かない */
 [data-suisou-row~="ruled"] {
   border-radius: 0;
   padding-block: var(--suisou-space-2);
@@ -66,19 +33,9 @@
 }
 [data-suisou-row~="ruled"]:last-child { border-bottom: 0; }
 
-/* ★ruled の選択には左2pxのアクセント線を足す（2026-08-20、A/B を実物で判定）。
-     既定の行 … 下地のみ。角丸で浮いていて、まわりの余白が既に区別を助ける
-     ruled   … 下地 + 線。敷き詰めた一覧では下地だけだと目が滑るし、
-               直角なので線が上下の罫まできれいに走る
-   border-left ではなく box-shadow なのは、幅を食って中身が 2px 動くのを
-   避けるため。neutral と組むと「下地は明るさだけ、色は線1本」になる。 */
 [data-suisou-row~="ruled"][aria-selected="true"],
 [data-suisou-row~="ruled"][aria-current]:not([aria-current="false"]) {
   box-shadow: inset 2px 0 0 var(--suisou-accent);
 }
 
-/* 連なる行は隙間を持たない。すきまは親（layout）が持っていて行からは消せないので、
-   :has() で親側に効かせる。
-   詳細度は (0,2,0) なので layout の既定にも helpers の .gap-* にも勝つ ――
-   ruled にしておいて隙間を空けたい場面は無いため、ここは勝ってよい。 */
 [data-suisou-layout]:has(> [data-suisou-row~="ruled"]) { gap: 0; }

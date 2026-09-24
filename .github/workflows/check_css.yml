@@ -1,9 +1,5 @@
 name: 手書きCSSを検査
 
-# 掟1 の残る穴を塞ぐ。solve.py 側は check_palette.yml が見ているが、
-# 手で書く pages/*.css と pages/*.html には色を書けてしまう。
-# 生成物（pages/palette.css）だけが色を持ってよい。
-
 on:
   push:
     paths:
