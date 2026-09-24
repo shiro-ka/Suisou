@@ -2,9 +2,9 @@
   padding: var(--suisou-space-1) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
 
-  background: var(--suisou-next, transparent);
+  background: transparent;
   color: var(--suisou-text-sub);
-  border: 1px solid var(--suisou-line-weak-next, transparent);
+  border: 1px solid transparent;
 
   cursor: pointer;
   transition: background-color var(--suisou-motion-fast) var(--suisou-ease),
