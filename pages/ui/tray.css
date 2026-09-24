@@ -9,11 +9,15 @@
   background: var(--suisou-panel);
   --suisou-line-weak: var(--suisou-line-weak-panel);
   --suisou-line-strong: var(--suisou-line-strong-panel);
+  --suisou-next: var(--suisou-item);
+  --suisou-line-weak-next: var(--suisou-line-weak-item);
 }
 [data-suisou-tray~="item"] {
   background: var(--suisou-item);
   --suisou-line-weak: var(--suisou-line-weak-item);
   --suisou-line-strong: var(--suisou-line-strong-item);
+  --suisou-next: transparent;
+  --suisou-line-weak-next: transparent;
 }
 :where(dialog)[data-suisou-tray]::backdrop { background: var(--suisou-scrim); }
 
@@ -52,6 +56,8 @@
   background: var(--suisou-panel);
   --suisou-line-weak: var(--suisou-line-weak-panel);
   --suisou-line-strong: var(--suisou-line-strong-panel);
+  --suisou-next: var(--suisou-item);
+  --suisou-line-weak-next: var(--suisou-line-weak-item);
   padding: 0;
 }
 [data-suisou-tray~="drawer"][data-suisou-tray~="end"] {
