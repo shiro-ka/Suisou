@@ -1,15 +1,3 @@
-/* 手書き。色も px も値としては持たない。
-   色は palette.css、タイポの px は ui/type.css、
-   テーマ・アクセントの構造は suisou.data.js（生成物）。
-
-   ページの中身は content/*.html にある。ここがやるのは
-   「差し替え」と「効いている値を読んで並べる」だけ。
-
-   ページを1枚足す手順:
-     1. content/<name>.html を置く
-     2. 下の PAGES に1行足す
-   静的なページなら enhance は要らない。 */
-
 const root = document.documentElement;
 const app = document.querySelector('.app');
 const slot = (name, scope = document) => scope.querySelector(`[data-slot="${name}"]`);
@@ -37,7 +25,6 @@ const PAGES = {
   list:       { group: '作例', label: '課題一覧', bleed: true },
 };
 
-/* ── Palette の並び。トークンの意味づけであって、値は持たない ── */
 const GROUPS = [
   { title: '面と文字', tokens: ['bg', 'panel', 'item', 'overlay',
                                 'hover-surface', 'selected-neutral-surface',
@@ -49,19 +36,13 @@ const GROUPS = [
   { title: 'その他', tokens: ['scrim'] },
 ];
 
-/* ── Typography の構造。どの役割がどの段か、であって px ではない ──
-   px は ui/type.css の [data-suisou-text] が持つ。根拠は type-spec §3〜§6。 */
 const SCALE = [12, 14, 16, 20, 24, 28, 32];
-const WEIGHTS = [400, 500, 700];   /* 600 は無い。type.css のウェイトの節を参照 */
+const WEIGHTS = [400, 500, 700];
 const ROLES_UI = [
   ['h1', 20, 700], ['h2', 16, 700], ['h3', 14, 700],
   ['p', 14, 400], ['small', 12, 400],
 ];
-/* 長文の段。★見出しの階層のしるし（左の帯）は prose が持つので、ここでは
-   大きさとウェイトだけを見せる。以前 h5/h6 に付けていた「字下げする左罫」は
-   帯と二重になるので外した（ui/prose.css を参照）。
-   ★doc（+4px の行間）は本文だけ。見出しは1〜2行で終わるので UI の行間のまま
-   （type-spec §6）。prose.css の実装と揃えてある。 */
+
 const ROLES_DOC = [
   ['h1', 28, 700], ['h2', 24, 700], ['h3', 20, 700], ['h4', 16, 700],
   ['h5', 16, 500], ['h6', 14, 700],
@@ -85,23 +66,16 @@ function el(tag, cls, text) {
   return e;
 }
 
-/* 色コードは palette.css が --suisou-<token>-hex として持っている。
-   CSS は変数を文字として表示できないので、ここで読んで textContent に入れる。
-   カスケードで解決された値が返るため、テーマを変えれば自動的に変わる。 */
 function hexOf(token) {
   const v = getComputedStyle(root).getPropertyValue(`--suisou-${token}-hex`).trim();
   return v.replace(/^"|"$/g, '');
 }
 
-/* 実際に効いている値を読む。CSS に書いた px を JS 側でも書くとずれるので、
-   書かずに読む。表示されてからでないと当てにできない。 */
 function metricsOf(node) {
   const s = getComputedStyle(node);
   const px = (v) => Math.round(parseFloat(v));
   return `${px(s.fontSize)} / ${px(s.lineHeight)} / ${s.fontWeight}`;
 }
-
-/* ── Palette ────────────────────────────────── */
 
 function enhancePalette(scope) {
   const t = themeOf(theme());
@@ -109,7 +83,6 @@ function enhancePalette(scope) {
     `${t.name}（${t.jp}）× ${accent()}。色は tools/solve.py が制約から解いた値で、`
     + '手で置いた色は1つも無い。';
 
-  // 全部の組を CSS に出してある。基準を満たさないものは押せるが理由を添える
   const row = slot('accents', scope);
   for (const a of SUISOU.accents) {
     const usable = t.available.includes(a.name);
@@ -127,11 +100,6 @@ function enhancePalette(scope) {
   }
   const warned = Object.entries(t.warnings ?? {});
   const here = t.warnings?.[accent()];
-  // ★色相が近い意味色（clown と error など）に印を付けるのはやめた（2026-08-21）。
-  //   ΔE と順位が食い違っていて、危険度を表していなかった ―― shoal では
-  //   turtle(ΔE 0.090) に印が付き、より近い magenta(0.097)・coral(0.099) が無印だった。
-  //   言いたかったこと（色だけに意味を載せない）はどのアクセントでも同じなので、
-  //   下の一文に一本化する。色相差の実数は spec-tables.md に残してある。
   slot('accent-note', scope).textContent =
     (here ? `★いまの組み合わせは推奨しない … ${here}　` : '')
     + (warned.length
@@ -157,8 +125,6 @@ function enhancePalette(scope) {
   }
 }
 
-/* ── Typography ─────────────────────────────── */
-
 function typeRow(key, variants, note) {
   const row = el('div', 't-row');
   const sample = el('div', null, SAMPLE);
@@ -183,11 +149,6 @@ function enhanceTypography(scope) {
     row.children[2].textContent = metricsOf(row.children[1]) + (note ? `　${note}` : '');
   }
 }
-
-/* ── Tokens ─────────────────────────────────
-   値は書かない。宣言値は custom property から、解決後の px は実際に
-   その寸法を持つ要素を測って出す。rem なので、ブラウザの文字サイズ設定を
-   変えると右の px だけが動く ―― このページ自身がその証拠になる。 */
 
 const rootStyle = () => getComputedStyle(root);
 const declared = (token) => rootStyle().getPropertyValue(`--suisou-${token}`).trim();
@@ -266,8 +227,6 @@ function enhanceTokens() {
   tokenRow('misc', 'focus', ring, 'アクセント色と同じ');
 }
 
-/* ── 差し替え ───────────────────────────────── */
-
 async function load(name) {
   if (!(name in PAGES)) name = 'palette';
   const box = slot('page');
@@ -283,7 +242,6 @@ async function load(name) {
     }
   }
   box.innerHTML = cache[name];
-  // 作例は「そのもの」を見せる。解説も余白も挟まない
   box.classList.toggle('is-bleed', !!PAGES[name].bleed);
   box.scrollTop = 0;
   current = name;
@@ -307,8 +265,6 @@ function renderNav() {
   }
 }
 
-/* テーマを一巡させる。全組を CSS に出しているので、アクセントは持ち越せる。
-   ただし色域外で出していない組だけは無反応になるため、そこだけ寄せる。 */
 function cycleTheme() {
   const names = SUISOU.themes.map((t) => t.name);
   const next = themeOf(names[(names.indexOf(theme()) + 1) % names.length]);
@@ -329,8 +285,6 @@ function render() {
   load(current ?? location.hash.slice(1) ?? 'palette');
 }
 
-/* 要素が無くても落ちないようにする。ここで例外を投げると以降の描画が
-   全部止まって画面が空になる（実際にクラス名の取りこぼしで起きた）。 */
 function on(selector, event, handler) {
   const node = document.querySelector(selector);
   if (!node) { console.warn(`${selector} が見つからない`); return; }

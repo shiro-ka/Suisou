@@ -10,9 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
 
-<!-- 生成物 … 色 -->
 <link rel="stylesheet" href="palette.css">
-<!-- Suisou の部品。@import ではなく link で並べる（並列に落ちる） -->
+
 <link rel="stylesheet" href="ui/base.css">
 <link rel="stylesheet" href="ui/reset.css">
 <link rel="stylesheet" href="ui/type.css">
@@ -35,21 +34,17 @@
 <link rel="stylesheet" href="ui/tile.css">
 <link rel="stylesheet" href="ui/spinner.css">
 <link rel="stylesheet" href="ui/banner.css">
-<!-- ★show は最後。display: none を layout の display: flex に勝たせるのは順序だけ -->
+
 <link rel="stylesheet" href="ui/size.css">
 <link rel="stylesheet" href="ui/show.css">
-<!-- 任意。他にユーティリティの仕組みが無いときだけ -->
+
 <link rel="stylesheet" href="helpers.css">
-<!-- このサイトだけのもの -->
+
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body data-suisou-body>
 
-<!--
-  ここは骨格だけ。切り替わる中身は content/*.html にあり、app.js が差し替える。
-  固定されているもの（トップバーとサイドバー）だけがこのファイルに残る。
--->
 <div class="app">
 
   <main class="preview">
@@ -60,7 +55,6 @@
       </button>
     </header>
 
-    <!-- ここに content/*.html が入る -->
     <div class="preview-body" data-slot="page"></div>
   </main>
 
@@ -72,7 +66,6 @@
       <button class="theme-switch" type="button"></button>
     </div>
 
-    <!-- 項目は app.js が PAGES から作る。ページを足すのは content/ に1枚置くだけ -->
     <nav class="menu-nav" data-slot="nav"></nav>
   </aside>
 
