@@ -189,6 +189,14 @@ def render():
              "上下は仕様の範囲外（CSS Overflow 3）。"
              "**余白の補正は焼き込まない**（`layout` は `padding` を持たない層で、"
              "`surface.css` が後に読まれるので上書きされる）")
+    L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
+             "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
+             "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
+             "`ruled` / `neutral` / 選択状態は現場で使われていなかった")
+    L.append("    - 直し方: 行ごと押せるリンク → `<a data-suisou-button=\"block\">`"
+             "（`data-suisou-media` はそのまま併記できる）。"
+             "押せない行 → 属性を外す（hover が出なくなる）。"
+             "中に押せる部品を持つ入れ物の行 → 属性を外し、押せる部品の側で反応させる")
     L.append("- **v1 → v2**（2026-09-10）… `center` の意味を変えた。"
              "v1 では grid のモード（`display: grid; place-items: center`）、"
              "v2 では交差軸の中央に寄せるふるまい（`align-items: center`）。"
