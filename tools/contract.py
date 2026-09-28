@@ -222,6 +222,15 @@ def render():
              "`fw-` にしたのは `w-full`（幅）と `w` の意味を分けるため")
     L.append("    - 直し方: `s12`〜`s32` → `fs-12`〜`fs-32`（段つきも `md:s28` → `s:fs-28` など）、"
              "`w400` / `w500` / `w700` → `fw-400` / `fw-500` / `fw-700`")
+    L.append("    - `data-suisou-prose` を廃止し、text の値 `typeset` にした（2026-09-28）。"
+             "中身は「中の素の見出し・段落に、長文の大きさと縦の間隔を振る」＝組版。"
+             "text の `doc`（行間 +4px）も `typeset` に畳んだ ―― 段落1つに付ければ行間 +4px になる。"
+             "本文の既定は 16px で、`fs-14` と併記すると見出しと間隔が1段ずつ詰まる（旧 `tight`）")
+    L.append("      - 直し方: `data-suisou-prose` → `data-suisou-text=\"typeset\"`、"
+             "`data-suisou-prose=\"tight\"` → `data-suisou-text=\"typeset fs-14\"`、"
+             "text の `doc` → `typeset`（`fs-16 doc` → `fs-16 typeset`）")
+    L.append("      - ★`typeset fs-14` の規則は属性を2つ見るので詳細度が (0,1,0) → (0,2,0) に上がった。"
+             "現場の CSS が旧 `tight` の見出しを上書きしていた場合、今度は Suisou が勝つ")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
