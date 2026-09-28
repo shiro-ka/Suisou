@@ -1,5 +1,5 @@
 [data-suisou-table],
-[data-suisou-prose] :where(table) {
+[data-suisou-text~="typeset"] :where(table) {
   width: 100%;
   border-collapse: collapse;
   font-size: var(--suisou-size-14);
@@ -7,7 +7,7 @@
 }
 
 [data-suisou-table] :where(th, td),
-[data-suisou-prose] :where(table) :where(th, td) {
+[data-suisou-text~="typeset"] :where(table) :where(th, td) {
   text-align: left;
   vertical-align: top;
   padding: var(--suisou-space-1) var(--suisou-space-2);
@@ -15,13 +15,13 @@
 }
 
 [data-suisou-table] :where(th),
-[data-suisou-prose] :where(table) :where(th) {
+[data-suisou-text~="typeset"] :where(table) :where(th) {
   color: var(--suisou-text-sub);
   font-weight: 700;
 }
 
 [data-suisou-table] :where(tr:last-child) :where(th, td),
-[data-suisou-prose] :where(table) :where(tr:last-child) :where(th, td) { border-bottom: 0; }
+[data-suisou-text~="typeset"] :where(table) :where(tr:last-child) :where(th, td) { border-bottom: 0; }
 
 [data-suisou-table~="tight"] {
   font-size: var(--suisou-size-12);

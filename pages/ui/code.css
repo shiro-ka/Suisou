@@ -1,5 +1,5 @@
 [data-suisou-code],
-[data-suisou-prose] :where(code) {
+[data-suisou-text~="typeset"] :where(code) {
   font-family: var(--suisou-mono);
   font-size: 0.9em;
   background: var(--suisou-item);
@@ -8,7 +8,7 @@
 }
 
 [data-suisou-code~="block"],
-[data-suisou-prose] :where(pre) {
+[data-suisou-text~="typeset"] :where(pre) {
   font-family: var(--suisou-mono);
   font-size: var(--suisou-size-12);
 
@@ -24,7 +24,7 @@
 }
 
 [data-suisou-code~="block"] :where(code),
-[data-suisou-prose] :where(pre) :where(code) {
+[data-suisou-text~="typeset"] :where(pre) :where(code) {
   font-size: inherit;
   background: none;
   border-radius: 0;

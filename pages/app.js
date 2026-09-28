@@ -10,7 +10,7 @@ const PAGES = {
   layout:     { group: '土台', label: 'Layout' },
   button:     { group: '部品', label: 'Button' },
   code:       { group: '部品', label: 'Code' },
-  prose:      { group: '部品', label: 'Prose' },
+  prose:      { group: '部品', label: 'Typeset' },
   field:      { group: '部品', label: 'Field' },
   icon:       { group: '部品', label: 'Icon' },
   link:       { group: '部品', label: 'Link' },
@@ -137,11 +137,11 @@ function fill(box, rows) { for (const r of rows) box.append(r); }
 
 function enhanceTypography(scope) {
   fill(slot('scale-ui', scope), SCALE.map((s) => typeRow(`${s}px`, `fs-${s} fw-400`)));
-  fill(slot('scale-doc', scope), SCALE.map((s) => typeRow(`${s}px`, `fs-${s} fw-400 doc`)));
+  fill(slot('scale-doc', scope), SCALE.map((s) => typeRow(`${s}px`, `fs-${s} fw-400 typeset`)));
   fill(slot('weights', scope), WEIGHTS.map((n) => typeRow(String(n), `fs-16 fw-${n}`)));
   fill(slot('roles-ui', scope), ROLES_UI.map(([n, s, w]) => typeRow(n, `fs-${s} fw-${w}`)));
   fill(slot('roles-doc', scope), ROLES_DOC.map(([n, s, w, doc]) =>
-    typeRow(n, `fs-${s} fw-${w}${doc ? ' doc' : ''}`)));
+    typeRow(n, `fs-${s} fw-${w}${doc ? ' typeset' : ''}`)));
 
   for (const row of scope.querySelectorAll('.t-row')) {
     const note = row.dataset.note;

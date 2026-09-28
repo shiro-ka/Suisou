@@ -1,5 +1,5 @@
 [data-suisou-link],
-[data-suisou-prose] :where(a) {
+[data-suisou-text~="typeset"] :where(a) {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
@@ -7,11 +7,11 @@
 }
 
 [data-suisou-link]:hover,
-[data-suisou-prose] :where(a):hover {
+[data-suisou-text~="typeset"] :where(a):hover {
   color: var(--suisou-accent);
 }
 
 [data-suisou-link]:has(> img:only-child),
-[data-suisou-prose] :where(a:has(> img:only-child)) {
+[data-suisou-text~="typeset"] :where(a:has(> img:only-child)) {
   text-decoration: none;
 }
