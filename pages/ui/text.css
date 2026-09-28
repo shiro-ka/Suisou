@@ -70,20 +70,21 @@
 [data-suisou-text~="typeset"] :where(h5) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 500; }
 [data-suisou-text~="typeset"] :where(h6) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 700; }
 
-[data-suisou-text~="typeset"] :where(h2, h3, h4, h5) { position: relative; }
+[data-suisou-text~="typeset"] :where(h2, h3, h4, h5) { position: relative; padding-left: calc(4px + var(--suisou-space-2) - 6px); }
 
 [data-suisou-text~="typeset"] :where(h2, h3, h4, h5)::before {
   content: "";
   position: absolute;
   top: 0.25em;
   bottom: 0.25em;
+  left: -6px;
   border-radius: var(--suisou-radius-pill);
 }
 
-[data-suisou-text~="typeset"] :where(h2)::before { width: 6px; left: calc(-1 * (6px + var(--suisou-space-2))); background: var(--suisou-accent); }
-[data-suisou-text~="typeset"] :where(h3)::before { width: 3px; left: calc(-1 * (3px + var(--suisou-space-2))); background: var(--suisou-accent); }
-[data-suisou-text~="typeset"] :where(h4)::before { width: 3px; left: calc(-1 * (3px + var(--suisou-space-2))); background: var(--suisou-line-weak); }
-[data-suisou-text~="typeset"] :where(h5)::before { width: 1px; left: calc(-1 * (1px + var(--suisou-space-2))); background: var(--suisou-line-weak); }
+[data-suisou-text~="typeset"] :where(h2)::before { width: 4px; background: var(--suisou-accent); }
+[data-suisou-text~="typeset"] :where(h3)::before { width: 3px; background: var(--suisou-accent); }
+[data-suisou-text~="typeset"] :where(h4)::before { width: 3px; background: var(--suisou-line-weak); }
+[data-suisou-text~="typeset"] :where(h5)::before { width: 1px; background: var(--suisou-line-weak); }
 
 [data-suisou-text~="typeset"] :where(small) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); }
 [data-suisou-text~="typeset"] :where(strong, b) { font-weight: 700; }
