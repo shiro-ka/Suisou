@@ -189,6 +189,34 @@ def render():
              "上下は仕様の範囲外（CSS Overflow 3）。"
              "**余白の補正は焼き込まない**（`layout` は `padding` を持たない層で、"
              "`surface.css` が後に読まれるので上書きされる）")
+    L.append("  - **tray**: `data-suisou-surface` を `data-suisou-tray` に改名した（2026-09-18）。"
+             "`surface`（面）と `drawer`（引き出し）で語の層がズレていたため、家具の語彙に揃えた")
+    L.append("    - 直し方: 属性名を機械的に置換する。"
+             "★**トークンの `-surface`（`hover-surface` / `selected-surface` / `error-surface`）は別物なので巻き込まない**")
+    L.append("    - `overlay` を廃止した。浮くかどうかは値で言わず、`<dialog>` と `[popover]` が言う。"
+             "`--suisou-overlay` と `--suisou-line-{weak,strong}-overlay` もトークンごと廃止")
+    L.append("      - 直し方: `overlay` → `panel`、`var(--suisou-overlay)` の手書き → `var(--suisou-panel)`")
+    L.append("    - `drawer` は段の語と組まず単体で書き、**方向を必ず書く**（`end` / `start` / `top` / `bottom`）。"
+             "`popover` 限定（`<dialog>` では動かない）、`padding: 0`")
+    L.append("      - 直し方: `overlay drawer` → `drawer end`、`overlay drawer start` → `drawer start`")
+    L.append("    - 装飾を「対象-状態」に改名した。段の `none` も装飾へ移したので、段は `panel` / `item` の2つ")
+    L.append("      - 直し方: `bare` → `bd-none`、`empty` → `bd-dash`、`none` → `bg-none`（段と併記する）")
+    L.append("    - 余白を 16px → 8px にした（**全 panel の見た目が変わる**）。`tight` / `bleed` を廃止")
+    L.append("      - 直し方: `panel tight` / `panel bleed` / `overlay bleed` → `panel`")
+    L.append("    - 値なしの `data-suisou-tray` は何も起きない（段を必ず1つ書く）")
+    L.append("  - **button**: 値を 色（`accent` `error`）/ スタイル（`outline`）/ 形（`icon` `block`）の"
+             "3つの系統に組み直した（2026-09-24）")
+    L.append("    - 直し方: `outline` → `outline accent`、`danger` → `outline error`、"
+             "`plain` → `outline`、`neutral` → 削除、`wide` → `data-suisou=\"w-full\"`（属性が変わる）。"
+             "★**`plain` → `outline` は最後にやる**（`outline` が両方向に動くため）")
+    L.append("    - `data-suisou-button-group` と `data-suisou-affix` を廃止した")
+    L.append("      - 直し方: タブ・升目は `tray=\"panel\"` + `layout=\"row gap-0\"` + 各子に `layout=\"grow\"`"
+             "（仕切り罫と密着は失う）。入力欄を飲み込む形は当面現場で手書き")
+    L.append("    - 素の `<button>` も `data-suisou-body` の中では Suisou のボタンになる。"
+             "値なしの `data-suisou-button` は消してよい")
+    L.append("    - ★見た目が変わるもの: 押された状態の既定が accent 色 → **無彩色**"
+             "（色が欲しければ `accent` と書く）／枠を持つ値の横余白 16px → 8px／"
+             "`wide` だったものの高さ 38px → 30px")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
