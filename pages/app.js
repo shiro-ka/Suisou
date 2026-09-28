@@ -136,9 +136,9 @@ function typeRow(key, variants, note) {
 function fill(box, rows) { for (const r of rows) box.append(r); }
 
 function enhanceTypography(scope) {
-  fill(slot('scale-ui', scope), SCALE.map((s) => typeRow(`${s}px`, `s${s} w400`)));
-  fill(slot('scale-doc', scope), SCALE.map((s) => typeRow(`${s}px`, `s${s} w400 doc`)));
-  fill(slot('weights', scope), WEIGHTS.map((n) => typeRow(String(n), `s16 w${n}`)));
+  fill(slot('scale-ui', scope), SCALE.map((s) => typeRow(`${s}px`, `fs-${s} fw-400`)));
+  fill(slot('scale-doc', scope), SCALE.map((s) => typeRow(`${s}px`, `fs-${s} fw-400 doc`)));
+  fill(slot('weights', scope), WEIGHTS.map((n) => typeRow(String(n), `fs-16 fw-${n}`)));
   fill(slot('roles-ui', scope), ROLES_UI.map(([n, s, w]) => typeRow(n, `s${s} w${w}`)));
   fill(slot('roles-doc', scope), ROLES_DOC.map(([n, s, w, doc]) =>
     typeRow(n, `s${s} w${w}${doc ? ' doc' : ''}`)));
