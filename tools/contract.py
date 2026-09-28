@@ -237,6 +237,8 @@ def render():
              "code / quote / table は typeset の中に置けば同じ見た目になる。`table` の `tight` / `scroll` は無くなった")
     L.append("      - ★`typeset fs-14` の規則は属性を2つ見るので詳細度が (0,1,0) → (0,2,0) に上がった。"
              "現場の CSS が旧 `tight` の見出しを上書きしていた場合、今度は Suisou が勝つ")
+    L.append("    - ★見た目が変わるもの: 28px の行間を 32px → 36px にした（2026-09-28）。"
+             "24px と同じ 32px で、折り返すと詰まって見えたため。typeset の h1 と `fs-28` の要素が該当")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
