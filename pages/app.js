@@ -139,9 +139,9 @@ function enhanceTypography(scope) {
   fill(slot('scale-ui', scope), SCALE.map((s) => typeRow(`${s}px`, `fs-${s} fw-400`)));
   fill(slot('scale-doc', scope), SCALE.map((s) => typeRow(`${s}px`, `fs-${s} fw-400 doc`)));
   fill(slot('weights', scope), WEIGHTS.map((n) => typeRow(String(n), `fs-16 fw-${n}`)));
-  fill(slot('roles-ui', scope), ROLES_UI.map(([n, s, w]) => typeRow(n, `s${s} w${w}`)));
+  fill(slot('roles-ui', scope), ROLES_UI.map(([n, s, w]) => typeRow(n, `fs-${s} fw-${w}`)));
   fill(slot('roles-doc', scope), ROLES_DOC.map(([n, s, w, doc]) =>
-    typeRow(n, `s${s} w${w}${doc ? ' doc' : ''}`)));
+    typeRow(n, `fs-${s} fw-${w}${doc ? ' doc' : ''}`)));
 
   for (const row of scope.querySelectorAll('.t-row')) {
     const note = row.dataset.note;
