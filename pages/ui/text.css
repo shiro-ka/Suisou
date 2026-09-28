@@ -128,3 +128,98 @@
 [data-suisou-text~="typeset"][data-suisou-text~="fs-14"] > :where(:is(h1, h2, h3, h4, h5, h6) + *) {
   margin-block-start: var(--suisou-space-1);
 }
+
+[data-suisou-text~="typeset"] :where(blockquote) {
+  border-left: 3px solid var(--suisou-line-strong);
+  padding-left: var(--suisou-space-3);
+  color: var(--suisou-text-sub);
+}
+
+[data-suisou-text~="typeset"] :where(blockquote) :where(p) + :where(p) {
+  margin-block-start: var(--suisou-space-2);
+}
+
+[data-suisou-text~="typeset"] :where(ul, ol) {
+  padding-inline-start: var(--suisou-space-4);
+}
+
+[data-suisou-text~="typeset"] :where(ul, ol) :where(li)::marker {
+  color: var(--suisou-text-sub);
+}
+
+[data-suisou-text~="typeset"] :where(ul, ol) :where(li) + :where(li) {
+  margin-block-start: var(--suisou-space-1);
+}
+
+[data-suisou-text~="typeset"] :where(ul, ol) :where(ul, ol) {
+  margin-block-start: var(--suisou-space-1);
+}
+
+[data-suisou-text~="typeset"] :where(code) {
+  font-family: var(--suisou-mono);
+  font-size: 0.9em;
+  background: var(--suisou-item);
+  border-radius: var(--suisou-radius-small);
+  padding: 0 var(--suisou-space-1);
+}
+
+[data-suisou-text~="typeset"] :where(pre) {
+  font-family: var(--suisou-mono);
+  font-size: var(--suisou-size-12);
+
+  line-height: var(--suisou-lh-14);
+
+  margin: 0;
+  padding: var(--suisou-space-2);
+  background: var(--suisou-item);
+  border: 1px solid var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+
+  overflow-x: auto;
+}
+
+[data-suisou-text~="typeset"] :where(pre) :where(code) {
+  font-size: inherit;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+[data-suisou-text~="link"],
+[data-suisou-text~="typeset"] :where(a) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--suisou-motion-fast) var(--suisou-ease);
+}
+
+[data-suisou-text~="link"]:hover,
+[data-suisou-text~="typeset"] :where(a):hover {
+  color: var(--suisou-accent);
+}
+
+[data-suisou-text~="link"]:has(> img:only-child),
+[data-suisou-text~="typeset"] :where(a:has(> img:only-child)) {
+  text-decoration: none;
+}
+
+[data-suisou-text~="typeset"] :where(table) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--suisou-size-14);
+  line-height: var(--suisou-lh-14);
+}
+
+[data-suisou-text~="typeset"] :where(table) :where(th, td) {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--suisou-space-1) var(--suisou-space-2);
+  border-bottom: 1px solid var(--suisou-line-weak);
+}
+
+[data-suisou-text~="typeset"] :where(table) :where(th) {
+  color: var(--suisou-text-sub);
+  font-weight: 700;
+}
+
+[data-suisou-text~="typeset"] :where(table) :where(tr:last-child) :where(th, td) { border-bottom: 0; }

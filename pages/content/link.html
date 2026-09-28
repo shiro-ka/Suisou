@@ -15,11 +15,11 @@
       <code>&lt;a&gt;</code> を作るたびに<strong>色を消す作業が発生する</strong>。
     </p>
     <div class="demo">
-      <span class="demo-label">data-suisou-link</span>
+      <span class="demo-label">data-suisou-text="link"</span>
       <p data-suisou-text="fs-16 fw-400 typeset">
-        テーマ名は水域にした。<a href="#palette" data-suisou-link>hadal / trench / fjord / shoal</a> の4つで、
+        テーマ名は水域にした。<a href="#palette" data-suisou-text="link">hadal / trench / fjord / shoal</a> の4つで、
         深いほど光が届かず面の色が薄くなる。値は
-        <a href="#palette" data-suisou-link>solve.py が制約から解いている</a>ので、
+        <a href="#palette" data-suisou-text="link">solve.py が制約から解いている</a>ので、
         手で置いた色は1つも無い。
       </p>
     </div>
@@ -49,14 +49,14 @@
       </div>
       <span class="demo-label">画像だけのリンク —— 線を引かない（:has で判定）</span>
       <div data-suisou-layout="row">
-        <a href="#avatar" data-suisou-link><img data-suisou-avatar="large" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23334'/%3E%3Ccircle cx='32' cy='24' r='12' fill='%23889'/%3E%3Cellipse cx='32' cy='58' rx='22' ry='18' fill='%23889'/%3E%3C/svg%3E" alt=""></a>
+        <a href="#avatar" data-suisou-text="link"><img data-suisou-avatar="large" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23334'/%3E%3Ccircle cx='32' cy='24' r='12' fill='%23889'/%3E%3Cellipse cx='32' cy='58' rx='22' ry='18' fill='%23889'/%3E%3C/svg%3E" alt=""></a>
         <span data-suisou-text="fs-12 fw-400" class="muted">markdown の <code>[![img](x)](y)</code> がこの形になる</span>
       </div>
     </div>
     <table data-suisou-table="tight">
       <tr><th>どこ</th><th>色</th><th>下線</th></tr>
       <tr><td><code>&lt;a&gt;</code>（既定）</td><td>継承</td><td>なし</td></tr>
-      <tr><td><code>data-suisou-link</code></td><td>継承（hover でアクセント）</td><td><strong>あり</strong></td></tr>
+      <tr><td><code>data-suisou-text="link"</code></td><td>継承（hover でアクセント）</td><td><strong>あり</strong></td></tr>
       <tr><td><code>prose</code> の中の <code>&lt;a&gt;</code></td><td>同上</td><td><strong>あり</strong>（自動）</td></tr>
       <tr><td>画像だけのリンク</td><td>継承</td><td>なし</td></tr>
     </table>
@@ -78,7 +78,7 @@
     <div class="demo">
       <span class="demo-label">Tab で辿る</span>
       <div data-suisou-layout="row wrap">
-        <a href="#link" data-suisou-link>文章の中のリンク</a>
+        <a href="#link" data-suisou-text="link">文章の中のリンク</a>
         <a href="#link" data-suisou-button="plain">ボタンの a</a>
       </div>
     </div>

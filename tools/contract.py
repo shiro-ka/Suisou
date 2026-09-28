@@ -229,6 +229,12 @@ def render():
     L.append("      - 直し方: `data-suisou-prose` → `data-suisou-text=\"typeset\"`、"
              "`data-suisou-prose=\"tight\"` → `data-suisou-text=\"typeset fs-14\"`、"
              "text の `doc` → `typeset`（`fs-16 doc` → `fs-16 typeset`）")
+    L.append("    - `data-suisou-link` / `-code` / `-quote` / `-list` / `-table` を廃止した（2026-09-28）。"
+             "typeset の中の `a` `code` `pre` `blockquote` `ul` `ol` `table` の見た目は text.css が持つ。"
+             "単独の属性は link 以外ほぼ使われていなかった（code / quote / table 0件、list は Mado 2件）")
+    L.append("      - 直し方: `data-suisou-link` → `data-suisou-text=\"link\"`（既に text があれば値を足す）。"
+             "`data-suisou-list` → 外す（Mado は手書きに戻す）。"
+             "code / quote / table は typeset の中に置けば同じ見た目になる。`table` の `tight` / `scroll` は無くなった")
     L.append("      - ★`typeset fs-14` の規則は属性を2つ見るので詳細度が (0,1,0) → (0,2,0) に上がった。"
              "現場の CSS が旧 `tight` の見出しを上書きしていた場合、今度は Suisou が勝つ")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
