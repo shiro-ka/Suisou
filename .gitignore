@@ -1,11 +1,8 @@
 __pycache__/
 *.pyc
 
-# tools/bundle.py の出力。配信時に作る
 dist/
 
-# 配信の組み立て場（tools/deploy 系が作る。ピン留め版を全部並べるので数十MBになる）
 _site/
 
-# wrangler のローカル状態
 .wrangler/

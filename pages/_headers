@@ -1,33 +1,12 @@
-# Cloudflare Pages のヘッダ指定。★配信物ではなく「配り方」なので git に置く。
-#
-# ★2026-09-08 に一度失った。_site/ を作り直したとき、このファイルだけが
-#   どこにも無かった（手で書いて _site/ に直接置いていた）。本番の
-#   レスポンスヘッダから復元してここに移した。**配信の入力は全部 git に置く。**
-#
-# ★GitHub Pages はこのファイルを見ない。2026-09-03 に CF へ移設済みなので、
-#   いまは常に効いている（`.github/workflows/deploy_pages.yml` は GH Pages 向けの残骸）。
-
 /*
   Access-Control-Allow-Origin: *
   X-Content-Type-Options: nosniff
 
-# ★いま動いているチャンネル（rolling）。5分だけ持って、あとは必ず問い合わせる。
-# ★長くすると Suisou を直しても現場に行き渡らない。ここが「rolling」の実体。
-#
-# ★★版を上げたらこの規則も一緒に動かすこと。2026-09-10 に v2 を建てたとき
-#   ここが `/v1/*` のままで、**現役の v2 に規則が無く CF の既定（max-age=0）に
-#   落ちていた**（2026-09-15 に本番のヘッダで実測して発見）。
-#   rolling の宛先はチャンネル名で焼き込まれているので、改名のたびに腐る。
 /v2/*
   Cache-Control: public, max-age=300, must-revalidate
 
-# ★凍結したチャンネルは内容が動かないので、固定 URL と同じ扱いでいい。
-#   v1 は 2026-09-10 に `07c066f` で停止した（CONTRACT.md の「配布」参照）。
-#   ★immutable にすると復活させても届かないが、凍結は公開契約なので動かさない。
 /v1/*
   Cache-Control: public, max-age=31536000, immutable
 
-# 固定 URL は内容が動かないので、1年 immutable。
-# ★これが /v/<sha7>/ を配る理由そのもの。再検証すら要らない。
 /v/*
   Cache-Control: public, max-age=31536000, immutable
