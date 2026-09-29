@@ -1,7 +1,7 @@
 @property --suisou-type-size { syntax: "*"; inherits: false; }
 @property --suisou-type-lh { syntax: "*"; inherits: false; }
 
-svg[data-suisou-text] { width: 1em; height: 1em; flex: none; }
+svg[data-suisou-text] { display: inline-block; vertical-align: -0.125em; width: 1em; height: 1em; flex: none; }
 :where([data-suisou-text~="typeset"]) { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
 [data-suisou-text~="fs-12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
 [data-suisou-text~="fs-14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }

@@ -360,6 +360,9 @@ def render():
              "typeset の規則に崩されていた。typeset の中の要素への規則を `typeset.css` に分けて**部品より前**に読み、"
              "部品が順番で勝つようにした（属性は `data-suisou-text` のまま、ファイルだけ分かれた）。"
              "`data-suisou-button` と `data-suisou-item` の要素は下線を持たない（リンクにしても。`text=\"link\"` を書けば付く）")
+    L.append("    - `data-suisou-text` を付けた svg を行内（`inline-block`、縦位置 `-0.125em`）にした。文の途中に置いても行が割れない。"
+             "flex / grid の中（button / tag / layout / avatar / tile / `media-icon`）では今までどおり。"
+             "★ブロックの枠で包むと、枠が1行の高さになる（文字を包んだときと同じ）")
     L.append("    - 配布物（`dist/`）で palette を ui より先に置いた（見本と同じ順。同じ要素に theme と tray が並んだとき tray が勝つ）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
