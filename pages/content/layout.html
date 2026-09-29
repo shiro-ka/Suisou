@@ -173,7 +173,7 @@
         <div class="demo-box">まみむめも</div>
       </div>
       <span class="demo-label">scroll-y —— あふれたらその中で縦にスクロールする</span>
-      <div data-suisou-layout="stack scroll-y" class="demo-frame">
+      <div data-suisou="scroll-y" data-suisou-layout="stack" class="demo-frame">
         <div class="demo-box">1</div>
         <div class="demo-box">2</div>
         <div class="demo-box">3</div>
@@ -184,7 +184,7 @@
         <div class="demo-box">8</div>
       </div>
       <span class="demo-label">scroll-x —— 横に流す。<code>row</code> と組で使う</span>
-      <div data-suisou-layout="row scroll-x">
+      <div data-suisou="scroll-x" data-suisou-layout="row">
         <div class="demo-box">あいうえお</div>
         <div class="demo-box">かきくけこ</div>
         <div class="demo-box">さしすせそ</div>
@@ -362,12 +362,12 @@
     </p>
     <div class="demo">
       <span class="demo-label">中身が少ない —— バーは出ない</span>
-      <div data-suisou-layout="stack scroll-y" data-suisou-tray="panel" class="demo-frame">
+      <div data-suisou="scroll-y" data-suisou-layout="stack" data-suisou-tray="panel" class="demo-frame">
         <div class="demo-box">1</div>
         <div class="demo-box">2</div>
       </div>
       <span class="demo-label">中身が多い —— バーの分だけ中身が細くなる</span>
-      <div data-suisou-layout="stack scroll-y" data-suisou-tray="panel" class="demo-frame">
+      <div data-suisou="scroll-y" data-suisou-layout="stack" data-suisou-tray="panel" class="demo-frame">
         <div class="demo-box">1</div>
         <div class="demo-box">2</div>
         <div class="demo-box">3</div>
@@ -395,14 +395,14 @@
     <div class="demo">
       <span class="demo-label">柱 + 帯 + 本体 + 入力</span>
       <div data-suisou-layout="row" class="demo-frame">
-        <div data-suisou-tray="panel" data-suisou-layout="stack scroll-y" style="width: 120px">
+        <div data-suisou="scroll-y" data-suisou-tray="panel" data-suisou-layout="stack" style="width: 120px">
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
           <div class="demo-box">一覧</div>
         </div>
         <div data-suisou-layout="stack grow">
           <div data-suisou-tray="panel">ヘッダ</div>
-          <div data-suisou-tray="panel" data-suisou-layout="grow scroll-y">本体</div>
+          <div data-suisou="scroll-y" data-suisou-tray="panel" data-suisou-layout="grow">本体</div>
           <div data-suisou-tray="panel">入力</div>
         </div>
       </div>
@@ -410,7 +410,7 @@
       <div data-suisou-layout="row" class="demo-frame">
         <div data-suisou-layout="stack grow">
           <div data-suisou-tray="panel">ヘッダ</div>
-          <div data-suisou-tray="panel" data-suisou-layout="grow scroll-y">本体</div>
+          <div data-suisou="scroll-y" data-suisou-tray="panel" data-suisou-layout="grow">本体</div>
           <div data-suisou-tray="panel">入力</div>
         </div>
       </div>
