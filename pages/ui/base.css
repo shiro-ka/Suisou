@@ -32,6 +32,9 @@
   accent-color: var(--suisou-accent);
   scrollbar-width: thin;
   scrollbar-color: var(--suisou-line-strong) transparent;
+  --suisou-next: var(--suisou-panel);
+  --suisou-line-weak-next: var(--suisou-line-weak-panel);
+  --suisou-line-strong-next: var(--suisou-line-strong-panel);
 }
 body[data-suisou-body~="shell"] {
   display: grid;

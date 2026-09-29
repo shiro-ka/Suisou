@@ -5,7 +5,9 @@
   padding: var(--suisou-space-1) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
 
-  background: var(--suisou-item);
+  background: var(--suisou-next, var(--suisou-item));
+  --suisou-line-weak: var(--suisou-line-weak-next, var(--suisou-line-weak-item));
+  --suisou-line-strong: var(--suisou-line-strong-next, var(--suisou-line-strong-item));
   color: var(--suisou-text-main);
   border: 1px solid var(--suisou-line-strong);
   transition: border-color var(--suisou-motion-fast) var(--suisou-ease);

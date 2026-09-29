@@ -249,6 +249,10 @@ def render():
              "無印は 14px / 行間 20 → 14px / 24、fs-14 は 14px / 20 → 12px / 20。"
              "見本サイトの仕様表（UI の表）の値が残っていて、fs-14 で1段詰まらなかった")
     L.append("    - ★見た目が変わるもの: typeset の引用の罫を 3px → 4px にした（2026-09-29）。h2 の帯と同じ太さ")
+    L.append("  - ★見た目が変わるもの: field の背景を「置き場所の1段上」にした（2026-09-29）。"
+             "地べたなら panel の色、panel / drawer の中なら item の色。罫も背景に合った濃い罫にした。"
+             "地べたの入力欄は L28 → L22 に沈む。入れ物が `--suisou-next` / `--suisou-line-weak-next` / "
+             "`--suisou-line-strong-next` を配り、field が読む。button は今までどおり（背景なし）")
     L.append("  - **item**: `data-suisou-item` を新設し、media / avatar / tile と tray の `item` を畳んだ（2026-09-29）。"
              "item は「panel の中に置くモノ1つ」。種類を値で言う（属性を増やさない）")
     L.append("    - 直し方: `data-suisou-media` → `data-suisou-item=\"media\"`、"

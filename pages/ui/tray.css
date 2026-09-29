@@ -5,6 +5,9 @@
   background: var(--suisou-panel);
   --suisou-line-weak: var(--suisou-line-weak-panel);
   --suisou-line-strong: var(--suisou-line-strong-panel);
+  --suisou-next: var(--suisou-item);
+  --suisou-line-weak-next: var(--suisou-line-weak-item);
+  --suisou-line-strong-next: var(--suisou-line-strong-item);
 }
 :where(dialog)[data-suisou-tray]::backdrop { background: var(--suisou-scrim); }
 
@@ -43,6 +46,9 @@
   background: var(--suisou-panel);
   --suisou-line-weak: var(--suisou-line-weak-panel);
   --suisou-line-strong: var(--suisou-line-strong-panel);
+  --suisou-next: var(--suisou-item);
+  --suisou-line-weak-next: var(--suisou-line-weak-item);
+  --suisou-line-strong-next: var(--suisou-line-strong-item);
   padding: 0;
 }
 [data-suisou-tray~="drawer"][data-suisou-tray~="end"] {
