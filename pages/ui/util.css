@@ -11,6 +11,34 @@
 
 [data-suisou~="bg-none"] { background: transparent; }
 
+[data-suisou~="container"],
+[data-suisou~="container-s"],
+[data-suisou~="container-m"],
+[data-suisou~="container-l"] { width: 100%; margin-inline: auto; }
+[data-suisou~="container"]   { max-width: clamp(46rem, 90vw, 80rem); }
+[data-suisou~="container-s"] { max-width: 46rem; }
+[data-suisou~="container-m"] { max-width: 64rem; }
+[data-suisou~="container-l"] { max-width: 80rem; }
+
+[data-suisou~="min-screen"] { min-height: 100dvh; }
+[data-suisou~="scroll-y"] { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges; }
+[data-suisou~="scroll-x"] { overflow-x: auto; overflow-y: hidden; }
+@media (width >= 768px) {
+  [data-suisou~="s:min-screen"] { min-height: 100dvh; }
+  [data-suisou~="s:scroll-y"] { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges; }
+  [data-suisou~="s:scroll-x"] { overflow-x: auto; overflow-y: hidden; }
+}
+@media (width >= 1024px) {
+  [data-suisou~="m:min-screen"] { min-height: 100dvh; }
+  [data-suisou~="m:scroll-y"] { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges; }
+  [data-suisou~="m:scroll-x"] { overflow-x: auto; overflow-y: hidden; }
+}
+@media (width >= 1280px) {
+  [data-suisou~="l:min-screen"] { min-height: 100dvh; }
+  [data-suisou~="l:scroll-y"] { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges; }
+  [data-suisou~="l:scroll-x"] { overflow-x: auto; overflow-y: hidden; }
+}
+
 @media (width <  768px)  { [data-suisou~="s>hidden"] { display: none; } }
 @media (width <  1024px) { [data-suisou~="m>hidden"] { display: none; } }
 @media (width <  1280px) { [data-suisou~="l>hidden"] { display: none; } }

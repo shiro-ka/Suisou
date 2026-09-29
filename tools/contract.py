@@ -323,6 +323,11 @@ def render():
     L.append("    - 直し方: `data-suisou-show=\"s:none\"` → `data-suisou=\"s:hidden\"`、"
              "`data-suisou-show=\"s>none\"` → `data-suisou=\"s>hidden\"`（`m` / `l` も同じ）。既に `data-suisou` があれば値を足す")
     L.append("    - `util.css` の末尾に置いた（layout の `display` に順番で勝つため。前の `show.css` を最後に読んでいたのと同じ理由）")
+    L.append("  - **layout の自分に当たる語**: `container` / `container-s` / `-m` / `-l` / `min-screen` / `scroll-x` / `scroll-y` を "
+             "ユーティリティ（`data-suisou`）に移した（2026-09-29）。子の並べ方ではなく自分の寸法・はみ出しの指定なので、"
+             "layout は並べ方だけになる。`grow` は layout の子のときだけ意味を持つので layout に残した。段つき版（`s:scroll-y` など）はそのまま移した")
+    L.append("    - 直し方: `data-suisou-layout=\"stack scroll-y\"` → `data-suisou-layout=\"stack\" data-suisou=\"scroll-y\"`、"
+             "`data-suisou-layout=\"container\"` → `data-suisou=\"container\"`（layout に他の語が無ければ layout の属性ごと外す）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
