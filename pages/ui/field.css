@@ -1,7 +1,4 @@
-[data-suisou-field] {
-  font-family: inherit;
-  font-size: var(--suisou-size-14);
-  line-height: var(--suisou-lh-14);
+:where([data-suisou-body] :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="submit"], [type="button"], [type="reset"], [type="image"], [type="hidden"]), textarea, select)) {
   padding: var(--suisou-space-1) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
 
@@ -13,19 +10,17 @@
   transition: border-color var(--suisou-motion-fast) var(--suisou-ease);
 }
 
-[data-suisou-field]::placeholder { color: var(--suisou-text-disabled); }
+:where([data-suisou-body] :is(input, textarea))::placeholder { color: var(--suisou-text-disabled); }
 
-[data-suisou-field]:focus-visible {
+:where([data-suisou-body] :is(input, textarea, select)):focus-visible {
   outline: var(--suisou-focus);
   outline-offset: 2px;
 }
 
-[data-suisou-field~="block"] { display: block; width: 100%; }
+:where([data-suisou-body] :is(input, textarea, select))[aria-invalid="true"] { border-color: var(--suisou-error); }
 
-[data-suisou-field][aria-invalid="true"] { border-color: var(--suisou-error); }
-
-[data-suisou-field][disabled],
-[data-suisou-field][aria-disabled="true"] {
+:where([data-suisou-body] :is(input, textarea, select)):disabled,
+:where([data-suisou-body] :is(input, textarea, select))[aria-disabled="true"] {
   color: var(--suisou-text-disabled);
   border-color: var(--suisou-line-weak);
   background: transparent;

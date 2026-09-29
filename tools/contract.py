@@ -249,6 +249,13 @@ def render():
              "無印は 14px / 行間 20 → 14px / 24、fs-14 は 14px / 20 → 12px / 20。"
              "見本サイトの仕様表（UI の表）の値が残っていて、fs-14 で1段詰まらなかった")
     L.append("    - ★見た目が変わるもの: typeset の引用の罫を 3px → 4px にした（2026-09-29）。h2 の帯と同じ太さ")
+    L.append("  - **field**: `data-suisou-field` を廃止した（2026-09-29）。"
+             "body の中の素の `<input>`（文字の入力欄の種類）/ `<textarea>` / `<select>` が Suisou の入力欄になる。"
+             "チェックボックス・ラジオ・範囲・色・ファイル・ボタン類・hidden は対象外。"
+             "文字の大きさは周りを継ぐ（14px 固定をやめた。`data-suisou-text` が効く）")
+    L.append("    - 直し方: `data-suisou-field` → 外す、`data-suisou-field=\"block\"` → `data-suisou=\"w-full\"`。"
+             "入力欄でない要素に入力欄の見た目を着せていた箇所（wixdex のデッキ編集の4つ）は現場が持つ。"
+             "書けない表示は `<input disabled>` にすれば同じ見た目になる")
     L.append("  - ★見た目が変わるもの: field の背景を「置き場所の1段上」にした（2026-09-29）。"
              "地べたなら panel の色、panel / drawer の中なら item の色。罫も背景に合った濃い罫にした。"
              "地べたの入力欄は L28 → L22 に沈む。入れ物が `--suisou-next` / `--suisou-line-weak-next` / "
