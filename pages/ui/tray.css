@@ -1,6 +1,6 @@
 @property --suisou-drawer { syntax: "*"; inherits: false; }
 
-[data-suisou-tray~="panel"] {
+[data-suisou-tray=""] {
   border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2);

@@ -9,7 +9,7 @@ GENERATED = {"palette.css", "suisou.data.js"}
 TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
-SURFACE_STEPS = {"panel"}
+TRAY_EDGES = {"end", "start", "top", "bottom"}
 ITEM_KINDS = {"media", "avatar", "tile", "field", "tag", "banner"}
 BANNER_KINDS = {"error", "warning", "success"}
 
@@ -95,15 +95,13 @@ def main():
             for i, line in enumerate(body.splitlines(), 1):
                 for m in re.finditer(r'data-suisou-tray(?:="([^"]*)")?', line):
                     vals = set((m.group(1) or "").split())
-
-                    if "drawer" in vals:
+                    if not vals:
                         continue
-                    steps = SURFACE_STEPS & vals
-                    if len(steps) != 1:
-                        got = m.group(1) if m.group(1) is not None else "（値なし）"
+                    edges = TRAY_EDGES & vals
+                    if vals - TRAY_EDGES != {"drawer"} or len(edges) != 1:
                         problems.append(
-                            f"{rel}:{i}: tray の段が {len(steps)} 個 … \"{got}\" "
-                            f"（{' / '.join(sorted(SURFACE_STEPS))} を書く）")
+                            f"{rel}:{i}: tray の値 … \"{m.group(1)}\" "
+                            f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添える）")
 
                 for m in re.finditer(r'data-suisou-item="([^"]*)"', line):
                     kinds = ITEM_KINDS & set(m.group(1).split())

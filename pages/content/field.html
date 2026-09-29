@@ -10,7 +10,7 @@
     <h2>基本</h2>
     <div class="demo">
       <span class="demo-label">素の input / textarea（data-suisou="w-full"）</span>
-      <div data-suisou-layout="stack" data-suisou-tray="panel">
+      <div data-suisou-layout="stack" data-suisou-tray>
         <input data-suisou="w-full" placeholder="#general へメッセージを送信">
         <input data-suisou="w-full" value="is:issue is:open">
         <textarea data-suisou="w-full" rows="3" placeholder="長い文章"></textarea>
@@ -32,16 +32,16 @@
     </p>
     <div class="demo">
       <span class="demo-label">何も書かない —— ブラウザの既定幅</span>
-      <div data-suisou-tray="panel">
+      <div data-suisou-tray>
         <input placeholder="そのまま">
       </div>
       <span class="demo-label">flex の中で grow —— 隣に何か置くとき</span>
-      <div data-suisou-layout="row" data-suisou-tray="panel">
+      <div data-suisou-layout="row" data-suisou-tray>
         <input data-suisou-layout="grow" placeholder="#general へメッセージを送信">
         <button data-suisou-button="icon" type="button" aria-label="送信"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14l11 -11" /><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></svg></button>
       </div>
       <span class="demo-label">block —— flex の外で幅いっぱい</span>
-      <div data-suisou-tray="panel">
+      <div data-suisou-tray>
         <input data-suisou="w-full" placeholder="幅いっぱい">
       </div>
     </div>
@@ -56,7 +56,7 @@
     </p>
     <div class="demo">
       <span class="demo-label">ふつう / aria-invalid="true" / disabled</span>
-      <div data-suisou-layout="stack" data-suisou-tray="panel">
+      <div data-suisou-layout="stack" data-suisou-tray>
         <input data-suisou="w-full" value="ふつう">
         <input data-suisou="w-full" value="不正な値" aria-invalid="true">
         <input data-suisou="w-full" value="書けない" disabled>
