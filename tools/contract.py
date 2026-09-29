@@ -348,6 +348,10 @@ def render():
              "`typeset fs-14` の中の `small` を 12px にした。見出しの帯・引用の罫・表の寄せを論理方向（右から左で反転）にした")
     L.append("    - media の見出しの文字の規則を詳細度0にした（中に置いた `button=\"accent\"` などが勝つ）")
     L.append("    - `grid` の既定の列 `minmax(12rem, 1fr)` → `minmax(min(12rem, 100%), 1fr)`（文字の拡大で横にはみ出していた）")
+    L.append("    - HTML の `hidden` 属性・閉じた `<dialog>`・閉じた popover が、Suisou の `display`（button / layout / item など）に負けて出ていた。"
+             "閉じた dialog に layout を付けると、見えないまま下のクリックを奪っていた。"
+             "`util.css` の末尾でブラウザと同じ `display: none` を置き直し、順番で勝たせる（`!important` は使わない。"
+             "現場の CSS がもっと強い `display` を書いたときは現場が勝つ ―― ブラウザの素の振る舞いと同じ）")
     L.append("    - 配布物（`dist/`）で palette を ui より先に置いた（見本と同じ順。同じ要素に theme と tray が並んだとき tray が勝つ）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
