@@ -18,7 +18,7 @@
   align-items: flex-start;
 }
 
-[data-suisou-item~="media-icon"] { flex: none; }
+[data-suisou-item~="media-icon"] { flex: none; display: flex; }
 
 [data-suisou-item~="media-content"] {
   flex: 1 1 auto;
