@@ -132,6 +132,8 @@
 [data-suisou-text~="typeset"][data-suisou-text~="fs-14"] > :where(:is(h1, h2, h3, h4, h5, h6) + *) {
   margin-block-start: var(--suisou-space-1);
 }
+[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] > :where(hr),
+[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] > :where(hr + *) { margin-block-start: var(--suisou-space-3); }
 
 [data-suisou-text~="typeset"] :where(blockquote) {
   border-left: 3px solid var(--suisou-line-strong);
