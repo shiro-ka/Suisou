@@ -251,11 +251,11 @@ def render():
     L.append("    - ★見た目が変わるもの: typeset の引用の罫を 3px → 4px にした（2026-09-29）。h2 の帯と同じ太さ")
     L.append("  - **item**: `data-suisou-item` を新設し、media / avatar / tile と tray の `item` を畳んだ（2026-09-29）。"
              "item は「panel の中に置くモノ1つ」。種類を値で言う（属性を増やさない）")
-    L.append("    - 直し方: `data-suisou-media` → `data-suisou-item=\\"media\\"`、"
-             "`data-suisou-media-icon` / `-content` / `-tail` → `data-suisou-item=\\"media-icon\\"` など、"
-             "`data-suisou-avatar=\\"small\\"` → `data-suisou-item=\\"avatar small\\"`、"
-             "`data-suisou-tile` → `data-suisou-item=\\"tile\\"`、"
-             "`data-suisou-tray=\\"item\\"` → `data-suisou-item`（値なし＝角丸の面）。"
+    L.append("    - 直し方: `data-suisou-media` → `data-suisou-item=\"media\"`、"
+             "`data-suisou-media-icon` / `-content` / `-tail` → `data-suisou-item=\"media-icon\"` など、"
+             "`data-suisou-avatar=\"small\"` → `data-suisou-item=\"avatar small\"`、"
+             "`data-suisou-tile` → `data-suisou-item=\"tile\"`、"
+             "`data-suisou-tray=\"item\"` → `data-suisou-item`（値なし＝角丸の面）。"
              "同じ要素に複数あれば値を並べる（`media-icon avatar`）")
     L.append("    - 種類（media / avatar / tile）は1つだけ。位置の語（media-icon など）と大きさ（small / large）は組める。"
              "値なしの面と種類は同じ要素に書けない（入れ子にする）。"
