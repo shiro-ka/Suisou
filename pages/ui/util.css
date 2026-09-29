@@ -2,9 +2,10 @@
 
 [data-suisou~="w-full"] { width: 100%; }
 
-[data-suisou~="bd-top"]    { border-block-start: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
-[data-suisou~="bd-bottom"] { border-block-end:   1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
-[data-suisou~="bd-end"]    { border-inline-end:  1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
+[data-suisou~="bd-top"]    { border-top:    1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
+[data-suisou~="bd-right"]  { border-right:  1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
+[data-suisou~="bd-bottom"] { border-bottom: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
+[data-suisou~="bd-left"]   { border-left:   1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
 
 [data-suisou~="bd-none"] { border-color: transparent; }
 [data-suisou~="bd-dash"] { --suisou-bd-style: dashed; }
