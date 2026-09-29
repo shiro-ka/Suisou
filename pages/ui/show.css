@@ -1,6 +1,0 @@
-@media (width <  768px)  { [data-suisou-show~="s>none"] { display: none; } }
-@media (width <  1024px) { [data-suisou-show~="m>none"] { display: none; } }
-@media (width <  1280px) { [data-suisou-show~="l>none"] { display: none; } }
-@media (width >= 768px)  { [data-suisou-show~="s:none"] { display: none; } }
-@media (width >= 1024px) { [data-suisou-show~="m:none"] { display: none; } }
-@media (width >= 1280px) { [data-suisou-show~="l:none"] { display: none; } }
