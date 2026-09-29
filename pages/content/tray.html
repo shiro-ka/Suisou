@@ -74,8 +74,8 @@
         <button data-suisou-button="plain" type="button" popovertarget="demo-drawer">ドロワーを開く（右）</button>
         <button data-suisou-button="plain" type="button" popovertarget="demo-drawer-l">ドロワーを開く（左）</button>
       </div>
-      <div id="demo-drawer-l" popover data-suisou-tray="drawer start" data-suisou-layout="stack">
-        <span data-suisou-text="fs-16 fw-700">drawer start —— 行頭から出る</span>
+      <div id="demo-drawer-l" popover data-suisou-tray="drawer left" data-suisou-layout="stack">
+        <span data-suisou-text="fs-16 fw-700">drawer left —— 左から出る</span>
         <p data-suisou-text="fs-14 fw-400" class="muted">
           ナビゲーションのドロワーは慣習的に左から出る。論理方向の名前なので
           RTL でも通る。Mado の要求で足した（2026-08-22）。
@@ -85,7 +85,7 @@
         <div data-suisou-layout="grow"></div>
         <button data-suisou-button type="button" popovertarget="demo-drawer-l" popovertargetaction="hide">閉じる</button>
       </div>
-      <div id="demo-drawer" popover data-suisou-tray="drawer end" data-suisou-layout="stack">
+      <div id="demo-drawer" popover data-suisou-tray="drawer right" data-suisou-layout="stack">
         <span data-suisou-text="fs-16 fw-700">drawer —— 端に寄せて浮く</span>
         <p data-suisou-text="fs-14 fw-400" class="muted">
           ハンバーガーの中身・モバイルのメニュー。出入りはフェードではなく端からの滑り。
@@ -237,7 +237,7 @@
       </div>
       <span class="demo-label">end —— 脇と本文の間</span>
       <div data-suisou-layout="row stretch gap-3" data-suisou-tray>
-        <div data-suisou="bd-end" data-suisou-layout="stack" data-suisou-text="fs-14 sub" style="padding-inline-end: var(--suisou-space-3)">
+        <div data-suisou="bd-right" data-suisou-layout="stack" data-suisou-text="fs-14 sub" style="padding-inline-end: var(--suisou-space-3)">
           <span>脇</span><span>のしるし</span>
         </div>
         <div data-suisou-layout="grow stack" data-suisou-text="fs-14">本文</div>

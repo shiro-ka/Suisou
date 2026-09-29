@@ -9,7 +9,7 @@ GENERATED = {"palette.css", "suisou.data.js"}
 TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
-TRAY_EDGES = {"end", "start", "top", "bottom"}
+TRAY_EDGES = {"right", "left", "top", "bottom"}
 ITEM_KINDS = {"media", "avatar", "tile", "field", "tag", "banner"}
 BANNER_KINDS = {"error", "warning", "success"}
 
