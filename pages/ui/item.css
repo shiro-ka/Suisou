@@ -1,5 +1,5 @@
 [data-suisou-item=""] {
-  border: 1px solid var(--suisou-line-weak);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2);
   background: var(--suisou-item);

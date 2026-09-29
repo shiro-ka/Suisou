@@ -1,3 +1,0 @@
-[data-suisou-rule~="top"]    { border-block-start: 1px solid var(--suisou-line-weak); }
-[data-suisou-rule~="bottom"] { border-block-end:   1px solid var(--suisou-line-weak); }
-[data-suisou-rule~="end"]    { border-inline-end:  1px solid var(--suisou-line-weak); }
