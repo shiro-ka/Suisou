@@ -328,6 +328,11 @@ def render():
              "layout は並べ方だけになる。`grow` は layout の子のときだけ意味を持つので layout に残した。段つき版（`s:scroll-y` など）はそのまま移した")
     L.append("    - 直し方: `data-suisou-layout=\"stack scroll-y\"` → `data-suisou-layout=\"stack\" data-suisou=\"scroll-y\"`、"
              "`data-suisou-layout=\"container\"` → `data-suisou=\"container\"`（layout に他の語が無ければ layout の属性ごと外す）")
+    L.append("  - **item の値の整理**（2026-09-29）: `media stack` を廃止した（現場0件）。"
+             "media の見出しの文字（題 14px 太字 / 補足 12px 灰）と `avatar large` の 16px の詳細度を (0,2,0) → (0,1,0) に下げ、"
+             "そこに書いた `data-suisou-text` が勝つようにした")
+    L.append("    - 直し方: `data-suisou-item=\"media stack\"` → `data-suisou-layout=\"stack\"`（中の `media-icon` / `media-content` はそのまま）")
+    L.append("    - ★見た目が変わるもの: media の見出しの中に置いた色つきの tag が、補足の灰色に負けていたのが本来の色になる")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
