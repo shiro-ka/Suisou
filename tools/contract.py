@@ -352,6 +352,10 @@ def render():
              "閉じた dialog に layout を付けると、見えないまま下のクリックを奪っていた。"
              "`util.css` の末尾でブラウザと同じ `display: none` を置き直し、順番で勝たせる（`!important` は使わない。"
              "現場の CSS がもっと強い `display` を書いたときは現場が勝つ ―― ブラウザの素の振る舞いと同じ）")
+    L.append("    - layout: モードの既定の寄せと、書いた寄せの語を分けた。`row` は中央・`stack` は伸ばす・`grid` は既定、を各モードが持ち、"
+             "`center` / `stretch`（段つき含む）は `--suisou-align` に入れるだけにした。"
+             "`row s:stack` で広い画面の子が伸びない、`stack s:row stretch` の `stretch` が負ける、を直した。"
+             "★寄せの語だけを書いてモードが無い要素では何も起きない（前は `align-items` が直接入っていた）")
     L.append("    - 配布物（`dist/`）で palette を ui より先に置いた（見本と同じ順。同じ要素に theme と tray が並んだとき tray が勝つ）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
