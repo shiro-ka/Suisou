@@ -34,12 +34,12 @@
   align-items: baseline;
   gap: var(--suisou-space-2);
 }
-[data-suisou-item~="media-content"] :where(header > :first-child) {
+:where([data-suisou-item~="media-content"] header > :first-child) {
   font-size: var(--suisou-size-14);
   line-height: var(--suisou-lh-14);
   font-weight: 700;
 }
-[data-suisou-item~="media-content"] :where(header > :not(:first-child)) {
+:where([data-suisou-item~="media-content"] header > :not(:first-child)) {
   font-size: var(--suisou-size-12);
   line-height: var(--suisou-lh-12);
   color: var(--suisou-text-sub);
@@ -59,20 +59,26 @@
   --suisou-line-strong: var(--suisou-line-strong-next, var(--suisou-line-strong-item));
   border: 1px solid var(--suisou-line-strong);
 }
-[data-suisou-item~="field"] > :is(input, textarea, select) {
+[data-suisou-item~="field"] > :where(input, textarea, select) {
   border: 0;
   border-radius: 0;
   background: transparent;
   flex: 1 1 auto;
   min-width: 0;
 }
-[data-suisou-item~="field"] > :is(input, textarea, select):focus-visible { outline: none; }
+[data-suisou-item~="field"] > :where(input, textarea, select):focus-visible { outline: none; }
 [data-suisou-item~="field"]:has(> :is(input, textarea, select):focus-visible) {
   outline: var(--suisou-focus);
   outline-offset: 2px;
 }
-[data-suisou-item~="field"] > button { border: 0; border-radius: 0; }
-[data-suisou-item~="field"] > span {
+[data-suisou-item~="field"] > :where(button) { border: 0; border-radius: 0; }
+[data-suisou-item~="field"] > :where(button):focus-visible { outline-offset: -2px; }
+[data-suisou-item~="field"]:where(:has(> :is(input, textarea, select)[aria-invalid="true"])) { border-color: var(--suisou-error); }
+[data-suisou-item~="field"]:where(:has(> :is(input, textarea, select):is(:disabled, [aria-disabled="true"]))) {
+  border-color: var(--suisou-line-weak);
+  background: transparent;
+}
+[data-suisou-item~="field"] > :where(span) {
   align-self: center;
   padding-inline-start: var(--suisou-space-2);
   color: var(--suisou-text-sub);

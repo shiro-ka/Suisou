@@ -235,8 +235,7 @@ def render():
     L.append("      - 直し方: `data-suisou-link` → `data-suisou-text=\"link\"`（既に text があれば値を足す）。"
              "`data-suisou-list` → 外す（Mado は手書きに戻す）。"
              "code / quote / table は typeset の中に置けば同じ見た目になる。`table` の `tight` / `scroll` は無くなった")
-    L.append("      - ★`typeset fs-14` の規則は属性を2つ見るので詳細度が (0,1,0) → (0,2,0) に上がった。"
-             "現場の CSS が旧 `tight` の見出しを上書きしていた場合、今度は Suisou が勝つ")
+    L.append("      - `typeset fs-14` の規則の詳細度は (0,1,0)（2026-09-29 に `:where` で戻した。無印の typeset と同じ）")
     L.append("    - ★見た目が変わるもの: 28px の行間を 32px → 36px にした（2026-09-28）。"
              "24px と同じ 32px で、折り返すと詰まって見えたため。typeset の h1 と `fs-28` の要素が該当")
     L.append("    - ★見た目が変わるもの: typeset の見出しの帯を、見出しの左外 14px にぶら下げる形から、"
@@ -333,6 +332,23 @@ def render():
              "そこに書いた `data-suisou-text` が勝つようにした")
     L.append("    - 直し方: `data-suisou-item=\"media stack\"` → `data-suisou-layout=\"stack\"`（中の `media-icon` / `media-content` はそのまま）")
     L.append("    - ★見た目が変わるもの: media の見出しの中に置いた色つきの tag が、補足の灰色に負けていたのが本来の色になる")
+    L.append("  - ★見た目が変わるもの: 設計の最終レビューで見つかったバグを直した（2026-09-29）")
+    L.append("    - テーマを `<html>` 以外に宣言すると焦点の輪が消えていた（`--suisou-focus` を `:root` だけで組み立てていた）。"
+             "`[data-suisou-theme]` でも組み立てる")
+    L.append("    - `[data-suisou-theme]` に `color-scheme: dark` を宣言した（ブラウザが描く部品・既定の文字色が暗い面に合う）")
+    L.append("    - 開いた `<dialog>` / popover の tray の文字が黒かった → text-main。popover の drawer に残っていたブラウザの 3px の罫を消した")
+    L.append("    - drawer の辺の罫・幅の規則を (0,1,0) にした（`bd-none` / `bd-dash` / `w-full` が効く）。"
+             "右から左の書字方向で `start` / `end` の drawer が正しい側から出る")
+    L.append("    - `item=\"field\"`: 中のボタンの焦点の輪が枠で切れていた → 内側に描く。"
+             "中の入力欄の `aria-invalid` / 無効を枠に出す。中の入力欄・ボタン・`span` の規則を (0,1,0) にした"
+             "（`data-suisou-text` や `bd-end` が効く）")
+    L.append("    - button: 無効の error ボタンに乗ると背景が出ていた・無効の押された accent ボタンに背景が残っていた、を直した。"
+             "outline ボタンの `aria-disabled=\"true\"` を `disabled` と同じ見た目にした。値の状態の規則を (0,1,0) にした（`bg-none` が効く）")
+    L.append("    - typeset の中の要素に書いた `data-suisou-text` の語（太さ・色・寄せ）が typeset の規則に負けていた → 勝つ。"
+             "`typeset fs-14` の中の `small` を 12px にした。見出しの帯・引用の罫・表の寄せを論理方向（右から左で反転）にした")
+    L.append("    - media の見出しの文字の規則を詳細度0にした（中に置いた `button=\"accent\"` などが勝つ）")
+    L.append("    - `grid` の既定の列 `minmax(12rem, 1fr)` → `minmax(min(12rem, 100%), 1fr)`（文字の拡大で横にはみ出していた）")
+    L.append("    - 配布物（`dist/`）で palette を ui より先に置いた（見本と同じ順。同じ要素に theme と tray が並んだとき tray が勝つ）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
@@ -351,7 +367,7 @@ def render():
 
     L.append("## 明文化した割り切り")
     L.append("")
-    L.append("- **accent を文字に使う場所**（`button=\"accent\"` のラベル、`tag=\"accent\"`）は "
+    L.append("- **accent を文字に使う場所**（`button=\"accent\"` のラベル、`item=\"tag accent\"`）は "
              "3.0:1 の保証（文字の 4.5 ではない）。意味色の文字は 4.5。"
              "アクセントは常に枠・下線・配置と併用する前提")
     L.append("- **typeset の組は 16px（無印）と 14px（`fs-14`）の2つだけ**。"
