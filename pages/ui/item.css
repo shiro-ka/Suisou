@@ -52,6 +52,36 @@
 
 [data-suisou-item~="media"][data-suisou-item~="stack"] { flex-direction: column; align-items: stretch; }
 
+[data-suisou-item~="field"] {
+  display: flex;
+  align-items: stretch;
+  border-radius: var(--suisou-radius);
+  overflow: hidden;
+  background: var(--suisou-next, var(--suisou-item));
+  --suisou-line-weak: var(--suisou-line-weak-next, var(--suisou-line-weak-item));
+  --suisou-line-strong: var(--suisou-line-strong-next, var(--suisou-line-strong-item));
+  border: 1px solid var(--suisou-line-strong);
+}
+[data-suisou-item~="field"] > :is(input, textarea, select) {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+[data-suisou-item~="field"] > :is(input, textarea, select):focus-visible { outline: none; }
+[data-suisou-item~="field"]:has(> :is(input, textarea, select):focus-visible) {
+  outline: var(--suisou-focus);
+  outline-offset: 2px;
+}
+[data-suisou-item~="field"] > button { border: 0; border-radius: 0; }
+[data-suisou-item~="field"] > span {
+  align-self: center;
+  padding-inline-start: var(--suisou-space-2);
+  color: var(--suisou-text-sub);
+  white-space: nowrap;
+}
+
 [data-suisou-item~="avatar"] {
   flex: none;
   width: var(--suisou-avatar, 2rem);
