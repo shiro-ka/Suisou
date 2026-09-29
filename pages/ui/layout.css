@@ -4,7 +4,7 @@
 @property --suisou-align { syntax: "*"; inherits: false; }
 
 :where([data-suisou-layout]) { --suisou-gap: var(--suisou-space-2); }
-:where([data-suisou-layout]) > * { flex: none; }
+:where([data-suisou-layout~="stack"], [data-suisou-layout~="row"], [data-suisou-layout~="grid"], [data-suisou-layout~="s:stack"], [data-suisou-layout~="s:row"], [data-suisou-layout~="s:grid"], [data-suisou-layout~="m:stack"], [data-suisou-layout~="m:row"], [data-suisou-layout~="m:grid"], [data-suisou-layout~="l:stack"], [data-suisou-layout~="l:row"], [data-suisou-layout~="l:grid"]) > * { flex: none; }
 [data-suisou-layout~="gap-0"] { --suisou-gap: 0; }
 [data-suisou-layout~="gap-1"] { --suisou-gap: var(--suisou-space-1); }
 [data-suisou-layout~="gap-2"] { --suisou-gap: var(--suisou-space-2); }

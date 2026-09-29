@@ -11,10 +11,10 @@
   <div class="group">
     <h2>値</h2>
     <div class="demo">
-      <span class="demo-label">data-suisou-tray="panel"</span>
-      <div data-suisou-tray="panel">面 + 罫。既定</div>
-      <div data-suisou-tray="panel" data-suisou="bd-none">罫なし。面だけで区切る</div>
-      <div data-suisou-tray="panel" data-suisou="bg-none">段を上げず、罫だけで囲う</div>
+      <span class="demo-label">data-suisou-tray</span>
+      <div data-suisou-tray>面 + 罫。既定</div>
+      <div data-suisou-tray data-suisou="bd-none">罫なし。面だけで区切る</div>
+      <div data-suisou-tray data-suisou="bg-none">段を上げず、罫だけで囲う</div>
     </div>
     <table data-suisou-table="tight">
       <tr><th>段（必須・1つ）</th><th>面</th><th>使う場面</th></tr>
@@ -39,10 +39,10 @@
     <div class="demo">
       <span class="demo-label">装飾</span>
       <div data-suisou-layout="stack">
-        <div data-suisou-tray="panel">既定 —— 罫は実線、余白 8px。段は持たない</div>
-        <div data-suisou-tray="panel" data-suisou="bd-dash">bd-dash —— 破線。まだ何も無い場所に</div>
-        <div data-suisou-tray="panel" data-suisou="bd-none">bd-none —— 罫なし。面だけで区切る</div>
-        <div data-suisou-tray="panel" data-suisou="bg-none">bg-none —— 背景なし。罫だけで囲う</div>
+        <div data-suisou-tray>既定 —— 罫は実線、余白 8px。段は持たない</div>
+        <div data-suisou-tray data-suisou="bd-dash">bd-dash —— 破線。まだ何も無い場所に</div>
+        <div data-suisou-tray data-suisou="bd-none">bd-none —— 罫なし。面だけで区切る</div>
+        <div data-suisou-tray data-suisou="bg-none">bg-none —— 背景なし。罫だけで囲う</div>
       </div>
     </div>
     <p class="note">
@@ -96,7 +96,7 @@
         <div data-suisou-layout="grow"></div>
         <button data-suisou-button type="button" popovertarget="demo-drawer" popovertargetaction="hide">閉じる</button>
       </div>
-      <div id="demo-pop" popover data-suisou-tray="panel" data-suisou-layout="stack">
+      <div id="demo-pop" popover data-suisou-tray data-suisou-layout="stack">
         <span data-suisou-text="fs-16 fw-700">overlay の面</span>
         <p data-suisou-text="fs-14 fw-400" class="muted">後ろが scrim で塞がれている。罫は line-strong。</p>
         <div data-suisou-layout="row end">
@@ -152,10 +152,10 @@
     </p>
     <div class="demo">
       <span class="demo-label">panel の中に item</span>
-      <div data-suisou-layout="stack" data-suisou-tray="panel">
+      <div data-suisou-layout="stack" data-suisou-tray>
         外側 — panel
         <div data-suisou-item>内側 — item。1段手前</div>
-        <div data-suisou-tray="panel" data-suisou="bg-none">内側 — outline。面を持たない</div>
+        <div data-suisou-tray data-suisou="bg-none">内側 — outline。面を持たない</div>
       </div>
     </div>
   </div>
@@ -167,8 +167,8 @@
       territory を分けているので、適用先が Tailwind でも取り合いにならない。
     </p>
     <div class="demo">
-      <span class="demo-label">&lt;div data-suisou-tray="panel" data-suisou-layout="stack" class="gap-3"&gt;</span>
-      <div data-suisou-layout="stack" data-suisou-tray="panel" class="gap-3">
+      <span class="demo-label">&lt;div data-suisou-tray data-suisou-layout="stack" class="gap-3"&gt;</span>
+      <div data-suisou-layout="stack" data-suisou-tray class="gap-3">
         <div>縦に積む</div>
         <div data-suisou-layout="row">
           <button data-suisou-button="outline" type="button">保存</button>
@@ -231,19 +231,19 @@
     </table>
     <div class="demo">
       <span class="demo-label">bottom —— 帯の下</span>
-      <div data-suisou-layout="stack gap-0" data-suisou-tray="panel">
+      <div data-suisou-layout="stack gap-0" data-suisou-tray>
         <div data-suisou="bd-bottom" data-suisou-text="fs-16 fw-500">見出しの帯</div>
         <div data-suisou-text="fs-14 sub">本文</div>
       </div>
       <span class="demo-label">end —— 脇と本文の間</span>
-      <div data-suisou-layout="row stretch gap-3" data-suisou-tray="panel">
+      <div data-suisou-layout="row stretch gap-3" data-suisou-tray>
         <div data-suisou="bd-end" data-suisou-layout="stack" data-suisou-text="fs-14 sub" style="padding-inline-end: var(--suisou-space-3)">
           <span>脇</span><span>のしるし</span>
         </div>
         <div data-suisou-layout="grow stack" data-suisou-text="fs-14">本文</div>
       </div>
       <span class="demo-label">top —— 節の切れ目</span>
-      <div data-suisou-layout="stack gap-3" data-suisou-tray="panel">
+      <div data-suisou-layout="stack gap-3" data-suisou-tray>
         <div data-suisou-text="fs-14">前の節</div>
         <div data-suisou="bd-top" data-suisou-text="fs-14">次の節</div>
       </div>
