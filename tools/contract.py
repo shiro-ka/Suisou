@@ -363,6 +363,9 @@ def render():
     L.append("    - `data-suisou-text` を付けた svg を行内（`inline-block`、縦位置 `-0.125em`）にした。文の途中に置いても行が割れない。"
              "flex / grid の中（button / tag / layout / avatar / tile / `media-icon`）では今までどおり。"
              "★ブロックの枠で包むと、枠が1行の高さになる（文字を包んだときと同じ）")
+    L.append("    - `layout.css` を部品の後（`text.css` の前）に移した。部品に書いた layout の語が部品の既定に勝つ"
+             "（`button=\"block\"` に `layout=\"row between\"`、`item=\"media\"` に `layout=\"row center gap-3\"` など）。"
+             "読み込み順は「素の要素 → 部品 → 書いた語（layout / text / ユーティリティ）」。★寄せ・すきまの語はモード（`row` など）と一緒に書く")
     L.append("    - 配布物（`dist/`）で palette を ui より先に置いた（見本と同じ順。同じ要素に theme と tray が並んだとき tray が勝つ）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
