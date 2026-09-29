@@ -10,3 +10,10 @@
 [data-suisou~="bd-dash"] { --suisou-bd-style: dashed; }
 
 [data-suisou~="bg-none"] { background: transparent; }
+
+@media (width <  768px)  { [data-suisou~="s>hidden"] { display: none; } }
+@media (width <  1024px) { [data-suisou~="m>hidden"] { display: none; } }
+@media (width <  1280px) { [data-suisou~="l>hidden"] { display: none; } }
+@media (width >= 768px)  { [data-suisou~="s:hidden"] { display: none; } }
+@media (width >= 1024px) { [data-suisou~="m:hidden"] { display: none; } }
+@media (width >= 1280px) { [data-suisou~="l:hidden"] { display: none; } }

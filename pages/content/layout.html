@@ -420,7 +420,7 @@
       <code>grow</code> が <code>min-height: 0</code> を連れてくるので、
       中身がはみ出して親ごと伸びるのを止められる。
       <br><br>
-      ★狭い画面で柱を消したいときは、柱を <code>data-suisou-show="s&gt;none"</code> にする。
+      ★狭い画面で柱を消したいときは、柱を <code>data-suisou="s&gt;hidden"</code> にする。
       <strong>兄弟が消えるだけなので、残りが自然に全幅になる</strong> ——
       grid のときのように空いた列の隙間が残ることがない。
     </p>
@@ -584,7 +584,7 @@
   </div>
 
   <div class="group">
-    <h2>画面幅で出し分ける —— <code>data-suisou-show</code></h2>
+    <h2>画面幅で出し分ける —— <code>data-suisou="s:hidden"</code></h2>
     <p class="note">
       <strong>必ず対で使う。</strong>「狭いときは三本線、広いときはリンクの帯」
       「狭いときは上の帯、広いときは脇」—— 2 現場で実測 17 箇所、
@@ -628,8 +628,8 @@
     <div class="demo">
       <span class="demo-label">窓幅を変えると入れ替わる</span>
       <div data-suisou-layout="row" data-suisou-tray="panel">
-        <div class="demo-box" data-suisou-show="s:none">狭い画面だけ</div>
-        <div class="demo-box" data-suisou-show="s&gt;none">広い画面だけ</div>
+        <div class="demo-box" data-suisou="s:hidden">狭い画面だけ</div>
+        <div class="demo-box" data-suisou="s&gt;hidden">広い画面だけ</div>
       </div>
     </div>
   </div>

@@ -62,7 +62,7 @@ def render():
     L.append("- 値は空白区切りで併記できる（`~=` で当たる）")
     L.append("- 値には段つき版がある（`s` 768px / `m` 1024px / `l` 1280px）。"
              "**記号は不等号**で、段が左・画面幅が右 ―― "
-             "`s:row` は `s <= 画面`（768px 以上）、`s>none` は `s > 画面`（768px 未満）。"
+             "`s:row` は `s <= 画面`（768px 以上）、`s>hidden` は `s > 画面`（768px 未満）。"
              "境界のちょうど 768px は `s:` 側")
     L.append("- `theme` は**水域1つ＋生き物1つ**を空白区切りで書く（例 `\"hadal jelly\"`）。順不同")
     L.append("  - 水域だけ … アクセントの4トークンが未定義になる（焦点の輪が消える）")
@@ -317,6 +317,12 @@ def render():
     L.append("    - 直し方: `data-suisou-banner=\"error\"` → `data-suisou-item=\"banner error\"`")
     L.append("    - ★見た目が変わるもの: 文字の大きさを 14px に固定するのをやめ、周りを継ぐ。"
              "body の既定は 14px なので、変わるのは typeset など大きさを変えた場所に置いたときだけ")
+    L.append("  - **show**: `data-suisou-show` を廃止し、ユーティリティ（`data-suisou`）の `hidden` にした（2026-09-29）。"
+             "`data-suisou` の中で `none` だけでは何が無いのか読めない（`bd-none` / `bg-none` と並ぶ）ため、"
+             "HTML の `hidden` 属性・Tailwind の `hidden` と同じ語にした。段と記号の読み方は変わらない")
+    L.append("    - 直し方: `data-suisou-show=\"s:none\"` → `data-suisou=\"s:hidden\"`、"
+             "`data-suisou-show=\"s>none\"` → `data-suisou=\"s>hidden\"`（`m` / `l` も同じ）。既に `data-suisou` があれば値を足す")
+    L.append("    - `util.css` の末尾に置いた（layout の `display` に順番で勝つため。前の `show.css` を最後に読んでいたのと同じ理由）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
