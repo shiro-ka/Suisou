@@ -25,7 +25,7 @@ const PAGES = {
 };
 
 const GROUPS = [
-  { title: '面と文字', tokens: ['bg', 'panel', 'item', 'overlay',
+  { title: '面と文字', tokens: ['bg', 'panel', 'item',
                                 'hover-surface', 'selected-neutral-surface',
                                 'line-weak', 'line-strong',
                                 'text-disabled', 'text-sub', 'text-main'] },

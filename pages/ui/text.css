@@ -37,23 +37,6 @@ svg[data-suisou-text] { width: 1em; height: 1em; flex: none; }
   [data-suisou-text~="l:fs-28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
   [data-suisou-text~="l:fs-32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
 }
-[data-suisou-text~="sub"]     { color: var(--suisou-text-sub); }
-[data-suisou-text~="accent"]  { color: var(--suisou-accent); }
-[data-suisou-text~="success"] { color: var(--suisou-success); }
-[data-suisou-text~="warning"] { color: var(--suisou-warning); }
-[data-suisou-text~="error"]   { color: var(--suisou-error); }
-[data-suisou-text~="fw-400"] { font-weight: 400; }
-[data-suisou-text~="fw-500"] { font-weight: 500; }
-[data-suisou-text~="fw-700"] { font-weight: 700; }
-[data-suisou-text~="center"] { text-align: center; }
-[data-suisou-text~="start"]  { text-align: start; }
-[data-suisou-text~="one-line"] {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-[data-suisou-text~="tabular"] { font-variant-numeric: tabular-nums; }
 
 
 [data-suisou-text~="typeset"] :where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd,
@@ -69,14 +52,14 @@ svg[data-suisou-text] { width: 1em; height: 1em; flex: none; }
 [data-suisou-text~="typeset"] :where(h5) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 500; }
 [data-suisou-text~="typeset"] :where(h6) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 700; }
 
-[data-suisou-text~="typeset"] :where(h2, h3, h4, h5) { position: relative; padding-left: calc(4px + var(--suisou-space-2) - 6px); }
+[data-suisou-text~="typeset"] :where(h2, h3, h4, h5) { position: relative; padding-inline-start: calc(4px + var(--suisou-space-2) - 6px); }
 
 [data-suisou-text~="typeset"] :where(h2, h3, h4, h5)::before {
   content: "";
   position: absolute;
   top: 0.25em;
   bottom: 0.25em;
-  left: -6px;
+  inset-inline-start: -6px;
   border-radius: var(--suisou-radius-pill);
 }
 
@@ -119,24 +102,25 @@ svg[data-suisou-text] { width: 1em; height: 1em; flex: none; }
 }
 [data-suisou-text~="typeset"] :where(dt) { color: var(--suisou-text-sub); font-weight: 700; }
 
-[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] :where(h1) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); }
-[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] :where(h2) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); }
-[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] :where(h3) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); }
-[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] :where(h4, h5) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); }
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(h1) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); }
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(h2) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); }
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(h3) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); }
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(h4, h5) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); }
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(small) { font-size: var(--suisou-size-12); line-height: calc(var(--suisou-lh-12) + 0.25rem); }
 
-[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] > :where(* + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-2); }
-[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] > :where(* + :is(h1, h2, h3, h4, h5, h6)) {
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) > :where(* + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-2); }
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) > :where(* + :is(h1, h2, h3, h4, h5, h6)) {
   margin-block-start: var(--suisou-space-3);
 }
-[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] > :where(:is(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) {
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) > :where(:is(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) {
   margin-block-start: var(--suisou-space-1);
 }
-[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] > :where(hr),
-[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] > :where(hr + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-3); }
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) > :where(hr),
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) > :where(hr + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-3); }
 
 [data-suisou-text~="typeset"] :where(blockquote) {
-  border-left: 4px solid var(--suisou-line-strong);
-  padding-left: var(--suisou-space-3);
+  border-inline-start: 4px solid var(--suisou-line-strong);
+  padding-inline-start: var(--suisou-space-3);
   color: var(--suisou-text-sub);
 }
 
@@ -214,13 +198,13 @@ svg[data-suisou-text] { width: 1em; height: 1em; flex: none; }
   font-size: var(--suisou-size-14);
   line-height: calc(var(--suisou-lh-14) + 0.25rem);
 }
-[data-suisou-text~="typeset"][data-suisou-text~="fs-14"] :where(table) {
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(table) {
   font-size: var(--suisou-size-12);
   line-height: calc(var(--suisou-lh-12) + 0.25rem);
 }
 
 [data-suisou-text~="typeset"] :where(table) :where(th, td) {
-  text-align: left;
+  text-align: start;
   vertical-align: top;
   padding: var(--suisou-space-1) var(--suisou-space-2);
   border-bottom: 1px solid var(--suisou-line-weak);
@@ -232,6 +216,24 @@ svg[data-suisou-text] { width: 1em; height: 1em; flex: none; }
 }
 
 [data-suisou-text~="typeset"] :where(table) :where(tr:last-child) :where(th, td) { border-bottom: 0; }
+
+[data-suisou-text~="sub"]     { color: var(--suisou-text-sub); }
+[data-suisou-text~="accent"]  { color: var(--suisou-accent); }
+[data-suisou-text~="success"] { color: var(--suisou-success); }
+[data-suisou-text~="warning"] { color: var(--suisou-warning); }
+[data-suisou-text~="error"]   { color: var(--suisou-error); }
+[data-suisou-text~="fw-400"] { font-weight: 400; }
+[data-suisou-text~="fw-500"] { font-weight: 500; }
+[data-suisou-text~="fw-700"] { font-weight: 700; }
+[data-suisou-text~="center"] { text-align: center; }
+[data-suisou-text~="start"]  { text-align: start; }
+[data-suisou-text~="one-line"] {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+[data-suisou-text~="tabular"] { font-variant-numeric: tabular-nums; }
 
 [data-suisou-text*="fs-"], [data-suisou-text~="typeset"] { font-size: var(--suisou-type-size); line-height: var(--suisou-type-lh); }
 [data-suisou-text~="typeset"] { line-height: calc(var(--suisou-type-lh) + 0.25rem); }

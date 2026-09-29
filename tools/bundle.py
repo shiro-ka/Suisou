@@ -46,11 +46,10 @@ def strip(css):
     return "\n".join(l.rstrip() for l in css.splitlines() if l.strip())
 
 def build(theme=None, accent=None, version="dev"):
-    parts = []
+    pal = open(os.path.join(PAGES, "palette.css"), encoding="utf-8").read()
+    parts = [slice_palette(pal, theme, accent)]
     for f in ui_order():
         parts.append(open(os.path.join(PAGES, f), encoding="utf-8").read())
-    pal = open(os.path.join(PAGES, "palette.css"), encoding="utf-8").read()
-    parts.append(slice_palette(pal, theme, accent))
     body = strip("\n".join(parts))
     what = "全部入り（テーマ切替あり）" if theme is None else f"{theme} × {accent} のみ（切替なし）"
     head = (f"/*! Suisou {version} — {what}\n"

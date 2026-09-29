@@ -22,6 +22,10 @@
   --suisou-motion: 200ms;
   --suisou-ease: cubic-bezier(0.2, 0, 0, 1);
 }
+[data-suisou-theme] {
+  color-scheme: dark;
+  --suisou-focus: 2px solid var(--suisou-focus-ring);
+}
 [data-suisou-body] {
   font-family: var(--suisou-font);
   font-size: var(--suisou-size-14);
