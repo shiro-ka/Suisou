@@ -203,7 +203,7 @@ def render():
     L.append("      - 直し方: `bare` → `bd-none`、`empty` → `bd-dash`、`none` → `bg-none`（段と併記する）")
     L.append("    - 余白を 16px → 8px にした（**全 panel の見た目が変わる**）。`tight` / `bleed` を廃止")
     L.append("      - 直し方: `panel tight` / `panel bleed` / `overlay bleed` → `panel`")
-    L.append("    - 値なしの `data-suisou-tray` は何も起きない（段を必ず1つ書く）")
+    L.append("    - 値なしの `data-suisou-tray` は何も起きない（段を必ず1つ書く）―― 2026-09-29 に値なし＝panel へ変えた（最終レビューの節）")
     L.append("  - **button**: 値を 色（`accent` `error`）/ スタイル（`outline`）/ 形（`icon` `block`）の"
              "3つの系統に組み直した（2026-09-24）")
     L.append("    - 直し方: `outline` → `outline accent`、`danger` → `outline error`、"
@@ -369,6 +369,11 @@ def render():
     L.append("    - 現場が値を渡す変数（`--suisou-grid-cols` / `-grid-rows` / `--suisou-grow` / `--suisou-avatar` / `--suisou-tile` / "
              "`--suisou-spinner` / `--suisou-drawer`）を**継がない**ように登録した。値はそれを読む要素そのものに書く。"
              "親に書いても子には届かない（前は入れ子の grid が親の列を、入れ子の grow が親の比を継いでいた）")
+    L.append("    - ★**`tray=\"panel\"` を廃止し、値なしの `data-suisou-tray` を panel にした**。"
+             "段が panel 1つだけになり、`panel` は選択肢の無い語になっていたため。値なしの item（角丸の面）と揃う。"
+             "値を持つのは `drawer`（辺を1つ添える）だけ。直し方: `data-suisou-tray=\"panel\"` → `data-suisou-tray`")
+    L.append("    - layout が子に `flex: none` を撒くのを、モード（`stack` / `row` / `grid` と段つき）を書いた要素だけにした。"
+             "`gap-*` や `grow` だけの要素は子に何もしない（layout はモードを書いて初めて働く）")
     L.append("    - 配布物（`dist/`）で palette を ui より先に置いた（見本と同じ順。同じ要素に theme と tray が並んだとき tray が勝つ）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
