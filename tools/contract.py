@@ -249,12 +249,23 @@ def render():
              "無印は 14px / 行間 20 → 14px / 24、fs-14 は 14px / 20 → 12px / 20。"
              "見本サイトの仕様表（UI の表）の値が残っていて、fs-14 で1段詰まらなかった")
     L.append("    - ★見た目が変わるもの: typeset の引用の罫を 3px → 4px にした（2026-09-29）。h2 の帯と同じ太さ")
+    L.append("  - **item**: `data-suisou-item` を新設し、media / avatar / tile と tray の `item` を畳んだ（2026-09-29）。"
+             "item は「panel の中に置くモノ1つ」。種類を値で言う（属性を増やさない）")
+    L.append("    - 直し方: `data-suisou-media` → `data-suisou-item=\\"media\\"`、"
+             "`data-suisou-media-icon` / `-content` / `-tail` → `data-suisou-item=\\"media-icon\\"` など、"
+             "`data-suisou-avatar=\\"small\\"` → `data-suisou-item=\\"avatar small\\"`、"
+             "`data-suisou-tile` → `data-suisou-item=\\"tile\\"`、"
+             "`data-suisou-tray=\\"item\\"` → `data-suisou-item`（値なし＝角丸の面）。"
+             "同じ要素に複数あれば値を並べる（`media-icon avatar`）")
+    L.append("    - 種類（media / avatar / tile）は1つだけ。位置の語（media-icon など）と大きさ（small / large）は組める。"
+             "値なしの面と種類は同じ要素に書けない（入れ子にする）。"
+             "tray の段は `panel` だけになった")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
              "`ruled` / `neutral` / 選択状態は現場で使われていなかった")
     L.append("    - 直し方: 行ごと押せるリンク → `<a data-suisou-button=\"block\">`"
-             "（`data-suisou-media` はそのまま併記できる）。"
+             "（`data-suisou-item=\"media\"` はそのまま併記できる）。"
              "押せない行 → 属性を外す（hover が出なくなる）。"
              "中に押せる部品を持つ入れ物の行 → 属性を外し、押せる部品の側で反応させる")
     L.append("- **v1 → v2**（2026-09-10）… `center` の意味を変えた。"
