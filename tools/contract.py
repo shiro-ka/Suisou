@@ -295,6 +295,9 @@ def render():
     L.append("    - ★既定が変わった: 値なしは 20px 固定 → **周りの文字の大きさ**（body の既定は 14px）。"
              "button / tag の中の素の svg は今までどおり部品が寸法を持つ。text を付けた svg は部品の中でも `1em` が勝つ")
     L.append("    - `--suisou-icon-tiny` を廃止した（`--suisou-icon` と `--suisou-icon-small` は button / tag / spinner が使う）")
+    L.append("  - **tag**: `data-suisou-tag` を廃止し、item の種類 `tag` にした（2026-09-29）。`bare` は廃止")
+    L.append("    - 直し方: `data-suisou-tag` → `data-suisou-item=\"tag\"`、`data-suisou-tag=\"accent\"` → `data-suisou-item=\"tag accent\"`、"
+             "`bare` → `data-suisou=\"bd-none\"`（中身が同じ）。既に `data-suisou-item` があれば値を足す（`media-tail tag`）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
