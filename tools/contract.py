@@ -312,6 +312,11 @@ def render():
     L.append("    - 直し方: `<div data-suisou-spinner role=\"status\" aria-label=\"…\"></div>` → "
              "`<progress aria-label=\"…\"></progress>`（`role` は外す。`<progress>` が自分で役割を持つ）。"
              "大きさは今までどおり `--suisou-spinner`")
+    L.append("  - **banner**: `data-suisou-banner` を廃止し、item の種類 `banner` にした（2026-09-29）。"
+             "知らせの種類（`error` / `warning` / `success`）は今までどおり必ず1つ書く（lint が検査する）")
+    L.append("    - 直し方: `data-suisou-banner=\"error\"` → `data-suisou-item=\"banner error\"`")
+    L.append("    - ★見た目が変わるもの: 文字の大きさを 14px に固定するのをやめ、周りを継ぐ。"
+             "body の既定は 14px なので、変わるのは typeset など大きさを変えた場所に置いたときだけ")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"

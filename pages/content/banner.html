@@ -15,9 +15,9 @@
     </p>
     <div class="demo">
       <div data-suisou-layout="stack">
-        <p data-suisou-banner="error">メールアドレスかパスワードが違います。</p>
-        <p data-suisou-banner="success">確認メールを送信しました。</p>
-        <p data-suisou-banner="warning">この操作は取り消せません。</p>
+        <p data-suisou-item="banner error">メールアドレスかパスワードが違います。</p>
+        <p data-suisou-item="banner success">確認メールを送信しました。</p>
+        <p data-suisou-item="banner warning">この操作は取り消せません。</p>
       </div>
     </div>
   </div>
@@ -36,6 +36,6 @@
       動的に出す帯は、エラーなら <code>role="alert"</code>、成功なら
       <code>role="status"</code> を書かないと読み上げに伝わらない（Spinner と同じ考え方）。
     </p>
-    <pre data-suisou-code><code>&lt;p data-suisou-banner="error" role="alert"&gt;{form.error}&lt;/p&gt;</code></pre>
+    <pre data-suisou-code><code>&lt;p data-suisou-item="banner error" role="alert"&gt;{form.error}&lt;/p&gt;</code></pre>
   </div>
 </section>

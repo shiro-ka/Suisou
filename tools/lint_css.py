@@ -10,7 +10,8 @@ TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
 SURFACE_STEPS = {"panel"}
-ITEM_KINDS = {"media", "avatar", "tile", "field", "tag"}
+ITEM_KINDS = {"media", "avatar", "tile", "field", "tag", "banner"}
+BANNER_KINDS = {"error", "warning", "success"}
 
 sys.path.insert(0, HERE)
 import solve
@@ -110,6 +111,12 @@ def main():
                         problems.append(
                             f"{rel}:{i}: item の種類が {len(kinds)} 個 … \"{m.group(1)}\" "
                             f"（{' / '.join(sorted(kinds))} は同時に書けない。media-icon などの位置の語は組める）")
+                    if "banner" in kinds:
+                        bk = BANNER_KINDS & set(m.group(1).split())
+                        if len(bk) != 1:
+                            problems.append(
+                                f"{rel}:{i}: banner の知らせの種類が {len(bk)} 個 … \"{m.group(1)}\" "
+                                f"（{' / '.join(sorted(BANNER_KINDS))} を1つ書く）")
 
                 for m in re.finditer(r'data-suisou-theme(?:="([^"]*)")?', line):
                     vals = (m.group(1) or "").split()
