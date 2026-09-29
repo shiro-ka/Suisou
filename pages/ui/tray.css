@@ -1,3 +1,5 @@
+@property --suisou-drawer { syntax: "*"; inherits: false; }
+
 [data-suisou-tray~="panel"] {
   border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
   border-radius: var(--suisou-radius);
@@ -43,7 +45,6 @@
 }
 
 [data-suisou-tray~="drawer"] {
-  --suisou-drawer: 20rem;
   background: var(--suisou-panel);
   --suisou-line-weak: var(--suisou-line-weak-panel);
   --suisou-line-strong: var(--suisou-line-strong-panel);
@@ -54,19 +55,19 @@
   padding: 0;
 }
 [data-suisou-tray~="drawer"]:where([data-suisou-tray~="end"]) {
-  width: min(var(--suisou-drawer), 90vw);
+  width: min(var(--suisou-drawer, 20rem), 90vw);
   border-inline-start: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
 }
 [data-suisou-tray~="drawer"]:where([data-suisou-tray~="start"]) {
-  width: min(var(--suisou-drawer), 90vw);
+  width: min(var(--suisou-drawer, 20rem), 90vw);
   border-inline-end: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
 }
 [data-suisou-tray~="drawer"]:where([data-suisou-tray~="top"]) {
-  max-height: min(var(--suisou-drawer), 90vh);
+  max-height: min(var(--suisou-drawer, 20rem), 90vh);
   border-block-end: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
 }
 [data-suisou-tray~="drawer"]:where([data-suisou-tray~="bottom"]) {
-  max-height: min(var(--suisou-drawer), 90vh);
+  max-height: min(var(--suisou-drawer, 20rem), 90vh);
   border-block-start: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
 }
 

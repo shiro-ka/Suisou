@@ -366,6 +366,9 @@ def render():
     L.append("    - `layout.css` を部品の後（`text.css` の前）に移した。部品に書いた layout の語が部品の既定に勝つ"
              "（`button=\"block\"` に `layout=\"row between\"`、`item=\"media\"` に `layout=\"row center gap-3\"` など）。"
              "読み込み順は「素の要素 → 部品 → 書いた語（layout / text / ユーティリティ）」。★寄せ・すきまの語はモード（`row` など）と一緒に書く")
+    L.append("    - 現場が値を渡す変数（`--suisou-grid-cols` / `-grid-rows` / `--suisou-grow` / `--suisou-avatar` / `--suisou-tile` / "
+             "`--suisou-spinner` / `--suisou-drawer`）を**継がない**ように登録した。値はそれを読む要素そのものに書く。"
+             "親に書いても子には届かない（前は入れ子の grid が親の列を、入れ子の grow が親の比を継いでいた）")
     L.append("    - 配布物（`dist/`）で palette を ui より先に置いた（見本と同じ順。同じ要素に theme と tray が並んだとき tray が勝つ）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"

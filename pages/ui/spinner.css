@@ -1,16 +1,17 @@
+@property --suisou-spinner { syntax: "*"; inherits: false; }
+
 :where([data-suisou-body] progress:indeterminate) {
-  --suisou-spinner: var(--suisou-icon);
   --suisou-spinner-time: 800ms;
   appearance: none;
   display: inline-block;
   vertical-align: middle;
   flex: none;
-  width: var(--suisou-spinner);
-  height: var(--suisou-spinner);
+  width: var(--suisou-spinner, var(--suisou-icon));
+  height: var(--suisou-spinner, var(--suisou-icon));
   border-radius: var(--suisou-radius-pill);
   background: transparent;
 
-  border: calc(var(--suisou-spinner) / 10) solid var(--suisou-line-weak);
+  border: calc(var(--suisou-spinner, var(--suisou-icon)) / 10) solid var(--suisou-line-weak);
   border-top-color: var(--suisou-accent);
 
   animation: suisou-spin var(--suisou-spinner-time) linear infinite;
