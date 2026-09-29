@@ -18,11 +18,11 @@
     <div class="demo">
       <span class="demo-label">data-suisou-tag</span>
       <div data-suisou-layout="row wrap">
-        <span data-suisou-tag>中立（既定）</span>
-        <span data-suisou-tag="accent">accent</span>
-        <span data-suisou-tag="success">success</span>
-        <span data-suisou-tag="warning">warning</span>
-        <span data-suisou-tag="error">error</span>
+        <span data-suisou-item="tag">中立（既定）</span>
+        <span data-suisou-item="tag accent">accent</span>
+        <span data-suisou-item="tag success">success</span>
+        <span data-suisou-item="tag warning">warning</span>
+        <span data-suisou-item="tag error">error</span>
       </div>
     </div>
     <table data-suisou-table="tight">
@@ -45,9 +45,9 @@
     <div class="demo">
       <span class="demo-label">bare —— 罫を消す</span>
       <div data-suisou-layout="row wrap">
-        <span data-suisou-tag>罫あり</span>
-        <span data-suisou-tag="bare">罫なし</span>
-        <span data-suisou-tag="accent bare">accent bare</span>
+        <span data-suisou-item="tag">罫あり</span>
+        <span data-suisou-item="tag" data-suisou="bd-none">罫なし</span>
+        <span data-suisou-item="tag accent" data-suisou="bd-none">accent bare</span>
       </div>
     </div>
     <p class="note">
@@ -62,9 +62,9 @@
     <div class="demo">
       <span class="demo-label">&lt;svg&gt; は部品が寸法を持つ</span>
       <div data-suisou-layout="row wrap">
-        <span data-suisou-tag><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>4</span>
-        <span data-suisou-tag="success"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5l10 -10" /></svg>通過</span>
-        <span data-suisou-tag="bare"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>12</span>
+        <span data-suisou-item="tag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>4</span>
+        <span data-suisou-item="tag success"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5l10 -10" /></svg>通過</span>
+        <span data-suisou-item="tag" data-suisou="bd-none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 9h8" /><path d="M8 13h6" /><path d="M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12z" /></svg>12</span>
       </div>
     </div>
     <p class="note">
@@ -80,9 +80,9 @@
     <div class="demo">
       <span class="demo-label">件数のしるし</span>
       <div data-suisou-layout="row wrap">
-        <button data-suisou-button aria-pressed="true" type="button"><span>Issues</span><span data-suisou-tag>8</span></button>
-        <button data-suisou-button type="button"><span>Pull requests</span><span data-suisou-tag>2</span></button>
-        <button data-suisou-button="plain" type="button"><span>Labels</span><span data-suisou-tag="accent">3</span></button>
+        <button data-suisou-button aria-pressed="true" type="button"><span>Issues</span><span data-suisou-item="tag">8</span></button>
+        <button data-suisou-button type="button"><span>Pull requests</span><span data-suisou-item="tag">2</span></button>
+        <button data-suisou-button="plain" type="button"><span>Labels</span><span data-suisou-item="tag accent">3</span></button>
       </div>
     </div>
     <p class="note">

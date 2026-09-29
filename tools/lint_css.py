@@ -10,7 +10,7 @@ TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
 SURFACE_STEPS = {"panel"}
-ITEM_KINDS = {"media", "avatar", "tile", "field"}
+ITEM_KINDS = {"media", "avatar", "tile", "field", "tag"}
 
 sys.path.insert(0, HERE)
 import solve
