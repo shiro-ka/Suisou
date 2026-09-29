@@ -356,6 +356,10 @@ def render():
              "`center` / `stretch`（段つき含む）は `--suisou-align` に入れるだけにした。"
              "`row s:stack` で広い画面の子が伸びない、`stack s:row stretch` の `stretch` が負ける、を直した。"
              "★寄せの語だけを書いてモードが無い要素では何も起きない（前は `align-items` が直接入っていた）")
+    L.append("    - typeset の中に置いた部品（avatar の画像・ボタンや tag にしたリンク・layout を付けた `dl` など）が、"
+             "typeset の規則に崩されていた。typeset の中の要素への規則を `typeset.css` に分けて**部品より前**に読み、"
+             "部品が順番で勝つようにした（属性は `data-suisou-text` のまま、ファイルだけ分かれた）。"
+             "`data-suisou-button` と `data-suisou-item` の要素は下線を持たない（リンクにしても。`text=\"link\"` を書けば付く）")
     L.append("    - 配布物（`dist/`）で palette を ui より先に置いた（見本と同じ順。同じ要素に theme と tray が並んだとき tray が勝つ）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
