@@ -238,7 +238,7 @@ def accent_issues(t, acc_name, acc_h):
     if not tint_reaches(t, acc_h, FLOOR["selected"]):
         d = min(dE((LADDERS[t["ladder"]]["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h),
                    (LADDERS[t["ladder"]][sf], t["cs"], t["h"])) for sf in SURFACES)
-        bad.append(f"選択下地が面と近い ΔE {d:.3f}（目標 {FLOOR['selected']}）")
+        bad.append(f"選択の tint が surface と近い ΔE {d:.3f}（目標 {FLOOR['selected']}）")
     for st in ("accent", "accent-active"):
 
         if contrast(k[st], k["item"]) < 3.0:
@@ -399,7 +399,7 @@ def write_site_data(data):
 def write_tables(data):
 
     L = []
-    L.append("### L 階段（2系統）\n")
+    L.append("### L の並び（2系統）\n")
     keys = ["bg","panel","item","tint","line-weak","line-strong",
             "text-disabled","accent","text-sub","text-main"]
     L.append("| | dark | dim |\n|---|---|---|")
@@ -407,7 +407,7 @@ def write_tables(data):
         L.append(f"| {k} | {LADDERS['dark'][k]*100:.0f} | {LADDERS['dim'][k]*100:.0f} |")
     L.append("")
     L.append("### テーマ\n")
-    L.append("| テーマ | 階段 | H | 面C | 強さ | 意味色倍率 | text-main | 使えるアクセント |")
+    L.append("| テーマ | L の並び | H | surface C | 強さ | 意味色倍率 | text-main | 使えるアクセント |")
     L.append("|---|---|---|---|---|---|---|---|")
     for t in data["themes"]:
         ok = [a for a, v in t["accents"].items() if v["recommended"]]
