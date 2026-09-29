@@ -286,6 +286,15 @@ def render():
              "`bd-bottom bd-dash` は下の1本だけが破線になり、罫の無い要素に付けても何も出ない。子には継がない")
     L.append("    - `bd-none` / `bg-none` は tray 以外にも効くようになった（item の面など）。"
              "drawer の辺の罫は消えない（前と同じ）")
+    L.append("  - **icon**: `data-suisou-icon` を廃止し、text に畳んだ（2026-09-29）。"
+             "`data-suisou-text` を付けた `<svg>` は縦横 `1em` になり、大きさは `fs-*`、色は text の色の語で言う。"
+             "icon の色5つは text の色5つと中身が同じだった")
+    L.append("    - 直し方: `data-suisou-icon` → `data-suisou-text=\"fs-20\"`、"
+             "`=\"small\"` → `fs-16`、`=\"tiny\"` → `fs-12`、色はそのまま（`\"small accent\"` → `\"fs-16 accent\"`）。"
+             "周りの文字と同じ大きさでよければ値なしの `data-suisou-text`")
+    L.append("    - ★既定が変わった: 値なしは 20px 固定 → **周りの文字の大きさ**（body の既定は 14px）。"
+             "button / tag の中の素の svg は今までどおり部品が寸法を持つ。text を付けた svg は部品の中でも `1em` が勝つ")
+    L.append("    - `--suisou-icon-tiny` を廃止した（`--suisou-icon` と `--suisou-icon-small` は button / tag / spinner が使う）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
