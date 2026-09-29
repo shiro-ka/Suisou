@@ -199,7 +199,7 @@ function enhanceTokens() {
     svg.setAttribute('fill', 'none');
     svg.setAttribute('stroke', 'currentColor');
     svg.setAttribute('stroke-width', '2');
-    svg.setAttribute('data-suisou-icon', name === 'icon-small' ? 'small' : '');
+    svg.setAttribute('data-suisou-text', name === 'icon-small' ? 'fs-16' : 'fs-20');
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', ICON);
     svg.append(path);
