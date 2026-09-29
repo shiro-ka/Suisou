@@ -256,6 +256,12 @@ def render():
     L.append("    - 直し方: `data-suisou-field` → 外す、`data-suisou-field=\"block\"` → `data-suisou=\"w-full\"`。"
              "入力欄でない要素に入力欄の見た目を着せていた箇所（wixdex のデッキ編集の4つ）は現場が持つ。"
              "書けない表示は `<input disabled>` にすれば同じ見た目になる")
+    L.append("    - 入力欄を枠にまとめる形は `data-suisou-item=\"field\"`（2026-09-29 新設）。"
+             "枠が罫・角丸・1段上の背景を持ち、中の入力欄は枠と背景を消して余りの幅を取る。"
+             "中の入力欄に焦点が来たら枠ごと輪を出す。直下の `<button>` は罫を消し、直下の `<span>` は接頭辞の文字（補足の文字色）")
+    L.append("      - 直し方: `data-suisou-button-group` で入力欄を包んでいた箇所 → 入れ物を `data-suisou-item=\"field\"` に、"
+             "中の `data-suisou-field` は外す、`data-suisou-affix` は外して `<span>` のまま。"
+             "★`data-suisou-field` を機械的に `data-suisou-item=\"field\"` に置き換えない（枠は入れ物に付ける）")
     L.append("  - ★見た目が変わるもの: field の背景を「置き場所の1段上」にした（2026-09-29）。"
              "地べたなら panel の色、panel / drawer の中なら item の色。罫も背景に合った濃い罫にした。"
              "地べたの入力欄は L28 → L22 に沈む。入れ物が `--suisou-next` / `--suisou-line-weak-next` / "
