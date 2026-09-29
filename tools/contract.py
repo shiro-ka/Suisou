@@ -298,6 +298,14 @@ def render():
     L.append("  - **tag**: `data-suisou-tag` を廃止し、item の種類 `tag` にした（2026-09-29）。`bare` は廃止")
     L.append("    - 直し方: `data-suisou-tag` → `data-suisou-item=\"tag\"`、`data-suisou-tag=\"accent\"` → `data-suisou-item=\"tag accent\"`、"
              "`bare` → `data-suisou=\"bd-none\"`（中身が同じ）。既に `data-suisou-item` があれば値を足す（`media-tail tag`）")
+    L.append("  - ★見た目が変わるもの: **部品に書いた `data-suisou-text` が勝つ**ようにした（2026-09-29）。"
+             "`text.css` を部品の後（`util.css` の前）に読む。"
+             "item（tag / avatar / media など）・banner の文字の大きさと色、button の色、typeset の中の見出し・表に "
+             "`data-suisou-text` を書くと、そちらが勝つ（前は部品が勝って黙って無視された）")
+    L.append("    - text の大きさの規則は `fs-*` か `typeset` を書いたときだけ働く。"
+             "色だけ書いた（`data-suisou-text=\"accent\"`）要素の大きさは変わらない（前は親の大きさを継ぐよう強制していた）")
+    L.append("    - 変わるのは部品と text を同じ要素に書いた箇所だけ。"
+             "text の色は文字の色だけを変える（tag の罫の色は tag の `accent` などが持つ）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"
