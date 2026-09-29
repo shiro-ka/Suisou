@@ -1,3 +1,6 @@
+@property --suisou-avatar { syntax: "*"; inherits: false; }
+@property --suisou-tile { syntax: "*"; inherits: false; }
+
 [data-suisou-item] { text-decoration: none; }
 
 [data-suisou-item=""] {

@@ -1,3 +1,6 @@
+@property --suisou-grid-cols { syntax: "*"; inherits: false; }
+@property --suisou-grid-rows { syntax: "*"; inherits: false; }
+@property --suisou-grow { syntax: "*"; inherits: false; }
 @property --suisou-align { syntax: "*"; inherits: false; }
 
 :where([data-suisou-layout]) { --suisou-gap: var(--suisou-space-2); }
