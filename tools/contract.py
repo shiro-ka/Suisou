@@ -277,6 +277,15 @@ def render():
     L.append("    - 種類（media / avatar / tile）は1つだけ。位置の語（media-icon など）と大きさ（small / large）は組める。"
              "値なしの面と種類は同じ要素に書けない（入れ子にする）。"
              "tray の段は `panel` だけになった")
+    L.append("  - **rule**: `data-suisou-rule` を廃止し、tray の装飾と一緒にユーティリティ（`data-suisou`）へ移した（2026-09-29）。"
+             "どちらも「この要素の罫・背景をどうするか」で、部品ではないため")
+    L.append("    - 直し方: `data-suisou-rule=\"top\"` → `data-suisou=\"bd-top\"`（`bottom` / `end` も同じ）、"
+             "`data-suisou-tray=\"panel bd-none\"` → `data-suisou-tray=\"panel\" data-suisou=\"bd-none\"`"
+             "（`bd-dash` / `bg-none` も同じ）。既に `data-suisou` があれば値を足す")
+    L.append("    - `bd-dash` は罫を**新しく引かない**。Suisou が引いた罫（panel・item の面・`bd-top` など）だけを破線にする。"
+             "`bd-bottom bd-dash` は下の1本だけが破線になり、罫の無い要素に付けても何も出ない。子には継がない")
+    L.append("    - `bd-none` / `bg-none` は tray 以外にも効くようになった（item の面など）。"
+             "drawer の辺の罫は消えない（前と同じ）")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"

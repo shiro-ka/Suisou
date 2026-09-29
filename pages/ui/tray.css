@@ -1,5 +1,5 @@
 [data-suisou-tray~="panel"] {
-  border: 1px solid var(--suisou-line-weak);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2);
   background: var(--suisou-panel);
@@ -107,10 +107,4 @@
   }
 }
 [popover][data-suisou-tray~="drawer"]::backdrop { background: var(--suisou-scrim); }
-
-[data-suisou-tray~="bd-none"] { border-color: transparent; }
-
-[data-suisou-tray~="bd-dash"] { border-style: dashed; }
-
-[data-suisou-tray~="bg-none"] { background: transparent; }
 
