@@ -1,7 +1,6 @@
 @property --suisou-type-size { syntax: "*"; inherits: false; }
 @property --suisou-type-lh { syntax: "*"; inherits: false; }
 
-[data-suisou-text] { font-size: var(--suisou-type-size); line-height: var(--suisou-type-lh); }
 svg[data-suisou-text] { width: 1em; height: 1em; flex: none; }
 :where([data-suisou-text~="typeset"]) { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
 [data-suisou-text~="fs-12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
@@ -56,7 +55,6 @@ svg[data-suisou-text] { width: 1em; height: 1em; flex: none; }
 }
 [data-suisou-text~="tabular"] { font-variant-numeric: tabular-nums; }
 
-[data-suisou-text~="typeset"] { line-height: calc(var(--suisou-type-lh) + 0.25rem); }
 
 [data-suisou-text~="typeset"] :where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd,
                                          pre, blockquote, table, figure, hr) {
@@ -234,3 +232,6 @@ svg[data-suisou-text] { width: 1em; height: 1em; flex: none; }
 }
 
 [data-suisou-text~="typeset"] :where(table) :where(tr:last-child) :where(th, td) { border-bottom: 0; }
+
+[data-suisou-text*="fs-"], [data-suisou-text~="typeset"] { font-size: var(--suisou-type-size); line-height: var(--suisou-type-lh); }
+[data-suisou-text~="typeset"] { line-height: calc(var(--suisou-type-lh) + 0.25rem); }
