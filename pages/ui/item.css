@@ -148,3 +148,14 @@
   height: var(--suisou-icon-small);
   flex: none;
 }
+
+[data-suisou-item~="banner"] {
+  border: 1px solid;
+  border-radius: var(--suisou-radius);
+  padding: var(--suisou-space-2) var(--suisou-space-3);
+  color: var(--suisou-text-main);
+}
+
+[data-suisou-item~="banner"]:where([data-suisou-item~="error"])   { border-color: var(--suisou-error);   background: var(--suisou-error-surface); }
+[data-suisou-item~="banner"]:where([data-suisou-item~="warning"]) { border-color: var(--suisou-warning); background: var(--suisou-warning-surface); }
+[data-suisou-item~="banner"]:where([data-suisou-item~="success"]) { border-color: var(--suisou-success); background: var(--suisou-success-surface); }
