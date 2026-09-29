@@ -16,6 +16,8 @@
   gap: var(--suisou-space-2);
 }
 
+[data-suisou-button] { text-decoration: none; }
+
 :where([data-suisou-body] button, [data-suisou-button]):hover {
   background: var(--suisou-hover-surface);
   color: var(--suisou-text-main);

@@ -38,184 +38,20 @@ svg[data-suisou-text] { width: 1em; height: 1em; flex: none; }
   [data-suisou-text~="l:fs-32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
 }
 
-
-[data-suisou-text~="typeset"] :where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd,
-                                         pre, blockquote, table, figure, hr) {
-  margin: 0;
-}
-
-[data-suisou-text~="typeset"] :where(h1) { font-size: var(--suisou-size-28); line-height: var(--suisou-lh-28); font-weight: 700; }
-[data-suisou-text~="typeset"] :where(h2) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); font-weight: 700; }
-[data-suisou-text~="typeset"] :where(h3) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); font-weight: 700; }
-[data-suisou-text~="typeset"] :where(h4) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 700; }
-
-[data-suisou-text~="typeset"] :where(h5) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 500; }
-[data-suisou-text~="typeset"] :where(h6) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 700; }
-
-[data-suisou-text~="typeset"] :where(h2, h3, h4, h5) { position: relative; padding-inline-start: calc(4px + var(--suisou-space-2) - 6px); }
-
-[data-suisou-text~="typeset"] :where(h2, h3, h4, h5)::before {
-  content: "";
-  position: absolute;
-  top: 0.25em;
-  bottom: 0.25em;
-  inset-inline-start: -6px;
-  border-radius: var(--suisou-radius-pill);
-}
-
-[data-suisou-text~="typeset"] :where(h2)::before { width: 4px; background: var(--suisou-accent); }
-[data-suisou-text~="typeset"] :where(h3)::before { width: 3px; background: var(--suisou-accent); }
-[data-suisou-text~="typeset"] :where(h4)::before { width: 3px; background: var(--suisou-line-weak); }
-[data-suisou-text~="typeset"] :where(h5)::before { width: 1px; background: var(--suisou-line-weak); }
-
-[data-suisou-text~="typeset"] :where(small) { font-size: var(--suisou-size-14); line-height: calc(var(--suisou-lh-14) + 0.25rem); }
-[data-suisou-text~="typeset"] :where(strong, b) { font-weight: 700; }
-
-[data-suisou-text~="typeset"] > :where(* + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-3); }
-
-[data-suisou-text~="typeset"] > :where(* + :is(h1, h2, h3, h4, h5, h6)) {
-  margin-block-start: var(--suisou-space-4);
-}
-
-[data-suisou-text~="typeset"] > :where(:is(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) {
-  margin-block-start: var(--suisou-space-2);
-}
-
-[data-suisou-text~="typeset"] :where(hr) {
-  border: 0;
-  border-top: 1px solid var(--suisou-line-weak);
-}
-[data-suisou-text~="typeset"] > :where(hr),
-[data-suisou-text~="typeset"] > :where(hr + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-4); }
-
-[data-suisou-text~="typeset"] :where(img, video) {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--suisou-radius);
-}
-
-[data-suisou-text~="typeset"] :where(dl) {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--suisou-space-1) var(--suisou-space-3);
-}
-[data-suisou-text~="typeset"] :where(dt) { color: var(--suisou-text-sub); font-weight: 700; }
-
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(h1) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(h2) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(h3) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(h4, h5) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(small) { font-size: var(--suisou-size-12); line-height: calc(var(--suisou-lh-12) + 0.25rem); }
-
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) > :where(* + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-2); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) > :where(* + :is(h1, h2, h3, h4, h5, h6)) {
-  margin-block-start: var(--suisou-space-3);
-}
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) > :where(:is(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) {
-  margin-block-start: var(--suisou-space-1);
-}
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) > :where(hr),
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) > :where(hr + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-3); }
-
-[data-suisou-text~="typeset"] :where(blockquote) {
-  border-inline-start: 4px solid var(--suisou-line-strong);
-  padding-inline-start: var(--suisou-space-3);
-  color: var(--suisou-text-sub);
-}
-
-[data-suisou-text~="typeset"] :where(blockquote) :where(p) + :where(p) {
-  margin-block-start: var(--suisou-space-2);
-}
-
-[data-suisou-text~="typeset"] :where(ul, ol) {
-  padding-inline-start: var(--suisou-space-4);
-}
-
-[data-suisou-text~="typeset"] :where(ul, ol) :where(li)::marker {
-  color: var(--suisou-text-sub);
-}
-
-[data-suisou-text~="typeset"] :where(ul, ol) :where(li) + :where(li) {
-  margin-block-start: var(--suisou-space-1);
-}
-
-[data-suisou-text~="typeset"] :where(ul, ol) :where(ul, ol) {
-  margin-block-start: var(--suisou-space-1);
-}
-
-[data-suisou-text~="typeset"] :where(code) {
-  font-family: var(--suisou-mono);
-  font-size: 0.9em;
-  background: var(--suisou-item);
-  border-radius: var(--suisou-radius-small);
-  padding: 0 var(--suisou-space-1);
-}
-
-[data-suisou-text~="typeset"] :where(pre) {
-  font-family: var(--suisou-mono);
-  font-size: var(--suisou-size-12);
-
-  line-height: var(--suisou-lh-14);
-
-  margin: 0;
-  padding: var(--suisou-space-2);
-  background: var(--suisou-item);
-  border: 1px solid var(--suisou-line-weak);
-  border-radius: var(--suisou-radius);
-
-  overflow-x: auto;
-}
-
-[data-suisou-text~="typeset"] :where(pre) :where(code) {
-  font-size: inherit;
-  background: none;
-  border-radius: 0;
-  padding: 0;
-}
-
-[data-suisou-text~="link"],
-[data-suisou-text~="typeset"] :where(a) {
+[data-suisou-text~="link"] {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.2em;
   transition: color var(--suisou-motion-fast) var(--suisou-ease);
 }
 
-[data-suisou-text~="link"]:hover,
-[data-suisou-text~="typeset"] :where(a):hover {
+[data-suisou-text~="link"]:hover {
   color: var(--suisou-accent);
 }
 
-[data-suisou-text~="link"]:has(> img:only-child),
-[data-suisou-text~="typeset"] :where(a:has(> img:only-child)) {
+[data-suisou-text~="link"]:has(> img:only-child) {
   text-decoration: none;
 }
-
-[data-suisou-text~="typeset"] :where(table) {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: var(--suisou-size-14);
-  line-height: calc(var(--suisou-lh-14) + 0.25rem);
-}
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-14"]) :where(table) {
-  font-size: var(--suisou-size-12);
-  line-height: calc(var(--suisou-lh-12) + 0.25rem);
-}
-
-[data-suisou-text~="typeset"] :where(table) :where(th, td) {
-  text-align: start;
-  vertical-align: top;
-  padding: var(--suisou-space-1) var(--suisou-space-2);
-  border-bottom: 1px solid var(--suisou-line-weak);
-}
-
-[data-suisou-text~="typeset"] :where(table) :where(th) {
-  color: var(--suisou-text-sub);
-  font-weight: 700;
-}
-
-[data-suisou-text~="typeset"] :where(table) :where(tr:last-child) :where(th, td) { border-bottom: 0; }
 
 [data-suisou-text~="sub"]     { color: var(--suisou-text-sub); }
 [data-suisou-text~="accent"]  { color: var(--suisou-accent); }
