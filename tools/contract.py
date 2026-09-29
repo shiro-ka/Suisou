@@ -306,6 +306,12 @@ def render():
              "色だけ書いた（`data-suisou-text=\"accent\"`）要素の大きさは変わらない（前は親の大きさを継ぐよう強制していた）")
     L.append("    - 変わるのは部品と text を同じ要素に書いた箇所だけ。"
              "text の色は文字の色だけを変える（tag の罫の色は tag の `accent` などが持つ）")
+    L.append("  - **spinner**: `data-suisou-spinner` を廃止した（2026-09-29）。"
+             "body の中の**値の無い `<progress>`** が Suisou の輪になる。値のある `<progress value>` には触らない。"
+             "線の形（`bar`）は廃止（現場の使用0件）")
+    L.append("    - 直し方: `<div data-suisou-spinner role=\"status\" aria-label=\"…\"></div>` → "
+             "`<progress aria-label=\"…\"></progress>`（`role` は外す。`<progress>` が自分で役割を持つ）。"
+             "大きさは今までどおり `--suisou-spinner`")
     L.append("  - **row**: `data-suisou-row` を廃止した（2026-09-28）。"
              "静止時の見た目は `tray=\"item\"` から背景と罫を抜いたものとほぼ同じで、"
              "row にしか無いのは hover と選択だけだった ―― それは押せる要素（button）が持つ。"

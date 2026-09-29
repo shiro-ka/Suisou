@@ -10,11 +10,11 @@
     <div class="demo">
       <span class="demo-label">data-suisou-spinner</span>
       <div data-suisou-layout="row">
-        <div data-suisou-spinner role="status" aria-label="読み込み中"></div>
+        <progress aria-label="読み込み中"></progress>
         <span data-suisou-text="fs-12 fw-400" class="muted">輪が回る。ボタンの中・一覧の末尾・画面の真ん中</span>
       </div>
       <span class="demo-label">data-suisou-spinner="bar"</span>
-      <div data-suisou-spinner="bar" role="status" aria-label="読み込み中"></div>
+      <progress aria-label="読み込み中"></progress>
       <span data-suisou-text="fs-12 fw-400" class="muted">線が流れる。面の上辺や見出しの下など、横に長い場所</span>
     </div>
   </div>
@@ -29,9 +29,9 @@
     <div class="demo">
       <span class="demo-label">style="--suisou-spinner: 4rem"</span>
       <div data-suisou-layout="row">
-        <div data-suisou-spinner style="--suisou-spinner: 4rem" role="status" aria-label="読み込み中"></div>
-        <div data-suisou-spinner style="--suisou-spinner: 2rem" role="status" aria-label="読み込み中"></div>
-        <div data-suisou-spinner role="status" aria-label="読み込み中"></div>
+        <progress style="--suisou-spinner: 4rem" aria-label="読み込み中"></progress>
+        <progress style="--suisou-spinner: 2rem" aria-label="読み込み中"></progress>
+        <progress aria-label="読み込み中"></progress>
       </div>
     </div>
   </div>
@@ -45,11 +45,11 @@
     <div class="demo">
       <div data-suisou-layout="row">
         <button data-suisou-button="outline" disabled>
-          <div data-suisou-spinner role="status" aria-label="送信中"></div>
+          <progress aria-label="送信中"></progress>
           送信中
         </button>
         <button data-suisou-button="plain" disabled>
-          <div data-suisou-spinner role="status" aria-label="読み込み中"></div>
+          <progress aria-label="読み込み中"></progress>
         </button>
       </div>
     </div>
@@ -63,7 +63,7 @@
       読み上げに「読み込み中」が出ない。Suisou が状態に標準の属性を借りるのと同じ考え方で、
       ここだけは属性を書いてもらう必要がある。
     </p>
-    <pre data-suisou-code><code>&lt;div data-suisou-spinner role="status" aria-label="読み込み中"&gt;&lt;/div&gt;</code></pre>
+    <pre data-suisou-code><code>&lt;progress aria-label="読み込み中"&gt;&lt;/progress&gt;</code></pre>
   </div>
 
   <div class="group">
