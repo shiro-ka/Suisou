@@ -1,19 +1,10 @@
-[data-suisou-tray~="panel"],
-[data-suisou-tray~="item"] {
+[data-suisou-tray~="panel"] {
   border: 1px solid var(--suisou-line-weak);
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2);
-}
-
-[data-suisou-tray~="panel"] {
   background: var(--suisou-panel);
   --suisou-line-weak: var(--suisou-line-weak-panel);
   --suisou-line-strong: var(--suisou-line-strong-panel);
-}
-[data-suisou-tray~="item"] {
-  background: var(--suisou-item);
-  --suisou-line-weak: var(--suisou-line-weak-item);
-  --suisou-line-strong: var(--suisou-line-strong-item);
 }
 :where(dialog)[data-suisou-tray]::backdrop { background: var(--suisou-scrim); }
 

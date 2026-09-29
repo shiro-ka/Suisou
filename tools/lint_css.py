@@ -9,7 +9,8 @@ GENERATED = {"palette.css", "suisou.data.js"}
 TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
-SURFACE_STEPS = {"panel", "item"}
+SURFACE_STEPS = {"panel"}
+ITEM_KINDS = {"media", "avatar", "tile"}
 
 sys.path.insert(0, HERE)
 import solve
@@ -100,8 +101,15 @@ def main():
                     if len(steps) != 1:
                         got = m.group(1) if m.group(1) is not None else "（値なし）"
                         problems.append(
-                            f"{rel}:{i}: surface の段が {len(steps)} 個 … \"{got}\" "
-                            f"（{' / '.join(sorted(SURFACE_STEPS))} から1つ書く）")
+                            f"{rel}:{i}: tray の段が {len(steps)} 個 … \"{got}\" "
+                            f"（{' / '.join(sorted(SURFACE_STEPS))} を書く）")
+
+                for m in re.finditer(r'data-suisou-item="([^"]*)"', line):
+                    kinds = ITEM_KINDS & set(m.group(1).split())
+                    if len(kinds) > 1:
+                        problems.append(
+                            f"{rel}:{i}: item の種類が {len(kinds)} 個 … \"{m.group(1)}\" "
+                            f"（{' / '.join(sorted(kinds))} は同時に書けない。media-icon などの位置の語は組める）")
 
                 for m in re.finditer(r'data-suisou-theme(?:="([^"]*)")?', line):
                     vals = (m.group(1) or "").split()
