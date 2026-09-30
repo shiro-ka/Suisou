@@ -17,7 +17,7 @@
 [data-suisou~="container-m"],
 [data-suisou~="container-l"] { width: 100%; margin-inline: auto; }
 [data-suisou~="container"]   { max-width: clamp(46rem, 90vw, 80rem); }
-[data-suisou~="container-s"] { max-width: 46rem; }
+[data-suisou~="container-s"] { max-width: 48rem; }
 [data-suisou~="container-m"] { max-width: 64rem; }
 [data-suisou~="container-l"] { max-width: 80rem; }
 
