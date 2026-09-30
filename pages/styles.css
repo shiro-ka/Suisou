@@ -1,5 +1,4 @@
-body > header, body > main, body > nav, #menu { padding: var(--suisou-space-3); }
-body > nav { width: 18.5rem; }
+body > header, body > main, body > nav[data-slot], #menu { padding: var(--suisou-space-3); }
 main.is-bleed { padding: 0; }
 
 .page { display: grid; gap: var(--suisou-space-4); align-content: start; }
