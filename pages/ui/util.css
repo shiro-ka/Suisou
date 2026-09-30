@@ -56,4 +56,7 @@
 
 [hidden]:where(:not([hidden="until-found"])) { display: none; }
 dialog:not([open]) { display: none; }
-[popover]:not(:popover-open) { display: none; }
+[popover]:not(:popover-open):not([data-suisou-tray~="s:dock"], [data-suisou-tray~="m:dock"], [data-suisou-tray~="l:dock"]) { display: none; }
+@media (width <  768px)  { [popover][data-suisou-tray~="s:dock"]:not(:popover-open) { display: none; } }
+@media (width <  1024px) { [popover][data-suisou-tray~="m:dock"]:not(:popover-open) { display: none; } }
+@media (width <  1280px) { [popover][data-suisou-tray~="l:dock"]:not(:popover-open) { display: none; } }
