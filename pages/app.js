@@ -1,5 +1,5 @@
 const root = document.documentElement;
-const app = document.querySelector('.app');
+const menu = document.getElementById('menu');
 const slot = (name, scope = document) => scope.querySelector(`[data-slot="${name}"]`);
 
 const PAGES = {
@@ -241,25 +241,39 @@ async function load(name) {
   }
   box.innerHTML = cache[name];
   box.classList.toggle('is-bleed', !!PAGES[name].bleed);
-  box.scrollTop = 0;
+  scrollTo(0, 0);
   current = name;
   PAGES[name].enhance?.(box);
-  for (const b of document.querySelectorAll('.nav-item')) {
-    b.setAttribute('aria-current', b.dataset.page === name ? 'page' : 'false');
+  for (const a of document.querySelectorAll('a[data-page]')) {
+    a.setAttribute('aria-current', a.dataset.page === name ? 'page' : 'false');
   }
+  if (menu.matches(':popover-open')) menu.hidePopover();
 }
 
 function renderNav() {
-  const nav = slot('nav');
-  nav.replaceChildren();
-  let seen = null;
-  for (const [name, p] of Object.entries(PAGES)) {
-    if (p.group !== seen) { nav.append(el('div', 'nav-group', p.group)); seen = p.group; }
-    const b = el('button', 'nav-item', p.label);
-    b.type = 'button';
-    b.dataset.page = name;
-    b.addEventListener('click', () => { location.hash = name; });
-    nav.append(b);
+  for (const nav of document.querySelectorAll('[data-slot="menu"]')) {
+    const sw = el('button');
+    sw.type = 'button';
+    sw.dataset.suisouButton = 'outline accent block';
+    sw.dataset.suisouLayout = 'stack gap-0';
+    sw.dataset.suisouText = 'start';
+    sw.dataset.themeSwitch = '';
+    sw.addEventListener('click', cycleTheme);
+    nav.replaceChildren(sw);
+    let seen = null;
+    for (const [name, p] of Object.entries(PAGES)) {
+      if (p.group !== seen) {
+        const g = el('div', null, p.group);
+        g.dataset.suisouText = 'fs-12 sub';
+        nav.append(g);
+        seen = p.group;
+      }
+      const a = el('a', null, p.label);
+      a.href = `#${name}`;
+      a.dataset.page = name;
+      a.dataset.suisouButton = 'block';
+      nav.append(a);
+    }
   }
 }
 
@@ -273,9 +287,11 @@ function cycleTheme() {
 
 function renderSwitch() {
   const t = themeOf(theme());
-  const b = document.querySelector('.theme-switch');
-  b.replaceChildren();
-  b.append(el('span', null, t.name), el('span', 'sub', `${t.jp} — 押すと次のテーマへ`));
+  for (const b of document.querySelectorAll('[data-theme-switch]')) {
+    const sub = el('span', null, `${t.jp} — 押すと次のテーマへ`);
+    sub.dataset.suisouText = 'fs-12 sub';
+    b.replaceChildren(el('span', null, t.name), sub);
+  }
 }
 
 function render() {
@@ -283,15 +299,6 @@ function render() {
   load(current ?? location.hash.slice(1) ?? 'palette');
 }
 
-function on(selector, event, handler) {
-  const node = document.querySelector(selector);
-  if (!node) { console.warn(`${selector} が見つからない`); return; }
-  node.addEventListener(event, handler);
-}
-
-on('.theme-switch', 'click', cycleTheme);
-on('.menu-close', 'click', () => app.classList.add('is-menu-closed'));
-on('.menu-open', 'click', () => app.classList.remove('is-menu-closed'));
 addEventListener('hashchange', () => load(location.hash.slice(1)));
 
 renderNav();

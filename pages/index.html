@@ -17,33 +17,27 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body data-suisou-body>
+<body data-suisou-body="shell right">
 
-<div class="app">
+<header data-suisou-layout="row between">
+  <span data-suisou-text="fs-16 fw-700">Suisou</span>
+  <button data-suisou-button="icon" data-suisou="m:hidden" type="button" popovertarget="menu" aria-label="目次を開く">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M15 4v16" /><path d="M10 10l-2 2l2 2" /></svg>
+  </button>
+</header>
 
-  <main class="preview">
-    <header class="topbar">
-      <span class="brand">Suisou</span>
-      <button data-suisou-button="icon" class="menu-open" type="button" aria-label="コンテンツメニューを開く">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M15 4v16" /><path d="M10 10l-2 2l2 2" /></svg>
-      </button>
-    </header>
+<main data-slot="page"></main>
 
-    <div class="preview-body" data-slot="page"></div>
-  </main>
+<nav data-suisou="m>hidden bd-left" data-suisou-layout="stack gap-1" data-slot="menu"></nav>
 
-  <aside class="menu">
-    <div class="menu-head">
-      <button data-suisou-button="icon" class="menu-close" type="button" aria-label="コンテンツメニューを閉じる">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M15 4v16" /><path d="M9 10l2 2l-2 2" /></svg>
-      </button>
-      <button class="theme-switch" type="button"></button>
-    </div>
-
-    <nav class="menu-nav" data-slot="nav"></nav>
-  </aside>
-
-</div>
+<nav id="menu" popover data-suisou-tray="drawer right" data-suisou-layout="stack">
+  <div data-suisou-layout="row end">
+    <button data-suisou-button="icon" type="button" popovertarget="menu" popovertargetaction="hide" aria-label="目次を閉じる">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M15 4v16" /><path d="M9 10l2 2l-2 2" /></svg>
+    </button>
+  </div>
+  <div data-suisou-layout="stack gap-1" data-slot="menu"></div>
+</nav>
 
 <script src="suisou.data.js"></script>
 <script src="app.js"></script>
