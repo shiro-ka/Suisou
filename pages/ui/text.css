@@ -53,11 +53,11 @@ svg[data-suisou-text] { display: inline-block; vertical-align: -0.125em; width: 
   text-decoration: none;
 }
 
-[data-suisou-text~="sub"]     { color: var(--suisou-text-sub); }
-[data-suisou-text~="accent"]  { color: var(--suisou-accent); }
-[data-suisou-text~="success"] { color: var(--suisou-success); }
-[data-suisou-text~="warning"] { color: var(--suisou-warning); }
-[data-suisou-text~="error"]   { color: var(--suisou-error); }
+[data-suisou-text~="sub"]:where(:not(:disabled, [aria-disabled="true"]))     { color: var(--suisou-text-sub); }
+[data-suisou-text~="accent"]:where(:not(:disabled, [aria-disabled="true"]))  { color: var(--suisou-accent); }
+[data-suisou-text~="success"]:where(:not(:disabled, [aria-disabled="true"])) { color: var(--suisou-success); }
+[data-suisou-text~="warning"]:where(:not(:disabled, [aria-disabled="true"])) { color: var(--suisou-warning); }
+[data-suisou-text~="error"]:where(:not(:disabled, [aria-disabled="true"]))   { color: var(--suisou-error); }
 [data-suisou-text~="fw-400"] { font-weight: 400; }
 [data-suisou-text~="fw-500"] { font-weight: 500; }
 [data-suisou-text~="fw-700"] { font-weight: 700; }
