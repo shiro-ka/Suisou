@@ -46,6 +46,13 @@
 @media (width >= 768px)  { [data-suisou~="s:hidden"] { display: none; } }
 @media (width >= 1024px) { [data-suisou~="m:hidden"] { display: none; } }
 @media (width >= 1280px) { [data-suisou~="l:hidden"] { display: none; } }
+[data-suisou~="invisible"] { visibility: hidden; }
+@media (width <  768px)  { [data-suisou~="s>invisible"] { visibility: hidden; } }
+@media (width <  1024px) { [data-suisou~="m>invisible"] { visibility: hidden; } }
+@media (width <  1280px) { [data-suisou~="l>invisible"] { visibility: hidden; } }
+@media (width >= 768px)  { [data-suisou~="s:invisible"] { visibility: hidden; } }
+@media (width >= 1024px) { [data-suisou~="m:invisible"] { visibility: hidden; } }
+@media (width >= 1280px) { [data-suisou~="l:invisible"] { visibility: hidden; } }
 
 [hidden]:where(:not([hidden="until-found"])) { display: none; }
 dialog:not([open]) { display: none; }
