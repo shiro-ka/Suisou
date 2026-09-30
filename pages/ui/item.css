@@ -151,6 +151,8 @@
 [data-suisou-item~="tag"]:where([data-suisou-item~="warning"]) { border-color: var(--suisou-warning); color: var(--suisou-warning); }
 [data-suisou-item~="tag"]:where([data-suisou-item~="success"]) { border-color: var(--suisou-success); color: var(--suisou-success); }
 
+[data-suisou-item~="tag"]:where(a, button):where(:hover) { background: var(--suisou-hover-surface); }
+
 [data-suisou-item~="tag"] > svg {
   width: var(--suisou-icon-small);
   height: var(--suisou-icon-small);
