@@ -48,6 +48,11 @@ body[data-suisou-body~="shell"] {
 [data-suisou-body~="shell"] > :where(header) { grid-area: 1 / 2; }
 [data-suisou-body~="shell"] > :where(main)   { grid-area: 2 / 2; }
 [data-suisou-body~="shell"] > :where(footer) { grid-area: 3 / 2; }
+body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-template-columns: 1fr auto; }
+[data-suisou-body~="shell"][data-suisou-body~="right"] > :where(nav)    { grid-area: 1 / 2 / -1 / 3; }
+[data-suisou-body~="shell"][data-suisou-body~="right"] > :where(header) { grid-area: 1 / 1; }
+[data-suisou-body~="shell"][data-suisou-body~="right"] > :where(main)   { grid-area: 2 / 1; }
+[data-suisou-body~="shell"][data-suisou-body~="right"] > :where(footer) { grid-area: 3 / 1; }
 @media (prefers-reduced-motion: reduce) {
   :root {
     --suisou-motion-fast: 0.01ms;
