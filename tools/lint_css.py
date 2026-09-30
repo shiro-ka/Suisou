@@ -10,6 +10,7 @@ TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
 TRAY_EDGES = {"right", "left", "top", "bottom"}
+TRAY_DOCKS = {"s:dock", "m:dock", "l:dock"}
 ITEM_KINDS = {"media", "avatar", "tile", "field", "tag", "banner"}
 BANNER_KINDS = {"error", "warning", "success"}
 
@@ -126,7 +127,7 @@ def main():
                     if not vals:
                         continue
                     edges = TRAY_EDGES & set(vals)
-                    if set(vals) - TRAY_EDGES != {"drawer"} or len(edges) != 1:
+                    if set(vals) - TRAY_EDGES - TRAY_DOCKS != {"drawer"} or len(edges) != 1 or len(TRAY_DOCKS & set(vals)) > 1:
                         problems.append(
                             f"{rel}:{i}: tray の値 … \"{raw}\" "
                             f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添える）")
