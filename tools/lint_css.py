@@ -63,7 +63,7 @@ def walk(d):
 
     base = os.path.join(ROOT, d)
     for dirpath, dirs, names in os.walk(base):
-        dirs[:] = [x for x in dirs if x != "dist"]
+        dirs[:] = [x for x in dirs if x not in ("dist", "v3")]
         for name in sorted(names):
             if name.endswith(TARGET_EXT):
                 yield os.path.join(dirpath, name)
