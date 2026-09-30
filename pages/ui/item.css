@@ -62,7 +62,7 @@
   background: var(--suisou-next, var(--suisou-item));
   --suisou-line-weak: var(--suisou-line-weak-next, var(--suisou-line-weak-item));
   --suisou-line-strong: var(--suisou-line-strong-next, var(--suisou-line-strong-item));
-  border: 1px solid var(--suisou-line-strong);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
 }
 [data-suisou-item~="field"] > :where(input, textarea, select) {
   border: 0;
@@ -99,7 +99,7 @@
 
   --suisou-line-weak: var(--suisou-line-weak-item);
   --suisou-line-strong: var(--suisou-line-strong-item);
-  border: 1px solid var(--suisou-line-weak);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
   color: var(--suisou-text-sub);
   font-size: var(--suisou-size-12);
   line-height: var(--suisou-lh-12);
@@ -121,7 +121,7 @@
 
   --suisou-line-weak: var(--suisou-line-weak-item);
   --suisou-line-strong: var(--suisou-line-strong-item);
-  border: 1px solid var(--suisou-line-weak);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
   display: grid;
   place-items: center;
   padding: 0;
@@ -139,7 +139,7 @@
   padding: 0 var(--suisou-space-2);
   border-radius: var(--suisou-radius-pill);
 
-  border: 1px solid var(--suisou-line-weak);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
   color: var(--suisou-text-sub);
   background: transparent;
   transition: color var(--suisou-motion-fast) var(--suisou-ease),
@@ -158,7 +158,7 @@
 }
 
 [data-suisou-item~="banner"] {
-  border: 1px solid;
+  border: 1px var(--suisou-bd-style, solid);
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2) var(--suisou-space-3);
   color: var(--suisou-text-main);
