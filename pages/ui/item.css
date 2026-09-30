@@ -65,6 +65,7 @@
   border: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
 }
 [data-suisou-item~="field"] > :where(input, textarea, select) {
+  block-size: auto;
   border: 0;
   border-radius: 0;
   background: transparent;

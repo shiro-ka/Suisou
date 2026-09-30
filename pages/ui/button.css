@@ -1,5 +1,5 @@
 :where([data-suisou-body] button, [data-suisou-button]) {
-  padding: var(--suisou-space-1) var(--suisou-space-2);
+  padding: calc((var(--suisou-control) - 1lh) / 2 - 1px) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
 
   background: transparent;
@@ -61,16 +61,14 @@
 }
 
 [data-suisou-button~="icon"] {
-  padding: 0;
-  aspect-ratio: 1;
-  min-width: 36px;
+  padding: calc((var(--suisou-control) - var(--suisou-icon)) / 2 - 1px);
 }
 
 [data-suisou-button~="block"] {
   display: flex;
   width: 100%;
   justify-content: flex-start;
-  padding: var(--suisou-space-2) var(--suisou-space-3);
+  padding-inline: var(--suisou-space-3);
 }
 
 :where([data-suisou-body] button, [data-suisou-button])[disabled],
