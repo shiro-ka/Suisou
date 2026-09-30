@@ -28,15 +28,37 @@
 
 <main></main>
 
-<nav data-suisou="m>hidden" data-suisou-tray="drawer right" data-suisou-layout="stack gap-1" data-slot="menu"></nav>
-
-<nav id="menu" popover data-suisou-tray="drawer right" data-suisou-layout="stack">
-  <div data-suisou-layout="row end">
+<nav id="menu" popover data-suisou-tray="drawer right m:dock" data-suisou-layout="stack">
+  <div data-suisou-layout="row end" data-suisou="m:hidden">
     <button data-suisou-button="icon" popovertarget="menu" popovertargetaction="hide">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M15 4v16" /><path d="M9 10l2 2l-2 2" /></svg>
     </button>
   </div>
-  <div data-suisou-layout="stack gap-1" data-slot="menu"></div>
+  <div data-suisou-layout="stack gap-1">
+    <button class="theme-switch" data-suisou-button="outline accent block" data-suisou-layout="stack gap-0" data-suisou-text="start"></button>
+    <div data-suisou-text="fs-12 sub">土台</div>
+    <a href="#palette" data-suisou-button="block">Palette</a>
+    <a href="#typography" data-suisou-button="block">Typography</a>
+    <a href="#tokens" data-suisou-button="block">Tokens</a>
+    <a href="#tray" data-suisou-button="block">Tray</a>
+    <a href="#layout" data-suisou-button="block">Layout</a>
+    <div data-suisou-text="fs-12 sub">部品</div>
+    <a href="#button" data-suisou-button="block">Button</a>
+    <a href="#code" data-suisou-button="block">Code</a>
+    <a href="#prose" data-suisou-button="block">Typeset</a>
+    <a href="#field" data-suisou-button="block">Field</a>
+    <a href="#icon" data-suisou-button="block">Icon</a>
+    <a href="#link" data-suisou-button="block">Link</a>
+    <a href="#table" data-suisou-button="block">Table</a>
+    <a href="#media" data-suisou-button="block">Media</a>
+    <a href="#avatar" data-suisou-button="block">Avatar</a>
+    <a href="#tag" data-suisou-button="block">Tag</a>
+    <a href="#spinner" data-suisou-button="block">Spinner</a>
+    <a href="#banner" data-suisou-button="block">Banner</a>
+    <div data-suisou-text="fs-12 sub">作例</div>
+    <a href="#chat" data-suisou-button="block">チャット</a>
+    <a href="#list" data-suisou-button="block">課題一覧</a>
+  </div>
 </nav>
 
 <script src="suisou.data.js"></script>
