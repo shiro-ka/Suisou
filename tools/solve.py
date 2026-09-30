@@ -347,7 +347,6 @@ def css_block(selector, names, tk, indent=""):
             continue
         alpha = SCRIM_ALPHA if n == "scrim" else None
         L.append(f"{indent}  --suisou-{n}: {css_color((d['L'], d['C'], d['H']), alpha)};")
-        L.append(f'{indent}  --suisou-{n}-hex: "{d["hex"]}";')
     L.append(f"{indent}}}")
     return L
 
@@ -387,6 +386,9 @@ def write_site_data(data):
         "themeTokens": THEME_TOKENS,
         "accentTokens": ACCENT_TOKENS,
         "default": {"theme": DEFAULT_THEME, "accent": DEFAULT_ACCENT},
+        "hex": {t["name"]: {a: {n: (None if d is None else d["hex"]) for n, d in v["tokens"].items()}
+                            for a, v in t["accents"].items()}
+                for t in data["themes"]},
     }
     p = os.path.normpath(os.path.join(HERE, os.pardir, "pages", "suisou.data.js"))
     os.makedirs(os.path.dirname(p), exist_ok=True)
