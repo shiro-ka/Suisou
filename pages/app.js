@@ -1,27 +1,28 @@
 const root = document.documentElement;
-const menu = document.getElementById('menu');
+const menu = document.querySelector('nav[popover]');
+const themeSwitch = document.querySelector('.theme-switch');
 const slot = (name, scope = document) => scope.querySelector(`[data-slot="${name}"]`);
 
 const PAGES = {
-  palette:    { group: '土台', label: 'Palette',    enhance: enhancePalette },
-  typography: { group: '土台', label: 'Typography', enhance: enhanceTypography },
-  tokens:     { group: '土台', label: 'Tokens', enhance: enhanceTokens },
-  tray:    { group: '土台', label: 'Tray' },
-  layout:     { group: '土台', label: 'Layout' },
-  button:     { group: '部品', label: 'Button' },
-  code:       { group: '部品', label: 'Code' },
-  prose:      { group: '部品', label: 'Typeset' },
-  field:      { group: '部品', label: 'Field' },
-  icon:       { group: '部品', label: 'Icon' },
-  link:       { group: '部品', label: 'Link' },
-  table:      { group: '部品', label: 'Table' },
-  media:      { group: '部品', label: 'Media' },
-  avatar:     { group: '部品', label: 'Avatar' },
-  tag:        { group: '部品', label: 'Tag' },
-  spinner:    { group: '部品', label: 'Spinner' },
-  banner:     { group: '部品', label: 'Banner' },
-  chat:       { group: '作例', label: 'チャット', bleed: true },
-  list:       { group: '作例', label: '課題一覧', bleed: true },
+  palette: { enhance: enhancePalette },
+  typography: { enhance: enhanceTypography },
+  tokens: { enhance: enhanceTokens },
+  tray: {},
+  layout: {},
+  button: {},
+  code: {},
+  prose: {},
+  field: {},
+  icon: {},
+  link: {},
+  table: {},
+  media: {},
+  avatar: {},
+  tag: {},
+  spinner: {},
+  banner: {},
+  chat: { bleed: true },
+  list: { bleed: true },
 };
 
 const GROUPS = [
@@ -242,35 +243,8 @@ async function load(name) {
   scrollTo(0, 0);
   current = name;
   PAGES[name].enhance?.(box);
-  for (const a of document.querySelectorAll('a[data-page]')) {
-    a.setAttribute('aria-current', a.dataset.page === name ? 'page' : 'false');
-  }
-  if (menu.matches(':popover-open')) menu.hidePopover();
-}
-
-function renderNav() {
-  for (const nav of document.querySelectorAll('[data-slot="menu"]')) {
-    const sw = el('button');
-    sw.dataset.suisouButton = 'outline accent block';
-    sw.dataset.suisouLayout = 'stack gap-0';
-    sw.dataset.suisouText = 'start';
-    sw.dataset.themeSwitch = '';
-    sw.addEventListener('click', cycleTheme);
-    nav.replaceChildren(sw);
-    let seen = null;
-    for (const [name, p] of Object.entries(PAGES)) {
-      if (p.group !== seen) {
-        const g = el('div', null, p.group);
-        g.dataset.suisouText = 'fs-12 sub';
-        nav.append(g);
-        seen = p.group;
-      }
-      const a = el('a', null, p.label);
-      a.href = `#${name}`;
-      a.dataset.page = name;
-      a.dataset.suisouButton = 'block';
-      nav.append(a);
-    }
+  for (const a of menu.querySelectorAll('a')) {
+    a.setAttribute('aria-current', a.hash === `#${name}` ? 'page' : 'false');
   }
 }
 
@@ -284,11 +258,9 @@ function cycleTheme() {
 
 function renderSwitch() {
   const t = themeOf(theme());
-  for (const b of document.querySelectorAll('[data-theme-switch]')) {
-    const sub = el('span', null, `${t.jp} — 押すと次のテーマへ`);
-    sub.dataset.suisouText = 'fs-12 sub';
-    b.replaceChildren(el('span', null, t.name), sub);
-  }
+  const sub = el('span', null, `${t.jp} — 押すと次のテーマへ`);
+  sub.dataset.suisouText = 'fs-12 sub';
+  themeSwitch.replaceChildren(el('span', null, t.name), sub);
 }
 
 function render() {
@@ -297,7 +269,8 @@ function render() {
 }
 
 addEventListener('hashchange', () => load(location.hash.slice(1)));
+themeSwitch.addEventListener('click', cycleTheme);
+menu.addEventListener('click', (e) => { if (e.target.closest('a')) menu.hidePopover(); });
 
-renderNav();
 renderSwitch();
 load(location.hash.slice(1) || 'palette');
