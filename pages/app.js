@@ -66,8 +66,7 @@ function el(tag, cls, text) {
 }
 
 function hexOf(token) {
-  const v = getComputedStyle(root).getPropertyValue(`--suisou-${token}-hex`).trim();
-  return v.replace(/^"|"$/g, '');
+  return SUISOU.hex[theme()]?.[accent()]?.[token] || '';
 }
 
 function metricsOf(node) {
