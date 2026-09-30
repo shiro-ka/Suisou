@@ -33,3 +33,7 @@
 @keyframes suisou-pulse {
   50% { opacity: 0.35; }
 }
+
+@media (forced-colors: active) {
+  :where([data-suisou-body] progress:indeterminate) { border-top-color: Highlight; }
+}

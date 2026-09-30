@@ -81,3 +81,13 @@
   cursor: default;
 }
 [data-suisou-button~="outline"]:where([disabled], [aria-disabled="true"]) { border-color: var(--suisou-line-weak); }
+
+@media (forced-colors: active) {
+  :where([data-suisou-body] button, [data-suisou-button])[aria-pressed="true"],
+  :where([data-suisou-body] button, [data-suisou-button])[aria-current]:not([aria-current="false"]) {
+    forced-color-adjust: none;
+    background: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+  }
+}
