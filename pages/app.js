@@ -225,7 +225,7 @@ function enhanceTokens() {
 
 async function load(name) {
   if (!(name in PAGES)) name = 'palette';
-  const box = slot('page');
+  const box = document.querySelector('main');
   if (!cache[name]) {
     try {
       const res = await fetch(`content/${name}.html`);
