@@ -5,7 +5,7 @@ import os, re, sys, gzip
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, os.pardir))
 PAGES = os.path.join(ROOT, "pages")
-DIST = os.path.join(PAGES, "dist")
+DIST = os.path.join(PAGES, "v3")
 
 ORDER = ["base.css", "reset.css", "typeset.css", "button.css", "tray.css",
          "field.css", "item.css", "spinner.css", "layout.css", "text.css", "util.css"]
