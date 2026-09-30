@@ -62,7 +62,8 @@ UTIL_WORDS, LAYOUT_WORDS, KNOWN_ATTRS = vocab()
 def walk(d):
 
     base = os.path.join(ROOT, d)
-    for dirpath, _, names in os.walk(base):
+    for dirpath, dirs, names in os.walk(base):
+        dirs[:] = [x for x in dirs if x != "dist"]
         for name in sorted(names):
             if name.endswith(TARGET_EXT):
                 yield os.path.join(dirpath, name)
