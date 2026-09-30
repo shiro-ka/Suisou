@@ -34,9 +34,7 @@ def build_at(sha, version, dest):
         shutil.rmtree(tmp, ignore_errors=True)
 
 def main():
-    if len(sys.argv) != 2:
-        sys.exit("使い方: python3 tools/site.py <出力先>")
-    site = os.path.abspath(sys.argv[1])
+    site = os.path.join(ROOT, "_site")
     head = git("rev-parse", "--short=7", "HEAD", text=True).stdout.strip()
     dist = build(ROOT, head)
 
@@ -47,19 +45,8 @@ def main():
         if not build_at(sha, sha, os.path.join(site, name)):
             sys.exit(f"{name}（{sha}）を組めなかった")
 
-    built, skipped = 0, 0
-    for sha in git("rev-list", "HEAD", text=True).stdout.split():
-        if git("ls-tree", sha, "tools/bundle.py", text=True).stdout.strip() == "":
-            continue
-        short = sha[:7]
-        if build_at(sha, short, os.path.join(site, "v", short)):
-            built += 1
-        else:
-            skipped += 1
-
     print(f"{site}: HEAD {head} → /{CURRENT}/")
     print(f"凍結: {' '.join(f'/{n}/ ← {s}' for n, s in FROZEN.items())}")
-    print(f"固定 URL: {built} 版（組めなかった {skipped} 版）")
 
 if __name__ == "__main__":
     main()
