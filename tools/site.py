@@ -16,7 +16,10 @@ def build(src, version):
     env = dict(os.environ, SUISOU_VERSION=version)
     subprocess.run([sys.executable, "tools/solve.py"], cwd=src, check=True, capture_output=True)
     subprocess.run([sys.executable, "tools/bundle.py"], cwd=src, check=True, capture_output=True, env=env)
-    return os.path.join(src, "dist")
+    for d in (os.path.join(src, "pages", "dist"), os.path.join(src, "dist")):
+        if os.path.isdir(d):
+            return d
+    raise subprocess.CalledProcessError(1, "bundle.py")
 
 def build_at(sha, version, dest):
     tmp = tempfile.mkdtemp()
@@ -38,7 +41,7 @@ def main():
     dist = build(ROOT, head)
 
     shutil.rmtree(site, ignore_errors=True)
-    shutil.copytree(PAGES, site)
+    shutil.copytree(PAGES, site, ignore=lambda d, names: ["dist"] if d == PAGES else [])
     for name in CURRENT:
         shutil.copytree(dist, os.path.join(site, name))
     for name, sha in FROZEN.items():

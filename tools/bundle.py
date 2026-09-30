@@ -5,15 +5,16 @@ import os, re, sys, gzip
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, os.pardir))
 PAGES = os.path.join(ROOT, "pages")
-DIST = os.path.join(ROOT, "dist")
+DIST = os.path.join(PAGES, "dist")
+
+ORDER = ["base.css", "reset.css", "typeset.css", "button.css", "tray.css",
+         "field.css", "item.css", "spinner.css", "layout.css", "text.css", "util.css"]
 
 def ui_order():
-
-    html = open(os.path.join(PAGES, "index.html"), encoding="utf-8").read()
-    files = re.findall(r'href="(ui/[^"]+\.css)"', html)
-    if not files:
-        sys.exit("index.html から ui/*.css の順序を読めなかった")
-    return files
+    have = sorted(n for n in os.listdir(os.path.join(PAGES, "ui")) if n.endswith(".css"))
+    if sorted(ORDER) != have:
+        sys.exit(f"ORDER と pages/ui/*.css が合わない: {sorted(set(have) ^ set(ORDER))}")
+    return [f"ui/{n}" for n in ORDER]
 
 def slice_palette(text, theme=None, accent=None):
 
@@ -40,8 +41,6 @@ def slice_palette(text, theme=None, accent=None):
 def strip(css):
 
     css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
-    css = "\n".join(l for l in css.splitlines()
-                    if not re.match(r"\s*--suisou-[a-z0-9-]+-hex:", l))
     css = re.sub(r"\n{3,}", "\n\n", css)
     return "\n".join(l.rstrip() for l in css.splitlines() if l.strip())
 
