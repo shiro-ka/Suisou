@@ -7,6 +7,8 @@
   border: 1px var(--suisou-bd-style, solid) transparent;
 
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
   transition: background-color var(--suisou-motion-fast) var(--suisou-ease),
               color            var(--suisou-motion-fast) var(--suisou-ease),
               border-color     var(--suisou-motion-fast) var(--suisou-ease);
