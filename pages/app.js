@@ -86,7 +86,6 @@ function enhancePalette(scope) {
     const usable = t.available.includes(a.name);
     const warn = t.warnings?.[a.name];
     const chip = el('button', 'accent-chip', a.jp ? `${a.name}（${a.jp}）` : a.name);
-    chip.type = 'button';
     chip.style.setProperty('--c', 'var(--suisou-accent)');
     setPair(chip, theme(), a.name);
     chip.disabled = !usable;
@@ -221,7 +220,6 @@ function enhanceTokens() {
     tokenRow('misc', name, box, '書体');
   }
   const ring = el('button', 'tk-focus', 'Tab で辿ると輪が出る');
-  ring.type = 'button';
   tokenRow('misc', 'focus', ring, 'アクセント色と同じ');
 }
 
@@ -253,7 +251,6 @@ async function load(name) {
 function renderNav() {
   for (const nav of document.querySelectorAll('[data-slot="menu"]')) {
     const sw = el('button');
-    sw.type = 'button';
     sw.dataset.suisouButton = 'outline accent block';
     sw.dataset.suisouLayout = 'stack gap-0';
     sw.dataset.suisouText = 'start';
