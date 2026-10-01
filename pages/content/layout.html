@@ -1,0 +1,33 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1>Layout</h1>
+  <h2>Layoutの適用</h2>
+  <p>要素に <code>data-suisou-layout</code> を追加すると、直下の子要素の並べ方が決まります</p>
+  <h2>stack</h2>
+  <p>子要素を縦に並べ、子は横幅いっぱいに伸びます</p>
+  <pre><code>&lt;div data-suisou-layout="stack"&gt;</code></pre>
+  <p>(ミニプレビュー)</p>
+  <h2>row</h2>
+  <p>子要素を横に並べ、子は縦の真ん中に揃います</p>
+  <pre><code>&lt;div data-suisou-layout="row"&gt;</code></pre>
+  <p>(ミニプレビュー)</p>
+  <h2>grid</h2>
+  <p>子要素を升目に並べます</p>
+  <h3>既定値</h3>
+  <p>1列の横幅は12rem以上で、親の幅に入るだけ列が作られます<br>入りきらない子要素は次の行に回ります</p>
+  <pre><code>&lt;div data-suisou-layout="grid"&gt;</code></pre>
+  <p>(ミニプレビュー)</p>
+  <h3>列・行の指定</h3>
+  <p>変数 <code>--suisou-grid-cols</code> と <code>--suisou-grid-rows</code> に値を渡すと、列と行を指定できます<br>渡す値は CSS の <code>grid-template-columns</code> / <code>grid-template-rows</code> と同じ書き方です</p>
+  <pre><code>&lt;div data-suisou-layout="grid" style="--suisou-grid-cols: repeat(3, minmax(0, 1fr))"&gt;</code></pre>
+  <p><code>1fr</code> だけで書くと、長い語や画像で列が枠からはみ出します。<code>minmax(0, 1fr)</code> で書くとはみ出しません</p>
+  <h2>揃え</h2>
+  <h3>並ぶ向き</h3>
+  <p><code>middle</code>, <code>end</code>, <code>between</code> の３つの値があります<br><code>grid</code> では、列の指定に余りがあるときだけ効きます</p>
+  <p>(ミニプレビュー)</p>
+  <h3>並ぶ向きと直角</h3>
+  <p><code>stretch</code>, <code>center</code> の２つの値があります</p>
+  <p>(ミニプレビュー)</p>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <h3>CSS</h3>
+</div>
