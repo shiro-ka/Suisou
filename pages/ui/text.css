@@ -96,7 +96,13 @@ svg[data-suisou-text] { display: inline-block; vertical-align: -0.125em; width: 
   box-sizing: border-box;
 }
 [data-suisou-text~="toc"] :where(li:not(li li))::before { background: var(--suisou-line-strong); }
-[data-suisou-text~="toc"] :where(li li:not(li li li))::before { border: 2px solid var(--suisou-line-strong); }
+[data-suisou-text~="toc"] :where(li li:not(li li li))::before {
+  inset-inline-start: 5px;
+  top: calc(var(--suisou-space-1) + (1lh - 6px) / 2);
+  width: 6px;
+  height: 6px;
+  border: 1.5px solid var(--suisou-line-strong);
+}
 [data-suisou-text~="toc"] :where(li:not(li li)):has(> a[aria-current]:not([aria-current="false"]))::before { background: var(--suisou-accent); }
 [data-suisou-text~="toc"] :where(li li:not(li li li)):has(> a[aria-current]:not([aria-current="false"]))::before { border-color: var(--suisou-accent); }
 [data-suisou-text~="toc"] :where(li:not(li li)):not(:last-child)::after {
