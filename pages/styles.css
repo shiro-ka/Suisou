@@ -1,5 +1,4 @@
 body > header, body > nav[popover] { padding: var(--suisou-space-3); }
-main.is-bleed { padding: 0; }
 
 .page { display: grid; gap: var(--suisou-space-4); align-content: start; }
 .page h1 { margin: 0; font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); font-weight: 700; }

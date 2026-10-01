@@ -241,7 +241,8 @@ async function load(name) {
     }
   }
   box.innerHTML = cache[name];
-  box.classList.toggle('is-bleed', !!PAGES[name].bleed);
+  if (PAGES[name].bleed) box.dataset.suisou = 'p-0';
+  else delete box.dataset.suisou;
   box.scrollTo(0, 0);
   current = name;
   PAGES[name].enhance?.(box);
