@@ -34,12 +34,13 @@
   background: var(--suisou-bg);
   color: var(--suisou-text-main);
   accent-color: var(--suisou-accent);
-  scrollbar-width: thin;
   scrollbar-color: var(--suisou-line-strong) transparent;
   --suisou-next: var(--suisou-panel);
   --suisou-line-weak-next: var(--suisou-line-weak-panel);
   --suisou-line-strong-next: var(--suisou-line-strong-panel);
 }
+:where(:root:has(> [data-suisou-body]), [data-suisou-body], [data-suisou-body] *) { scrollbar-width: thin; }
+:where(:root:has(> [data-suisou-body])) { scrollbar-color: var(--suisou-line-strong) transparent; }
 body[data-suisou-body~="shell"] {
   display: grid;
   grid-template-columns: auto 1fr;
