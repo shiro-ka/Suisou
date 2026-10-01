@@ -114,6 +114,8 @@
   :where([popover][data-suisou-tray~="s:dock"]) { display: block; }
   [popover][data-suisou-tray~="drawer"][data-suisou-tray~="s:dock"]:not(:popover-open) {
     position: sticky;
+    width: fit-content;
+    max-width: var(--suisou-drawer, 20rem);
     inset: auto;
     top: 0;
     translate: none;
@@ -131,6 +133,8 @@
   :where([popover][data-suisou-tray~="m:dock"]) { display: block; }
   [popover][data-suisou-tray~="drawer"][data-suisou-tray~="m:dock"]:not(:popover-open) {
     position: sticky;
+    width: fit-content;
+    max-width: var(--suisou-drawer, 20rem);
     inset: auto;
     top: 0;
     translate: none;
@@ -148,6 +152,8 @@
   :where([popover][data-suisou-tray~="l:dock"]) { display: block; }
   [popover][data-suisou-tray~="drawer"][data-suisou-tray~="l:dock"]:not(:popover-open) {
     position: sticky;
+    width: fit-content;
+    max-width: var(--suisou-drawer, 20rem);
     inset: auto;
     top: 0;
     translate: none;
