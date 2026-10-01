@@ -44,6 +44,19 @@ body[data-suisou-body~="shell"] {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100dvh;
+}
+[data-suisou-body~="shell"] > :where(main, nav) { overflow-y: auto; }
+body[data-suisou-body~="shell"]:where([data-suisou-body~="doc"]) {
+  height: auto;
+  min-height: 100dvh;
+}
+[data-suisou-body~="shell"][data-suisou-body~="doc"] > :where(main) { overflow-y: visible; }
+[data-suisou-body~="shell"][data-suisou-body~="doc"] > :where(nav) {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100dvh;
 }
 [data-suisou-body~="shell"] > :where(nav)    { grid-area: 1 / 1 / -1 / 2; }
 [data-suisou-body~="shell"] > :where(header) { grid-area: 1 / 2; }
