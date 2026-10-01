@@ -117,6 +117,13 @@
     inset: auto;
     top: 0;
     translate: none;
+    background: transparent;
+    border: 0;
+    --suisou-line-weak: inherit;
+    --suisou-line-strong: inherit;
+    --suisou-next: inherit;
+    --suisou-line-weak-next: inherit;
+    --suisou-line-strong-next: inherit;
     transition: none;
   }
 }
@@ -127,6 +134,13 @@
     inset: auto;
     top: 0;
     translate: none;
+    background: transparent;
+    border: 0;
+    --suisou-line-weak: inherit;
+    --suisou-line-strong: inherit;
+    --suisou-next: inherit;
+    --suisou-line-weak-next: inherit;
+    --suisou-line-strong-next: inherit;
     transition: none;
   }
 }
@@ -137,6 +151,13 @@
     inset: auto;
     top: 0;
     translate: none;
+    background: transparent;
+    border: 0;
+    --suisou-line-weak: inherit;
+    --suisou-line-strong: inherit;
+    --suisou-next: inherit;
+    --suisou-line-weak-next: inherit;
+    --suisou-line-strong-next: inherit;
     transition: none;
   }
 }
