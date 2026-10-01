@@ -240,7 +240,7 @@ async function load(name) {
   }
   box.innerHTML = cache[name];
   box.classList.toggle('is-bleed', !!PAGES[name].bleed);
-  scrollTo(0, 0);
+  box.scrollTo(0, 0);
   current = name;
   PAGES[name].enhance?.(box);
   for (const a of menu.querySelectorAll('a')) {
