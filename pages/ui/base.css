@@ -47,6 +47,7 @@ body[data-suisou-body~="shell"] {
   height: 100dvh;
 }
 [data-suisou-body~="shell"] > :where(nav) { overflow-y: auto; }
+[data-suisou-body~="shell"] > :where(main) { padding: var(--suisou-space-3); }
 body[data-suisou-body~="shell"]:where([data-suisou-body~="doc"]) {
   height: auto;
   min-height: 100dvh;
