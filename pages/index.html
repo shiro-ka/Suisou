@@ -34,15 +34,21 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M15 4v16" /><path d="M9 10l2 2l-2 2" /></svg>
     </button>
   </div>
-  <div data-suisou-layout="stack gap-1">
-    <div data-suisou-text="fs-12 sub">Setup</div>
-    <a href="#import" data-suisou-button="block">&lt;head&gt;</a>
-    <a href="#theme" data-suisou-button="block">Theme</a>
-    <a href="#body" data-suisou-button="block">Body</a>
-    <div data-suisou-text="fs-12 sub">作例</div>
-    <a href="#chat" data-suisou-button="block">チャット</a>
-    <a href="#list" data-suisou-button="block">課題一覧</a>
-  </div>
+  <ul data-suisou-text="toc">
+    <li><span>Setup</span>
+      <ul>
+        <li><a href="#import">&lt;head&gt;</a></li>
+        <li><a href="#theme">Theme</a></li>
+        <li><a href="#body">Body</a></li>
+      </ul>
+    </li>
+    <li><span>作例</span>
+      <ul>
+        <li><a href="#chat">チャット</a></li>
+        <li><a href="#list">課題一覧</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 
 <script src="suisou.data.js"></script>
