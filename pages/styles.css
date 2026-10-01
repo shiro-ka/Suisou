@@ -1,4 +1,4 @@
-body > header, body > main, body > nav[popover] { padding: var(--suisou-space-3); }
+body > header, body > nav[popover] { padding: var(--suisou-space-3); }
 main.is-bleed { padding: 0; }
 
 .page { display: grid; gap: var(--suisou-space-4); align-content: start; }
