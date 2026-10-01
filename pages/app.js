@@ -1,6 +1,5 @@
 const root = document.documentElement;
 const menu = document.querySelector('nav[popover]');
-const themeSwitch = document.querySelector('.theme-switch');
 const slot = (name, scope = document) => scope.querySelector(`[data-slot="${name}"]`);
 
 const PAGES = {
@@ -248,29 +247,11 @@ async function load(name) {
   }
 }
 
-function cycleTheme() {
-  const names = SUISOU.themes.map((t) => t.name);
-  const next = themeOf(names[(names.indexOf(theme()) + 1) % names.length]);
-  const a = next.available.includes(accent()) ? accent() : next.available[0];
-  setPair(root, next.name, a);
-  render();
-}
-
-function renderSwitch() {
-  const t = themeOf(theme());
-  const sub = el('span', null, `${t.jp} — 押すと次のテーマへ`);
-  sub.dataset.suisouText = 'fs-12 sub';
-  themeSwitch.replaceChildren(el('span', null, t.name), sub);
-}
-
 function render() {
-  renderSwitch();
   load(current ?? location.hash.slice(1) ?? 'palette');
 }
 
 addEventListener('hashchange', () => load(location.hash.slice(1)));
-themeSwitch.addEventListener('click', cycleTheme);
 menu.addEventListener('click', (e) => { if (e.target.closest('a')) menu.hidePopover(); });
 
-renderSwitch();
 load(location.hash.slice(1) || 'palette');
