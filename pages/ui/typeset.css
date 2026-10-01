@@ -117,7 +117,6 @@
 
   line-height: var(--suisou-lh-14);
 
-  margin: 0;
   padding: var(--suisou-space-2);
   background: var(--suisou-item);
   border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
