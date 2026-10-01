@@ -11,6 +11,7 @@
 [data-suisou~="bd-dash"] { --suisou-bd-style: dashed; }
 
 [data-suisou~="bg-none"] { background: transparent; }
+[data-suisou~="p-0"] { padding: 0; }
 
 [data-suisou~="container"],
 [data-suisou~="container-s"],
