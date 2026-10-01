@@ -7,7 +7,7 @@ ROOT = os.path.normpath(os.path.join(HERE, os.pardir))
 PAGES = os.path.join(ROOT, "pages")
 
 CURRENT = "v3"
-FROZEN = {"v1": "07c066f", "v2": "364c528"}
+FROZEN = {"v2": "364c528"}
 
 def git(*args, **kw):
     return subprocess.run(["git", *args], cwd=ROOT, check=True, capture_output=True, **kw)
