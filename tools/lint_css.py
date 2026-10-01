@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import html, os, re, sys
+from html.parser import HTMLParser
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, os.pardir))
@@ -13,6 +14,9 @@ TRAY_EDGES = {"right", "left", "top", "bottom"}
 TRAY_DOCKS = {"s:dock", "m:dock", "l:dock"}
 ITEM_KINDS = {"media", "avatar", "tile", "field", "tag", "banner"}
 BANNER_KINDS = {"error", "warning", "success"}
+SHELL_SLOTS = {"header", "main", "footer", "nav"}
+SHELL_QUIET = {"script", "template", "style", "noscript", "dialog", "link", "meta"}
+VOID_TAGS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
 
 sys.path.insert(0, HERE)
 import solve
@@ -47,6 +51,50 @@ def html_attrs(body):
         for m in HTML_ATTR.finditer(t.group(0)):
             raw = None if m.group(2) is None else html.unescape(m.group(3))
             yield body.count("\n", 0, t.start() + m.start()) + 1, m.group(1), raw
+
+class ShellChildren(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.depth = 0
+        self.shell = None
+        self.kids = []
+
+    def child(self, tag, attrs):
+        if self.shell is not None and self.depth == self.shell + 1:
+            self.kids.append((self.getpos()[0], tag, dict(attrs)))
+
+    def handle_starttag(self, tag, attrs):
+        self.child(tag, attrs)
+        if tag == "body" and "shell" in (dict(attrs).get("data-suisou-body") or "").split():
+            self.shell = self.depth
+        if tag not in VOID_TAGS:
+            self.depth += 1
+
+    def handle_startendtag(self, tag, attrs):
+        self.child(tag, attrs)
+
+    def handle_endtag(self, tag):
+        if tag not in VOID_TAGS:
+            self.depth -= 1
+
+def shell_problems(body, rel):
+    parser = ShellChildren()
+    parser.feed(body)
+    seen = {}
+    out = []
+    for line, tag, attrs in parser.kids:
+        if tag in SHELL_QUIET or "hidden" in attrs:
+            continue
+        if "popover" in attrs and not TRAY_DOCKS & set((attrs.get("data-suisou-tray") or "").split()):
+            continue
+        if tag not in SHELL_SLOTS:
+            out.append(f"{rel}:{line}: shell の body の直下に <{tag}> … header / main / footer / nav の中に入れる")
+            continue
+        if tag in seen:
+            out.append(f"{rel}:{line}: shell の body の直下に <{tag}> が2つ（{seen[tag]} 行目と重なる）")
+        else:
+            seen[tag] = line
+    return out
 
 def vocab():
     attrs, staged, _, _, _ = contract.collect()
@@ -117,6 +165,7 @@ def main():
                 problems.append(f"{rel}: 未定義の変数 … {name}")
 
         if path.endswith(".html"):
+            problems += shell_problems(body, rel)
             for i, name, raw in html_attrs(body):
                 vals = None if raw is None else raw.split()
 
