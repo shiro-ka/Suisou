@@ -3,6 +3,9 @@ const menu = document.querySelector('nav[popover]');
 const slot = (name, scope = document) => scope.querySelector(`[data-slot="${name}"]`);
 
 const PAGES = {
+  import: {},
+  theme: {},
+  body: {},
   palette: { enhance: enhancePalette },
   typography: { enhance: enhanceTypography },
   tokens: { enhance: enhanceTokens },
