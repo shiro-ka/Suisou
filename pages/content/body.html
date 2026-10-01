@@ -1,0 +1,31 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1>Body</h1>
+  <h2>Suisouの適用</h2>
+  <p>要素に <code>data-suisou-body</code> を追加することで、以下に対してSuisouが適用されます</p>
+  <pre><code>&lt;body data-suisou-body&gt;</code></pre>
+  <p>ページの一部に対してのみSuisouを使用する場合、<code>&lt;div&gt;</code> 等に追加することも可能です<br>全体に対してSuisouを使用する場合は、<code>&lt;body&gt;</code> に対して追加することが推奨です</p>
+  <h2>shell</h2>
+  <p><code>&lt;body&gt;</code> の <code>data-suisou-body</code> に <code>shell</code> を追加すると、ページの枠組みが作成されます<br><code>shell</code> 直下の要素 <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code> が、自動的に配置されます</p>
+  <pre><code>&lt;body data-suisou-body="shell"&gt;
+  &lt;header&gt;header&lt;/header&gt;
+  &lt;main&gt;main&lt;/main&gt;
+  &lt;footer&gt;footer&lt;/footer&gt;
+  &lt;nav&gt;nav&lt;/nav&gt;
+&lt;/body&gt;</code></pre>
+  <p>(ミニプレビュー)</p>
+  <p>ページは画面の高さに固定され、本体はスクロールしません</p>
+  <h3>doc</h3>
+  <p>ページ本体がスクロールするようになり、<code>&lt;nav&gt;</code> は画面に固定されます</p>
+  <pre><code>&lt;body data-suisou-body="shell doc"&gt;</code></pre>
+  <h3>right</h3>
+  <p><code>&lt;nav&gt;</code> が右側に配置されます</p>
+  <pre><code>&lt;body data-suisou-body="shell right"&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody><tr><td>説明...</td><td></td></tr></tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>css...</code></pre>
+</div>
