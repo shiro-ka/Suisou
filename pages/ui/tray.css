@@ -113,10 +113,9 @@
 @media (width >= 768px) {
   :where([popover][data-suisou-tray~="s:dock"]) { display: block; }
   [popover][data-suisou-tray~="drawer"][data-suisou-tray~="s:dock"]:not(:popover-open) {
-    position: static;
+    position: sticky;
     inset: auto;
-    height: auto;
-    max-height: none;
+    top: 0;
     translate: none;
     transition: none;
   }
@@ -124,10 +123,9 @@
 @media (width >= 1024px) {
   :where([popover][data-suisou-tray~="m:dock"]) { display: block; }
   [popover][data-suisou-tray~="drawer"][data-suisou-tray~="m:dock"]:not(:popover-open) {
-    position: static;
+    position: sticky;
     inset: auto;
-    height: auto;
-    max-height: none;
+    top: 0;
     translate: none;
     transition: none;
   }
@@ -135,10 +133,9 @@
 @media (width >= 1280px) {
   :where([popover][data-suisou-tray~="l:dock"]) { display: block; }
   [popover][data-suisou-tray~="drawer"][data-suisou-tray~="l:dock"]:not(:popover-open) {
-    position: static;
+    position: sticky;
     inset: auto;
-    height: auto;
-    max-height: none;
+    top: 0;
     translate: none;
     transition: none;
   }
