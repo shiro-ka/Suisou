@@ -28,7 +28,8 @@
       <tr><td>なし</td><td>その要素と中の要素に、フォント・背景色・文字色、余白のリセット、<code>&lt;button&gt;</code> <code>&lt;input&gt;</code> <code>&lt;a&gt;</code> などの既定の見た目、細いスクロールバーを適用する</td></tr>
       <tr><td><code>shell</code></td><td><code>&lt;body&gt;</code> のみ。直下の <code>&lt;header&gt;</code> <code>&lt;main&gt;</code> <code>&lt;footer&gt;</code> <code>&lt;nav&gt;</code> を配置し、ページを画面の高さに固定する。<code>&lt;nav&gt;</code> は高さいっぱいで、中身が多いとスクロールする。<code>&lt;main&gt;</code> には四方 16px の余白が付く。ほかの要素の位置は決まっていない</td></tr>
       <tr><td><code>doc</code></td><td><code>shell</code> と一緒に使う。ページ本体がスクロールし、<code>&lt;nav&gt;</code> は画面に固定される</td></tr>
-      <tr><td><code>right</code></td><td><code>shell</code> と一緒に使う。<code>&lt;nav&gt;</code> を右側に配置する</td></tr>
+      <tr><td><code>right</code></td><td><code>shell</code> と一緒に使う。<code>&lt;nav&gt;</code> を右側に配置する。<code>&lt;nav popover&gt;</code> は右から滑って出る</td></tr>
+      <tr><td><code>s:dock</code> <code>m:dock</code> <code>l:dock</code></td><td><code>shell</code> と一緒に使う。直下の <code>&lt;nav popover&gt;</code> を、768 / 1024 / 1280px 以上では出しっぱなしのサイドバーにする（背景・罫線なし、幅は中身に合わせて 14〜20rem）。それより狭いと、閉じていて、開くと端から滑って出る</td></tr>
     </tbody>
   </table>
   <h3>CSS</h3>
@@ -73,6 +74,100 @@ body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-templa
 [data-suisou-body~="shell"][data-suisou-body~="right"] &gt; :where(header) { grid-area: 1 / 1; }
 [data-suisou-body~="shell"][data-suisou-body~="right"] &gt; :where(main)   { grid-area: 2 / 1; }
 [data-suisou-body~="shell"][data-suisou-body~="right"] &gt; :where(footer) { grid-area: 3 / 1; }
+:where([data-suisou-body~="shell"] &gt; nav[popover]) { padding: 0; }
+[data-suisou-body~="shell"] &gt; nav[popover] {
+  position: fixed;
+  inset: 0 auto 0 0;
+  margin: 0;
+  width: min(var(--suisou-drawer, 20rem), 90vw);
+  height: 100dvh;
+  max-height: none;
+  background: var(--suisou-panel);
+  color: var(--suisou-text-main);
+  border: 0;
+  border-right: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  --suisou-line-weak: var(--suisou-line-weak-panel);
+  --suisou-line-strong: var(--suisou-line-strong-panel);
+  --suisou-next: var(--suisou-item);
+  --suisou-line-weak-next: var(--suisou-line-weak-item);
+  --suisou-line-strong-next: var(--suisou-line-strong-item);
+  --suisou-drawer-hidden: -100% 0;
+  translate: var(--suisou-drawer-hidden);
+  transition: translate var(--suisou-motion) var(--suisou-ease),
+              display var(--suisou-motion) allow-discrete,
+              overlay var(--suisou-motion) allow-discrete;
+}
+[data-suisou-body~="shell"][data-suisou-body~="right"] &gt; nav[popover] {
+  inset: 0 0 0 auto;
+  border-right: 0;
+  border-left: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  --suisou-drawer-hidden: 100% 0;
+}
+[data-suisou-body~="shell"] &gt; nav[popover]:popover-open { translate: 0 0; }
+@starting-style {
+  [data-suisou-body~="shell"] &gt; nav[popover]:popover-open { translate: var(--suisou-drawer-hidden); }
+}
+[data-suisou-body~="shell"] &gt; nav[popover]::backdrop { background: var(--suisou-scrim); }
+@media (width &gt;= 768px) {
+  :where([data-suisou-body~="shell"][data-suisou-body~="s:dock"] &gt; nav[popover]) { display: block; }
+  [data-suisou-body~="shell"][data-suisou-body~="s:dock"] &gt; nav[popover]:not(:popover-open) {
+    position: sticky;
+    inset: auto;
+    top: 0;
+    translate: none;
+    width: fit-content;
+    max-width: var(--suisou-drawer, 20rem);
+    min-width: min(14rem, var(--suisou-drawer, 20rem));
+    background: transparent;
+    border: 0;
+    --suisou-line-weak: inherit;
+    --suisou-line-strong: inherit;
+    --suisou-next: inherit;
+    --suisou-line-weak-next: inherit;
+    --suisou-line-strong-next: inherit;
+    transition: none;
+  }
+}
+@media (width &gt;= 1024px) {
+  :where([data-suisou-body~="shell"][data-suisou-body~="m:dock"] &gt; nav[popover]) { display: block; }
+  [data-suisou-body~="shell"][data-suisou-body~="m:dock"] &gt; nav[popover]:not(:popover-open) {
+    position: sticky;
+    inset: auto;
+    top: 0;
+    translate: none;
+    width: fit-content;
+    max-width: var(--suisou-drawer, 20rem);
+    min-width: min(14rem, var(--suisou-drawer, 20rem));
+    background: transparent;
+    border: 0;
+    --suisou-line-weak: inherit;
+    --suisou-line-strong: inherit;
+    --suisou-next: inherit;
+    --suisou-line-weak-next: inherit;
+    --suisou-line-strong-next: inherit;
+    transition: none;
+  }
+}
+@media (width &gt;= 1280px) {
+  :where([data-suisou-body~="shell"][data-suisou-body~="l:dock"] &gt; nav[popover]) { display: block; }
+  [data-suisou-body~="shell"][data-suisou-body~="l:dock"] &gt; nav[popover]:not(:popover-open) {
+    position: sticky;
+    inset: auto;
+    top: 0;
+    translate: none;
+    width: fit-content;
+    max-width: var(--suisou-drawer, 20rem);
+    min-width: min(14rem, var(--suisou-drawer, 20rem));
+    background: transparent;
+    border: 0;
+    --suisou-line-weak: inherit;
+    --suisou-line-strong: inherit;
+    --suisou-next: inherit;
+    --suisou-line-weak-next: inherit;
+    --suisou-line-strong-next: inherit;
+    transition: none;
+  }
+}
 :where([data-suisou-body] a) {
   color: inherit;
   text-decoration: none;
