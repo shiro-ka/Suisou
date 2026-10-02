@@ -120,5 +120,101 @@
 &lt;/div&gt;</code></pre>
   <h2>Reference</h2>
   <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>stack</code></td><td>子要素を縦に並べる。子は横幅いっぱいに伸びる</td></tr>
+      <tr><td><code>row</code></td><td>子要素を横に並べる。子は縦の真ん中に揃う</td></tr>
+      <tr><td><code>grid</code></td><td>子要素を升目に並べる。1列12rem以上で、親の幅に入るだけ列を作る。列と行は <code>--suisou-grid-cols</code> / <code>--suisou-grid-rows</code> で指定できる</td></tr>
+      <tr><td><code>gap-0</code> <code>gap-1</code> <code>gap-2</code> <code>gap-3</code> <code>gap-4</code></td><td>子要素の間隔を 0 / 4 / 8 / 16 / 24px にする。書かなければ 8px</td></tr>
+      <tr><td><code>middle</code> <code>end</code> <code>between</code></td><td>並ぶ向きに、真ん中・終わり・両端へ寄せる</td></tr>
+      <tr><td><code>stretch</code> <code>center</code></td><td>並ぶ向きと直角に、伸ばす・真ん中に揃える</td></tr>
+      <tr><td><code>wrap</code></td><td>入りきらない子要素を折り返す</td></tr>
+      <tr><td><code>grow</code></td><td>子要素に付ける。余った分を埋める。比率は <code>--suisou-grow</code> で変えられる。付けていない子要素は縮まない</td></tr>
+      <tr><td><code>s:</code> <code>m:</code> <code>l:</code></td><td>値の前に付けると、768 / 1024 / 1280px 以上でだけ効く。並べ方・揃え・<code>wrap</code>・<code>grow</code> に付けられる</td></tr>
+    </tbody>
+  </table>
   <h3>CSS</h3>
+  <pre><code>@property --suisou-grid-cols { syntax: "*"; inherits: false; }
+@property --suisou-grid-rows { syntax: "*"; inherits: false; }
+@property --suisou-grow { syntax: "*"; inherits: false; }
+@property --suisou-align { syntax: "*"; inherits: false; }
+
+:where([data-suisou-layout]) { --suisou-gap: var(--suisou-space-2); }
+:where([data-suisou-layout~="stack"], [data-suisou-layout~="row"], [data-suisou-layout~="grid"], [data-suisou-layout~="s:stack"], [data-suisou-layout~="s:row"], [data-suisou-layout~="s:grid"], [data-suisou-layout~="m:stack"], [data-suisou-layout~="m:row"], [data-suisou-layout~="m:grid"], [data-suisou-layout~="l:stack"], [data-suisou-layout~="l:row"], [data-suisou-layout~="l:grid"]) &gt; * { flex: none; }
+[data-suisou-layout~="gap-0"] { --suisou-gap: 0; }
+[data-suisou-layout~="gap-1"] { --suisou-gap: var(--suisou-space-1); }
+[data-suisou-layout~="gap-2"] { --suisou-gap: var(--suisou-space-2); }
+[data-suisou-layout~="gap-3"] { --suisou-gap: var(--suisou-space-3); }
+[data-suisou-layout~="gap-4"] { --suisou-gap: var(--suisou-space-4); }
+[data-suisou-layout~="stack"]  { display: flex; flex-direction: column; align-items: var(--suisou-align, stretch); gap: var(--suisou-gap); }
+[data-suisou-layout~="row"]    { display: flex; flex-direction: row; align-items: var(--suisou-align, center); gap: var(--suisou-gap); }
+[data-suisou-layout~="stretch"] { --suisou-align: stretch; }
+[data-suisou-layout~="center"] { --suisou-align: center; }
+[data-suisou-layout~="wrap"] { flex-wrap: wrap; }
+[data-suisou-layout~="middle"]  { justify-content: center; }
+[data-suisou-layout~="end"]     { justify-content: flex-end; }
+[data-suisou-layout~="between"] { justify-content: space-between; }
+[data-suisou-layout~="grow"] { flex: var(--suisou-grow, 1) 1 0; min-width: 0; min-height: 0; }
+[data-suisou-layout~="grid"] {
+  display: grid;
+  align-items: var(--suisou-align, normal);
+  gap: var(--suisou-gap);
+  grid-template-columns: var(--suisou-grid-cols, repeat(auto-fill, minmax(min(12rem, 100%), 1fr)));
+  grid-template-rows: var(--suisou-grid-rows, none);
+}
+@media (width &gt;= 768px) {
+  [data-suisou-layout~="s:stack"] { display: flex; flex-direction: column; align-items: var(--suisou-align, stretch); gap: var(--suisou-gap); }
+  [data-suisou-layout~="s:row"] { display: flex; flex-direction: row; align-items: var(--suisou-align, center); gap: var(--suisou-gap); }
+  [data-suisou-layout~="s:stretch"] { --suisou-align: stretch; }
+  [data-suisou-layout~="s:center"] { --suisou-align: center; }
+  [data-suisou-layout~="s:wrap"] { flex-wrap: wrap; }
+  [data-suisou-layout~="s:grow"] { flex: var(--suisou-grow, 1) 1 0; min-width: 0; min-height: 0; }
+  [data-suisou-layout~="s:grid"] {
+    display: grid;
+    align-items: var(--suisou-align, normal);
+    gap: var(--suisou-gap);
+    grid-template-columns: var(--suisou-grid-cols, repeat(auto-fill, minmax(min(12rem, 100%), 1fr)));
+    grid-template-rows: var(--suisou-grid-rows, none);
+  }
+  [data-suisou-layout~="s:middle"] { justify-content: center; }
+  [data-suisou-layout~="s:end"] { justify-content: flex-end; }
+  [data-suisou-layout~="s:between"] { justify-content: space-between; }
+}
+@media (width &gt;= 1024px) {
+  [data-suisou-layout~="m:stack"] { display: flex; flex-direction: column; align-items: var(--suisou-align, stretch); gap: var(--suisou-gap); }
+  [data-suisou-layout~="m:row"] { display: flex; flex-direction: row; align-items: var(--suisou-align, center); gap: var(--suisou-gap); }
+  [data-suisou-layout~="m:stretch"] { --suisou-align: stretch; }
+  [data-suisou-layout~="m:center"] { --suisou-align: center; }
+  [data-suisou-layout~="m:wrap"] { flex-wrap: wrap; }
+  [data-suisou-layout~="m:grow"] { flex: var(--suisou-grow, 1) 1 0; min-width: 0; min-height: 0; }
+  [data-suisou-layout~="m:grid"] {
+    display: grid;
+    align-items: var(--suisou-align, normal);
+    gap: var(--suisou-gap);
+    grid-template-columns: var(--suisou-grid-cols, repeat(auto-fill, minmax(min(12rem, 100%), 1fr)));
+    grid-template-rows: var(--suisou-grid-rows, none);
+  }
+  [data-suisou-layout~="m:middle"] { justify-content: center; }
+  [data-suisou-layout~="m:end"] { justify-content: flex-end; }
+  [data-suisou-layout~="m:between"] { justify-content: space-between; }
+}
+@media (width &gt;= 1280px) {
+  [data-suisou-layout~="l:stack"] { display: flex; flex-direction: column; align-items: var(--suisou-align, stretch); gap: var(--suisou-gap); }
+  [data-suisou-layout~="l:row"] { display: flex; flex-direction: row; align-items: var(--suisou-align, center); gap: var(--suisou-gap); }
+  [data-suisou-layout~="l:stretch"] { --suisou-align: stretch; }
+  [data-suisou-layout~="l:center"] { --suisou-align: center; }
+  [data-suisou-layout~="l:wrap"] { flex-wrap: wrap; }
+  [data-suisou-layout~="l:grow"] { flex: var(--suisou-grow, 1) 1 0; min-width: 0; min-height: 0; }
+  [data-suisou-layout~="l:grid"] {
+    display: grid;
+    align-items: var(--suisou-align, normal);
+    gap: var(--suisou-gap);
+    grid-template-columns: var(--suisou-grid-cols, repeat(auto-fill, minmax(min(12rem, 100%), 1fr)));
+    grid-template-rows: var(--suisou-grid-rows, none);
+  }
+  [data-suisou-layout~="l:middle"] { justify-content: center; }
+  [data-suisou-layout~="l:end"] { justify-content: flex-end; }
+  [data-suisou-layout~="l:between"] { justify-content: space-between; }
+}</code></pre>
 </div>
