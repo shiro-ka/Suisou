@@ -59,10 +59,65 @@
   <h2>揃え</h2>
   <h3>並ぶ向き</h3>
   <p><code>middle</code>, <code>end</code>, <code>between</code> の３つの値があります<br><code>grid</code> では、列の指定に余りがあるときだけ効きます</p>
-  <p>(ミニプレビュー)</p>
+  <pre><code>&lt;div data-suisou-layout="row middle"&gt;
+&lt;div data-suisou-layout="row end"&gt;
+&lt;div data-suisou-layout="row between"&gt;</code></pre>
+  <hr>
+  <div data-suisou-layout="row middle" data-suisou-tray>
+    <div data-suisou-item>1</div>
+    <div data-suisou-item>2</div>
+    <div data-suisou-item>3</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row middle" data-suisou-tray&gt;
+  &lt;div data-suisou-item&gt;1&lt;/div&gt;
+  &lt;div data-suisou-item&gt;2&lt;/div&gt;
+  &lt;div data-suisou-item&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <div data-suisou-layout="row end" data-suisou-tray>
+    <div data-suisou-item>1</div>
+    <div data-suisou-item>2</div>
+    <div data-suisou-item>3</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row end" data-suisou-tray&gt;
+  &lt;div data-suisou-item&gt;1&lt;/div&gt;
+  &lt;div data-suisou-item&gt;2&lt;/div&gt;
+  &lt;div data-suisou-item&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <div data-suisou-layout="row between" data-suisou-tray>
+    <div data-suisou-item>1</div>
+    <div data-suisou-item>2</div>
+    <div data-suisou-item>3</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row between" data-suisou-tray&gt;
+  &lt;div data-suisou-item&gt;1&lt;/div&gt;
+  &lt;div data-suisou-item&gt;2&lt;/div&gt;
+  &lt;div data-suisou-item&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
   <h3>並ぶ向きと直角</h3>
   <p><code>stretch</code>, <code>center</code> の２つの値があります</p>
-  <p>(ミニプレビュー)</p>
+  <pre><code>&lt;div data-suisou-layout="row stretch"&gt;
+&lt;div data-suisou-layout="stack center"&gt;</code></pre>
+  <hr>
+  <div data-suisou-layout="row stretch" data-suisou-tray>
+    <div data-suisou-item>1</div>
+    <div data-suisou-item>2<br>2</div>
+    <div data-suisou-item>3</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row stretch" data-suisou-tray&gt;
+  &lt;div data-suisou-item&gt;1&lt;/div&gt;
+  &lt;div data-suisou-item&gt;2&lt;br&gt;2&lt;/div&gt;
+  &lt;div data-suisou-item&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <div data-suisou-layout="stack center" data-suisou-tray>
+    <div data-suisou-item>1</div>
+    <div data-suisou-item>2</div>
+    <div data-suisou-item>3</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="stack center" data-suisou-tray&gt;
+  &lt;div data-suisou-item&gt;1&lt;/div&gt;
+  &lt;div data-suisou-item&gt;2&lt;/div&gt;
+  &lt;div data-suisou-item&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
   <h2>Reference</h2>
   <h3>Values</h3>
   <h3>CSS</h3>
