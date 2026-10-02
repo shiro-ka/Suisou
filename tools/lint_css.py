@@ -11,7 +11,6 @@ TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
 TRAY_EDGES = {"right", "left", "top", "bottom"}
-TRAY_DOCKS = {"s:dock", "m:dock", "l:dock"}
 ITEM_KINDS = {"media", "avatar", "tile", "field", "tag", "banner"}
 BANNER_KINDS = {"error", "warning", "success"}
 SHELL_SLOTS = {"header", "main", "footer", "nav"}
@@ -85,8 +84,10 @@ def shell_problems(body, rel):
     for line, tag, attrs in parser.kids:
         if tag in SHELL_QUIET or "hidden" in attrs:
             continue
-        if "popover" in attrs and not TRAY_DOCKS & set((attrs.get("data-suisou-tray") or "").split()):
+        if "popover" in attrs and tag != "nav":
             continue
+        if tag == "nav" and "drawer" in (attrs.get("data-suisou-tray") or "").split():
+            out.append(f"{rel}:{line}: shell の nav に drawer … <nav popover> だけでドロワーになる（向きは body の right、出しっぱなしは body の s:dock / m:dock / l:dock）")
         if tag not in SHELL_SLOTS:
             out.append(f"{rel}:{line}: shell の body の直下に <{tag}> … header / main / footer / nav の中に入れる")
             continue
@@ -176,7 +177,7 @@ def main():
                     if not vals:
                         continue
                     edges = TRAY_EDGES & set(vals)
-                    if set(vals) - TRAY_EDGES - TRAY_DOCKS != {"drawer"} or len(edges) != 1 or len(TRAY_DOCKS & set(vals)) > 1:
+                    if set(vals) - TRAY_EDGES != {"drawer"} or len(edges) != 1:
                         problems.append(
                             f"{rel}:{i}: tray の値 … \"{raw}\" "
                             f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添える）")

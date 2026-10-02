@@ -68,6 +68,100 @@ body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-templa
 [data-suisou-body~="shell"][data-suisou-body~="right"] > :where(header) { grid-area: 1 / 1; }
 [data-suisou-body~="shell"][data-suisou-body~="right"] > :where(main)   { grid-area: 2 / 1; }
 [data-suisou-body~="shell"][data-suisou-body~="right"] > :where(footer) { grid-area: 3 / 1; }
+:where([data-suisou-body~="shell"] > nav[popover]) { padding: 0; }
+[data-suisou-body~="shell"] > nav[popover] {
+  position: fixed;
+  inset: 0 auto 0 0;
+  margin: 0;
+  width: min(var(--suisou-drawer, 20rem), 90vw);
+  height: 100dvh;
+  max-height: none;
+  background: var(--suisou-panel);
+  color: var(--suisou-text-main);
+  border: 0;
+  border-right: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  --suisou-line-weak: var(--suisou-line-weak-panel);
+  --suisou-line-strong: var(--suisou-line-strong-panel);
+  --suisou-next: var(--suisou-item);
+  --suisou-line-weak-next: var(--suisou-line-weak-item);
+  --suisou-line-strong-next: var(--suisou-line-strong-item);
+  --suisou-drawer-hidden: -100% 0;
+  translate: var(--suisou-drawer-hidden);
+  transition: translate var(--suisou-motion) var(--suisou-ease),
+              display var(--suisou-motion) allow-discrete,
+              overlay var(--suisou-motion) allow-discrete;
+}
+[data-suisou-body~="shell"][data-suisou-body~="right"] > nav[popover] {
+  inset: 0 0 0 auto;
+  border-right: 0;
+  border-left: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  --suisou-drawer-hidden: 100% 0;
+}
+[data-suisou-body~="shell"] > nav[popover]:popover-open { translate: 0 0; }
+@starting-style {
+  [data-suisou-body~="shell"] > nav[popover]:popover-open { translate: var(--suisou-drawer-hidden); }
+}
+[data-suisou-body~="shell"] > nav[popover]::backdrop { background: var(--suisou-scrim); }
+@media (width >= 768px) {
+  :where([data-suisou-body~="shell"][data-suisou-body~="s:dock"] > nav[popover]) { display: block; }
+  [data-suisou-body~="shell"][data-suisou-body~="s:dock"] > nav[popover]:not(:popover-open) {
+    position: sticky;
+    inset: auto;
+    top: 0;
+    translate: none;
+    width: fit-content;
+    max-width: var(--suisou-drawer, 20rem);
+    min-width: min(14rem, var(--suisou-drawer, 20rem));
+    background: transparent;
+    border: 0;
+    --suisou-line-weak: inherit;
+    --suisou-line-strong: inherit;
+    --suisou-next: inherit;
+    --suisou-line-weak-next: inherit;
+    --suisou-line-strong-next: inherit;
+    transition: none;
+  }
+}
+@media (width >= 1024px) {
+  :where([data-suisou-body~="shell"][data-suisou-body~="m:dock"] > nav[popover]) { display: block; }
+  [data-suisou-body~="shell"][data-suisou-body~="m:dock"] > nav[popover]:not(:popover-open) {
+    position: sticky;
+    inset: auto;
+    top: 0;
+    translate: none;
+    width: fit-content;
+    max-width: var(--suisou-drawer, 20rem);
+    min-width: min(14rem, var(--suisou-drawer, 20rem));
+    background: transparent;
+    border: 0;
+    --suisou-line-weak: inherit;
+    --suisou-line-strong: inherit;
+    --suisou-next: inherit;
+    --suisou-line-weak-next: inherit;
+    --suisou-line-strong-next: inherit;
+    transition: none;
+  }
+}
+@media (width >= 1280px) {
+  :where([data-suisou-body~="shell"][data-suisou-body~="l:dock"] > nav[popover]) { display: block; }
+  [data-suisou-body~="shell"][data-suisou-body~="l:dock"] > nav[popover]:not(:popover-open) {
+    position: sticky;
+    inset: auto;
+    top: 0;
+    translate: none;
+    width: fit-content;
+    max-width: var(--suisou-drawer, 20rem);
+    min-width: min(14rem, var(--suisou-drawer, 20rem));
+    background: transparent;
+    border: 0;
+    --suisou-line-weak: inherit;
+    --suisou-line-strong: inherit;
+    --suisou-next: inherit;
+    --suisou-line-weak-next: inherit;
+    --suisou-line-strong-next: inherit;
+    transition: none;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   :root {
     --suisou-motion-fast: 0.01ms;
