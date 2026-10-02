@@ -20,6 +20,7 @@ const PAGES = {
   typeset: {},
   toc: {},
   utilities: {},
+  responsive: {},
   chat: { bleed: true },
   list: { bleed: true },
 };
