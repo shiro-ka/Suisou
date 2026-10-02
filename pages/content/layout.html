@@ -19,13 +19,39 @@
   <h2>row</h2>
   <p>子要素を横に並べ、子は縦の真ん中に揃います</p>
   <pre><code>&lt;div data-suisou-layout="row"&gt;</code></pre>
-  <p>(ミニプレビュー)</p>
+  <hr>
+  <div data-suisou-layout="row" data-suisou-tray>
+    <div data-suisou-item>1</div>
+    <div data-suisou-item>2<br>2</div>
+    <div data-suisou-item>3</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row" data-suisou-tray&gt;
+  &lt;div data-suisou-item&gt;1&lt;/div&gt;
+  &lt;div data-suisou-item&gt;2&lt;br&gt;2&lt;/div&gt;
+  &lt;div data-suisou-item&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
   <h2>grid</h2>
   <p>子要素を升目に並べます</p>
   <h3>既定値</h3>
   <p>1列の横幅は12rem以上で、親の幅に入るだけ列が作られます<br>入りきらない子要素は次の行に回ります</p>
   <pre><code>&lt;div data-suisou-layout="grid"&gt;</code></pre>
-  <p>(ミニプレビュー)</p>
+  <hr>
+  <div data-suisou-layout="grid" data-suisou-tray>
+    <div data-suisou-item>1</div>
+    <div data-suisou-item>2</div>
+    <div data-suisou-item>3</div>
+    <div data-suisou-item>4</div>
+    <div data-suisou-item>5</div>
+    <div data-suisou-item>6</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="grid" data-suisou-tray&gt;
+  &lt;div data-suisou-item&gt;1&lt;/div&gt;
+  &lt;div data-suisou-item&gt;2&lt;/div&gt;
+  &lt;div data-suisou-item&gt;3&lt;/div&gt;
+  &lt;div data-suisou-item&gt;4&lt;/div&gt;
+  &lt;div data-suisou-item&gt;5&lt;/div&gt;
+  &lt;div data-suisou-item&gt;6&lt;/div&gt;
+&lt;/div&gt;</code></pre>
   <h3>列・行の指定</h3>
   <p>変数 <code>--suisou-grid-cols</code> と <code>--suisou-grid-rows</code> に値を渡すと、列と行を指定できます<br>渡す値は CSS の <code>grid-template-columns</code> / <code>grid-template-rows</code> と同じ書き方です</p>
   <pre><code>&lt;div data-suisou-layout="grid" style="--suisou-grid-cols: repeat(3, minmax(0, 1fr))"&gt;</code></pre>
