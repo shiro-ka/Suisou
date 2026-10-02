@@ -1,5 +1,4 @@
 body > header, body > nav[popover] { padding: var(--suisou-space-3); }
-body > nav[popover] { padding-inline-end: var(--suisou-space-4); }
 
 .note {
   margin: 0;

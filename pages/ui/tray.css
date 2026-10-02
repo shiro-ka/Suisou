@@ -116,6 +116,7 @@
     position: sticky;
     width: fit-content;
     max-width: var(--suisou-drawer, 20rem);
+    min-width: min(16rem, var(--suisou-drawer, 20rem));
     inset: auto;
     top: 0;
     translate: none;
@@ -135,6 +136,7 @@
     position: sticky;
     width: fit-content;
     max-width: var(--suisou-drawer, 20rem);
+    min-width: min(16rem, var(--suisou-drawer, 20rem));
     inset: auto;
     top: 0;
     translate: none;
@@ -154,6 +156,7 @@
     position: sticky;
     width: fit-content;
     max-width: var(--suisou-drawer, 20rem);
+    min-width: min(16rem, var(--suisou-drawer, 20rem));
     inset: auto;
     top: 0;
     translate: none;
