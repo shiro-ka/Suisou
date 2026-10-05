@@ -58,7 +58,7 @@
     <thead><tr><th>Value</th><th>Function</th></tr></thead>
     <tbody>
       <tr><td>なし</td><td>背景を panel の色にし、細い罫線・角丸・四方 8px の余白を付ける。中の入力欄は item の色になる。<code>&lt;dialog&gt;</code> では、開くと後ろに幕が敷かれ、パネルと幕がフェードで出入りする</td></tr>
-      <tr><td><code>drawer</code></td><td>向きを1つ添える。背景を panel の色にし、四方 8px の余白と、内側の辺に罫線を1本付ける（角丸なし）。<code>right</code> <code>left</code> は幅が <code>--suisou-drawer</code>（既定 20rem）、<code>top</code> <code>bottom</code> は高さの上限が <code>--suisou-drawer</code>。どちらも画面の 90% まで。<code>popover</code> と一緒に使うと、閉じていて、開くとその端に画面いっぱいの長さで滑って出て、後ろに幕が敷かれる</td></tr>
+      <tr><td><code>drawer</code></td><td><code>popover</code> の付いた要素に、向きを1つ添えて使う。開くとその端から滑って出て、後ろに幕が敷かれる。背景を panel の色にし、四方 8px の余白と、内側の辺に罫線を1本付ける（角丸なし）。<code>right</code> <code>left</code> は高さが画面いっぱいで、幅が <code>--suisou-drawer</code>（既定 20rem）。<code>top</code> <code>bottom</code> は幅が画面いっぱいで、高さの上限が <code>--suisou-drawer</code>。どちらも画面の 90% まで</td></tr>
       <tr><td><code>right</code> <code>left</code> <code>top</code> <code>bottom</code></td><td><code>drawer</code> と一緒に使う。パネルを付ける端</td></tr>
     </tbody>
   </table>
@@ -109,7 +109,9 @@
   }
 }
 
-[data-suisou-tray~="drawer"] {
+:where([popover])[data-suisou-tray~="drawer"] {
+  position: fixed;
+  margin: 0;
   background: var(--suisou-panel);
   --suisou-line-weak: var(--suisou-line-weak-panel);
   --suisou-line-strong: var(--suisou-line-strong-panel);
@@ -118,61 +120,48 @@
   --suisou-line-strong-next: var(--suisou-line-strong-item);
   border: 0;
   padding: var(--suisou-space-2);
-}
-[data-suisou-tray~="drawer"]:where([data-suisou-tray~="right"]) {
-  width: min(var(--suisou-drawer, 20rem), 90vw);
-  border-left: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
-}
-[data-suisou-tray~="drawer"]:where([data-suisou-tray~="left"]) {
-  width: min(var(--suisou-drawer, 20rem), 90vw);
-  border-right: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
-}
-[data-suisou-tray~="drawer"]:where([data-suisou-tray~="top"]) {
-  max-height: min(var(--suisou-drawer, 20rem), 90vh);
-  border-bottom: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
-}
-[data-suisou-tray~="drawer"]:where([data-suisou-tray~="bottom"]) {
-  max-height: min(var(--suisou-drawer, 20rem), 90vh);
-  border-top: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
-}
-
-[popover][data-suisou-tray~="drawer"] {
-  position: fixed;
-  margin: 0;
   translate: var(--suisou-drawer-hidden);
   transition: translate var(--suisou-motion) var(--suisou-ease),
               display var(--suisou-motion) allow-discrete,
               overlay var(--suisou-motion) allow-discrete;
 }
-[popover][data-suisou-tray~="drawer"]:where([data-suisou-tray~="right"]) {
+:where([popover])[data-suisou-tray~="drawer"]:where([data-suisou-tray~="right"]) {
   --suisou-drawer-hidden: 100% 0;
   inset: 0 0 0 auto;
+  width: min(var(--suisou-drawer, 20rem), 90vw);
   height: 100dvh;
   max-height: none;
+  border-left: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
 }
-[popover][data-suisou-tray~="drawer"]:where([data-suisou-tray~="left"]) {
+:where([popover])[data-suisou-tray~="drawer"]:where([data-suisou-tray~="left"]) {
   --suisou-drawer-hidden: -100% 0;
   inset: 0 auto 0 0;
+  width: min(var(--suisou-drawer, 20rem), 90vw);
   height: 100dvh;
   max-height: none;
+  border-right: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
 }
-[popover][data-suisou-tray~="drawer"]:where([data-suisou-tray~="top"]) {
+:where([popover])[data-suisou-tray~="drawer"]:where([data-suisou-tray~="top"]) {
   --suisou-drawer-hidden: 0 -100%;
   inset: 0 0 auto 0;
   width: 100dvw;
   max-width: none;
+  max-height: min(var(--suisou-drawer, 20rem), 90vh);
+  border-bottom: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
 }
-[popover][data-suisou-tray~="drawer"]:where([data-suisou-tray~="bottom"]) {
+:where([popover])[data-suisou-tray~="drawer"]:where([data-suisou-tray~="bottom"]) {
   --suisou-drawer-hidden: 0 100%;
   inset: auto 0 0 0;
   width: 100dvw;
   max-width: none;
+  max-height: min(var(--suisou-drawer, 20rem), 90vh);
+  border-top: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
 }
-[popover][data-suisou-tray~="drawer"]:popover-open { translate: 0 0; }
+:where([popover])[data-suisou-tray~="drawer"]:popover-open { translate: 0 0; }
 @starting-style {
-  [popover][data-suisou-tray~="drawer"]:popover-open {
+  :where([popover])[data-suisou-tray~="drawer"]:popover-open {
     translate: var(--suisou-drawer-hidden);
   }
 }
-[popover][data-suisou-tray~="drawer"]::backdrop { background: var(--suisou-scrim); }</code></pre>
+:where([popover])[data-suisou-tray~="drawer"]::backdrop { background: var(--suisou-scrim); }</code></pre>
 </div>
