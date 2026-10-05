@@ -1,0 +1,178 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1>Tray</h1>
+  <h2>Trayの適用</h2>
+  <p>要素に <code>data-suisou-tray</code> を追加すると、パネルになります<br>このページの本文が載っている面もパネルです</p>
+  <pre><code>&lt;div data-suisou-tray&gt;</code></pre>
+  <h2>dialog</h2>
+  <p><code>&lt;dialog&gt;</code> に <code>data-suisou-tray</code> を追加すると、パネルがモーダルとして開きます</p>
+  <pre><code>&lt;button commandfor="x" command="show-modal"&gt;開く&lt;/button&gt;
+&lt;dialog id="x" data-suisou-tray&gt;</code></pre>
+  <hr>
+  <p><button commandfor="tray-dialog" command="show-modal">開く</button></p>
+  <dialog id="tray-dialog" data-suisou-tray data-suisou-layout="stack">
+    <p>dialog</p>
+    <button commandfor="tray-dialog" command="close">閉じる</button>
+  </dialog>
+  <pre><code>&lt;button commandfor="tray-dialog" command="show-modal"&gt;開く&lt;/button&gt;
+&lt;dialog id="tray-dialog" data-suisou-tray data-suisou-layout="stack"&gt;
+  &lt;p&gt;dialog&lt;/p&gt;
+  &lt;button commandfor="tray-dialog" command="close"&gt;閉じる&lt;/button&gt;
+&lt;/dialog&gt;</code></pre>
+  <h2>drawer</h2>
+  <p><code>data-suisou-tray</code> に <code>drawer</code> と向きを1つ追加すると、画面の端に表示されるパネルになります<br><code>popover</code> を追加すると、端から出て開けるようになります</p>
+  <pre><code>&lt;div popover data-suisou-tray="drawer right"&gt;</code></pre>
+  <hr>
+  <p><button popovertarget="tray-drawer">開く</button></p>
+  <div popover id="tray-drawer" data-suisou-tray="drawer right">
+    <p>drawer</p>
+  </div>
+  <pre><code>&lt;button popovertarget="tray-drawer"&gt;開く&lt;/button&gt;
+&lt;div popover id="tray-drawer" data-suisou-tray="drawer right"&gt;
+  &lt;p&gt;drawer&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+  <h3>向き</h3>
+  <p><code>right</code> / <code>left</code> / <code>top</code> / <code>bottom</code> から1つ選びます</p>
+  <div data-suisou-layout="row wrap">
+    <button popovertarget="tray-right">right</button>
+    <button popovertarget="tray-left">left</button>
+    <button popovertarget="tray-top">top</button>
+    <button popovertarget="tray-bottom">bottom</button>
+  </div>
+  <div popover id="tray-right" data-suisou-tray="drawer right"><p>right</p></div>
+  <div popover id="tray-left" data-suisou-tray="drawer left"><p>left</p></div>
+  <div popover id="tray-top" data-suisou-tray="drawer top"><p>top</p></div>
+  <div popover id="tray-bottom" data-suisou-tray="drawer bottom"><p>bottom</p></div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;button popovertarget="tray-right"&gt;right&lt;/button&gt;
+  &lt;button popovertarget="tray-left"&gt;left&lt;/button&gt;
+  &lt;button popovertarget="tray-top"&gt;top&lt;/button&gt;
+  &lt;button popovertarget="tray-bottom"&gt;bottom&lt;/button&gt;
+&lt;/div&gt;
+&lt;div popover id="tray-right" data-suisou-tray="drawer right"&gt;&lt;p&gt;right&lt;/p&gt;&lt;/div&gt;
+&lt;div popover id="tray-left" data-suisou-tray="drawer left"&gt;&lt;p&gt;left&lt;/p&gt;&lt;/div&gt;
+&lt;div popover id="tray-top" data-suisou-tray="drawer top"&gt;&lt;p&gt;top&lt;/p&gt;&lt;/div&gt;
+&lt;div popover id="tray-bottom" data-suisou-tray="drawer bottom"&gt;&lt;p&gt;bottom&lt;/p&gt;&lt;/div&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>なし</td><td>背景を panel の色にし、細い罫線・角丸・四方 8px の余白を付ける。中の入力欄は item の色になる。<code>&lt;dialog&gt;</code> では、開くと後ろに幕が敷かれ、パネルと幕がフェードで出入りする</td></tr>
+      <tr><td><code>drawer</code></td><td>向きを1つ添える。背景を panel の色にし、四方 8px の余白と、内側の辺に罫線を1本付ける（角丸なし）。<code>right</code> <code>left</code> は幅が <code>--suisou-drawer</code>（既定 20rem）、<code>top</code> <code>bottom</code> は高さの上限が <code>--suisou-drawer</code>。どちらも画面の 90% まで。<code>popover</code> と一緒に使うと、閉じていて、開くとその端に画面いっぱいの長さで滑って出て、後ろに幕が敷かれる</td></tr>
+      <tr><td><code>right</code> <code>left</code> <code>top</code> <code>bottom</code></td><td><code>drawer</code> と一緒に使う。パネルを付ける端</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>@property --suisou-drawer { syntax: "*"; inherits: false; }
+
+[data-suisou-tray=""] {
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+  padding: var(--suisou-space-2);
+  background: var(--suisou-panel);
+  --suisou-line-weak: var(--suisou-line-weak-panel);
+  --suisou-line-strong: var(--suisou-line-strong-panel);
+  --suisou-next: var(--suisou-item);
+  --suisou-line-weak-next: var(--suisou-line-weak-item);
+  --suisou-line-strong-next: var(--suisou-line-strong-item);
+}
+:where(dialog)[data-suisou-tray]::backdrop { background: var(--suisou-scrim); }
+:where(dialog, [popover])[data-suisou-tray] { color: var(--suisou-text-main); }
+
+:where(dialog)[data-suisou-tray] {
+  opacity: 0;
+  transition: opacity var(--suisou-motion) var(--suisou-ease),
+              display var(--suisou-motion) allow-discrete,
+              overlay var(--suisou-motion) allow-discrete;
+}
+:where(dialog)[data-suisou-tray]:where(:popover-open, [open]) {
+  opacity: 1;
+}
+@starting-style {
+  :where(dialog)[data-suisou-tray]:where(:popover-open, [open]) {
+    opacity: 0;
+  }
+}
+
+:where(dialog)[data-suisou-tray]::backdrop {
+  opacity: 0;
+  transition: opacity var(--suisou-motion-fast) var(--suisou-ease),
+              display var(--suisou-motion-fast) allow-discrete,
+              overlay var(--suisou-motion-fast) allow-discrete;
+}
+:where(dialog)[data-suisou-tray]:where(:popover-open, [open])::backdrop {
+  opacity: 1;
+}
+@starting-style {
+  :where(dialog)[data-suisou-tray]:where(:popover-open, [open])::backdrop {
+    opacity: 0;
+  }
+}
+
+[data-suisou-tray~="drawer"] {
+  background: var(--suisou-panel);
+  --suisou-line-weak: var(--suisou-line-weak-panel);
+  --suisou-line-strong: var(--suisou-line-strong-panel);
+  --suisou-next: var(--suisou-item);
+  --suisou-line-weak-next: var(--suisou-line-weak-item);
+  --suisou-line-strong-next: var(--suisou-line-strong-item);
+  border: 0;
+  padding: var(--suisou-space-2);
+}
+[data-suisou-tray~="drawer"]:where([data-suisou-tray~="right"]) {
+  width: min(var(--suisou-drawer, 20rem), 90vw);
+  border-left: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+}
+[data-suisou-tray~="drawer"]:where([data-suisou-tray~="left"]) {
+  width: min(var(--suisou-drawer, 20rem), 90vw);
+  border-right: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+}
+[data-suisou-tray~="drawer"]:where([data-suisou-tray~="top"]) {
+  max-height: min(var(--suisou-drawer, 20rem), 90vh);
+  border-bottom: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+}
+[data-suisou-tray~="drawer"]:where([data-suisou-tray~="bottom"]) {
+  max-height: min(var(--suisou-drawer, 20rem), 90vh);
+  border-top: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+}
+
+[popover][data-suisou-tray~="drawer"] {
+  position: fixed;
+  margin: 0;
+  translate: var(--suisou-drawer-hidden);
+  transition: translate var(--suisou-motion) var(--suisou-ease),
+              display var(--suisou-motion) allow-discrete,
+              overlay var(--suisou-motion) allow-discrete;
+}
+[popover][data-suisou-tray~="drawer"]:where([data-suisou-tray~="right"]) {
+  --suisou-drawer-hidden: 100% 0;
+  inset: 0 0 0 auto;
+  height: 100dvh;
+  max-height: none;
+}
+[popover][data-suisou-tray~="drawer"]:where([data-suisou-tray~="left"]) {
+  --suisou-drawer-hidden: -100% 0;
+  inset: 0 auto 0 0;
+  height: 100dvh;
+  max-height: none;
+}
+[popover][data-suisou-tray~="drawer"]:where([data-suisou-tray~="top"]) {
+  --suisou-drawer-hidden: 0 -100%;
+  inset: 0 0 auto 0;
+  width: 100dvw;
+  max-width: none;
+}
+[popover][data-suisou-tray~="drawer"]:where([data-suisou-tray~="bottom"]) {
+  --suisou-drawer-hidden: 0 100%;
+  inset: auto 0 0 0;
+  width: 100dvw;
+  max-width: none;
+}
+[popover][data-suisou-tray~="drawer"]:popover-open { translate: 0 0; }
+@starting-style {
+  [popover][data-suisou-tray~="drawer"]:popover-open {
+    translate: var(--suisou-drawer-hidden);
+  }
+}
+[popover][data-suisou-tray~="drawer"]::backdrop { background: var(--suisou-scrim); }</code></pre>
+</div>
