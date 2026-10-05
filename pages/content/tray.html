@@ -6,15 +6,15 @@
   <h2>dialog</h2>
   <p><code>&lt;dialog&gt;</code> に <code>data-suisou-tray</code> を追加すると、パネルがモーダルとして開きます</p>
   <pre><code>&lt;button commandfor="x" command="show-modal"&gt;開く&lt;/button&gt;
-&lt;dialog id="x" data-suisou-tray&gt;</code></pre>
+&lt;dialog id="x" closedby="any" data-suisou-tray&gt;</code></pre>
   <hr>
   <p><button commandfor="tray-dialog" command="show-modal">開く</button></p>
-  <dialog id="tray-dialog" data-suisou-tray data-suisou-layout="stack">
+  <dialog id="tray-dialog" closedby="any" data-suisou-tray data-suisou-layout="stack">
     <p>dialog</p>
     <button commandfor="tray-dialog" command="close">閉じる</button>
   </dialog>
   <pre><code>&lt;button commandfor="tray-dialog" command="show-modal"&gt;開く&lt;/button&gt;
-&lt;dialog id="tray-dialog" data-suisou-tray data-suisou-layout="stack"&gt;
+&lt;dialog id="tray-dialog" closedby="any" data-suisou-tray data-suisou-layout="stack"&gt;
   &lt;p&gt;dialog&lt;/p&gt;
   &lt;button commandfor="tray-dialog" command="close"&gt;閉じる&lt;/button&gt;
 &lt;/dialog&gt;</code></pre>
