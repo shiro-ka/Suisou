@@ -44,6 +44,7 @@ LAYOUT_MODES = layout_modes()
 HTML_ATTR = re.compile(r"""(?<![\w-])(data-suisou(?:-[a-z]+)*)(?:\s*=\s*(["'])(.*?)\2)?(?![\w-])""", re.S)
 
 HTML_TAG = re.compile(r"<[a-zA-Z][^<>]*>", re.S)
+POPOVER_ATTR = re.compile(r"(?<![\w-])popover(?![\w-])")
 
 def html_attrs(body):
     for t in HTML_TAG.finditer(body):
@@ -95,6 +96,14 @@ def shell_problems(body, rel):
             out.append(f"{rel}:{line}: shell の body の直下に <{tag}> が2つ（{seen[tag]} 行目と重なる）")
         else:
             seen[tag] = line
+    return out
+
+def drawer_problems(body, rel):
+    out = []
+    for t in HTML_TAG.finditer(body):
+        for m in HTML_ATTR.finditer(t.group(0)):
+            if m.group(1) == "data-suisou-tray" and m.group(3) and "drawer" in m.group(3).split() and not POPOVER_ATTR.search(t.group(0)):
+                out.append(f"{rel}:{body.count(chr(10), 0, t.start()) + 1}: popover の無い drawer … drawer は popover と一緒に使う（出しっぱなしのサイドバーは body の s:dock / m:dock / l:dock）")
     return out
 
 def vocab():
@@ -167,6 +176,7 @@ def main():
 
         if path.endswith(".html"):
             problems += shell_problems(body, rel)
+            problems += drawer_problems(body, rel)
             for i, name, raw in html_attrs(body):
                 vals = None if raw is None else raw.split()
 
