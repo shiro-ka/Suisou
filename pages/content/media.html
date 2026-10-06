@@ -1,0 +1,89 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1>Media</h1>
+  <h2>Mediaの適用</h2>
+  <p>要素に <code>data-suisou-item="media"</code> を追加します<br>子要素は、<code>media-figure</code> / <code>media-content</code> / <code>media-tail</code> があります</p>
+  <pre><code>&lt;div data-suisou-item="media"&gt;</code></pre>
+  <hr>
+  <div data-suisou-item="media">
+    <div data-suisou-item="media-figure avatar">し</div>
+    <div data-suisou-item="media-content">
+      <header><span>しろか.</span><span>04:06</span></header>
+      <p>ご機姸よう</p>
+    </div>
+    <button data-suisou-item="media-tail">⋮</button>
+  </div>
+  <pre><code>&lt;div data-suisou-item="media"&gt;
+  &lt;div data-suisou-item="media-figure avatar"&gt;し&lt;/div&gt;
+  &lt;div data-suisou-item="media-content"&gt;
+    &lt;header&gt;&lt;span&gt;しろか.&lt;/span&gt;&lt;span&gt;04:06&lt;/span&gt;&lt;/header&gt;
+    &lt;p&gt;ご機姸よう&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;button data-suisou-item="media-tail"&gt;⋮&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  <h2>media-figure</h2>
+  <p>アイコン・画像等の部分です<br>左端の列になり、幅は中身のままで、伸び縮みしません<br>大きさと形は中身で決まります。<code>avatar</code> や <code>tile</code> と一緒に書くと、その大きさと形になります<br>中身は、<code>media-content</code> の1行目の高さの真ん中に揃います</p>
+  <pre><code>&lt;div data-suisou-item="media-figure avatar"&gt;
+&lt;div data-suisou-item="media-figure tile"&gt;</code></pre>
+  <h2>media-content</h2>
+  <p>メインコンテンツの部分です<br>残りの幅をすべて使います</p>
+  <h3>header</h3>
+  <p>1つ目は太字、2つ目以降は小さく薄い文字になります</p>
+  <h2>media-tail</h2>
+  <p>右端の列になります<br>幅は中身のままで、伸び縮みしません</p>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>media</code></td><td>子要素を横に並べる。間隔は 8px、上端で揃える。背景・罫線・余白は付かない</td></tr>
+      <tr><td><code>media-figure</code></td><td>幅は中身のままで、伸び縮みしない。高さの下限は 14px の文字1行分で、中身を縦の真ん中に置く。画像のときは、大きさが決まると歪まずに切り抜かれる。<code>avatar</code> <code>tile</code> と一緒に書ける</td></tr>
+      <tr><td><code>media-content</code></td><td>残りの幅をすべて使い、子要素を 4px 間隔で縦に並べる。中の <code>&lt;header&gt;</code> は子要素を横に並べ、1つ目を 14px の太字、2つ目以降を 12px の薄い文字にする。中の <code>&lt;p&gt;</code> は 14px</td></tr>
+      <tr><td><code>media-tail</code></td><td>幅は中身のままで、伸び縮みしない</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>[data-suisou-item~="media"] {
+  display: flex;
+  gap: var(--suisou-space-2);
+  align-items: flex-start;
+}
+
+[data-suisou-item~="media-figure"] {
+  flex: none;
+  display: flex;
+  align-items: center;
+  min-height: var(--suisou-lh-14);
+  object-fit: cover;
+}
+
+[data-suisou-item~="media-content"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--suisou-space-1);
+}
+
+[data-suisou-item~="media-tail"] { flex: none; }
+
+[data-suisou-item~="media-content"] :where(header) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--suisou-space-2);
+}
+:where([data-suisou-item~="media-content"] header &gt; :first-child) {
+  font-size: var(--suisou-size-14);
+  line-height: var(--suisou-lh-14);
+  font-weight: 700;
+}
+:where([data-suisou-item~="media-content"] header &gt; :not(:first-child)) {
+  font-size: var(--suisou-size-12);
+  line-height: var(--suisou-lh-12);
+  color: var(--suisou-text-sub);
+}
+[data-suisou-item~="media-content"] :where(p) {
+  font-size: var(--suisou-size-14);
+  line-height: var(--suisou-lh-14);
+}</code></pre>
+</div>
