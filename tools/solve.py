@@ -97,27 +97,27 @@ JND = 0.02
 
 PAIRS = [
 
-    ("line-weak","bg",1.5,"装飾罫"),
-    ("line-weak-panel","panel",1.5,"装飾罫"),
-    ("line-weak-item","item",1.5,"装飾罫"),
-    ("line-strong","bg",3.0,"入力枠 1.4.11"),
-    ("line-strong-panel","panel",3.0,"入力枠 1.4.11"),
-    ("line-strong-item","item",3.0,"入力枠 1.4.11"),
-    ("accent","panel",3.0,"UI 部品"),
-    ("text-main","selected-surface",4.5,"選択行の文字"),
-    ("text-main","hover-surface",4.5,"hover 行の文字"),
-    ("line-weak-hover","hover-surface",1.5,"hover 行の装飾罫"),
-    ("line-strong-hover","hover-surface",3.0,"hover 行の入力枠 1.4.11"),
+    ("line-weak","bg",1.5),
+    ("line-weak-panel","panel",1.5),
+    ("line-weak-item","item",1.5),
+    ("line-strong","bg",3.0),
+    ("line-strong-panel","panel",3.0),
+    ("line-strong-item","item",3.0),
+    ("accent","panel",3.0),
+    ("text-main","selected-surface",4.5),
+    ("text-main","hover-surface",4.5),
+    ("line-weak-hover","hover-surface",1.5),
+    ("line-strong-hover","hover-surface",3.0),
 
-    ("line-weak-selected","selected-surface",1.5,"選択行の装飾罫"),
-    ("line-strong-selected","selected-surface",3.0,"選択行の入力枠 1.4.11"),
-    ("line-weak-selected","selected-neutral-surface",1.5,"選択行(中立)の装飾罫"),
-    ("line-strong-selected","selected-neutral-surface",3.0,"選択行(中立)の入力枠 1.4.11"),
-    ("text-main","selected-neutral-surface",4.5,"選択行(中立)の文字"),
+    ("line-weak-selected","selected-surface",1.5),
+    ("line-strong-selected","selected-surface",3.0),
+    ("line-weak-selected","selected-neutral-surface",1.5),
+    ("line-strong-selected","selected-neutral-surface",3.0),
+    ("text-main","selected-neutral-surface",4.5),
 
-    ("text-main","error-surface",4.5,"バナーの文字"),
-    ("error","error-surface",4.5,"バナーの枠 / danger ボタンの文字"),
-    ("error-active","error-surface",3.0,"danger ボタン(押下)"),
+    ("text-main","error-surface",4.5),
+    ("error","error-surface",4.5),
+    ("error-active","error-surface",3.0),
 ]
 
 def resolve_text_main(t):
@@ -257,12 +257,12 @@ def accent_issues(t, acc_name, acc_h):
 def pair_results(t, acc_name, acc_h):
     k = tokens(t, acc_name, acc_h)
     rows = []
-    for a, b, need, note in PAIRS:
+    for a, b, need in PAIRS:
         if k.get(a) is None or k.get(b) is None:
-            rows.append({"a":a,"b":b,"need":need,"note":note,"value":None,"pass":False})
+            rows.append({"a":a,"b":b,"need":need,"value":None,"pass":False})
             continue
         v = contrast(k[a], k[b])
-        rows.append({"a":a,"b":b,"need":need,"note":note,"value":round(v,2),"pass":v>=need})
+        rows.append({"a":a,"b":b,"need":need,"value":round(v,2),"pass":v>=need})
     return rows
 
 def gamut_failures(t, acc_name, acc_h):
@@ -275,7 +275,7 @@ def solve():
         "scrimAlpha": SCRIM_ALPHA, "jnd": JND,
         "ladders": LADDERS, "semHue": SEM_HUE, "semL": SEM_L,
         "accentHues": {n: h for n, h in ACCENTS},
-        "pairs": [{"a":a,"b":b,"need":n,"note":note} for a,b,n,note in PAIRS],
+        "pairs": [{"a":a,"b":b,"need":n} for a,b,n in PAIRS],
         "themes": [], "failures": [],
     }
     for t in THEMES:
@@ -439,12 +439,12 @@ def write_tables(data):
                 key = (r["a"], r["b"])
                 if r["value"] is None: continue
                 if key not in worst or r["value"] < worst[key][0]:
-                    worst[key] = (r["value"], r["need"], t["name"], an, r["note"])
-    L.append("| ペア | 最悪値 | 必要 | 最悪ケース | 用途 |")
-    L.append("|---|---|---|---|---|")
-    for (a, b), (v, need, tn, an, note) in sorted(worst.items(), key=lambda x: x[1][0]/x[1][1]):
+                    worst[key] = (r["value"], r["need"], t["name"], an)
+    L.append("| ペア | 最悪値 | 必要 | 最悪ケース |")
+    L.append("|---|---|---|---|")
+    for (a, b), (v, need, tn, an) in sorted(worst.items(), key=lambda x: x[1][0]/x[1][1]):
         mark = "" if v >= need else " ⚠"
-        L.append(f"| `{a}` on `{b}` | {v:.2f}:1{mark} | {need} | {tn}/{an} | {note} |")
+        L.append(f"| `{a}` on `{b}` | {v:.2f}:1{mark} | {need} | {tn}/{an} |")
     L.append("")
     L.append("### 意味色と同じ色相の家族に入るアクセント\n")
     L.append("資料。**判定には使わない** ―― 近さは accent×意味色の ΔE 検査（FLOOR.semantic）が見ている。\n")
