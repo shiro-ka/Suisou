@@ -88,7 +88,7 @@ ACCENTS = [("clown",55),("turtle",122),("teal",188),("jelly",212),("blue",255),
 ACCENT_JP = {"clown":"カクレクマノミ", "turtle":"ウミガメ", "jelly":"クラゲ",
              "coral":"サンゴ", "seal":"アザラシ"}
 
-FLOOR = {"hover":0.03, "selected":0.055, "semantic":0.055, "textSub":0.08, "tintHue":0.08}
+FLOOR = {"hover":0.03, "selected":0.055, "semantic":0.055, "textSub":0.08, "tintHue":0.05}
 SEM_OFFSET = 0.15
 ACTIVE_DL  = -0.03
 SCRIM_ALPHA = 0.72
