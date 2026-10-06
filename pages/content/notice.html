@@ -1,0 +1,40 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1>Notice</h1>
+  <h2>Noticeの適用</h2>
+  <p>要素に <code>data-suisou-item="notice"</code> を追加します</p>
+  <pre><code>&lt;p data-suisou-item="notice"&gt;</code></pre>
+  <hr>
+  <p data-suisou-item="notice">お知らせです</p>
+  <pre><code>&lt;p data-suisou-item="notice"&gt;お知らせです&lt;/p&gt;</code></pre>
+  <h2>色</h2>
+  <p><code>error</code> / <code>warning</code> / <code>success</code> を追加すると、色が変わります</p>
+  <p data-suisou-item="notice error">メールアドレスかパスワードが違います</p>
+  <p data-suisou-item="notice warning">この操作は取り消せません</p>
+  <p data-suisou-item="notice success">確認メールを送信しました</p>
+  <pre><code>&lt;p data-suisou-item="notice error"&gt;メールアドレスかパスワードが違います&lt;/p&gt;
+&lt;p data-suisou-item="notice warning"&gt;この操作は取り消せません&lt;/p&gt;
+&lt;p data-suisou-item="notice success"&gt;確認メールを送信しました&lt;/p&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>notice</code></td><td>知らせの箱にする。背景を item の色にし、細い罫線・角丸を付ける。余白は縦 8px・横 16px、文字は本文の色</td></tr>
+      <tr><td><code>error</code> <code>warning</code> <code>success</code></td><td><code>notice</code> と一緒に使う。罫線をその色に、背景をその色の薄い色にする。1つまで</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>[data-suisou-item~="notice"] {
+  background: var(--suisou-item);
+  --suisou-line-weak: var(--suisou-line-weak-item);
+  --suisou-line-strong: var(--suisou-line-strong-item);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+  padding: var(--suisou-space-2) var(--suisou-space-3);
+  color: var(--suisou-text-main);
+}
+
+[data-suisou-item~="notice"]:where([data-suisou-item~="error"])   { border-color: var(--suisou-error);   background: var(--suisou-error-surface); }
+[data-suisou-item~="notice"]:where([data-suisou-item~="warning"]) { border-color: var(--suisou-warning); background: var(--suisou-warning-surface); }
+[data-suisou-item~="notice"]:where([data-suisou-item~="success"]) { border-color: var(--suisou-success); background: var(--suisou-success-surface); }</code></pre>
+</div>
