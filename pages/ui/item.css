@@ -116,7 +116,7 @@
   object-fit: cover;
 }
 
-[data-suisou-item~="avatar"][data-suisou-item~="small"] { --suisou-avatar: 1.5rem; }
+[data-suisou-item~="avatar"]:where([data-suisou-item~="small"]) { --suisou-avatar: 1.5rem; }
 [data-suisou-item~="avatar"]:where([data-suisou-item~="large"]) { --suisou-avatar: 3rem; font-size: var(--suisou-size-16); }
 
 [data-suisou-item~="tile"] {
@@ -134,7 +134,7 @@
   padding: 0;
 }
 
-[data-suisou-item~="tile"][data-suisou-item~="small"] { --suisou-tile: 1.75rem; }
+[data-suisou-item~="tile"]:where([data-suisou-item~="small"]) { --suisou-tile: 1.75rem; }
 
 [data-suisou-item~="tag"] {
   display: inline-flex;
