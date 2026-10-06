@@ -1,0 +1,93 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1>Circle / Square</h1>
+  <h2>Circle / Squareの適用</h2>
+  <p>要素に <code>data-suisou-item="circle"</code> を追加すると、丸い枠になります<br><code>data-suisou-item="square"</code> を追加すると、角丸の四角い枠になります</p>
+  <pre><code>&lt;div data-suisou-item="circle"&gt;
+&lt;div data-suisou-item="square"&gt;</code></pre>
+  <hr>
+  <div data-suisou-layout="row wrap">
+    <div data-suisou-item="circle">し</div>
+    <div data-suisou-item="square"><svg data-suisou-text="fs-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;div data-suisou-item="circle"&gt;し&lt;/div&gt;
+  &lt;div data-suisou-item="square"&gt;&lt;svg data-suisou-text="fs-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <h2>中身</h2>
+  <p>文字・画像・アイコンを入れることができます</p>
+  <div data-suisou-layout="row wrap">
+    <div data-suisou-item="circle">し</div>
+    <div data-suisou-item="circle"><svg data-suisou-text="fs-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></div>
+    <div data-suisou-item="square">し</div>
+    <div data-suisou-item="square"><svg data-suisou-text="fs-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;div data-suisou-item="circle"&gt;し&lt;/div&gt;
+  &lt;div data-suisou-item="circle"&gt;&lt;svg data-suisou-text="fs-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;&lt;/div&gt;
+  &lt;div data-suisou-item="square"&gt;し&lt;/div&gt;
+  &lt;div data-suisou-item="square"&gt;&lt;svg data-suisou-text="fs-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;circle cx="12" cy="12" r="9"/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <h2>大きさ</h2>
+  <p><code>small</code> / <code>large</code> を追加すると、大きさが変わります</p>
+  <div data-suisou-layout="row wrap">
+    <div data-suisou-item="circle small">し</div>
+    <div data-suisou-item="circle">し</div>
+    <div data-suisou-item="circle large">し</div>
+    <div data-suisou-item="square small">し</div>
+    <div data-suisou-item="square">し</div>
+    <div data-suisou-item="square large">し</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;div data-suisou-item="circle small"&gt;し&lt;/div&gt;
+  &lt;div data-suisou-item="circle"&gt;し&lt;/div&gt;
+  &lt;div data-suisou-item="circle large"&gt;し&lt;/div&gt;
+  &lt;div data-suisou-item="square small"&gt;し&lt;/div&gt;
+  &lt;div data-suisou-item="square"&gt;し&lt;/div&gt;
+  &lt;div data-suisou-item="square large"&gt;し&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>circle</code></td><td>丸い枠にする。大きさは <code>--suisou-circle</code>（既定 2rem）</td></tr>
+      <tr><td><code>square</code></td><td>角丸の四角い枠にする。大きさは <code>--suisou-square</code>（既定 2rem）</td></tr>
+      <tr><td>共通</td><td>背景を item の色にし、細い罫線を付ける。中身を縦横の真ん中に置き、はみ出した部分は切り取る。文字は 12px の薄い色。<code>&lt;img&gt;</code> に付けると、歪まずに切り抜かれる。伸び縮みしない</td></tr>
+      <tr><td><code>small</code></td><td><code>circle</code> <code>square</code> と一緒に使う。1.5rem にする</td></tr>
+      <tr><td><code>large</code></td><td><code>circle</code> <code>square</code> と一緒に使う。3rem にし、文字を 16px にする</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>@property --suisou-circle { syntax: "*"; inherits: false; }
+@property --suisou-square { syntax: "*"; inherits: false; }
+
+[data-suisou-item~="circle"], [data-suisou-item~="square"] {
+  flex: none;
+  background: var(--suisou-item);
+  --suisou-line-weak: var(--suisou-line-weak-item);
+  --suisou-line-strong: var(--suisou-line-strong-item);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+  color: var(--suisou-text-sub);
+  font-size: var(--suisou-size-12);
+  line-height: var(--suisou-lh-12);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  overflow: hidden;
+  object-fit: cover;
+}
+[data-suisou-item~="circle"] {
+  width: var(--suisou-circle, 2rem);
+  height: var(--suisou-circle, 2rem);
+  border-radius: var(--suisou-radius-pill);
+}
+[data-suisou-item~="square"] {
+  width: var(--suisou-square, 2rem);
+  height: var(--suisou-square, 2rem);
+  border-radius: var(--suisou-radius);
+}
+[data-suisou-item~="circle"]:where([data-suisou-item~="small"]) { --suisou-circle: 1.5rem; }
+[data-suisou-item~="circle"]:where([data-suisou-item~="large"]) { --suisou-circle: 3rem; font-size: var(--suisou-size-16); }
+[data-suisou-item~="square"]:where([data-suisou-item~="small"]) { --suisou-square: 1.5rem; }
+[data-suisou-item~="square"]:where([data-suisou-item~="large"]) { --suisou-square: 3rem; font-size: var(--suisou-size-16); }</code></pre>
+</div>
