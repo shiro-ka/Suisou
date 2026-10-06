@@ -197,7 +197,7 @@ def main():
                     if len(kinds) > 1:
                         problems.append(
                             f"{rel}:{i}: item の種類が {len(kinds)} 個 … \"{raw}\" "
-                            f"（{' / '.join(sorted(kinds))} は同時に書けない。media-icon などの位置の語は組める）")
+                            f"（{' / '.join(sorted(kinds))} は同時に書けない。media-figure などの部品の語は組める）")
                     if "banner" in kinds:
                         bk = BANNER_KINDS & set(vals)
                         if len(bk) != 1:
