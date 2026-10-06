@@ -10,7 +10,7 @@ const PAGES = {
   media: {},
   'circle-square': {},
   tag: {},
-  banner: {},
+  notice: {},
   'item-field': {},
   button: {},
   field: {},
