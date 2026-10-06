@@ -119,6 +119,8 @@ PAIRS = [
     ("error","error-surface",4.5),
     ("error-active","error-surface",3.0),
     ("accent-active","selected-surface",3.0),
+    ("text-main","selected-hover-surface",4.5),
+    ("text-main","selected-neutral-hover-surface",4.5),
 ]
 
 def resolve_text_main(t):
@@ -138,6 +140,13 @@ def resolve_hover(t):
                            for s in faces) < FLOOR["hover"]:
         L -= 0.001
     return round(L, 3)
+
+def resolve_selected_hover(c):
+
+    L, C, h = c
+    while dE((L, min(C, maxC(L, h)), h), c) < FLOOR["hover"]:
+        L += 0.001
+    return (round(L, 3), min(C, maxC(L, h)), h)
 
 LINE_WEAK_RATIO = 1.51
 
@@ -218,6 +227,8 @@ def tokens(t, acc_name, acc_h):
 
     o["selected-surface"] = (D["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h)
     o["selected-neutral-surface"] = face(D["tint"], t)
+    o["selected-hover-surface"] = resolve_selected_hover(o["selected-surface"])
+    o["selected-neutral-hover-surface"] = resolve_selected_hover(o["selected-neutral-surface"])
     sr = sem_ratio(t["ar"])
     for n, h in SEM_HUE.items():
         L = SEM_L[t["ladder"]][n]
@@ -319,7 +330,7 @@ def solve():
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-THEME_TOKENS = ["bg", "panel", "item", "hover-surface", "selected-neutral-surface",
+THEME_TOKENS = ["bg", "panel", "item", "hover-surface", "selected-neutral-surface", "selected-neutral-hover-surface",
                 "line-weak", "line-weak-panel", "line-weak-item",
                 "line-weak-hover", "line-weak-selected",
                 "line-strong", "line-strong-panel", "line-strong-item",
@@ -329,7 +340,7 @@ THEME_TOKENS = ["bg", "panel", "item", "hover-surface", "selected-neutral-surfac
                 "error", "warning", "success",
                 "error-active",
                 "error-surface", "warning-surface", "success-surface"]
-ACCENT_TOKENS = ["accent", "accent-active", "focus-ring", "selected-surface"]
+ACCENT_TOKENS = ["accent", "accent-active", "focus-ring", "selected-surface", "selected-hover-surface"]
 
 DEFAULT_THEME  = "hadal"
 DEFAULT_ACCENT = "jelly"
