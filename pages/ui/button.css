@@ -24,7 +24,7 @@
   background: var(--suisou-hover-surface);
   color: var(--suisou-text-main);
 }
-:where([data-suisou-body] button, [data-suisou-button]):active { background: var(--suisou-selected-surface); }
+:where([data-suisou-body] button, [data-suisou-button]):active { background: var(--suisou-selected-neutral-surface); }
 :where([data-suisou-body] button, [data-suisou-button]):focus-visible { outline: var(--suisou-focus); outline-offset: 2px; }
 
 :where([data-suisou-body] button, [data-suisou-button]) > svg {
@@ -37,13 +37,15 @@
   --suisou-button-color: var(--suisou-accent);
   color: var(--suisou-button-color);
 }
-[data-suisou-button~="accent"]:where(:active) { --suisou-button-color: var(--suisou-accent-active); }
+[data-suisou-button~="accent"]:where(:active) {
+  --suisou-button-color: var(--suisou-accent-active);
+  background: var(--suisou-selected-surface);
+}
 
 [data-suisou-button~="error"] {
   --suisou-button-color: var(--suisou-error);
   color: var(--suisou-button-color);
 }
-[data-suisou-button~="error"]:where(:hover)  { background: var(--suisou-error-surface); }
 [data-suisou-button~="error"]:where(:active) {
   --suisou-button-color: var(--suisou-error-active);
   background: var(--suisou-error-surface);
