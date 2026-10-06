@@ -63,6 +63,12 @@
 [data-suisou-button~="accent"]:where([aria-pressed="true"], [aria-current]:not([aria-current="false"])) {
   background: var(--suisou-selected-surface);
 }
+:where([data-suisou-body] button, [data-suisou-button])[aria-pressed="true"]:where(:hover) {
+  background: var(--suisou-selected-neutral-hover-surface);
+}
+[data-suisou-button~="accent"]:where([aria-pressed="true"]):where(:hover) {
+  background: var(--suisou-selected-hover-surface);
+}
 
 [data-suisou-button~="icon"] {
   padding: calc((var(--suisou-control) - var(--suisou-icon)) / 2 - 1px);
