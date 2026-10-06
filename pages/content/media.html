@@ -5,7 +5,7 @@
   <pre><code>&lt;div data-suisou-item="media"&gt;</code></pre>
   <hr>
   <div data-suisou-item="media">
-    <div data-suisou-item="media-figure avatar">し</div>
+    <div data-suisou-item="media-figure circle">し</div>
     <div data-suisou-item="media-content">
       <header><span>しろか.</span><span>04:06</span></header>
       <p>ご機姸よう</p>
@@ -13,7 +13,7 @@
     <button data-suisou-item="media-tail">⋮</button>
   </div>
   <pre><code>&lt;div data-suisou-item="media"&gt;
-  &lt;div data-suisou-item="media-figure avatar"&gt;し&lt;/div&gt;
+  &lt;div data-suisou-item="media-figure circle"&gt;し&lt;/div&gt;
   &lt;div data-suisou-item="media-content"&gt;
     &lt;header&gt;&lt;span&gt;しろか.&lt;/span&gt;&lt;span&gt;04:06&lt;/span&gt;&lt;/header&gt;
     &lt;p&gt;ご機姸よう&lt;/p&gt;
@@ -21,9 +21,9 @@
   &lt;button data-suisou-item="media-tail"&gt;⋮&lt;/button&gt;
 &lt;/div&gt;</code></pre>
   <h2>media-figure</h2>
-  <p>アイコン・画像等の部分です<br>左端の列になり、幅は中身のままで、伸び縮みしません<br>大きさと形は中身で決まります。<code>avatar</code> や <code>tile</code> と一緒に書くと、その大きさと形になります<br>中身は、<code>media-content</code> の1行目の高さの真ん中に揃います</p>
-  <pre><code>&lt;div data-suisou-item="media-figure avatar"&gt;
-&lt;div data-suisou-item="media-figure tile"&gt;</code></pre>
+  <p>アイコン・画像等の部分です<br>左端の列になり、幅は中身のままで、伸び縮みしません<br>大きさと形は中身で決まります。<code>circle</code> や <code>square</code> と一緒に書くと、その大きさと形になります<br>中身は、<code>media-content</code> の1行目の高さの真ん中に揃います</p>
+  <pre><code>&lt;div data-suisou-item="media-figure circle"&gt;
+&lt;div data-suisou-item="media-figure square"&gt;</code></pre>
   <h2>media-content</h2>
   <p>メインコンテンツの部分です<br>残りの幅をすべて使います</p>
   <h3>header</h3>
@@ -36,7 +36,7 @@
     <thead><tr><th>Value</th><th>Function</th></tr></thead>
     <tbody>
       <tr><td><code>media</code></td><td>子要素を横に並べる。間隔は 8px、上端で揃える。背景・罫線・余白は付かない</td></tr>
-      <tr><td><code>media-figure</code></td><td>幅は中身のままで、伸び縮みしない。高さの下限は 14px の文字1行分で、中身を縦の真ん中に置く。画像のときは、大きさが決まると歪まずに切り抜かれる。<code>avatar</code> <code>tile</code> と一緒に書ける</td></tr>
+      <tr><td><code>media-figure</code></td><td>幅は中身のままで、伸び縮みしない。高さの下限は 14px の文字1行分で、中身を縦の真ん中に置く。画像のときは、大きさが決まると歪まずに切り抜かれる。<code>circle</code> <code>square</code> と一緒に書ける</td></tr>
       <tr><td><code>media-content</code></td><td>残りの幅をすべて使い、子要素を 4px 間隔で縦に並べる。中の <code>&lt;header&gt;</code> は子要素を横に並べ、1つ目を 14px の太字、2つ目以降を 12px の薄い文字にする。中の <code>&lt;p&gt;</code> は 14px</td></tr>
       <tr><td><code>media-tail</code></td><td>幅は中身のままで、伸び縮みしない</td></tr>
     </tbody>

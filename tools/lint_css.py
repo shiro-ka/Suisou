@@ -11,7 +11,7 @@ TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
 TRAY_EDGES = {"right", "left", "top", "bottom"}
-ITEM_KINDS = {"media", "avatar", "tile", "field", "tag", "banner"}
+ITEM_KINDS = {"media", "circle", "square", "field", "tag", "banner"}
 BANNER_KINDS = {"error", "warning", "success"}
 SHELL_SLOTS = {"header", "main", "footer", "nav"}
 SHELL_QUIET = {"script", "template", "style", "noscript", "dialog", "link", "meta"}

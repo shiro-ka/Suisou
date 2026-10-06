@@ -10,16 +10,17 @@
   <p>値に1つアイテムの種類を指定することができます<br>詳細は各アイテムのページまで</p>
   <h3><a href="#media">media</a></h3>
   <div data-suisou-item="media">
-    <div data-suisou-item="media-figure avatar">し</div>
+    <div data-suisou-item="media-figure circle">し</div>
     <div data-suisou-item="media-content">
       <header><span>しろか.</span><span>04:06</span></header>
       <p>ご機姸よう</p>
     </div>
   </div>
-  <h3><a href="#avatar">avatar</a></h3>
-  <div data-suisou-item="avatar">し</div>
-  <h3><a href="#tile">tile</a></h3>
-  <div data-suisou-item="tile"><svg data-suisou-text="fs-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></div>
+  <h3><a href="#circle-square">circle / square</a></h3>
+  <div data-suisou-layout="row">
+    <div data-suisou-item="circle">し</div>
+    <div data-suisou-item="square"><svg data-suisou-text="fs-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></div>
+  </div>
   <h3><a href="#tag">tag</a></h3>
   <p><span data-suisou-item="tag">タグ</span></p>
   <h3><a href="#banner">banner</a></h3>
@@ -35,16 +36,16 @@
     <thead><tr><th>Value</th><th>Function</th></tr></thead>
     <tbody>
       <tr><td><code>media</code></td><td>画像・本文・末尾を横に並べた1件分にする</td></tr>
-      <tr><td><code>avatar</code></td><td>丸いアイコンにする</td></tr>
-      <tr><td><code>tile</code></td><td>角丸の四角いアイコンの枠にする</td></tr>
+      <tr><td><code>circle</code></td><td>丸い枠にする</td></tr>
+      <tr><td><code>square</code></td><td>角丸の四角い枠にする</td></tr>
       <tr><td><code>tag</code></td><td>小さい丸みのあるラベルにする</td></tr>
       <tr><td><code>banner</code></td><td>色の付いた知らせにする</td></tr>
       <tr><td><code>field</code></td><td>入力欄とボタンなどを1つの枠にまとめる</td></tr>
     </tbody>
   </table>
   <h3>CSS</h3>
-  <pre><code>@property --suisou-avatar { syntax: "*"; inherits: false; }
-@property --suisou-tile { syntax: "*"; inherits: false; }
+  <pre><code>@property --suisou-circle { syntax: "*"; inherits: false; }
+@property --suisou-square { syntax: "*"; inherits: false; }
 
 [data-suisou-item] { text-decoration: none; }
 
@@ -62,8 +63,8 @@
 
 [data-suisou-item~="media"] { /* 詳細は各アイテムページまで */ }
 [data-suisou-item~="field"] { /* 詳細は各アイテムページまで */ }
-[data-suisou-item~="avatar"] { /* 詳細は各アイテムページまで */ }
-[data-suisou-item~="tile"] { /* 詳細は各アイテムページまで */ }
+[data-suisou-item~="circle"] { /* 詳細は各アイテムページまで */ }
+[data-suisou-item~="square"] { /* 詳細は各アイテムページまで */ }
 [data-suisou-item~="tag"] { /* 詳細は各アイテムページまで */ }
 [data-suisou-item~="banner"] { /* 詳細は各アイテムページまで */ }</code></pre>
 </div>
