@@ -118,6 +118,7 @@ PAIRS = [
     ("text-main","error-surface",4.5),
     ("error","error-surface",4.5),
     ("error-active","error-surface",3.0),
+    ("accent-active","selected-surface",3.0),
 ]
 
 def resolve_text_main(t):
