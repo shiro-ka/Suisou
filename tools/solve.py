@@ -88,7 +88,7 @@ ACCENTS = [("clown",55),("turtle",122),("teal",188),("jelly",212),("blue",255),
 ACCENT_JP = {"clown":"カクレクマノミ", "turtle":"ウミガメ", "jelly":"クラゲ",
              "coral":"サンゴ", "seal":"アザラシ"}
 
-FLOOR = {"hover":0.03, "selected":0.055, "semantic":0.055, "textSub":0.08}
+FLOOR = {"hover":0.03, "selected":0.055, "semantic":0.055, "textSub":0.08, "tintHue":0.08}
 SEM_OFFSET = 0.15
 ACTIVE_DL  = -0.03
 SCRIM_ALPHA = 0.72
@@ -176,13 +176,14 @@ def resolve_tint(t, h, floor):
 
     D = LADDERS[t["ladder"]]
     L, ceil = D["tint"], maxC(D["tint"], h)
-    worst = lambda C: min(dE((L, C, h), face(D[s], t)) for s in SURFACES)
-    if worst(ceil) < floor: return ceil
+    ok = lambda C: (min(dE((L, C, h), face(D[s], t)) for s in SURFACES) >= floor
+                    and dE((L, C, h), face(L, t)) >= FLOOR["tintHue"])
+    if not ok(ceil): return ceil
     lo, hi = 0.0, ceil
     for _ in range(48):
         m = (lo + hi) / 2
-        if worst(m) < floor: lo = m
-        else: hi = m
+        if ok(m): hi = m
+        else: lo = m
     return hi
 
 def tint_reaches(t, h, floor):
