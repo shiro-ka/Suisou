@@ -417,8 +417,6 @@ def write_tables(data):
                  f"×{t['semRatio']} | L{t['textMainL']*100:.1f} | **{len(ok)}/{len(ACCENTS)}** |")
     L.append("")
     L.append("### アクセント可用性\n")
-    L.append("全部の組み合わせを CSS に出している。下の「推奨しない」も選べる ―― "
-             "見づらいだけで壊れてはいないため。\n")
     for t in data["themes"]:
         ok = [a for a, v in t["accents"].items() if v["recommended"]]
         ng = [(a, v["issues"][0]) for a, v in t["accents"].items()
@@ -447,7 +445,6 @@ def write_tables(data):
         L.append(f"| `{a}` on `{b}` | {v:.2f}:1{mark} | {need} | {tn}/{an} |")
     L.append("")
     L.append("### 意味色と同じ色相の家族に入るアクセント\n")
-    L.append("資料。**判定には使わない** ―― 近さは accent×意味色の ΔE 検査（FLOOR.semantic）が見ている。\n")
     L.append("| アクセント | 意味色 | 色相差 | accent×意味色の ΔE（最小のテーマ） |")
     L.append("|---|---|---|---|")
     for r in sorted(data["hueCategoryRisk"], key=lambda x: x["deg"]):

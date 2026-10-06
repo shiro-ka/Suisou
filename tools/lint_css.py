@@ -239,9 +239,6 @@ def main():
         print(f"*** {len(problems)} 件の違反 ***")
         for p in problems:
             print("  " + p)
-        if any(": 色の直書き … " in p for p in problems):
-            print("\n色の値を持てるのは solve.py の生成物だけ。"
-                  "手書き側は var(--suisou-*) を参照すること。")
         return 1
     print("違反なし")
     return 0
