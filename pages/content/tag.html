@@ -1,0 +1,72 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1>Tag</h1>
+  <h2>Tagの適用</h2>
+  <p>要素に <code>data-suisou-item="tag"</code> を追加すると、タグになります</p>
+  <pre><code>&lt;span data-suisou-item="tag"&gt;</code></pre>
+  <hr>
+  <p><span data-suisou-item="tag">タグ</span></p>
+  <pre><code>&lt;span data-suisou-item="tag"&gt;タグ&lt;/span&gt;</code></pre>
+  <h2>色</h2>
+  <p><code>accent</code> / <code>error</code> / <code>warning</code> / <code>success</code> を追加すると、色が変わります</p>
+  <div data-suisou-layout="row wrap">
+    <span data-suisou-item="tag">タグ</span>
+    <span data-suisou-item="tag accent">accent</span>
+    <span data-suisou-item="tag error">error</span>
+    <span data-suisou-item="tag warning">warning</span>
+    <span data-suisou-item="tag success">success</span>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;span data-suisou-item="tag"&gt;タグ&lt;/span&gt;
+  &lt;span data-suisou-item="tag accent"&gt;accent&lt;/span&gt;
+  &lt;span data-suisou-item="tag error"&gt;error&lt;/span&gt;
+  &lt;span data-suisou-item="tag warning"&gt;warning&lt;/span&gt;
+  &lt;span data-suisou-item="tag success"&gt;success&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+  <h2>アイコン</h2>
+  <p>中に <code>svg</code> を置くと、大きさが調整されます</p>
+  <p><span data-suisou-item="tag success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>確認済み</span></p>
+  <pre><code>&lt;span data-suisou-item="tag success"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M4 12l5 5L20 6"/&gt;&lt;/svg&gt;確認済み&lt;/span&gt;</code></pre>
+  <h2>リンク・ボタン</h2>
+  <p><code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> をタグにすることもできます</p>
+  <p><button data-suisou-item="tag">タグ</button></p>
+  <pre><code>&lt;button data-suisou-item="tag"&gt;タグ&lt;/button&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>tag</code></td><td>行の中に置く小さいラベルにする。文字は 12px の薄い色、細い罫線、角は丸く、背景は無い。横の余白は 8px。直下の <code>&lt;svg&gt;</code> は 16px になり、文字との間は 4px。<code>&lt;a&gt;</code> <code>&lt;button&gt;</code> では、マウスを乗せると背景が付く</td></tr>
+      <tr><td><code>accent</code> <code>error</code> <code>warning</code> <code>success</code></td><td><code>tag</code> と一緒に使う。罫線と文字をその色にする</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>[data-suisou-item~="tag"] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--suisou-space-1);
+
+  font-size: var(--suisou-size-12);
+  line-height: var(--suisou-lh-12);
+  padding: 0 var(--suisou-space-2);
+  border-radius: var(--suisou-radius-pill);
+
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+  color: var(--suisou-text-sub);
+  background: transparent;
+  transition: color var(--suisou-motion-fast) var(--suisou-ease),
+              border-color var(--suisou-motion-fast) var(--suisou-ease);
+}
+
+[data-suisou-item~="tag"]:where([data-suisou-item~="accent"])  { border-color: var(--suisou-accent);  color: var(--suisou-accent); }
+[data-suisou-item~="tag"]:where([data-suisou-item~="error"])   { border-color: var(--suisou-error);   color: var(--suisou-error); }
+[data-suisou-item~="tag"]:where([data-suisou-item~="warning"]) { border-color: var(--suisou-warning); color: var(--suisou-warning); }
+[data-suisou-item~="tag"]:where([data-suisou-item~="success"]) { border-color: var(--suisou-success); color: var(--suisou-success); }
+
+[data-suisou-item~="tag"]:where(a, button):where(:hover) { background: var(--suisou-hover-surface); }
+
+[data-suisou-item~="tag"] &gt; svg {
+  width: var(--suisou-icon-small);
+  height: var(--suisou-icon-small);
+  flex: none;
+}</code></pre>
+</div>
