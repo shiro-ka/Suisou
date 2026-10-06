@@ -1,0 +1,69 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1>Item</h1>
+  <h2>Itemの適用</h2>
+  <p>要素に <code>data-suisou-item</code> を追加すると、アイテムになります</p>
+  <pre><code>&lt;div data-suisou-item&gt;</code></pre>
+  <hr>
+  <div data-suisou-item>アイテムはパネルの上に置きます</div>
+  <pre><code>&lt;div data-suisou-item&gt;アイテムはパネルの上に置きます&lt;/div&gt;</code></pre>
+  <h2>種類</h2>
+  <p>値に1つアイテムの種類を指定することができます<br>詳細は各アイテムのページまで</p>
+  <h3><a href="#media">media</a></h3>
+  <div data-suisou-item="media">
+    <div data-suisou-item="media-icon avatar">し</div>
+    <div data-suisou-item="media-content">
+      <header><span>しろか</span><span>09:12</span></header>
+      <p>テーマ名を水域にした</p>
+    </div>
+  </div>
+  <h3><a href="#avatar">avatar</a></h3>
+  <div data-suisou-item="avatar">し</div>
+  <h3><a href="#tile">tile</a></h3>
+  <div data-suisou-item="tile"><svg data-suisou-text="fs-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></div>
+  <h3><a href="#tag">tag</a></h3>
+  <p><span data-suisou-item="tag">タグ</span></p>
+  <h3><a href="#banner">banner</a></h3>
+  <p data-suisou-item="banner success">確認メールを送信しました</p>
+  <h3><a href="#item-field">field</a></h3>
+  <div data-suisou-item="field">
+    <input>
+    <button>送信</button>
+  </div>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>media</code></td><td>アイコン・本文・末尾を横に並べた1件分にする</td></tr>
+      <tr><td><code>avatar</code></td><td>丸いアイコンにする</td></tr>
+      <tr><td><code>tile</code></td><td>角丸の四角いアイコンの枠にする</td></tr>
+      <tr><td><code>tag</code></td><td>小さい丸みのあるラベルにする</td></tr>
+      <tr><td><code>banner</code></td><td>色の付いた知らせにする</td></tr>
+      <tr><td><code>field</code></td><td>入力欄とボタンなどを1つの枠にまとめる</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>@property --suisou-avatar { syntax: "*"; inherits: false; }
+@property --suisou-tile { syntax: "*"; inherits: false; }
+
+[data-suisou-item] { text-decoration: none; }
+
+[data-suisou-item=""] {
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+  padding: var(--suisou-space-2);
+  background: var(--suisou-item);
+  --suisou-line-weak: var(--suisou-line-weak-item);
+  --suisou-line-strong: var(--suisou-line-strong-item);
+  --suisou-next: var(--suisou-item);
+  --suisou-line-weak-next: var(--suisou-line-weak-item);
+  --suisou-line-strong-next: var(--suisou-line-strong-item);
+}
+
+[data-suisou-item~="media"] { /* 詳細は各アイテムページまで */ }
+[data-suisou-item~="field"] { /* 詳細は各アイテムページまで */ }
+[data-suisou-item~="avatar"] { /* 詳細は各アイテムページまで */ }
+[data-suisou-item~="tile"] { /* 詳細は各アイテムページまで */ }
+[data-suisou-item~="tag"] { /* 詳細は各アイテムページまで */ }
+[data-suisou-item~="banner"] { /* 詳細は各アイテムページまで */ }</code></pre>
+</div>
