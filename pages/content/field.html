@@ -1,0 +1,122 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1>Field</h1>
+  <h2>Fieldの適用</h2>
+  <p>要素に <code>data-suisou-item="field"</code> を追加すると、中の入力欄・ボタン・文字が1つの欄になります</p>
+  <pre><code>&lt;div data-suisou-item="field"&gt;</code></pre>
+  <hr>
+  <div data-suisou-item="field">
+    <span>@</span>
+    <input>
+    <button>確認</button>
+  </div>
+  <pre><code>&lt;div data-suisou-item="field"&gt;
+  &lt;span&gt;@&lt;/span&gt;
+  &lt;input&gt;
+  &lt;button&gt;確認&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  <h2>中に置けるもの</h2>
+  <p>直下の子要素によって、見た目が変わります</p>
+  <h3>input / textarea / select</h3>
+  <p>罫線と背景が消え、残りの幅をすべて使います</p>
+  <div data-suisou-item="field">
+    <input>
+  </div>
+  <div data-suisou-item="field">
+    <select><option>選択肢</option></select>
+  </div>
+  <div data-suisou-item="field">
+    <textarea></textarea>
+  </div>
+  <pre><code>&lt;div data-suisou-item="field"&gt;
+  &lt;input&gt;
+&lt;/div&gt;
+&lt;div data-suisou-item="field"&gt;
+  &lt;select&gt;&lt;option&gt;選択肢&lt;/option&gt;&lt;/select&gt;
+&lt;/div&gt;
+&lt;div data-suisou-item="field"&gt;
+  &lt;textarea&gt;&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+  <h3>button</h3>
+  <p>罫線と角丸が消え、欄の端にくっつきます</p>
+  <div data-suisou-item="field">
+    <input>
+    <button>確認</button>
+  </div>
+  <pre><code>&lt;div data-suisou-item="field"&gt;
+  &lt;input&gt;
+  &lt;button&gt;確認&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  <h3>span</h3>
+  <p>入力欄の前に付く、薄い文字になります</p>
+  <div data-suisou-item="field">
+    <span>@</span>
+    <input>
+  </div>
+  <pre><code>&lt;div data-suisou-item="field"&gt;
+  &lt;span&gt;@&lt;/span&gt;
+  &lt;input&gt;
+&lt;/div&gt;</code></pre>
+  <h2>状態</h2>
+  <p><code>aria-invalid="true"</code> で赤い枠に、<code>disabled</code> で薄い枠になります</p>
+  <div data-suisou-item="field">
+    <span>@</span>
+    <input aria-invalid="true">
+  </div>
+  <div data-suisou-item="field">
+    <span>@</span>
+    <input disabled>
+  </div>
+  <pre><code>&lt;div data-suisou-item="field"&gt;
+  &lt;span&gt;@&lt;/span&gt;
+  &lt;input aria-invalid="true"&gt;
+&lt;/div&gt;
+&lt;div data-suisou-item="field"&gt;
+  &lt;span&gt;@&lt;/span&gt;
+  &lt;input disabled&gt;
+&lt;/div&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>field</code></td><td>子要素を横に並べて1つの欄にする。背景は置いた場所より一段上の色、濃い罫線・角丸。直下の <code>&lt;input&gt;</code> <code>&lt;textarea&gt;</code> <code>&lt;select&gt;</code> は罫線と背景を消して残りの幅を使い、フォーカスの枠は欄全体に付く。直下の <code>&lt;button&gt;</code> は罫線と角丸を消す。直下の <code>&lt;span&gt;</code> は薄い文字にして、左に 8px 空ける。中の入力欄が <code>aria-invalid="true"</code> なら罫線を赤く、無効なら罫線を薄くして背景を消す</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>[data-suisou-item~="field"] {
+  display: flex;
+  align-items: stretch;
+  border-radius: var(--suisou-radius);
+  overflow: hidden;
+  background: var(--suisou-next, var(--suisou-item));
+  --suisou-line-weak: var(--suisou-line-weak-next, var(--suisou-line-weak-item));
+  --suisou-line-strong: var(--suisou-line-strong-next, var(--suisou-line-strong-item));
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+}
+[data-suisou-item~="field"] &gt; :where(input, textarea, select) {
+  block-size: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+[data-suisou-item~="field"] &gt; :where(input, textarea, select):focus-visible { outline: none; }
+[data-suisou-item~="field"]:has(&gt; :is(input, textarea, select):focus-visible) {
+  outline: var(--suisou-focus);
+  outline-offset: 2px;
+}
+[data-suisou-item~="field"] &gt; :where(button) { border: 0; border-radius: 0; }
+[data-suisou-item~="field"] &gt; :where(button):focus-visible { outline-offset: -2px; }
+[data-suisou-item~="field"]:where(:has(&gt; :is(input, textarea, select)[aria-invalid="true"])) { border-color: var(--suisou-error); }
+[data-suisou-item~="field"]:where(:has(&gt; :is(input, textarea, select):is(:disabled, [aria-disabled="true"]))) {
+  border-color: var(--suisou-line-weak);
+  background: transparent;
+}
+[data-suisou-item~="field"] &gt; :where(span) {
+  align-self: center;
+  padding-inline-start: var(--suisou-space-2);
+  color: var(--suisou-text-sub);
+  white-space: nowrap;
+}</code></pre>
+</div>
