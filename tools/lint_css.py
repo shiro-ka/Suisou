@@ -205,6 +205,14 @@ def main():
                                 f"{rel}:{i}: notice の知らせの種類が {len(bk)} 個 … \"{raw}\" "
                                 f"（{' / '.join(sorted(NOTICE_KINDS))} は1つまで）")
 
+                elif name == "data-suisou-loading" and vals:
+                    v = set(vals)
+                    for pair in (("square", "diamond"), ("small", "large"), ("window", "simple")):
+                        if set(pair) <= v:
+                            problems.append(f"{rel}:{i}: loading の値 … \"{raw}\"（{' と '.join(pair)} は同時に書けない）")
+                    if "fill" in v and "window" not in v:
+                        problems.append(f"{rel}:{i}: loading の値 … \"{raw}\"（fill は window と一緒に書く）")
+
                 elif name == "data-suisou-theme":
                     vals = vals or []
                     ts = [v for v in vals if v in THEME_NAMES]

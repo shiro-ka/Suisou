@@ -8,7 +8,7 @@ PAGES = os.path.join(ROOT, "pages")
 DIST = os.path.join(PAGES, "v3")
 
 ORDER = ["base.css", "reset.css", "typeset.css", "button.css", "tray.css",
-         "input.css", "item.css", "spinner.css", "layout.css", "text.css", "util.css"]
+         "input.css", "item.css", "loading.css", "layout.css", "text.css", "util.css"]
 
 def ui_order():
     have = sorted(n for n in os.listdir(os.path.join(PAGES, "ui")) if n.endswith(".css"))
