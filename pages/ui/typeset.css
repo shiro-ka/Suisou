@@ -27,7 +27,7 @@
 [data-suisou-text~="typeset"] :where(strong, b) { font-weight: 700; }
 
 [data-suisou-text~="typeset"] > :where(* + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-2); }
-[data-suisou-text~="typeset"] > :where(* + :is(table, blockquote, pre, figure:has(> pre)), :is(table, blockquote, pre, figure:has(> pre)) + :is(p, ul, ol, dl, pre, blockquote, table, figure, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-4); }
+[data-suisou-text~="typeset"] > :where(* + :is(table, blockquote, pre, figure, img, video), :is(table, blockquote, pre, figure, img, video) + :is(p, ul, ol, dl, pre, blockquote, table, figure, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-4); }
 
 [data-suisou-text~="typeset"] > :where(* + :is(h1, h2, h3, h4, h5, h6)) {
   margin-block-start: var(--suisou-space-3);
@@ -49,6 +49,13 @@
   max-width: 100%;
   height: auto;
   border-radius: var(--suisou-radius);
+}
+
+[data-suisou-text~="typeset"] :where(figure:not(:has(> pre)) > figcaption) {
+  margin-block-start: var(--suisou-space-2);
+  font-size: var(--suisou-size-12);
+  line-height: calc(var(--suisou-lh-12) + 0.25rem);
+  color: var(--suisou-text-sub);
 }
 
 [data-suisou-text~="typeset"] :where(dl) {
