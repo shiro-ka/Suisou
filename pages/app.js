@@ -14,7 +14,7 @@ const PAGES = {
   media: {},
   button: {},
   input: {},
-  spinner: {},
+  loading: {},
   text: {},
   typeset: {},
   toc: {},

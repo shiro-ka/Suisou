@@ -31,3 +31,26 @@ body > header, body > nav[popover] { padding: var(--suisou-space-3); }
 .demo-check { flex: none; width: 14px; height: 14px; margin: 0; }
 
 .muted { color: var(--suisou-text-sub); }
+
+progress.cand-window-circle,
+progress.cand-window-square,
+progress.cand-porthole {
+  mask-image: none;
+  background-color: var(--suisou-item);
+  border: 1px solid var(--suisou-line-strong);
+}
+progress.cand-window-circle { border-radius: var(--suisou-radius-pill); }
+progress.cand-window-square { border-radius: var(--suisou-radius); }
+progress.cand-porthole {
+  border-radius: var(--suisou-radius-pill);
+  border-width: calc(var(--suisou-spinner, 2rem) * 0.12);
+}
+progress.cand-ring {
+  background-image: none;
+  mask-image: none;
+  border-radius: var(--suisou-radius-pill);
+  border: calc(var(--suisou-spinner, 2rem) / 10) solid var(--suisou-line-weak);
+  border-top-color: var(--suisou-accent);
+  animation: cand-spin 800ms linear infinite;
+}
+@keyframes cand-spin { to { transform: rotate(1turn); } }
