@@ -203,16 +203,18 @@ progress.cand-bar.cand-bar-8 { height: 8px; }
 progress.cand-bar.cand-bar-bubble { height: 12px; }
 progress.cand-bar.cand-bar-bubble::-webkit-progress-value {
   background:
-    radial-gradient(circle, var(--suisou-panel) 1.5px, transparent 2px) 0 0 / 14px 12px,
-    radial-gradient(circle, transparent 1px, var(--suisou-panel) 1.5px 2px, transparent 2.5px) 7px 4px / 18px 16px,
+    radial-gradient(circle, var(--suisou-text-main) 1.5px, transparent 2px) 5px 0 / 37px 12px,
+    radial-gradient(circle, transparent 1px, var(--suisou-text-main) 1.5px 2px, transparent 2.5px) 21px 3px / 53px 18px,
+    radial-gradient(circle, var(--suisou-text-main) 1px, transparent 1.5px) 40px 7px / 71px 24px,
     var(--suisou-accent);
-  animation: cand-bar-bubble 2.4s linear infinite;
+  animation: cand-bar-bubble 3s linear infinite;
 }
 progress.cand-bar.cand-bar-bubble::-moz-progress-bar {
   background:
-    radial-gradient(circle, var(--suisou-panel) 1.5px, transparent 2px) 0 0 / 14px 12px,
-    radial-gradient(circle, transparent 1px, var(--suisou-panel) 1.5px 2px, transparent 2.5px) 7px 4px / 18px 16px,
+    radial-gradient(circle, var(--suisou-text-main) 1.5px, transparent 2px) 5px 0 / 37px 12px,
+    radial-gradient(circle, transparent 1px, var(--suisou-text-main) 1.5px 2px, transparent 2.5px) 21px 3px / 53px 18px,
+    radial-gradient(circle, var(--suisou-text-main) 1px, transparent 1.5px) 40px 7px / 71px 24px,
     var(--suisou-accent);
-  animation: cand-bar-bubble 2.4s linear infinite;
+  animation: cand-bar-bubble 3s linear infinite;
 }
-@keyframes cand-bar-bubble { to { background-position: 0 -12px, 7px -12px; } }
+@keyframes cand-bar-bubble { to { background-position: 5px -12px, 21px -15px, 40px -17px; } }
