@@ -44,3 +44,4 @@ main [data-suisou-text~="typeset"] > h1 { margin-block: 1rem 2rem; }
 .cand-c4 { border: 1px solid var(--suisou-line-weak); border-radius: var(--suisou-radius); overflow: hidden; }
 .cand-c4 > p { padding: var(--suisou-space-1) var(--suisou-space-2); border-bottom: 1px solid var(--suisou-line-weak); }
 .cand-c4 > pre { border: 0; border-radius: 0; }
+.cand-c5 > pre { background: none; }
