@@ -134,12 +134,12 @@ progress:indeterminate[data-suisou-loading~="simple"] {
   animation: suisou-loading-a 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
-progress:indeterminate:is([data-suisou-loading~="window"], [data-suisou-loading~="simple"])[data-suisou-loading~="square"] { border-radius: var(--suisou-radius); }
+progress:indeterminate:is([data-suisou-loading~="window"], [data-suisou-loading~="simple"])[data-suisou-loading~="square"] { border-radius: min(var(--suisou-radius), var(--suisou-spinner, 2rem) * 0.25); }
 progress:indeterminate:is([data-suisou-loading~="window"], [data-suisou-loading~="simple"])[data-suisou-loading~="diamond"] {
   width: calc(var(--suisou-spinner, 2rem) * 0.7071);
   height: calc(var(--suisou-spinner, 2rem) * 0.7071);
   margin: calc(var(--suisou-spinner, 2rem) * 0.1464);
-  border-radius: var(--suisou-radius);
+  border-radius: min(var(--suisou-radius), var(--suisou-spinner, 2rem) * 0.25);
   transform: rotate(45deg);
 }
 progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="diamond"] {
