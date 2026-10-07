@@ -32,6 +32,8 @@
   margin-block-start: var(--suisou-space-3);
 }
 [data-suisou-text~="typeset"] > :where(* + h2) { margin-block-start: var(--suisou-space-5); }
+[data-suisou-text~="typeset"] > :where(* + h3) { margin-block-start: var(--suisou-space-4); }
+[data-suisou-text~="typeset"] > :where(:is(h1, h2, h3, h4, h5, h6) + h3) { margin-block-start: var(--suisou-space-3); }
 
 [data-suisou-text~="typeset"] :where(hr) {
   border: 0;
