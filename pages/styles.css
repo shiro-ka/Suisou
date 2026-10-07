@@ -218,3 +218,4 @@ progress.cand-bar.cand-bar-bubble::-moz-progress-bar {
   animation: cand-bar-bubble 3s linear infinite;
 }
 @keyframes cand-bar-bubble { to { background-position: 5px -12px, 21px -15px, 40px -17px; } }
+progress.cand-bar.cand-bar-bubble.cand-bar-8 { height: 8px; }
