@@ -94,33 +94,41 @@ progress.cand-frame.cand-diamond {
 }
 
 progress.cand-hollow {
-  border: 1px solid var(--suisou-accent);
+  border: 1px solid transparent;
   border-radius: var(--suisou-radius-pill);
-  box-shadow: inset 0 0 0 1px var(--suisou-line-weak);
-  background-color: transparent;
   background-image:
-    radial-gradient(circle, var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px)),
-    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.06), var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.06 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.1), transparent calc(var(--suisou-spinner, 2rem) * 0.1 + 0.5px)),
-    radial-gradient(circle, var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.05), transparent calc(var(--suisou-spinner, 2rem) * 0.05 + 0.5px)),
-    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.04), var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.04 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px));
-  background-origin: padding-box;
-  background-clip: padding-box;
-  background-repeat: repeat-y;
-  background-size:
+    linear-gradient(var(--suisou-spinner-color), var(--suisou-spinner-color)),
+    conic-gradient(from var(--cand-a), var(--suisou-accent) 0 25%, var(--suisou-line-weak) 0);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: 0 0;
+  mask-image:
+    radial-gradient(circle, black calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px)),
+    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.06), black calc(var(--suisou-spinner, 2rem) * 0.06 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.1), transparent calc(var(--suisou-spinner, 2rem) * 0.1 + 0.5px)),
+    radial-gradient(circle, black calc(var(--suisou-spinner, 2rem) * 0.05), transparent calc(var(--suisou-spinner, 2rem) * 0.05 + 0.5px)),
+    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.04), black calc(var(--suisou-spinner, 2rem) * 0.04 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px)),
+    linear-gradient(black, black),
+    linear-gradient(black, black);
+  mask-origin: padding-box, padding-box, padding-box, padding-box, border-box, border-box;
+  mask-clip: padding-box, padding-box, padding-box, padding-box, padding-box, border-box;
+  mask-composite: add, add, add, add, exclude, add;
+  mask-repeat: repeat-y, repeat-y, repeat-y, repeat-y, no-repeat, no-repeat;
+  mask-size:
     calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 0.9),
     calc(var(--suisou-spinner, 2rem) * 0.35) calc(var(--suisou-spinner, 2rem) * 1.1),
     calc(var(--suisou-spinner, 2rem) * 0.25) calc(var(--suisou-spinner, 2rem) * 0.7),
-    calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 1.3);
-  background-position:
+    calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 1.3),
+    100% 100%,
+    100% 100%;
+  mask-position:
     10% calc(var(--suisou-spinner, 2rem) * -0.9 * (0 + var(--cand-t))),
     45% calc(var(--suisou-spinner, 2rem) * -1.1 * (0.55 + var(--cand-t))),
     75% calc(var(--suisou-spinner, 2rem) * -0.7 * (0.25 + var(--cand-t))),
-    100% calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--cand-t)));
-  mask-image: linear-gradient(black, black), conic-gradient(from var(--cand-a), black 0 25%, transparent 0);
-  mask-clip: padding-box, border-box;
-  mask-origin: border-box;
-  mask-repeat: no-repeat;
-  mask-size: 100% 100%;
+    100% calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--cand-t))),
+    0 0,
+    0 0;
   animation: cand-t 4s linear infinite, cand-a 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 progress.cand-hollow.cand-square { border-radius: var(--suisou-radius); }
@@ -130,20 +138,22 @@ progress.cand-hollow.cand-diamond {
   margin: calc(var(--suisou-spinner, 2rem) * 0.1464);
   border-radius: var(--suisou-radius);
   transform: rotate(45deg);
-  background-repeat: repeat;
-  background-size:
+  mask-repeat: repeat, repeat, repeat, repeat, no-repeat, no-repeat;
+  mask-size:
     calc(var(--suisou-spinner, 2rem) * 0.9) calc(var(--suisou-spinner, 2rem) * 0.9),
     calc(var(--suisou-spinner, 2rem) * 1.1) calc(var(--suisou-spinner, 2rem) * 1.1),
     calc(var(--suisou-spinner, 2rem) * 0.7) calc(var(--suisou-spinner, 2rem) * 0.7),
-    calc(var(--suisou-spinner, 2rem) * 1.3) calc(var(--suisou-spinner, 2rem) * 1.3);
-  background-position:
+    calc(var(--suisou-spinner, 2rem) * 1.3) calc(var(--suisou-spinner, 2rem) * 1.3),
+    100% 100%,
+    100% 100%;
+  mask-position:
     calc(var(--suisou-spinner, 2rem) * 0.0 - var(--suisou-spinner, 2rem) * 0.9 * (0 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -0.9 * (0 + var(--cand-t))),
     calc(var(--suisou-spinner, 2rem) * -0.4243 - var(--suisou-spinner, 2rem) * 1.1 * (0.55 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -1.1 * (0.55 + var(--cand-t))),
     calc(var(--suisou-spinner, 2rem) * 0.3536 - var(--suisou-spinner, 2rem) * 0.7 * (0.25 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -0.7 * (0.25 + var(--cand-t))),
-    calc(var(--suisou-spinner, 2rem) * 0.1697 - var(--suisou-spinner, 2rem) * 1.3 * (0.8 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--cand-t)));
+    calc(var(--suisou-spinner, 2rem) * 0.1697 - var(--suisou-spinner, 2rem) * 1.3 * (0.8 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--cand-t))),
+    0 0,
+    0 0;
 }
-
-
 
 progress.cand-ring2 {
   mask-image: linear-gradient(black, black), linear-gradient(black, black);
