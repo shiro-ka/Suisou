@@ -168,3 +168,11 @@ progress.cand-ring2.cand-diamond {
   border-radius: var(--suisou-radius);
   transform: rotate(45deg);
 }
+
+progress.cand-fade-circle { mask-image: radial-gradient(closest-side, black 55%, transparent); }
+progress.cand-fade-diamond {
+  mask-image:
+    linear-gradient(45deg, transparent, black 30%, black 70%, transparent),
+    linear-gradient(-45deg, transparent, black 30%, black 70%, transparent);
+  mask-composite: intersect;
+}
