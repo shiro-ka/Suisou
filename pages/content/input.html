@@ -1,0 +1,67 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1>Input</h1>
+  <h2>Inputの適用</h2>
+  <p><code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code> タグの要素はインプットになります</p>
+  <div data-suisou-layout="stack">
+    <input>
+    <textarea></textarea>
+    <select><option>選択肢</option></select>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="stack"&gt;
+  &lt;input&gt;
+  &lt;textarea&gt;&lt;/textarea&gt;
+  &lt;select&gt;&lt;option&gt;選択肢&lt;/option&gt;&lt;/select&gt;
+&lt;/div&gt;</code></pre>
+  <h2>状態</h2>
+  <p><code>aria-invalid="true"</code> をつけると、エラー表示になります<br><code>disabled</code> / <code>aria-disabled="true"</code> をつけると、選択できない状態になります</p>
+  <div data-suisou-layout="stack">
+    <input aria-invalid="true">
+    <input disabled>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="stack"&gt;
+  &lt;input aria-invalid="true"&gt;
+  &lt;input disabled&gt;
+&lt;/div&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>なし</td><td><code>data-suisou-body</code> の中の <code>&lt;input&gt;</code> <code>&lt;textarea&gt;</code> <code>&lt;select&gt;</code> を入力欄にする。<code>&lt;input&gt;</code> の <code>checkbox</code> <code>radio</code> <code>range</code> <code>color</code> <code>file</code> <code>submit</code> <code>button</code> <code>reset</code> <code>image</code> <code>hidden</code> には当たらない。高さ 32px、横の余白 8px、角丸、濃い罫線。背景は置いた場所より一段上の色。幅は指定しない。プレースホルダーは薄い文字。フォーカスで枠が付く。<code>aria-invalid="true"</code> で罫線を赤く、<code>disabled</code> <code>aria-disabled="true"</code> で文字と罫線を薄くして背景を消す</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>:where([data-suisou-body] :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="submit"], [type="button"], [type="reset"], [type="image"], [type="hidden"]), textarea, select)) {
+  padding: calc((var(--suisou-control) - 1lh) / 2 - 1px) var(--suisou-space-2);
+  border-radius: var(--suisou-radius);
+
+  background: var(--suisou-next, var(--suisou-item));
+  --suisou-line-weak: var(--suisou-line-weak-next, var(--suisou-line-weak-item));
+  --suisou-line-strong: var(--suisou-line-strong-next, var(--suisou-line-strong-item));
+  color: var(--suisou-text-main);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  transition: border-color var(--suisou-motion-fast) var(--suisou-ease);
+}
+
+:where([data-suisou-body] select:not([multiple], [size])) {
+  padding-block: 0;
+  block-size: var(--suisou-control);
+}
+
+:where([data-suisou-body] :is(input, textarea))::placeholder { color: var(--suisou-text-disabled); }
+
+:where([data-suisou-body] :is(input, textarea, select)):focus-visible {
+  outline: var(--suisou-focus);
+  outline-offset: 2px;
+}
+
+:where([data-suisou-body] :is(input, textarea, select))[aria-invalid="true"] { border-color: var(--suisou-error); }
+
+:where([data-suisou-body] :is(input, textarea, select)):disabled,
+:where([data-suisou-body] :is(input, textarea, select))[aria-disabled="true"] {
+  color: var(--suisou-text-disabled);
+  border-color: var(--suisou-line-weak);
+  background: transparent;
+  cursor: default;
+}</code></pre>
+</div>
