@@ -50,11 +50,13 @@
   max-width: 100%;
   height: auto;
   max-height: min(30rem, 50svh);
+  margin-inline: auto;
   border-radius: var(--suisou-radius);
 }
 
 [data-suisou-text~="typeset"] :where(figure:not(:has(> pre)) > figcaption) {
   margin-block-start: var(--suisou-space-2);
+  text-align: center;
   font-size: var(--suisou-size-12);
   line-height: calc(var(--suisou-lh-12) + 0.25rem);
   color: var(--suisou-text-sub);
