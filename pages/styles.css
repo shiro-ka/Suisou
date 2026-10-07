@@ -31,3 +31,5 @@ body > header, body > nav[popover] { padding: var(--suisou-space-3); }
 .demo-check { flex: none; width: 14px; height: 14px; margin: 0; }
 
 .muted { color: var(--suisou-text-sub); }
+
+main [data-suisou-text~="typeset"] > h1 { margin-block: 1rem 2rem; }
