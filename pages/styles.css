@@ -85,10 +85,10 @@ progress.cand-frame.cand-diamond {
     100% 100%,
     100% 100%;
   background-position:
-    calc(var(--suisou-spinner, 2rem) * 0 - var(--suisou-spinner, 2rem) * 0.9 * (0 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -0.9 * (0 + var(--cand-t))),
-    calc(var(--suisou-spinner, 2rem) * 0.3 - var(--suisou-spinner, 2rem) * 1.1 * (0.55 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -1.1 * (0.55 + var(--cand-t))),
-    calc(var(--suisou-spinner, 2rem) * 0.15 - var(--suisou-spinner, 2rem) * 0.7 * (0.25 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -0.7 * (0.25 + var(--cand-t))),
-    calc(var(--suisou-spinner, 2rem) * 0.45 - var(--suisou-spinner, 2rem) * 1.3 * (0.8 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--cand-t))),
+    calc(var(--suisou-spinner, 2rem) * 0.0 - var(--suisou-spinner, 2rem) * 0.9 * (0 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -0.9 * (0 + var(--cand-t))),
+    calc(var(--suisou-spinner, 2rem) * -0.4243 - var(--suisou-spinner, 2rem) * 1.1 * (0.55 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -1.1 * (0.55 + var(--cand-t))),
+    calc(var(--suisou-spinner, 2rem) * 0.3536 - var(--suisou-spinner, 2rem) * 0.7 * (0.25 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -0.7 * (0.25 + var(--cand-t))),
+    calc(var(--suisou-spinner, 2rem) * 0.1697 - var(--suisou-spinner, 2rem) * 1.3 * (0.8 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--cand-t))),
     0 0,
     0 0;
 }
