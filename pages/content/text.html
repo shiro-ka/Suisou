@@ -1,0 +1,249 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1>Text</h1>
+  <h2>Textの適用</h2>
+  <p>要素に <code>data-suisou-text</code> を追加し、文字の見た目を変更できます</p>
+  <pre><code>&lt;p data-suisou-text="fs-20 fw-700 accent"&gt;</code></pre>
+  <hr>
+  <p data-suisou-text="fs-20 fw-700 accent">Text</p>
+  <pre><code>&lt;p data-suisou-text="fs-20 fw-700 accent"&gt;Text&lt;/p&gt;</code></pre>
+  <h2>大きさ</h2>
+  <p><code>fs-*</code> を追加すると、文字の大きさが変わります<br>値は <code>fs-12</code> / <code>fs-14</code> / <code>fs-16</code> / <code>fs-20</code> / <code>fs-24</code> / <code>fs-28</code> / <code>fs-32</code> があります</p>
+  <div>
+    <p data-suisou-text="fs-12">fs-12</p>
+    <p data-suisou-text="fs-14">fs-14</p>
+    <p data-suisou-text="fs-16">fs-16</p>
+    <p data-suisou-text="fs-20">fs-20</p>
+    <p data-suisou-text="fs-24">fs-24</p>
+    <p data-suisou-text="fs-28">fs-28</p>
+    <p data-suisou-text="fs-32">fs-32</p>
+  </div>
+  <pre><code>&lt;div&gt;
+  &lt;p data-suisou-text="fs-12"&gt;fs-12&lt;/p&gt;
+  &lt;p data-suisou-text="fs-14"&gt;fs-14&lt;/p&gt;
+  &lt;p data-suisou-text="fs-16"&gt;fs-16&lt;/p&gt;
+  &lt;p data-suisou-text="fs-20"&gt;fs-20&lt;/p&gt;
+  &lt;p data-suisou-text="fs-24"&gt;fs-24&lt;/p&gt;
+  &lt;p data-suisou-text="fs-28"&gt;fs-28&lt;/p&gt;
+  &lt;p data-suisou-text="fs-32"&gt;fs-32&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+  <h2>太さ</h2>
+  <p><code>fw-400</code> / <code>fw-500</code> / <code>fw-700</code> を追加すると、文字の太さが変わります</p>
+  <div data-suisou-layout="row wrap">
+    <span data-suisou-text="fw-400">fw-400</span>
+    <span data-suisou-text="fw-500">fw-500</span>
+    <span data-suisou-text="fw-700">fw-700</span>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;span data-suisou-text="fw-400"&gt;fw-400&lt;/span&gt;
+  &lt;span data-suisou-text="fw-500"&gt;fw-500&lt;/span&gt;
+  &lt;span data-suisou-text="fw-700"&gt;fw-700&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+  <h2>色</h2>
+  <p><code>sub</code> / <code>accent</code> / <code>success</code> / <code>warning</code> / <code>error</code> を追加すると、文字の色が変わります</p>
+  <div data-suisou-layout="row wrap">
+    <span data-suisou-text="sub">sub</span>
+    <span data-suisou-text="accent">accent</span>
+    <span data-suisou-text="success">success</span>
+    <span data-suisou-text="warning">warning</span>
+    <span data-suisou-text="error">error</span>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;span data-suisou-text="sub"&gt;sub&lt;/span&gt;
+  &lt;span data-suisou-text="accent"&gt;accent&lt;/span&gt;
+  &lt;span data-suisou-text="success"&gt;success&lt;/span&gt;
+  &lt;span data-suisou-text="warning"&gt;warning&lt;/span&gt;
+  &lt;span data-suisou-text="error"&gt;error&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+  <h2>寄せ</h2>
+  <p><code>start</code> / <code>center</code> / <code>end</code> を追加すると、行の中で文字を寄せる位置が変わります</p>
+  <div>
+    <p data-suisou-text="start">start</p>
+    <p data-suisou-text="center">center</p>
+    <p data-suisou-text="end">end</p>
+  </div>
+  <pre><code>&lt;div&gt;
+  &lt;p data-suisou-text="start"&gt;start&lt;/p&gt;
+  &lt;p data-suisou-text="center"&gt;center&lt;/p&gt;
+  &lt;p data-suisou-text="end"&gt;end&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+  <h2>one-line</h2>
+  <p><code>one-line</code> を追加すると、文字が1行に収まり、はみ出した分は … に省略されます</p>
+  <p data-suisou-item data-suisou-text="one-line">水槽の水はろ過フィルターを通って少しずつ循環し、水草が光を受けて酸素を出し、底砂の微生物が汚れを分解して、ガラスの中の小さな生態系がゆっくりと回り続けます</p>
+  <pre><code>&lt;p data-suisou-item data-suisou-text="one-line"&gt;水槽の水はろ過フィルターを通って少しずつ循環し、水草が光を受けて酸素を出し、底砂の微生物が汚れを分解して、ガラスの中の小さな生態系がゆっくりと回り続けます&lt;/p&gt;</code></pre>
+  <h2>tabular</h2>
+  <p><code>tabular</code> を追加すると、数字の幅が揃います</p>
+  <div data-suisou-layout="row">
+    <div>
+      <p>111,111</p>
+      <p>888,888</p>
+    </div>
+    <div data-suisou-text="tabular">
+      <p>111,111</p>
+      <p>888,888</p>
+    </div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row"&gt;
+  &lt;div&gt;
+    &lt;p&gt;111,111&lt;/p&gt;
+    &lt;p&gt;888,888&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div data-suisou-text="tabular"&gt;
+    &lt;p&gt;111,111&lt;/p&gt;
+    &lt;p&gt;888,888&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <h2>link</h2>
+  <p><code>link</code> を追加すると、下線が付きホバーで色が変わります</p>
+  <p>組版は <a href="#typeset" data-suisou-text="link">Typeset</a> のページへ</p>
+  <pre><code>&lt;p&gt;組版は &lt;a href="#typeset" data-suisou-text="link"&gt;Typeset&lt;/a&gt; のページへ&lt;/p&gt;</code></pre>
+  <h2>アイコン</h2>
+  <p><code>&lt;svg&gt;</code> に追加すると、文字と同じ大きさのアイコンになります<br>ボタンやタグの中では部品の大きさのままで、<code>fs-</code> を追加したときだけ変わります</p>
+  <p>確認しました <svg data-suisou-text viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg></p>
+  <pre><code>&lt;p&gt;確認しました &lt;svg data-suisou-text viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M5 12l5 5 9-10"/&gt;&lt;/svg&gt;&lt;/p&gt;</code></pre>
+  <div data-suisou-layout="row wrap">
+    <button><svg data-suisou-text="accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg>保存</button>
+    <button><svg data-suisou-text="fs-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg>保存</button>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;button&gt;&lt;svg data-suisou-text="accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M5 12l5 5 9-10"/&gt;&lt;/svg&gt;保存&lt;/button&gt;
+  &lt;button&gt;&lt;svg data-suisou-text="fs-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M5 12l5 5 9-10"/&gt;&lt;/svg&gt;保存&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>fs-12</code> <code>fs-14</code> <code>fs-16</code> <code>fs-20</code> <code>fs-24</code> <code>fs-28</code> <code>fs-32</code></td><td>文字の大きさと行の高さを変える。数字はルートの文字が 16px のときの px</td></tr>
+      <tr><td><code>s:</code> <code>m:</code> <code>l:</code></td><td>値の前に付けると、768 / 1024 / 1280px 以上でだけ効く。<code>fs-*</code> に付けられる</td></tr>
+      <tr><td><code>fw-400</code> <code>fw-500</code> <code>fw-700</code></td><td>文字の太さを変える</td></tr>
+      <tr><td><code>sub</code> <code>accent</code> <code>success</code> <code>warning</code> <code>error</code></td><td>文字をその色にする。<code>disabled</code> <code>aria-disabled="true"</code> の要素には当たらない</td></tr>
+      <tr><td><code>start</code> <code>center</code> <code>end</code></td><td>行の中で文字を寄せる位置を変える</td></tr>
+      <tr><td><code>one-line</code></td><td>文字を1行に収め、はみ出した分を … にする。flex の子でも縮む</td></tr>
+      <tr><td><code>tabular</code></td><td>数字の字送りを揃える。書体は変えない</td></tr>
+      <tr><td><code>link</code></td><td>下線を付け、マウスを乗せるとアクセント色にする。画像だけのリンクには下線を付けない</td></tr>
+      <tr><td><code>typeset</code></td><td>長文を組む。<a href="#typeset">Typeset</a> のページへ</td></tr>
+      <tr><td><code>toc</code></td><td>入れ子の <code>&lt;ul&gt;</code> を目次にする。<a href="#toc">Toc</a> のページへ</td></tr>
+      <tr><td><code>&lt;svg&gt;</code> に付けたとき</td><td>文字と同じ大きさの行内アイコンにする。ボタン・タグの中では部品の大きさのままで、<code>fs-*</code> があるときだけ文字の大きさになる</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>@property --suisou-type-size { syntax: "*"; inherits: false; }
+@property --suisou-type-lh { syntax: "*"; inherits: false; }
+
+:where(svg[data-suisou-text]) { display: inline-block; vertical-align: -0.125em; width: 1em; height: 1em; flex: none; }
+svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
+:where([data-suisou-text~="typeset"]) { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
+[data-suisou-text~="fs-12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
+[data-suisou-text~="fs-14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
+[data-suisou-text~="fs-16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
+[data-suisou-text~="fs-20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
+[data-suisou-text~="fs-24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
+[data-suisou-text~="fs-28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
+[data-suisou-text~="fs-32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
+@media (min-width: 768px) {
+  [data-suisou-text~="s:fs-12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
+  [data-suisou-text~="s:fs-14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
+  [data-suisou-text~="s:fs-16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
+  [data-suisou-text~="s:fs-20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
+  [data-suisou-text~="s:fs-24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
+  [data-suisou-text~="s:fs-28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
+  [data-suisou-text~="s:fs-32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
+}
+@media (min-width: 1024px) {
+  [data-suisou-text~="m:fs-12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
+  [data-suisou-text~="m:fs-14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
+  [data-suisou-text~="m:fs-16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
+  [data-suisou-text~="m:fs-20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
+  [data-suisou-text~="m:fs-24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
+  [data-suisou-text~="m:fs-28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
+  [data-suisou-text~="m:fs-32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
+}
+@media (min-width: 1280px) {
+  [data-suisou-text~="l:fs-12"] { --suisou-type-size: var(--suisou-size-12); --suisou-type-lh: var(--suisou-lh-12); }
+  [data-suisou-text~="l:fs-14"] { --suisou-type-size: var(--suisou-size-14); --suisou-type-lh: var(--suisou-lh-14); }
+  [data-suisou-text~="l:fs-16"] { --suisou-type-size: var(--suisou-size-16); --suisou-type-lh: var(--suisou-lh-16); }
+  [data-suisou-text~="l:fs-20"] { --suisou-type-size: var(--suisou-size-20); --suisou-type-lh: var(--suisou-lh-20); }
+  [data-suisou-text~="l:fs-24"] { --suisou-type-size: var(--suisou-size-24); --suisou-type-lh: var(--suisou-lh-24); }
+  [data-suisou-text~="l:fs-28"] { --suisou-type-size: var(--suisou-size-28); --suisou-type-lh: var(--suisou-lh-28); }
+  [data-suisou-text~="l:fs-32"] { --suisou-type-size: var(--suisou-size-32); --suisou-type-lh: var(--suisou-lh-32); }
+}
+
+[data-suisou-text~="link"] {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--suisou-motion-fast) var(--suisou-ease);
+}
+
+[data-suisou-text~="link"]:hover {
+  color: var(--suisou-accent);
+}
+
+[data-suisou-text~="link"]:has(&gt; img:only-child) {
+  text-decoration: none;
+}
+
+[data-suisou-text~="sub"]:where(:not(:disabled, [aria-disabled="true"]))     { color: var(--suisou-text-sub); }
+[data-suisou-text~="accent"]:where(:not(:disabled, [aria-disabled="true"]))  { color: var(--suisou-accent); }
+[data-suisou-text~="success"]:where(:not(:disabled, [aria-disabled="true"])) { color: var(--suisou-success); }
+[data-suisou-text~="warning"]:where(:not(:disabled, [aria-disabled="true"])) { color: var(--suisou-warning); }
+[data-suisou-text~="error"]:where(:not(:disabled, [aria-disabled="true"]))   { color: var(--suisou-error); }
+[data-suisou-text~="fw-400"] { font-weight: 400; }
+[data-suisou-text~="fw-500"] { font-weight: 500; }
+[data-suisou-text~="fw-700"] { font-weight: 700; }
+[data-suisou-text~="center"] { text-align: center; }
+[data-suisou-text~="start"]  { text-align: start; }
+[data-suisou-text~="end"]    { text-align: end; }
+[data-suisou-text~="one-line"] {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+[data-suisou-text~="tabular"] { font-variant-numeric: tabular-nums; }
+
+[data-suisou-text*="fs-"], [data-suisou-text~="typeset"] { font-size: var(--suisou-type-size); line-height: var(--suisou-type-lh); }
+[data-suisou-text~="typeset"] { line-height: calc(var(--suisou-type-lh) + 0.25rem); }
+[data-suisou-text~="toc"]:where(ul), [data-suisou-text~="toc"] :where(ul) { list-style: none; margin: 0; padding: 0; }
+[data-suisou-text~="toc"] :where(li) { position: relative; padding-inline-start: 20px; }
+[data-suisou-text~="toc"] :where(li li li) { font-size: var(--suisou-size-12); line-height: var(--suisou-lh-12); }
+[data-suisou-text~="toc"] :where(li) &gt; :where(a, span) {
+  display: block;
+  padding-block: var(--suisou-space-1);
+  color: var(--suisou-text-sub);
+  text-decoration: none;
+}
+[data-suisou-text~="toc"] :where(li) &gt; :where(a):hover { color: var(--suisou-text-main); }
+[data-suisou-text~="toc"] :where(li) &gt; :where(a[aria-current]:not([aria-current="false"])) { color: var(--suisou-accent); }
+[data-suisou-text~="toc"] :where(li:not(li li))::before,
+[data-suisou-text~="toc"] :where(li li:not(li li li))::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 4px;
+  top: calc(var(--suisou-space-1) + (1lh - 8px) / 2);
+  width: 8px;
+  height: 8px;
+  border-radius: var(--suisou-radius-pill);
+  box-sizing: border-box;
+}
+[data-suisou-text~="toc"] :where(li:not(li li))::before { background: var(--suisou-line-strong); }
+[data-suisou-text~="toc"] :where(li li:not(li li li))::before {
+  inset-inline-start: 5px;
+  top: calc(var(--suisou-space-1) + (1lh - 6px) / 2);
+  width: 6px;
+  height: 6px;
+  border: 1.5px solid var(--suisou-line-strong);
+}
+[data-suisou-text~="toc"] :where(li:not(li li)):has(&gt; a[aria-current]:not([aria-current="false"]))::before { background: var(--suisou-accent); }
+[data-suisou-text~="toc"] :where(li li:not(li li li)):has(&gt; a[aria-current]:not([aria-current="false"]))::before { border-color: var(--suisou-accent); }
+[data-suisou-text~="toc"] :where(li:not(li li)):not(:last-child)::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 7px;
+  top: calc(var(--suisou-space-1) + (1lh + 8px) / 2 + 4px);
+  bottom: calc(4px - var(--suisou-space-1) - (1lh - 8px) / 2);
+  width: 2px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-line-weak);
+}</code></pre>
+</div>
