@@ -321,5 +321,13 @@ progress:not(:indeterminate)[data-suisou-loading~="simple"]::-moz-progress-bar {
 
 @media (forced-colors: active) {
   :where([data-suisou-body] progress:indeterminate) { --suisou-spinner-color: Highlight; }
+  :where([data-suisou-body] progress:not(:indeterminate)) {
+    forced-color-adjust: none;
+    background: Canvas;
+    box-shadow: inset 0 0 0 1px CanvasText;
+  }
+  :where([data-suisou-body] progress:not(:indeterminate))::-webkit-progress-bar { background: transparent; }
+  :where([data-suisou-body] progress:not(:indeterminate))::-webkit-progress-value { background: Highlight; }
+  :where([data-suisou-body] progress:not(:indeterminate))::-moz-progress-bar { background: Highlight; }
 }</code></pre>
 </div>
