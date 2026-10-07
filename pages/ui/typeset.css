@@ -36,10 +36,6 @@
   margin-block-start: var(--suisou-space-3);
 }
 
-[data-suisou-text~="typeset"] > :where(:is(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) {
-  margin-block-start: var(--suisou-space-1);
-}
-
 [data-suisou-text~="typeset"] :where(hr) {
   border: 0;
   border-top: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
@@ -70,9 +66,6 @@
 [data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) > :where(* + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-3); }
 [data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) > :where(* + :is(h1, h2, h3, h4, h5, h6)) {
   margin-block-start: var(--suisou-space-4);
-}
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) > :where(:is(h1, h2, h3, h4, h5, h6) + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) {
-  margin-block-start: var(--suisou-space-2);
 }
 [data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) > :where(hr),
 [data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) > :where(hr + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-4); }
