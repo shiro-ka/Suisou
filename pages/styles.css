@@ -54,3 +54,4 @@ progress.cand-ring {
   animation: cand-spin 800ms linear infinite;
 }
 @keyframes cand-spin { to { transform: rotate(1turn); } }
+progress.cand-clear { background-color: transparent; }
