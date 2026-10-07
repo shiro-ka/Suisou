@@ -186,3 +186,33 @@ progress.cand-fade-diamond {
     linear-gradient(-45deg, transparent, black 30%, black 70%, transparent);
   mask-composite: intersect;
 }
+
+progress.cand-bar {
+  appearance: none;
+  display: block;
+  height: 4px;
+  border: 0;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-line-weak);
+  overflow: hidden;
+}
+progress.cand-bar::-webkit-progress-bar { background: var(--suisou-line-weak); border-radius: var(--suisou-radius-pill); }
+progress.cand-bar::-webkit-progress-value { background: var(--suisou-accent); border-radius: var(--suisou-radius-pill); }
+progress.cand-bar::-moz-progress-bar { background: var(--suisou-accent); border-radius: var(--suisou-radius-pill); }
+progress.cand-bar.cand-bar-8 { height: 8px; }
+progress.cand-bar.cand-bar-bubble { height: 12px; }
+progress.cand-bar.cand-bar-bubble::-webkit-progress-value {
+  background:
+    radial-gradient(circle, var(--suisou-panel) 1.5px, transparent 2px) 0 0 / 14px 12px,
+    radial-gradient(circle, transparent 1px, var(--suisou-panel) 1.5px 2px, transparent 2.5px) 7px 4px / 18px 16px,
+    var(--suisou-accent);
+  animation: cand-bar-bubble 2.4s linear infinite;
+}
+progress.cand-bar.cand-bar-bubble::-moz-progress-bar {
+  background:
+    radial-gradient(circle, var(--suisou-panel) 1.5px, transparent 2px) 0 0 / 14px 12px,
+    radial-gradient(circle, transparent 1px, var(--suisou-panel) 1.5px 2px, transparent 2.5px) 7px 4px / 18px 16px,
+    var(--suisou-accent);
+  animation: cand-bar-bubble 2.4s linear infinite;
+}
+@keyframes cand-bar-bubble { to { background-position: 0 -12px, 7px -12px; } }
