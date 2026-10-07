@@ -6,14 +6,11 @@
 [data-suisou-text~="typeset"] :where(h1) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); font-weight: 700; }
 [data-suisou-text~="typeset"] :where(h2) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); font-weight: 700; }
 [data-suisou-text~="typeset"] :where(h3) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 700; }
-[data-suisou-text~="typeset"] :where(h4) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 700; }
+[data-suisou-text~="typeset"] :where(h4, h5, h6) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 700; }
 
-[data-suisou-text~="typeset"] :where(h5) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 500; }
-[data-suisou-text~="typeset"] :where(h6) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 700; }
+[data-suisou-text~="typeset"] :where(h2, h3, h4, h5, h6) { position: relative; padding-inline-start: calc(4px + var(--suisou-space-2) - 6px); }
 
-[data-suisou-text~="typeset"] :where(h2, h3, h4, h5) { position: relative; padding-inline-start: calc(4px + var(--suisou-space-2) - 6px); }
-
-[data-suisou-text~="typeset"] :where(h2, h3, h4, h5)::before {
+[data-suisou-text~="typeset"] :where(h2, h3, h4, h5, h6)::before {
   content: "";
   position: absolute;
   top: 0.25em;
@@ -24,8 +21,7 @@
 
 [data-suisou-text~="typeset"] :where(h2)::before { width: 4px; background: var(--suisou-accent); }
 [data-suisou-text~="typeset"] :where(h3)::before { width: 3px; background: var(--suisou-accent); }
-[data-suisou-text~="typeset"] :where(h4)::before { width: 3px; background: var(--suisou-line-weak); }
-[data-suisou-text~="typeset"] :where(h5)::before { width: 1px; background: var(--suisou-line-weak); }
+[data-suisou-text~="typeset"] :where(h4, h5, h6)::before { width: 3px; background: var(--suisou-line-weak); }
 
 [data-suisou-text~="typeset"] :where(small) { font-size: var(--suisou-size-12); line-height: calc(var(--suisou-lh-12) + 0.25rem); }
 [data-suisou-text~="typeset"] :where(strong, b) { font-weight: 700; }
@@ -61,7 +57,7 @@
 [data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(h1) { font-size: var(--suisou-size-28); line-height: var(--suisou-lh-28); }
 [data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(h2) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); }
 [data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(h3) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(h4, h5) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); }
+[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(h4, h5, h6) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); }
 [data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(small) { font-size: var(--suisou-size-14); line-height: calc(var(--suisou-lh-14) + 0.25rem); }
 
 [data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) > :where(* + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-3); }
