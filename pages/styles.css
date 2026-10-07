@@ -143,15 +143,6 @@ progress.cand-hollow.cand-diamond {
     calc(var(--suisou-spinner, 2rem) * 0.1697 - var(--suisou-spinner, 2rem) * 1.3 * (0.8 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--cand-t)));
 }
 
-progress.cand-ring {
-  background-image: none;
-  mask-image: none;
-  border-radius: var(--suisou-radius-pill);
-  border: calc(var(--suisou-spinner, 2rem) / 10) solid var(--suisou-line-weak);
-  border-top-color: var(--suisou-accent);
-  animation: cand-spin 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-}
-@keyframes cand-spin { to { transform: rotate(1turn); } }
 
 
 progress.cand-ring2 {
