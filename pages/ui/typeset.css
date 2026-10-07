@@ -56,20 +56,6 @@
 }
 [data-suisou-text~="typeset"] :where(dt) { color: var(--suisou-text-sub); font-weight: 700; }
 
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(h1) { font-size: var(--suisou-size-28); line-height: var(--suisou-lh-28); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(h2) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(h3) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(h4, h5, h6) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(small) { font-size: var(--suisou-size-14); line-height: calc(var(--suisou-lh-14) + 0.25rem); }
-
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) > :where(* + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-3); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) > :where(* + :is(h1, h2, h3, h4, h5, h6)) {
-  margin-block-start: var(--suisou-space-4);
-}
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) > :where(* + h2) { margin-block-start: var(--suisou-space-5); }
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) > :where(hr),
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) > :where(hr + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-4); }
-
 [data-suisou-text~="typeset"] :where(blockquote) {
   border-inline-start: 4px var(--suisou-bd-style, solid) var(--suisou-line-strong);
   padding-inline-start: var(--suisou-space-3);
@@ -145,10 +131,6 @@
   border-collapse: collapse;
   font-size: var(--suisou-size-12);
   line-height: calc(var(--suisou-lh-12) + 0.25rem);
-}
-[data-suisou-text~="typeset"]:where([data-suisou-text~="fs-16"]) :where(table) {
-  font-size: var(--suisou-size-14);
-  line-height: calc(var(--suisou-lh-14) + 0.25rem);
 }
 
 [data-suisou-text~="typeset"] :where(table) :where(th, td) {
