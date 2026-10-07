@@ -33,3 +33,11 @@ body > header, body > nav[popover] { padding: var(--suisou-space-3); }
 .muted { color: var(--suisou-text-sub); }
 
 main [data-suisou-text~="typeset"] > h1 { margin-block: 1rem 2rem; }
+
+.cand-t2 thead th { border-bottom: 2px solid var(--suisou-line-strong); }
+.cand-t3 thead th { background: var(--suisou-item); }
+.cand-t4 { border: 1px solid var(--suisou-line-weak); border-radius: var(--suisou-radius); border-collapse: separate; border-spacing: 0; overflow: hidden; }
+.cand-t4 thead th { border-bottom: 1px solid var(--suisou-line-weak); }
+.cand-t5 { border: 1px solid var(--suisou-line-weak); border-radius: var(--suisou-radius); border-collapse: separate; border-spacing: 0; overflow: hidden; }
+.cand-t5 thead th { background: var(--suisou-item); border-bottom: 1px solid var(--suisou-line-weak); }
+.cand-t6 thead th { border-bottom: 1px solid var(--suisou-line-weak); }
