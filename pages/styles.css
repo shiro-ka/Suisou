@@ -153,4 +153,21 @@ progress.cand-ring {
 }
 @keyframes cand-spin { to { transform: rotate(1turn); } }
 
-progress.cand-empty { background-image: none; }
+
+progress.cand-ring2 {
+  background-image: none;
+  mask-image: none;
+  border-radius: var(--suisou-radius-pill);
+  border: calc(var(--suisou-spinner, 2rem) / 16) solid var(--suisou-line-weak);
+  border-top-color: var(--suisou-accent);
+  animation: cand-spin 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+progress.cand-ring2.cand-square { border-radius: var(--suisou-radius); }
+progress.cand-ring2.cand-diamond {
+  width: calc(var(--suisou-spinner, 2rem) * 0.7071);
+  height: calc(var(--suisou-spinner, 2rem) * 0.7071);
+  margin: calc(var(--suisou-spinner, 2rem) * 0.1464);
+  border-radius: var(--suisou-radius);
+  animation-name: cand-spin-diamond;
+}
+@keyframes cand-spin-diamond { from { transform: rotate(45deg); } to { transform: rotate(405deg); } }
