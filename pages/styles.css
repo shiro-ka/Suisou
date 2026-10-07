@@ -40,7 +40,7 @@ body > header, body > nav[popover] { padding: var(--suisou-space-3); }
 
 progress.cand-frame {
   mask-image: none;
-  border: calc(var(--suisou-spinner, 2rem) * 0.08) solid transparent;
+  border: 1px solid transparent;
   border-radius: var(--suisou-radius-pill);
   background-image:
     radial-gradient(circle, var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px)),
