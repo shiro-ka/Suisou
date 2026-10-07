@@ -71,7 +71,6 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-[data-suisou-text~="tabular"] { font-variant-numeric: tabular-nums; }
 
 [data-suisou-text*="fs-"], [data-suisou-text~="typeset"] { font-size: var(--suisou-type-size); line-height: var(--suisou-type-lh); }
 [data-suisou-text~="typeset"] { line-height: calc(var(--suisou-type-lh) + 0.25rem); }
