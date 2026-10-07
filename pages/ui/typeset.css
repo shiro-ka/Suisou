@@ -46,8 +46,10 @@
 
 [data-suisou-text~="typeset"] :where(img, video) {
   display: block;
+  width: auto;
   max-width: 100%;
   height: auto;
+  max-height: min(30rem, 50svh);
   border-radius: var(--suisou-radius);
 }
 
