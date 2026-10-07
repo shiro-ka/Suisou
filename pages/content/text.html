@@ -70,34 +70,12 @@
   <p><code>one-line</code> を追加すると、文字が1行に収まり、はみ出した分は … に省略されます</p>
   <p data-suisou-item data-suisou-text="one-line">水槽の水はろ過フィルターを通って少しずつ循環し、水草が光を受けて酸素を出し、底砂の微生物が汚れを分解して、ガラスの中の小さな生態系がゆっくりと回り続けます</p>
   <pre><code>&lt;p data-suisou-item data-suisou-text="one-line"&gt;水槽の水はろ過フィルターを通って少しずつ循環し、水草が光を受けて酸素を出し、底砂の微生物が汚れを分解して、ガラスの中の小さな生態系がゆっくりと回り続けます&lt;/p&gt;</code></pre>
-  <h2>tabular</h2>
-  <p><code>tabular</code> を追加すると、数字の幅が揃います</p>
-  <div data-suisou-layout="row">
-    <div>
-      <p>111,111</p>
-      <p>888,888</p>
-    </div>
-    <div data-suisou-text="tabular">
-      <p>111,111</p>
-      <p>888,888</p>
-    </div>
-  </div>
-  <pre><code>&lt;div data-suisou-layout="row"&gt;
-  &lt;div&gt;
-    &lt;p&gt;111,111&lt;/p&gt;
-    &lt;p&gt;888,888&lt;/p&gt;
-  &lt;/div&gt;
-  &lt;div data-suisou-text="tabular"&gt;
-    &lt;p&gt;111,111&lt;/p&gt;
-    &lt;p&gt;888,888&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
   <h2>link</h2>
   <p><code>link</code> を追加すると、下線が付きホバーで色が変わります</p>
   <p>組版は <a href="#typeset" data-suisou-text="link">Typeset</a> のページへ</p>
   <pre><code>&lt;p&gt;組版は &lt;a href="#typeset" data-suisou-text="link"&gt;Typeset&lt;/a&gt; のページへ&lt;/p&gt;</code></pre>
   <h2>アイコン</h2>
-  <p><code>&lt;svg&gt;</code> に追加すると、文字と同じ大きさのアイコンになります<br>ボタンやタグの中では部品の大きさのままで、<code>fs-</code> を追加したときだけ変わります</p>
+  <p><code>&lt;svg&gt;</code> に追加すると、文字と同じ大きさのアイコンになります<br>ボタンやタグの中では部品の大きさのままで、<code>fs-*</code> を追加したときだけ変わります</p>
   <p>確認しました <svg data-suisou-text viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg></p>
   <pre><code>&lt;p&gt;確認しました &lt;svg data-suisou-text viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M5 12l5 5 9-10"/&gt;&lt;/svg&gt;&lt;/p&gt;</code></pre>
   <div data-suisou-layout="row wrap">
@@ -119,7 +97,6 @@
       <tr><td><code>sub</code> <code>accent</code> <code>success</code> <code>warning</code> <code>error</code></td><td>文字をその色にする。<code>disabled</code> <code>aria-disabled="true"</code> の要素には当たらない</td></tr>
       <tr><td><code>start</code> <code>center</code> <code>end</code></td><td>行の中で文字を寄せる位置を変える</td></tr>
       <tr><td><code>one-line</code></td><td>文字を1行に収め、はみ出した分を … にする。flex の子でも縮む</td></tr>
-      <tr><td><code>tabular</code></td><td>数字の字送りを揃える。書体は変えない</td></tr>
       <tr><td><code>link</code></td><td>下線を付け、マウスを乗せるとアクセント色にする。画像だけのリンクには下線を付けない</td></tr>
       <tr><td><code>typeset</code></td><td>長文を組む。<a href="#typeset">Typeset</a> のページへ</td></tr>
       <tr><td><code>toc</code></td><td>入れ子の <code>&lt;ul&gt;</code> を目次にする。<a href="#toc">Toc</a> のページへ</td></tr>
@@ -200,7 +177,6 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-[data-suisou-text~="tabular"] { font-variant-numeric: tabular-nums; }
 
 [data-suisou-text*="fs-"], [data-suisou-text~="typeset"] { font-size: var(--suisou-type-size); line-height: var(--suisou-type-lh); }
 [data-suisou-text~="typeset"] { line-height: calc(var(--suisou-type-lh) + 0.25rem); }
