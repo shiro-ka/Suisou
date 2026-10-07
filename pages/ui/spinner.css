@@ -1,7 +1,7 @@
 @property --suisou-spinner { syntax: "*"; inherits: false; }
 
 :where([data-suisou-body] progress:indeterminate) {
-  --suisou-spinner-time: 2.4s;
+  --suisou-spinner-time: 4s;
   --suisou-spinner-color: var(--suisou-accent);
   appearance: none;
   display: inline-block;
