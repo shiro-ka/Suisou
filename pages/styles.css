@@ -33,3 +33,14 @@ body > header, body > nav[popover] { padding: var(--suisou-space-3); }
 .muted { color: var(--suisou-text-sub); }
 
 main [data-suisou-text~="typeset"] > h1 { margin-block: 1rem 2rem; }
+
+.cand-q2 { position: relative; border-inline-start: 0; padding-inline-start: calc(4px + var(--suisou-space-3)); }
+.cand-q2::before { content: ""; position: absolute; inset-inline-start: 0; top: calc((1lh - 1em) / 2); bottom: calc((1lh - 1em) / 2); width: 4px; border-radius: var(--suisou-radius-pill); background: var(--suisou-line-strong); }
+.cand-q3 { border-inline-start: 0; background: var(--suisou-item); border-radius: var(--suisou-radius); padding: var(--suisou-space-2) var(--suisou-space-3); }
+.cand-q4 { position: relative; border-inline-start: 0; background: var(--suisou-item); border-radius: var(--suisou-radius); padding: var(--suisou-space-2) var(--suisou-space-3) var(--suisou-space-2) calc(var(--suisou-space-3) + 1.5rem); }
+.cand-q4::before { content: "\201C"; position: absolute; inset-inline-start: var(--suisou-space-2); top: var(--suisou-space-1); font-size: 2.5rem; line-height: 1; font-weight: 700; color: var(--suisou-accent); }
+.cand-c2 { border-color: transparent; }
+.cand-c3 { background: none; }
+.cand-c4 { border: 1px solid var(--suisou-line-weak); border-radius: var(--suisou-radius); overflow: hidden; }
+.cand-c4 > p { padding: var(--suisou-space-1) var(--suisou-space-2); border-bottom: 1px solid var(--suisou-line-weak); }
+.cand-c4 > pre { border: 0; border-radius: 0; }
