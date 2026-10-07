@@ -64,6 +64,7 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
 [data-suisou-text~="fw-700"] { font-weight: 700; }
 [data-suisou-text~="center"] { text-align: center; }
 [data-suisou-text~="start"]  { text-align: start; }
+[data-suisou-text~="end"]    { text-align: end; }
 [data-suisou-text~="one-line"] {
   min-width: 0;
   overflow: hidden;
