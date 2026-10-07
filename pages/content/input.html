@@ -1,7 +1,7 @@
 <div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
   <h1>Input</h1>
   <h2>Inputの適用</h2>
-  <p><code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code> タグの要素はインプットになります<br>ただし、<code>&lt;input&gt;</code> の <code>type</code> が <code>checkbox</code>, <code>radio</code>, <code>range</code>, <code>color</code>, <code>file</code>, <code>submit</code>, <code>button</code>, <code>reset</code>, <code>image</code>, <code>hidden</code> のときはなりません</p>
+  <p><code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code> タグの要素はインプットになります<br>スタイルの当たらない <code>&lt;input&gt;</code> の <code>type</code> もあります。Reference をご確認ください。</p>
   <div data-suisou-layout="stack">
     <input>
     <textarea></textarea>
@@ -27,7 +27,7 @@
   <table>
     <thead><tr><th>Value</th><th>Function</th></tr></thead>
     <tbody>
-      <tr><td>なし</td><td><code>data-suisou-body</code> の中の <code>&lt;input&gt;</code> <code>&lt;textarea&gt;</code> <code>&lt;select&gt;</code> を入力欄にする。<code>&lt;input&gt;</code> の <code>checkbox</code> <code>radio</code> <code>range</code> <code>color</code> <code>file</code> <code>submit</code> <code>button</code> <code>reset</code> <code>image</code> <code>hidden</code> には当たらない。高さ 32px、横の余白 8px、角丸、濃い罫線。背景は置いた場所より一段上の色。幅は指定しない。プレースホルダーは薄い文字。フォーカスで枠が付く。<code>aria-invalid="true"</code> で罫線を赤く、<code>disabled</code> <code>aria-disabled="true"</code> で文字と罫線を薄くして背景を消す</td></tr>
+      <tr><td>なし</td><td><code>data-suisou-body</code> の中の <code>&lt;input&gt;</code> <code>&lt;textarea&gt;</code> <code>&lt;select&gt;</code> を入力欄にする。<code>&lt;input&gt;</code> の <code>type</code> が <code>checkbox</code>, <code>radio</code>, <code>range</code>, <code>color</code>, <code>file</code>, <code>submit</code>, <code>button</code>, <code>reset</code>, <code>image</code>, <code>hidden</code> のときはインプットになりません。高さ 32px、横の余白 8px、角丸、濃い罫線。背景は置いた場所より一段上の色。幅は指定しない。プレースホルダーは薄い文字。フォーカスで枠が付く。<code>aria-invalid="true"</code> で罫線を赤く、<code>disabled</code> <code>aria-disabled="true"</code> で文字と罫線を薄くして背景を消す</td></tr>
     </tbody>
   </table>
   <h3>CSS</h3>
