@@ -20,7 +20,7 @@
 }
 
 [data-suisou-text~="typeset"] :where(h2)::before { width: 4px; background: var(--suisou-accent); }
-[data-suisou-text~="typeset"] :where(h3)::before { width: 3px; background: var(--suisou-accent); }
+[data-suisou-text~="typeset"] :where(h3)::before { width: 5px; border: 1.5px solid var(--suisou-accent); box-sizing: border-box; }
 [data-suisou-text~="typeset"] :where(h4, h5, h6)::before { width: 3px; background: var(--suisou-line-weak); }
 
 [data-suisou-text~="typeset"] :where(small) { font-size: var(--suisou-size-12); line-height: calc(var(--suisou-lh-12) + 0.25rem); }
