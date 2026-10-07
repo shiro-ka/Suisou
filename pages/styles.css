@@ -152,3 +152,5 @@ progress.cand-ring {
   animation: cand-spin 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 @keyframes cand-spin { to { transform: rotate(1turn); } }
+
+progress.cand-empty { background-image: none; }
