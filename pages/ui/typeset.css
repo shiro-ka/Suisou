@@ -47,7 +47,7 @@
 [data-suisou-text~="typeset"] :where(img, video) {
   display: block;
   width: auto;
-  max-width: 100%;
+  max-width: min(100%, 40rem);
   height: auto;
   max-height: min(30rem, 50svh);
   margin-inline: auto;
