@@ -22,7 +22,11 @@
     calc(var(--suisou-spinner, 2rem) * 0.35) calc(var(--suisou-spinner, 2rem) * 1.1),
     calc(var(--suisou-spinner, 2rem) * 0.25) calc(var(--suisou-spinner, 2rem) * 0.7),
     calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 1.3);
-  background-position: 10% 0, 45% 0, 75% 0, 100% 0;
+  background-position:
+    10% 0,
+    45% calc(var(--suisou-spinner, 2rem) * -0.605),
+    75% calc(var(--suisou-spinner, 2rem) * -0.175),
+    100% calc(var(--suisou-spinner, 2rem) * -1.04);
   mask-image: linear-gradient(to top, transparent, black 20%, black 60%, transparent);
   animation: suisou-bubble var(--suisou-spinner-time) linear infinite;
 }
@@ -33,9 +37,9 @@
   to {
     background-position:
       10% calc(var(--suisou-spinner, 2rem) * -0.9),
-      45% calc(var(--suisou-spinner, 2rem) * -1.1),
-      75% calc(var(--suisou-spinner, 2rem) * -0.7),
-      100% calc(var(--suisou-spinner, 2rem) * -1.3);
+      45% calc(var(--suisou-spinner, 2rem) * -1.705),
+      75% calc(var(--suisou-spinner, 2rem) * -0.875),
+      100% calc(var(--suisou-spinner, 2rem) * -2.34);
   }
 }
 
