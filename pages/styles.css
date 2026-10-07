@@ -70,6 +70,29 @@ progress.cand-frame {
 }
 progress.cand-frame.cand-square { border-radius: var(--suisou-radius); }
 
+progress.cand-frame.cand-diamond {
+  width: calc(var(--suisou-spinner, 2rem) * 0.7071);
+  height: calc(var(--suisou-spinner, 2rem) * 0.7071);
+  margin: calc(var(--suisou-spinner, 2rem) * 0.1464);
+  border-radius: var(--suisou-radius);
+  transform: rotate(45deg);
+  background-repeat: repeat, repeat, repeat, repeat, no-repeat, no-repeat;
+  background-size:
+    calc(var(--suisou-spinner, 2rem) * 0.9) calc(var(--suisou-spinner, 2rem) * 0.9),
+    calc(var(--suisou-spinner, 2rem) * 1.1) calc(var(--suisou-spinner, 2rem) * 1.1),
+    calc(var(--suisou-spinner, 2rem) * 0.7) calc(var(--suisou-spinner, 2rem) * 0.7),
+    calc(var(--suisou-spinner, 2rem) * 1.3) calc(var(--suisou-spinner, 2rem) * 1.3),
+    100% 100%,
+    100% 100%;
+  background-position:
+    calc(var(--suisou-spinner, 2rem) * 0 - var(--suisou-spinner, 2rem) * 0.9 * (0 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -0.9 * (0 + var(--cand-t))),
+    calc(var(--suisou-spinner, 2rem) * 0.3 - var(--suisou-spinner, 2rem) * 1.1 * (0.55 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -1.1 * (0.55 + var(--cand-t))),
+    calc(var(--suisou-spinner, 2rem) * 0.15 - var(--suisou-spinner, 2rem) * 0.7 * (0.25 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -0.7 * (0.25 + var(--cand-t))),
+    calc(var(--suisou-spinner, 2rem) * 0.45 - var(--suisou-spinner, 2rem) * 1.3 * (0.8 + var(--cand-t))) calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--cand-t))),
+    0 0,
+    0 0;
+}
+
 progress.cand-orbit {
   mask-image: none;
   border: 0;
