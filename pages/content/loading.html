@@ -1,113 +1,325 @@
 <div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
   <h1>Loading</h1>
-  <h2>スピナー</h2>
-  <div data-suisou-layout="grid">
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="small"></progress>
-        <progress></progress>
-        <progress data-suisou-loading="large"></progress>
-      </div>
-      <span>（なし）</span>
-    </div>
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="square small"></progress>
-        <progress data-suisou-loading="square"></progress>
-        <progress data-suisou-loading="square large"></progress>
-      </div>
-      <span>square</span>
-    </div>
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="diamond small"></progress>
-        <progress data-suisou-loading="diamond"></progress>
-        <progress data-suisou-loading="diamond large"></progress>
-      </div>
-      <span>diamond</span>
-    </div>
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="window small"></progress>
-        <progress data-suisou-loading="window"></progress>
-        <progress data-suisou-loading="window large"></progress>
-      </div>
-      <span>window</span>
-    </div>
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="window square small"></progress>
-        <progress data-suisou-loading="window square"></progress>
-        <progress data-suisou-loading="window square large"></progress>
-      </div>
-      <span>window square</span>
-    </div>
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="window diamond small"></progress>
-        <progress data-suisou-loading="window diamond"></progress>
-        <progress data-suisou-loading="window diamond large"></progress>
-      </div>
-      <span>window diamond</span>
-    </div>
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="window fill small"></progress>
-        <progress data-suisou-loading="window fill"></progress>
-        <progress data-suisou-loading="window fill large"></progress>
-      </div>
-      <span>window fill</span>
-    </div>
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="window fill square small"></progress>
-        <progress data-suisou-loading="window fill square"></progress>
-        <progress data-suisou-loading="window fill square large"></progress>
-      </div>
-      <span>window fill square</span>
-    </div>
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="window fill diamond small"></progress>
-        <progress data-suisou-loading="window fill diamond"></progress>
-        <progress data-suisou-loading="window fill diamond large"></progress>
-      </div>
-      <span>window fill diamond</span>
-    </div>
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="simple small"></progress>
-        <progress data-suisou-loading="simple"></progress>
-        <progress data-suisou-loading="simple large"></progress>
-      </div>
-      <span>simple</span>
-    </div>
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="simple square small"></progress>
-        <progress data-suisou-loading="simple square"></progress>
-        <progress data-suisou-loading="simple square large"></progress>
-      </div>
-      <span>simple square</span>
-    </div>
-    <div data-suisou-layout="stack center">
-      <div data-suisou-layout="row">
-        <progress data-suisou-loading="simple diamond small"></progress>
-        <progress data-suisou-loading="simple diamond"></progress>
-        <progress data-suisou-loading="simple diamond large"></progress>
-      </div>
-      <span>simple diamond</span>
-    </div>
+  <h2>Loadingの適用</h2>
+  <p><code>&lt;progress&gt;</code> タグの要素は、ロード表示になります<br><code>value</code> が無いとスピナー、<code>value</code> があるとプログレスバーになります</p>
+  <pre><code>&lt;progress&gt;&lt;/progress&gt;
+&lt;progress value="60" max="100"&gt;&lt;/progress&gt;</code></pre>
+  <hr>
+  <div data-suisou-layout="stack">
+    <progress></progress>
+    <progress value="60" max="100"></progress>
   </div>
-  <h2>棒</h2>
-  <p>（なし）</p>
-  <progress value="60" max="100" data-suisou="w-full"></progress>
-  <p>small</p>
-  <progress data-suisou-loading="small" value="60" max="100" data-suisou="w-full"></progress>
-  <p>large</p>
-  <progress data-suisou-loading="large" value="60" max="100" data-suisou="w-full"></progress>
-  <p>simple</p>
-  <progress data-suisou-loading="simple" value="60" max="100" data-suisou="w-full"></progress>
-  <p>simple small</p>
-  <progress data-suisou-loading="simple small" value="60" max="100" data-suisou="w-full"></progress>
+  <pre><code>&lt;div data-suisou-layout="stack"&gt;
+  &lt;progress&gt;&lt;/progress&gt;
+  &lt;progress value="60" max="100"&gt;&lt;/progress&gt;
+&lt;/div&gt;</code></pre>
+  <h2>スピナー</h2>
+  <h3>形</h3>
+  <p><code>square</code> / <code>diamond</code> を追加すると、形が変わります</p>
+  <div data-suisou-layout="row wrap">
+    <progress></progress>
+    <progress data-suisou-loading="square"></progress>
+    <progress data-suisou-loading="diamond"></progress>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;progress&gt;&lt;/progress&gt;
+  &lt;progress data-suisou-loading="square"&gt;&lt;/progress&gt;
+  &lt;progress data-suisou-loading="diamond"&gt;&lt;/progress&gt;
+&lt;/div&gt;</code></pre>
+  <h3>window</h3>
+  <p><code>window</code> を追加すると、回る枠が付きます<br><code>fill</code> を一緒に追加すると、枠の中に背景が付きます</p>
+  <div data-suisou-layout="row wrap">
+    <progress data-suisou-loading="window"></progress>
+    <progress data-suisou-loading="window fill"></progress>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;progress data-suisou-loading="window"&gt;&lt;/progress&gt;
+  &lt;progress data-suisou-loading="window fill"&gt;&lt;/progress&gt;
+&lt;/div&gt;</code></pre>
+  <h3>simple</h3>
+  <p><code>simple</code> を追加すると、泡が無くなり、回る枠だけになります</p>
+  <div data-suisou-layout="row wrap">
+    <progress data-suisou-loading="simple"></progress>
+    <progress data-suisou-loading="simple square"></progress>
+    <progress data-suisou-loading="simple diamond"></progress>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;progress data-suisou-loading="simple"&gt;&lt;/progress&gt;
+  &lt;progress data-suisou-loading="simple square"&gt;&lt;/progress&gt;
+  &lt;progress data-suisou-loading="simple diamond"&gt;&lt;/progress&gt;
+&lt;/div&gt;</code></pre>
+  <h2>プログレスバー</h2>
+  <h3>simple</h3>
+  <p><code>simple</code> を追加すると、泡が無くなります</p>
+  <div data-suisou-layout="stack">
+    <progress value="60" max="100"></progress>
+    <progress data-suisou-loading="simple" value="60" max="100"></progress>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="stack"&gt;
+  &lt;progress value="60" max="100"&gt;&lt;/progress&gt;
+  &lt;progress data-suisou-loading="simple" value="60" max="100"&gt;&lt;/progress&gt;
+&lt;/div&gt;</code></pre>
+  <h2>大きさ</h2>
+  <p><code>small</code> / <code>large</code> を追加すると、大きさ/太さが変わります<br>スピナーにもプログレスバーにも使えます</p>
+  <div data-suisou-layout="row wrap">
+    <progress data-suisou-loading="small"></progress>
+    <progress></progress>
+    <progress data-suisou-loading="large"></progress>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;progress data-suisou-loading="small"&gt;&lt;/progress&gt;
+  &lt;progress&gt;&lt;/progress&gt;
+  &lt;progress data-suisou-loading="large"&gt;&lt;/progress&gt;
+&lt;/div&gt;</code></pre>
+  <div data-suisou-layout="stack">
+    <progress data-suisou-loading="small" value="60" max="100"></progress>
+    <progress value="60" max="100"></progress>
+    <progress data-suisou-loading="large" value="60" max="100"></progress>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="stack"&gt;
+  &lt;progress data-suisou-loading="small" value="60" max="100"&gt;&lt;/progress&gt;
+  &lt;progress value="60" max="100"&gt;&lt;/progress&gt;
+  &lt;progress data-suisou-loading="large" value="60" max="100"&gt;&lt;/progress&gt;
+&lt;/div&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>なし</td><td><code>data-suisou-body</code> の中の <code>&lt;progress&gt;</code> をロード表示にする。<code>value</code> が無いとスピナー：2rem の中を、accent の色の泡が下から上へ上る。見える範囲は丸。<code>value</code> があるとプログレスバー：高さ 8px、土台は薄い罫線の色、進んだ部分は accent で、中を本文の文字の色の泡が上る。幅は指定しない。動きを減らす設定では、スピナーは止まって明滅し、プログレスバーの泡は止まる</td></tr>
+      <tr><td><code>square</code> <code>diamond</code></td><td>スピナーの形（泡の見える範囲・窓・枠）を角丸の四角・ダイヤにする。同時に書けない</td></tr>
+      <tr><td><code>window</code></td><td>スピナーに 1px の枠を付け、枠の上を accent の弧が回る。窓の中は透ける。<code>simple</code> と同時に書けない</td></tr>
+      <tr><td><code>fill</code></td><td><code>window</code> と一緒に使う。窓の中を item の色にする</td></tr>
+      <tr><td><code>simple</code></td><td>泡を外す。スピナーは、大きさの 1/16 の太さの枠の上を弧が回るだけになる。プログレスバーは、進んだ部分が accent だけになる</td></tr>
+      <tr><td><code>small</code> <code>large</code></td><td>スピナーを 20px / 3rem、プログレスバーを高さ 4px / 16px にする。同時に書けない</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>@property --suisou-spinner { syntax: "*"; inherits: false; }
+@property --suisou-loading-t { syntax: "&lt;number&gt;"; inherits: false; initial-value: 0; }
+@property --suisou-loading-a { syntax: "&lt;angle&gt;"; inherits: false; initial-value: 0deg; }
+
+@keyframes suisou-loading-t { to { --suisou-loading-t: 1; } }
+@keyframes suisou-loading-a { to { --suisou-loading-a: 360deg; } }
+@keyframes suisou-loading-pulse { 50% { opacity: 0.35; } }
+@keyframes suisou-loading-bar { to { background-position: 5px -12px, 21px -15px, 40px -17px; } }
+
+:where([data-suisou-body] progress:indeterminate) {
+  --suisou-spinner-color: var(--suisou-accent);
+  appearance: none;
+  display: inline-block;
+  vertical-align: middle;
+  flex: none;
+  width: var(--suisou-spinner, 2rem);
+  height: var(--suisou-spinner, 2rem);
+  border: 0;
+  border-radius: var(--suisou-radius-pill);
+  background-color: transparent;
+  background-image:
+    radial-gradient(circle, var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px)),
+    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.06), var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.06 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.1), transparent calc(var(--suisou-spinner, 2rem) * 0.1 + 0.5px)),
+    radial-gradient(circle, var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.05), transparent calc(var(--suisou-spinner, 2rem) * 0.05 + 0.5px)),
+    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.04), var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.04 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px));
+  background-repeat: repeat-y;
+  background-size:
+    calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 0.9),
+    calc(var(--suisou-spinner, 2rem) * 0.35) calc(var(--suisou-spinner, 2rem) * 1.1),
+    calc(var(--suisou-spinner, 2rem) * 0.25) calc(var(--suisou-spinner, 2rem) * 0.7),
+    calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 1.3);
+  background-position:
+    10% calc(var(--suisou-spinner, 2rem) * -0.9 * (0 + var(--suisou-loading-t))),
+    45% calc(var(--suisou-spinner, 2rem) * -1.1 * (0.55 + var(--suisou-loading-t))),
+    75% calc(var(--suisou-spinner, 2rem) * -0.7 * (0.25 + var(--suisou-loading-t))),
+    100% calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--suisou-loading-t)));
+  mask-image: radial-gradient(closest-side, black 55%, transparent);
+  animation: suisou-loading-t 4s linear infinite;
+}
+:where([data-suisou-body] progress:indeterminate)::-webkit-progress-bar { background: transparent; }
+:where([data-suisou-body] progress:indeterminate)::-moz-progress-bar { background: transparent; }
+
+progress:indeterminate[data-suisou-loading~="small"] { --suisou-spinner: var(--suisou-icon); }
+progress:indeterminate[data-suisou-loading~="large"] { --suisou-spinner: 3rem; }
+
+progress:indeterminate[data-suisou-loading~="square"] { mask-image: linear-gradient(to top, transparent, black 20%, black 60%, transparent); }
+progress:indeterminate[data-suisou-loading~="diamond"] {
+  mask-image:
+    linear-gradient(45deg, transparent, black 30%, black 70%, transparent),
+    linear-gradient(-45deg, transparent, black 30%, black 70%, transparent);
+  mask-composite: intersect;
+}
+
+progress:indeterminate[data-suisou-loading~="window"] {
+  border: 1px solid transparent;
+  background-image:
+    linear-gradient(var(--suisou-spinner-color), var(--suisou-spinner-color)),
+    conic-gradient(from var(--suisou-loading-a), var(--suisou-spinner-color) 0 25%, var(--suisou-line-weak) 0);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: 0 0;
+  mask-image:
+    radial-gradient(circle, black calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px)),
+    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.06), black calc(var(--suisou-spinner, 2rem) * 0.06 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.1), transparent calc(var(--suisou-spinner, 2rem) * 0.1 + 0.5px)),
+    radial-gradient(circle, black calc(var(--suisou-spinner, 2rem) * 0.05), transparent calc(var(--suisou-spinner, 2rem) * 0.05 + 0.5px)),
+    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.04), black calc(var(--suisou-spinner, 2rem) * 0.04 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px)),
+    linear-gradient(black, black),
+    linear-gradient(black, black);
+  mask-origin: padding-box, padding-box, padding-box, padding-box, border-box, border-box;
+  mask-clip: padding-box, padding-box, padding-box, padding-box, padding-box, border-box;
+  mask-composite: add, add, add, add, exclude, add;
+  mask-repeat: repeat-y, repeat-y, repeat-y, repeat-y, no-repeat, no-repeat;
+  mask-size:
+    calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 0.9),
+    calc(var(--suisou-spinner, 2rem) * 0.35) calc(var(--suisou-spinner, 2rem) * 1.1),
+    calc(var(--suisou-spinner, 2rem) * 0.25) calc(var(--suisou-spinner, 2rem) * 0.7),
+    calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 1.3),
+    100% 100%,
+    100% 100%;
+  mask-position:
+    10% calc(var(--suisou-spinner, 2rem) * -0.9 * (0 + var(--suisou-loading-t))),
+    45% calc(var(--suisou-spinner, 2rem) * -1.1 * (0.55 + var(--suisou-loading-t))),
+    75% calc(var(--suisou-spinner, 2rem) * -0.7 * (0.25 + var(--suisou-loading-t))),
+    100% calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--suisou-loading-t))),
+    0 0,
+    0 0;
+  animation: suisou-loading-t 4s linear infinite, suisou-loading-a 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="fill"] {
+  background-image:
+    radial-gradient(circle, var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px)),
+    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.06), var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.06 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.1), transparent calc(var(--suisou-spinner, 2rem) * 0.1 + 0.5px)),
+    radial-gradient(circle, var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.05), transparent calc(var(--suisou-spinner, 2rem) * 0.05 + 0.5px)),
+    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.04), var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.04 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px)),
+    linear-gradient(var(--suisou-item), var(--suisou-item)),
+    conic-gradient(from var(--suisou-loading-a), var(--suisou-spinner-color) 0 25%, var(--suisou-line-weak) 0);
+  background-origin: padding-box, padding-box, padding-box, padding-box, padding-box, border-box;
+  background-clip: padding-box, padding-box, padding-box, padding-box, padding-box, border-box;
+  background-repeat: repeat-y, repeat-y, repeat-y, repeat-y, no-repeat, no-repeat;
+  background-size:
+    calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 0.9),
+    calc(var(--suisou-spinner, 2rem) * 0.35) calc(var(--suisou-spinner, 2rem) * 1.1),
+    calc(var(--suisou-spinner, 2rem) * 0.25) calc(var(--suisou-spinner, 2rem) * 0.7),
+    calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 1.3),
+    100% 100%,
+    100% 100%;
+  background-position:
+    10% calc(var(--suisou-spinner, 2rem) * -0.9 * (0 + var(--suisou-loading-t))),
+    45% calc(var(--suisou-spinner, 2rem) * -1.1 * (0.55 + var(--suisou-loading-t))),
+    75% calc(var(--suisou-spinner, 2rem) * -0.7 * (0.25 + var(--suisou-loading-t))),
+    100% calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--suisou-loading-t))),
+    0 0,
+    0 0;
+  mask-image: none;
+}
+
+progress:indeterminate[data-suisou-loading~="simple"] {
+  border: calc(var(--suisou-spinner, 2rem) / 16) solid transparent;
+  background-image: conic-gradient(from var(--suisou-loading-a), var(--suisou-spinner-color) 0 25%, var(--suisou-line-weak) 0);
+  background-origin: border-box;
+  background-clip: border-box;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: 0 0;
+  mask-image: linear-gradient(black, black), linear-gradient(black, black);
+  mask-origin: border-box;
+  mask-clip: border-box, padding-box;
+  mask-composite: exclude;
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  mask-position: 0 0;
+  animation: suisou-loading-a 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+progress:indeterminate:is([data-suisou-loading~="window"], [data-suisou-loading~="simple"])[data-suisou-loading~="square"] { border-radius: min(var(--suisou-radius), var(--suisou-spinner, 2rem) * 0.25); }
+progress:indeterminate:is([data-suisou-loading~="window"], [data-suisou-loading~="simple"])[data-suisou-loading~="diamond"] {
+  width: calc(var(--suisou-spinner, 2rem) * 0.7071);
+  height: calc(var(--suisou-spinner, 2rem) * 0.7071);
+  margin: calc(var(--suisou-spinner, 2rem) * 0.1464);
+  border-radius: min(var(--suisou-radius), var(--suisou-spinner, 2rem) * 0.25);
+  transform: rotate(45deg);
+}
+progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="diamond"] {
+  mask-repeat: repeat, repeat, repeat, repeat, no-repeat, no-repeat;
+  mask-size:
+    calc(var(--suisou-spinner, 2rem) * 0.9) calc(var(--suisou-spinner, 2rem) * 0.9),
+    calc(var(--suisou-spinner, 2rem) * 1.1) calc(var(--suisou-spinner, 2rem) * 1.1),
+    calc(var(--suisou-spinner, 2rem) * 0.7) calc(var(--suisou-spinner, 2rem) * 0.7),
+    calc(var(--suisou-spinner, 2rem) * 1.3) calc(var(--suisou-spinner, 2rem) * 1.3),
+    100% 100%,
+    100% 100%;
+  mask-position:
+    calc(var(--suisou-spinner, 2rem) * 0.0 - var(--suisou-spinner, 2rem) * 0.9 * (0 + var(--suisou-loading-t))) calc(var(--suisou-spinner, 2rem) * -0.9 * (0 + var(--suisou-loading-t))),
+    calc(var(--suisou-spinner, 2rem) * -0.4243 - var(--suisou-spinner, 2rem) * 1.1 * (0.55 + var(--suisou-loading-t))) calc(var(--suisou-spinner, 2rem) * -1.1 * (0.55 + var(--suisou-loading-t))),
+    calc(var(--suisou-spinner, 2rem) * 0.3536 - var(--suisou-spinner, 2rem) * 0.7 * (0.25 + var(--suisou-loading-t))) calc(var(--suisou-spinner, 2rem) * -0.7 * (0.25 + var(--suisou-loading-t))),
+    calc(var(--suisou-spinner, 2rem) * 0.1697 - var(--suisou-spinner, 2rem) * 1.3 * (0.8 + var(--suisou-loading-t))) calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--suisou-loading-t))),
+    0 0,
+    0 0;
+}
+progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="fill"][data-suisou-loading~="diamond"] {
+  background-repeat: repeat, repeat, repeat, repeat, no-repeat, no-repeat;
+  background-size:
+    calc(var(--suisou-spinner, 2rem) * 0.9) calc(var(--suisou-spinner, 2rem) * 0.9),
+    calc(var(--suisou-spinner, 2rem) * 1.1) calc(var(--suisou-spinner, 2rem) * 1.1),
+    calc(var(--suisou-spinner, 2rem) * 0.7) calc(var(--suisou-spinner, 2rem) * 0.7),
+    calc(var(--suisou-spinner, 2rem) * 1.3) calc(var(--suisou-spinner, 2rem) * 1.3),
+    100% 100%,
+    100% 100%;
+  background-position:
+    calc(var(--suisou-spinner, 2rem) * 0.0 - var(--suisou-spinner, 2rem) * 0.9 * (0 + var(--suisou-loading-t))) calc(var(--suisou-spinner, 2rem) * -0.9 * (0 + var(--suisou-loading-t))),
+    calc(var(--suisou-spinner, 2rem) * -0.4243 - var(--suisou-spinner, 2rem) * 1.1 * (0.55 + var(--suisou-loading-t))) calc(var(--suisou-spinner, 2rem) * -1.1 * (0.55 + var(--suisou-loading-t))),
+    calc(var(--suisou-spinner, 2rem) * 0.3536 - var(--suisou-spinner, 2rem) * 0.7 * (0.25 + var(--suisou-loading-t))) calc(var(--suisou-spinner, 2rem) * -0.7 * (0.25 + var(--suisou-loading-t))),
+    calc(var(--suisou-spinner, 2rem) * 0.1697 - var(--suisou-spinner, 2rem) * 1.3 * (0.8 + var(--suisou-loading-t))) calc(var(--suisou-spinner, 2rem) * -1.3 * (0.8 + var(--suisou-loading-t))),
+    0 0,
+    0 0;
+}
+
+:where([data-suisou-body] progress:not(:indeterminate)) {
+  appearance: none;
+  display: inline-block;
+  vertical-align: middle;
+  height: 8px;
+  border: 0;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-line-weak);
+  overflow: hidden;
+}
+:where([data-suisou-body] progress:not(:indeterminate))::-webkit-progress-bar { background: var(--suisou-line-weak); border-radius: var(--suisou-radius-pill); }
+:where([data-suisou-body] progress:not(:indeterminate))::-webkit-progress-value {
+  background:
+    radial-gradient(circle, var(--suisou-text-main) 1.5px, transparent 2px) 5px 0 / 37px 12px,
+    radial-gradient(circle, transparent 1px, var(--suisou-text-main) 1.5px 2px, transparent 2.5px) 21px 3px / 53px 18px,
+    radial-gradient(circle, var(--suisou-text-main) 1px, transparent 1.5px) 40px 7px / 71px 24px,
+    var(--suisou-accent);
+  border-radius: var(--suisou-radius-pill);
+  animation: suisou-loading-bar 3s linear infinite;
+}
+:where([data-suisou-body] progress:not(:indeterminate))::-moz-progress-bar {
+  background:
+    radial-gradient(circle, var(--suisou-text-main) 1.5px, transparent 2px) 5px 0 / 37px 12px,
+    radial-gradient(circle, transparent 1px, var(--suisou-text-main) 1.5px 2px, transparent 2.5px) 21px 3px / 53px 18px,
+    radial-gradient(circle, var(--suisou-text-main) 1px, transparent 1.5px) 40px 7px / 71px 24px,
+    var(--suisou-accent);
+  border-radius: var(--suisou-radius-pill);
+  animation: suisou-loading-bar 3s linear infinite;
+}
+progress:not(:indeterminate)[data-suisou-loading~="small"] { height: 4px; }
+progress:not(:indeterminate)[data-suisou-loading~="large"] { height: 16px; }
+progress:not(:indeterminate)[data-suisou-loading~="simple"]::-webkit-progress-value { background: var(--suisou-accent); animation: none; }
+progress:not(:indeterminate)[data-suisou-loading~="simple"]::-moz-progress-bar { background: var(--suisou-accent); animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  :where([data-suisou-body] progress:indeterminate),
+  progress:indeterminate[data-suisou-loading] {
+    animation: suisou-loading-pulse 1.6s ease-in-out infinite;
+  }
+  :where([data-suisou-body] progress:not(:indeterminate))::-webkit-progress-value,
+  :where([data-suisou-body] progress:not(:indeterminate))::-moz-progress-bar {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  :where([data-suisou-body] progress:indeterminate) { --suisou-spinner-color: Highlight; }
+}</code></pre>
 </div>
