@@ -1,32 +1,47 @@
 @property --suisou-spinner { syntax: "*"; inherits: false; }
 
 :where([data-suisou-body] progress:indeterminate) {
-  --suisou-spinner-time: 800ms;
+  --suisou-spinner-time: 2.4s;
+  --suisou-spinner-color: var(--suisou-accent);
   appearance: none;
   display: inline-block;
   vertical-align: middle;
   flex: none;
-  width: var(--suisou-spinner, var(--suisou-icon));
-  height: var(--suisou-spinner, var(--suisou-icon));
-  border-radius: var(--suisou-radius-pill);
-  background: transparent;
-
-  border: calc(var(--suisou-spinner, var(--suisou-icon)) / 10) solid var(--suisou-line-weak);
-  border-top-color: var(--suisou-accent);
-
-  animation: suisou-spin var(--suisou-spinner-time) linear infinite;
+  width: var(--suisou-spinner, 2rem);
+  height: var(--suisou-spinner, 2rem);
+  border: 0;
+  background-color: transparent;
+  background-image:
+    radial-gradient(circle, var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px)),
+    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.06), var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.06 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.1), transparent calc(var(--suisou-spinner, 2rem) * 0.1 + 0.5px)),
+    radial-gradient(circle, var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.05), transparent calc(var(--suisou-spinner, 2rem) * 0.05 + 0.5px)),
+    radial-gradient(circle, transparent calc(var(--suisou-spinner, 2rem) * 0.04), var(--suisou-spinner-color) calc(var(--suisou-spinner, 2rem) * 0.04 + 0.5px) calc(var(--suisou-spinner, 2rem) * 0.07), transparent calc(var(--suisou-spinner, 2rem) * 0.07 + 0.5px));
+  background-repeat: repeat-y;
+  background-size:
+    calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 0.9),
+    calc(var(--suisou-spinner, 2rem) * 0.35) calc(var(--suisou-spinner, 2rem) * 1.1),
+    calc(var(--suisou-spinner, 2rem) * 0.25) calc(var(--suisou-spinner, 2rem) * 0.7),
+    calc(var(--suisou-spinner, 2rem) * 0.3) calc(var(--suisou-spinner, 2rem) * 1.3);
+  background-position: 10% 0, 45% 0, 75% 0, 100% 0;
+  mask-image: linear-gradient(to top, transparent, black 20%, black 60%, transparent);
+  animation: suisou-bubble var(--suisou-spinner-time) linear infinite;
 }
 :where([data-suisou-body] progress:indeterminate)::-webkit-progress-bar { background: transparent; }
 :where([data-suisou-body] progress:indeterminate)::-moz-progress-bar { background: transparent; }
 
-@keyframes suisou-spin {
-  to { transform: rotate(1turn); }
+@keyframes suisou-bubble {
+  to {
+    background-position:
+      10% calc(var(--suisou-spinner, 2rem) * -0.9),
+      45% calc(var(--suisou-spinner, 2rem) * -1.1),
+      75% calc(var(--suisou-spinner, 2rem) * -0.7),
+      100% calc(var(--suisou-spinner, 2rem) * -1.3);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   :where([data-suisou-body] progress:indeterminate) {
     animation: suisou-pulse 1.6s ease-in-out infinite;
-    border-color: var(--suisou-accent);
   }
 }
 
@@ -35,5 +50,5 @@
 }
 
 @media (forced-colors: active) {
-  :where([data-suisou-body] progress:indeterminate) { border-top-color: Highlight; }
+  :where([data-suisou-body] progress:indeterminate) { --suisou-spinner-color: Highlight; }
 }
