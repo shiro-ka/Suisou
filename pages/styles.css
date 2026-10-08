@@ -33,3 +33,16 @@ body > header, body > nav[popover] { padding: var(--suisou-space-3); }
 .muted { color: var(--suisou-text-sub); }
 
 main [data-suisou-text~="typeset"] > h1 { margin-block: 1rem 2rem; }
+
+.cand-x { border: 1px solid var(--suisou-line-weak); border-radius: var(--suisou-radius); }
+.cand-x > summary { padding: var(--suisou-space-2) var(--suisou-space-3); cursor: pointer; font-weight: 700; }
+.cand-x[open] > summary { border-bottom: 1px solid var(--suisou-line-weak); }
+.cand-x::details-content { padding-inline: var(--suisou-space-3); }
+.cand-x > :not(summary) { margin-block: var(--suisou-space-2); }
+.cand-x1 > summary::marker { color: var(--suisou-accent); }
+.cand-x2 > summary, .cand-x3 > summary { list-style: none; display: flex; align-items: center; gap: var(--suisou-space-2); }
+.cand-x2 > summary::-webkit-details-marker, .cand-x3 > summary::-webkit-details-marker { display: none; }
+.cand-x2 > summary::before, .cand-x3 > summary::after { content: ""; flex: none; width: var(--suisou-size-14); height: var(--suisou-size-14); background: var(--suisou-accent); mask: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="m9 5 7 7-7 7"/%3E%3C/svg%3E') center / contain no-repeat; transition: rotate var(--suisou-motion-fast) var(--suisou-ease); }
+.cand-x3 > summary::after { margin-inline-start: auto; rotate: 90deg; }
+.cand-x2[open] > summary::before { rotate: 90deg; }
+.cand-x3[open] > summary::after { rotate: -90deg; }
