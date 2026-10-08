@@ -75,7 +75,7 @@ SEM_L = {
 }
 
 THEMES = [
-    {"name":"hadal",  "jp":"超深海層", "ladder":"dark", "h":286, "cs":0.006, "ar":0.85},
+    {"name":"hadal",  "jp":"超深海層", "ladder":"dark", "h":286, "cs":0.006, "ar":0.85, "lift":0.03},
 
     {"name":"trench", "jp":"海溝",     "ladder":"dark", "h":262, "cs":0.044, "ar":0.85},
 
@@ -117,16 +117,22 @@ PAIRS = [
     ("text-main","selected-neutral-hover-surface",4.5),
 ]
 
+def ladder(t):
+    D = dict(LADDERS[t["ladder"]])
+    for k in ("bg", "panel", "item", "tint"):
+        D[k] = round(D[k] + t.get("lift", 0), 3)
+    return D
+
 def resolve_text_main(t):
 
-    L = LADDERS[t["ladder"]]["text-main"]
+    L = ladder(t)["text-main"]
     while L > 0.80 and not in_gamut(L, t["cs"], t["h"]):
         L -= 0.005
     return round(L, 3)
 
 def resolve_hover(t):
 
-    D = LADDERS[t["ladder"]]
+    D = ladder(t)
 
     faces = ["bg"] + SURFACES + ["tint"]
     L = D["tint"]
@@ -160,7 +166,7 @@ def resolve_line(t, face_L, ratio):
 
 def resolve_tint(t, h, floor):
 
-    D = LADDERS[t["ladder"]]
+    D = ladder(t)
     L, ceil = D["tint"], maxC(D["tint"], h)
     ok = lambda C: (min(dE((L, C, h), face(D[s], t)) for s in SURFACES) >= floor
                     and dE((L, C, h), face(L, t)) >= FLOOR["tintHue"])
@@ -174,7 +180,7 @@ def resolve_tint(t, h, floor):
 
 def tint_reaches(t, h, floor):
 
-    D = LADDERS[t["ladder"]]
+    D = ladder(t)
     L = D["tint"]
     C = resolve_tint(t, h, floor)
     return min(dE((L, C, h), face(D[s], t)) for s in SURFACES) >= floor - 1e-9
@@ -183,7 +189,7 @@ def sem_ratio(ar):
     return min(0.95, ar + SEM_OFFSET)
 
 def tokens(t, acc_name, acc_h):
-    D = LADDERS[t["ladder"]]
+    D = ladder(t)
     o = {}
     for k in ["bg","panel","item","line-weak","line-strong","text-disabled","text-sub"]:
         o[k] = face(D[k], t)
@@ -222,8 +228,8 @@ def accent_issues(t, acc_name, acc_h):
     k = tokens(t, acc_name, acc_h)
     bad = []
     if not tint_reaches(t, acc_h, FLOOR["selected"]):
-        d = min(dE((LADDERS[t["ladder"]]["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h),
-                   (LADDERS[t["ladder"]][sf], t["cs"], t["h"])) for sf in SURFACES)
+        d = min(dE((ladder(t)["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h),
+                   (ladder(t)[sf], t["cs"], t["h"])) for sf in SURFACES)
         bad.append(f"選択の tint が surface と近い ΔE {d:.3f}（目標 {FLOOR['selected']}）")
     for st in ("accent", "accent-active"):
 
