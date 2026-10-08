@@ -64,10 +64,7 @@
   background: var(--suisou-selected-surface);
 }
 :where([data-suisou-body] button, [data-suisou-button])[aria-pressed="true"]:where(:hover) {
-  background: var(--suisou-selected-neutral-hover-surface);
-}
-[data-suisou~="accent"]:where([data-suisou-body] button, [data-suisou-button]):where([aria-pressed="true"]):where(:hover) {
-  background: var(--suisou-selected-hover-surface);
+  background-image: linear-gradient(var(--suisou-hover-surface), var(--suisou-hover-surface));
 }
 
 [data-suisou-button~="icon"] {
