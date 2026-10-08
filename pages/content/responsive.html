@@ -1,0 +1,45 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1 data-suisou="mt-3 mb-4">Responsive</h1>
+  <h2>Responsiveの適用</h2>
+  <p>値の前に <code>s:</code> / <code>m:</code> / <code>l:</code> を付けると、その画面幅以上のときだけ当たります<br><code>s</code> は 768px、<code>m</code> は 1024px、<code>l</code> は 1280px です</p>
+  <pre><code>&lt;div data-suisou-layout="stack s:row"&gt;</code></pre>
+  <hr>
+  <div data-suisou-layout="stack s:row">
+    <div data-suisou-item>1</div>
+    <div data-suisou-item>2</div>
+    <div data-suisou-item>3</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="stack s:row"&gt;
+  &lt;div data-suisou-item&gt;1&lt;/div&gt;
+  &lt;div data-suisou-item&gt;2&lt;/div&gt;
+  &lt;div data-suisou-item&gt;3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <p data-suisou-text="fs-14 s:fs-20 m:fs-28">画面幅で大きさが変わる文字</p>
+  <pre><code>&lt;p data-suisou-text="fs-14 s:fs-20 m:fs-28"&gt;画面幅で大きさが変わる文字&lt;/p&gt;</code></pre>
+  <h2>狭いときだけ</h2>
+  <p><code>hidden</code> と <code>invisible</code> は、<code>s&gt;</code> / <code>m&gt;</code> / <code>l&gt;</code> で、その幅より狭いときだけ当たります</p>
+  <p data-suisou="s>hidden">スマホでは消える文</p>
+  <p data-suisou="s:hidden">PC では消える文</p>
+  <pre><code>&lt;p data-suisou="s&gt;hidden"&gt;スマホでは消える文&lt;/p&gt;
+&lt;p data-suisou="s:hidden"&gt;PC では消える文&lt;/p&gt;</code></pre>
+  <h2>使える値</h2>
+  <p>layout / text / data-suisou / body で使えます</p>
+  <table>
+    <thead><tr><th>属性</th><th>値</th></tr></thead>
+    <tbody>
+      <tr><td><code>data-suisou-layout</code></td><td><code>stack</code> <code>row</code> <code>grid</code> <code>wrap</code> <code>grow</code> <code>stretch</code> <code>center</code> <code>middle</code> <code>end</code> <code>between</code></td></tr>
+      <tr><td><code>data-suisou-text</code></td><td><code>fs-12</code> <code>fs-14</code> <code>fs-16</code> <code>fs-20</code> <code>fs-24</code> <code>fs-28</code> <code>fs-32</code></td></tr>
+      <tr><td><code>data-suisou</code></td><td><code>min-screen</code> <code>scroll-y</code> <code>scroll-x</code> <code>hidden</code> <code>invisible</code></td></tr>
+      <tr><td><code>data-suisou-body</code></td><td><code>dock</code></td></tr>
+    </tbody>
+  </table>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>s:</code> <code>m:</code> <code>l:</code></td><td>画面幅が 768 / 1024 / 1280px 以上のときだけ当たる（<code>@media (width &gt;= 768px)</code> など）。前置きの無い値はすべての幅に当たり、前置きの付いた値がその幅から上書きする</td></tr>
+      <tr><td><code>s&gt;</code> <code>m&gt;</code> <code>l&gt;</code></td><td>画面幅が 768 / 1024 / 1280px より狭いときだけ当たる（<code>@media (width &lt; 768px)</code> など）。<code>hidden</code> と <code>invisible</code> だけで使える</td></tr>
+    </tbody>
+  </table>
+</div>
