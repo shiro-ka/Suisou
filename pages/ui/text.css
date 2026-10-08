@@ -80,10 +80,11 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
 [data-suisou-text~="toc"] :where(li li li) { font-size: var(--suisou-size-12); line-height: var(--suisou-lh-12); }
 [data-suisou-text~="toc"] :where(li) > :where(a, span) {
   display: block;
-  padding-block: var(--suisou-space-1);
+  padding-block: calc((var(--suisou-control) - 1lh) / 2);
   color: var(--suisou-text-sub);
   text-decoration: none;
 }
+[data-suisou-text~="toc"] :where(li li li) > :where(a, span) { padding-block: calc((var(--suisou-control) - var(--suisou-space-1) - 1lh) / 2); }
 [data-suisou-text~="toc"] :where(li) > :where(a):hover { color: var(--suisou-text-main); }
 [data-suisou-text~="toc"] :where(li) > :where(a[aria-current]:not([aria-current="false"])) { color: var(--suisou-accent); }
 [data-suisou-text~="toc"] :where(li:not(li li))::before,
@@ -91,7 +92,7 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
   content: "";
   position: absolute;
   inset-inline-start: 4px;
-  top: calc(var(--suisou-space-1) + (1lh - 8px) / 2);
+  top: calc((var(--suisou-control) - 8px) / 2);
   width: 8px;
   height: 8px;
   border-radius: var(--suisou-radius-pill);
@@ -100,7 +101,7 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
 [data-suisou-text~="toc"] :where(li:not(li li))::before { background: var(--suisou-line-strong); }
 [data-suisou-text~="toc"] :where(li li:not(li li li))::before {
   inset-inline-start: 5px;
-  top: calc(var(--suisou-space-1) + (1lh - 6px) / 2);
+  top: calc((var(--suisou-control) - 6px) / 2);
   width: 6px;
   height: 6px;
   border: 1.5px solid var(--suisou-line-strong);
@@ -111,8 +112,8 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
   content: "";
   position: absolute;
   inset-inline-start: 7px;
-  top: calc(var(--suisou-space-1) + (1lh + 8px) / 2 + 4px);
-  bottom: calc(4px - var(--suisou-space-1) - (1lh - 8px) / 2);
+  top: calc((var(--suisou-control) + 8px) / 2 + 4px);
+  bottom: calc(4px - (var(--suisou-control) - 8px) / 2);
   width: 2px;
   border-radius: var(--suisou-radius-pill);
   background: var(--suisou-line-weak);
