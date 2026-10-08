@@ -74,8 +74,9 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
 
 [data-suisou-text*="fs-"], [data-suisou-text~="typeset"] { font-size: var(--suisou-type-size); line-height: var(--suisou-type-lh); }
 [data-suisou-text~="typeset"] { line-height: calc(var(--suisou-type-lh) + 0.25rem); }
+[data-suisou-text~="toc"] { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); }
 [data-suisou-text~="toc"]:where(ul), [data-suisou-text~="toc"] :where(ul) { list-style: none; margin: 0; padding: 0; }
-[data-suisou-text~="toc"] :where(li) { position: relative; padding-inline-start: 20px; }
+[data-suisou-text~="toc"] :where(li) { position: relative; margin: 0; padding-inline-start: 20px; }
 [data-suisou-text~="toc"] :where(li li li) { font-size: var(--suisou-size-12); line-height: var(--suisou-lh-12); }
 [data-suisou-text~="toc"] :where(li) > :where(a, span) {
   display: block;
