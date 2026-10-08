@@ -32,4 +32,4 @@ body > header, body > nav[popover] { padding: var(--suisou-space-3); }
 
 .muted { color: var(--suisou-text-sub); }
 
-main [data-suisou-text~="typeset"] > h1 { margin-block: 1rem 2rem; }
+main > [data-suisou-text~="typeset"] > h1 { margin-block: 1rem 2rem; }
