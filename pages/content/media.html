@@ -42,48 +42,5 @@
     </tbody>
   </table>
   <h3>CSS</h3>
-  <pre><code>[data-suisou-item~="media"] {
-  display: flex;
-  gap: var(--suisou-space-2);
-  align-items: flex-start;
-}
-
-[data-suisou-item~="media-figure"] {
-  flex: none;
-  display: flex;
-  align-items: center;
-  min-height: var(--suisou-lh-14);
-  object-fit: cover;
-}
-
-[data-suisou-item~="media-content"] {
-  flex: 1 1 auto;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--suisou-space-1);
-}
-
-[data-suisou-item~="media-tail"] { flex: none; }
-
-[data-suisou-item~="media-content"] :where(header) {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--suisou-space-2);
-}
-:where([data-suisou-item~="media-content"] header &gt; :first-child) {
-  font-size: var(--suisou-size-14);
-  line-height: var(--suisou-lh-14);
-  font-weight: 700;
-}
-:where([data-suisou-item~="media-content"] header &gt; :not(:first-child)) {
-  font-size: var(--suisou-size-12);
-  line-height: var(--suisou-lh-12);
-  color: var(--suisou-text-sub);
-}
-[data-suisou-item~="media-content"] :where(p) {
-  font-size: var(--suisou-size-14);
-  line-height: var(--suisou-lh-14);
-}</code></pre>
+  <pre><code data-css="ui/item.css" data-css-only="media media-figure media-content media-tail"></code></pre>
 </div>

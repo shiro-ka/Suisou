@@ -40,33 +40,5 @@
     </tbody>
   </table>
   <h3>CSS</h3>
-  <pre><code>[data-suisou-item~="tag"] {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--suisou-space-1);
-
-  font-size: var(--suisou-size-12);
-  line-height: var(--suisou-lh-12);
-  padding: 0 var(--suisou-space-2);
-  border-radius: var(--suisou-radius-pill);
-
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
-  color: var(--suisou-text-sub);
-  background: transparent;
-  transition: color var(--suisou-motion-fast) var(--suisou-ease),
-              border-color var(--suisou-motion-fast) var(--suisou-ease);
-}
-
-[data-suisou-item~="tag"]:where([data-suisou-item~="accent"])  { border-color: var(--suisou-accent);  color: var(--suisou-accent); }
-[data-suisou-item~="tag"]:where([data-suisou-item~="error"])   { border-color: var(--suisou-error);   color: var(--suisou-error); }
-[data-suisou-item~="tag"]:where([data-suisou-item~="warning"]) { border-color: var(--suisou-warning); color: var(--suisou-warning); }
-[data-suisou-item~="tag"]:where([data-suisou-item~="success"]) { border-color: var(--suisou-success); color: var(--suisou-success); }
-
-[data-suisou-item~="tag"]:where(a, button):where(:hover) { background: var(--suisou-hover-surface); }
-
-[data-suisou-item~="tag"] &gt; svg {
-  width: var(--suisou-icon-small);
-  height: var(--suisou-icon-small);
-  flex: none;
-}</code></pre>
+  <pre><code data-css="ui/item.css" data-css-only="tag"></code></pre>
 </div>

@@ -83,40 +83,5 @@
     </tbody>
   </table>
   <h3>CSS</h3>
-  <pre><code>[data-suisou-item~="field"] {
-  display: flex;
-  align-items: stretch;
-  border-radius: var(--suisou-radius);
-  overflow: hidden;
-  background: var(--suisou-next, var(--suisou-item));
-  --suisou-line-weak: var(--suisou-line-weak-next, var(--suisou-line-weak-item));
-  --suisou-line-strong: var(--suisou-line-strong-next, var(--suisou-line-strong-item));
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
-}
-[data-suisou-item~="field"] &gt; :where(input, textarea, select) {
-  block-size: auto;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  flex: 1 1 auto;
-  min-width: 0;
-}
-[data-suisou-item~="field"] &gt; :where(input, textarea, select):focus-visible { outline: none; }
-[data-suisou-item~="field"]:has(&gt; :is(input, textarea, select):focus-visible) {
-  outline: var(--suisou-focus);
-  outline-offset: 2px;
-}
-[data-suisou-item~="field"] &gt; :where(button) { border: 0; border-radius: 0; }
-[data-suisou-item~="field"] &gt; :where(button):focus-visible { outline-offset: -2px; }
-[data-suisou-item~="field"]:where(:has(&gt; :is(input, textarea, select)[aria-invalid="true"])) { border-color: var(--suisou-error); }
-[data-suisou-item~="field"]:where(:has(&gt; :is(input, textarea, select):is(:disabled, [aria-disabled="true"]))) {
-  border-color: var(--suisou-line-weak);
-  background: transparent;
-}
-[data-suisou-item~="field"] &gt; :where(span) {
-  align-self: center;
-  padding-inline-start: var(--suisou-space-2);
-  color: var(--suisou-text-sub);
-  white-space: nowrap;
-}</code></pre>
+  <pre><code data-css="ui/item.css" data-css-only="field"></code></pre>
 </div>

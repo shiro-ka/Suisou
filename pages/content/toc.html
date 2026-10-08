@@ -105,48 +105,5 @@
     </tbody>
   </table>
   <h3>CSS</h3>
-  <pre><code>[data-suisou-text~="toc"] { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); }
-[data-suisou-text~="toc"]:where(ul), [data-suisou-text~="toc"] :where(ul) { list-style: none; margin: 0; padding: 0; }
-[data-suisou-text~="toc"] :where(li) { position: relative; margin: 0; padding-inline-start: 20px; }
-[data-suisou-text~="toc"] :where(li li li) { font-size: var(--suisou-size-12); line-height: var(--suisou-lh-12); }
-[data-suisou-text~="toc"] :where(li) &gt; :where(a, span) {
-  display: block;
-  padding-block: calc((var(--suisou-control) - 1lh) / 2);
-  color: var(--suisou-text-sub);
-  text-decoration: none;
-}
-[data-suisou-text~="toc"] :where(li li li) &gt; :where(a, span) { padding-block: calc((var(--suisou-control) - var(--suisou-space-1) - 1lh) / 2); }
-[data-suisou-text~="toc"] :where(li) &gt; :where(a):hover { color: var(--suisou-text-main); }
-[data-suisou-text~="toc"] :where(li) &gt; :where(a[aria-current]:not([aria-current="false"])) { color: var(--suisou-accent); }
-[data-suisou-text~="toc"] :where(li:not(li li))::before,
-[data-suisou-text~="toc"] :where(li li:not(li li li))::before {
-  content: "";
-  position: absolute;
-  inset-inline-start: 4px;
-  top: calc((var(--suisou-control) - 8px) / 2);
-  width: 8px;
-  height: 8px;
-  border-radius: var(--suisou-radius-pill);
-  box-sizing: border-box;
-}
-[data-suisou-text~="toc"] :where(li:not(li li))::before { background: var(--suisou-line-strong); }
-[data-suisou-text~="toc"] :where(li li:not(li li li))::before {
-  inset-inline-start: 5px;
-  top: calc((var(--suisou-control) - 6px) / 2);
-  width: 6px;
-  height: 6px;
-  border: 1.5px solid var(--suisou-line-strong);
-}
-[data-suisou-text~="toc"] :where(li:not(li li)):has(&gt; a[aria-current]:not([aria-current="false"]))::before { background: var(--suisou-accent); }
-[data-suisou-text~="toc"] :where(li li:not(li li li)):has(&gt; a[aria-current]:not([aria-current="false"]))::before { border-color: var(--suisou-accent); }
-[data-suisou-text~="toc"] :where(li:not(li li)):not(:last-child)::after {
-  content: "";
-  position: absolute;
-  inset-inline-start: 7px;
-  top: calc((var(--suisou-control) + 8px) / 2 + 4px);
-  bottom: calc(4px - (var(--suisou-control) - 8px) / 2);
-  width: 2px;
-  border-radius: var(--suisou-radius-pill);
-  background: var(--suisou-line-weak);
-}</code></pre>
+  <pre><code data-css="ui/text.css" data-css-only="toc"></code></pre>
 </div>
