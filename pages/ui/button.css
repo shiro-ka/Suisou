@@ -1,5 +1,5 @@
 :where([data-suisou-body] button, [data-suisou-button]) {
-  padding: calc((var(--suisou-control) - 1lh) / 2 - 1px) var(--suisou-space-2);
+  padding: calc((var(--suisou-button-height) - 1lh) / 2 - 1px) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
 
   background: transparent;
@@ -71,7 +71,7 @@
 }
 
 [data-suisou-button~="icon"] {
-  padding: calc((var(--suisou-control) - var(--suisou-icon)) / 2 - 1px);
+  padding: calc((var(--suisou-button-height) - var(--suisou-icon)) / 2 - 1px);
 }
 
 [data-suisou-button~="block"] {
