@@ -105,7 +105,7 @@ ACCENTS = [("clown",55),("turtle",122),("teal",188),("jelly",212),("blue",255),
 ACCENT_JP = {"clown":"カクレクマノミ", "turtle":"ウミガメ", "jelly":"クラゲ",
              "coral":"サンゴ", "seal":"アザラシ"}
 
-FLOOR = {"hover":0.03, "selected":0.055, "semantic":0.055, "textSub":0.08, "tintHue":0.05}
+FLOOR = {"selected":0.055, "semantic":0.055, "textSub":0.08, "tintHue":0.05}
 SEM_OFFSET = 0.15
 ACTIVE_DL  = -0.03
 SCRIM_ALPHA = 0.72
@@ -133,8 +133,8 @@ PAIRS = [
     ("error","error-surface",4.5),
     ("error-active","error-surface",3.0),
     ("accent-active","selected-surface",3.0),
-    ("text-main","selected-hover-surface",4.5),
-    ("text-main","selected-neutral-hover-surface",4.5),
+    ("text-main","hover-on-selected",4.5),
+    ("text-main","hover-on-selected-neutral",4.5),
 ]
 
 def ladder(t):
@@ -149,13 +149,6 @@ def resolve_text_main(t):
     while L > 0.80 and not in_gamut(L, t["cs"], t["h"]):
         L -= 0.005
     return round(L, 3)
-
-def resolve_selected_hover(c):
-
-    L, C, h = c
-    while dE((L, min(C, maxC(L, h)), h), c) < FLOOR["hover"]:
-        L += 0.001
-    return (round(L, 3), min(C, maxC(L, h)), h)
 
 LINE_WEAK_RATIO = 1.51
 
@@ -217,8 +210,8 @@ def tokens(t, acc_name, acc_h):
 
     o["selected-surface"] = (D["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h)
     o["selected-neutral-surface"] = face(D["tint"], t)
-    o["selected-hover-surface"] = resolve_selected_hover(o["selected-surface"])
-    o["selected-neutral-hover-surface"] = resolve_selected_hover(o["selected-neutral-surface"])
+    o["hover-on-selected"] = over(o["hover-surface"], HOVER_ALPHA, o["selected-surface"])
+    o["hover-on-selected-neutral"] = over(o["hover-surface"], HOVER_ALPHA, o["selected-neutral-surface"])
     sr = sem_ratio(t["ar"])
     for n, h in SEM_HUE.items():
         L = SEM_L[t["ladder"]][n]
@@ -322,7 +315,7 @@ def solve():
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-THEME_TOKENS = ["bg", "panel", "item", "hover-surface", "selected-neutral-surface", "selected-neutral-hover-surface",
+THEME_TOKENS = ["bg", "panel", "item", "hover-surface", "selected-neutral-surface",
                 "line-weak", "line-weak-panel", "line-weak-item",
                 "line-strong", "line-strong-panel", "line-strong-item",
                 "text-disabled", "text-sub", "text-main",
@@ -330,7 +323,7 @@ THEME_TOKENS = ["bg", "panel", "item", "hover-surface", "selected-neutral-surfac
                 "error", "warning", "success",
                 "error-active",
                 "error-surface", "warning-surface", "success-surface"]
-ACCENT_TOKENS = ["accent", "accent-active", "selected-surface", "selected-hover-surface"]
+ACCENT_TOKENS = ["accent", "accent-active", "selected-surface"]
 
 DEFAULT_THEME  = "hadal"
 DEFAULT_ACCENT = "jelly"
