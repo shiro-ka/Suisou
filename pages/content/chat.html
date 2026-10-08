@@ -1,23 +1,11 @@
-<div class="demo-app">
+<div data-suisou-layout="stack grow" data-suisou="p-3">
 
-  <div data-suisou-layout="stack s:row grow">
+  <header data-suisou-tray data-suisou-layout="row between">
+    <span data-suisou-text="fs-16 fw-700">#general</span>
+    <span data-suisou-text="fs-12 sub">4 人がオンライン</span>
+  </header>
 
-    <nav data-suisou="scroll-y" data-suisou-layout="stack" data-suisou-tray class="gap-1 demo-aside">
-      <div data-suisou-text="fs-12 fw-700" class="muted">テキストチャンネル</div>
-      <button data-suisou-button="block" aria-pressed="true" type="button">#general</button>
-      <button data-suisou-button="block" type="button">#random</button>
-      <button data-suisou-button="block" type="button">#wixoss</button>
-      <button data-suisou-button="block" type="button">#suisou</button>
-    </nav>
-
-    <div data-suisou-layout="stack grow">
-
-    <header data-suisou-layout="row" data-suisou-tray>
-      <span data-suisou-layout="grow" data-suisou-text="fs-16 fw-700">#general</span>
-      <span data-suisou-text="fs-12 fw-400" class="muted">4 人がオンライン</span>
-    </header>
-
-    <div data-suisou="scroll-y" data-suisou-layout="stack grow" data-suisou-tray class="gap-1">
+  <div data-suisou-tray data-suisou-layout="stack grow" data-suisou="scroll-y">
       <div data-suisou-item="media">
         <div data-suisou-item="media-figure circle">し</div>
         <div data-suisou-item="media-content">
@@ -43,7 +31,7 @@
         <div data-suisou-item="media-figure circle">あ</div>
         <div data-suisou-item="media-content">
           <header><span>相棒</span><span>09:21</span></header>
-          <p>明るさは動かさず、面の色相のまま暗い側へ下げています。<code data-suisou-code>FLOOR["hover"]</code> = 0.03 を満たす最大の L です</p>
+          <p>明るさは動かさず、面の色相のまま暗い側へ下げています。FLOOR["hover"] = 0.03 を満たす最大の L です</p>
         </div>
       </div>
       <div data-suisou-item="media">
@@ -53,14 +41,13 @@
           <p>属性でいこう。やっぱ見た目尖ってるしキレイだわ</p>
         </div>
       </div>
-      </div>
-
-    <div data-suisou-layout="row" data-suisou-tray>
-      <input data-suisou-layout="grow" placeholder="#general へメッセージを送信">
-      <button data-suisou-button="icon" type="button" aria-label="送信"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14l11 -11" /><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></svg></button>
-    </div>
-
-    </div>
-
   </div>
+
+  <div data-suisou-tray>
+    <div data-suisou-item="field">
+      <input placeholder="#general へメッセージを送信">
+      <button data-suisou-button="icon" aria-label="送信"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l11 -11" /><path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></svg></button>
+    </div>
+  </div>
+
 </div>

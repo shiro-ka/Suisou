@@ -1,6 +1,3 @@
-.demo-aside { width: 100%; }
-@media (width >= 768px) { .demo-aside { width: 200px; } }
-
 .demo-app {
   display: flex;
   flex-direction: column;
