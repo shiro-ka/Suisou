@@ -1,23 +1,152 @@
 <div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
   <h1>Toc</h1>
-  <h2>候補</h2>
-  <p data-suisou-text="sub fs-12">決まった形（1・2段目 32px / 3段目 28px）</p>
-  <div>
-    <ul data-suisou-text="toc">
-      <li><a href="#toc">準備するもの</a></li>
-      <li><a href="#toc" aria-current="true">立ち上げの手順</a>
-        <ul>
-          <li><a href="#toc">1日目</a></li>
-          <li><a href="#toc" aria-current="true">2日目〜1週間</a>
-            <ul>
-              <li><a href="#toc">水換え</a></li>
-              <li><a href="#toc">苔が出たら</a></li>
-              <li><a href="#toc">魚を入れる</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li><span>おまけ</span></li>
-    </ul>
-  </div>
+  <h2>Tocの適用</h2>
+  <p><code>&lt;ul&gt;</code> の <code>data-suisou-text</code> に <code>toc</code> を追加すると、目次になります</p>
+  <pre><code>&lt;ul data-suisou-text="toc"&gt;</code></pre>
+  <hr>
+  <ul data-suisou-text="toc">
+    <li><a href="#toc">準備するもの</a></li>
+    <li><a href="#toc">立ち上げの手順</a>
+      <ul>
+        <li><a href="#toc">1日目</a></li>
+        <li><a href="#toc">2日目〜1週間</a></li>
+      </ul>
+    </li>
+    <li><a href="#toc">入れた生体</a></li>
+  </ul>
+  <pre><code>&lt;ul data-suisou-text="toc"&gt;
+  &lt;li&gt;&lt;a href="#toc"&gt;準備するもの&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#toc"&gt;立ち上げの手順&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#toc"&gt;1日目&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#toc"&gt;2日目〜1週間&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href="#toc"&gt;入れた生体&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  <h2>階層</h2>
+  <p><code>&lt;ul&gt;</code> を入れ子にすると、3段階まで表示されます</p>
+  <ul data-suisou-text="toc">
+    <li><a href="#toc">立ち上げの手順</a>
+      <ul>
+        <li><a href="#toc">1日目</a></li>
+        <li><a href="#toc">2日目〜1週間</a>
+          <ul>
+            <li><a href="#toc">水換え</a></li>
+            <li><a href="#toc">苔が出たら</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#toc">入れた生体</a></li>
+  </ul>
+  <pre><code>&lt;ul data-suisou-text="toc"&gt;
+  &lt;li&gt;&lt;a href="#toc"&gt;立ち上げの手順&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#toc"&gt;1日目&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#toc"&gt;2日目〜1週間&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="#toc"&gt;水換え&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#toc"&gt;苔が出たら&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href="#toc"&gt;入れた生体&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  <h2>現在のコンテンツ</h2>
+  <p>リンクに <code>aria-current</code> を付けると、色が変わります</p>
+  <ul data-suisou-text="toc">
+    <li><a href="#toc">準備するもの</a></li>
+    <li><a href="#toc">立ち上げの手順</a>
+      <ul>
+        <li><a href="#toc">1日目</a></li>
+        <li><a href="#toc" aria-current="true">2日目〜1週間</a></li>
+      </ul>
+    </li>
+  </ul>
+  <pre><code>&lt;ul data-suisou-text="toc"&gt;
+  &lt;li&gt;&lt;a href="#toc"&gt;準備するもの&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="#toc"&gt;立ち上げの手順&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#toc"&gt;1日目&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#toc" aria-current="true"&gt;2日目〜1週間&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  <h2>リンクでない項目</h2>
+  <p><code>&lt;a&gt;</code> の代わりに <code>&lt;span&gt;</code> で書くと、押せない見出しになります</p>
+  <ul data-suisou-text="toc">
+    <li><span>立ち上げ</span>
+      <ul>
+        <li><a href="#toc">準備するもの</a></li>
+        <li><a href="#toc">手順</a></li>
+      </ul>
+    </li>
+    <li><a href="#toc">入れた生体</a></li>
+  </ul>
+  <pre><code>&lt;ul data-suisou-text="toc"&gt;
+  &lt;li&gt;&lt;span&gt;立ち上げ&lt;/span&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#toc"&gt;準備するもの&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#toc"&gt;手順&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href="#toc"&gt;入れた生体&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>toc</code></td><td>入れ子の <code>&lt;ul&gt;</code> を目次にする。<code>&lt;ul&gt;</code> 自身にも、包む要素（<code>&lt;nav&gt;</code> など）にも付けられ、何段目かは <code>&lt;li&gt;</code> の入れ子の深さで決まる。1段目は 14px・塗りの丸、2段目は 14px・中抜きの丸、3段目は 12px・印なし。行の高さは 1・2段目 32px、3段目 28px。1段目の丸を縦線でつなぐ。文字は sub の色で、マウスを乗せると濃くなる</td></tr>
+      <tr><td><code>aria-current</code></td><td><code>"false"</code> 以外の値を付けたリンクは、文字と丸がアクセント色になる。ページの目次なら <code>"page"</code>、ページ内の目次なら <code>"true"</code> や <code>"location"</code></td></tr>
+      <tr><td><code>&lt;span&gt;</code></td><td>押せない見出しとして、リンクと同じ位置・色で置く</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>[data-suisou-text~="toc"] { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); }
+[data-suisou-text~="toc"]:where(ul), [data-suisou-text~="toc"] :where(ul) { list-style: none; margin: 0; padding: 0; }
+[data-suisou-text~="toc"] :where(li) { position: relative; margin: 0; padding-inline-start: 20px; }
+[data-suisou-text~="toc"] :where(li li li) { font-size: var(--suisou-size-12); line-height: var(--suisou-lh-12); }
+[data-suisou-text~="toc"] :where(li) &gt; :where(a, span) {
+  display: block;
+  padding-block: calc((var(--suisou-control) - 1lh) / 2);
+  color: var(--suisou-text-sub);
+  text-decoration: none;
+}
+[data-suisou-text~="toc"] :where(li li li) &gt; :where(a, span) { padding-block: calc((var(--suisou-control) - var(--suisou-space-1) - 1lh) / 2); }
+[data-suisou-text~="toc"] :where(li) &gt; :where(a):hover { color: var(--suisou-text-main); }
+[data-suisou-text~="toc"] :where(li) &gt; :where(a[aria-current]:not([aria-current="false"])) { color: var(--suisou-accent); }
+[data-suisou-text~="toc"] :where(li:not(li li))::before,
+[data-suisou-text~="toc"] :where(li li:not(li li li))::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 4px;
+  top: calc((var(--suisou-control) - 8px) / 2);
+  width: 8px;
+  height: 8px;
+  border-radius: var(--suisou-radius-pill);
+  box-sizing: border-box;
+}
+[data-suisou-text~="toc"] :where(li:not(li li))::before { background: var(--suisou-line-strong); }
+[data-suisou-text~="toc"] :where(li li:not(li li li))::before {
+  inset-inline-start: 5px;
+  top: calc((var(--suisou-control) - 6px) / 2);
+  width: 6px;
+  height: 6px;
+  border: 1.5px solid var(--suisou-line-strong);
+}
+[data-suisou-text~="toc"] :where(li:not(li li)):has(&gt; a[aria-current]:not([aria-current="false"]))::before { background: var(--suisou-accent); }
+[data-suisou-text~="toc"] :where(li li:not(li li li)):has(&gt; a[aria-current]:not([aria-current="false"]))::before { border-color: var(--suisou-accent); }
+[data-suisou-text~="toc"] :where(li:not(li li)):not(:last-child)::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 7px;
+  top: calc((var(--suisou-control) + 8px) / 2 + 4px);
+  bottom: calc(4px - (var(--suisou-control) - 8px) / 2);
+  width: 2px;
+  border-radius: var(--suisou-radius-pill);
+  background: var(--suisou-line-weak);
+}</code></pre>
 </div>
