@@ -46,3 +46,5 @@ main [data-suisou-text~="typeset"] > h1 { margin-block: 1rem 2rem; }
 .cand-x3 > summary::after { margin-inline-start: auto; rotate: 90deg; }
 .cand-x2[open] > summary::before { rotate: 90deg; }
 .cand-x3[open] > summary::after { rotate: -90deg; }
+@keyframes cand-x-open { from { opacity: 0; translate: 0 -0.25rem; } }
+.cand-x[open]::details-content { animation: cand-x-open var(--suisou-motion) var(--suisou-ease); }
