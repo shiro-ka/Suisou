@@ -16,6 +16,4 @@
   color: var(--suisou-text-sub);
 }
 
-.demo-check { flex: none; width: 14px; height: 14px; margin: 0; }
-
 .muted { color: var(--suisou-text-sub); }
