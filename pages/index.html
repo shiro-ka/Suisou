@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://suisou.pages.dev/v3/suisou.css">
+<script>try { const t = localStorage.getItem('suisou-theme'); if (t) document.documentElement.dataset.suisouTheme = t; } catch (e) {}</script>
 
 
 </head>
@@ -19,9 +20,13 @@
 
 <header data-suisou-layout="row between" data-suisou="p-3">
   <a href="#import" data-suisou-text="fs-16 fw-700">Suisou</a>
-  <button data-suisou-button="icon" data-suisou="m:invisible" popovertarget="menu">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M15 4v16" /><path d="M10 10l-2 2l2 2" /></svg>
-  </button>
+  <div data-suisou-layout="row">
+    <select class="theme-primary" aria-label="プライマリテーマ"></select>
+    <select class="theme-accent" aria-label="アクセントテーマ"></select>
+    <button data-suisou-button="icon" data-suisou="m:invisible" popovertarget="menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /><path d="M15 4v16" /><path d="M10 10l-2 2l2 2" /></svg>
+    </button>
+  </div>
 </header>
 
 <main data-suisou-layout="stack"></main>
@@ -80,6 +85,7 @@
   </ul>
 </nav>
 
+<script src="suisou.data.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
