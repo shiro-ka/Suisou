@@ -108,6 +108,7 @@
 [data-suisou-text~="typeset"] :where(code) {
   font-family: var(--suisou-mono);
   font-size: 0.9em;
+  white-space: nowrap;
   background: var(--suisou-item);
   border-radius: var(--suisou-radius-small);
   padding: 0 var(--suisou-space-1);
@@ -205,6 +206,7 @@
 
 [data-suisou-text~="typeset"] :where(pre) :where(code) {
   font-size: inherit;
+  white-space: inherit;
   background: none;
   border-radius: 0;
   padding: 0;
