@@ -33,11 +33,3 @@ body > header, body > nav[popover] { padding: var(--suisou-space-3); }
 .muted { color: var(--suisou-text-sub); }
 
 main [data-suisou-text~="typeset"] > h1 { margin-block: 1rem 2rem; }
-
-.cand-d1 { row-gap: var(--suisou-space-2); }
-.cand-d2, .cand-d3, .cand-d4 { display: block; }
-.cand-d2 dd, .cand-d3 dd, .cand-d4 dd { margin: var(--suisou-space-1) 0 0; padding-inline-start: var(--suisou-space-4); }
-.cand-d2 dt + dd ~ dt, .cand-d3 dt + dd ~ dt, .cand-d4 dt + dd ~ dt { margin-block-start: var(--suisou-space-3); }
-.cand-d3 dd { border-inline-start: 2px solid var(--suisou-line-weak); margin-inline-start: 0.375rem; padding-inline-start: calc(var(--suisou-space-4) - 0.375rem - 2px); }
-.cand-d4 dt { color: var(--suisou-text-main); position: relative; padding-inline-start: var(--suisou-space-4); }
-.cand-d4 dt::before { content: ""; position: absolute; inset-inline-start: 4px; top: calc((1lh - 8px) / 2); width: 8px; height: 8px; border-radius: var(--suisou-radius-pill); background: var(--suisou-accent); }

@@ -62,12 +62,9 @@
   color: var(--suisou-text-sub);
 }
 
-[data-suisou-text~="typeset"] :where(dl) {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--suisou-space-1) var(--suisou-space-3);
-}
 [data-suisou-text~="typeset"] :where(dt) { color: var(--suisou-text-sub); font-weight: 700; }
+[data-suisou-text~="typeset"] :where(dd) { margin-block-start: var(--suisou-space-1); padding-inline-start: var(--suisou-space-4); }
+[data-suisou-text~="typeset"] :where(dd + dt) { margin-block-start: var(--suisou-space-3); }
 
 [data-suisou-text~="typeset"] :where(blockquote) {
   position: relative;
