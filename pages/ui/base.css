@@ -18,7 +18,7 @@
   --suisou-radius: 0.5rem;
   --suisou-radius-pill: 999px;
   --suisou-font: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-  --suisou-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --suisou-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --suisou-focus: 2px solid var(--suisou-accent);
   --suisou-motion-fast: 120ms;
   --suisou-motion: 200ms;
