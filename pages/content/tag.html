@@ -10,22 +10,22 @@
   <p><code>accent</code> / <code>error</code> / <code>warning</code> / <code>success</code> を追加すると、色が変わります</p>
   <div data-suisou-layout="row wrap">
     <span data-suisou-item="tag">タグ</span>
-    <span data-suisou-item="tag accent">accent</span>
-    <span data-suisou-item="tag error">error</span>
-    <span data-suisou-item="tag warning">warning</span>
-    <span data-suisou-item="tag success">success</span>
+    <span data-suisou="accent" data-suisou-item="tag">accent</span>
+    <span data-suisou="error" data-suisou-item="tag">error</span>
+    <span data-suisou="warning" data-suisou-item="tag">warning</span>
+    <span data-suisou="success" data-suisou-item="tag">success</span>
   </div>
   <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
   &lt;span data-suisou-item="tag"&gt;タグ&lt;/span&gt;
-  &lt;span data-suisou-item="tag accent"&gt;accent&lt;/span&gt;
-  &lt;span data-suisou-item="tag error"&gt;error&lt;/span&gt;
-  &lt;span data-suisou-item="tag warning"&gt;warning&lt;/span&gt;
-  &lt;span data-suisou-item="tag success"&gt;success&lt;/span&gt;
+  &lt;span data-suisou="accent" data-suisou-item="tag"&gt;accent&lt;/span&gt;
+  &lt;span data-suisou="error" data-suisou-item="tag"&gt;error&lt;/span&gt;
+  &lt;span data-suisou="warning" data-suisou-item="tag"&gt;warning&lt;/span&gt;
+  &lt;span data-suisou="success" data-suisou-item="tag"&gt;success&lt;/span&gt;
 &lt;/div&gt;</code></pre>
   <h2>アイコン</h2>
   <p>中に <code>svg</code> を置くと、大きさが調整されます</p>
-  <p><span data-suisou-item="tag success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>確認済み</span></p>
-  <pre><code>&lt;span data-suisou-item="tag success"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M4 12l5 5L20 6"/&gt;&lt;/svg&gt;確認済み&lt;/span&gt;</code></pre>
+  <p><span data-suisou="success" data-suisou-item="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>確認済み</span></p>
+  <pre><code>&lt;span data-suisou="success" data-suisou-item="tag"&gt;&lt;svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M4 12l5 5L20 6"/&gt;&lt;/svg&gt;確認済み&lt;/span&gt;</code></pre>
   <h2>リンク・ボタン</h2>
   <p><code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> をタグにすることもできます</p>
   <p><button data-suisou-item="tag">タグ</button></p>
@@ -36,7 +36,7 @@
     <thead><tr><th>Value</th><th>Function</th></tr></thead>
     <tbody>
       <tr><td><code>tag</code></td><td>行の中に置く小さいラベルにする。文字は 12px の薄い色、細い罫線、角は丸く、背景は無い。横の余白は 8px。直下の <code>&lt;svg&gt;</code> は 16px になり、文字との間は 4px。<code>&lt;a&gt;</code> <code>&lt;button&gt;</code> では、マウスを乗せると背景が付く</td></tr>
-      <tr><td><code>accent</code> <code>error</code> <code>warning</code> <code>success</code></td><td><code>tag</code> と一緒に使う。罫線と文字をその色にする</td></tr>
+      <tr><td><code>data-suisou</code> の色の語</td><td><code>accent</code> <code>error</code> <code>warning</code> <code>success</code> で、罫線と文字をその色にする。<code>sub</code> は既定と同じ</td></tr>
     </tbody>
   </table>
   <h3>CSS</h3>

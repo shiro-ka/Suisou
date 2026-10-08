@@ -1,4 +1,5 @@
 @property --suisou-bd-style { syntax: "*"; inherits: false; }
+@property --suisou-color-text { syntax: "*"; inherits: false; }
 
 [data-suisou~="w-full"] { width: 100%; }
 
@@ -11,6 +12,13 @@
 [data-suisou~="bd-dash"] { --suisou-bd-style: dashed; }
 
 [data-suisou~="bg-none"] { background: transparent; }
+
+[data-suisou~="sub"]:where(:not(:disabled, [aria-disabled="true"]))     { color: var(--suisou-color-text, var(--suisou-text-sub)); }
+[data-suisou~="accent"]:where(:not(:disabled, [aria-disabled="true"]))  { color: var(--suisou-color-text, var(--suisou-accent)); }
+[data-suisou~="success"]:where(:not(:disabled, [aria-disabled="true"])) { color: var(--suisou-color-text, var(--suisou-success)); }
+[data-suisou~="warning"]:where(:not(:disabled, [aria-disabled="true"])) { color: var(--suisou-color-text, var(--suisou-warning)); }
+[data-suisou~="error"]:where(:not(:disabled, [aria-disabled="true"]))   { color: var(--suisou-color-text, var(--suisou-error)); }
+
 [data-suisou~="p-0"]     { padding: 0; }
 [data-suisou~="p-1"]     { padding: var(--suisou-space-1); }
 [data-suisou~="p-2"]     { padding: var(--suisou-space-2); }

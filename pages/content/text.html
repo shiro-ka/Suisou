@@ -2,10 +2,10 @@
   <h1 data-suisou="mt-3 mb-4">Text</h1>
   <h2>Textの適用</h2>
   <p>要素に <code>data-suisou-text</code> を追加し、文字の見た目を変更できます</p>
-  <pre><code>&lt;p data-suisou-text="fs-20 fw-700 accent"&gt;</code></pre>
+  <pre><code>&lt;p data-suisou="accent" data-suisou-text="fs-20 fw-700"&gt;</code></pre>
   <hr>
-  <p data-suisou-text="fs-20 fw-700 accent">Text</p>
-  <pre><code>&lt;p data-suisou-text="fs-20 fw-700 accent"&gt;Text&lt;/p&gt;</code></pre>
+  <p data-suisou="accent" data-suisou-text="fs-20 fw-700">Text</p>
+  <pre><code>&lt;p data-suisou="accent" data-suisou-text="fs-20 fw-700"&gt;Text&lt;/p&gt;</code></pre>
   <h2>大きさ</h2>
   <p><code>fs-*</code> を追加すると、文字の大きさが変わります<br>値は <code>fs-12</code> / <code>fs-14</code> / <code>fs-16</code> / <code>fs-20</code> / <code>fs-24</code> / <code>fs-28</code> / <code>fs-32</code> があります</p>
   <div>
@@ -41,18 +41,18 @@
   <h2>色</h2>
   <p><code>sub</code> / <code>accent</code> / <code>success</code> / <code>warning</code> / <code>error</code> を追加すると、文字の色が変わります</p>
   <div data-suisou-layout="row wrap">
-    <span data-suisou-text="sub">sub</span>
-    <span data-suisou-text="accent">accent</span>
-    <span data-suisou-text="success">success</span>
-    <span data-suisou-text="warning">warning</span>
-    <span data-suisou-text="error">error</span>
+    <span data-suisou="sub">sub</span>
+    <span data-suisou="accent">accent</span>
+    <span data-suisou="success">success</span>
+    <span data-suisou="warning">warning</span>
+    <span data-suisou="error">error</span>
   </div>
   <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
-  &lt;span data-suisou-text="sub"&gt;sub&lt;/span&gt;
-  &lt;span data-suisou-text="accent"&gt;accent&lt;/span&gt;
-  &lt;span data-suisou-text="success"&gt;success&lt;/span&gt;
-  &lt;span data-suisou-text="warning"&gt;warning&lt;/span&gt;
-  &lt;span data-suisou-text="error"&gt;error&lt;/span&gt;
+  &lt;span data-suisou="sub"&gt;sub&lt;/span&gt;
+  &lt;span data-suisou="accent"&gt;accent&lt;/span&gt;
+  &lt;span data-suisou="success"&gt;success&lt;/span&gt;
+  &lt;span data-suisou="warning"&gt;warning&lt;/span&gt;
+  &lt;span data-suisou="error"&gt;error&lt;/span&gt;
 &lt;/div&gt;</code></pre>
   <h2>寄せ</h2>
   <p><code>start</code> / <code>center</code> / <code>end</code> を追加すると、行の中で文字を寄せる位置が変わります</p>
@@ -79,11 +79,11 @@
   <p>確認しました <svg data-suisou-text viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg></p>
   <pre><code>&lt;p&gt;確認しました &lt;svg data-suisou-text viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M5 12l5 5 9-10"/&gt;&lt;/svg&gt;&lt;/p&gt;</code></pre>
   <div data-suisou-layout="row wrap">
-    <button><svg data-suisou-text="accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg>保存</button>
+    <button><svg data-suisou="accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg>保存</button>
     <button><svg data-suisou-text="fs-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg>保存</button>
   </div>
   <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
-  &lt;button&gt;&lt;svg data-suisou-text="accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M5 12l5 5 9-10"/&gt;&lt;/svg&gt;保存&lt;/button&gt;
+  &lt;button&gt;&lt;svg data-suisou="accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M5 12l5 5 9-10"/&gt;&lt;/svg&gt;保存&lt;/button&gt;
   &lt;button&gt;&lt;svg data-suisou-text="fs-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"&gt;&lt;path d="M5 12l5 5 9-10"/&gt;&lt;/svg&gt;保存&lt;/button&gt;
 &lt;/div&gt;</code></pre>
   <h2>Reference</h2>
@@ -94,7 +94,6 @@
       <tr><td><code>fs-12</code> <code>fs-14</code> <code>fs-16</code> <code>fs-20</code> <code>fs-24</code> <code>fs-28</code> <code>fs-32</code></td><td>文字の大きさと行の高さを変える。数字はルートの文字が 16px のときの px</td></tr>
       <tr><td><code>s:</code> <code>m:</code> <code>l:</code></td><td>値の前に付けると、768 / 1024 / 1280px 以上でだけ効く。<code>fs-*</code> に付けられる</td></tr>
       <tr><td><code>fw-400</code> <code>fw-500</code> <code>fw-700</code></td><td>文字の太さを変える</td></tr>
-      <tr><td><code>sub</code> <code>accent</code> <code>success</code> <code>warning</code> <code>error</code></td><td>文字をその色にする。<code>disabled</code> <code>aria-disabled="true"</code> の要素には当たらない</td></tr>
       <tr><td><code>start</code> <code>center</code> <code>end</code></td><td>行の中で文字を寄せる位置を変える</td></tr>
       <tr><td><code>one-line</code></td><td>文字を1行に収め、はみ出した分を … にする。flex の子でも縮む</td></tr>
       <tr><td><code>link</code></td><td>下線を付け、マウスを乗せるとアクセント色にする。画像だけのリンクには下線を付けない</td></tr>

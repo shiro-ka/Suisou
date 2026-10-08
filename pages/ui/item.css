@@ -144,10 +144,10 @@
               border-color var(--suisou-motion-fast) var(--suisou-ease);
 }
 
-[data-suisou-item~="tag"]:where([data-suisou-item~="accent"])  { border-color: var(--suisou-accent);  color: var(--suisou-accent); }
-[data-suisou-item~="tag"]:where([data-suisou-item~="error"])   { border-color: var(--suisou-error);   color: var(--suisou-error); }
-[data-suisou-item~="tag"]:where([data-suisou-item~="warning"]) { border-color: var(--suisou-warning); color: var(--suisou-warning); }
-[data-suisou-item~="tag"]:where([data-suisou-item~="success"]) { border-color: var(--suisou-success); color: var(--suisou-success); }
+[data-suisou-item~="tag"]:where([data-suisou~="accent"])  { border-color: var(--suisou-accent); }
+[data-suisou-item~="tag"]:where([data-suisou~="error"])   { border-color: var(--suisou-error); }
+[data-suisou-item~="tag"]:where([data-suisou~="warning"]) { border-color: var(--suisou-warning); }
+[data-suisou-item~="tag"]:where([data-suisou~="success"]) { border-color: var(--suisou-success); }
 
 [data-suisou-item~="tag"]:where(a, button):where(:hover) { background: var(--suisou-hover-surface); }
 
@@ -165,8 +165,10 @@
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2) var(--suisou-space-3);
   color: var(--suisou-text-main);
+  --suisou-color-text: var(--suisou-text-main);
 }
 
-[data-suisou-item~="notice"]:where([data-suisou-item~="error"])   { border-color: var(--suisou-error);   background: var(--suisou-error-surface); }
-[data-suisou-item~="notice"]:where([data-suisou-item~="warning"]) { border-color: var(--suisou-warning); background: var(--suisou-warning-surface); }
-[data-suisou-item~="notice"]:where([data-suisou-item~="success"]) { border-color: var(--suisou-success); background: var(--suisou-success-surface); }
+[data-suisou-item~="notice"]:where([data-suisou~="accent"])  { border-color: var(--suisou-accent);  background: var(--suisou-selected-surface); }
+[data-suisou-item~="notice"]:where([data-suisou~="error"])   { border-color: var(--suisou-error);   background: var(--suisou-error-surface); }
+[data-suisou-item~="notice"]:where([data-suisou~="warning"]) { border-color: var(--suisou-warning); background: var(--suisou-warning-surface); }
+[data-suisou-item~="notice"]:where([data-suisou~="success"]) { border-color: var(--suisou-success); background: var(--suisou-success-surface); }
