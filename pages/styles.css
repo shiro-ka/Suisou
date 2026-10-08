@@ -33,19 +33,3 @@ body > header, body > nav[popover] { padding: var(--suisou-space-3); }
 .muted { color: var(--suisou-text-sub); }
 
 main > [data-suisou-text~="typeset"] > h1 { margin-block: 1rem 2rem; }
-
-.cand-tb [data-suisou-text~="toc"] :where(li) > :where(a, span) { padding-block: 4px; }
-.cand-tb [data-suisou-text~="toc"] :where(li li li) > :where(a, span) { padding-block: 6px; }
-.cand-tb [data-suisou-text~="toc"] :where(li:not(li li))::before { top: calc(4px + (1lh - 8px) / 2); }
-.cand-tb [data-suisou-text~="toc"] :where(li li:not(li li li))::before { top: calc(4px + (1lh - 6px) / 2); }
-.cand-tb [data-suisou-text~="toc"] :where(li:not(li li)):not(:last-child)::after { top: calc(4px + (1lh + 8px) / 2 + 4px); bottom: calc(4px - 4px - (1lh - 8px) / 2); }
-.cand-tc [data-suisou-text~="toc"] :where(li) > :where(a, span) { padding-block: 6px; }
-.cand-tc [data-suisou-text~="toc"] :where(li li li) > :where(a, span) { padding-block: 6px; }
-.cand-tc [data-suisou-text~="toc"] :where(li:not(li li))::before { top: calc(6px + (1lh - 8px) / 2); }
-.cand-tc [data-suisou-text~="toc"] :where(li li:not(li li li))::before { top: calc(6px + (1lh - 6px) / 2); }
-.cand-tc [data-suisou-text~="toc"] :where(li:not(li li)):not(:last-child)::after { top: calc(6px + (1lh + 8px) / 2 + 4px); bottom: calc(4px - 6px - (1lh - 8px) / 2); }
-.cand-td [data-suisou-text~="toc"] :where(li) > :where(a, span) { padding-block: 8px; }
-.cand-td [data-suisou-text~="toc"] :where(li li li) > :where(a, span) { padding-block: 6px; }
-.cand-td [data-suisou-text~="toc"] :where(li:not(li li))::before { top: calc(8px + (1lh - 8px) / 2); }
-.cand-td [data-suisou-text~="toc"] :where(li li:not(li li li))::before { top: calc(8px + (1lh - 6px) / 2); }
-.cand-td [data-suisou-text~="toc"] :where(li:not(li li)):not(:last-child)::after { top: calc(8px + (1lh + 8px) / 2 + 4px); bottom: calc(4px - 8px - (1lh - 8px) / 2); }
