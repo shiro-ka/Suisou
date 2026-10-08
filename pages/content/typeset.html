@@ -1,97 +1,485 @@
 <div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
-  <h1>60cm 水槽の立ち上げ記録</h1>
-  <p>引っ越しを機に、<strong>60cm 規格水槽</strong>をゼロから立ち上げた記録です。照明は <code>LED-600</code>、フィルターは外部式。<em>水草メイン</em>で、魚は後から少しずつ入れていきます。前の水槽の話は<a href="#typeset">こちらの記事</a>にまとめてあります。</p>
-  <p>段落が2つ続くときの間隔を見るための2段落目です。立ち上げは焦らないのが一番で、水ができる前に魚を入れると、だいたい失敗します。<small>※あくまで個人の記録です</small></p>
-  <h2>準備するもの</h2>
-  <p>最低限そろえたのは次のとおり。</p>
+  <h1>Typeset</h1>
+  <h2>Typesetの適用</h2>
+  <p>要素の <code>data-suisou-text</code> に <code>typeset</code> を追加すると、中の要素がドキュメントの見た目になります</p>
+  <pre><code>&lt;article data-suisou-text="typeset"&gt;</code></pre>
+  <hr>
+  <article data-suisou-text="typeset">
+    <h2>水換え</h2>
+    <p>最初の1週間は毎日半分を換えます。</p>
+    <ul>
+      <li>カルキ抜きを入れる</li>
+      <li>水温を合わせる</li>
+    </ul>
+  </article>
+  <pre><code>&lt;article data-suisou-text="typeset"&gt;
+  &lt;h2&gt;水換え&lt;/h2&gt;
+  &lt;p&gt;最初の1週間は毎日半分を換えます。&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;カルキ抜きを入れる&lt;/li&gt;
+    &lt;li&gt;水温を合わせる&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/article&gt;</code></pre>
+  <h2>見出し</h2>
+  <p><code>h1</code> 〜 <code>h4</code> が区別されます<br><code>h5</code>、<code>h6</code> は <code>h4</code> と同じ見た目になります</p>
+  <article data-suisou-text="typeset">
+    <h1>h1 見出し</h1>
+    <p>本文</p>
+    <h2>h2 見出し</h2>
+    <p>本文</p>
+    <h3>h3 見出し</h3>
+    <p>本文</p>
+    <h4>h4 見出し</h4>
+    <p>本文</p>
+  </article>
+  <pre><code>&lt;article data-suisou-text="typeset"&gt;
+  &lt;h1&gt;h1 見出し&lt;/h1&gt;
+  &lt;p&gt;本文&lt;/p&gt;
+  &lt;h2&gt;h2 見出し&lt;/h2&gt;
+  &lt;p&gt;本文&lt;/p&gt;
+  &lt;h3&gt;h3 見出し&lt;/h3&gt;
+  &lt;p&gt;本文&lt;/p&gt;
+  &lt;h4&gt;h4 見出し&lt;/h4&gt;
+  &lt;p&gt;本文&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+  <h2>文章</h2>
+  <h3>行内の要素</h3>
+  <p><code>strong</code> / <code>em</code> / <code>code</code> / <code>a</code> / <code>small</code> にスタイルが付きます</p>
+  <p><strong>60cm 規格水槽</strong>を<em>水草メイン</em>で立ち上げ、照明は <code>LED-600</code>。詳しくは<a href="#blog">記録</a>へ。<small>※個人の記録です</small></p>
+  <pre><code>&lt;p&gt;&lt;strong&gt;60cm 規格水槽&lt;/strong&gt;を&lt;em&gt;水草メイン&lt;/em&gt;で立ち上げ、照明は &lt;code&gt;LED-600&lt;/code&gt;。詳しくは&lt;a href="#blog"&gt;記録&lt;/a&gt;へ。&lt;small&gt;※個人の記録です&lt;/small&gt;&lt;/p&gt;</code></pre>
+  <h3>リスト</h3>
   <ul>
-    <li>水槽本体（60 × 30 × 36cm）</li>
+    <li>水槽本体</li>
     <li>外部フィルター
       <ul>
-        <li>ろ材はリング状のものとスポンジ</li>
-        <li>ホースは 12/16mm</li>
+        <li>ろ材</li>
+        <li>ホース</li>
       </ul>
     </li>
-    <li>ソイル 9L × 2袋。粒が細かいものを選ぶと、前景の草が根を張りやすく、植えるときにピンセットで押し込んでも浮いてきにくいので、少し高くてもこちらを選びました</li>
-    <li>カルキ抜き</li>
   </ul>
-  <h2>立ち上げの手順</h2>
-  <h3>1日目</h3>
+  <pre><code>&lt;ul&gt;
+  &lt;li&gt;水槽本体&lt;/li&gt;
+  &lt;li&gt;外部フィルター
+    &lt;ul&gt;
+      &lt;li&gt;ろ材&lt;/li&gt;
+      &lt;li&gt;ホース&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
   <ol>
-    <li>ソイルを敷き、奥が高くなるように傾斜を付ける</li>
+    <li>ソイルを敷く</li>
     <li>水を張る
       <ol>
-        <li>ビニールを敷いてから注ぐ</li>
-        <li>ソイルが舞わないよう、ゆっくり</li>
+        <li>ビニールを敷く</li>
+        <li>ゆっくり注ぐ</li>
       </ol>
     </li>
-    <li>フィルターを回す</li>
   </ol>
-  <p>リストの後に段落が来るとき。ここまでで半日かかりました。</p>
-  <h3>2日目〜1週間</h3>
-  <h4>水換え</h4>
-  <p>最初の1週間は毎日 1/2 を換えます。ソイルから栄養が溶け出すので、ここで抜いておかないと苔が出ます。</p>
-  <h4>苔が出たら</h4>
-  <p>立ち上げ直後に出る茶色い苔はほっておけば消えます。ガラス面に出る硬い緑の斑点は、スクレーパーで落とします。</p>
-  <h2>水質の目安</h2>
+  <pre><code>&lt;ol&gt;
+  &lt;li&gt;ソイルを敷く&lt;/li&gt;
+  &lt;li&gt;水を張る
+    &lt;ol&gt;
+      &lt;li&gt;ビニールを敷く&lt;/li&gt;
+      &lt;li&gt;ゆっくり注ぐ&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+  <h3>説明リスト</h3>
+  <dl>
+    <dt>ネオンテトラ</dt>
+    <dd>10匹。群れで泳ぐ。</dd>
+    <dt>オトシンクルス</dt>
+    <dd>2匹。ガラスの苔を食べる。</dd>
+  </dl>
+  <pre><code>&lt;dl&gt;
+  &lt;dt&gt;ネオンテトラ&lt;/dt&gt;
+  &lt;dd&gt;10匹。群れで泳ぐ。&lt;/dd&gt;
+  &lt;dt&gt;オトシンクルス&lt;/dt&gt;
+  &lt;dd&gt;2匹。ガラスの苔を食べる。&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+  <h3>区切り線</h3>
+  <article data-suisou-text="typeset">
+    <p>ここまでが本編です。</p>
+    <hr>
+    <p>ここからはおまけ。</p>
+  </article>
+  <pre><code>&lt;article data-suisou-text="typeset"&gt;
+  &lt;p&gt;ここまでが本編です。&lt;/p&gt;
+  &lt;hr&gt;
+  &lt;p&gt;ここからはおまけ。&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+  <h2>ブロック</h2>
+  <p><code>blockquote</code> / <code>figure</code> / <code>table</code> / <code>details</code> にスタイルが付きます</p>
+  <h3>引用</h3>
   <blockquote>
     <p>水を作るのではなく、バクテリアを育てるつもりで待つ。</p>
-    <p>引用が2段落あるときの見え方です。</p>
+    <p>ショップの店長の言葉です。</p>
   </blockquote>
-  <p>引用の後の段落。測った値は次の表のとおりです。</p>
-  <table>
-    <thead><tr><th>日数</th><th>pH</th><th>アンモニア</th><th>メモ</th></tr></thead>
-    <tbody>
-      <tr><td>1日目</td><td>6.4</td><td>0.5</td><td>水が少し白く濁る</td></tr>
-      <tr><td>7日目</td><td>6.6</td><td>0.2</td><td>表の中の行内コード <code>gap-4</code> と <code>data-suisou-layout</code> が折れるかどうか</td></tr>
-      <tr><td>14日目</td><td>6.8</td><td>0</td><td>セルの中身が長いときに、どう折り返すかを見るための長めの文章をここに入れておきます</td></tr>
-    </tbody>
-  </table>
-  <h3>表の後の見出し</h3>
-  <p>測定は試験紙で、毎朝同じ時間に。</p>
-  <h2>照明のタイマー</h2>
-  <p>点灯時間は1日8時間。スマートプラグの設定はこんな感じです。</p>
+  <pre><code>&lt;blockquote&gt;
+  &lt;p&gt;水を作るのではなく、バクテリアを育てるつもりで待つ。&lt;/p&gt;
+  &lt;p&gt;ショップの店長の言葉です。&lt;/p&gt;
+&lt;/blockquote&gt;</code></pre>
+  <h3>コードブロック</h3>
+  <p><code>&lt;figure&gt;</code> と <code>&lt;figcaption&gt;</code> で包むと、ヘッダーができます</p>
   <pre><code>{
   "on": "10:00",
-  "off": "18:00",
-  "note": "長い行がはみ出したときに横にスクロールするかを見るための、とても長い一行です。ここまで来ればたぶん画面からはみ出しています"
+  "off": "18:00"
 }</code></pre>
-  <p>ファイル名を付けたコードブロック。</p>
+  <pre><code>&lt;pre&gt;&lt;code&gt;{
+  "on": "10:00",
+  "off": "18:00"
+}&lt;/code&gt;&lt;/pre&gt;</code></pre>
   <figure>
     <figcaption>timer.json</figcaption>
     <pre><code>{
-  "days": ["mon", "wed", "fri"],
   "duration": "8h"
 }</code></pre>
   </figure>
-  <h3>pre の後の見出し</h3>
-  <p>点灯時間を延ばすと苔が増えるので、草の様子を見ながら少しずつ。</p>
-  <h2>入れた生体</h2>
-  <dl>
-    <dt>ネオンテトラ</dt>
-    <dd>10匹。群れで泳ぐのを見たくて。</dd>
-    <dt>オトシンクルス</dt>
-    <dd>2匹。ガラスの苔を食べる係。</dd>
-    <dt>ヤマトヌマエビ</dt>
-    <dd>5匹。説明が長くなったときに、dd の中身がどう折り返して、dt との並びがどう見えるかを確かめるための文章です。</dd>
-  </dl>
-  <figure>
-    <img src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320"%3E%3Cdefs%3E%3ClinearGradient id="w" x1="0" y1="0" x2="0" y2="1"%3E%3Cstop offset="0" stop-color="%237cc4e0"/%3E%3Cstop offset="1" stop-color="%231d5f86"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="640" height="320" fill="url(%23w)"/%3E%3Cpath d="M0 270 Q160 250 320 268 T640 262 V320 H0Z" fill="%23d9c79a"/%3E%3Cg fill="none" stroke="%23e8f6fc" stroke-width="3" opacity=".8"%3E%3Ccircle cx="120" cy="200" r="10"/%3E%3Ccircle cx="140" cy="150" r="7"/%3E%3Ccircle cx="128" cy="105" r="5"/%3E%3Ccircle cx="470" cy="180" r="9"/%3E%3Ccircle cx="486" cy="120" r="6"/%3E%3C/g%3E%3Cpath d="M300 270 C290 220 320 190 305 140 M330 270 C340 230 315 200 335 160" stroke="%233f8f4f" stroke-width="8" fill="none" stroke-linecap="round"/%3E%3C/svg%3E' alt="水草の生えた水槽の絵">
-    <figcaption>立ち上げから1か月の様子（イメージ）</figcaption>
-  </figure>
-  <p>画像の後の段落です。下は figure で包まない画像。</p>
-  <img src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320"%3E%3Cdefs%3E%3ClinearGradient id="w" x1="0" y1="0" x2="0" y2="1"%3E%3Cstop offset="0" stop-color="%237cc4e0"/%3E%3Cstop offset="1" stop-color="%231d5f86"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="640" height="320" fill="url(%23w)"/%3E%3Cpath d="M0 270 Q160 250 320 268 T640 262 V320 H0Z" fill="%23d9c79a"/%3E%3Cg fill="none" stroke="%23e8f6fc" stroke-width="3" opacity=".8"%3E%3Ccircle cx="120" cy="200" r="10"/%3E%3Ccircle cx="140" cy="150" r="7"/%3E%3Ccircle cx="128" cy="105" r="5"/%3E%3Ccircle cx="470" cy="180" r="9"/%3E%3Ccircle cx="486" cy="120" r="6"/%3E%3C/g%3E%3Cpath d="M300 270 C290 220 320 190 305 140 M330 270 C340 230 315 200 335 160" stroke="%233f8f4f" stroke-width="8" fill="none" stroke-linecap="round"/%3E%3C/svg%3E' alt="水草の生えた水槽の絵">
-  <p>縦長の画像（スマホのスクショのような 9:16）。</p>
-  <img src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640"%3E%3Crect width="360" height="640" fill="%23e9f4f8"/%3E%3Crect width="360" height="56" fill="%231d6fa5"/%3E%3Crect x="16" y="20" width="120" height="16" rx="8" fill="%23ffffff" opacity=".85"/%3E%3Cg fill="%23ffffff" stroke="%23c9dde6"%3E%3Crect x="16" y="76" width="328" height="96" rx="12"/%3E%3Crect x="16" y="188" width="328" height="96" rx="12"/%3E%3Crect x="16" y="300" width="328" height="96" rx="12"/%3E%3Crect x="16" y="412" width="328" height="96" rx="12"/%3E%3C/g%3E%3Cg fill="%237cc4e0"%3E%3Ccircle cx="56" cy="124" r="24"/%3E%3Ccircle cx="56" cy="236" r="24"/%3E%3Ccircle cx="56" cy="348" r="24"/%3E%3Ccircle cx="56" cy="460" r="24"/%3E%3C/g%3E%3Cg fill="%23b7cbd4"%3E%3Crect x="96" y="108" width="180" height="12" rx="6"/%3E%3Crect x="96" y="132" width="120" height="10" rx="5"/%3E%3Crect x="96" y="220" width="200" height="12" rx="6"/%3E%3Crect x="96" y="244" width="100" height="10" rx="5"/%3E%3Crect x="96" y="332" width="160" height="12" rx="6"/%3E%3Crect x="96" y="356" width="140" height="10" rx="5"/%3E%3Crect x="96" y="444" width="190" height="12" rx="6"/%3E%3Crect x="96" y="468" width="110" height="10" rx="5"/%3E%3C/g%3E%3Crect y="584" width="360" height="56" fill="%23ffffff"/%3E%3Crect x="140" y="604" width="80" height="16" rx="8" fill="%231d6fa5"/%3E%3C/svg%3E' alt="記録アプリの画面のスクリーンショット">
-  <hr>
-  <p>区切り線の後の段落です。ここからはおまけ。</p>
+  <pre><code>&lt;figure&gt;
+  &lt;figcaption&gt;timer.json&lt;/figcaption&gt;
+  &lt;pre&gt;&lt;code&gt;{
+  "duration": "8h"
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/figure&gt;</code></pre>
+  <h3>表</h3>
+  <table>
+    <thead>
+      <tr><th>日数</th><th>pH</th><th>メモ</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1日目</td><td>6.4</td><td>水が少し白く濁る</td></tr>
+      <tr><td>7日目</td><td>6.6</td><td>苔が出始める</td></tr>
+      <tr><td>14日目</td><td>6.8</td><td>水が澄む</td></tr>
+    </tbody>
+  </table>
+  <pre><code>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;日数&lt;/th&gt;&lt;th&gt;pH&lt;/th&gt;&lt;th&gt;メモ&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;1日目&lt;/td&gt;&lt;td&gt;6.4&lt;/td&gt;&lt;td&gt;水が少し白く濁る&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;7日目&lt;/td&gt;&lt;td&gt;6.6&lt;/td&gt;&lt;td&gt;苔が出始める&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;14日目&lt;/td&gt;&lt;td&gt;6.8&lt;/td&gt;&lt;td&gt;水が澄む&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+  <h3>開閉</h3>
   <details>
     <summary>失敗したこと</summary>
     <p>最初の週に魚を入れて全滅させかけました。</p>
   </details>
-  <p>行内の要素をまとめて: <strong>strong</strong> / <b>b</b> / <em>em</em> / <code>code</code> / <a href="#typeset">リンク</a> / <a href="#typeset"><code>コードのリンク</code></a> / <small>small</small> / <kbd>Ctrl</kbd> + <kbd>C</kbd> / H<sub>2</sub>O / 10<sup>3</sup> / <mark>mark</mark></p>
-  <p>長い URL: https://suisou.pages.dev/content/typeset.html?from=aquarium-setup-record-2026-10-07&amp;section=lighting-timer-settings</p>
-  <hr>
-  <h2>区切り線の後の見出し</h2>
-  <p>最後の段落です。</p>
+  <pre><code>&lt;details&gt;
+  &lt;summary&gt;失敗したこと&lt;/summary&gt;
+  &lt;p&gt;最初の週に魚を入れて全滅させかけました。&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+  <details open>
+    <summary>失敗したこと</summary>
+    <p>最初の週に魚を入れて全滅させかけました。</p>
+  </details>
+  <pre><code>&lt;details open&gt;
+  &lt;summary&gt;失敗したこと&lt;/summary&gt;
+  &lt;p&gt;最初の週に魚を入れて全滅させかけました。&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+  <h2>画像</h2>
+  <p>画像は中央に置かれます<br><code>&lt;figure&gt;</code> と <code>&lt;figcaption&gt;</code> で包むと、キャプションが付きます</p>
+  <figure>
+    <img src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 320"%3E%3Cdefs%3E%3ClinearGradient id="w" x1="0" y1="0" x2="0" y2="1"%3E%3Cstop offset="0" stop-color="%237cc4e0"/%3E%3Cstop offset="1" stop-color="%231d5f86"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="640" height="320" fill="url(%23w)"/%3E%3Cpath d="M0 270 Q160 250 320 268 T640 262 V320 H0Z" fill="%23d9c79a"/%3E%3Cg fill="none" stroke="%23e8f6fc" stroke-width="3" opacity=".8"%3E%3Ccircle cx="120" cy="200" r="10"/%3E%3Ccircle cx="140" cy="150" r="7"/%3E%3Ccircle cx="128" cy="105" r="5"/%3E%3Ccircle cx="470" cy="180" r="9"/%3E%3Ccircle cx="486" cy="120" r="6"/%3E%3C/g%3E%3Cpath d="M300 270 C290 220 320 190 305 140 M330 270 C340 230 315 200 335 160" stroke="%233f8f4f" stroke-width="8" fill="none" stroke-linecap="round"/%3E%3C/svg%3E' alt="水草の生えた水槽の絵">
+    <figcaption>立ち上げから1か月の様子</figcaption>
+  </figure>
+  <pre><code>&lt;figure&gt;
+  &lt;img src="aquarium.png" alt="水草の生えた水槽の絵"&gt;
+  &lt;figcaption&gt;立ち上げから1か月の様子&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>typeset</code></td><td>中の要素を長文の見た目にする。本文 14px・行の高さ 24px。<code>fs-*</code> を一緒に書くと本文の文字だけが変わり、見出しや隙間は変わらない</td></tr>
+    </tbody>
+  </table>
+  <h3>Elements</h3>
+  <table>
+    <thead><tr><th>Element</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>h1</code> 〜 <code>h4</code></td><td>24 / 20 / 16 / 14px の太字。<code>h2</code> 〜 <code>h4</code> は左に帯（<code>h2</code> 塗り、<code>h3</code> 中抜き、<code>h4</code> 薄い罫）。<code>h5</code> <code>h6</code> は <code>h4</code> と同じ</td></tr>
+      <tr><td><code>p</code> <code>ul</code> <code>ol</code> <code>dl</code></td><td>前に 8px。リストは左に 24px 字下げ、項目の間 4px</td></tr>
+      <tr><td><code>h2</code></td><td>前に 48px、後に 16px</td></tr>
+      <tr><td><code>h3</code></td><td>前に 24px（見出しの直後は 16px）</td></tr>
+      <tr><td><code>h4</code> 〜 <code>h6</code></td><td>前に 16px</td></tr>
+      <tr><td><code>strong</code> <code>b</code></td><td>太字</td></tr>
+      <tr><td><code>code</code></td><td>等幅・背景付き。途中で折り返さない</td></tr>
+      <tr><td><code>a</code></td><td>下線。マウスを乗せるとアクセント色。画像だけのリンクには下線を付けない</td></tr>
+      <tr><td><code>small</code></td><td>12px</td></tr>
+      <tr><td><code>dt</code> <code>dd</code></td><td><code>dt</code> は sub の色の太字、<code>dd</code> はその下に 24px 字下げ。組の間 16px</td></tr>
+      <tr><td><code>hr</code></td><td>薄い罫線。前後 16px</td></tr>
+      <tr><td><code>blockquote</code></td><td>罫線と角丸の囲い、左上に引用符のアイコン。文字は sub の色</td></tr>
+      <tr><td><code>pre</code></td><td>罫線と角丸の囲い、1行目にコードのアイコン。12px の等幅で、長い行は横にスクロール</td></tr>
+      <tr><td><code>figure</code> ＋ <code>figcaption</code> ＋ <code>pre</code></td><td><code>figure</code> が囲いを持ち、<code>figcaption</code> がアイコン付きのヘッダーになる</td></tr>
+      <tr><td><code>table</code></td><td>幅いっぱい・12px。<code>thead</code> の行に背景と上の角丸、<code>th</code> は折り返さない。行の間に罫線</td></tr>
+      <tr><td><code>details</code></td><td>罫線と角丸の囲い。<code>summary</code> は太字で左に矢印。開くと区切り線が付き、中身がふわっと出る</td></tr>
+      <tr><td><code>img</code> <code>video</code></td><td>中央に置き、幅 640px・高さ 480px（画面の高さの半分の方が小さければそちら）まで。角丸</td></tr>
+      <tr><td><code>figure</code> ＋ <code>figcaption</code></td><td>キャプションを画像の下 8px に 12px・sub の色・中央揃えで置く</td></tr>
+      <tr><td><code>blockquote</code> <code>pre</code> <code>table</code> <code>details</code> <code>figure</code> <code>img</code> <code>video</code></td><td>前後に 24px（<code>h2</code> の直後は 16px）</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>[data-suisou-text~="typeset"] :where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd,
+                                         pre, blockquote, table, figure, hr) {
+  margin: 0;
+}
+
+[data-suisou-text~="typeset"] :where(h1) { font-size: var(--suisou-size-24); line-height: var(--suisou-lh-24); font-weight: 700; }
+[data-suisou-text~="typeset"] :where(h2) { font-size: var(--suisou-size-20); line-height: var(--suisou-lh-20); font-weight: 700; }
+[data-suisou-text~="typeset"] :where(h3) { font-size: var(--suisou-size-16); line-height: var(--suisou-lh-16); font-weight: 700; }
+[data-suisou-text~="typeset"] :where(h4, h5, h6) { font-size: var(--suisou-size-14); line-height: var(--suisou-lh-14); font-weight: 700; }
+
+[data-suisou-text~="typeset"] :where(h2, h3, h4, h5, h6) { position: relative; padding-inline-start: calc(4px + var(--suisou-space-2) - 6px); }
+
+[data-suisou-text~="typeset"] :where(h2, h3, h4, h5, h6)::before {
+  content: "";
+  position: absolute;
+  top: 0.25em;
+  bottom: 0.25em;
+  inset-inline-start: -6px;
+  border-radius: var(--suisou-radius-pill);
+}
+
+[data-suisou-text~="typeset"] :where(h2)::before { width: 4px; background: var(--suisou-accent); }
+[data-suisou-text~="typeset"] :where(h3)::before { top: 0.375em; bottom: 0.375em; width: 5px; border: 1.5px solid var(--suisou-accent); box-sizing: border-box; }
+[data-suisou-text~="typeset"] :where(h4, h5, h6)::before { width: 3px; background: var(--suisou-line-weak); }
+
+[data-suisou-text~="typeset"] :where(small) { font-size: var(--suisou-size-12); line-height: calc(var(--suisou-lh-12) + 0.25rem); }
+[data-suisou-text~="typeset"] :where(strong, b) { font-weight: 700; }
+
+[data-suisou-text~="typeset"] &gt; :where(* + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-2); }
+[data-suisou-text~="typeset"] &gt; :where(* + :is(table, blockquote, pre, figure, img, video, details), :is(table, blockquote, pre, figure, img, video, details) + :is(p, ul, ol, dl, pre, blockquote, table, figure, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-4); }
+
+[data-suisou-text~="typeset"] &gt; :where(* + :is(h1, h2, h3, h4, h5, h6)) {
+  margin-block-start: var(--suisou-space-3);
+}
+[data-suisou-text~="typeset"] &gt; :where(* + h2) { margin-block-start: var(--suisou-space-5); }
+[data-suisou-text~="typeset"] &gt; :where(* + h3) { margin-block-start: var(--suisou-space-4); }
+[data-suisou-text~="typeset"] &gt; :where(:is(h1, h2, h3, h4, h5, h6) + h3) { margin-block-start: var(--suisou-space-3); }
+[data-suisou-text~="typeset"] &gt; :where(h2 + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-3); }
+
+[data-suisou-text~="typeset"] :where(hr) {
+  border: 0;
+  border-top: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+}
+[data-suisou-text~="typeset"] &gt; :where(hr),
+[data-suisou-text~="typeset"] &gt; :where(hr + :is(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, pre, blockquote, table, figure, hr, div, section, article, aside, details, img, video)) { margin-block-start: var(--suisou-space-3); }
+
+[data-suisou-text~="typeset"] :where(img, video) {
+  display: block;
+  width: auto;
+  max-width: min(100%, 40rem);
+  height: auto;
+  max-height: min(30rem, 50svh);
+  margin-inline: auto;
+  border-radius: var(--suisou-radius);
+}
+
+[data-suisou-text~="typeset"] :where(figure:not(:has(&gt; pre)) &gt; figcaption) {
+  margin-block-start: var(--suisou-space-2);
+  text-align: center;
+  font-size: var(--suisou-size-12);
+  line-height: calc(var(--suisou-lh-12) + 0.25rem);
+  color: var(--suisou-text-sub);
+}
+
+[data-suisou-text~="typeset"] :where(dt) { color: var(--suisou-text-sub); font-weight: 700; }
+[data-suisou-text~="typeset"] :where(dd) { margin-block-start: var(--suisou-space-1); padding-inline-start: var(--suisou-space-4); }
+[data-suisou-text~="typeset"] :where(dd + dt) { margin-block-start: var(--suisou-space-3); }
+
+[data-suisou-text~="typeset"] :where(blockquote) {
+  position: relative;
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+  padding: var(--suisou-space-2) var(--suisou-space-3) var(--suisou-space-2) calc(var(--suisou-space-2) * 2 + 1em);
+  color: var(--suisou-text-sub);
+}
+
+[data-suisou-text~="typeset"] :where(blockquote)::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: var(--suisou-space-2);
+  top: calc(var(--suisou-space-2) + (1lh - 1em) / 2);
+  width: 1em;
+  height: 1em;
+  background: var(--suisou-accent);
+  mask: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Ccircle cx="7" cy="15.5" r="3.2" fill="black" stroke="none"/%3E%3Cpath d="M4 15.5C4 10.5 6 7.5 9.5 6.5"/%3E%3Ccircle cx="17" cy="15.5" r="3.2" fill="black" stroke="none"/%3E%3Cpath d="M14 15.5C14 10.5 16 7.5 19.5 6.5"/%3E%3C/svg%3E') center / contain no-repeat;
+}
+
+[data-suisou-text~="typeset"] :where(blockquote) :where(p) + :where(p) {
+  margin-block-start: var(--suisou-space-2);
+}
+
+[data-suisou-text~="typeset"] :where(ul, ol) {
+  padding-inline-start: var(--suisou-space-4);
+}
+
+[data-suisou-text~="typeset"] :where(ul, ol) :where(li)::marker {
+  color: var(--suisou-text-sub);
+}
+
+[data-suisou-text~="typeset"] :where(ul, ol) :where(li) + :where(li) {
+  margin-block-start: var(--suisou-space-1);
+}
+
+[data-suisou-text~="typeset"] :where(ul, ol) :where(ul, ol) {
+  margin-block-start: var(--suisou-space-1);
+}
+
+[data-suisou-text~="typeset"] :where(code) {
+  font-family: var(--suisou-mono);
+  font-size: 0.9em;
+  white-space: nowrap;
+  background: var(--suisou-item);
+  border-radius: var(--suisou-radius-small);
+  padding: 0 var(--suisou-space-1);
+}
+
+[data-suisou-text~="typeset"] :where(pre) {
+  font-family: var(--suisou-mono);
+  font-size: var(--suisou-size-12);
+
+  line-height: var(--suisou-lh-14);
+
+  padding: var(--suisou-space-2);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+
+  overflow-x: auto;
+}
+
+[data-suisou-text~="typeset"] :where(pre)::before,
+[data-suisou-text~="typeset"] :where(figure:has(&gt; pre) &gt; figcaption)::before {
+  content: "";
+  width: var(--suisou-size-14);
+  background: var(--suisou-accent);
+  mask: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M7.5 4H7.0a2.5 2.5 0 0 0-2.5 2.5V9.5L1.5 12.0l3.0 2.5V17.5a2.5 2.5 0 0 0 2.5 2.5H7.5M16.5 4H17.0a2.5 2.5 0 0 1 2.5 2.5V9.5L22.5 12.0l-3.0 2.5V17.5a2.5 2.5 0 0 1-2.5 2.5H16.5"/%3E%3Ccircle cx="12.6" cy="8.5" r="1.9" fill="black" stroke="none"/%3E%3Ccircle cx="11.2" cy="15" r="1.3" fill="black" stroke="none"/%3E%3C/svg%3E') left center / var(--suisou-size-14) no-repeat;
+}
+
+[data-suisou-text~="typeset"] :where(pre)::before {
+  display: block;
+  position: sticky;
+  inset-inline-start: 0;
+  height: 1lh;
+  margin-block-end: var(--suisou-space-1);
+}
+
+[data-suisou-text~="typeset"] :where(figure:has(&gt; pre)) {
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+  overflow: hidden;
+}
+
+[data-suisou-text~="typeset"] :where(figure:has(&gt; pre) &gt; figcaption) {
+  display: flex;
+  align-items: center;
+  gap: var(--suisou-space-1);
+  padding: var(--suisou-space-1) var(--suisou-space-2);
+  border-bottom: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+  font-size: var(--suisou-size-12);
+  line-height: var(--suisou-lh-12);
+  color: var(--suisou-text-sub);
+}
+
+[data-suisou-text~="typeset"] :where(figure:has(&gt; pre) &gt; figcaption)::before { height: var(--suisou-size-14); flex: none; }
+
+[data-suisou-text~="typeset"] :where(figure:has(&gt; pre) &gt; pre) { border: 0; border-radius: 0; }
+
+[data-suisou-text~="typeset"] :where(figure:has(&gt; figcaption) &gt; pre)::before { content: none; }
+
+[data-suisou-text~="typeset"] :where(details) {
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+  border-radius: var(--suisou-radius);
+}
+
+[data-suisou-text~="typeset"] :where(details &gt; summary) {
+  display: flex;
+  align-items: center;
+  gap: var(--suisou-space-2);
+  padding: var(--suisou-space-2) var(--suisou-space-3);
+  list-style: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+[data-suisou-text~="typeset"] :where(details &gt; summary)::before {
+  content: "";
+  flex: none;
+  width: var(--suisou-size-14);
+  height: var(--suisou-size-14);
+  background: var(--suisou-accent);
+  mask: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="m9 5 7 7-7 7"/%3E%3C/svg%3E') center / contain no-repeat;
+  transition: rotate var(--suisou-motion-fast) var(--suisou-ease);
+}
+
+[data-suisou-text~="typeset"] :where(details[open] &gt; summary) { border-bottom: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
+[data-suisou-text~="typeset"] :where(details[open] &gt; summary)::before { rotate: 90deg; }
+
+[data-suisou-text~="typeset"] :where(details)::details-content { padding-inline: var(--suisou-space-3); }
+[data-suisou-text~="typeset"] :where(details[open])::details-content { animation: suisou-details-open var(--suisou-motion) var(--suisou-ease); }
+[data-suisou-text~="typeset"] :where(details &gt; :not(summary)) { margin-block: var(--suisou-space-2); }
+
+@keyframes suisou-details-open { from { opacity: 0; translate: 0 -0.25rem; } }
+
+@media (forced-colors: active) {
+  [data-suisou-text~="typeset"] :where(blockquote, pre, figure:has(&gt; pre) &gt; figcaption, details &gt; summary)::before { forced-color-adjust: none; background: CanvasText; }
+}
+
+[data-suisou-text~="typeset"] :where(pre) :where(code) {
+  font-size: inherit;
+  white-space: inherit;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+[data-suisou-text~="typeset"] :where(a) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--suisou-motion-fast) var(--suisou-ease);
+}
+
+[data-suisou-text~="typeset"] :where(a:hover) {
+  color: var(--suisou-accent);
+}
+
+[data-suisou-text~="typeset"] :where(a:has(&gt; img:only-child)) {
+  text-decoration: none;
+}
+
+[data-suisou-text~="typeset"] :where(table) {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--suisou-size-12);
+  line-height: calc(var(--suisou-lh-12) + 0.25rem);
+}
+
+[data-suisou-text~="typeset"] :where(table) :where(th, td) {
+  text-align: start;
+  vertical-align: top;
+  padding: var(--suisou-space-1) var(--suisou-space-2);
+  border-bottom: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+}
+
+[data-suisou-text~="typeset"] :where(table) :where(th) {
+  color: var(--suisou-text-sub);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+[data-suisou-text~="typeset"] :where(table) :where(thead th) {
+  border-bottom: 0;
+  background: var(--suisou-item);
+}
+
+[data-suisou-text~="typeset"] :where(table) :where(thead th:first-child) { border-start-start-radius: var(--suisou-radius); }
+[data-suisou-text~="typeset"] :where(table) :where(thead th:last-child) { border-start-end-radius: var(--suisou-radius); }
+
+[data-suisou-text~="typeset"] :where(table) :where(tbody tr:last-child) :where(th, td) { border-bottom: 0; }</code></pre>
 </div>
