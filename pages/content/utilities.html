@@ -70,9 +70,10 @@
   <p><button data-suisou-button="outline" data-suisou="w-full">w-full</button></p>
   <pre><code>&lt;p&gt;&lt;button data-suisou-button="outline" data-suisou="w-full"&gt;w-full&lt;/button&gt;&lt;/p&gt;</code></pre>
   <h3>コンテナ</h3>
-  <p><code>container-s</code> / <code>container-m</code> / <code>container-l</code> で、最大の幅を決めて中央に配置されます</p>
+  <p><code>container-s</code> / <code>container-m</code> / <code>container-l</code> で、最大の幅を決めて中央に配置されます<br><code>container</code> は、最大の幅が画面幅に合わせて変わります</p>
   <div data-suisou-item data-suisou="container-s">container-s</div>
   <pre><code>&lt;div data-suisou-item data-suisou="container-s"&gt;container-s&lt;/div&gt;</code></pre>
+  <pre><code>&lt;main data-suisou="container"&gt;</code></pre>
   <h3>最小の高さ</h3>
   <p><code>min-screen</code> で、min-height が画面の高さになります</p>
   <pre><code>&lt;main data-suisou="min-screen"&gt;</code></pre>
@@ -166,7 +167,7 @@
       <tr><td><code>bd-dash</code></td><td>罫線を点線にする（<code>--suisou-bd-style: dashed</code>）。部品の罫線にも当たる</td></tr>
       <tr><td><code>bg-none</code></td><td><code>background: transparent</code></td></tr>
       <tr><td><code>w-full</code></td><td><code>width: 100%</code></td></tr>
-      <tr><td><code>container</code></td><td><code>width: 100%</code>・<code>margin-inline: auto</code>・<code>max-width: clamp(46rem, 90vw, 80rem)</code></td></tr>
+      <tr><td><code>container</code></td><td><code>width: 100%</code>・<code>margin-inline: auto</code>・<code>max-width: clamp(46rem, 90vw, 80rem)</code>。最大の幅は最低 736px、ふだんは画面幅の 90%、最大 1280px。画面幅が基準なので、親が画面より狭い場所（サイドバーの内側など）では上限に届かず幅いっぱいになる</td></tr>
       <tr><td><code>container-s</code> <code>container-m</code> <code>container-l</code></td><td><code>max-width</code> 48rem / 64rem / 80rem（768 / 1024 / 1280px）。ほかは <code>container</code> と同じ</td></tr>
       <tr><td><code>min-screen</code></td><td><code>min-height: 100dvh</code></td></tr>
       <tr><td><code>scroll-y</code></td><td><code>overflow-y: auto</code>・<code>overflow-x: hidden</code>・<code>scrollbar-gutter: stable both-edges</code></td></tr>
