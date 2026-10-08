@@ -1,11 +1,11 @@
 :root {
-  --suisou-size-12: 0.75rem;   --suisou-lh-12: 1rem;
-  --suisou-size-14: 0.875rem;  --suisou-lh-14: 1.25rem;
-  --suisou-size-16: 1rem;      --suisou-lh-16: 1.5rem;
-  --suisou-size-20: 1.25rem;   --suisou-lh-20: 1.75rem;
-  --suisou-size-24: 1.5rem;    --suisou-lh-24: 2rem;
-  --suisou-size-28: 1.75rem;   --suisou-lh-28: 2.25rem;
-  --suisou-size-32: 2rem;      --suisou-lh-32: 2.25rem;
+  --suisou-fs-12: 0.75rem;   --suisou-lh-12: 1rem;
+  --suisou-fs-14: 0.875rem;  --suisou-lh-14: 1.25rem;
+  --suisou-fs-16: 1rem;      --suisou-lh-16: 1.5rem;
+  --suisou-fs-20: 1.25rem;   --suisou-lh-20: 1.75rem;
+  --suisou-fs-24: 1.5rem;    --suisou-lh-24: 2rem;
+  --suisou-fs-28: 1.75rem;   --suisou-lh-28: 2.25rem;
+  --suisou-fs-32: 2rem;      --suisou-lh-32: 2.25rem;
   --suisou-space-1: 0.25rem;
   --suisou-space-2: 0.5rem;
   --suisou-space-3: 1rem;
@@ -30,7 +30,7 @@
 }
 [data-suisou-body] {
   font-family: var(--suisou-font);
-  font-size: var(--suisou-size-14);
+  font-size: var(--suisou-fs-14);
   line-height: var(--suisou-lh-14);
   background: var(--suisou-bg);
   color: var(--suisou-text-main);
