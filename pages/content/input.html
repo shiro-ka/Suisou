@@ -22,12 +22,33 @@
   &lt;input aria-invalid="true"&gt;
   &lt;input disabled&gt;
 &lt;/div&gt;</code></pre>
+  <h2>チェックボックス・ラジオボタン</h2>
+  <p><code>type</code> が <code>checkbox</code> / <code>radio</code> の <code>&lt;input&gt;</code> は、チェックボックス / ラジオボタンになります</p>
+  <div data-suisou-layout="row wrap">
+    <label><input type="checkbox"> 未選択</label>
+    <label><input type="checkbox" checked> 選択</label>
+    <label><input type="checkbox" disabled> 無効</label>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;label&gt;&lt;input type="checkbox"&gt; 未選択&lt;/label&gt;
+  &lt;label&gt;&lt;input type="checkbox" checked&gt; 選択&lt;/label&gt;
+  &lt;label&gt;&lt;input type="checkbox" disabled&gt; 無効&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+  <div data-suisou-layout="row wrap">
+    <label><input type="radio" name="fish" checked> ネオンテトラ</label>
+    <label><input type="radio" name="fish"> オトシンクルス</label>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;label&gt;&lt;input type="radio" name="fish" checked&gt; ネオンテトラ&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="fish"&gt; オトシンクルス&lt;/label&gt;
+&lt;/div&gt;</code></pre>
   <h2>Reference</h2>
   <h3>Values</h3>
   <table>
     <thead><tr><th>Value</th><th>Function</th></tr></thead>
     <tbody>
-      <tr><td>なし</td><td><code>data-suisou-body</code> の中の <code>&lt;input&gt;</code> <code>&lt;textarea&gt;</code> <code>&lt;select&gt;</code> を入力欄にする。<code>&lt;input&gt;</code> の <code>type</code> が <code>checkbox</code>, <code>radio</code>, <code>range</code>, <code>color</code>, <code>file</code>, <code>submit</code>, <code>button</code>, <code>reset</code>, <code>image</code>, <code>hidden</code> のときはインプットになりません。高さ 32px、横の余白 8px、角丸、濃い罫線。背景は置いた場所より一段上の色。幅は指定しない。プレースホルダーは薄い文字。フォーカスで枠が付く。<code>aria-invalid="true"</code> で罫線を赤く、<code>disabled</code> <code>aria-disabled="true"</code> で文字と罫線を薄くして背景を消す</td></tr>
+      <tr><td>なし</td><td><code>data-suisou-body</code> の中の <code>&lt;input&gt;</code> <code>&lt;textarea&gt;</code> <code>&lt;select&gt;</code> を入力欄にする。<code>&lt;input&gt;</code> の <code>type</code> が <code>range</code>, <code>color</code>, <code>file</code>, <code>submit</code>, <code>button</code>, <code>reset</code>, <code>image</code>, <code>hidden</code> のときはインプットになりません。高さ 32px、横の余白 8px、角丸、濃い罫線。背景は置いた場所より一段上の色。幅は指定しない。プレースホルダーは薄い文字。フォーカスで枠が付く。<code>aria-invalid="true"</code> で罫線を赤く、<code>disabled</code> <code>aria-disabled="true"</code> で文字と罫線を薄くして背景を消す</td></tr>
+      <tr><td><code>checkbox</code> <code>radio</code></td><td><code>type</code> が <code>checkbox</code> / <code>radio</code> の <code>&lt;input&gt;</code> を 16px の枠にする（チェックボックスは角丸、ラジオボタンは丸）。選ぶと背景がアクセント色になり、印が出る。JS で <code>indeterminate</code> を付けたチェックボックスは横棒になる。マウスを乗せると枠がアクセント色、<code>disabled</code> で枠を薄くする</td></tr>
     </tbody>
   </table>
   <h3>CSS</h3>
@@ -63,5 +84,47 @@
   border-color: var(--suisou-line-weak);
   background: transparent;
   cursor: default;
+}
+
+:where([data-suisou-body] input:is([type="checkbox"], [type="radio"])) {
+  appearance: none;
+  display: inline-grid;
+  place-content: center;
+  flex: none;
+  inline-size: var(--suisou-icon-small);
+  block-size: var(--suisou-icon-small);
+  margin: 0;
+  vertical-align: -0.2em;
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  border-radius: var(--suisou-radius-small);
+  background: var(--suisou-next, var(--suisou-item));
+  cursor: pointer;
+  transition: background-color var(--suisou-motion-fast) var(--suisou-ease), border-color var(--suisou-motion-fast) var(--suisou-ease);
+}
+:where([data-suisou-body] input[type="radio"]) { border-radius: var(--suisou-radius-pill); }
+
+:where([data-suisou-body] input:is([type="checkbox"], [type="radio"]))::before {
+  content: "";
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  background: var(--suisou-bg);
+  scale: 0;
+  transition: scale var(--suisou-motion-fast) var(--suisou-ease);
+}
+:where([data-suisou-body] input[type="checkbox"])::before { mask: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M5 12.5l4.5 4.5L19 7.5"/%3E%3C/svg%3E') center / contain no-repeat; }
+:where([data-suisou-body] input[type="checkbox"]):indeterminate::before { mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M6 12h12"/%3E%3C/svg%3E'); }
+:where([data-suisou-body] input[type="radio"])::before { inline-size: 0.375rem; block-size: 0.375rem; border-radius: var(--suisou-radius-pill); }
+
+:where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)) { background: var(--suisou-accent); border-color: var(--suisou-accent); }
+:where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked))::before { scale: 1; }
+:where([data-suisou-body] input:is([type="checkbox"], [type="radio"])):not(:disabled):hover { border-color: var(--suisou-accent); }
+:where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)):disabled { background: var(--suisou-line-weak); border-color: var(--suisou-line-weak); }
+
+@media (forced-colors: active) {
+  :where([data-suisou-body] input:is([type="checkbox"], [type="radio"])) { forced-color-adjust: none; background: Canvas; border-color: CanvasText; }
+  :where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)) { background: Highlight; border-color: Highlight; }
+  :where([data-suisou-body] input:is([type="checkbox"], [type="radio"]))::before { background: HighlightText; }
+  :where([data-suisou-body] input:is([type="checkbox"], [type="radio"])):disabled { border-color: GrayText; }
+  :where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)):disabled { background: GrayText; }
 }</code></pre>
 </div>
