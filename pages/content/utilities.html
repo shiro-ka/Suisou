@@ -1,0 +1,276 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1 data-suisou="mt-3 mb-4">Utilities</h1>
+  <h2>Utilitiesの適用</h2>
+  <p>要素に <code>data-suisou</code> を追加して値を指定すると、ユーティリティクラスを使用できます<br>値は空白で区切って組み合わせることができます</p>
+  <pre><code>&lt;div data-suisou="p-3 bd-bottom"&gt;</code></pre>
+  <hr>
+  <div data-suisou="p-3 bd-bottom">余白と下の罫線</div>
+  <pre><code>&lt;div data-suisou="p-3 bd-bottom"&gt;余白と下の罫線&lt;/div&gt;</code></pre>
+  <h2>余白</h2>
+  <h3>padding</h3>
+  <p><code>p-*</code> で全方向、<code>px-*</code> で横、<code>py-*</code> で縦の padding が付きます<br>値は 0 〜 5 があります</p>
+  <div data-suisou-layout="row wrap">
+    <div data-suisou-item data-suisou="p-1">p-1</div>
+    <div data-suisou-item data-suisou="p-3">p-3</div>
+    <div data-suisou-item data-suisou="p-5">p-5</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;div data-suisou-item data-suisou="p-1"&gt;p-1&lt;/div&gt;
+  &lt;div data-suisou-item data-suisou="p-3"&gt;p-3&lt;/div&gt;
+  &lt;div data-suisou-item data-suisou="p-5"&gt;p-5&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <p><span data-suisou-item data-suisou="py-2 px-4">py-2 px-4</span></p>
+  <pre><code>&lt;p&gt;&lt;span data-suisou-item data-suisou="py-2 px-4"&gt;py-2 px-4&lt;/span&gt;&lt;/p&gt;</code></pre>
+  <h3>margin</h3>
+  <p><code>mt-*</code> で上、<code>mb-*</code> で下に margin が取られます</p>
+  <article data-suisou-text="typeset">
+    <p>1つ目の段落</p>
+    <p data-suisou="mt-5">mt-5 を付けた段落</p>
+  </article>
+  <pre><code>&lt;article data-suisou-text="typeset"&gt;
+  &lt;p&gt;1つ目の段落&lt;/p&gt;
+  &lt;p data-suisou="mt-5"&gt;mt-5 を付けた段落&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+  <h2>罫線と背景</h2>
+  <h3>罫線</h3>
+  <p><code>bd-top</code> / <code>bd-bottom</code> / <code>bd-start</code> / <code>bd-end</code> で、罫線が付きます<br><code>bd-none</code> で罫線を無しに、<code>bd-dash</code> で点線にできます</p>
+  <div data-suisou-layout="row wrap">
+    <div data-suisou="p-2 bd-top">bd-top</div>
+    <div data-suisou="p-2 bd-bottom">bd-bottom</div>
+    <div data-suisou="p-2 bd-start">bd-start</div>
+    <div data-suisou="p-2 bd-end">bd-end</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;div data-suisou="p-2 bd-top"&gt;bd-top&lt;/div&gt;
+  &lt;div data-suisou="p-2 bd-bottom"&gt;bd-bottom&lt;/div&gt;
+  &lt;div data-suisou="p-2 bd-start"&gt;bd-start&lt;/div&gt;
+  &lt;div data-suisou="p-2 bd-end"&gt;bd-end&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <div data-suisou-layout="row wrap">
+    <div data-suisou-item data-suisou="bd-none">bd-none</div>
+    <div data-suisou-item data-suisou="bd-dash">bd-dash</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;div data-suisou-item data-suisou="bd-none"&gt;bd-none&lt;/div&gt;
+  &lt;div data-suisou-item data-suisou="bd-dash"&gt;bd-dash&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <h3>背景</h3>
+  <p><code>bg-none</code> で背景を無しにできます</p>
+  <div data-suisou-layout="row wrap">
+    <div data-suisou-item>アイテム</div>
+    <div data-suisou-item data-suisou="bg-none">bg-none</div>
+  </div>
+  <pre><code>&lt;div data-suisou-layout="row wrap"&gt;
+  &lt;div data-suisou-item&gt;アイテム&lt;/div&gt;
+  &lt;div data-suisou-item data-suisou="bg-none"&gt;bg-none&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <h2>大きさ</h2>
+  <h3>幅</h3>
+  <p><code>w-full</code> で横幅いっぱいに広がります</p>
+  <p><button data-suisou-button="outline" data-suisou="w-full">w-full</button></p>
+  <pre><code>&lt;p&gt;&lt;button data-suisou-button="outline" data-suisou="w-full"&gt;w-full&lt;/button&gt;&lt;/p&gt;</code></pre>
+  <h3>コンテナ</h3>
+  <p><code>container-s</code> / <code>container-m</code> / <code>container-l</code> で、最大の幅を決めて中央に配置されます</p>
+  <div data-suisou-item data-suisou="container-s">container-s</div>
+  <pre><code>&lt;div data-suisou-item data-suisou="container-s"&gt;container-s&lt;/div&gt;</code></pre>
+  <h3>最小の高さ</h3>
+  <p><code>min-screen</code> で、min-height が画面の高さになります</p>
+  <pre><code>&lt;main data-suisou="min-screen"&gt;</code></pre>
+  <h2>スクロール</h2>
+  <p><code>scroll-y</code> / <code>scroll-x</code> で、はみ出した分がスクロールになります</p>
+  <div data-suisou-item data-suisou="scroll-x">
+    <div data-suisou-layout="row">
+      <span data-suisou-item="tag">タグ 1</span>
+      <span data-suisou-item="tag">タグ 2</span>
+      <span data-suisou-item="tag">タグ 3</span>
+      <span data-suisou-item="tag">タグ 4</span>
+      <span data-suisou-item="tag">タグ 5</span>
+      <span data-suisou-item="tag">タグ 6</span>
+      <span data-suisou-item="tag">タグ 7</span>
+      <span data-suisou-item="tag">タグ 8</span>
+      <span data-suisou-item="tag">タグ 9</span>
+      <span data-suisou-item="tag">タグ 10</span>
+      <span data-suisou-item="tag">タグ 11</span>
+      <span data-suisou-item="tag">タグ 12</span>
+      <span data-suisou-item="tag">タグ 13</span>
+      <span data-suisou-item="tag">タグ 14</span>
+      <span data-suisou-item="tag">タグ 15</span>
+      <span data-suisou-item="tag">タグ 16</span>
+      <span data-suisou-item="tag">タグ 17</span>
+      <span data-suisou-item="tag">タグ 18</span>
+      <span data-suisou-item="tag">タグ 19</span>
+      <span data-suisou-item="tag">タグ 20</span>
+      <span data-suisou-item="tag">タグ 21</span>
+      <span data-suisou-item="tag">タグ 22</span>
+      <span data-suisou-item="tag">タグ 23</span>
+      <span data-suisou-item="tag">タグ 24</span>
+      <span data-suisou-item="tag">タグ 25</span>
+      <span data-suisou-item="tag">タグ 26</span>
+      <span data-suisou-item="tag">タグ 27</span>
+      <span data-suisou-item="tag">タグ 28</span>
+      <span data-suisou-item="tag">タグ 29</span>
+      <span data-suisou-item="tag">タグ 30</span>
+    </div>
+  </div>
+  <pre><code>&lt;div data-suisou-item data-suisou="scroll-x"&gt;
+  &lt;div data-suisou-layout="row"&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 1&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 2&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 3&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 4&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 5&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 6&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 7&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 8&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 9&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 10&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 11&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 12&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 13&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 14&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 15&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 16&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 17&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 18&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 19&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 20&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 21&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 22&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 23&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 24&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 25&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 26&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 27&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 28&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 29&lt;/span&gt;
+    &lt;span data-suisou-item="tag"&gt;タグ 30&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  <h2>隠す</h2>
+  <p><code>hidden</code> で非表示に、<code>invisible</code> で場所を残したまま見えなくなります</p>
+  <pre><code>&lt;div data-suisou="hidden"&gt;
+&lt;div data-suisou="invisible"&gt;</code></pre>
+  <h2>Reference</h2>
+  <h3>Values</h3>
+  <table>
+    <thead><tr><th>Value</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><code>p-0</code> 〜 <code>p-5</code></td><td><code>padding: 0</code> / <code>var(--suisou-space-1)</code> 〜 <code>var(--suisou-space-5)</code>（4 / 8 / 16 / 24 / 48px）</td></tr>
+      <tr><td><code>px-0</code> 〜 <code>px-5</code></td><td><code>padding-inline</code></td></tr>
+      <tr><td><code>py-0</code> 〜 <code>py-5</code></td><td><code>padding-block</code></td></tr>
+      <tr><td><code>mt-0</code> 〜 <code>mt-5</code></td><td><code>margin-block-start</code></td></tr>
+      <tr><td><code>mb-0</code> 〜 <code>mb-5</code></td><td><code>margin-block-end</code></td></tr>
+      <tr><td><code>bd-top</code> <code>bd-bottom</code></td><td><code>border-block-start</code> / <code>border-block-end</code>。1px・<code>--suisou-line-weak</code></td></tr>
+      <tr><td><code>bd-start</code> <code>bd-end</code></td><td><code>border-inline-start</code> / <code>border-inline-end</code>。1px・<code>--suisou-line-weak</code></td></tr>
+      <tr><td><code>bd-none</code></td><td><code>border-color: transparent</code></td></tr>
+      <tr><td><code>bd-dash</code></td><td>罫線を点線にする（<code>--suisou-bd-style: dashed</code>）。部品の罫線にも当たる</td></tr>
+      <tr><td><code>bg-none</code></td><td><code>background: transparent</code></td></tr>
+      <tr><td><code>w-full</code></td><td><code>width: 100%</code></td></tr>
+      <tr><td><code>container</code></td><td><code>width: 100%</code>・<code>margin-inline: auto</code>・<code>max-width: clamp(46rem, 90vw, 80rem)</code></td></tr>
+      <tr><td><code>container-s</code> <code>container-m</code> <code>container-l</code></td><td><code>max-width</code> 48rem / 64rem / 80rem（768 / 1024 / 1280px）。ほかは <code>container</code> と同じ</td></tr>
+      <tr><td><code>min-screen</code></td><td><code>min-height: 100dvh</code></td></tr>
+      <tr><td><code>scroll-y</code></td><td><code>overflow-y: auto</code>・<code>overflow-x: hidden</code>・<code>scrollbar-gutter: stable both-edges</code></td></tr>
+      <tr><td><code>scroll-x</code></td><td><code>overflow-x: auto</code>・<code>overflow-y: hidden</code></td></tr>
+      <tr><td><code>hidden</code></td><td><code>display: none</code></td></tr>
+      <tr><td><code>invisible</code></td><td><code>visibility: hidden</code></td></tr>
+      <tr><td><code>s:</code> <code>m:</code> <code>l:</code> <code>s&gt;</code> …</td><td>画面幅で切り替える。<a href="#responsive">Responsive</a> のページへ</td></tr>
+    </tbody>
+  </table>
+  <h3>CSS</h3>
+  <pre><code>@property --suisou-bd-style { syntax: "*"; inherits: false; }
+
+[data-suisou~="w-full"] { width: 100%; }
+
+[data-suisou~="bd-top"]    { border-block-start:  1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
+[data-suisou~="bd-bottom"] { border-block-end:    1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
+[data-suisou~="bd-start"]  { border-inline-start: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
+[data-suisou~="bd-end"]    { border-inline-end:   1px var(--suisou-bd-style, solid) var(--suisou-line-weak); }
+
+[data-suisou~="bd-none"] { border-color: transparent; }
+[data-suisou~="bd-dash"] { --suisou-bd-style: dashed; }
+
+[data-suisou~="bg-none"] { background: transparent; }
+[data-suisou~="p-0"]     { padding: 0; }
+[data-suisou~="p-1"]     { padding: var(--suisou-space-1); }
+[data-suisou~="p-2"]     { padding: var(--suisou-space-2); }
+[data-suisou~="p-3"]     { padding: var(--suisou-space-3); }
+[data-suisou~="p-4"]     { padding: var(--suisou-space-4); }
+[data-suisou~="p-5"]     { padding: var(--suisou-space-5); }
+
+[data-suisou~="px-0"]    { padding-inline: 0; }
+[data-suisou~="px-1"]    { padding-inline: var(--suisou-space-1); }
+[data-suisou~="px-2"]    { padding-inline: var(--suisou-space-2); }
+[data-suisou~="px-3"]    { padding-inline: var(--suisou-space-3); }
+[data-suisou~="px-4"]    { padding-inline: var(--suisou-space-4); }
+[data-suisou~="px-5"]    { padding-inline: var(--suisou-space-5); }
+
+[data-suisou~="py-0"]    { padding-block: 0; }
+[data-suisou~="py-1"]    { padding-block: var(--suisou-space-1); }
+[data-suisou~="py-2"]    { padding-block: var(--suisou-space-2); }
+[data-suisou~="py-3"]    { padding-block: var(--suisou-space-3); }
+[data-suisou~="py-4"]    { padding-block: var(--suisou-space-4); }
+[data-suisou~="py-5"]    { padding-block: var(--suisou-space-5); }
+
+[data-suisou~="mt-0"]    { margin-block-start: 0; }
+[data-suisou~="mt-1"]    { margin-block-start: var(--suisou-space-1); }
+[data-suisou~="mt-2"]    { margin-block-start: var(--suisou-space-2); }
+[data-suisou~="mt-3"]    { margin-block-start: var(--suisou-space-3); }
+[data-suisou~="mt-4"]    { margin-block-start: var(--suisou-space-4); }
+[data-suisou~="mt-5"]    { margin-block-start: var(--suisou-space-5); }
+
+[data-suisou~="mb-0"]    { margin-block-end: 0; }
+[data-suisou~="mb-1"]    { margin-block-end: var(--suisou-space-1); }
+[data-suisou~="mb-2"]    { margin-block-end: var(--suisou-space-2); }
+[data-suisou~="mb-3"]    { margin-block-end: var(--suisou-space-3); }
+[data-suisou~="mb-4"]    { margin-block-end: var(--suisou-space-4); }
+[data-suisou~="mb-5"]    { margin-block-end: var(--suisou-space-5); }
+
+[data-suisou~="container"],
+[data-suisou~="container-s"],
+[data-suisou~="container-m"],
+[data-suisou~="container-l"] { width: 100%; margin-inline: auto; }
+[data-suisou~="container"]   { max-width: clamp(46rem, 90vw, 80rem); }
+[data-suisou~="container-s"] { max-width: 48rem; }
+[data-suisou~="container-m"] { max-width: 64rem; }
+[data-suisou~="container-l"] { max-width: 80rem; }
+
+[data-suisou~="min-screen"] { min-height: 100dvh; }
+[data-suisou~="scroll-y"] { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges; }
+[data-suisou~="scroll-x"] { overflow-x: auto; overflow-y: hidden; }
+@media (width &gt;= 768px) {
+  [data-suisou~="s:min-screen"] { min-height: 100dvh; }
+  [data-suisou~="s:scroll-y"] { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges; }
+  [data-suisou~="s:scroll-x"] { overflow-x: auto; overflow-y: hidden; }
+}
+@media (width &gt;= 1024px) {
+  [data-suisou~="m:min-screen"] { min-height: 100dvh; }
+  [data-suisou~="m:scroll-y"] { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges; }
+  [data-suisou~="m:scroll-x"] { overflow-x: auto; overflow-y: hidden; }
+}
+@media (width &gt;= 1280px) {
+  [data-suisou~="l:min-screen"] { min-height: 100dvh; }
+  [data-suisou~="l:scroll-y"] { overflow-x: hidden; overflow-y: auto; scrollbar-gutter: stable both-edges; }
+  [data-suisou~="l:scroll-x"] { overflow-x: auto; overflow-y: hidden; }
+}
+
+@media (width &lt;  768px)  { [data-suisou~="s&gt;hidden"] { display: none; } }
+@media (width &lt;  1024px) { [data-suisou~="m&gt;hidden"] { display: none; } }
+@media (width &lt;  1280px) { [data-suisou~="l&gt;hidden"] { display: none; } }
+@media (width &gt;= 768px)  { [data-suisou~="s:hidden"] { display: none; } }
+@media (width &gt;= 1024px) { [data-suisou~="m:hidden"] { display: none; } }
+@media (width &gt;= 1280px) { [data-suisou~="l:hidden"] { display: none; } }
+[data-suisou~="invisible"] { visibility: hidden; }
+@media (width &lt;  768px)  { [data-suisou~="s&gt;invisible"] { visibility: hidden; } }
+@media (width &lt;  1024px) { [data-suisou~="m&gt;invisible"] { visibility: hidden; } }
+@media (width &lt;  1280px) { [data-suisou~="l&gt;invisible"] { visibility: hidden; } }
+@media (width &gt;= 768px)  { [data-suisou~="s:invisible"] { visibility: hidden; } }
+@media (width &gt;= 1024px) { [data-suisou~="m:invisible"] { visibility: hidden; } }
+@media (width &gt;= 1280px) { [data-suisou~="l:invisible"] { visibility: hidden; } }
+
+[hidden]:where(:not([hidden="until-found"])) { display: none; }
+dialog:not([open]) { display: none; }
+[popover]:not(:popover-open):not(:is([data-suisou-body~="shell"][data-suisou-body~="s:dock"], [data-suisou-body~="shell"][data-suisou-body~="m:dock"], [data-suisou-body~="shell"][data-suisou-body~="l:dock"]) &gt; nav) { display: none; }
+@media (width &lt;  768px)  { [data-suisou-body~="shell"][data-suisou-body~="s:dock"] &gt; nav[popover]:not(:popover-open) { display: none; } }
+@media (width &lt;  1024px) { [data-suisou-body~="shell"][data-suisou-body~="m:dock"] &gt; nav[popover]:not(:popover-open) { display: none; } }
+@media (width &lt;  1280px) { [data-suisou-body~="shell"][data-suisou-body~="l:dock"] &gt; nav[popover]:not(:popover-open) { display: none; } }</code></pre>
+</div>
