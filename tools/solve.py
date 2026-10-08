@@ -106,13 +106,7 @@ PAIRS = [
     ("accent","panel",3.0),
     ("text-main","selected-surface",4.5),
     ("text-main","hover-surface",4.5),
-    ("line-weak-hover","hover-surface",1.5),
-    ("line-strong-hover","hover-surface",3.0),
 
-    ("line-weak-selected","selected-surface",1.5),
-    ("line-strong-selected","selected-surface",3.0),
-    ("line-weak-selected","selected-neutral-surface",1.5),
-    ("line-strong-selected","selected-neutral-surface",3.0),
     ("text-main","selected-neutral-surface",4.5),
 
     ("text-main","error-surface",4.5),
@@ -163,24 +157,6 @@ def resolve_line(t, face_L, ratio):
             hi = m
     return round(hi + 0.0005, 4)
 
-def resolve_line_selected(t, ratio):
-
-    D = LADDERS[t["ladder"]]
-    worst = D["tint"]
-    worst_lum = lum(D["tint"], t["cs"], t["h"])
-    for _, ah in ACCENTS:
-        c = (D["tint"], resolve_tint(t, ah, FLOOR["selected"]), ah)
-        if lum(*c) > worst_lum:
-            worst_lum, worst = lum(*c), c
-
-    lo, hi = 0.0, 1.0
-    for _ in range(48):
-        m = (lo + hi) / 2
-        if (lum(m, t["cs"], t["h"]) + 0.05) / (worst_lum + 0.05) < ratio:
-            lo = m
-        else:
-            hi = m
-    return round(hi + 0.0005, 4)
 
 def resolve_tint(t, h, floor):
 
@@ -218,11 +194,8 @@ def tokens(t, acc_name, acc_h):
         o[name] = face(resolve_line(t, D["bg"], ratio), t)
         for st in SURFACES:
             o[f"{name}-{st}"] = face(resolve_line(t, D[st], ratio), t)
-        o[f"{name}-hover"]    = face(resolve_line(t, resolve_hover(t), ratio), t)
-        o[f"{name}-selected"] = face(resolve_line_selected(t, ratio), t)
     o["accent"]        = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
     o["accent-active"] = (D["accent"]+ACTIVE_DL, maxC(D["accent"]+ACTIVE_DL, acc_h) * t["ar"], acc_h)
-    o["focus-ring"]    = o["accent"]
     o["hover-surface"] = face(resolve_hover(t), t)
 
     o["selected-surface"] = (D["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h)
@@ -332,15 +305,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 THEME_TOKENS = ["bg", "panel", "item", "hover-surface", "selected-neutral-surface", "selected-neutral-hover-surface",
                 "line-weak", "line-weak-panel", "line-weak-item",
-                "line-weak-hover", "line-weak-selected",
                 "line-strong", "line-strong-panel", "line-strong-item",
-                "line-strong-hover", "line-strong-selected",
                 "text-disabled", "text-sub", "text-main",
                 "scrim",
                 "error", "warning", "success",
                 "error-active",
                 "error-surface", "warning-surface", "success-surface"]
-ACCENT_TOKENS = ["accent", "accent-active", "focus-ring", "selected-surface", "selected-hover-surface"]
+ACCENT_TOKENS = ["accent", "accent-active", "selected-surface", "selected-hover-surface"]
 
 DEFAULT_THEME  = "hadal"
 DEFAULT_ACCENT = "jelly"
