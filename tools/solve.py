@@ -94,7 +94,7 @@ SEM_L = {
 THEMES = [
     {"name":"hadal",  "jp":"超深海層", "ladder":"dark", "h":286, "cs":0.006, "ar":0.85, "lift":0.03},
 
-    {"name":"trench", "jp":"海溝",     "ladder":"dark", "h":262, "cs":0.044, "ar":0.85},
+    {"name":"trench", "jp":"海溝",     "ladder":"dark", "h":270, "cs":0.040, "ar":0.85, "lift":0.03},
 
     {"name":"fjord",  "jp":"峡湾",     "ladder":"dark", "h":278, "cs":0.044, "ar":0.85},
     {"name":"shoal",  "jp":"浅瀬",     "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},
