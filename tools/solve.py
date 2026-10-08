@@ -26,6 +26,23 @@ def lum(L, C, H):
     r, g, b = [min(max(c, 0), 1) for c in to_srgb(L, C, H)]
     return 0.2126*r + 0.7152*g + 0.0722*b
 
+def from_srgb(r, g, b):
+    l = (0.4122214708*r + 0.5363325363*g + 0.0514459929*b) ** (1/3)
+    m = (0.2119034982*r + 0.6806995451*g + 0.1073969566*b) ** (1/3)
+    s = (0.0883024619*r + 0.2817188376*g + 0.6299787005*b) ** (1/3)
+    L = 0.2104542553*l + 0.7936177850*m - 0.0040720468*s
+    a = 1.9779984951*l - 2.4285922050*m + 0.4505937099*s
+    b = 0.0259040371*l + 0.7827717662*m - 0.8086757660*s
+    return (L, math.hypot(a, b), math.degrees(math.atan2(b, a)) % 360)
+
+def _dec(c):
+    return c/12.92 if c <= 0.04045 else ((c + 0.055)/1.055) ** 2.4
+
+def over(top, alpha, base):
+    t = [_enc(c) for c in to_srgb(*top)]
+    u = [_enc(c) for c in to_srgb(*base)]
+    return from_srgb(*[_dec(x*alpha + y*(1 - alpha)) for x, y in zip(t, u)])
+
 def contrast(x, y):
     a, b = lum(*x), lum(*y)
     if a < b: a, b = b, a
@@ -60,7 +77,7 @@ def hue_dist(a, b):
 
 LADDERS = {
 
-    "dark": {"bg":.15, "panel":.22, "item":.28, "tint":.33,
+    "dark": {"bg":.18, "panel":.22, "item":.28, "tint":.33,
              "line-weak":.44, "line-strong":.61, "text-disabled":.62,
              "accent":.74, "text-sub":.78, "text-main":.94},
 
@@ -92,6 +109,8 @@ FLOOR = {"hover":0.03, "selected":0.055, "semantic":0.055, "textSub":0.08, "tint
 SEM_OFFSET = 0.15
 ACTIVE_DL  = -0.03
 SCRIM_ALPHA = 0.72
+HOVER_L = 0.55
+HOVER_ALPHA = 0.10
 SURFACES = ["panel", "item"]
 JND = 0.02
 
@@ -105,7 +124,8 @@ PAIRS = [
     ("line-strong-item","item",3.0),
     ("accent","panel",3.0),
     ("text-main","selected-surface",4.5),
-    ("text-main","hover-surface",4.5),
+    ("text-main","hover-on-panel",4.5),
+    ("text-main","hover-on-item",4.5),
 
     ("text-main","selected-neutral-surface",4.5),
 
@@ -128,17 +148,6 @@ def resolve_text_main(t):
     L = ladder(t)["text-main"]
     while L > 0.80 and not in_gamut(L, t["cs"], t["h"]):
         L -= 0.005
-    return round(L, 3)
-
-def resolve_hover(t):
-
-    D = ladder(t)
-
-    faces = ["bg"] + SURFACES + ["tint"]
-    L = D["tint"]
-    while L > 0.02 and min(dE(face(L, t), face(D[s], t))
-                           for s in faces) < FLOOR["hover"]:
-        L -= 0.001
     return round(L, 3)
 
 def resolve_selected_hover(c):
@@ -202,7 +211,9 @@ def tokens(t, acc_name, acc_h):
             o[f"{name}-{st}"] = face(resolve_line(t, D[st], ratio), t)
     o["accent"]        = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
     o["accent-active"] = (D["accent"]+ACTIVE_DL, maxC(D["accent"]+ACTIVE_DL, acc_h) * t["ar"], acc_h)
-    o["hover-surface"] = face(resolve_hover(t), t)
+    o["hover-surface"] = face(HOVER_L, t)
+    for st in SURFACES:
+        o[f"hover-on-{st}"] = over(o["hover-surface"], HOVER_ALPHA, o[st])
 
     o["selected-surface"] = (D["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h)
     o["selected-neutral-surface"] = face(D["tint"], t)
@@ -239,11 +250,13 @@ def accent_issues(t, acc_name, acc_h):
         if d < FLOOR["textSub"]: bad.append(f"{st} が text-sub と近い ΔE {d:.3f}")
     near = min(((dE(k["accent"], k[n]), n) for n in SEM_HUE))
     if near[0] < FLOOR["semantic"]: bad.append(f"{near[1]} と近い ΔE {near[0]:.3f}")
-    if dE(k["selected-surface"], k["hover-surface"]) < JND:
-        bad.append("hover と選択が近すぎ")
+    for st in SURFACES:
+        if dE(k["selected-surface"], k[f"hover-on-{st}"]) < JND:
+            bad.append(f"{st} の上の hover と選択が近すぎ")
 
-    if dE(k["selected-neutral-surface"], k["hover-surface"]) < JND:
-        bad.append("hover と選択（中立）が近すぎ")
+    for st in SURFACES:
+        if dE(k["selected-neutral-surface"], k[f"hover-on-{st}"]) < JND:
+            bad.append(f"{st} の上の hover と選択（中立）が近すぎ")
     return bad
 
 def pair_results(t, acc_name, acc_h):
@@ -264,7 +277,7 @@ def solve():
     out = {
         "version": "1.4",
         "floors": FLOOR, "semOffset": SEM_OFFSET, "activeDL": ACTIVE_DL,
-        "scrimAlpha": SCRIM_ALPHA, "jnd": JND,
+        "scrimAlpha": SCRIM_ALPHA, "hoverAlpha": HOVER_ALPHA, "jnd": JND,
         "ladders": LADDERS, "semHue": SEM_HUE, "semL": SEM_L,
         "accentHues": {n: h for n, h in ACCENTS},
         "pairs": [{"a":a,"b":b,"need":n} for a,b,n in PAIRS],
@@ -335,7 +348,7 @@ def css_block(selector, names, tk, indent=""):
         if d is None:
             L.append(f"{indent}  /* --suisou-{n}: 解なし */")
             continue
-        alpha = SCRIM_ALPHA if n == "scrim" else None
+        alpha = {"scrim": SCRIM_ALPHA, "hover-surface": HOVER_ALPHA}.get(n)
         L.append(f"{indent}  --suisou-{n}: {css_color((d['L'], d['C'], d['H']), alpha)};")
     L.append(f"{indent}}}")
     return L
