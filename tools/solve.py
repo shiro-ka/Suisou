@@ -96,7 +96,7 @@ THEMES = [
 
     {"name":"trench", "jp":"海溝",     "ladder":"dark", "h":270, "cs":0.040, "ar":0.85, "lift":0.03},
 
-    {"name":"fjord",  "jp":"峡湾",     "ladder":"dark", "h":278, "cs":0.044, "ar":0.85},
+    {"name":"fjord",  "jp":"峡湾",     "ladder":"dark", "h":281, "cs":0.037, "ar":0.85, "lift":0.015},
     {"name":"shoal",  "jp":"浅瀬",     "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},
 ]
 ACCENTS = [("clown",55),("turtle",122),("teal",188),("jelly",212),("blue",255),
