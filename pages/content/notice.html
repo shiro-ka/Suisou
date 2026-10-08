@@ -8,19 +8,19 @@
   <pre><code>&lt;p data-suisou-item="notice"&gt;お知らせです&lt;/p&gt;</code></pre>
   <h2>色</h2>
   <p><code>error</code> / <code>warning</code> / <code>success</code> を追加すると、色が変わります</p>
-  <p data-suisou-item="notice error">メールアドレスかパスワードが違います</p>
-  <p data-suisou-item="notice warning">この操作は取り消せません</p>
-  <p data-suisou-item="notice success">確認メールを送信しました</p>
-  <pre><code>&lt;p data-suisou-item="notice error"&gt;メールアドレスかパスワードが違います&lt;/p&gt;
-&lt;p data-suisou-item="notice warning"&gt;この操作は取り消せません&lt;/p&gt;
-&lt;p data-suisou-item="notice success"&gt;確認メールを送信しました&lt;/p&gt;</code></pre>
+  <p data-suisou="error" data-suisou-item="notice">メールアドレスかパスワードが違います</p>
+  <p data-suisou="warning" data-suisou-item="notice">この操作は取り消せません</p>
+  <p data-suisou="success" data-suisou-item="notice">確認メールを送信しました</p>
+  <pre><code>&lt;p data-suisou="error" data-suisou-item="notice"&gt;メールアドレスかパスワードが違います&lt;/p&gt;
+&lt;p data-suisou="warning" data-suisou-item="notice"&gt;この操作は取り消せません&lt;/p&gt;
+&lt;p data-suisou="success" data-suisou-item="notice"&gt;確認メールを送信しました&lt;/p&gt;</code></pre>
   <h2>Reference</h2>
   <h3>Values</h3>
   <table>
     <thead><tr><th>Value</th><th>Function</th></tr></thead>
     <tbody>
       <tr><td><code>notice</code></td><td>知らせの箱にする。背景を item の色にし、細い罫線・角丸を付ける。余白は縦 8px・横 16px、文字は本文の色</td></tr>
-      <tr><td><code>error</code> <code>warning</code> <code>success</code></td><td><code>notice</code> と一緒に使う。罫線をその色に、背景をその色の薄い色にする。1つまで</td></tr>
+      <tr><td><code>data-suisou</code> の色の語</td><td><code>accent</code> <code>error</code> <code>warning</code> <code>success</code> で、罫線をその色に、背景をその色の薄い色にする。文字は本文の色のまま。<code>sub</code> は既定と同じ</td></tr>
     </tbody>
   </table>
   <h3>CSS</h3>

@@ -12,7 +12,7 @@ TARGET_EXT = (".css", ".html", ".js")
 
 TRAY_EDGES = {"right", "left", "top", "bottom"}
 ITEM_KINDS = {"media", "circle", "square", "field", "tag", "notice"}
-NOTICE_KINDS = {"error", "warning", "success"}
+COLOR_WORDS = {"sub", "accent", "success", "warning", "error"}
 SHELL_SLOTS = {"header", "main", "footer", "nav"}
 SHELL_QUIET = {"script", "template", "style", "noscript", "dialog", "link", "meta"}
 VOID_TAGS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}
@@ -198,12 +198,13 @@ def main():
                         problems.append(
                             f"{rel}:{i}: item の種類が {len(kinds)} 個 … \"{raw}\" "
                             f"（{' / '.join(sorted(kinds))} は同時に書けない。media-figure などの部品の語は組める）")
-                    if "notice" in kinds:
-                        bk = NOTICE_KINDS & set(vals)
-                        if len(bk) > 1:
-                            problems.append(
-                                f"{rel}:{i}: notice の知らせの種類が {len(bk)} 個 … \"{raw}\" "
-                                f"（{' / '.join(sorted(NOTICE_KINDS))} は1つまで）")
+
+                elif name == "data-suisou" and vals:
+                    cw = COLOR_WORDS & set(vals)
+                    if len(cw) > 1:
+                        problems.append(
+                            f"{rel}:{i}: 色の語が {len(cw)} 個 … \"{raw}\" "
+                            f"（{' / '.join(sorted(COLOR_WORDS))} は1つまで）")
 
                 elif name == "data-suisou-loading" and vals:
                     v = set(vals)

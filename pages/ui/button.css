@@ -33,23 +33,22 @@
   flex-shrink: 0;
 }
 
-[data-suisou-button~="accent"] {
-  --suisou-button-color: var(--suisou-accent);
-  color: var(--suisou-button-color);
-}
-[data-suisou-button~="accent"]:where(:active) {
+:where([data-suisou-body] button, [data-suisou-button]):where([data-suisou~="accent"])  { --suisou-button-color: var(--suisou-accent); }
+:where([data-suisou-body] button, [data-suisou-button]):where([data-suisou~="error"])   { --suisou-button-color: var(--suisou-error); }
+:where([data-suisou-body] button, [data-suisou-button]):where([data-suisou~="success"]) { --suisou-button-color: var(--suisou-success); }
+:where([data-suisou-body] button, [data-suisou-button]):where([data-suisou~="warning"]) { --suisou-button-color: var(--suisou-warning); }
+
+:where([data-suisou-body] button, [data-suisou-button]):where([data-suisou~="accent"]):active {
   --suisou-button-color: var(--suisou-accent-active);
   background: var(--suisou-selected-surface);
 }
-
-[data-suisou-button~="error"] {
-  --suisou-button-color: var(--suisou-error);
-  color: var(--suisou-button-color);
-}
-[data-suisou-button~="error"]:where(:active) {
+:where([data-suisou-body] button, [data-suisou-button]):where([data-suisou~="error"]):active {
   --suisou-button-color: var(--suisou-error-active);
   background: var(--suisou-error-surface);
 }
+:where([data-suisou-body] button, [data-suisou-button]):where([data-suisou~="success"]):active { background: var(--suisou-success-surface); }
+:where([data-suisou-body] button, [data-suisou-button]):where([data-suisou~="warning"]):active { background: var(--suisou-warning-surface); }
+:where([data-suisou-body] button, [data-suisou-button]):where([data-suisou~="accent"], [data-suisou~="error"], [data-suisou~="success"], [data-suisou~="warning"]) { --suisou-color-text: var(--suisou-button-color); }
 
 [data-suisou-button~="outline"] {
   border-color: var(--suisou-button-color, var(--suisou-line-strong));
@@ -59,14 +58,15 @@
 :where([data-suisou-body] button, [data-suisou-button])[aria-current]:not([aria-current="false"]) {
   background: var(--suisou-selected-neutral-surface);
   color: var(--suisou-text-main);
+  --suisou-color-text: var(--suisou-text-main);
 }
-[data-suisou-button~="accent"]:where([aria-pressed="true"], [aria-current]:not([aria-current="false"])) {
+[data-suisou~="accent"]:where([data-suisou-body] button, [data-suisou-button]):where([aria-pressed="true"], [aria-current]:not([aria-current="false"])) {
   background: var(--suisou-selected-surface);
 }
 :where([data-suisou-body] button, [data-suisou-button])[aria-pressed="true"]:where(:hover) {
   background: var(--suisou-selected-neutral-hover-surface);
 }
-[data-suisou-button~="accent"]:where([aria-pressed="true"]):where(:hover) {
+[data-suisou~="accent"]:where([data-suisou-body] button, [data-suisou-button]):where([aria-pressed="true"]):where(:hover) {
   background: var(--suisou-selected-hover-surface);
 }
 
