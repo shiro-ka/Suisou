@@ -22,6 +22,7 @@ const PAGES = {
   responsive: {},
   chat: { bleed: true },
   list: { bleed: true },
+  blog: {},
 };
 
 const cache = {};
