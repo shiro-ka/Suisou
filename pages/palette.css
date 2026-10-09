@@ -38,8 +38,8 @@
   --suisou-line-strong-panel: oklch(53.58% 0.0400 270);
   --suisou-line-strong-item: oklch(58.25% 0.0400 270);
   --suisou-text-disabled: oklch(62.00% 0.0400 270);
-  --suisou-text-sub: oklch(78.00% 0.0400 270);
-  --suisou-text-main: oklch(91.50% 0.0400 270);
+  --suisou-text-sub: oklch(78.00% 0.0150 270);
+  --suisou-text-main: oklch(94.00% 0.0150 270);
   --suisou-scrim: oklch(8.00% 0.0400 270 / 0.72);
   --suisou-error: oklch(73.00% 0.1580 22);
   --suisou-warning: oklch(82.00% 0.1592 90);
@@ -62,8 +62,8 @@
   --suisou-line-strong-panel: oklch(52.65% 0.0370 281);
   --suisou-line-strong-item: oklch(56.99% 0.0370 281);
   --suisou-text-disabled: oklch(62.00% 0.0370 281);
-  --suisou-text-sub: oklch(78.00% 0.0370 281);
-  --suisou-text-main: oklch(92.00% 0.0370 281);
+  --suisou-text-sub: oklch(78.00% 0.0250 281);
+  --suisou-text-main: oklch(94.00% 0.0250 281);
   --suisou-scrim: oklch(8.00% 0.0370 281 / 0.72);
   --suisou-error: oklch(73.00% 0.1580 22);
   --suisou-warning: oklch(82.00% 0.1592 90);

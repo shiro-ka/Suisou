@@ -94,9 +94,9 @@ SEM_L = {
 THEMES = [
     {"name":"hadal",  "jp":"超深海層", "ladder":"dark", "h":286, "cs":0.006, "ar":0.85, "lift":0.03},
 
-    {"name":"trench", "jp":"海溝",     "ladder":"dark", "h":270, "cs":0.040, "ar":0.85, "lift":0.03},
+    {"name":"trench", "jp":"海溝",     "ladder":"dark", "h":270, "cs":0.040, "ar":0.85, "lift":0.03, "ct":0.015},
 
-    {"name":"fjord",  "jp":"峡湾",     "ladder":"dark", "h":281, "cs":0.037, "ar":0.85, "lift":0.015},
+    {"name":"fjord",  "jp":"峡湾",     "ladder":"dark", "h":281, "cs":0.037, "ar":0.85, "lift":0.015, "ct":0.025},
     {"name":"shoal",  "jp":"浅瀬",     "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},
 ]
 ACCENTS = [("clown",55),("turtle",122),("teal",188),("jelly",212),("blue",255),
@@ -143,10 +143,13 @@ def ladder(t):
         D[k] = round(D[k] + t.get("lift", 0), 3)
     return D
 
+def text_theme(t):
+    return dict(t, cs=t.get("ct", t["cs"]))
+
 def resolve_text_main(t):
 
     L = ladder(t)["text-main"]
-    while L > 0.80 and not in_gamut(L, t["cs"], t["h"]):
+    while L > 0.80 and not in_gamut(L, text_theme(t)["cs"], t["h"]):
         L -= 0.005
     return round(L, 3)
 
@@ -193,9 +196,10 @@ def sem_ratio(ar):
 def tokens(t, acc_name, acc_h):
     D = ladder(t)
     o = {}
-    for k in ["bg","panel","item","line-weak","line-strong","text-disabled","text-sub"]:
+    for k in ["bg","panel","item","line-weak","line-strong","text-disabled"]:
         o[k] = face(D[k], t)
-    o["text-main"] = face(resolve_text_main(t), t)
+    o["text-sub"]  = face(D["text-sub"], text_theme(t))
+    o["text-main"] = face(resolve_text_main(t), text_theme(t))
     o["scrim"]     = face(0.08, t)
 
     for name, ratio in (("line-weak", LINE_WEAK_RATIO), ("line-strong", LINE_STRONG_RATIO)):
