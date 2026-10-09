@@ -3,6 +3,7 @@ const menu = document.querySelector('nav[popover]');
 const PAGES = {
   import: {},
   theme: {},
+  palette: {},
   body: {},
   layout: {},
   tray: {},
