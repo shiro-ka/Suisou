@@ -204,7 +204,7 @@ def tokens(t, acc_name, acc_h):
             o[f"{name}-{st}"] = face(resolve_line(t, D[st], ratio), t)
     o["accent"]        = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
     o["accent-active"] = (D["accent"]+ACTIVE_DL, maxC(D["accent"]+ACTIVE_DL, acc_h) * t["ar"], acc_h)
-    o["hover-surface"] = face(HOVER_L, t)
+    o["hover-surface"] = (HOVER_L, 0.0, 0)
     for st in SURFACES:
         o[f"hover-on-{st}"] = over(o["hover-surface"], HOVER_ALPHA, o[st])
 
@@ -315,7 +315,8 @@ def solve():
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-THEME_TOKENS = ["bg", "panel", "item", "hover-surface", "selected-neutral-surface",
+SHARED_TOKENS = ["hover-surface"]
+THEME_TOKENS = ["bg", "panel", "item", "selected-neutral-surface",
                 "line-weak", "line-weak-panel", "line-weak-item",
                 "line-strong", "line-strong-panel", "line-strong-item",
                 "text-disabled", "text-sub", "text-main",
@@ -348,7 +349,9 @@ def css_block(selector, names, tk, indent=""):
 
 def write_css(data):
 
-    L = []
+    L = ["[data-suisou-theme] {",
+         *[f"  --suisou-{n}: {css_color((HOVER_L, 0.0, 0), HOVER_ALPHA)};" for n in SHARED_TOKENS],
+         "}", ""]
     for t in data["themes"]:
         any_tokens = next(iter(t["accents"].values()))["tokens"]
         L += css_block(f'[data-suisou-theme~="{t["name"]}"]', THEME_TOKENS, any_tokens)
@@ -381,6 +384,7 @@ def write_site_data(data):
         "accents": [{"name": n, "jp": ACCENT_JP.get(n, ""), "hue": h} for n, h in ACCENTS],
         "themeTokens": THEME_TOKENS,
         "accentTokens": ACCENT_TOKENS,
+        "sharedTokens": SHARED_TOKENS,
         "default": {"theme": DEFAULT_THEME, "accent": DEFAULT_ACCENT},
         "hex": {t["name"]: {a: {n: (None if d is None else d["hex"]) for n, d in v["tokens"].items()}
                             for a, v in t["accents"].items()}
