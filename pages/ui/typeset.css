@@ -16,6 +16,7 @@
   top: 0.25em;
   bottom: 0.25em;
   inset-inline-start: -6px;
+  translate: 0 0.025em;
   border-radius: var(--suisou-radius-pill);
 }
 
