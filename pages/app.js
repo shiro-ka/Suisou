@@ -50,8 +50,9 @@ async function load(name) {
     }
   }
   box.innerHTML = cache[name];
-  if (PAGES[name].bleed) box.dataset.suisou = 'p-0';
-  else delete box.dataset.suisou;
+  const words = (box.dataset.suisou ?? '').split(' ').filter((w) => w && w !== 'p-0');
+  if (PAGES[name].bleed) words.push('p-0');
+  box.dataset.suisou = words.join(' ');
   box.scrollTo(0, 0);
   for (const a of menu.querySelectorAll('a')) {
     a.setAttribute('aria-current', a.hash === `#${name}` ? 'page' : 'false');
