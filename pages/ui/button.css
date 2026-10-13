@@ -45,16 +45,17 @@
 [data-suisou-button~="outline"]:where([data-suisou~="warning"]) { border-color: var(--suisou-color-warning); }
 
 :where([data-suisou-body] button, [data-suisou-button])[aria-pressed="true"],
-:where([data-suisou-body] button, [data-suisou-button])[aria-current]:not([aria-current="false"]) {
+:where([data-suisou-body] button, [data-suisou-button])[aria-current]:where(:not([aria-current="false"])) {
   background: var(--suisou-color-tint);
   color: var(--suisou-color-text);
 }
 :where([data-suisou-body] button, [data-suisou-button])[aria-pressed="true"][data-suisou],
 :where([data-suisou-body] button, [data-suisou-button])[aria-current]:not([aria-current="false"])[data-suisou] { color: var(--suisou-color-text); }
-[data-suisou~="accent"]:where([data-suisou-body] button, [data-suisou-button]):where([aria-pressed="true"], [aria-current]:not([aria-current="false"])) {
-  background: var(--suisou-color-accent-tint);
-}
-:where([data-suisou-body] button, [data-suisou-button])[aria-pressed="true"]:where(:hover) {
+[data-suisou~="accent"]:where([data-suisou-body] button, [data-suisou-button]):where([aria-pressed="true"], [aria-current]:not([aria-current="false"]))  { background: var(--suisou-color-accent-tint); }
+[data-suisou~="error"]:where([data-suisou-body] button, [data-suisou-button]):where([aria-pressed="true"], [aria-current]:not([aria-current="false"]))   { background: var(--suisou-color-error-tint); }
+[data-suisou~="success"]:where([data-suisou-body] button, [data-suisou-button]):where([aria-pressed="true"], [aria-current]:not([aria-current="false"])) { background: var(--suisou-color-success-tint); }
+[data-suisou~="warning"]:where([data-suisou-body] button, [data-suisou-button]):where([aria-pressed="true"], [aria-current]:not([aria-current="false"])) { background: var(--suisou-color-warning-tint); }
+:where([data-suisou-body] button, [data-suisou-button]):is([aria-pressed="true"], [aria-current]:not([aria-current="false"])):where(:hover) {
   background-image: linear-gradient(var(--suisou-color-hover), var(--suisou-color-hover));
 }
 
