@@ -182,7 +182,7 @@ progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="fill
   appearance: none;
   display: inline-block;
   vertical-align: middle;
-  height: 8px;
+  height: 0.5rem;
   border: 0;
   border-radius: var(--suisou-radius-pill);
   background: var(--suisou-color-line-weak);
@@ -207,8 +207,8 @@ progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="fill
   border-radius: var(--suisou-radius-pill);
   animation: suisou-loading-bar 3s linear infinite;
 }
-progress:not(:indeterminate)[data-suisou-loading~="small"] { height: 4px; }
-progress:not(:indeterminate)[data-suisou-loading~="large"] { height: 16px; }
+progress:not(:indeterminate)[data-suisou-loading~="small"] { height: 0.25rem; }
+progress:not(:indeterminate)[data-suisou-loading~="large"] { height: 1rem; }
 progress:not(:indeterminate)[data-suisou-loading~="simple"]::-webkit-progress-value { background: currentColor; animation: none; }
 progress:not(:indeterminate)[data-suisou-loading~="simple"]::-moz-progress-bar { background: currentColor; animation: none; }
 
