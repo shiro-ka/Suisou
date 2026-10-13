@@ -21,6 +21,7 @@ const PAGES = {
   toc: {},
   utilities: {},
   responsive: {},
+  variables: {},
   chat: { bleed: true },
   list: { bleed: true },
   blog: {},

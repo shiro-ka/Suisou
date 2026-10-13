@@ -88,6 +88,40 @@ def uses(site, name):
                 found.append(f"{f} {n}")
     return ", ".join(found)
 
+VALUE_CELL = re.compile(r'<td data-css-value="([^"]+)"></td>')
+
+def fallback(css, name):
+    key = f"var(--suisou-{name},"
+    i = css.find(key)
+    if i < 0:
+        return None
+    i += len(key)
+    depth, j = 0, i
+    while j < len(css):
+        if css[j] == "(":
+            depth += 1
+        elif css[j] == ")":
+            if depth == 0:
+                return css[i:j].strip()
+            depth -= 1
+        j += 1
+    return None
+
+def value(site, name):
+    ui = os.path.join(site, "ui")
+    base = open(os.path.join(ui, "base.css"), encoding="utf-8").read()
+    m = re.search(r"--suisou-" + re.escape(name) + r"\s*:\s*([^;]+);", base)
+    if m:
+        v = m.group(1).strip()
+    else:
+        v = None
+        for f in sorted(os.listdir(ui)):
+            if f.endswith(".css"):
+                v = fallback(open(os.path.join(ui, f), encoding="utf-8").read(), name)
+                if v:
+                    break
+    return "<code>" + html.escape(v, quote=False) + "</code>" if v else ""
+
 def fill_css(site):
     content = os.path.join(site, "content")
     for name in os.listdir(content):
@@ -102,6 +136,7 @@ def fill_css(site):
                 css = pick(re.sub(r"/\*.*?\*/", "", css, flags=re.S), m.group(2).split()).strip("\n")
             return "<pre><code>" + html.escape(css, quote=False) + "</code></pre>"
         filled = CSS_BLOCK.sub(fill, page)
+        filled = VALUE_CELL.sub(lambda m: "<td>" + value(site, m.group(1)) + "</td>", filled)
         filled = USES_CELL.sub(lambda m: "<td>" + uses(site, m.group(1)) + "</td>", filled)
         if filled != page:
             with open(path, "w", encoding="utf-8") as f:
