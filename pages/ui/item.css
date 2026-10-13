@@ -131,7 +131,8 @@
   border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-weak);
   color: var(--suisou-color-text-sub);
   background: transparent;
-  transition: color var(--suisou-duration-fast) var(--suisou-ease),
+  transition: background-color var(--suisou-duration-fast) var(--suisou-ease),
+              color var(--suisou-duration-fast) var(--suisou-ease),
               border-color var(--suisou-duration-fast) var(--suisou-ease);
 }
 
