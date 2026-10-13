@@ -178,6 +178,7 @@ progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="fill
 }
 
 :where([data-suisou-body] progress:not(:indeterminate)) {
+  color: var(--suisou-color-accent);
   appearance: none;
   display: inline-block;
   vertical-align: middle;
@@ -193,7 +194,7 @@ progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="fill
     radial-gradient(circle, var(--suisou-color-text) 1.5px, transparent 2px) 5px 0 / 37px 12px,
     radial-gradient(circle, transparent 1px, var(--suisou-color-text) 1.5px 2px, transparent 2.5px) 21px 3px / 53px 18px,
     radial-gradient(circle, var(--suisou-color-text) 1px, transparent 1.5px) 40px 7px / 71px 24px,
-    var(--suisou-color-accent);
+    currentColor;
   border-radius: var(--suisou-radius-pill);
   animation: suisou-loading-bar 3s linear infinite;
 }
@@ -202,24 +203,22 @@ progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="fill
     radial-gradient(circle, var(--suisou-color-text) 1.5px, transparent 2px) 5px 0 / 37px 12px,
     radial-gradient(circle, transparent 1px, var(--suisou-color-text) 1.5px 2px, transparent 2.5px) 21px 3px / 53px 18px,
     radial-gradient(circle, var(--suisou-color-text) 1px, transparent 1.5px) 40px 7px / 71px 24px,
-    var(--suisou-color-accent);
+    currentColor;
   border-radius: var(--suisou-radius-pill);
   animation: suisou-loading-bar 3s linear infinite;
 }
 progress:not(:indeterminate)[data-suisou-loading~="small"] { height: 4px; }
 progress:not(:indeterminate)[data-suisou-loading~="large"] { height: 16px; }
-progress:not(:indeterminate)[data-suisou-loading~="simple"]::-webkit-progress-value { background: var(--suisou-color-accent); animation: none; }
-progress:not(:indeterminate)[data-suisou-loading~="simple"]::-moz-progress-bar { background: var(--suisou-color-accent); animation: none; }
+progress:not(:indeterminate)[data-suisou-loading~="simple"]::-webkit-progress-value { background: currentColor; animation: none; }
+progress:not(:indeterminate)[data-suisou-loading~="simple"]::-moz-progress-bar { background: currentColor; animation: none; }
 
 @media (prefers-reduced-motion: reduce) {
   :where([data-suisou-body] progress:indeterminate),
   progress:indeterminate[data-suisou-loading] {
     animation: suisou-loading-pulse 1.6s ease-in-out infinite;
   }
-  :where([data-suisou-body] progress:not(:indeterminate))::-webkit-progress-value,
-  :where([data-suisou-body] progress:not(:indeterminate))::-moz-progress-bar {
-    animation: none;
-  }
+  :where([data-suisou-body] progress:not(:indeterminate))::-webkit-progress-value { animation: none; }
+  :where([data-suisou-body] progress:not(:indeterminate))::-moz-progress-bar { animation: none; }
 }
 
 @media (forced-colors: active) {

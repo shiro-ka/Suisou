@@ -61,13 +61,13 @@
 
 :where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)) { background: var(--suisou-color-accent); border-color: var(--suisou-color-accent); }
 :where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked))::before { scale: 1; }
-:where([data-suisou-body] input:is([type="checkbox"], [type="radio"])):not(:disabled):hover { border-color: var(--suisou-color-accent); }
-:where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)):disabled { background: var(--suisou-color-line-weak); border-color: var(--suisou-color-line-weak); }
+:where([data-suisou-body] input:is([type="checkbox"], [type="radio"])):not(:disabled, [aria-disabled="true"]):hover { border-color: var(--suisou-color-accent); }
+:where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)):is(:disabled, [aria-disabled="true"]) { background: var(--suisou-color-line-weak); border-color: var(--suisou-color-line-weak); }
 
 @media (forced-colors: active) {
   :where([data-suisou-body] input:is([type="checkbox"], [type="radio"])) { forced-color-adjust: none; background: Canvas; border-color: CanvasText; }
   :where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)) { background: Highlight; border-color: Highlight; }
   :where([data-suisou-body] input:is([type="checkbox"], [type="radio"]))::before { background: HighlightText; }
-  :where([data-suisou-body] input:is([type="checkbox"], [type="radio"])):disabled { border-color: GrayText; }
-  :where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)):disabled { background: GrayText; }
+  :where([data-suisou-body] input:is([type="checkbox"], [type="radio"])):is(:disabled, [aria-disabled="true"]) { border-color: GrayText; }
+  :where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)):is(:disabled, [aria-disabled="true"]) { background: GrayText; }
 }
