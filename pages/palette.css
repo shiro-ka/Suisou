@@ -55,7 +55,7 @@
 }
 
 [data-suisou-theme~="shoal"] {
-  --suisou-color-bg: oklch(26.00% 0.0200 265);
+  --suisou-color-bg: oklch(29.00% 0.0200 265);
   --suisou-color-panel: oklch(33.00% 0.0200 265);
   --suisou-color-item: oklch(39.00% 0.0200 265);
   --suisou-color-tint: oklch(44.00% 0.0200 265);
