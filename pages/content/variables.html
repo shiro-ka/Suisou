@@ -1,0 +1,115 @@
+<div data-suisou-tray data-suisou-layout="grow" data-suisou="scroll-y" data-suisou-text="typeset">
+  <h1 data-suisou="mt-3 mb-4">Variables</h1>
+  <h2>Color</h2>
+  <h3>Shared</h3>
+      <table>
+        <thead><tr><th>Variable</th><th>Color</th><th>Function</th><th>CSS</th></tr></thead>
+        <tbody>
+          <tr><td><code>--suisou-color-hover</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-hover)"></span></td><td>マウスを乗せたときに重ねる灰色。明るさ 55% を不透明度 10% で重ねる</td><td data-css-uses="color-hover"></td></tr>
+          <tr><td><code>--suisou-color-line-weak</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-line-weak)"></span></td><td>弱い線。白を不透明度 15% で重ねる。<code>data-suisou-item</code> の枠、区切り線、typeset の表の罫線</td><td data-css-uses="color-line-weak"></td></tr>
+          <tr><td><code>--suisou-color-line-strong</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-line-strong)"></span></td><td>強い線。白を不透明度 25% で重ねる。入力欄・チェックボックス・outline のボタンの枠、tray の境目、スクロールバー</td><td data-css-uses="color-line-strong"></td></tr>
+          <tr><td><code>--suisou-color-field</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-field)"></span></td><td>入力欄と field の背景。白を不透明度 7% で重ねて、置いた場所より 1 段明るくする</td><td data-css-uses="color-field"></td></tr>
+          <tr><td><code>--suisou-color-backdrop</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-backdrop)"></span></td><td><code>&lt;dialog&gt;</code> とドロワーの後ろに敷く幕。黒を不透明度 72% で重ねる</td><td data-css-uses="color-backdrop"></td></tr>
+        </tbody>
+      </table>
+  <h3>Theme</h3>
+      <table>
+        <thead><tr><th>Variable</th><th>Color</th><th>Function</th><th>CSS</th></tr></thead>
+        <tbody>
+          <tr><td><code>--suisou-color-bg</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-bg)"></span></td><td><code>data-suisou-body</code> の背景。チェックボックスとラジオボタンの印の色</td><td data-css-uses="color-bg"></td></tr>
+          <tr><td><code>--suisou-color-panel</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-panel)"></span></td><td>tray と、ドロワーになったメニューの背景</td><td data-css-uses="color-panel"></td></tr>
+          <tr><td><code>--suisou-color-item</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-item)"></span></td><td><code>data-suisou-item</code>、circle・square の背景。typeset の <code>code</code> の地、loading の溝</td><td data-css-uses="color-item"></td></tr>
+          <tr><td><code>--suisou-color-tint</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-tint)"></span></td><td>ボタンを押している間と、<code>aria-pressed="true"</code> <code>aria-current</code> のボタンの背景</td><td data-css-uses="color-tint"></td></tr>
+          <tr><td><code>--suisou-color-text</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-text)"></span></td><td>本文の文字。マウスを乗せたボタン、押されたボタン、notice の文字</td><td data-css-uses="color-text"></td></tr>
+          <tr><td><code>--suisou-color-text-sub</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-text-sub)"></span></td><td><code>sub</code> の色の語、ボタンの文字、circle・square・tag の文字</td><td data-css-uses="color-text-sub"></td></tr>
+          <tr><td><code>--suisou-color-text-disabled</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-text-disabled)"></span></td><td>押せないボタンと入力欄の文字、入力欄のプレースホルダー</td><td data-css-uses="color-text-disabled"></td></tr>
+          <tr><td><code>--suisou-color-error</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-error)"></span></td><td><code>error</code> の色の語。tag の文字と枠、notice と outline のボタンの枠</td><td data-css-uses="color-error"></td></tr>
+          <tr><td><code>--suisou-color-warning</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-warning)"></span></td><td><code>warning</code> の色の語。tag の文字と枠、notice と outline のボタンの枠</td><td data-css-uses="color-warning"></td></tr>
+          <tr><td><code>--suisou-color-success</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-success)"></span></td><td><code>success</code> の色の語。tag の文字と枠、notice と outline のボタンの枠</td><td data-css-uses="color-success"></td></tr>
+          <tr><td><code>--suisou-color-error-tint</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-error-tint)"></span></td><td><code>error</code> のボタンを押している間の背景、<code>error</code> の notice の背景</td><td data-css-uses="color-error-tint"></td></tr>
+          <tr><td><code>--suisou-color-warning-tint</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-warning-tint)"></span></td><td><code>warning</code> のボタンを押している間の背景、<code>warning</code> の notice の背景</td><td data-css-uses="color-warning-tint"></td></tr>
+          <tr><td><code>--suisou-color-success-tint</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-success-tint)"></span></td><td><code>success</code> のボタンを押している間の背景、<code>success</code> の notice の背景</td><td data-css-uses="color-success-tint"></td></tr>
+        </tbody>
+      </table>
+  <h3>Accent</h3>
+      <table>
+        <thead><tr><th>Variable</th><th>Color</th><th>Function</th><th>CSS</th></tr></thead>
+        <tbody>
+          <tr><td><code>--suisou-color-accent</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-accent)"></span></td><td><code>accent</code> の色の語。フォーカスの枠、チェックボックスの地、loading、outline のボタンの枠</td><td data-css-uses="color-accent"></td></tr>
+          <tr><td><code>--suisou-color-accent-tint</code></td><td><span data-suisou-item="square small" style="background: var(--suisou-color-accent-tint)"></span></td><td><code>accent</code> のボタンを押している間と、<code>aria-pressed="true"</code> の <code>accent</code> のボタンの背景。<code>accent</code> の notice の背景</td><td data-css-uses="color-accent-tint"></td></tr>
+        </tbody>
+      </table>
+  <h2>Size</h2>
+      <table>
+        <thead><tr><th>Variable</th><th>Value</th><th>Function</th><th>CSS</th></tr></thead>
+        <tbody>
+          <tr><td><code>--suisou-size-button</code></td><td data-css-value="size-button"></td><td>ボタンと入力欄の高さ。目次の行の高さもこれに合わせる</td><td data-css-uses="size-button"></td></tr>
+          <tr><td><code>--suisou-size-icon</code></td><td data-css-value="size-icon"></td><td>ボタンの中の <code>&lt;svg&gt;</code> の大きさ。loading の <code>small</code> の大きさ</td><td data-css-uses="size-icon"></td></tr>
+          <tr><td><code>--suisou-size-icon-small</code></td><td data-css-value="size-icon-small"></td><td>チェックボックスとラジオボタン、tag の中の <code>&lt;svg&gt;</code> の大きさ</td><td data-css-uses="size-icon-small"></td></tr>
+          <tr><td><code>--suisou-size-drawer</code></td><td data-css-value="size-drawer"></td><td>drawer の幅（<code>right</code> <code>left</code>）と高さの上限（<code>top</code> <code>bottom</code>）。画面の 90% まで。shell のメニューの幅の上限</td><td data-css-uses="size-drawer"></td></tr>
+          <tr><td><code>--suisou-size-circle</code></td><td data-css-value="size-circle"></td><td>circle の幅と高さ。<code>small</code> <code>large</code> はこの値を変える</td><td data-css-uses="size-circle"></td></tr>
+          <tr><td><code>--suisou-size-square</code></td><td data-css-value="size-square"></td><td>square の幅と高さ。<code>small</code> <code>large</code> はこの値を変える</td><td data-css-uses="size-square"></td></tr>
+          <tr><td><code>--suisou-size-spinner</code></td><td data-css-value="size-spinner"></td><td>loading の円の幅と高さ。<code>small</code> <code>large</code> はこの値を変える</td><td data-css-uses="size-spinner"></td></tr>
+        </tbody>
+      </table>
+  <h2>Space</h2>
+      <table>
+        <thead><tr><th>Variable</th><th>Value</th><th>Function</th><th>CSS</th></tr></thead>
+        <tbody>
+          <tr><td><code>--suisou-space-1</code></td><td data-css-value="space-1"></td><td><code>p-1</code> <code>mt-1</code> <code>gap-1</code> などの値</td><td data-css-uses="space-1"></td></tr>
+          <tr><td><code>--suisou-space-2</code></td><td data-css-value="space-2"></td><td><code>p-2</code> <code>mt-2</code> <code>gap-2</code> などの値。layout の既定の間隔、部品の内側の余白</td><td data-css-uses="space-2"></td></tr>
+          <tr><td><code>--suisou-space-3</code></td><td data-css-value="space-3"></td><td><code>p-3</code> <code>mt-3</code> <code>gap-3</code> などの値</td><td data-css-uses="space-3"></td></tr>
+          <tr><td><code>--suisou-space-4</code></td><td data-css-value="space-4"></td><td><code>p-4</code> <code>mt-4</code> <code>gap-4</code> などの値</td><td data-css-uses="space-4"></td></tr>
+          <tr><td><code>--suisou-space-5</code></td><td data-css-value="space-5"></td><td><code>p-5</code> <code>mt-5</code> などの値</td><td data-css-uses="space-5"></td></tr>
+        </tbody>
+      </table>
+  <h2>Radius</h2>
+      <table>
+        <thead><tr><th>Variable</th><th>Value</th><th>Function</th><th>CSS</th></tr></thead>
+        <tbody>
+          <tr><td><code>--suisou-radius</code></td><td data-css-value="radius"></td><td>item・ボタン・入力欄などの角丸</td><td data-css-uses="radius"></td></tr>
+          <tr><td><code>--suisou-radius-small</code></td><td data-css-value="radius-small"></td><td>チェックボックスと、typeset の <code>code</code> の角丸</td><td data-css-uses="radius-small"></td></tr>
+          <tr><td><code>--suisou-radius-pill</code></td><td data-css-value="radius-pill"></td><td>tag・circle・ラジオボタン・loading など、端を丸くする角丸</td><td data-css-uses="radius-pill"></td></tr>
+        </tbody>
+      </table>
+  <h2>Type</h2>
+      <table>
+        <thead><tr><th>Variable</th><th>Value</th><th>Function</th><th>CSS</th></tr></thead>
+        <tbody>
+          <tr><td><code>--suisou-font</code></td><td data-css-value="font"></td><td><code>data-suisou-body</code> の書体</td><td data-css-uses="font"></td></tr>
+          <tr><td><code>--suisou-font-mono</code></td><td data-css-value="font-mono"></td><td>typeset の <code>code</code> と <code>pre</code> の書体</td><td data-css-uses="font-mono"></td></tr>
+          <tr><td><code>--suisou-fs-12</code></td><td data-css-value="fs-12"></td><td><code>fs-12</code> の文字の大きさ</td><td data-css-uses="fs-12"></td></tr>
+          <tr><td><code>--suisou-fs-14</code></td><td data-css-value="fs-14"></td><td><code>fs-14</code> の文字の大きさ。<code>data-suisou-body</code> と typeset の既定</td><td data-css-uses="fs-14"></td></tr>
+          <tr><td><code>--suisou-fs-16</code></td><td data-css-value="fs-16"></td><td><code>fs-16</code> の文字の大きさ</td><td data-css-uses="fs-16"></td></tr>
+          <tr><td><code>--suisou-fs-20</code></td><td data-css-value="fs-20"></td><td><code>fs-20</code> の文字の大きさ</td><td data-css-uses="fs-20"></td></tr>
+          <tr><td><code>--suisou-fs-24</code></td><td data-css-value="fs-24"></td><td><code>fs-24</code> の文字の大きさ</td><td data-css-uses="fs-24"></td></tr>
+          <tr><td><code>--suisou-fs-28</code></td><td data-css-value="fs-28"></td><td><code>fs-28</code> の文字の大きさ</td><td data-css-uses="fs-28"></td></tr>
+          <tr><td><code>--suisou-fs-32</code></td><td data-css-value="fs-32"></td><td><code>fs-32</code> の文字の大きさ</td><td data-css-uses="fs-32"></td></tr>
+          <tr><td><code>--suisou-lh-12</code></td><td data-css-value="lh-12"></td><td><code>fs-12</code> の行の高さ</td><td data-css-uses="lh-12"></td></tr>
+          <tr><td><code>--suisou-lh-14</code></td><td data-css-value="lh-14"></td><td><code>fs-14</code> の行の高さ</td><td data-css-uses="lh-14"></td></tr>
+          <tr><td><code>--suisou-lh-16</code></td><td data-css-value="lh-16"></td><td><code>fs-16</code> の行の高さ</td><td data-css-uses="lh-16"></td></tr>
+          <tr><td><code>--suisou-lh-20</code></td><td data-css-value="lh-20"></td><td><code>fs-20</code> の行の高さ</td><td data-css-uses="lh-20"></td></tr>
+          <tr><td><code>--suisou-lh-24</code></td><td data-css-value="lh-24"></td><td><code>fs-24</code> の行の高さ</td><td data-css-uses="lh-24"></td></tr>
+          <tr><td><code>--suisou-lh-28</code></td><td data-css-value="lh-28"></td><td><code>fs-28</code> の行の高さ</td><td data-css-uses="lh-28"></td></tr>
+          <tr><td><code>--suisou-lh-32</code></td><td data-css-value="lh-32"></td><td><code>fs-32</code> の行の高さ</td><td data-css-uses="lh-32"></td></tr>
+        </tbody>
+      </table>
+  <h2>Motion</h2>
+      <table>
+        <thead><tr><th>Variable</th><th>Value</th><th>Function</th><th>CSS</th></tr></thead>
+        <tbody>
+          <tr><td><code>--suisou-duration</code></td><td data-css-value="duration"></td><td>ドロワーが開閉するときの時間。動きを減らす設定のときは 0.01ms</td><td data-css-uses="duration"></td></tr>
+          <tr><td><code>--suisou-duration-fast</code></td><td data-css-value="duration-fast"></td><td>ボタンや tag の色が変わるときの時間。動きを減らす設定のときは 0.01ms</td><td data-css-uses="duration-fast"></td></tr>
+          <tr><td><code>--suisou-ease</code></td><td data-css-value="ease"></td><td>動きの加速の仕方</td><td data-css-uses="ease"></td></tr>
+        </tbody>
+      </table>
+  <h2>Layout</h2>
+      <table>
+        <thead><tr><th>Variable</th><th>Value</th><th>Function</th><th>CSS</th></tr></thead>
+        <tbody>
+          <tr><td><code>--suisou-grow</code></td><td data-css-value="grow"></td><td><code>grow</code> を付けた子要素が、余った分を埋める比率</td><td data-css-uses="grow"></td></tr>
+          <tr><td><code>--suisou-grid-cols</code></td><td data-css-value="grid-cols"></td><td><code>grid</code> の列（<code>grid-template-columns</code> に渡す値）</td><td data-css-uses="grid-cols"></td></tr>
+          <tr><td><code>--suisou-grid-rows</code></td><td data-css-value="grid-rows"></td><td><code>grid</code> の行（<code>grid-template-rows</code> に渡す値）</td><td data-css-uses="grid-rows"></td></tr>
+        </tbody>
+      </table>
+</div>
