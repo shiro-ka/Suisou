@@ -29,7 +29,7 @@
   --suisou-color-tint: oklch(36.00% 0.0400 270);
   --suisou-color-text: oklch(94.00% 0.0150 270);
   --suisou-color-text-sub: oklch(78.00% 0.0150 270);
-  --suisou-color-text-disabled: oklch(62.00% 0.0400 270);
+  --suisou-color-text-disabled: oklch(62.00% 0.0150 270);
   --suisou-color-error: oklch(73.00% 0.1580 22);
   --suisou-color-warning: oklch(82.00% 0.1592 90);
   --suisou-color-success: oklch(76.00% 0.1785 155);
@@ -45,7 +45,7 @@
   --suisou-color-tint: oklch(34.50% 0.0370 281);
   --suisou-color-text: oklch(94.00% 0.0250 281);
   --suisou-color-text-sub: oklch(78.00% 0.0250 281);
-  --suisou-color-text-disabled: oklch(62.00% 0.0370 281);
+  --suisou-color-text-disabled: oklch(62.00% 0.0250 281);
   --suisou-color-error: oklch(73.00% 0.1580 22);
   --suisou-color-warning: oklch(82.00% 0.1592 90);
   --suisou-color-success: oklch(76.00% 0.1785 155);
