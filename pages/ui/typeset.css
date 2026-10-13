@@ -180,6 +180,8 @@
   list-style: none;
   font-weight: 700;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
   border-radius: calc(var(--suisou-radius) - 1px);
   transition: background-color var(--suisou-duration-fast) var(--suisou-ease);
 }
