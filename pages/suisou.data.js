@@ -192,7 +192,7 @@ const SUISOU = {
   "color-line-weak",
   "color-line-strong",
   "color-field",
-  "color-scrim"
+  "color-backdrop"
  ],
  "default": {
   "theme": "hadal",
