@@ -92,7 +92,21 @@ body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-templa
 @starting-style {
   [data-suisou-body~="shell"] > nav[popover]:popover-open { translate: var(--_suisou-drawer-hidden); }
 }
-[data-suisou-body~="shell"] > nav[popover]::backdrop { background: var(--suisou-color-backdrop); }
+[data-suisou-body~="shell"] > nav[popover]::backdrop {
+  background: var(--suisou-color-backdrop);
+  opacity: 0;
+  transition: opacity var(--suisou-duration-fast) var(--suisou-ease),
+              display var(--suisou-duration-fast) allow-discrete,
+              overlay var(--suisou-duration-fast) allow-discrete;
+}
+[data-suisou-body~="shell"] > nav[popover]:popover-open::backdrop {
+  opacity: 1;
+}
+@starting-style {
+  [data-suisou-body~="shell"] > nav[popover]:popover-open::backdrop {
+    opacity: 0;
+  }
+}
 @media (width >= 768px) {
   :where([data-suisou-body~="shell"][data-suisou-body~="s:dock"] > nav[popover]) { display: block; }
   [data-suisou-body~="shell"][data-suisou-body~="s:dock"] > nav[popover]:not(:popover-open) {
