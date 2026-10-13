@@ -1,4 +1,4 @@
-@property --suisou-drawer { syntax: "*"; inherits: false; }
+@property --suisou-drawer-size { syntax: "*"; inherits: false; }
 
 [data-suisou-tray=""] {
   border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-weak);
@@ -53,7 +53,7 @@
 :where([popover])[data-suisou-tray~="drawer"]:where([data-suisou-tray~="right"]) {
   --_suisou-drawer-hidden: 100% 0;
   inset: 0 0 0 auto;
-  width: min(var(--suisou-drawer, 20rem), 90vw);
+  width: min(var(--suisou-drawer-size, 20rem), 90vw);
   height: 100dvh;
   max-height: none;
   border-left: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
@@ -61,7 +61,7 @@
 :where([popover])[data-suisou-tray~="drawer"]:where([data-suisou-tray~="left"]) {
   --_suisou-drawer-hidden: -100% 0;
   inset: 0 auto 0 0;
-  width: min(var(--suisou-drawer, 20rem), 90vw);
+  width: min(var(--suisou-drawer-size, 20rem), 90vw);
   height: 100dvh;
   max-height: none;
   border-right: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
@@ -71,7 +71,7 @@
   inset: 0 0 auto 0;
   width: 100dvw;
   max-width: none;
-  max-height: min(var(--suisou-drawer, 20rem), 90vh);
+  max-height: min(var(--suisou-drawer-size, 20rem), 90vh);
   border-bottom: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
 }
 :where([popover])[data-suisou-tray~="drawer"]:where([data-suisou-tray~="bottom"]) {
@@ -79,7 +79,7 @@
   inset: auto 0 0 0;
   width: 100dvw;
   max-width: none;
-  max-height: min(var(--suisou-drawer, 20rem), 90vh);
+  max-height: min(var(--suisou-drawer-size, 20rem), 90vh);
   border-top: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
 }
 :where([popover])[data-suisou-tray~="drawer"]:popover-open { translate: 0 0; }
