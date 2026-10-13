@@ -81,7 +81,7 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
 }
 [data-suisou-text~="toc"] :where(li li li) > :where(a, span) { padding-block: calc((var(--suisou-size-button) - var(--suisou-space-1) - 1lh) / 2); }
 [data-suisou-text~="toc"] :where(li) > :where(a):hover { color: var(--suisou-color-text); }
-[data-suisou-text~="toc"] :where(li) > :where(a[aria-current]:not([aria-current="false"])) { color: var(--suisou-color-accent); }
+[data-suisou-text~="toc"] :where(li) > :where(a)[aria-current]:not([aria-current="false"]) { color: var(--suisou-color-accent); }
 [data-suisou-text~="toc"] :where(li:not(li li))::before,
 [data-suisou-text~="toc"] :where(li li:not(li li li))::before {
   content: "";
