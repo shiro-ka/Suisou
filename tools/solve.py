@@ -185,8 +185,9 @@ def sem_ratio(ar):
 def tokens(t, acc_name, acc_h):
     D = ladder(t)
     o = {}
-    for k in ["bg","panel","item","tint","text-disabled"]:
+    for k in ["bg","panel","item","tint"]:
         o["color-" + k] = face(D[k], t)
+    o["color-text-disabled"] = face(D["text-disabled"], text_theme(t))
     o["color-text-sub"] = face(D["text-sub"], text_theme(t))
     o["color-text"]     = face(resolve_text_main(t), text_theme(t))
     o["color-accent"]   = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
