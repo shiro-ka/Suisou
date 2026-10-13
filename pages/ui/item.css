@@ -62,6 +62,7 @@
   overflow: hidden;
   background: var(--suisou-color-field);
   border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
+  transition: border-color var(--suisou-duration-fast) var(--suisou-ease);
 }
 [data-suisou-item~="field"] > :where(input, textarea, select) {
   block-size: auto;
