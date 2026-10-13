@@ -134,7 +134,9 @@ PAIRS = [
     ("color-text","color-tint",4.5),
 
     ("color-text","color-error-tint",4.5),
-    ("color-error","color-error-tint",4.5),
+    ("color-error","color-error-tint",3.0),
+    ("color-warning","color-warning-tint",3.0),
+    ("color-success","color-success-tint",3.0),
     ("color-accent","color-accent-tint",3.0),
     ("color-text","hover-on-accent-tint",4.5),
     ("color-text","hover-on-tint",4.5),
