@@ -113,7 +113,7 @@ SHARED = {
     "color-line-weak":   (WHITE, 0.15),
     "color-line-strong": (WHITE, 0.25),
     "color-field":       (WHITE, 0.07),
-    "color-scrim":       ((0.0, 0.0, 0), 0.72),
+    "color-backdrop":       ((0.0, 0.0, 0), 0.72),
 }
 SURFACES = ["panel", "item"]
 JND = 0.02

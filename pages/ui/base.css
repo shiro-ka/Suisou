@@ -19,8 +19,8 @@
   --suisou-radius-pill: 999px;
   --suisou-font: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   --suisou-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --suisou-motion-fast: 120ms;
-  --suisou-motion: 200ms;
+  --suisou-duration-fast: 120ms;
+  --suisou-duration: 200ms;
   --suisou-ease: cubic-bezier(0.2, 0, 0, 1);
 }
 [data-suisou-theme] {
@@ -75,24 +75,24 @@ body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-templa
   background: var(--suisou-color-panel);
   color: var(--suisou-color-text);
   border: 0;
-  border-right: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
-  --suisou-drawer-hidden: -100% 0;
-  translate: var(--suisou-drawer-hidden);
-  transition: translate var(--suisou-motion) var(--suisou-ease),
-              display var(--suisou-motion) allow-discrete,
-              overlay var(--suisou-motion) allow-discrete;
+  border-right: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
+  --_suisou-drawer-hidden: -100% 0;
+  translate: var(--_suisou-drawer-hidden);
+  transition: translate var(--suisou-duration) var(--suisou-ease),
+              display var(--suisou-duration) allow-discrete,
+              overlay var(--suisou-duration) allow-discrete;
 }
 [data-suisou-body~="shell"][data-suisou-body~="right"] > nav[popover] {
   inset: 0 0 0 auto;
   border-right: 0;
-  border-left: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
-  --suisou-drawer-hidden: 100% 0;
+  border-left: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
+  --_suisou-drawer-hidden: 100% 0;
 }
 [data-suisou-body~="shell"] > nav[popover]:popover-open { translate: 0 0; }
 @starting-style {
-  [data-suisou-body~="shell"] > nav[popover]:popover-open { translate: var(--suisou-drawer-hidden); }
+  [data-suisou-body~="shell"] > nav[popover]:popover-open { translate: var(--_suisou-drawer-hidden); }
 }
-[data-suisou-body~="shell"] > nav[popover]::backdrop { background: var(--suisou-color-scrim); }
+[data-suisou-body~="shell"] > nav[popover]::backdrop { background: var(--suisou-color-backdrop); }
 @media (width >= 768px) {
   :where([data-suisou-body~="shell"][data-suisou-body~="s:dock"] > nav[popover]) { display: block; }
   [data-suisou-body~="shell"][data-suisou-body~="s:dock"] > nav[popover]:not(:popover-open) {
@@ -140,8 +140,8 @@ body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-templa
 }
 @media (prefers-reduced-motion: reduce) {
   :root {
-    --suisou-motion-fast: 0.01ms;
-    --suisou-motion: 0.01ms;
+    --suisou-duration-fast: 0.01ms;
+    --suisou-duration: 0.01ms;
   }
 }
 :where([data-suisou-body] a) {

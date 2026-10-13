@@ -4,7 +4,7 @@
 [data-suisou-item] { text-decoration: none; }
 
 [data-suisou-item=""] {
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-weak);
+  border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-weak);
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2);
   background: var(--suisou-color-item);
@@ -61,7 +61,7 @@
   border-radius: var(--suisou-radius);
   overflow: hidden;
   background: var(--suisou-color-field);
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
+  border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
 }
 [data-suisou-item~="field"] > :where(input, textarea, select) {
   block-size: auto;
@@ -93,7 +93,7 @@
 [data-suisou-item~="circle"], [data-suisou-item~="square"] {
   flex: none;
   background: var(--suisou-color-item);
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-weak);
+  border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-weak);
   color: var(--suisou-color-text-sub);
   font-size: var(--suisou-fs-12);
   line-height: var(--suisou-lh-12);
@@ -128,11 +128,11 @@
   padding: 0 var(--suisou-space-2);
   border-radius: var(--suisou-radius-pill);
 
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-weak);
+  border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-weak);
   color: var(--suisou-color-text-sub);
   background: transparent;
-  transition: color var(--suisou-motion-fast) var(--suisou-ease),
-              border-color var(--suisou-motion-fast) var(--suisou-ease);
+  transition: color var(--suisou-duration-fast) var(--suisou-ease),
+              border-color var(--suisou-duration-fast) var(--suisou-ease);
 }
 
 [data-suisou-item~="tag"]:where([data-suisou~="accent"])  { border-color: var(--suisou-color-accent); }
@@ -150,7 +150,7 @@
 
 [data-suisou-item~="notice"] {
   background: var(--suisou-color-item);
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-weak);
+  border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-weak);
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2) var(--suisou-space-3);
   color: var(--suisou-color-text);

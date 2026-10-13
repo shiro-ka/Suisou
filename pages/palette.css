@@ -3,7 +3,7 @@
   --suisou-color-line-weak: oklch(100.00% 0.0000 0 / 0.15);
   --suisou-color-line-strong: oklch(100.00% 0.0000 0 / 0.25);
   --suisou-color-field: oklch(100.00% 0.0000 0 / 0.07);
-  --suisou-color-scrim: oklch(0.00% 0.0000 0 / 0.72);
+  --suisou-color-backdrop: oklch(0.00% 0.0000 0 / 0.72);
 }
 
 [data-suisou-theme~="hadal"] {

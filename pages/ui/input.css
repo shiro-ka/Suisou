@@ -4,8 +4,8 @@
 
   background: var(--suisou-color-field);
   color: var(--suisou-color-text);
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
-  transition: border-color var(--suisou-motion-fast) var(--suisou-ease);
+  border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
+  transition: border-color var(--suisou-duration-fast) var(--suisou-ease);
 }
 
 :where([data-suisou-body] select:not([multiple], [size])) {
@@ -39,11 +39,11 @@
   block-size: var(--suisou-icon-small);
   margin: 0;
   vertical-align: -0.2em;
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
+  border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
   border-radius: var(--suisou-radius-small);
   background: var(--suisou-color-field);
   cursor: pointer;
-  transition: background-color var(--suisou-motion-fast) var(--suisou-ease), border-color var(--suisou-motion-fast) var(--suisou-ease);
+  transition: background-color var(--suisou-duration-fast) var(--suisou-ease), border-color var(--suisou-duration-fast) var(--suisou-ease);
 }
 :where([data-suisou-body] input[type="radio"]) { border-radius: var(--suisou-radius-pill); }
 
@@ -53,7 +53,7 @@
   block-size: 0.75rem;
   background: var(--suisou-color-bg);
   scale: 0;
-  transition: scale var(--suisou-motion-fast) var(--suisou-ease);
+  transition: scale var(--suisou-duration-fast) var(--suisou-ease);
 }
 :where([data-suisou-body] input[type="checkbox"])::before { mask: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M5 12.5l4.5 4.5L19 7.5"/%3E%3C/svg%3E') center / contain no-repeat; }
 :where([data-suisou-body] input[type="checkbox"]):indeterminate::before { mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M6 12h12"/%3E%3C/svg%3E'); }
