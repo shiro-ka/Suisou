@@ -47,7 +47,7 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
 }
 
 [data-suisou-text~="link"]:hover {
-  color: var(--suisou-accent);
+  color: var(--suisou-color-accent);
 }
 
 [data-suisou-text~="link"]:has(> img:only-child) {
@@ -76,12 +76,12 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
 [data-suisou-text~="toc"] :where(li) > :where(a, span) {
   display: block;
   padding-block: calc((var(--suisou-button-height) - 1lh) / 2);
-  color: var(--suisou-text-sub);
+  color: var(--suisou-color-text-sub);
   text-decoration: none;
 }
 [data-suisou-text~="toc"] :where(li li li) > :where(a, span) { padding-block: calc((var(--suisou-button-height) - var(--suisou-space-1) - 1lh) / 2); }
-[data-suisou-text~="toc"] :where(li) > :where(a):hover { color: var(--suisou-text-main); }
-[data-suisou-text~="toc"] :where(li) > :where(a[aria-current]:not([aria-current="false"])) { color: var(--suisou-accent); }
+[data-suisou-text~="toc"] :where(li) > :where(a):hover { color: var(--suisou-color-text); }
+[data-suisou-text~="toc"] :where(li) > :where(a[aria-current]:not([aria-current="false"])) { color: var(--suisou-color-accent); }
 [data-suisou-text~="toc"] :where(li:not(li li))::before,
 [data-suisou-text~="toc"] :where(li li:not(li li li))::before {
   content: "";
@@ -93,16 +93,16 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
   border-radius: var(--suisou-radius-pill);
   box-sizing: border-box;
 }
-[data-suisou-text~="toc"] :where(li:not(li li))::before { background: var(--suisou-line-strong); }
+[data-suisou-text~="toc"] :where(li:not(li li))::before { background: var(--suisou-color-line-strong); }
 [data-suisou-text~="toc"] :where(li li:not(li li li))::before {
   inset-inline-start: 5px;
   top: calc((var(--suisou-button-height) - 6px) / 2);
   width: 6px;
   height: 6px;
-  border: 1.5px solid var(--suisou-line-strong);
+  border: 1.5px solid var(--suisou-color-line-strong);
 }
-[data-suisou-text~="toc"] :where(li:not(li li)):has(> a[aria-current]:not([aria-current="false"]))::before { background: var(--suisou-accent); }
-[data-suisou-text~="toc"] :where(li li:not(li li li)):has(> a[aria-current]:not([aria-current="false"]))::before { border-color: var(--suisou-accent); }
+[data-suisou-text~="toc"] :where(li:not(li li)):has(> a[aria-current]:not([aria-current="false"]))::before { background: var(--suisou-color-accent); }
+[data-suisou-text~="toc"] :where(li li:not(li li li)):has(> a[aria-current]:not([aria-current="false"]))::before { border-color: var(--suisou-color-accent); }
 [data-suisou-text~="toc"] :where(li:not(li li)):not(:last-child)::after {
   content: "";
   position: absolute;
@@ -111,5 +111,5 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
   bottom: calc(4px - (var(--suisou-button-height) - 8px) / 2);
   width: 2px;
   border-radius: var(--suisou-radius-pill);
-  background: var(--suisou-line-weak);
+  background: var(--suisou-color-line-weak);
 }

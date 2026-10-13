@@ -2,11 +2,9 @@
   padding: calc((var(--suisou-button-height) - 1lh) / 2 - 1px) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
 
-  background: var(--suisou-next, var(--suisou-item));
-  --suisou-line-weak: var(--suisou-line-weak-next, var(--suisou-line-weak-item));
-  --suisou-line-strong: var(--suisou-line-strong-next, var(--suisou-line-strong-item));
-  color: var(--suisou-text-main);
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  background: var(--suisou-color-field);
+  color: var(--suisou-color-text);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
   transition: border-color var(--suisou-motion-fast) var(--suisou-ease);
 }
 
@@ -15,19 +13,19 @@
   block-size: var(--suisou-button-height);
 }
 
-:where([data-suisou-body] :is(input, textarea))::placeholder { color: var(--suisou-text-disabled); }
+:where([data-suisou-body] :is(input, textarea))::placeholder { color: var(--suisou-color-text-disabled); }
 
 :where([data-suisou-body] :is(input, textarea, select)):focus-visible {
-  outline: var(--suisou-focus);
+  outline: 2px solid var(--suisou-color-accent);
   outline-offset: 2px;
 }
 
-:where([data-suisou-body] :is(input, textarea, select))[aria-invalid="true"] { border-color: var(--suisou-error); }
+:where([data-suisou-body] :is(input, textarea, select))[aria-invalid="true"] { border-color: var(--suisou-color-error); }
 
 :where([data-suisou-body] :is(input, textarea, select)):disabled,
 :where([data-suisou-body] :is(input, textarea, select))[aria-disabled="true"] {
-  color: var(--suisou-text-disabled);
-  border-color: var(--suisou-line-weak);
+  color: var(--suisou-color-text-disabled);
+  border-color: var(--suisou-color-line-weak);
   background: transparent;
   cursor: default;
 }
@@ -41,9 +39,9 @@
   block-size: var(--suisou-icon-small);
   margin: 0;
   vertical-align: -0.2em;
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
   border-radius: var(--suisou-radius-small);
-  background: var(--suisou-next, var(--suisou-item));
+  background: var(--suisou-color-field);
   cursor: pointer;
   transition: background-color var(--suisou-motion-fast) var(--suisou-ease), border-color var(--suisou-motion-fast) var(--suisou-ease);
 }
@@ -53,7 +51,7 @@
   content: "";
   inline-size: 0.75rem;
   block-size: 0.75rem;
-  background: var(--suisou-bg);
+  background: var(--suisou-color-bg);
   scale: 0;
   transition: scale var(--suisou-motion-fast) var(--suisou-ease);
 }
@@ -61,10 +59,10 @@
 :where([data-suisou-body] input[type="checkbox"]):indeterminate::before { mask-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"%3E%3Cpath d="M6 12h12"/%3E%3C/svg%3E'); }
 :where([data-suisou-body] input[type="radio"])::before { inline-size: 0.375rem; block-size: 0.375rem; border-radius: var(--suisou-radius-pill); }
 
-:where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)) { background: var(--suisou-accent); border-color: var(--suisou-accent); }
+:where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)) { background: var(--suisou-color-accent); border-color: var(--suisou-color-accent); }
 :where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked))::before { scale: 1; }
-:where([data-suisou-body] input:is([type="checkbox"], [type="radio"])):not(:disabled):hover { border-color: var(--suisou-accent); }
-:where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)):disabled { background: var(--suisou-line-weak); border-color: var(--suisou-line-weak); }
+:where([data-suisou-body] input:is([type="checkbox"], [type="radio"])):not(:disabled):hover { border-color: var(--suisou-color-accent); }
+:where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)):disabled { background: var(--suisou-color-line-weak); border-color: var(--suisou-color-line-weak); }
 
 @media (forced-colors: active) {
   :where([data-suisou-body] input:is([type="checkbox"], [type="radio"])) { forced-color-adjust: none; background: Canvas; border-color: CanvasText; }
