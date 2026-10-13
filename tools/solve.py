@@ -78,11 +78,11 @@ def hue_dist(a, b):
 LADDERS = {
 
     "dark": {"bg":.18, "panel":.22, "item":.28, "tint":.33,
-             "line-weak":.44, "line-strong":.61, "text-disabled":.62,
+             "text-disabled":.62,
              "accent":.74, "text-sub":.78, "text-main":.94},
 
     "dim":  {"bg":.26, "panel":.33, "item":.39, "tint":.44,
-             "line-weak":.55, "line-strong":.73, "text-disabled":.74,
+             "text-disabled":.74,
              "accent":.80, "text-sub":.90, "text-main":.955},
 }
 SEM_HUE = {"error": 22, "warning": 90, "success": 155}
@@ -107,34 +107,37 @@ ACCENT_JP = {"clown":"カクレクマノミ", "turtle":"ウミガメ", "jelly":"
 
 FLOOR = {"selected":0.055, "semantic":0.055, "textSub":0.08, "tintHue":0.05}
 SEM_OFFSET = 0.15
-ACTIVE_DL  = -0.03
-SCRIM_ALPHA = 0.72
-HOVER_L = 0.55
-HOVER_ALPHA = 0.10
+WHITE = (1.0, 0.0, 0)
+SHARED = {
+    "color-hover":       ((0.55, 0.0, 0), 0.10),
+    "color-line-weak":   (WHITE, 0.15),
+    "color-line-strong": (WHITE, 0.25),
+    "color-field":       (WHITE, 0.07),
+    "color-scrim":       ((0.0, 0.0, 0), 0.72),
+}
 SURFACES = ["panel", "item"]
 JND = 0.02
 
 PAIRS = [
 
-    ("line-weak","bg",1.5),
-    ("line-weak-panel","panel",1.5),
-    ("line-weak-item","item",1.5),
-    ("line-strong","bg",3.0),
-    ("line-strong-panel","panel",3.0),
-    ("line-strong-item","item",3.0),
-    ("accent","panel",3.0),
-    ("text-main","selected-surface",4.5),
-    ("text-main","hover-on-panel",4.5),
-    ("text-main","hover-on-item",4.5),
+    ("line-weak-on-bg","color-bg",1.5),
+    ("line-weak-on-panel","color-panel",1.5),
+    ("line-weak-on-item","color-item",1.5),
+    ("line-strong-on-bg","color-bg",2.0),
+    ("line-strong-on-panel","color-panel",2.0),
+    ("line-strong-on-item","color-item",2.0),
+    ("color-accent","color-panel",3.0),
+    ("color-text","color-accent-tint",4.5),
+    ("color-text","hover-on-panel",4.5),
+    ("color-text","hover-on-item",4.5),
 
-    ("text-main","selected-neutral-surface",4.5),
+    ("color-text","color-tint",4.5),
 
-    ("text-main","error-surface",4.5),
-    ("error","error-surface",4.5),
-    ("error-active","error-surface",3.0),
-    ("accent-active","selected-surface",3.0),
-    ("text-main","hover-on-selected",4.5),
-    ("text-main","hover-on-selected-neutral",4.5),
+    ("color-text","color-error-tint",4.5),
+    ("color-error","color-error-tint",4.5),
+    ("color-accent","color-accent-tint",3.0),
+    ("color-text","hover-on-accent-tint",4.5),
+    ("color-text","hover-on-tint",4.5),
 ]
 
 def ladder(t):
@@ -152,22 +155,6 @@ def resolve_text_main(t):
     while L > 0.80 and not in_gamut(L, text_theme(t)["cs"], t["h"]):
         L -= 0.005
     return round(L, 3)
-
-LINE_WEAK_RATIO = 1.51
-
-LINE_STRONG_RATIO = 3.10
-
-def resolve_line(t, face_L, ratio):
-
-    lo, hi = face_L, 1.0
-    for _ in range(48):
-        m = (lo + hi) / 2
-        if contrast((m, t["cs"], t["h"]), (face_L, t["cs"], t["h"])) < ratio:
-            lo = m
-        else:
-            hi = m
-    return round(hi + 0.0005, 4)
-
 
 def resolve_tint(t, h, floor):
 
@@ -196,33 +183,22 @@ def sem_ratio(ar):
 def tokens(t, acc_name, acc_h):
     D = ladder(t)
     o = {}
-    for k in ["bg","panel","item","line-weak","line-strong","text-disabled"]:
-        o[k] = face(D[k], t)
-    o["text-sub"]  = face(D["text-sub"], text_theme(t))
-    o["text-main"] = face(resolve_text_main(t), text_theme(t))
-    o["scrim"]     = face(0.08, t)
-
-    for name, ratio in (("line-weak", LINE_WEAK_RATIO), ("line-strong", LINE_STRONG_RATIO)):
-        o[name] = face(resolve_line(t, D["bg"], ratio), t)
-        for st in SURFACES:
-            o[f"{name}-{st}"] = face(resolve_line(t, D[st], ratio), t)
-    o["accent"]        = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
-    o["accent-active"] = (D["accent"]+ACTIVE_DL, maxC(D["accent"]+ACTIVE_DL, acc_h) * t["ar"], acc_h)
-    o["hover-surface"] = (HOVER_L, 0.0, 0)
-    for st in SURFACES:
-        o[f"hover-on-{st}"] = over(o["hover-surface"], HOVER_ALPHA, o[st])
-
-    o["selected-surface"] = (D["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h)
-    o["selected-neutral-surface"] = face(D["tint"], t)
-    o["hover-on-selected"] = over(o["hover-surface"], HOVER_ALPHA, o["selected-surface"])
-    o["hover-on-selected-neutral"] = over(o["hover-surface"], HOVER_ALPHA, o["selected-neutral-surface"])
+    for k in ["bg","panel","item","tint","text-disabled"]:
+        o["color-" + k] = face(D[k], t)
+    o["color-text-sub"] = face(D["text-sub"], text_theme(t))
+    o["color-text"]     = face(resolve_text_main(t), text_theme(t))
+    o["color-accent"]   = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
+    o["color-accent-tint"] = (D["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h)
     sr = sem_ratio(t["ar"])
     for n, h in SEM_HUE.items():
         L = SEM_L[t["ladder"]][n]
-        o[n] = (L, maxC(L, h) * sr, h)
-
-        o[n+"-active"] = (L+ACTIVE_DL, maxC(L+ACTIVE_DL, h) * sr, h)
-        o[n+"-surface"] = (D["tint"], resolve_tint(t, h, FLOOR["selected"]), h)
+        o["color-" + n] = (L, maxC(L, h) * sr, h)
+        o["color-" + n + "-tint"] = (D["tint"], resolve_tint(t, h, FLOOR["selected"]), h)
+    for st in ("bg", "panel", "item", "tint", "accent-tint"):
+        under = o["color-" + st]
+        o[f"hover-on-{st}"] = over(*SHARED["color-hover"], under)
+        o[f"line-weak-on-{st}"] = over(*SHARED["color-line-weak"], under)
+        o[f"line-strong-on-{st}"] = over(*SHARED["color-line-strong"], under)
     return o
 
 def accent_blocking(t, acc_name, acc_h):
@@ -239,20 +215,18 @@ def accent_issues(t, acc_name, acc_h):
         d = min(dE((ladder(t)["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h),
                    (ladder(t)[sf], t["cs"], t["h"])) for sf in SURFACES)
         bad.append(f"選択の tint が surface と近い ΔE {d:.3f}（目標 {FLOOR['selected']}）")
-    for st in ("accent", "accent-active"):
-
-        if contrast(k[st], k["item"]) < 3.0:
-            bad.append(f"{st} のコントラスト不足 {contrast(k[st], k['item']):.2f}:1")
-        d = dE(k[st], k["text-sub"])
-        if d < FLOOR["textSub"]: bad.append(f"{st} が text-sub と近い ΔE {d:.3f}")
-    near = min(((dE(k["accent"], k[n]), n) for n in SEM_HUE))
+    if contrast(k["color-accent"], k["color-item"]) < 3.0:
+        bad.append(f"accent のコントラスト不足 {contrast(k['color-accent'], k['color-item']):.2f}:1")
+    d = dE(k["color-accent"], k["color-text-sub"])
+    if d < FLOOR["textSub"]: bad.append(f"accent が text-sub と近い ΔE {d:.3f}")
+    near = min(((dE(k["color-accent"], k["color-" + n]), n) for n in SEM_HUE))
     if near[0] < FLOOR["semantic"]: bad.append(f"{near[1]} と近い ΔE {near[0]:.3f}")
     for st in SURFACES:
-        if dE(k["selected-surface"], k[f"hover-on-{st}"]) < JND:
+        if dE(k["color-accent-tint"], k[f"hover-on-{st}"]) < JND:
             bad.append(f"{st} の上の hover と選択が近すぎ")
 
     for st in SURFACES:
-        if dE(k["selected-neutral-surface"], k[f"hover-on-{st}"]) < JND:
+        if dE(k["color-tint"], k[f"hover-on-{st}"]) < JND:
             bad.append(f"{st} の上の hover と選択（中立）が近すぎ")
     return bad
 
@@ -273,8 +247,8 @@ def gamut_failures(t, acc_name, acc_h):
 def solve():
     out = {
         "version": "1.4",
-        "floors": FLOOR, "semOffset": SEM_OFFSET, "activeDL": ACTIVE_DL,
-        "scrimAlpha": SCRIM_ALPHA, "hoverAlpha": HOVER_ALPHA, "jnd": JND,
+        "floors": FLOOR, "semOffset": SEM_OFFSET, "jnd": JND,
+        "shared": {n: {"L": v[0][0], "alpha": v[1]} for n, v in SHARED.items()},
         "ladders": LADDERS, "semHue": SEM_HUE, "semL": SEM_L,
         "accentHues": {n: h for n, h in ACCENTS},
         "pairs": [{"a":a,"b":b,"need":n} for a,b,n in PAIRS],
@@ -319,16 +293,12 @@ def solve():
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-SHARED_TOKENS = ["hover-surface"]
-THEME_TOKENS = ["bg", "panel", "item", "selected-neutral-surface",
-                "line-weak", "line-weak-panel", "line-weak-item",
-                "line-strong", "line-strong-panel", "line-strong-item",
-                "text-disabled", "text-sub", "text-main",
-                "scrim",
-                "error", "warning", "success",
-                "error-active",
-                "error-surface", "warning-surface", "success-surface"]
-ACCENT_TOKENS = ["accent", "accent-active", "selected-surface"]
+SHARED_TOKENS = list(SHARED)
+THEME_TOKENS = ["color-bg", "color-panel", "color-item", "color-tint",
+                "color-text", "color-text-sub", "color-text-disabled",
+                "color-error", "color-warning", "color-success",
+                "color-error-tint", "color-warning-tint", "color-success-tint"]
+ACCENT_TOKENS = ["color-accent", "color-accent-tint"]
 
 DEFAULT_THEME  = "hadal"
 DEFAULT_ACCENT = "jelly"
@@ -346,15 +316,14 @@ def css_block(selector, names, tk, indent=""):
         if d is None:
             L.append(f"{indent}  /* --suisou-{n}: 解なし */")
             continue
-        alpha = {"scrim": SCRIM_ALPHA, "hover-surface": HOVER_ALPHA}.get(n)
-        L.append(f"{indent}  --suisou-{n}: {css_color((d['L'], d['C'], d['H']), alpha)};")
+        L.append(f"{indent}  --suisou-{n}: {css_color((d['L'], d['C'], d['H']))};")
     L.append(f"{indent}}}")
     return L
 
 def write_css(data):
 
     L = ["[data-suisou-theme] {",
-         *[f"  --suisou-{n}: {css_color((HOVER_L, 0.0, 0), HOVER_ALPHA)};" for n in SHARED_TOKENS],
+         *[f"  --suisou-{n}: {css_color(*SHARED[n])};" for n in SHARED_TOKENS],
          "}", ""]
     for t in data["themes"]:
         any_tokens = next(iter(t["accents"].values()))["tokens"]
@@ -406,7 +375,7 @@ def write_tables(data):
 
     L = []
     L.append("### L の並び（2系統）\n")
-    keys = ["bg","panel","item","tint","line-weak","line-strong",
+    keys = ["bg","panel","item","tint",
             "text-disabled","accent","text-sub","text-main"]
     L.append("| | dark | dim |\n|---|---|---|")
     for k in keys:
@@ -452,8 +421,8 @@ def write_tables(data):
     L.append("| アクセント | 意味色 | 色相差 | accent×意味色の ΔE（最小のテーマ） |")
     L.append("|---|---|---|---|")
     for r in sorted(data["hueCategoryRisk"], key=lambda x: x["deg"]):
-        de = min(dE(tokens(t, r["accent"], dict(ACCENTS)[r["accent"]])["accent"],
-                    tokens(t, r["accent"], dict(ACCENTS)[r["accent"]])[r["semantic"]])
+        de = min(dE(tokens(t, r["accent"], dict(ACCENTS)[r["accent"]])["color-accent"],
+                    tokens(t, r["accent"], dict(ACCENTS)[r["accent"]])["color-" + r["semantic"]])
                  for t in THEMES)
         L.append(f"| `{r['accent']}` | `{r['semantic']}` | {r['deg']}度 | {de:.3f} |")
     L.append("")

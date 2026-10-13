@@ -19,29 +19,24 @@
   --suisou-radius-pill: 999px;
   --suisou-font: "Zen Maru Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   --suisou-font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --suisou-focus: 2px solid var(--suisou-accent);
   --suisou-motion-fast: 120ms;
   --suisou-motion: 200ms;
   --suisou-ease: cubic-bezier(0.2, 0, 0, 1);
 }
 [data-suisou-theme] {
   color-scheme: dark;
-  --suisou-focus: 2px solid var(--suisou-accent);
 }
 [data-suisou-body] {
   font-family: var(--suisou-font);
   font-size: var(--suisou-fs-14);
   line-height: var(--suisou-lh-14);
-  background: var(--suisou-bg);
-  color: var(--suisou-text-main);
-  accent-color: var(--suisou-accent);
-  scrollbar-color: var(--suisou-line-strong) transparent;
-  --suisou-next: var(--suisou-panel);
-  --suisou-line-weak-next: var(--suisou-line-weak-panel);
-  --suisou-line-strong-next: var(--suisou-line-strong-panel);
+  background: var(--suisou-color-bg);
+  color: var(--suisou-color-text);
+  accent-color: var(--suisou-color-accent);
+  scrollbar-color: var(--suisou-color-line-strong) transparent;
 }
 :where(:root:has(> [data-suisou-body]), [data-suisou-body], [data-suisou-body] *) { scrollbar-width: thin; }
-:where(:root:has(> [data-suisou-body])) { scrollbar-color: var(--suisou-line-strong) transparent; }
+:where(:root:has(> [data-suisou-body])) { scrollbar-color: var(--suisou-color-line-strong) transparent; }
 body[data-suisou-body~="shell"] {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -77,15 +72,10 @@ body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-templa
   width: min(var(--suisou-drawer, 20rem), 90vw);
   height: 100dvh;
   max-height: none;
-  background: var(--suisou-panel);
-  color: var(--suisou-text-main);
+  background: var(--suisou-color-panel);
+  color: var(--suisou-color-text);
   border: 0;
-  border-right: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
-  --suisou-line-weak: var(--suisou-line-weak-panel);
-  --suisou-line-strong: var(--suisou-line-strong-panel);
-  --suisou-next: var(--suisou-item);
-  --suisou-line-weak-next: var(--suisou-line-weak-item);
-  --suisou-line-strong-next: var(--suisou-line-strong-item);
+  border-right: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
   --suisou-drawer-hidden: -100% 0;
   translate: var(--suisou-drawer-hidden);
   transition: translate var(--suisou-motion) var(--suisou-ease),
@@ -95,14 +85,14 @@ body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-templa
 [data-suisou-body~="shell"][data-suisou-body~="right"] > nav[popover] {
   inset: 0 0 0 auto;
   border-right: 0;
-  border-left: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  border-left: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
   --suisou-drawer-hidden: 100% 0;
 }
 [data-suisou-body~="shell"] > nav[popover]:popover-open { translate: 0 0; }
 @starting-style {
   [data-suisou-body~="shell"] > nav[popover]:popover-open { translate: var(--suisou-drawer-hidden); }
 }
-[data-suisou-body~="shell"] > nav[popover]::backdrop { background: var(--suisou-scrim); }
+[data-suisou-body~="shell"] > nav[popover]::backdrop { background: var(--suisou-color-scrim); }
 @media (width >= 768px) {
   :where([data-suisou-body~="shell"][data-suisou-body~="s:dock"] > nav[popover]) { display: block; }
   [data-suisou-body~="shell"][data-suisou-body~="s:dock"] > nav[popover]:not(:popover-open) {
@@ -115,11 +105,6 @@ body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-templa
     min-width: min(14rem, var(--suisou-drawer, 20rem));
     background: transparent;
     border: 0;
-    --suisou-line-weak: inherit;
-    --suisou-line-strong: inherit;
-    --suisou-next: inherit;
-    --suisou-line-weak-next: inherit;
-    --suisou-line-strong-next: inherit;
     transition: none;
   }
 }
@@ -135,11 +120,6 @@ body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-templa
     min-width: min(14rem, var(--suisou-drawer, 20rem));
     background: transparent;
     border: 0;
-    --suisou-line-weak: inherit;
-    --suisou-line-strong: inherit;
-    --suisou-next: inherit;
-    --suisou-line-weak-next: inherit;
-    --suisou-line-strong-next: inherit;
     transition: none;
   }
 }
@@ -155,11 +135,6 @@ body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-templa
     min-width: min(14rem, var(--suisou-drawer, 20rem));
     background: transparent;
     border: 0;
-    --suisou-line-weak: inherit;
-    --suisou-line-strong: inherit;
-    --suisou-next: inherit;
-    --suisou-line-weak-next: inherit;
-    --suisou-line-strong-next: inherit;
     transition: none;
   }
 }
@@ -174,6 +149,6 @@ body[data-suisou-body~="shell"]:where([data-suisou-body~="right"]) { grid-templa
   text-decoration: none;
 }
 :where([data-suisou-body] a:focus-visible) {
-  outline: var(--suisou-focus);
+  outline: 2px solid var(--suisou-color-accent);
   outline-offset: 2px;
 }

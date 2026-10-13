@@ -1,18 +1,13 @@
 @property --suisou-drawer { syntax: "*"; inherits: false; }
 
 [data-suisou-tray=""] {
-  border: 1px var(--suisou-bd-style, solid) var(--suisou-line-weak);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-weak);
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2);
-  background: var(--suisou-panel);
-  --suisou-line-weak: var(--suisou-line-weak-panel);
-  --suisou-line-strong: var(--suisou-line-strong-panel);
-  --suisou-next: var(--suisou-item);
-  --suisou-line-weak-next: var(--suisou-line-weak-item);
-  --suisou-line-strong-next: var(--suisou-line-strong-item);
+  background: var(--suisou-color-panel);
 }
-:where(dialog)[data-suisou-tray]::backdrop { background: var(--suisou-scrim); }
-:where(dialog, [popover])[data-suisou-tray] { color: var(--suisou-text-main); }
+:where(dialog)[data-suisou-tray]::backdrop { background: var(--suisou-color-scrim); }
+:where(dialog, [popover])[data-suisou-tray] { color: var(--suisou-color-text); }
 
 :where(dialog)[data-suisou-tray] {
   opacity: 0;
@@ -47,12 +42,7 @@
 :where([popover])[data-suisou-tray~="drawer"] {
   position: fixed;
   margin: 0;
-  background: var(--suisou-panel);
-  --suisou-line-weak: var(--suisou-line-weak-panel);
-  --suisou-line-strong: var(--suisou-line-strong-panel);
-  --suisou-next: var(--suisou-item);
-  --suisou-line-weak-next: var(--suisou-line-weak-item);
-  --suisou-line-strong-next: var(--suisou-line-strong-item);
+  background: var(--suisou-color-panel);
   border: 0;
   padding: var(--suisou-space-2);
   translate: var(--suisou-drawer-hidden);
@@ -66,7 +56,7 @@
   width: min(var(--suisou-drawer, 20rem), 90vw);
   height: 100dvh;
   max-height: none;
-  border-left: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  border-left: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
 }
 :where([popover])[data-suisou-tray~="drawer"]:where([data-suisou-tray~="left"]) {
   --suisou-drawer-hidden: -100% 0;
@@ -74,7 +64,7 @@
   width: min(var(--suisou-drawer, 20rem), 90vw);
   height: 100dvh;
   max-height: none;
-  border-right: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  border-right: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
 }
 :where([popover])[data-suisou-tray~="drawer"]:where([data-suisou-tray~="top"]) {
   --suisou-drawer-hidden: 0 -100%;
@@ -82,7 +72,7 @@
   width: 100dvw;
   max-width: none;
   max-height: min(var(--suisou-drawer, 20rem), 90vh);
-  border-bottom: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  border-bottom: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
 }
 :where([popover])[data-suisou-tray~="drawer"]:where([data-suisou-tray~="bottom"]) {
   --suisou-drawer-hidden: 0 100%;
@@ -90,7 +80,7 @@
   width: 100dvw;
   max-width: none;
   max-height: min(var(--suisou-drawer, 20rem), 90vh);
-  border-top: 1px var(--suisou-bd-style, solid) var(--suisou-line-strong);
+  border-top: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
 }
 :where([popover])[data-suisou-tray~="drawer"]:popover-open { translate: 0 0; }
 @starting-style {
@@ -98,4 +88,4 @@
     translate: var(--suisou-drawer-hidden);
   }
 }
-:where([popover])[data-suisou-tray~="drawer"]::backdrop { background: var(--suisou-scrim); }
+:where([popover])[data-suisou-tray~="drawer"]::backdrop { background: var(--suisou-color-scrim); }
