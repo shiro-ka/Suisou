@@ -88,4 +88,18 @@
     translate: var(--_suisou-drawer-hidden);
   }
 }
-:where([popover])[data-suisou-tray~="drawer"]::backdrop { background: var(--suisou-color-backdrop); }
+:where([popover])[data-suisou-tray~="drawer"]::backdrop {
+  background: var(--suisou-color-backdrop);
+  opacity: 0;
+  transition: opacity var(--suisou-duration-fast) var(--suisou-ease),
+              display var(--suisou-duration-fast) allow-discrete,
+              overlay var(--suisou-duration-fast) allow-discrete;
+}
+:where([popover])[data-suisou-tray~="drawer"]:popover-open::backdrop {
+  opacity: 1;
+}
+@starting-style {
+  :where([popover])[data-suisou-tray~="drawer"]:popover-open::backdrop {
+    opacity: 0;
+  }
+}
