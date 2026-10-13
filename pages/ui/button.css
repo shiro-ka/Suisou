@@ -1,5 +1,5 @@
 :where([data-suisou-body] button, [data-suisou-button]) {
-  padding: calc((var(--suisou-button-height) - 1lh) / 2 - 1px) var(--suisou-space-2);
+  padding: calc((var(--suisou-size-button) - 1lh) / 2 - 1px) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
 
   background: transparent;
@@ -28,8 +28,8 @@
 :where([data-suisou-body] button, [data-suisou-button]):focus-visible { outline: 2px solid var(--suisou-color-accent); outline-offset: 2px; }
 
 :where([data-suisou-body] button, [data-suisou-button]) > svg {
-  width: var(--suisou-icon);
-  height: var(--suisou-icon);
+  width: var(--suisou-size-icon);
+  height: var(--suisou-size-icon);
   flex-shrink: 0;
 }
 
@@ -59,7 +59,7 @@
 }
 
 [data-suisou-button~="icon"] {
-  padding: calc((var(--suisou-button-height) - var(--suisou-icon)) / 2 - 1px);
+  padding: calc((var(--suisou-size-button) - var(--suisou-size-icon)) / 2 - 1px);
 }
 
 [data-suisou-button~="block"] {

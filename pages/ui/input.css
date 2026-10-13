@@ -1,5 +1,5 @@
 :where([data-suisou-body] :is(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"], [type="submit"], [type="button"], [type="reset"], [type="image"], [type="hidden"]), textarea, select)) {
-  padding: calc((var(--suisou-button-height) - 1lh) / 2 - 1px) var(--suisou-space-2);
+  padding: calc((var(--suisou-size-button) - 1lh) / 2 - 1px) var(--suisou-space-2);
   border-radius: var(--suisou-radius);
 
   background: var(--suisou-color-field);
@@ -10,7 +10,7 @@
 
 :where([data-suisou-body] select:not([multiple], [size])) {
   padding-block: 0;
-  block-size: var(--suisou-button-height);
+  block-size: var(--suisou-size-button);
 }
 
 :where([data-suisou-body] :is(input, textarea))::placeholder { color: var(--suisou-color-text-disabled); }
@@ -35,8 +35,8 @@
   display: inline-grid;
   place-content: center;
   flex: none;
-  inline-size: var(--suisou-icon-small);
-  block-size: var(--suisou-icon-small);
+  inline-size: var(--suisou-size-icon-small);
+  block-size: var(--suisou-size-icon-small);
   margin: 0;
   vertical-align: -0.2em;
   border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
