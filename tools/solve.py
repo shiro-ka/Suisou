@@ -81,7 +81,7 @@ LADDERS = {
              "text-disabled":.62,
              "accent":.74, "text-sub":.78, "text-main":.94},
 
-    "dim":  {"bg":.26, "panel":.33, "item":.39, "tint":.44,
+    "dim":  {"bg":.29, "panel":.33, "item":.39, "tint":.44,
              "text-disabled":.74,
              "accent":.80, "text-sub":.90, "text-main":.955},
 }
