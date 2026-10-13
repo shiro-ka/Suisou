@@ -76,6 +76,18 @@ def pick(css, words):
             kept.append(st)
     return "".join(kept)
 
+USES_CELL = re.compile(r'<td data-css-uses="([^"]+)"></td>')
+
+def uses(site, name):
+    ui = os.path.join(site, "ui")
+    found = []
+    for f in sorted(os.listdir(ui)):
+        if f.endswith(".css"):
+            n = len(re.findall(r"var\(--suisou-" + re.escape(name) + r"[,)]", open(os.path.join(ui, f), encoding="utf-8").read()))
+            if n:
+                found.append(f"{f} {n}")
+    return ", ".join(found)
+
 def fill_css(site):
     content = os.path.join(site, "content")
     for name in os.listdir(content):
@@ -90,6 +102,7 @@ def fill_css(site):
                 css = pick(re.sub(r"/\*.*?\*/", "", css, flags=re.S), m.group(2).split()).strip("\n")
             return "<pre><code>" + html.escape(css, quote=False) + "</code></pre>"
         filled = CSS_BLOCK.sub(fill, page)
+        filled = USES_CELL.sub(lambda m: "<td>" + uses(site, m.group(1)) + "</td>", filled)
         if filled != page:
             with open(path, "w", encoding="utf-8") as f:
                 f.write(filled)
