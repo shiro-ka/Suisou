@@ -1,9 +1,9 @@
 @property --suisou-size-spinner { syntax: "*"; inherits: false; }
-@property --_suisou-loading-t { syntax: "<number>"; inherits: false; initial-value: 0; }
-@property --_suisou-loading-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@property --suisou-loading-t { syntax: "<number>"; inherits: false; initial-value: 0; }
+@property --suisou-loading-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 
-@keyframes suisou-loading-t { to { --_suisou-loading-t: 1; } }
-@keyframes suisou-loading-a { to { --_suisou-loading-a: 360deg; } }
+@keyframes suisou-loading-t { to { --suisou-loading-t: 1; } }
+@keyframes suisou-loading-a { to { --suisou-loading-a: 360deg; } }
 @keyframes suisou-loading-pulse { 50% { opacity: 0.35; } }
 @keyframes suisou-loading-bar { to { background-position: 5px -12px, 21px -15px, 40px -17px; } }
 
@@ -30,10 +30,10 @@
     calc(var(--suisou-size-spinner, 2rem) * 0.25) calc(var(--suisou-size-spinner, 2rem) * 0.7),
     calc(var(--suisou-size-spinner, 2rem) * 0.3) calc(var(--suisou-size-spinner, 2rem) * 1.3);
   background-position:
-    10% calc(var(--suisou-size-spinner, 2rem) * -0.9 * (0 + var(--_suisou-loading-t))),
-    45% calc(var(--suisou-size-spinner, 2rem) * -1.1 * (0.55 + var(--_suisou-loading-t))),
-    75% calc(var(--suisou-size-spinner, 2rem) * -0.7 * (0.25 + var(--_suisou-loading-t))),
-    100% calc(var(--suisou-size-spinner, 2rem) * -1.3 * (0.8 + var(--_suisou-loading-t)));
+    10% calc(var(--suisou-size-spinner, 2rem) * -0.9 * (0 + var(--suisou-loading-t))),
+    45% calc(var(--suisou-size-spinner, 2rem) * -1.1 * (0.55 + var(--suisou-loading-t))),
+    75% calc(var(--suisou-size-spinner, 2rem) * -0.7 * (0.25 + var(--suisou-loading-t))),
+    100% calc(var(--suisou-size-spinner, 2rem) * -1.3 * (0.8 + var(--suisou-loading-t)));
   mask-image: radial-gradient(closest-side, black 55%, transparent);
   animation: suisou-loading-t 4s linear infinite;
 }
@@ -55,7 +55,7 @@ progress:indeterminate[data-suisou-loading~="window"] {
   border: 1px solid transparent;
   background-image:
     linear-gradient(currentColor, currentColor),
-    conic-gradient(from var(--_suisou-loading-a), currentColor 0 25%, var(--suisou-color-line-weak) 0);
+    conic-gradient(from var(--suisou-loading-a), currentColor 0 25%, var(--suisou-color-line-weak) 0);
   background-origin: border-box;
   background-clip: padding-box, border-box;
   background-repeat: no-repeat;
@@ -80,10 +80,10 @@ progress:indeterminate[data-suisou-loading~="window"] {
     100% 100%,
     100% 100%;
   mask-position:
-    10% calc(var(--suisou-size-spinner, 2rem) * -0.9 * (0 + var(--_suisou-loading-t))),
-    45% calc(var(--suisou-size-spinner, 2rem) * -1.1 * (0.55 + var(--_suisou-loading-t))),
-    75% calc(var(--suisou-size-spinner, 2rem) * -0.7 * (0.25 + var(--_suisou-loading-t))),
-    100% calc(var(--suisou-size-spinner, 2rem) * -1.3 * (0.8 + var(--_suisou-loading-t))),
+    10% calc(var(--suisou-size-spinner, 2rem) * -0.9 * (0 + var(--suisou-loading-t))),
+    45% calc(var(--suisou-size-spinner, 2rem) * -1.1 * (0.55 + var(--suisou-loading-t))),
+    75% calc(var(--suisou-size-spinner, 2rem) * -0.7 * (0.25 + var(--suisou-loading-t))),
+    100% calc(var(--suisou-size-spinner, 2rem) * -1.3 * (0.8 + var(--suisou-loading-t))),
     0 0,
     0 0;
   animation: suisou-loading-t 4s linear infinite, suisou-loading-a 2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
@@ -95,7 +95,7 @@ progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="fill
     radial-gradient(circle, currentColor calc(var(--suisou-size-spinner, 2rem) * 0.05), transparent calc(var(--suisou-size-spinner, 2rem) * 0.05 + 0.5px)),
     radial-gradient(circle, transparent calc(var(--suisou-size-spinner, 2rem) * 0.04), currentColor calc(var(--suisou-size-spinner, 2rem) * 0.04 + 0.5px) calc(var(--suisou-size-spinner, 2rem) * 0.07), transparent calc(var(--suisou-size-spinner, 2rem) * 0.07 + 0.5px)),
     linear-gradient(var(--suisou-color-item), var(--suisou-color-item)),
-    conic-gradient(from var(--_suisou-loading-a), currentColor 0 25%, var(--suisou-color-line-weak) 0);
+    conic-gradient(from var(--suisou-loading-a), currentColor 0 25%, var(--suisou-color-line-weak) 0);
   background-origin: padding-box, padding-box, padding-box, padding-box, padding-box, border-box;
   background-clip: padding-box, padding-box, padding-box, padding-box, padding-box, border-box;
   background-repeat: repeat-y, repeat-y, repeat-y, repeat-y, no-repeat, no-repeat;
@@ -107,10 +107,10 @@ progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="fill
     100% 100%,
     100% 100%;
   background-position:
-    10% calc(var(--suisou-size-spinner, 2rem) * -0.9 * (0 + var(--_suisou-loading-t))),
-    45% calc(var(--suisou-size-spinner, 2rem) * -1.1 * (0.55 + var(--_suisou-loading-t))),
-    75% calc(var(--suisou-size-spinner, 2rem) * -0.7 * (0.25 + var(--_suisou-loading-t))),
-    100% calc(var(--suisou-size-spinner, 2rem) * -1.3 * (0.8 + var(--_suisou-loading-t))),
+    10% calc(var(--suisou-size-spinner, 2rem) * -0.9 * (0 + var(--suisou-loading-t))),
+    45% calc(var(--suisou-size-spinner, 2rem) * -1.1 * (0.55 + var(--suisou-loading-t))),
+    75% calc(var(--suisou-size-spinner, 2rem) * -0.7 * (0.25 + var(--suisou-loading-t))),
+    100% calc(var(--suisou-size-spinner, 2rem) * -1.3 * (0.8 + var(--suisou-loading-t))),
     0 0,
     0 0;
   mask-image: none;
@@ -118,7 +118,7 @@ progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="fill
 
 progress:indeterminate[data-suisou-loading~="simple"] {
   border: calc(var(--suisou-size-spinner, 2rem) / 16) solid transparent;
-  background-image: conic-gradient(from var(--_suisou-loading-a), currentColor 0 25%, var(--suisou-color-line-weak) 0);
+  background-image: conic-gradient(from var(--suisou-loading-a), currentColor 0 25%, var(--suisou-color-line-weak) 0);
   background-origin: border-box;
   background-clip: border-box;
   background-repeat: no-repeat;
@@ -152,10 +152,10 @@ progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="diam
     100% 100%,
     100% 100%;
   mask-position:
-    calc(var(--suisou-size-spinner, 2rem) * 0.0 - var(--suisou-size-spinner, 2rem) * 0.9 * (0 + var(--_suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -0.9 * (0 + var(--_suisou-loading-t))),
-    calc(var(--suisou-size-spinner, 2rem) * -0.4243 - var(--suisou-size-spinner, 2rem) * 1.1 * (0.55 + var(--_suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -1.1 * (0.55 + var(--_suisou-loading-t))),
-    calc(var(--suisou-size-spinner, 2rem) * 0.3536 - var(--suisou-size-spinner, 2rem) * 0.7 * (0.25 + var(--_suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -0.7 * (0.25 + var(--_suisou-loading-t))),
-    calc(var(--suisou-size-spinner, 2rem) * 0.1697 - var(--suisou-size-spinner, 2rem) * 1.3 * (0.8 + var(--_suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -1.3 * (0.8 + var(--_suisou-loading-t))),
+    calc(var(--suisou-size-spinner, 2rem) * 0.0 - var(--suisou-size-spinner, 2rem) * 0.9 * (0 + var(--suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -0.9 * (0 + var(--suisou-loading-t))),
+    calc(var(--suisou-size-spinner, 2rem) * -0.4243 - var(--suisou-size-spinner, 2rem) * 1.1 * (0.55 + var(--suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -1.1 * (0.55 + var(--suisou-loading-t))),
+    calc(var(--suisou-size-spinner, 2rem) * 0.3536 - var(--suisou-size-spinner, 2rem) * 0.7 * (0.25 + var(--suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -0.7 * (0.25 + var(--suisou-loading-t))),
+    calc(var(--suisou-size-spinner, 2rem) * 0.1697 - var(--suisou-size-spinner, 2rem) * 1.3 * (0.8 + var(--suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -1.3 * (0.8 + var(--suisou-loading-t))),
     0 0,
     0 0;
 }
@@ -169,10 +169,10 @@ progress:indeterminate[data-suisou-loading~="window"][data-suisou-loading~="fill
     100% 100%,
     100% 100%;
   background-position:
-    calc(var(--suisou-size-spinner, 2rem) * 0.0 - var(--suisou-size-spinner, 2rem) * 0.9 * (0 + var(--_suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -0.9 * (0 + var(--_suisou-loading-t))),
-    calc(var(--suisou-size-spinner, 2rem) * -0.4243 - var(--suisou-size-spinner, 2rem) * 1.1 * (0.55 + var(--_suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -1.1 * (0.55 + var(--_suisou-loading-t))),
-    calc(var(--suisou-size-spinner, 2rem) * 0.3536 - var(--suisou-size-spinner, 2rem) * 0.7 * (0.25 + var(--_suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -0.7 * (0.25 + var(--_suisou-loading-t))),
-    calc(var(--suisou-size-spinner, 2rem) * 0.1697 - var(--suisou-size-spinner, 2rem) * 1.3 * (0.8 + var(--_suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -1.3 * (0.8 + var(--_suisou-loading-t))),
+    calc(var(--suisou-size-spinner, 2rem) * 0.0 - var(--suisou-size-spinner, 2rem) * 0.9 * (0 + var(--suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -0.9 * (0 + var(--suisou-loading-t))),
+    calc(var(--suisou-size-spinner, 2rem) * -0.4243 - var(--suisou-size-spinner, 2rem) * 1.1 * (0.55 + var(--suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -1.1 * (0.55 + var(--suisou-loading-t))),
+    calc(var(--suisou-size-spinner, 2rem) * 0.3536 - var(--suisou-size-spinner, 2rem) * 0.7 * (0.25 + var(--suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -0.7 * (0.25 + var(--suisou-loading-t))),
+    calc(var(--suisou-size-spinner, 2rem) * 0.1697 - var(--suisou-size-spinner, 2rem) * 1.3 * (0.8 + var(--suisou-loading-t))) calc(var(--suisou-size-spinner, 2rem) * -1.3 * (0.8 + var(--suisou-loading-t))),
     0 0,
     0 0;
 }

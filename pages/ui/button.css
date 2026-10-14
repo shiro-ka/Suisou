@@ -4,7 +4,7 @@
 
   background: transparent;
   color: var(--suisou-color-text-sub);
-  border: 1px var(--_suisou-bd-style, solid) transparent;
+  border: 1px var(--suisou-bd-style, solid) transparent;
 
   cursor: pointer;
   -webkit-user-select: none;

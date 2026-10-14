@@ -4,7 +4,7 @@
 
   background: var(--suisou-color-field);
   color: var(--suisou-color-text);
-  border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
   transition: border-color var(--suisou-duration-fast) var(--suisou-ease);
 }
 
@@ -39,7 +39,7 @@
   block-size: var(--suisou-size-icon-small);
   margin: 0;
   vertical-align: -0.2em;
-  border: 1px var(--_suisou-bd-style, solid) var(--suisou-color-line-strong);
+  border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-strong);
   border-radius: var(--suisou-radius-small);
   background: var(--suisou-color-field);
   cursor: pointer;
