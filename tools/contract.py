@@ -50,7 +50,7 @@ def collect():
     for name in TOKEN_DEF.findall(base):
         if name not in dims:
             dims.append(name)
-    palette = {f"--suisou-{n}" for n in solve.SHARED_TOKENS + solve.THEME_TOKENS + solve.ACCENT_TOKENS}
+    palette = {f"--suisou-{n}" for n in solve.SHARED_TOKENS + solve.GRAY_VARS + solve.THEME_TOKENS + solve.ACCENT_TOKENS}
     others = [n for n in names if n not in palette and n not in dims]
     return attrs, staged, sorted(states), dims, others
 
@@ -81,7 +81,7 @@ def render():
     L.append("`palette.css`")
     L.append("")
     L.append("- " + " ".join(f"`--suisou-{n}`" for n in solve.SHARED_TOKENS))
-    L.append("- " + " ".join(f"`--suisou-{n}`" for n in solve.THEME_TOKENS))
+    L.append("- " + " ".join(f"`--suisou-{n}`" for n in solve.GRAY_VARS + solve.THEME_TOKENS))
     L.append("- " + " ".join(f"`--suisou-{n}`" for n in solve.ACCENT_TOKENS))
     L.append("")
     L.append("`ui/base.css`")

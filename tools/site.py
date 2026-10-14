@@ -80,12 +80,12 @@ USES_CELL = re.compile(r'<td data-css-uses="([^"]+)"></td>')
 
 def uses(site, name):
     ui = os.path.join(site, "ui")
+    files = [os.path.join(site, "palette.css")] + [os.path.join(ui, f) for f in sorted(os.listdir(ui)) if f.endswith(".css")]
     found = []
-    for f in sorted(os.listdir(ui)):
-        if f.endswith(".css"):
-            n = len(re.findall(r"var\(--suisou-" + re.escape(name) + r"[,)]", open(os.path.join(ui, f), encoding="utf-8").read()))
-            if n:
-                found.append(f"{f} {n}")
+    for path in files:
+        n = len(re.findall(r"var\(--suisou-" + re.escape(name) + r"[,)]", open(path, encoding="utf-8").read()))
+        if n:
+            found.append(f"{os.path.basename(path)} {n}")
     return ", ".join(found)
 
 VALUE_CELL = re.compile(r'<td data-css-value="([^"]+)"></td>')
