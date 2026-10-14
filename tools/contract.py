@@ -47,7 +47,8 @@ def collect():
                       + [n for n, _ in solve.ACCENTS])
     base = COMMENT.sub("", open(os.path.join(UI, "base.css"), encoding="utf-8").read())
     dims = []
-    for name in TOKEN_DEF.findall(base):
+    root = re.search(r":root\s*\{(.*?)\}", base, re.S).group(1)
+    for name in TOKEN_DEF.findall(root):
         if name not in dims:
             dims.append(name)
     palette = {f"--suisou-{n}" for n in solve.SHARED_TOKENS + solve.GRAY_VARS + solve.THEME_TOKENS + solve.ACCENT_TOKENS}
