@@ -323,6 +323,29 @@ def css_block(selector, names, tk, indent=""):
     L.append(f"{indent}}}")
     return L
 
+GRAY_VARS = ["gray-hue", "gray-chroma", "text-chroma"]
+GRAY_TOKENS = {"color-bg": "gray-chroma", "color-panel": "gray-chroma",
+               "color-item": "gray-chroma", "color-tint": "gray-chroma",
+               "color-text": "text-chroma", "color-text-sub": "text-chroma",
+               "color-text-disabled": "text-chroma"}
+
+def theme_block(t, tk):
+
+    t = next(x for x in THEMES if x["name"] == t["name"])
+    chroma = {"gray-chroma": t["cs"], "text-chroma": t.get("ct", t["cs"])}
+    val = dict(chroma, **{"gray-hue": t["h"]})
+    L = [f'[data-suisou-theme~="{t["name"]}"] {{',
+         *[f'  --suisou-{n}: {val[n]:g};' for n in GRAY_VARS]]
+    for n in THEME_TOKENS:
+        d = tk[n]
+        c = GRAY_TOKENS.get(n)
+        if c and d is not None and d["H"] == t["h"] and abs(d["C"] - chroma[c]) < 5e-5:
+            L.append(f'  --suisou-{n}: oklch({d["L"]*100:.2f}% var(--suisou-{c}) var(--suisou-gray-hue));')
+        else:
+            L += css_block("", [n], tk)[1:-1]
+    L.append("}")
+    return L
+
 def write_css(data):
 
     L = ["[data-suisou-theme] {",
@@ -330,7 +353,7 @@ def write_css(data):
          "}", ""]
     for t in data["themes"]:
         any_tokens = next(iter(t["accents"].values()))["tokens"]
-        L += css_block(f'[data-suisou-theme~="{t["name"]}"]', THEME_TOKENS, any_tokens)
+        L += theme_block(t, any_tokens)
         L.append("")
     for t in data["themes"]:
         for an, a in t["accents"].items():
