@@ -79,11 +79,11 @@ LADDERS = {
 
     "dark": {"bg":.18, "panel":.22, "item":.28, "tint":.33,
              "text-disabled":.62,
-             "accent":.74, "text-sub":.78, "text-main":.94},
+             "accent":.74, "text-note":.78, "text-main":.94},
 
     "dim":  {"bg":.29, "panel":.33, "item":.39, "tint":.44,
              "text-disabled":.74,
-             "accent":.80, "text-sub":.90, "text-main":.955},
+             "accent":.80, "text-note":.90, "text-main":.955},
 }
 SEM_HUE = {"error": 22, "warning": 90, "success": 155}
 SEM_L = {
@@ -105,7 +105,7 @@ ACCENTS = [("clown",55),("turtle",122),("teal",188),("jelly",212),("blue",255),
 ACCENT_JP = {"clown":"カクレクマノミ", "turtle":"ウミガメ", "jelly":"クラゲ",
              "coral":"サンゴ", "seal":"アザラシ"}
 
-FLOOR = {"selected":0.055, "semantic":0.055, "textSub":0.08, "tintHue":0.05}
+FLOOR = {"selected":0.055, "semantic":0.055, "textNote":0.08, "tintHue":0.05}
 SEM_OFFSET = 0.15
 WHITE = (1.0, 0.0, 0)
 SHARED = {
@@ -188,7 +188,8 @@ def tokens(t, acc_name, acc_h):
     for k in ["bg","panel","item","tint"]:
         o["color-" + k] = face(D[k], t)
     o["color-text-disabled"] = face(D["text-disabled"], text_theme(t))
-    o["color-text-sub"] = face(D["text-sub"], text_theme(t))
+    o["color-text-note"] = face(D["text-note"], text_theme(t))
+    o["color-text-control"] = face(round((D["text-note"] + resolve_text_main(t)) / 2, 4), text_theme(t))
     o["color-text"]     = face(resolve_text_main(t), text_theme(t))
     o["color-accent"]   = (D["accent"], maxC(D["accent"], acc_h) * t["ar"], acc_h)
     o["color-accent-tint"] = (D["tint"], resolve_tint(t, acc_h, FLOOR["selected"]), acc_h)
@@ -220,8 +221,8 @@ def accent_issues(t, acc_name, acc_h):
         bad.append(f"選択の tint が surface と近い ΔE {d:.3f}（目標 {FLOOR['selected']}）")
     if contrast(k["color-accent"], k["color-item"]) < 3.0:
         bad.append(f"accent のコントラスト不足 {contrast(k['color-accent'], k['color-item']):.2f}:1")
-    d = dE(k["color-accent"], k["color-text-sub"])
-    if d < FLOOR["textSub"]: bad.append(f"accent が text-sub と近い ΔE {d:.3f}")
+    d = dE(k["color-accent"], k["color-text-note"])
+    if d < FLOOR["textNote"]: bad.append(f"accent が text-note と近い ΔE {d:.3f}")
     near = min(((dE(k["color-accent"], k["color-" + n]), n) for n in SEM_HUE))
     if near[0] < FLOOR["semantic"]: bad.append(f"{near[1]} と近い ΔE {near[0]:.3f}")
     for st in SURFACES:
@@ -298,7 +299,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 SHARED_TOKENS = list(SHARED)
 THEME_TOKENS = ["color-bg", "color-panel", "color-item", "color-tint",
-                "color-text", "color-text-sub", "color-text-disabled",
+                "color-text", "color-text-control", "color-text-note", "color-text-disabled",
                 "color-error", "color-warning", "color-success",
                 "color-error-tint", "color-warning-tint", "color-success-tint"]
 ACCENT_TOKENS = ["color-accent", "color-accent-tint"]
@@ -326,7 +327,7 @@ def css_block(selector, names, tk, indent=""):
 GRAY_VARS = ["gray-hue", "gray-chroma", "text-chroma"]
 GRAY_TOKENS = {"color-bg": "gray-chroma", "color-panel": "gray-chroma",
                "color-item": "gray-chroma", "color-tint": "gray-chroma",
-               "color-text": "text-chroma", "color-text-sub": "text-chroma",
+               "color-text": "text-chroma", "color-text-control": "text-chroma", "color-text-note": "text-chroma",
                "color-text-disabled": "text-chroma"}
 
 def theme_block(t, tk):
@@ -402,7 +403,7 @@ def write_tables(data):
     L = []
     L.append("### L の並び（2系統）\n")
     keys = ["bg","panel","item","tint",
-            "text-disabled","accent","text-sub","text-main"]
+            "text-disabled","accent","text-note","text-main"]
     L.append("| | dark | dim |\n|---|---|---|")
     for k in keys:
         L.append(f"| {k} | {LADDERS['dark'][k]*100:.0f} | {LADDERS['dim'][k]*100:.0f} |")

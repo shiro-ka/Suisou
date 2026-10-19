@@ -60,10 +60,10 @@
   text-align: center;
   font-size: var(--suisou-fs-12);
   line-height: calc(var(--suisou-lh-12) + 0.25rem);
-  color: var(--suisou-color-text-sub);
+  color: var(--suisou-color-text-note);
 }
 
-[data-suisou-text~="typeset"] :where(dt) { color: var(--suisou-color-text-sub); font-weight: 700; }
+[data-suisou-text~="typeset"] :where(dt) { color: var(--suisou-color-text-note); font-weight: 700; }
 [data-suisou-text~="typeset"] :where(dd) { margin-block-start: var(--suisou-space-1); padding-inline-start: var(--suisou-space-4); }
 [data-suisou-text~="typeset"] :where(dd + dt) { margin-block-start: var(--suisou-space-3); }
 
@@ -72,7 +72,7 @@
   border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-weak);
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2) var(--suisou-space-3) var(--suisou-space-2) calc(var(--suisou-space-2) * 2 + 1em);
-  color: var(--suisou-color-text-sub);
+  color: var(--suisou-color-text-note);
 }
 
 [data-suisou-text~="typeset"] :where(blockquote)::before {
@@ -95,7 +95,7 @@
 }
 
 [data-suisou-text~="typeset"] :where(ul, ol) :where(li)::marker {
-  color: var(--suisou-color-text-sub);
+  color: var(--suisou-color-text-note);
 }
 
 [data-suisou-text~="typeset"] :where(ul, ol) :where(li) + :where(li) {
@@ -158,7 +158,7 @@
   border-bottom: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-weak);
   font-size: var(--suisou-fs-12);
   line-height: var(--suisou-lh-12);
-  color: var(--suisou-color-text-sub);
+  color: var(--suisou-color-text-note);
 }
 
 [data-suisou-text~="typeset"] :where(figure:has(> pre) > figcaption)::before { height: var(--suisou-fs-14); flex: none; }
@@ -253,7 +253,7 @@
 }
 
 [data-suisou-text~="typeset"] :where(table) :where(th) {
-  color: var(--suisou-color-text-sub);
+  color: var(--suisou-color-text-note);
   font-weight: 700;
   white-space: nowrap;
 }

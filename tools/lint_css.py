@@ -12,7 +12,7 @@ TARGET_EXT = (".css", ".html", ".js")
 
 TRAY_EDGES = {"right", "left", "top", "bottom"}
 ITEM_KINDS = {"media", "circle", "square", "field", "tag", "notice"}
-COLOR_WORDS = {"sub", "accent", "success", "warning", "error"}
+COLOR_WORDS = {"note", "accent", "success", "warning", "error"}
 SHELL_SLOTS = {"header", "main", "footer", "nav"}
 SHELL_QUIET = {"script", "template", "style", "noscript", "dialog", "link", "meta"}
 VOID_TAGS = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"}

@@ -48,7 +48,7 @@
 :where([data-suisou-item~="media-content"] header > :not(:first-child)) {
   font-size: var(--suisou-fs-12);
   line-height: var(--suisou-lh-12);
-  color: var(--suisou-color-text-sub);
+  color: var(--suisou-color-text-note);
 }
 [data-suisou-item~="media-content"] :where(p) {
   font-size: var(--suisou-fs-14);
@@ -87,7 +87,7 @@
 [data-suisou-item~="field"] > :where(span) {
   align-self: center;
   padding-inline-start: var(--suisou-space-2);
-  color: var(--suisou-color-text-sub);
+  color: var(--suisou-color-text-note);
   white-space: nowrap;
 }
 
@@ -95,7 +95,7 @@
   flex: none;
   background: var(--suisou-color-item);
   border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-weak);
-  color: var(--suisou-color-text-sub);
+  color: var(--suisou-color-text-note);
   font-size: var(--suisou-fs-12);
   line-height: var(--suisou-lh-12);
   display: grid;
@@ -130,7 +130,7 @@
   border-radius: var(--suisou-radius-pill);
 
   border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-weak);
-  color: var(--suisou-color-text-sub);
+  color: var(--suisou-color-text-note);
   background: transparent;
   transition: background-color var(--suisou-duration-fast) var(--suisou-ease),
               color var(--suisou-duration-fast) var(--suisou-ease),

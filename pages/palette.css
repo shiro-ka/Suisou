@@ -15,7 +15,8 @@
   --suisou-color-item: oklch(31.00% var(--suisou-gray-chroma) var(--suisou-gray-hue));
   --suisou-color-tint: oklch(36.00% var(--suisou-gray-chroma) var(--suisou-gray-hue));
   --suisou-color-text: oklch(94.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
-  --suisou-color-text-sub: oklch(78.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
+  --suisou-color-text-control: oklch(86.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
+  --suisou-color-text-note: oklch(78.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
   --suisou-color-text-disabled: oklch(62.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
   --suisou-color-error: oklch(73.00% 0.1580 22);
   --suisou-color-warning: oklch(82.00% 0.1592 90);
@@ -34,7 +35,8 @@
   --suisou-color-item: oklch(31.00% var(--suisou-gray-chroma) var(--suisou-gray-hue));
   --suisou-color-tint: oklch(36.00% var(--suisou-gray-chroma) var(--suisou-gray-hue));
   --suisou-color-text: oklch(94.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
-  --suisou-color-text-sub: oklch(78.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
+  --suisou-color-text-control: oklch(86.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
+  --suisou-color-text-note: oklch(78.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
   --suisou-color-text-disabled: oklch(62.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
   --suisou-color-error: oklch(73.00% 0.1580 22);
   --suisou-color-warning: oklch(82.00% 0.1592 90);
@@ -53,7 +55,8 @@
   --suisou-color-item: oklch(29.50% var(--suisou-gray-chroma) var(--suisou-gray-hue));
   --suisou-color-tint: oklch(34.50% var(--suisou-gray-chroma) var(--suisou-gray-hue));
   --suisou-color-text: oklch(94.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
-  --suisou-color-text-sub: oklch(78.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
+  --suisou-color-text-control: oklch(86.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
+  --suisou-color-text-note: oklch(78.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
   --suisou-color-text-disabled: oklch(62.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
   --suisou-color-error: oklch(73.00% 0.1580 22);
   --suisou-color-warning: oklch(82.00% 0.1592 90);
@@ -72,7 +75,8 @@
   --suisou-color-item: oklch(39.00% var(--suisou-gray-chroma) var(--suisou-gray-hue));
   --suisou-color-tint: oklch(44.00% var(--suisou-gray-chroma) var(--suisou-gray-hue));
   --suisou-color-text: oklch(95.50% var(--suisou-text-chroma) var(--suisou-gray-hue));
-  --suisou-color-text-sub: oklch(90.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
+  --suisou-color-text-control: oklch(92.75% var(--suisou-text-chroma) var(--suisou-gray-hue));
+  --suisou-color-text-note: oklch(90.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
   --suisou-color-text-disabled: oklch(74.00% var(--suisou-text-chroma) var(--suisou-gray-hue));
   --suisou-color-error: oklch(85.00% 0.0612 22);
   --suisou-color-warning: oklch(85.00% 0.1303 90);

@@ -76,7 +76,7 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
 [data-suisou-text~="toc"] :where(li) > :where(a, span) {
   display: block;
   padding-block: calc((var(--suisou-size-button) - 1lh) / 2);
-  color: var(--suisou-color-text-sub);
+  color: var(--suisou-color-text-note);
   text-decoration: none;
 }
 [data-suisou-text~="toc"] :where(li li li) > :where(a, span) { padding-block: calc((var(--suisou-size-button) - var(--suisou-space-1) - 1lh) / 2); }
