@@ -102,8 +102,13 @@ def drawer_problems(body, rel):
     out = []
     for t in HTML_TAG.finditer(body):
         for m in HTML_ATTR.finditer(t.group(0)):
-            if m.group(1) == "data-suisou-tray" and m.group(3) and "drawer" in m.group(3).split() and not POPOVER_ATTR.search(t.group(0)):
+            if m.group(1) != "data-suisou-tray" or not m.group(3) or POPOVER_ATTR.search(t.group(0)):
+                continue
+            vals = m.group(3).split()
+            if "drawer" in vals:
                 out.append(f"{rel}:{body.count(chr(10), 0, t.start()) + 1}: popover の無い drawer … drawer は popover と一緒に使う（出しっぱなしのサイドバーは body の s:dock / m:dock / l:dock）")
+            if "popup" in vals:
+                out.append(f"{rel}:{body.count(chr(10), 0, t.start()) + 1}: popover の無い popup … popup は popover と一緒に使う")
     return out
 
 def vocab():
@@ -187,10 +192,11 @@ def main():
                     if not vals:
                         continue
                     edges = TRAY_EDGES & set(vals)
-                    if set(vals) - TRAY_EDGES != {"drawer"} or len(edges) != 1:
+                    kinds = set(vals) - TRAY_EDGES
+                    if not ((kinds == {"drawer"} and len(edges) == 1) or (kinds == {"popup"} and edges <= {"bottom"})):
                         problems.append(
                             f"{rel}:{i}: tray の値 … \"{raw}\" "
-                            f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添える）")
+                            f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添える。popup は単体か popup bottom）")
 
                 elif name == "data-suisou-item" and vals:
                     kinds = ITEM_KINDS & set(vals)
