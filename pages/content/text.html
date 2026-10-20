@@ -66,10 +66,13 @@
   &lt;p data-suisou-text="center"&gt;center&lt;/p&gt;
   &lt;p data-suisou-text="end"&gt;end&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-  <h2>one-line</h2>
-  <p><code>one-line</code> を追加すると、文字が1行に収まり、はみ出した分は … に省略されます</p>
-  <p data-suisou-item data-suisou-text="one-line">水槽の水はろ過フィルターを通って少しずつ循環し、水草が光を受けて酸素を出し、底砂の微生物が汚れを分解して、ガラスの中の小さな生態系がゆっくりと回り続けます</p>
-  <pre><code>&lt;p data-suisou-item data-suisou-text="one-line"&gt;水槽の水はろ過フィルターを通って少しずつ循環し、水草が光を受けて酸素を出し、底砂の微生物が汚れを分解して、ガラスの中の小さな生態系がゆっくりと回り続けます&lt;/p&gt;</code></pre>
+  <h2>clamp</h2>
+  <p><code>clamp-1</code> を追加すると、文字が1行に収まり、はみ出した分は … に省略されます</p>
+  <p data-suisou-item data-suisou-text="clamp-1">水槽の水はろ過フィルターを通って少しずつ循環し、水草が光を受けて酸素を出し、底砂の微生物が汚れを分解して、ガラスの中の小さな生態系がゆっくりと回り続けます</p>
+  <pre><code>&lt;p data-suisou-item data-suisou-text="clamp-1"&gt;水槽の水はろ過フィルターを通って少しずつ循環し、水草が光を受けて酸素を出し、底砂の微生物が汚れを分解して、ガラスの中の小さな生態系がゆっくりと回り続けます&lt;/p&gt;</code></pre>
+  <p><code>clamp-2</code> を追加すると、文字が2行に収まり、はみ出した分は … に省略されます</p>
+  <p data-suisou-item data-suisou-text="clamp-2">水槽の水はろ過フィルターを通って少しずつ循環し、水草が光を受けて酸素を出し、底砂の微生物が汚れを分解して、ガラスの中の小さな生態系がゆっくりと回り続けます。水換えは週に一度、3分の1ほどを入れ替えます</p>
+  <pre><code>&lt;p data-suisou-item data-suisou-text="clamp-2"&gt;水槽の水はろ過フィルターを通って少しずつ循環し、水草が光を受けて酸素を出し、底砂の微生物が汚れを分解して、ガラスの中の小さな生態系がゆっくりと回り続けます。水換えは週に一度、3分の1ほどを入れ替えます&lt;/p&gt;</code></pre>
   <h2>link</h2>
   <p><code>link</code> を追加すると、下線が付きホバーで色が変わります</p>
   <p>組版は <a href="#typeset" data-suisou-text="link">Typeset</a> のページへ</p>
@@ -95,7 +98,8 @@
       <tr><td><code>s:</code> <code>m:</code> <code>l:</code></td><td>値の前に付けると、768 / 1024 / 1280px 以上でだけ効く。<code>fs-*</code> に付けられる</td></tr>
       <tr><td><code>fw-400</code> <code>fw-500</code> <code>fw-700</code></td><td>文字の太さを変える</td></tr>
       <tr><td><code>start</code> <code>center</code> <code>end</code></td><td>行の中で文字を寄せる位置を変える</td></tr>
-      <tr><td><code>one-line</code></td><td>文字を1行に収め、はみ出した分を … にする。flex の子でも縮む</td></tr>
+      <tr><td><code>clamp-1</code></td><td>文字を1行に収め、はみ出した分を … にする。flex の子でも縮む</td></tr>
+      <tr><td><code>clamp-2</code></td><td>文字を2行に収め、はみ出した分を … にする。flex の子でも縮む</td></tr>
       <tr><td><code>link</code></td><td>下線を付け、マウスを乗せるとアクセント色にする。画像だけのリンクには下線を付けない</td></tr>
       <tr><td><code>typeset</code></td><td>長文を組む。<a href="#typeset">Typeset</a> のページへ</td></tr>
       <tr><td><code>toc</code></td><td>入れ子の <code>&lt;ul&gt;</code> を目次にする。<a href="#toc">Toc</a> のページへ</td></tr>

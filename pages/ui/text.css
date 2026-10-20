@@ -60,11 +60,20 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
 [data-suisou-text~="center"] { text-align: center; }
 [data-suisou-text~="start"]  { text-align: start; }
 [data-suisou-text~="end"]    { text-align: end; }
-[data-suisou-text~="one-line"] {
+[data-suisou-text~="clamp-1"] {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+[data-suisou-text~="clamp-2"] {
+  min-width: 0;
+  overflow: clip;
+  overflow-clip-margin: content-box;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 [data-suisou-text*="fs-"], [data-suisou-text~="typeset"] { font-size: var(--suisou-type-size); line-height: var(--suisou-type-lh); }
