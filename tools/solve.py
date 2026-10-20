@@ -304,7 +304,7 @@ THEME_TOKENS = ["color-bg", "color-panel", "color-item", "color-tint",
                 "color-error-tint", "color-warning-tint", "color-success-tint"]
 ACCENT_TOKENS = ["color-accent", "color-accent-tint"]
 
-DEFAULT_THEME  = "hadal"
+DEFAULT_THEME  = "trench"
 DEFAULT_ACCENT = "jelly"
 
 def css_color(v, alpha=None):

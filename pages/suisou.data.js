@@ -196,7 +196,7 @@ const SUISOU = {
   "color-backdrop"
  ],
  "default": {
-  "theme": "hadal",
+  "theme": "trench",
   "accent": "jelly"
  },
  "hex": {
