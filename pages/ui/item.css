@@ -54,6 +54,12 @@
   font-size: var(--suisou-fs-14);
   line-height: var(--suisou-lh-14);
 }
+:where(a, button)[data-suisou-item~="media"] [data-suisou-item~="media-content"] > :where(:first-child) {
+  transition: color var(--suisou-duration-fast) var(--suisou-ease);
+}
+:where(a, button)[data-suisou-item~="media"]:where(:hover) [data-suisou-item~="media-content"] > :where(:first-child) {
+  color: var(--suisou-color-accent);
+}
 
 [data-suisou-item~="field"] {
   display: flex;
