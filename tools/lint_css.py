@@ -193,10 +193,10 @@ def main():
                         continue
                     edges = TRAY_EDGES & set(vals)
                     kinds = set(vals) - TRAY_EDGES
-                    if not ((kinds == {"drawer"} and len(edges) == 1) or (kinds == {"popup"} and edges <= {"bottom"})):
+                    if not ((kinds == {"drawer"} and len(edges) == 1) or (kinds == {"popup"} and edges <= {"bottom"}) or set(vals) == {"link"}):
                         problems.append(
                             f"{rel}:{i}: tray の値 … \"{raw}\" "
-                            f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添える。popup は単体か popup bottom）")
+                            f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添える。popup は単体か popup bottom。link は単体）")
 
                 elif name == "data-suisou-item" and vals:
                     kinds = ITEM_KINDS & set(vals)

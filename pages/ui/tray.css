@@ -1,10 +1,14 @@
 @property --suisou-size-drawer { syntax: "*"; inherits: false; }
 
-[data-suisou-tray=""] {
+:is([data-suisou-tray=""], [data-suisou-tray="link"]) {
   border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-weak);
   border-radius: var(--suisou-radius);
   padding: var(--suisou-space-2);
   background: var(--suisou-color-panel);
+}
+:where(a[data-suisou-tray="link"]) { display: block; }
+[data-suisou-tray="link"]:hover {
+  background-image: linear-gradient(var(--suisou-color-hover), var(--suisou-color-hover));
 }
 :where(dialog)[data-suisou-tray]::backdrop { background: var(--suisou-color-backdrop); }
 :where(dialog, [popover])[data-suisou-tray] { color: var(--suisou-color-text); }
