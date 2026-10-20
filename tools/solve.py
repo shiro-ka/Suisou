@@ -86,6 +86,7 @@ LADDERS = {
              "accent":.80, "text-note":.90, "text-main":.955},
 }
 SEM_HUE = {"error": 22, "warning": 90, "success": 155}
+SEM_TINT = {"error": {"h": 15, "c": 0.07}}
 SEM_L = {
     "dark": {"error":.73, "warning":.82, "success":.76},
     "dim":  {"error":.85, "warning":.85, "success":.83},
@@ -158,12 +159,13 @@ def resolve_text_main(t):
         L -= 0.005
     return round(L, 3)
 
-def resolve_tint(t, h, floor):
+def resolve_tint(t, h, floor, chroma=FLOOR["tintHue"]):
 
     D = ladder(t)
     L, ceil = D["tint"], maxC(D["tint"], h)
     ok = lambda C: (min(dE((L, C, h), face(D[s], t)) for s in SURFACES) >= floor
-                    and dE((L, C, h), face(L, t)) >= FLOOR["tintHue"])
+                    and dE((L, C, h), face(L, t)) >= FLOOR["tintHue"]
+                    and C >= chroma)
     if not ok(ceil): return ceil
     lo, hi = 0.0, ceil
     for _ in range(48):
@@ -197,7 +199,9 @@ def tokens(t, acc_name, acc_h):
     for n, h in SEM_HUE.items():
         L = SEM_L[t["ladder"]][n]
         o["color-" + n] = (L, maxC(L, h) * sr, h)
-        o["color-" + n + "-tint"] = (D["tint"], resolve_tint(t, h, FLOOR["selected"]), h)
+        th = SEM_TINT.get(n, {}).get("h", h)
+        tc = SEM_TINT.get(n, {}).get("c", FLOOR["tintHue"])
+        o["color-" + n + "-tint"] = (D["tint"], resolve_tint(t, th, FLOOR["selected"], tc), th)
     for st in ("bg", "panel", "item", "tint", "accent-tint"):
         under = o["color-" + st]
         o[f"hover-on-{st}"] = over(*SHARED["color-hover"], under)
