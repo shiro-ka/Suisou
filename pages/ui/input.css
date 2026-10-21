@@ -12,6 +12,10 @@
   padding-block: 0;
   block-size: var(--suisou-size-button);
 }
+:where([data-suisou-body] select) :where(option, optgroup) {
+  background-color: var(--suisou-color-panel);
+  color: var(--suisou-color-text);
+}
 
 :where([data-suisou-body] :is(input, textarea))::placeholder { color: var(--suisou-color-text-disabled); }
 
