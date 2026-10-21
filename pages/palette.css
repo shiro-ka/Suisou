@@ -96,7 +96,7 @@
   --suisou-color-accent-tint: oklch(36.00% 0.0500 122);
 }
 
-[data-suisou-theme~="hadal"][data-suisou-theme~="teal"] {
+[data-suisou-theme~="hadal"][data-suisou-theme~="weed"] {
   --suisou-color-accent: oklch(74.00% 0.1094 188);
   --suisou-color-accent-tint: oklch(36.00% 0.0500 188);
 }
@@ -141,7 +141,7 @@
   --suisou-color-accent-tint: oklch(36.00% 0.0500 122);
 }
 
-[data-suisou-theme~="trench"][data-suisou-theme~="teal"] {
+[data-suisou-theme~="trench"][data-suisou-theme~="weed"] {
   --suisou-color-accent: oklch(74.00% 0.1094 188);
   --suisou-color-accent-tint: oklch(36.00% 0.0500 188);
 }
@@ -186,7 +186,7 @@
   --suisou-color-accent-tint: oklch(34.50% 0.0500 122);
 }
 
-[data-suisou-theme~="fjord"][data-suisou-theme~="teal"] {
+[data-suisou-theme~="fjord"][data-suisou-theme~="weed"] {
   --suisou-color-accent: oklch(74.00% 0.1094 188);
   --suisou-color-accent-tint: oklch(34.50% 0.0500 188);
 }
@@ -231,7 +231,7 @@
   --suisou-color-accent-tint: oklch(44.00% 0.0500 122);
 }
 
-[data-suisou-theme~="shoal"][data-suisou-theme~="teal"] {
+[data-suisou-theme~="shoal"][data-suisou-theme~="weed"] {
   --suisou-color-accent: oklch(80.00% 0.0835 188);
   --suisou-color-accent-tint: oklch(44.00% 0.0505 188);
 }
