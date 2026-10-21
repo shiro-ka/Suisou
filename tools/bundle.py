@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os, re, sys, gzip
+import os, re, sys, gzip, shutil
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, os.pardir))
@@ -62,7 +62,8 @@ def sizes(css):
     return len(css.encode()), len(gzip.compress(m.encode(), 9))
 
 def main():
-    os.makedirs(DIST, exist_ok=True)
+    shutil.rmtree(DIST, ignore_errors=True)
+    os.makedirs(DIST)
     sys.path.insert(0, HERE)
     import solve
     data = solve.solve()
