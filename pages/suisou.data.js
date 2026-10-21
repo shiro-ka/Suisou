@@ -2,7 +2,6 @@ const SUISOU = {
  "themes": [
   {
    "name": "hadal",
-   "jp": "超深海層",
    "ladder": "dark",
    "h": 286,
    "cs": 0.006,
@@ -32,7 +31,6 @@ const SUISOU = {
   },
   {
    "name": "trench",
-   "jp": "海溝",
    "ladder": "dark",
    "h": 270,
    "cs": 0.04,
@@ -62,7 +60,6 @@ const SUISOU = {
   },
   {
    "name": "fjord",
-   "jp": "峡湾",
    "ladder": "dark",
    "h": 281,
    "cs": 0.037,
@@ -92,7 +89,6 @@ const SUISOU = {
   },
   {
    "name": "shoal",
-   "jp": "浅瀬",
    "ladder": "dim",
    "h": 265,
    "cs": 0.02,
@@ -124,47 +120,38 @@ const SUISOU = {
  "accents": [
   {
    "name": "clown",
-   "jp": "カクレクマノミ",
    "hue": 55
   },
   {
    "name": "turtle",
-   "jp": "ウミガメ",
    "hue": 122
   },
   {
    "name": "konbu",
-   "jp": "",
    "hue": 188
   },
   {
    "name": "jelly",
-   "jp": "クラゲ",
    "hue": 212
   },
   {
    "name": "blue",
-   "jp": "",
    "hue": 255
   },
   {
    "name": "indigo",
-   "jp": "",
    "hue": 282
   },
   {
    "name": "coral",
-   "jp": "サンゴ",
    "hue": 308
   },
   {
    "name": "magenta",
-   "jp": "",
    "hue": 332
   },
   {
    "name": "seal",
-   "jp": "アザラシ",
    "hue": 355
   }
  ],

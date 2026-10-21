@@ -93,18 +93,15 @@ SEM_L = {
 }
 
 THEMES = [
-    {"name":"hadal",  "jp":"超深海層", "ladder":"dark", "h":286, "cs":0.006, "ar":0.85, "lift":0.03},
+    {"name":"hadal",  "ladder":"dark", "h":286, "cs":0.006, "ar":0.85, "lift":0.03},
 
-    {"name":"trench", "jp":"海溝",     "ladder":"dark", "h":270, "cs":0.040, "ar":0.85, "lift":0.03, "ct":0.015},
+    {"name":"trench", "ladder":"dark", "h":270, "cs":0.040, "ar":0.85, "lift":0.03, "ct":0.015},
 
-    {"name":"fjord",  "jp":"峡湾",     "ladder":"dark", "h":281, "cs":0.037, "ar":0.85, "lift":0.015, "ct":0.025},
-    {"name":"shoal",  "jp":"浅瀬",     "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},
+    {"name":"fjord",  "ladder":"dark", "h":281, "cs":0.037, "ar":0.85, "lift":0.015, "ct":0.025},
+    {"name":"shoal",  "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},
 ]
 ACCENTS = [("clown",55),("turtle",122),("konbu",188),("jelly",212),("blue",255),
            ("indigo",282),("coral",308),("magenta",332),("seal",355)]
-
-ACCENT_JP = {"clown":"カクレクマノミ", "turtle":"ウミガメ", "jelly":"クラゲ",
-             "coral":"サンゴ", "seal":"アザラシ"}
 
 FLOOR = {"selected":0.055, "semantic":0.055, "textNote":0.08, "tintHue":0.05}
 SEM_OFFSET = 0.15
@@ -268,7 +265,7 @@ def solve():
         "themes": [], "failures": [],
     }
     for t in THEMES:
-        entry = {"name":t["name"], "jp":t["jp"], "ladder":t["ladder"], "h":t["h"], "cs":t["cs"],
+        entry = {"name":t["name"], "ladder":t["ladder"], "h":t["h"], "cs":t["cs"],
                  "ar":t["ar"], "semRatio": round(sem_ratio(t["ar"]),3),
                  "textMainL": resolve_text_main(t), "accents": {}}
         for an, ah in ACCENTS:
@@ -383,14 +380,14 @@ def write_css(data):
 def write_site_data(data):
 
     out = {
-        "themes": [{"name": t["name"], "jp": t["jp"], "ladder": t["ladder"],
+        "themes": [{"name": t["name"], "ladder": t["ladder"],
                     "h": t["h"], "cs": t["cs"],
                     "available": [a for a, v in t["accents"].items() if v["available"]],
                     "recommended": [a for a, v in t["accents"].items() if v["recommended"]],
                     "warnings": {a: v["issues"][0] for a, v in t["accents"].items()
                                  if v["available"] and not v["recommended"]}}
                    for t in data["themes"]],
-        "accents": [{"name": n, "jp": ACCENT_JP.get(n, ""), "hue": h} for n, h in ACCENTS],
+        "accents": [{"name": n, "hue": h} for n, h in ACCENTS],
         "themeTokens": THEME_TOKENS,
         "accentTokens": ACCENT_TOKENS,
         "sharedTokens": SHARED_TOKENS,
