@@ -128,6 +128,9 @@ PAIRS = [
     ("line-strong-on-panel","color-panel",2.0),
     ("line-strong-on-item","color-item",2.0),
     ("color-accent","color-panel",3.0),
+    ("color-error","color-panel",3.0),
+    ("color-warning","color-panel",3.0),
+    ("color-success","color-panel",3.0),
     ("color-text","color-accent-tint",4.5),
     ("color-text","hover-on-panel",4.5),
     ("color-text","hover-on-item",4.5),
@@ -135,6 +138,8 @@ PAIRS = [
     ("color-text","color-tint",4.5),
 
     ("color-text","color-error-tint",4.5),
+    ("color-text","color-warning-tint",4.5),
+    ("color-text","color-success-tint",4.5),
     ("color-error","color-error-tint",3.0),
     ("color-warning","color-warning-tint",3.0),
     ("color-success","color-success-tint",3.0),
