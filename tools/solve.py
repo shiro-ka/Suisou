@@ -100,7 +100,7 @@ THEMES = [
     {"name":"fjord",  "jp":"峡湾",     "ladder":"dark", "h":281, "cs":0.037, "ar":0.85, "lift":0.015, "ct":0.025},
     {"name":"shoal",  "jp":"浅瀬",     "ladder":"dim",  "h":265, "cs":0.020, "ar":0.60},
 ]
-ACCENTS = [("clown",55),("turtle",122),("weed",188),("jelly",212),("blue",255),
+ACCENTS = [("clown",55),("turtle",122),("konbu",188),("jelly",212),("blue",255),
            ("indigo",282),("coral",308),("magenta",332),("seal",355)]
 
 ACCENT_JP = {"clown":"カクレクマノミ", "turtle":"ウミガメ", "jelly":"クラゲ",

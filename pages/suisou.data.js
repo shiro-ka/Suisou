@@ -9,7 +9,7 @@ const SUISOU = {
    "available": [
     "clown",
     "turtle",
-    "weed",
+    "konbu",
     "jelly",
     "blue",
     "indigo",
@@ -20,7 +20,7 @@ const SUISOU = {
    "recommended": [
     "clown",
     "turtle",
-    "weed",
+    "konbu",
     "jelly",
     "blue",
     "indigo",
@@ -39,7 +39,7 @@ const SUISOU = {
    "available": [
     "clown",
     "turtle",
-    "weed",
+    "konbu",
     "jelly",
     "blue",
     "indigo",
@@ -50,7 +50,7 @@ const SUISOU = {
    "recommended": [
     "clown",
     "turtle",
-    "weed",
+    "konbu",
     "jelly",
     "blue",
     "indigo",
@@ -69,7 +69,7 @@ const SUISOU = {
    "available": [
     "clown",
     "turtle",
-    "weed",
+    "konbu",
     "jelly",
     "blue",
     "indigo",
@@ -80,7 +80,7 @@ const SUISOU = {
    "recommended": [
     "clown",
     "turtle",
-    "weed",
+    "konbu",
     "jelly",
     "blue",
     "indigo",
@@ -99,7 +99,7 @@ const SUISOU = {
    "available": [
     "clown",
     "turtle",
-    "weed",
+    "konbu",
     "jelly",
     "blue",
     "indigo",
@@ -110,7 +110,7 @@ const SUISOU = {
    "recommended": [
     "clown",
     "turtle",
-    "weed",
+    "konbu",
     "jelly",
     "blue",
     "indigo",
@@ -133,7 +133,7 @@ const SUISOU = {
    "hue": 122
   },
   {
-   "name": "weed",
+   "name": "konbu",
    "jp": "",
    "hue": 188
   },
@@ -267,7 +267,7 @@ const SUISOU = {
     "line-weak-on-accent-tint": "#565e44",
     "line-strong-on-accent-tint": "#6a715a"
    },
-   "weed": {
+   "konbu": {
     "color-bg": "#18181b",
     "color-panel": "#212124",
     "color-item": "#303033",
@@ -566,7 +566,7 @@ const SUISOU = {
     "line-weak-on-accent-tint": "#565e44",
     "line-strong-on-accent-tint": "#6a715a"
    },
-   "weed": {
+   "konbu": {
     "color-bg": "#11172b",
     "color-panel": "#1a2135",
     "color-item": "#282f45",
@@ -865,7 +865,7 @@ const SUISOU = {
     "line-weak-on-accent-tint": "#535a41",
     "line-strong-on-accent-tint": "#676e57"
    },
-   "weed": {
+   "konbu": {
     "color-bg": "#121325",
     "color-panel": "#1b1c2f",
     "color-item": "#292a3f",
@@ -1164,7 +1164,7 @@ const SUISOU = {
     "line-weak-on-accent-tint": "#687056",
     "line-strong-on-accent-tint": "#7a816a"
    },
-   "weed": {
+   "konbu": {
     "color-bg": "#262b36",
     "color-panel": "#303540",
     "color-item": "#404550",
