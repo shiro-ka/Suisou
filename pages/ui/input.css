@@ -67,6 +67,8 @@
 :where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked))::before { scale: 1; }
 :where([data-suisou-body] input:is([type="checkbox"], [type="radio"])):not(:disabled, [aria-disabled="true"]):hover { border-color: var(--suisou-color-accent); }
 :where([data-suisou-body] input:is([type="checkbox"]:is(:checked, :indeterminate), [type="radio"]:checked)):is(:disabled, [aria-disabled="true"]) { background: var(--suisou-color-line-weak); border-color: var(--suisou-color-line-weak); }
+:where([data-suisou-body] input:is([type="checkbox"], [type="radio"])):is(:disabled, [aria-disabled="true"]) { --suisou-bd-style: dashed; }
+:where([data-suisou-body] label:has(input:is([type="checkbox"], [type="radio"]):is(:disabled, [aria-disabled="true"]))) { color: var(--suisou-color-text-disabled); }
 
 @media (forced-colors: active) {
   :where([data-suisou-body] input:is([type="checkbox"], [type="radio"])) { forced-color-adjust: none; background: Canvas; border-color: CanvasText; }
