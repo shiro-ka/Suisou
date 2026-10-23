@@ -60,6 +60,7 @@
       <tr><td>なし</td><td>背景を panel の色にし、細い罫線・角丸・四方 8px の余白を付ける。中の入力欄は item の色になる。<code>&lt;dialog&gt;</code> では、開くと後ろに幕が敷かれ、パネルと幕がフェードで出入りする</td></tr>
       <tr><td><code>drawer</code></td><td><code>popover</code> の付いた要素に、向きを1つ添えて使う。開くとその端から滑って出て、後ろに幕が敷かれる。背景を panel の色にし、四方 8px の余白と、内側の辺に罫線を1本付ける（角丸なし）。<code>right</code> <code>left</code> は高さが画面いっぱいで、幅が <code>--suisou-size-drawer</code>（既定 20rem）。<code>top</code> <code>bottom</code> は幅が画面いっぱいで、高さの上限が <code>--suisou-size-drawer</code>。どちらも画面の 90% まで</td></tr>
       <tr><td><code>right</code> <code>left</code> <code>top</code> <code>bottom</code></td><td><code>drawer</code> と一緒に使う。パネルを付ける端</td></tr>
+      <tr><td><code>s:dock</code> <code>m:dock</code> <code>l:dock</code></td><td><code>drawer</code> と一緒に、1つまで使う。768 / 1024 / 1280px 以上では、閉じていてもその場に置く（背景・罫線なし、幅は中身に合わせて 14〜20rem、画面の上端に貼り付く）。それより狭いと、閉じていて、開くと端から滑って出る</td></tr>
     </tbody>
   </table>
   <h3>CSS</h3>

@@ -19,21 +19,20 @@
   <pre><code>&lt;body data-suisou-body="shell doc"&gt;</code></pre>
   <h3>right</h3>
   <p><code>&lt;nav&gt;</code> が右側に配置されます</p>
-  <pre><code>&lt;body data-suisou-body="shell right"&gt;</code></pre>
+  <pre><code>&lt;body data-suisou-body="shell"&gt;
+  &lt;nav popover data-suisou-tray="drawer right"&gt;</code></pre>
   <h3>dock</h3>
   <p><code>&lt;nav&gt;</code> に <code>popover</code> を追加すると、ドロワーになり、端から滑って出てきます<br><code>s:dock</code> / <code>m:dock</code> / <code>l:dock</code> を追加すると、768 / 1024 / 1280px 以上では <code>&lt;nav popover&gt;</code> が閉じた状態でも表示されます</p>
-  <pre><code>&lt;body data-suisou-body="shell m:dock"&gt;
-  &lt;nav popover&gt;</code></pre>
+  <pre><code>&lt;body data-suisou-body="shell"&gt;
+  &lt;nav popover data-suisou-tray="drawer right m:dock"&gt;</code></pre>
   <h2>Reference</h2>
   <h3>Values</h3>
   <table>
     <thead><tr><th>Value</th><th>Function</th></tr></thead>
     <tbody>
       <tr><td>なし</td><td>その要素と中の要素に、フォント・背景色・文字色、余白のリセット、<code>&lt;button&gt;</code> <code>&lt;input&gt;</code> <code>&lt;a&gt;</code> などの既定の見た目、細いスクロールバーを適用する</td></tr>
-      <tr><td><code>shell</code></td><td><code>&lt;body&gt;</code> のみ。直下の <code>&lt;header&gt;</code> <code>&lt;main&gt;</code> <code>&lt;footer&gt;</code> <code>&lt;nav&gt;</code> を配置し、ページを画面の高さに固定する。<code>&lt;nav&gt;</code> は高さいっぱいで、中身が多いとスクロールする。<code>&lt;main&gt;</code> には四方 16px の余白が付く。ほかの要素の位置は決まっていない</td></tr>
+      <tr><td><code>shell</code></td><td><code>&lt;body&gt;</code> のみ。直下の <code>&lt;header&gt;</code> <code>&lt;main&gt;</code> <code>&lt;footer&gt;</code> <code>&lt;nav&gt;</code> を配置し、ページを画面の高さに固定する。<code>&lt;nav&gt;</code> は高さいっぱいで、中身が多いとスクロールする。<code>&lt;main&gt;</code> には四方 16px の余白が付く。<code>&lt;nav&gt;</code> の <code>data-suisou-tray</code> に <code>right</code> があると、<code>&lt;nav&gt;</code> を右側に配置する。ほかの要素の位置は決まっていない</td></tr>
       <tr><td><code>doc</code></td><td><code>shell</code> と一緒に使う。ページ本体がスクロールし、<code>&lt;nav&gt;</code> は画面に固定される</td></tr>
-      <tr><td><code>right</code></td><td><code>shell</code> と一緒に使う。<code>&lt;nav&gt;</code> を右側に配置する。<code>&lt;nav popover&gt;</code> は右から滑って出る</td></tr>
-      <tr><td><code>s:dock</code> <code>m:dock</code> <code>l:dock</code></td><td><code>shell</code> と一緒に使う。直下の <code>&lt;nav popover&gt;</code> を、768 / 1024 / 1280px 以上では出しっぱなしのサイドバーにする（背景・罫線なし、幅は中身に合わせて 14〜20rem）。それより狭いと、閉じていて、開くと端から滑って出る</td></tr>
     </tbody>
   </table>
   <h3>CSS</h3>
