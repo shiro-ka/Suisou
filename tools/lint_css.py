@@ -11,6 +11,7 @@ TARGET_DIRS = ["pages"]
 TARGET_EXT = (".css", ".html", ".js")
 
 TRAY_EDGES = {"right", "left", "top", "bottom"}
+TRAY_DOCKS = {"s:dock", "m:dock", "l:dock"}
 ITEM_KINDS = {"media", "circle", "square", "field", "tag", "notice"}
 COLOR_WORDS = {"note", "accent", "success", "warning", "error"}
 SHELL_SLOTS = {"header", "main", "footer", "nav"}
@@ -87,8 +88,6 @@ def shell_problems(body, rel):
             continue
         if "popover" in attrs and tag != "nav":
             continue
-        if tag == "nav" and "drawer" in (attrs.get("data-suisou-tray") or "").split():
-            out.append(f"{rel}:{line}: shell の nav に drawer … <nav popover> だけでドロワーになる（向きは body の right、出しっぱなしは body の s:dock / m:dock / l:dock）")
         if tag not in SHELL_SLOTS:
             out.append(f"{rel}:{line}: shell の body の直下に <{tag}> … header / main / footer / nav の中に入れる")
             continue
@@ -192,11 +191,12 @@ def main():
                     if not vals:
                         continue
                     edges = TRAY_EDGES & set(vals)
-                    kinds = set(vals) - TRAY_EDGES
-                    if not ((kinds == {"drawer"} and len(edges) == 1) or (kinds == {"popup"} and edges <= {"bottom"}) or set(vals) == {"link"}):
+                    docks = TRAY_DOCKS & set(vals)
+                    kinds = set(vals) - TRAY_EDGES - TRAY_DOCKS
+                    if not ((kinds == {"drawer"} and len(edges) == 1 and len(docks) <= 1) or (kinds == {"popup"} and edges <= {"bottom"} and not docks) or set(vals) == {"link"}):
                         problems.append(
                             f"{rel}:{i}: tray の値 … \"{raw}\" "
-                            f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添える。popup は単体か popup bottom。link は単体）")
+                            f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添え、s:dock / m:dock / l:dock を1つまで添えられる。popup は単体か popup bottom。link は単体）")
 
                 elif name == "data-suisou-item" and vals:
                     kinds = ITEM_KINDS & set(vals)
