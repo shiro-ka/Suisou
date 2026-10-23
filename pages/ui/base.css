@@ -64,6 +64,12 @@ body[data-suisou-body~="shell"]:where(:has(> nav[data-suisou-tray~="right"])) { 
 [data-suisou-body~="shell"]:has(> nav[data-suisou-tray~="right"]) > :where(header) { grid-area: 1 / 1; }
 [data-suisou-body~="shell"]:has(> nav[data-suisou-tray~="right"]) > :where(main)   { grid-area: 2 / 1; }
 [data-suisou-body~="shell"]:has(> nav[data-suisou-tray~="right"]) > :where(footer) { grid-area: 3 / 1; }
+[data-suisou-body~="shell"] > nav[popover]:not(:popover-open) {
+  width: fit-content;
+  max-width: var(--suisou-size-drawer, 20rem);
+  min-width: min(14rem, var(--suisou-size-drawer, 20rem));
+  height: 100dvh;
+}
 @media (prefers-reduced-motion: reduce) {
   :root {
     --suisou-duration-fast: 0.01ms;

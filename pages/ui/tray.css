@@ -99,13 +99,16 @@
     inset: auto;
     top: 0;
     translate: none;
-    width: fit-content;
-    max-width: var(--suisou-size-drawer, 20rem);
-    min-width: min(14rem, var(--suisou-size-drawer, 20rem));
+    width: auto;
+    max-width: none;
+    height: auto;
+    max-height: 100dvh;
+    overflow: auto;
     background: transparent;
     border: 0;
     transition: none;
   }
+  :where([popover][data-suisou-tray~="drawer"]:not(:popover-open))[data-suisou-tray~="s:dock"] { padding: 0; }
 }
 @media (width >= 1024px) {
   :where([popover][data-suisou-tray~="drawer"][data-suisou-tray~="m:dock"]) { display: block; }
@@ -114,13 +117,16 @@
     inset: auto;
     top: 0;
     translate: none;
-    width: fit-content;
-    max-width: var(--suisou-size-drawer, 20rem);
-    min-width: min(14rem, var(--suisou-size-drawer, 20rem));
+    width: auto;
+    max-width: none;
+    height: auto;
+    max-height: 100dvh;
+    overflow: auto;
     background: transparent;
     border: 0;
     transition: none;
   }
+  :where([popover][data-suisou-tray~="drawer"]:not(:popover-open))[data-suisou-tray~="m:dock"] { padding: 0; }
 }
 @media (width >= 1280px) {
   :where([popover][data-suisou-tray~="drawer"][data-suisou-tray~="l:dock"]) { display: block; }
@@ -129,13 +135,16 @@
     inset: auto;
     top: 0;
     translate: none;
-    width: fit-content;
-    max-width: var(--suisou-size-drawer, 20rem);
-    min-width: min(14rem, var(--suisou-size-drawer, 20rem));
+    width: auto;
+    max-width: none;
+    height: auto;
+    max-height: 100dvh;
+    overflow: auto;
     background: transparent;
     border: 0;
     transition: none;
   }
+  :where([popover][data-suisou-tray~="drawer"]:not(:popover-open))[data-suisou-tray~="l:dock"] { padding: 0; }
 }
 :where([popover])[data-suisou-tray~="drawer"]::backdrop {
   background: var(--suisou-color-backdrop);
