@@ -67,6 +67,7 @@ svg[data-suisou-text*="fs-"] { width: 1em; height: 1em; }
   white-space: nowrap;
 }
 [data-suisou-text~="pre-line"] { white-space: pre-line; }
+[data-suisou-text~="break"] { overflow-wrap: anywhere; }
 [data-suisou-text~="clamp-2"] {
   min-width: 0;
   overflow: clip;
