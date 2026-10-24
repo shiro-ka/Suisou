@@ -30,7 +30,7 @@
   <table>
     <thead><tr><th>Value</th><th>Function</th></tr></thead>
     <tbody>
-      <tr><td>なし</td><td>その要素と中の要素に、フォント・背景色・文字色、余白のリセット、<code>&lt;button&gt;</code> <code>&lt;input&gt;</code> <code>&lt;a&gt;</code> などの既定の見た目、細いスクロールバーを適用する</td></tr>
+      <tr><td>なし</td><td>その要素と中の要素に、フォント・背景色・文字色、余白のリセット、<code>&lt;button&gt;</code> <code>&lt;input&gt;</code> <code>&lt;a&gt;</code> などの既定の見た目、細いスクロールバーを適用する。<code>&lt;code&gt;</code> <code>&lt;kbd&gt;</code> <code>&lt;samp&gt;</code> は等幅の書体にし、長くても途中で折り返す</td></tr>
       <tr><td><code>shell</code></td><td><code>&lt;body&gt;</code> か、ページ全体を包む要素（SvelteKit の <code>app.html</code> の <code>&lt;div&gt;</code> など）に使う。直下の <code>&lt;header&gt;</code> <code>&lt;main&gt;</code> <code>&lt;footer&gt;</code> <code>&lt;nav&gt;</code> を配置し、ページを画面の高さに固定する。<code>&lt;nav&gt;</code> は高さいっぱいで、中身が多いとスクロールする。<code>&lt;main&gt;</code> には四方 16px の余白が付く。<code>&lt;nav&gt;</code> の <code>data-suisou-tray</code> に <code>right</code> があると、<code>&lt;nav&gt;</code> を右側に配置する。ほかの要素の位置は決まっていない</td></tr>
       <tr><td><code>doc</code></td><td><code>shell</code> と一緒に使う。ページ本体がスクロールし、<code>&lt;nav&gt;</code> は画面に固定される</td></tr>
     </tbody>

@@ -26,6 +26,10 @@
 [data-suisou-theme] {
   color-scheme: dark;
 }
+:where([data-suisou-body] :is(code, kbd, samp)) {
+  font-family: var(--suisou-font-mono);
+  overflow-wrap: anywhere;
+}
 [data-suisou-body] {
   font-family: var(--suisou-font);
   font-size: var(--suisou-fs-14);
