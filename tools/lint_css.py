@@ -66,7 +66,7 @@ class ShellChildren(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         self.child(tag, attrs)
-        if tag == "body" and "shell" in (dict(attrs).get("data-suisou-body") or "").split():
+        if self.shell is None and "shell" in (dict(attrs).get("data-suisou-body") or "").split():
             self.shell = self.depth
         if tag not in VOID_TAGS:
             self.depth += 1
