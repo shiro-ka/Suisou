@@ -1,4 +1,5 @@
 @property --suisou-size-drawer { syntax: "*"; inherits: false; }
+@property --suisou-size-dialog { syntax: "*"; inherits: false; }
 
 :is([data-suisou-tray=""], [data-suisou-tray="link"]) {
   border: 1px var(--suisou-bd-style, solid) var(--suisou-color-line-weak);
@@ -14,6 +15,7 @@
 :where(dialog, [popover])[data-suisou-tray] { color: var(--suisou-color-text); }
 
 :where(dialog)[data-suisou-tray] {
+  width: min(100vw - 2 * var(--suisou-space-3), var(--suisou-size-dialog, 28rem));
   opacity: 0;
   transition: opacity var(--suisou-duration) var(--suisou-ease),
               display var(--suisou-duration) allow-discrete,
