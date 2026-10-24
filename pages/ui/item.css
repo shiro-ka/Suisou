@@ -169,3 +169,4 @@
 [data-suisou-item~="notice"]:where([data-suisou~="error"])   { border-color: var(--suisou-color-error);   background: var(--suisou-color-error-tint); }
 [data-suisou-item~="notice"]:where([data-suisou~="warning"]) { border-color: var(--suisou-color-warning); background: var(--suisou-color-warning-tint); }
 [data-suisou-item~="notice"]:where([data-suisou~="success"]) { border-color: var(--suisou-color-success); background: var(--suisou-color-success-tint); }
+:where(a, button)[data-suisou-item~="notice"]:hover { background-image: linear-gradient(var(--suisou-color-hover), var(--suisou-color-hover)); }
