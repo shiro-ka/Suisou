@@ -35,6 +35,8 @@
 }
 :is([data-suisou-tray=""], [data-suisou-tray="link"]) > [data-suisou-tray="bleed"]:first-child { margin-block-start: calc(-1 * var(--suisou-space-2)); }
 :is([data-suisou-tray=""], [data-suisou-tray="link"]) > [data-suisou-tray="bleed"]:last-child { margin-block-end: calc(-1 * var(--suisou-space-2)); }
+:is([data-suisou-tray=""], [data-suisou-tray="link"]) > [data-suisou-tray="bleed"]:first-child:not(:last-child) { margin-block-end: var(--suisou-space-2); }
+:is([data-suisou-tray=""], [data-suisou-tray="link"]) > [data-suisou-tray="bleed"]:last-child:not(:first-child) { margin-block-start: var(--suisou-space-2); }
 :where(dialog)[data-suisou-tray]::backdrop { background: var(--suisou-color-backdrop); }
 :where(dialog, [popover])[data-suisou-tray] { color: var(--suisou-color-text); }
 
