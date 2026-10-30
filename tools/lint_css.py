@@ -101,9 +101,13 @@ def drawer_problems(body, rel):
     out = []
     for t in HTML_TAG.finditer(body):
         for m in HTML_ATTR.finditer(t.group(0)):
-            if m.group(1) != "data-suisou-tray" or not m.group(3) or POPOVER_ATTR.search(t.group(0)):
+            if m.group(1) != "data-suisou-tray" or not m.group(3):
                 continue
             vals = m.group(3).split()
+            if "stretch" in vals and not re.match(r"<(a|button)[\s>]", t.group(0)):
+                out.append(f"{rel}:{body.count(chr(10), 0, t.start()) + 1}: <a> / <button> でない stretch … stretch は tray=\"link\" の中のリンクかボタンに付ける")
+            if POPOVER_ATTR.search(t.group(0)):
+                continue
             if "drawer" in vals:
                 out.append(f"{rel}:{body.count(chr(10), 0, t.start()) + 1}: popover の無い drawer … drawer は popover と一緒に使う（出しっぱなしのサイドバーは body の s:dock / m:dock / l:dock）")
             if "popup" in vals:
@@ -193,10 +197,10 @@ def main():
                     edges = TRAY_EDGES & set(vals)
                     docks = TRAY_DOCKS & set(vals)
                     kinds = set(vals) - TRAY_EDGES - TRAY_DOCKS
-                    if not ((kinds == {"drawer"} and len(edges) == 1 and len(docks) <= 1) or (kinds == {"popup"} and edges <= {"bottom"} and not docks) or set(vals) == {"link"}):
+                    if not ((kinds == {"drawer"} and len(edges) == 1 and len(docks) <= 1) or (kinds == {"popup"} and edges <= {"bottom"} and not docks) or set(vals) in ({"link"}, {"stretch"})):
                         problems.append(
                             f"{rel}:{i}: tray の値 … \"{raw}\" "
-                            f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添え、s:dock / m:dock / l:dock を1つまで添えられる。popup は単体か popup bottom。link は単体）")
+                            f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添え、s:dock / m:dock / l:dock を1つまで添えられる。popup は単体か popup bottom。link と stretch は単体）")
 
                 elif name == "data-suisou-item" and vals:
                     kinds = ITEM_KINDS & set(vals)
