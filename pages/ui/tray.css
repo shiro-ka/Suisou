@@ -27,6 +27,14 @@
   outline-offset: 2px;
 }
 [data-suisou-tray="stretch"]:focus-visible { outline: none; }
+:is([data-suisou-tray=""], [data-suisou-tray="link"]):has(> [data-suisou-tray="bleed"]) { overflow: clip; }
+:is([data-suisou-tray=""], [data-suisou-tray="link"]) > [data-suisou-tray="bleed"] {
+  inline-size: calc(100% + 2 * var(--suisou-space-2));
+  max-inline-size: none;
+  margin-inline: calc(-1 * var(--suisou-space-2));
+}
+:is([data-suisou-tray=""], [data-suisou-tray="link"]) > [data-suisou-tray="bleed"]:first-child { margin-block-start: calc(-1 * var(--suisou-space-2)); }
+:is([data-suisou-tray=""], [data-suisou-tray="link"]) > [data-suisou-tray="bleed"]:last-child { margin-block-end: calc(-1 * var(--suisou-space-2)); }
 :where(dialog)[data-suisou-tray]::backdrop { background: var(--suisou-color-backdrop); }
 :where(dialog, [popover])[data-suisou-tray] { color: var(--suisou-color-text); }
 

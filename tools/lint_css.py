@@ -197,10 +197,10 @@ def main():
                     edges = TRAY_EDGES & set(vals)
                     docks = TRAY_DOCKS & set(vals)
                     kinds = set(vals) - TRAY_EDGES - TRAY_DOCKS
-                    if not ((kinds == {"drawer"} and len(edges) == 1 and len(docks) <= 1) or (kinds == {"popup"} and edges <= {"bottom"} and not docks) or set(vals) in ({"link"}, {"stretch"})):
+                    if not ((kinds == {"drawer"} and len(edges) == 1 and len(docks) <= 1) or (kinds == {"popup"} and edges <= {"bottom"} and not docks) or set(vals) in ({"link"}, {"stretch"}, {"bleed"})):
                         problems.append(
                             f"{rel}:{i}: tray の値 … \"{raw}\" "
-                            f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添え、s:dock / m:dock / l:dock を1つまで添えられる。popup は単体か popup bottom。link と stretch は単体）")
+                            f"（値なしで panel。drawer は {' / '.join(sorted(TRAY_EDGES))} を1つ添え、s:dock / m:dock / l:dock を1つまで添えられる。popup は単体か popup bottom。link・stretch・bleed は単体）")
 
                 elif name == "data-suisou-item" and vals:
                     kinds = ITEM_KINDS & set(vals)
