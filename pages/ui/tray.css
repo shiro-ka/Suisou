@@ -189,6 +189,8 @@
     opacity: 0;
   }
 }
+:where(body:has([popover][data-suisou-tray~="drawer"]:popover-open)) { pointer-events: none; }
+:where(body:has([popover][data-suisou-tray~="drawer"]:popover-open) [popover]:popover-open) { pointer-events: auto; }
 
 :where([popover])[data-suisou-tray~="popup"] {
   inset: auto;
