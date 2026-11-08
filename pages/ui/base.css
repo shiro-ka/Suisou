@@ -38,6 +38,7 @@
   color: var(--suisou-color-text);
   accent-color: var(--suisou-color-accent);
   scrollbar-color: var(--suisou-color-line-strong) transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 :where(:root:has(> [data-suisou-body]), [data-suisou-body], [data-suisou-body] *) { scrollbar-width: thin; }
 :where(:root:has(> [data-suisou-body])) { scrollbar-color: var(--suisou-color-line-strong) transparent; }
